@@ -1,0 +1,24 @@
+//
+//  ObjectiveCTest.m
+//  Example
+//
+//  Created by TIWASZEK on 06/05/2020.
+//  Copyright © 2020 TIWASZEK. All rights reserved.
+//
+
+#import "ObjectiveCTest.h"
+
+@implementation ObjectiveCTest
+
+- (void) someTestMethod {
+    // Test Core framework availability
+    DefaultAPIClient <APIClient> * apiClient = [DefaultAPIClient new];
+
+    // Test UI framework availability
+    CardView * view = [CardView new];
+    CardViewModel * viewModel = [CardViewModel new];
+    //CardViewController * cardVC = [[CardViewController alloc] initWithView: view viewModel: viewModel];
+
+}
+
+@end

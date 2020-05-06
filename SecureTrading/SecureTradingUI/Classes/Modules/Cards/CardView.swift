@@ -8,4 +8,4 @@
 
 import UIKit
 
-public final class CardView: UIView {}
+@objc public final class CardView: UIView {}

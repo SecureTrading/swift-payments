@@ -7,4 +7,4 @@
 //
 
 /// Performs API requests.
-public protocol APIClient: AnyObject {}
+@objc public protocol APIClient: AnyObject {}

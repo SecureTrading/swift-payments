@@ -9,10 +9,10 @@
 import Foundation
 import SecureTradingCore
 
-public final class CardViewModel {
+@objc public final class CardViewModel: NSObject {
     let apiClient: APIClient
 
-    public init() {
+    public override init() {
         // check Core dependency
         self.apiClient = DefaultAPIClient()
     }

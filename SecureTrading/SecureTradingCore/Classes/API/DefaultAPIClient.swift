@@ -8,6 +8,6 @@
 
 import Foundation
 
-public final class DefaultAPIClient: APIClient {
-    public init() {}
+@objc public final class DefaultAPIClient: NSObject, APIClient {
+    public override init() {}
 }
