@@ -56,7 +56,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		08E4FA7E2462A7D100837339 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		08E4FA7E2462A7D100837339 /* SecureTradingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureTradingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA812462A7D100837339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08E4FA852462A7D100837339 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		08E4FA882462A7D100837339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		08E4FA7F2462A7D100837339 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				08E4FA7E2462A7D100837339 /* Example.app */,
+				08E4FA7E2462A7D100837339 /* SecureTradingApp.app */,
 				08E4FA942462A7D800837339 /* ExampleTests.xctest */,
 				08E4FA9F2462A7D800837339 /* ExampleUITests.xctest */,
 			);
@@ -201,7 +201,7 @@
 			);
 			name = Example;
 			productName = Example;
-			productReference = 08E4FA7E2462A7D100837339 /* Example.app */;
+			productReference = 08E4FA7E2462A7D100837339 /* SecureTradingApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		08E4FA932462A7D800837339 /* ExampleTests */ = {
@@ -441,13 +441,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6GJ86WKP5G;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(_ENVIRONMENTS)";
 				INFOPLIST_FILE = Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(_DEPLOYMENT_TARGET_IOS)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.Example;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(_BUNDLE_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(_ENVIRONMENTS)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
