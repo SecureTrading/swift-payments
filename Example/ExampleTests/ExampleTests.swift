@@ -6,13 +6,12 @@
 //  Copyright © 2020 TIWASZEK. All rights reserved.
 //
 
-import XCTest
-import SecureTradingUI
-import SecureTradingCore
 @testable import SecureTradingApp
+import SecureTradingCore
+import SecureTradingUI
+import XCTest
 
 class ExampleTests: XCTestCase {
-
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 
@@ -37,5 +36,4 @@ class ExampleTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }
