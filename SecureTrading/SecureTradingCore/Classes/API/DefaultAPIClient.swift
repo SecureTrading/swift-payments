@@ -9,4 +9,5 @@
 import Foundation
 
 public final class DefaultAPIClient: APIClient {
+    public init() {}
 }
