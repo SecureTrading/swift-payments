@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		082FC7962462E18900D4E2B6 /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */; };
+		082FC7972462E18900D4E2B6 /* SecureTradingCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		082FC7982462E18900D4E2B6 /* SecureTradingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */; };
+		082FC7992462E18900D4E2B6 /* SecureTradingUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		08E4FA822462A7D100837339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA812462A7D100837339 /* AppDelegate.swift */; };
 		08E4FA862462A7D100837339 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA852462A7D100837339 /* ViewController.swift */; };
 		08E4FA892462A7D100837339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA872462A7D100837339 /* Main.storyboard */; };
@@ -14,10 +18,6 @@
 		08E4FA8E2462A7D800837339 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA8C2462A7D800837339 /* LaunchScreen.storyboard */; };
 		08E4FA992462A7D800837339 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA982462A7D800837339 /* ExampleTests.swift */; };
 		08E4FAA42462A7D800837339 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FAA32462A7D800837339 /* ExampleUITests.swift */; };
-		08EF7CF72462AA1B008B5F3E /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7CF62462AA1B008B5F3E /* SecureTradingCore.framework */; };
-		08EF7CF82462AA1B008B5F3E /* SecureTradingCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7CF62462AA1B008B5F3E /* SecureTradingCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		08EF7D5A2462B7B8008B5F3E /* SecureTradingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7D592462B7B8008B5F3E /* SecureTradingUI.framework */; };
-		08EF7D5B2462B7B8008B5F3E /* SecureTradingUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7D592462B7B8008B5F3E /* SecureTradingUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		08EF7D6F2462CEB5008B5F3E /* Test-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 08EF7D6C2462CEB4008B5F3E /* Test-Base.xcconfig */; };
 		08EF7D702462CEB5008B5F3E /* App-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 08EF7D6D2462CEB4008B5F3E /* App-Base.xcconfig */; };
 		08EF7D712462CEB5008B5F3E /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 08EF7D6E2462CEB4008B5F3E /* Development.xcconfig */; };
@@ -47,8 +47,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				08EF7CF82462AA1B008B5F3E /* SecureTradingCore.framework in Embed Frameworks */,
-				08EF7D5B2462B7B8008B5F3E /* SecureTradingUI.framework in Embed Frameworks */,
+				082FC7972462E18900D4E2B6 /* SecureTradingCore.framework in Embed Frameworks */,
+				082FC7992462E18900D4E2B6 /* SecureTradingUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +56,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA7E2462A7D100837339 /* SecureTradingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureTradingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA812462A7D100837339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08E4FA852462A7D100837339 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,8 +71,6 @@
 		08E4FA9F2462A7D800837339 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FAA32462A7D800837339 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		08E4FAA52462A7D800837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		08EF7CF62462AA1B008B5F3E /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		08EF7D592462B7B8008B5F3E /* SecureTradingUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08EF7D6C2462CEB4008B5F3E /* Test-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Test-Base.xcconfig"; sourceTree = "<group>"; };
 		08EF7D6D2462CEB4008B5F3E /* App-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Base.xcconfig"; sourceTree = "<group>"; };
 		08EF7D6E2462CEB4008B5F3E /* Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
@@ -81,8 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08EF7CF72462AA1B008B5F3E /* SecureTradingCore.framework in Frameworks */,
-				08EF7D5A2462B7B8008B5F3E /* SecureTradingUI.framework in Frameworks */,
+				082FC7962462E18900D4E2B6 /* SecureTradingCore.framework in Frameworks */,
+				082FC7982462E18900D4E2B6 /* SecureTradingUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,8 +167,8 @@
 		08EF7CF52462AA1B008B5F3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				08EF7D592462B7B8008B5F3E /* SecureTradingUI.framework */,
-				08EF7CF62462AA1B008B5F3E /* SecureTradingCore.framework */,
+				082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */,
+				082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
