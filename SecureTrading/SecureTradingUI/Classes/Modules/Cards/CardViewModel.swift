@@ -7,5 +7,13 @@
 //
 
 import Foundation
+import SecureTradingCore
 
-public final class CardViewModel {}
+public final class CardViewModel {
+    let apiClient: APIClient
+
+    public init() {
+        // check Core dependency
+        self.apiClient = DefaultAPIClient()
+    }
+}

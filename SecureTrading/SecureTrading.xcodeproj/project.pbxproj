@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,7 +15,18 @@
 		08EF7D4E2462B5DB008B5F3E /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D4D2462B5DB008B5F3E /* CardViewController.swift */; };
 		08EF7D502462B601008B5F3E /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D4F2462B601008B5F3E /* CardViewModel.swift */; };
 		08EF7D522462B60B008B5F3E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D512462B60B008B5F3E /* CardView.swift */; };
+		08EF7D542462B790008B5F3E /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		08EF7D562462B790008B5F3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08E4FA612462A5EC00837339 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08E4FA692462A5EC00837339;
+			remoteInfo = SecureTradingCore;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08EF7D542462B790008B5F3E /* SecureTradingCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +68,7 @@
 				08E4FA6C2462A5EC00837339 /* SecureTradingCore */,
 				08EF7D3F2462B12F008B5F3E /* SecureTradingUI */,
 				08E4FA6B2462A5EC00837339 /* Products */,
+				08EF7D532462B790008B5F3E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,6 +169,13 @@
 			path = Cards;
 			sourceTree = "<group>";
 		};
+		08EF7D532462B790008B5F3E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -208,6 +228,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				08EF7D572462B790008B5F3E /* PBXTargetDependency */,
 			);
 			name = SecureTradingUI;
 			productName = SecureTradingUI;
@@ -291,6 +312,15 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		08EF7D572462B790008B5F3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 08E4FA692462A5EC00837339 /* SecureTradingCore */;
+			targetProxy = 08EF7D562462B790008B5F3E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		08E4FA702462A5EC00837339 /* Debug */ = {
@@ -478,7 +508,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SecureTradingUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -487,6 +517,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTradingUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -505,7 +536,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SecureTradingUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -514,6 +545,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTradingUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

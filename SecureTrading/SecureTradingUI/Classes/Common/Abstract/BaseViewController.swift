@@ -17,13 +17,13 @@ public class BaseViewController<View: UIView, ViewModel>: UIViewController {
 
     /// - SeeAlso: UIViewController.preferredStatusBarStyle
     public override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
+        return .default
     }
 
     /// Initializes view controller with given View.
     ///
     /// - Parameter view: Maker for the UIView.
-    init(view: @escaping @autoclosure () -> View, viewModel: ViewModel) {
+    public init(view: @escaping @autoclosure () -> View, viewModel: ViewModel) {
         customView = view()
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)

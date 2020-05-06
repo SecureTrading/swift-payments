@@ -8,6 +8,4 @@
 
 import Foundation
 
-public final class CardViewController: BaseViewController<CardView, CardViewModel> {
-
-}
+public final class CardViewController: BaseViewController<CardView, CardViewModel> {}

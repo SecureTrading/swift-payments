@@ -17,6 +17,8 @@
 		08E4FAA42462A7D800837339 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FAA32462A7D800837339 /* ExampleUITests.swift */; };
 		08EF7CF72462AA1B008B5F3E /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7CF62462AA1B008B5F3E /* SecureTradingCore.framework */; };
 		08EF7CF82462AA1B008B5F3E /* SecureTradingCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7CF62462AA1B008B5F3E /* SecureTradingCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		08EF7D5A2462B7B8008B5F3E /* SecureTradingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7D592462B7B8008B5F3E /* SecureTradingUI.framework */; };
+		08EF7D5B2462B7B8008B5F3E /* SecureTradingUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7D592462B7B8008B5F3E /* SecureTradingUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				08EF7CF82462AA1B008B5F3E /* SecureTradingCore.framework in Embed Frameworks */,
+				08EF7D5B2462B7B8008B5F3E /* SecureTradingUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,6 +69,7 @@
 		08E4FAA32462A7D800837339 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		08E4FAA52462A7D800837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08EF7CF62462AA1B008B5F3E /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		08EF7D592462B7B8008B5F3E /* SecureTradingUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08EF7CF72462AA1B008B5F3E /* SecureTradingCore.framework in Frameworks */,
+				08EF7D5A2462B7B8008B5F3E /* SecureTradingUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +155,7 @@
 		08EF7CF52462AA1B008B5F3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08EF7D592462B7B8008B5F3E /* SecureTradingUI.framework */,
 				08EF7CF62462AA1B008B5F3E /* SecureTradingCore.framework */,
 			);
 			name = Frameworks;
