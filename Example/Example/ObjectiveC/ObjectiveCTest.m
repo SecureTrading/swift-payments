@@ -17,6 +17,7 @@
     // Test UI framework availability
     CardView * view = [CardView new];
     CardViewModel * viewModel = [CardViewModel new];
+    //todo - how to make the swift generics available to objc
     //CardViewController * cardVC = [[CardViewController alloc] initWithView: view viewModel: viewModel];
 
 }
