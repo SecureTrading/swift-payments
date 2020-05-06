@@ -11,6 +11,10 @@
 		08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */; };
 		08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFF2462AC32008B5F3E /* APIClient.swift */; };
 		08EF7D422462B12F008B5F3E /* SecureTradingUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 08EF7D402462B12F008B5F3E /* SecureTradingUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D492462B239008B5F3E /* BaseViewController.swift */; };
+		08EF7D4E2462B5DB008B5F3E /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D4D2462B5DB008B5F3E /* CardViewController.swift */; };
+		08EF7D502462B601008B5F3E /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D4F2462B601008B5F3E /* CardViewModel.swift */; };
+		08EF7D522462B60B008B5F3E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D512462B60B008B5F3E /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		08EF7D3E2462B12F008B5F3E /* SecureTradingUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08EF7D402462B12F008B5F3E /* SecureTradingUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingUI.h; sourceTree = "<group>"; };
 		08EF7D412462B12F008B5F3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08EF7D492462B239008B5F3E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		08EF7D4D2462B5DB008B5F3E /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		08EF7D4F2462B601008B5F3E /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		08EF7D512462B60B008B5F3E /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,10 +106,54 @@
 		08EF7D3F2462B12F008B5F3E /* SecureTradingUI */ = {
 			isa = PBXGroup;
 			children = (
+				08EF7D462462B185008B5F3E /* Classes */,
 				08EF7D402462B12F008B5F3E /* SecureTradingUI.h */,
 				08EF7D412462B12F008B5F3E /* Info.plist */,
 			);
 			path = SecureTradingUI;
+			sourceTree = "<group>";
+		};
+		08EF7D462462B185008B5F3E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				08EF7D4B2462B270008B5F3E /* Modules */,
+				08EF7D472462B1F1008B5F3E /* Common */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		08EF7D472462B1F1008B5F3E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				08EF7D482462B1F9008B5F3E /* Abstract */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		08EF7D482462B1F9008B5F3E /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				08EF7D492462B239008B5F3E /* BaseViewController.swift */,
+			);
+			path = Abstract;
+			sourceTree = "<group>";
+		};
+		08EF7D4B2462B270008B5F3E /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				08EF7D4C2462B3CE008B5F3E /* Cards */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		08EF7D4C2462B3CE008B5F3E /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				08EF7D4D2462B5DB008B5F3E /* CardViewController.swift */,
+				08EF7D4F2462B601008B5F3E /* CardViewModel.swift */,
+				08EF7D512462B60B008B5F3E /* CardView.swift */,
+			);
+			path = Cards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +229,7 @@
 					};
 					08EF7D3D2462B12F008B5F3E = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -230,6 +283,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08EF7D4E2462B5DB008B5F3E /* CardViewController.swift in Sources */,
+				08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */,
+				08EF7D522462B60B008B5F3E /* CardView.swift in Sources */,
+				08EF7D502462B601008B5F3E /* CardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +469,7 @@
 		08EF7D432462B12F008B5F3E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6GJ86WKP5G;
@@ -429,6 +487,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTradingUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -437,6 +496,7 @@
 		08EF7D442462B12F008B5F3E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6GJ86WKP5G;
