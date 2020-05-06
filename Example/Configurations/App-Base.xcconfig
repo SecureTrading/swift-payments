@@ -1,0 +1,18 @@
+//
+//  App-Base.xcconfig
+//  Example
+//
+//  Created by TIWASZEK on 06/05/2020.
+//  Copyright © 2020 TIWASZEK. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+_BUILD_VERSION = 0.0.1
+_BUILD_NUMBER = 0
+_DEPLOYMENT_TARGET_IOS = 11.0
+
+_BUNDLE_NAME = SecureTradingApp
+_BUNDLE_INFOPLIST_PATH = $(SRCROOT)/Example/SupportingFiles/Info.plist
+_BUNDLE_IDENTIFIER = com.securetrading$(__PRODUCT_BUNDLE_IDENTIFIER_SUFFIX)

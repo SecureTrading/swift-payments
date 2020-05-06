@@ -1,0 +1,16 @@
+//
+//  Test-Base.xcconfig
+//  Example
+//
+//  Created by TIWASZEK on 06/05/2020.
+//  Copyright © 2020 TIWASZEK. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+__PRODUCT_BUNDLE_IDENTIFIER_SUFFIX = .test
+
+_ENVIRONMENTS = ENV_TESTS
+_BUNDLE_INFOPLIST_PATH = $(SRCROOT)/ExampleTests/Info.plist
+_BUNDLE_NAME = ExampleTests
