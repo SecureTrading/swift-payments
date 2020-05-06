@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		08E4FA6F2462A5EC00837339 /* SecureTradingCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */; };
+		08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFF2462AC32008B5F3E /* APIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCore.h; sourceTree = "<group>"; };
 		08E4FA6E2462A5EC00837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAPIClient.swift; sourceTree = "<group>"; };
+		08EF7CFF2462AC32008B5F3E /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,10 +50,36 @@
 		08E4FA6C2462A5EC00837339 /* SecureTradingCore */ = {
 			isa = PBXGroup;
 			children = (
+				08EF7CFA2462AAAC008B5F3E /* Classes */,
 				08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */,
 				08E4FA6E2462A5EC00837339 /* Info.plist */,
 			);
 			path = SecureTradingCore;
+			sourceTree = "<group>";
+		};
+		08EF7CFA2462AAAC008B5F3E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				08EF7CFB2462ABD0008B5F3E /* API */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		08EF7CFB2462ABD0008B5F3E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				08EF7CFE2462AC1E008B5F3E /* Abstraction */,
+				08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		08EF7CFE2462AC1E008B5F3E /* Abstraction */ = {
+			isa = PBXGroup;
+			children = (
+				08EF7CFF2462AC32008B5F3E /* APIClient.swift */,
+			);
+			path = Abstraction;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,6 +125,7 @@
 				TargetAttributes = {
 					08E4FA692462A5EC00837339 = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -131,6 +162,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */,
+				08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +293,7 @@
 		08E4FA732462A5EC00837339 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6GJ86WKP5G;
@@ -277,6 +311,7 @@
 				PRODUCT_NAME = SecureTradingCore;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -285,6 +320,7 @@
 		08E4FA742462A5EC00837339 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6GJ86WKP5G;

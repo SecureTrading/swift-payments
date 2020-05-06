@@ -15,6 +15,8 @@
 		08E4FA8E2462A7D800837339 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA8C2462A7D800837339 /* LaunchScreen.storyboard */; };
 		08E4FA992462A7D800837339 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA982462A7D800837339 /* ExampleTests.swift */; };
 		08E4FAA42462A7D800837339 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FAA32462A7D800837339 /* ExampleUITests.swift */; };
+		08EF7CF72462AA1B008B5F3E /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7CF62462AA1B008B5F3E /* SecureTradingCore.framework */; };
+		08EF7CF82462AA1B008B5F3E /* SecureTradingCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7CF62462AA1B008B5F3E /* SecureTradingCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		08EF7CF92462AA1B008B5F3E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				08EF7CF82462AA1B008B5F3E /* SecureTradingCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		08E4FA7E2462A7D100837339 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA812462A7D100837339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +65,7 @@
 		08E4FA9F2462A7D800837339 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FAA32462A7D800837339 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		08E4FAA52462A7D800837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08EF7CF62462AA1B008B5F3E /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08EF7CF72462AA1B008B5F3E /* SecureTradingCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +101,7 @@
 				08E4FA972462A7D800837339 /* ExampleTests */,
 				08E4FAA22462A7D800837339 /* ExampleUITests */,
 				08E4FA7F2462A7D100837339 /* Products */,
+				08EF7CF52462AA1B008B5F3E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +147,14 @@
 			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
+		08EF7CF52462AA1B008B5F3E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08EF7CF62462AA1B008B5F3E /* SecureTradingCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +165,7 @@
 				08E4FA7A2462A7D100837339 /* Sources */,
 				08E4FA7B2462A7D100837339 /* Frameworks */,
 				08E4FA7C2462A7D100837339 /* Resources */,
+				08EF7CF92462AA1B008B5F3E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

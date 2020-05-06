@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import SecureTradingCore
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // Test Core framework availability
+        let apiClient = DefaultAPIClient()
     }
 
 
