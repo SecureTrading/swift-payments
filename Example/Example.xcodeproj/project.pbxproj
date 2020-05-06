@@ -111,6 +111,14 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		082FC79D2462FE6200D4E2B6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				08E4FA8A2462A7D800837339 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		08E4FA752462A7D100837339 = {
 			isa = PBXGroup;
 			children = (
@@ -136,11 +144,11 @@
 		08E4FA802462A7D100837339 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				082FC79D2462FE6200D4E2B6 /* Resources */,
 				082FC7932462DB1000D4E2B6 /* SupportingFiles */,
 				08E4FA812462A7D100837339 /* AppDelegate.swift */,
 				08E4FA852462A7D100837339 /* ViewController.swift */,
 				08E4FA872462A7D100837339 /* Main.storyboard */,
-				08E4FA8A2462A7D800837339 /* Assets.xcassets */,
 				08E4FA8C2462A7D800837339 /* LaunchScreen.storyboard */,
 			);
 			path = Example;
