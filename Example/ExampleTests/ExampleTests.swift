@@ -9,7 +9,7 @@
 import XCTest
 import SecureTradingUI
 import SecureTradingCore
-@testable import Example
+@testable import SecureTradingApp
 
 class ExampleTests: XCTestCase {
 
