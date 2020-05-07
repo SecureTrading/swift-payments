@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <SecureTradingCore/SecureTradingCore.h>
 
 //! Project version number for SecureTradingCore.
 FOUNDATION_EXPORT double SecureTradingCoreVersionNumber;
