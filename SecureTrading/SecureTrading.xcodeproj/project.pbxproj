@@ -29,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		082FC7A4246429D200D4E2B6 /* SDK-base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "SDK-base.xcconfig"; sourceTree = "<group>"; };
 		08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCore.h; sourceTree = "<group>"; };
 		08E4FA6E2462A5EC00837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,9 +63,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		082FC7A3246429B100D4E2B6 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				082FC7A4246429D200D4E2B6 /* SDK-base.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
 		08E4FA602462A5EC00837339 = {
 			isa = PBXGroup;
 			children = (
+				082FC7A3246429B100D4E2B6 /* Configurations */,
 				08E4FA6C2462A5EC00837339 /* SecureTradingCore */,
 				08EF7D3F2462B12F008B5F3E /* SecureTradingUI */,
 				08E4FA6B2462A5EC00837339 /* Products */,
@@ -325,6 +335,7 @@
 /* Begin XCBuildConfiguration section */
 		082FC79A2462E1A000D4E2B6 /* Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 082FC7A4246429D200D4E2B6 /* SDK-base.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -447,6 +458,7 @@
 		};
 		08E4FA702462A5EC00837339 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 082FC7A4246429D200D4E2B6 /* SDK-base.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -510,6 +522,7 @@
 		};
 		08E4FA712462A5EC00837339 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 082FC7A4246429D200D4E2B6 /* SDK-base.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
