@@ -10,7 +10,7 @@
 // https://help.apple.com/xcode/#/dev745c5c974
 
 _BUILD_VERSION = 0.0.1
-_BUILD_NUMBER = 0
+_BUILD_NUMBER = 1
 _DEPLOYMENT_TARGET_IOS = 11.0
 
 _BUNDLE_NAME = SecureTradingApp
