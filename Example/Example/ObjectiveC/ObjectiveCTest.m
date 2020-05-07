@@ -11,15 +11,10 @@
 @implementation ObjectiveCTest
 
 - (void) someTestMethod {
-    // Test Core framework availability
+    // Test frameworks availability
     DefaultAPIClient <APIClient> * apiClient = [DefaultAPIClient new];
-
-    // Test UI framework availability
     CardView * view = [CardView new];
     CardViewModel * viewModel = [CardViewModel new];
-    //todo - how to make the swift generics available to objc
-    //CardViewController * cardVC = [[CardViewController alloc] initWithView: view viewModel: viewModel];
-
 }
 
 @end
