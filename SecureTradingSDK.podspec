@@ -14,15 +14,16 @@ Pod::Spec.new do |s|
   # s.social_media_url = ""
 
   s.platform         = :ios, "11.0"
+  s.swift_version = "5.0"
 
   s.default_subspecs = %w[Core UI]
 
 s.subspec "Core" do |s|
-    s.source_files  = "SecureTrading/SecureTradingCore/**/*.{swift}"
+    s.source_files  = "SecureTrading/SecureTradingCore/**/**/*.{swift}"
   end
 
   s.subspec "UI" do |s|
-    s.source_files  = "SecureTrading/SecureTradingUI/**/*.{swift}"
+    s.source_files  = "SecureTrading/SecureTradingUI/**/**/**/*.{swift}"
     s.dependency "SecureTradingSDK/Core"
   end
 end
