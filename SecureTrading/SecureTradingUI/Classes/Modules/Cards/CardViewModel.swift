@@ -7,7 +7,9 @@
 //
 
 import Foundation
+#if !COCOAPODS
 import SecureTradingCore
+#endif
 
 @objc public final class CardViewModel: NSObject {
     let apiClient: APIClient

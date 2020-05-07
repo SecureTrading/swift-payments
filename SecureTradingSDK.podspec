@@ -19,11 +19,15 @@ Pod::Spec.new do |s|
   s.default_subspecs = %w[Core UI]
 
 s.subspec "Core" do |s|
-    s.source_files  = "SecureTrading/SecureTradingCore/**/**/*.{swift}"
+    s.source_files   = "SecureTrading/SecureTradingCore/**/*.{h,swift}"
+    s.public_header_files = "SecureTrading/SecureTradingCore/*.{h}"
+    s.header_dir = "SecureTradingCore"
   end
 
   s.subspec "UI" do |s|
-    s.source_files  = "SecureTrading/SecureTradingUI/**/**/**/*.{swift}"
+    s.source_files   = "SecureTrading/SecureTradingUI/**/*.{h,swift}"
+    s.public_header_files = "SecureTrading/SecureTradingUI/*.{h}"
+    s.header_dir = "SecureTradingUI"
     s.dependency "SecureTradingSDK/Core"
   end
 end
