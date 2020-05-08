@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         // Test Core framework availability
         let apiClient = DefaultAPIClient()
         // Test UI framework availability
-        // let cardVC = CardViewController(view: CardView(), viewModel: CardViewModel())
+        let cardVC = CardViewController(view: CardView(), viewModel: CardViewModel())
     }
 
 

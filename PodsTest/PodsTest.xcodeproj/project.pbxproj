@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		084E29672465390C0040FB9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 084E29652465390C0040FB9D /* Main.storyboard */; };
 		084E2969246539110040FB9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 084E2968246539110040FB9D /* Assets.xcassets */; };
 		084E296C246539110040FB9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 084E296A246539110040FB9D /* LaunchScreen.storyboard */; };
+		084E29762465429E0040FB9D /* ObjectiveCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 084E29752465429E0040FB9D /* ObjectiveCTest.m */; };
 		A23D1F7DF0C120E97C35B30A /* Pods_PodsTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 509EED30A9AB6BDC3ACF6A1F /* Pods_PodsTest.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,9 @@
 		084E2968246539110040FB9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		084E296B246539110040FB9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		084E296D246539110040FB9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		084E29742465429E0040FB9D /* PodsTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PodsTest-Bridging-Header.h"; sourceTree = "<group>"; };
+		084E29752465429E0040FB9D /* ObjectiveCTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCTest.m; sourceTree = "<group>"; };
+		084E2977246542B80040FB9D /* ObjectiveCTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveCTest.h; sourceTree = "<group>"; };
 		2818823FD44C854FC6FDE172 /* Pods-PodsTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodsTest.release.xcconfig"; path = "Target Support Files/Pods-PodsTest/Pods-PodsTest.release.xcconfig"; sourceTree = "<group>"; };
 		509EED30A9AB6BDC3ACF6A1F /* Pods_PodsTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodsTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6BD99ED788C8F84D25EB2B0 /* Pods-PodsTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodsTest.debug.xcconfig"; path = "Target Support Files/Pods-PodsTest/Pods-PodsTest.debug.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +67,7 @@
 		084E295E2465390C0040FB9D /* PodsTest */ = {
 			isa = PBXGroup;
 			children = (
+				084E2973246542710040FB9D /* ObjectiveC */,
 				084E295F2465390C0040FB9D /* AppDelegate.swift */,
 				084E29612465390C0040FB9D /* SceneDelegate.swift */,
 				084E29632465390C0040FB9D /* ViewController.swift */,
@@ -72,6 +77,16 @@
 				084E296D246539110040FB9D /* Info.plist */,
 			);
 			path = PodsTest;
+			sourceTree = "<group>";
+		};
+		084E2973246542710040FB9D /* ObjectiveC */ = {
+			isa = PBXGroup;
+			children = (
+				084E29752465429E0040FB9D /* ObjectiveCTest.m */,
+				084E2977246542B80040FB9D /* ObjectiveCTest.h */,
+				084E29742465429E0040FB9D /* PodsTest-Bridging-Header.h */,
+			);
+			path = ObjectiveC;
 			sourceTree = "<group>";
 		};
 		6D56091ABAACA24C01AE4F0B /* Frameworks */ = {
@@ -88,7 +103,6 @@
 				B6BD99ED788C8F84D25EB2B0 /* Pods-PodsTest.debug.xcconfig */,
 				2818823FD44C854FC6FDE172 /* Pods-PodsTest.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -126,6 +140,7 @@
 				TargetAttributes = {
 					084E295B2465390C0040FB9D = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -208,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				084E29642465390C0040FB9D /* ViewController.swift in Sources */,
+				084E29762465429E0040FB9D /* ObjectiveCTest.m in Sources */,
 				084E29602465390C0040FB9D /* AppDelegate.swift in Sources */,
 				084E29622465390C0040FB9D /* SceneDelegate.swift in Sources */,
 			);
@@ -354,6 +370,7 @@
 			baseConfigurationReference = B6BD99ED788C8F84D25EB2B0 /* Pods-PodsTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6GJ86WKP5G;
 				INFOPLIST_FILE = PodsTest/Info.plist;
@@ -363,6 +380,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.PodsTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PodsTest/ObjectiveC/PodsTest-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -373,6 +392,7 @@
 			baseConfigurationReference = 2818823FD44C854FC6FDE172 /* Pods-PodsTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6GJ86WKP5G;
 				INFOPLIST_FILE = PodsTest/Info.plist;
@@ -382,6 +402,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.PodsTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PodsTest/ObjectiveC/PodsTest-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
