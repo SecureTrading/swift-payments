@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		084E29CE246562C60040FB9D /* SecureTradingCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29CD246562C60040FB9D /* SecureTradingCoreTests.swift */; };
+		084E29D0246562C60040FB9D /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; platformFilter = ios; };
+		084E29DE246562DA0040FB9D /* SecureTradingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29DD246562DA0040FB9D /* SecureTradingUITests.swift */; };
+		084E29E0246562DA0040FB9D /* SecureTradingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7D3E2462B12F008B5F3E /* SecureTradingUI.framework */; platformFilter = ios; };
 		08E4FA6F2462A5EC00837339 /* SecureTradingCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */; };
 		08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFF2462AC32008B5F3E /* APIClient.swift */; };
@@ -19,6 +23,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		084E29D1246562C60040FB9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08E4FA612462A5EC00837339 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08E4FA692462A5EC00837339;
+			remoteInfo = SecureTradingCore;
+		};
+		084E29E1246562DA0040FB9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08E4FA612462A5EC00837339 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08EF7D3D2462B12F008B5F3E;
+			remoteInfo = SecureTradingUI;
+		};
 		08EF7D562462B790008B5F3E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 08E4FA612462A5EC00837339 /* Project object */;
@@ -30,6 +48,12 @@
 
 /* Begin PBXFileReference section */
 		082FC7A4246429D200D4E2B6 /* SDK-base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "SDK-base.xcconfig"; sourceTree = "<group>"; };
+		084E29CB246562C60040FB9D /* SecureTradingCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureTradingCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		084E29CD246562C60040FB9D /* SecureTradingCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTradingCoreTests.swift; sourceTree = "<group>"; };
+		084E29CF246562C60040FB9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		084E29DB246562DA0040FB9D /* SecureTradingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureTradingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		084E29DD246562DA0040FB9D /* SecureTradingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTradingUITests.swift; sourceTree = "<group>"; };
+		084E29DF246562DA0040FB9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCore.h; sourceTree = "<group>"; };
 		08E4FA6E2462A5EC00837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +69,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		084E29C8246562C60040FB9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				084E29D0246562C60040FB9D /* SecureTradingCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		084E29D8246562DA0040FB9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				084E29E0246562DA0040FB9D /* SecureTradingUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		08E4FA672462A5EC00837339 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -71,12 +111,32 @@
 			path = Configurations;
 			sourceTree = "<group>";
 		};
+		084E29CC246562C60040FB9D /* SecureTradingCoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				084E29CD246562C60040FB9D /* SecureTradingCoreTests.swift */,
+				084E29CF246562C60040FB9D /* Info.plist */,
+			);
+			path = SecureTradingCoreTests;
+			sourceTree = "<group>";
+		};
+		084E29DC246562DA0040FB9D /* SecureTradingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				084E29DD246562DA0040FB9D /* SecureTradingUITests.swift */,
+				084E29DF246562DA0040FB9D /* Info.plist */,
+			);
+			path = SecureTradingUITests;
+			sourceTree = "<group>";
+		};
 		08E4FA602462A5EC00837339 = {
 			isa = PBXGroup;
 			children = (
 				082FC7A3246429B100D4E2B6 /* Configurations */,
 				08E4FA6C2462A5EC00837339 /* SecureTradingCore */,
 				08EF7D3F2462B12F008B5F3E /* SecureTradingUI */,
+				084E29CC246562C60040FB9D /* SecureTradingCoreTests */,
+				084E29DC246562DA0040FB9D /* SecureTradingUITests */,
 				08E4FA6B2462A5EC00837339 /* Products */,
 				08EF7D532462B790008B5F3E /* Frameworks */,
 			);
@@ -87,6 +147,8 @@
 			children = (
 				08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */,
 				08EF7D3E2462B12F008B5F3E /* SecureTradingUI.framework */,
+				084E29CB246562C60040FB9D /* SecureTradingCoreTests.xctest */,
+				084E29DB246562DA0040FB9D /* SecureTradingUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,6 +270,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		084E29CA246562C60040FB9D /* SecureTradingCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 084E29D6246562C60040FB9D /* Build configuration list for PBXNativeTarget "SecureTradingCoreTests" */;
+			buildPhases = (
+				084E29C7246562C60040FB9D /* Sources */,
+				084E29C8246562C60040FB9D /* Frameworks */,
+				084E29C9246562C60040FB9D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				084E29D2246562C60040FB9D /* PBXTargetDependency */,
+			);
+			name = SecureTradingCoreTests;
+			productName = SecureTradingCoreTests;
+			productReference = 084E29CB246562C60040FB9D /* SecureTradingCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		084E29DA246562DA0040FB9D /* SecureTradingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 084E29E3246562DA0040FB9D /* Build configuration list for PBXNativeTarget "SecureTradingUITests" */;
+			buildPhases = (
+				084E29D7246562DA0040FB9D /* Sources */,
+				084E29D8246562DA0040FB9D /* Frameworks */,
+				084E29D9246562DA0040FB9D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				084E29E2246562DA0040FB9D /* PBXTargetDependency */,
+			);
+			name = SecureTradingUITests;
+			productName = SecureTradingUITests;
+			productReference = 084E29DB246562DA0040FB9D /* SecureTradingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		08E4FA692462A5EC00837339 /* SecureTradingCore */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08E4FA722462A5EC00837339 /* Build configuration list for PBXNativeTarget "SecureTradingCore" */;
@@ -251,9 +349,16 @@
 		08E4FA612462A5EC00837339 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = TIWASZEK;
 				TargetAttributes = {
+					084E29CA246562C60040FB9D = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+					084E29DA246562DA0040FB9D = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
 					08E4FA692462A5EC00837339 = {
 						CreatedOnToolsVersion = 11.4.1;
 						LastSwiftMigration = 1140;
@@ -279,11 +384,27 @@
 			targets = (
 				08E4FA692462A5EC00837339 /* SecureTradingCore */,
 				08EF7D3D2462B12F008B5F3E /* SecureTradingUI */,
+				084E29CA246562C60040FB9D /* SecureTradingCoreTests */,
+				084E29DA246562DA0040FB9D /* SecureTradingUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		084E29C9246562C60040FB9D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		084E29D9246562DA0040FB9D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		08E4FA682462A5EC00837339 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -301,6 +422,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		084E29C7246562C60040FB9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				084E29CE246562C60040FB9D /* SecureTradingCoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		084E29D7246562DA0040FB9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				084E29DE246562DA0040FB9D /* SecureTradingUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		08E4FA662462A5EC00837339 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -324,6 +461,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		084E29D2246562C60040FB9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 08E4FA692462A5EC00837339 /* SecureTradingCore */;
+			targetProxy = 084E29D1246562C60040FB9D /* PBXContainerItemProxy */;
+		};
+		084E29E2246562DA0040FB9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 08EF7D3D2462B12F008B5F3E /* SecureTradingUI */;
+			targetProxy = 084E29E1246562DA0040FB9D /* PBXContainerItemProxy */;
+		};
 		08EF7D572462B790008B5F3E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -459,6 +608,120 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Development;
+		};
+		084E29D3246562C60040FB9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6GJ86WKP5G;
+				INFOPLIST_FILE = SecureTradingCoreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTradingCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		084E29D4246562C60040FB9D /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6GJ86WKP5G;
+				INFOPLIST_FILE = SecureTradingCoreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTradingCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Development;
+		};
+		084E29D5246562C60040FB9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6GJ86WKP5G;
+				INFOPLIST_FILE = SecureTradingCoreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTradingCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		084E29E4246562DA0040FB9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6GJ86WKP5G;
+				INFOPLIST_FILE = SecureTradingUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTradingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		084E29E5246562DA0040FB9D /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6GJ86WKP5G;
+				INFOPLIST_FILE = SecureTradingUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTradingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Development;
+		};
+		084E29E6246562DA0040FB9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6GJ86WKP5G;
+				INFOPLIST_FILE = SecureTradingUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTradingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
 		};
 		08E4FA702462A5EC00837339 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -709,6 +972,26 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		084E29D6246562C60040FB9D /* Build configuration list for PBXNativeTarget "SecureTradingCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				084E29D3246562C60040FB9D /* Debug */,
+				084E29D4246562C60040FB9D /* Development */,
+				084E29D5246562C60040FB9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		084E29E3246562DA0040FB9D /* Build configuration list for PBXNativeTarget "SecureTradingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				084E29E4246562DA0040FB9D /* Debug */,
+				084E29E5246562DA0040FB9D /* Development */,
+				084E29E6246562DA0040FB9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		08E4FA642462A5EC00837339 /* Build configuration list for PBXProject "SecureTrading" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
