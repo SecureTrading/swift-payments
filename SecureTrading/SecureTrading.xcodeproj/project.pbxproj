@@ -17,6 +17,7 @@
 		084E29F124656DE00040FB9D /* ViewSetupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29F024656DE00040FB9D /* ViewSetupable.swift */; };
 		084E29F4246571B10040FB9D /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29F3246571B10040FB9D /* TestView.swift */; };
 		084E29F6246573180040FB9D /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29F5246573180040FB9D /* UIStackView.swift */; };
+		084E29F92465826F0040FB9D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29F82465826F0040FB9D /* Fonts.swift */; };
 		08E4FA6F2462A5EC00837339 /* SecureTradingCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */; };
 		08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFF2462AC32008B5F3E /* APIClient.swift */; };
@@ -66,6 +67,7 @@
 		084E29F024656DE00040FB9D /* ViewSetupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetupable.swift; sourceTree = "<group>"; };
 		084E29F3246571B10040FB9D /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		084E29F5246573180040FB9D /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		084E29F82465826F0040FB9D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCore.h; sourceTree = "<group>"; };
 		08E4FA6E2462A5EC00837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -174,6 +176,14 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
+		084E29F7246582530040FB9D /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				084E29F82465826F0040FB9D /* Fonts.swift */,
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
 		08E4FA602462A5EC00837339 = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +265,7 @@
 		08EF7D472462B1F1008B5F3E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				084E29F7246582530040FB9D /* Appearance */,
 				084E29EF24656DC50040FB9D /* Protocols */,
 				084E29EA24656B370040FB9D /* Helpers */,
 				084E29E724656A090040FB9D /* Extensions */,
@@ -509,6 +520,7 @@
 				084E29EC24656B4E0040FB9D /* CallbackWrapper.swift in Sources */,
 				084E29F4246571B10040FB9D /* TestView.swift in Sources */,
 				084E29F6246573180040FB9D /* UIStackView.swift in Sources */,
+				084E29F92465826F0040FB9D /* Fonts.swift in Sources */,
 				084E29F124656DE00040FB9D /* ViewSetupable.swift in Sources */,
 				08EF7D502462B601008B5F3E /* CardViewModel.swift in Sources */,
 			);

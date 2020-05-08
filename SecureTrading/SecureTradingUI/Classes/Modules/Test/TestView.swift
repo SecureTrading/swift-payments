@@ -10,6 +10,16 @@ import UIKit
 
 // Provided example how to build views
 @objc public final class TestView: BaseView {
+
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = Fonts.responsive(.bold, ofSizes: [.small: 17, .medium: 18, .large: 20])
+        label.numberOfLines = 0
+        label.setContentHuggingPriority(.defaultLow + 1, for: .vertical)
+        return label
+    }()
+
     let testContainer: UIView = {
         let view = UIView()
         view.backgroundColor = .blue
