@@ -55,6 +55,8 @@ playground.xcworkspace
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
 
+PodsTest/Pods/
+PodsTest/Pods/CocoaPodsKeys
 Pods/
 Pods/CocoaPodsKeys
 
@@ -68,6 +70,8 @@ Pods/CocoaPodsKeys
 
 Carthage/Checkouts
 Carthage/Build/
+CarthageTest/Carthage/Checkouts
+CarthageTest/Carthage/Build/
 
 # Accio dependency management
 Dependencies/
