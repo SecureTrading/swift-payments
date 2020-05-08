@@ -13,9 +13,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        let cardModel = CardViewModel()
+        // Test Core framework availability
         let apiClient = DefaultAPIClient()
+        // Test UI framework availability
+        // let cardVC = CardViewController(view: CardView(), viewModel: CardViewModel())
     }
 
 
