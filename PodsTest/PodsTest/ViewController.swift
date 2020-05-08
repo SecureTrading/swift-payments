@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import SecureTradingSDK
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        let cardModel = CardViewModel()
+        let apiClient = DefaultAPIClient()
     }
 
 
