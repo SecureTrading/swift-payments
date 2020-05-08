@@ -1,0 +1,10 @@
+platform :ios, '13.0'
+
+target 'PodsTest' do
+  use_frameworks!
+
+  #pod 'SecureTradingSDK', :path => '../'
+  pod 'SecureTradingSDK/Core', :path => '../'
+  pod 'SecureTradingSDK/UI', :path => '../'
+
+end
