@@ -25,6 +25,9 @@
 		084E2A03246585330040FB9D /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A02246585330040FB9D /* UICollectionView.swift */; };
 		084E2A062465874B0040FB9D /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A052465874B0040FB9D /* Localizable.swift */; };
 		084E2A0A246593C50040FB9D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 084E2A0C246593C50040FB9D /* Localizable.strings */; };
+		084E2A0E246599B70040FB9D /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A0D246599B70040FB9D /* FlowController.swift */; };
+		084E2A10246599D90040FB9D /* NavigationFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A0F246599D90040FB9D /* NavigationFlowController.swift */; };
+		084E2A12246599FC0040FB9D /* NavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A11246599FC0040FB9D /* NavigationDelegate.swift */; };
 		08E4FA6F2462A5EC00837339 /* SecureTradingCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */; };
 		08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFF2462AC32008B5F3E /* APIClient.swift */; };
@@ -82,6 +85,9 @@
 		084E2A02246585330040FB9D /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		084E2A052465874B0040FB9D /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		084E2A0B246593C50040FB9D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		084E2A0D246599B70040FB9D /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
+		084E2A0F246599D90040FB9D /* NavigationFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationFlowController.swift; sourceTree = "<group>"; };
+		084E2A11246599FC0040FB9D /* NavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDelegate.swift; sourceTree = "<group>"; };
 		08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCore.h; sourceTree = "<group>"; };
 		08E4FA6E2462A5EC00837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -180,6 +186,9 @@
 			isa = PBXGroup;
 			children = (
 				084E29F024656DE00040FB9D /* ViewSetupable.swift */,
+				084E2A0D246599B70040FB9D /* FlowController.swift */,
+				084E2A0F246599D90040FB9D /* NavigationFlowController.swift */,
+				084E2A11246599FC0040FB9D /* NavigationDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -556,11 +565,14 @@
 				084E29FF246583E20040FB9D /* Dequeueable.swift in Sources */,
 				08EF7D4E2462B5DB008B5F3E /* CardViewController.swift in Sources */,
 				084E2A062465874B0040FB9D /* Localizable.swift in Sources */,
+				084E2A12246599FC0040FB9D /* NavigationDelegate.swift in Sources */,
 				08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */,
+				084E2A10246599D90040FB9D /* NavigationFlowController.swift in Sources */,
 				084E2A03246585330040FB9D /* UICollectionView.swift in Sources */,
 				08EF7D522462B60B008B5F3E /* CardView.swift in Sources */,
 				084E29FD246583B50040FB9D /* BaseViewCell.swift in Sources */,
 				084E29EE24656D7F0040FB9D /* BaseView.swift in Sources */,
+				084E2A0E246599B70040FB9D /* FlowController.swift in Sources */,
 				084E29EC24656B4E0040FB9D /* CallbackWrapper.swift in Sources */,
 				084E29F4246571B10040FB9D /* TestView.swift in Sources */,
 				084E29F6246573180040FB9D /* UIStackView.swift in Sources */,
