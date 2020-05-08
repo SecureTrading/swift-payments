@@ -22,6 +22,7 @@
 		084E29FD246583B50040FB9D /* BaseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29FC246583B50040FB9D /* BaseViewCell.swift */; };
 		084E29FF246583E20040FB9D /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29FE246583E20040FB9D /* Dequeueable.swift */; };
 		084E2A012465841D0040FB9D /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A002465841D0040FB9D /* UITableView.swift */; };
+		084E2A03246585330040FB9D /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A02246585330040FB9D /* UICollectionView.swift */; };
 		08E4FA6F2462A5EC00837339 /* SecureTradingCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */; };
 		08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFF2462AC32008B5F3E /* APIClient.swift */; };
@@ -76,6 +77,7 @@
 		084E29FC246583B50040FB9D /* BaseViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewCell.swift; sourceTree = "<group>"; };
 		084E29FE246583E20040FB9D /* Dequeueable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
 		084E2A002465841D0040FB9D /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		084E2A02246585330040FB9D /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCore.h; sourceTree = "<group>"; };
 		08E4FA6E2462A5EC00837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				084E29E824656A5D0040FB9D /* UIView.swift */,
 				084E29F5246573180040FB9D /* UIStackView.swift */,
 				084E2A002465841D0040FB9D /* UITableView.swift */,
+				084E2A02246585330040FB9D /* UICollectionView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				084E29FF246583E20040FB9D /* Dequeueable.swift in Sources */,
 				08EF7D4E2462B5DB008B5F3E /* CardViewController.swift in Sources */,
 				08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */,
+				084E2A03246585330040FB9D /* UICollectionView.swift in Sources */,
 				08EF7D522462B60B008B5F3E /* CardView.swift in Sources */,
 				084E29FD246583B50040FB9D /* BaseViewCell.swift in Sources */,
 				084E29EE24656D7F0040FB9D /* BaseView.swift in Sources */,
