@@ -24,6 +24,7 @@
 		084E2A012465841D0040FB9D /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A002465841D0040FB9D /* UITableView.swift */; };
 		084E2A03246585330040FB9D /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A02246585330040FB9D /* UICollectionView.swift */; };
 		084E2A062465874B0040FB9D /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A052465874B0040FB9D /* Localizable.swift */; };
+		084E2A0A246593C50040FB9D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 084E2A0C246593C50040FB9D /* Localizable.strings */; };
 		08E4FA6F2462A5EC00837339 /* SecureTradingCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */; };
 		08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFF2462AC32008B5F3E /* APIClient.swift */; };
@@ -80,6 +81,7 @@
 		084E2A002465841D0040FB9D /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		084E2A02246585330040FB9D /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		084E2A052465874B0040FB9D /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		084E2A0B246593C50040FB9D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCore.h; sourceTree = "<group>"; };
 		08E4FA6E2462A5EC00837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -202,9 +204,18 @@
 		084E2A042465860E0040FB9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				084E2A052465874B0040FB9D /* Localizable.swift */,
+				084E2A07246593900040FB9D /* Strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		084E2A07246593900040FB9D /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				084E2A052465874B0040FB9D /* Localizable.swift */,
+				084E2A0C246593C50040FB9D /* Localizable.strings */,
+			);
+			path = Strings;
 			sourceTree = "<group>";
 		};
 		08E4FA602462A5EC00837339 = {
@@ -503,6 +514,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				084E2A0A246593C50040FB9D /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +592,17 @@
 			targetProxy = 08EF7D562462B790008B5F3E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		084E2A0C246593C50040FB9D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				084E2A0B246593C50040FB9D /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		082FC79A2462E1A000D4E2B6 /* Development */ = {
