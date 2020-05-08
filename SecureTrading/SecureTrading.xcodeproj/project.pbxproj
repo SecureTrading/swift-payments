@@ -197,6 +197,13 @@
 			path = Appearance;
 			sourceTree = "<group>";
 		};
+		084E2A042465860E0040FB9D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		08E4FA602462A5EC00837339 = {
 			isa = PBXGroup;
 			children = (
@@ -259,20 +266,21 @@
 		08EF7D3F2462B12F008B5F3E /* SecureTradingUI */ = {
 			isa = PBXGroup;
 			children = (
-				08EF7D462462B185008B5F3E /* Classes */,
+				084E2A042465860E0040FB9D /* Resources */,
+				08EF7D462462B185008B5F3E /* Source Files */,
 				08EF7D402462B12F008B5F3E /* SecureTradingUI.h */,
 				08EF7D412462B12F008B5F3E /* Info.plist */,
 			);
 			path = SecureTradingUI;
 			sourceTree = "<group>";
 		};
-		08EF7D462462B185008B5F3E /* Classes */ = {
+		08EF7D462462B185008B5F3E /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
 				08EF7D4B2462B270008B5F3E /* Modules */,
 				08EF7D472462B1F1008B5F3E /* Common */,
 			);
-			path = Classes;
+			path = "Source Files";
 			sourceTree = "<group>";
 		};
 		08EF7D472462B1F1008B5F3E /* Common */ = {
