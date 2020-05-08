@@ -13,6 +13,9 @@
 		084E29E0246562DA0040FB9D /* SecureTradingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7D3E2462B12F008B5F3E /* SecureTradingUI.framework */; platformFilter = ios; };
 		084E29E924656A5E0040FB9D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29E824656A5D0040FB9D /* UIView.swift */; };
 		084E29EC24656B4E0040FB9D /* CallbackWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29EB24656B4E0040FB9D /* CallbackWrapper.swift */; };
+		084E29EE24656D7F0040FB9D /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29ED24656D7F0040FB9D /* BaseView.swift */; };
+		084E29F124656DE00040FB9D /* ViewSetupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29F024656DE00040FB9D /* ViewSetupable.swift */; };
+		084E29F4246571B10040FB9D /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29F3246571B10040FB9D /* TestView.swift */; };
 		08E4FA6F2462A5EC00837339 /* SecureTradingCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */; };
 		08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFF2462AC32008B5F3E /* APIClient.swift */; };
@@ -58,6 +61,9 @@
 		084E29DF246562DA0040FB9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		084E29E824656A5D0040FB9D /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		084E29EB24656B4E0040FB9D /* CallbackWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackWrapper.swift; sourceTree = "<group>"; };
+		084E29ED24656D7F0040FB9D /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		084E29F024656DE00040FB9D /* ViewSetupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetupable.swift; sourceTree = "<group>"; };
+		084E29F3246571B10040FB9D /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCore.h; sourceTree = "<group>"; };
 		08E4FA6E2462A5EC00837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -149,6 +155,22 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		084E29EF24656DC50040FB9D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				084E29F024656DE00040FB9D /* ViewSetupable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		084E29F2246571A40040FB9D /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				084E29F3246571B10040FB9D /* TestView.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		08E4FA602462A5EC00837339 = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +252,7 @@
 		08EF7D472462B1F1008B5F3E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				084E29EF24656DC50040FB9D /* Protocols */,
 				084E29EA24656B370040FB9D /* Helpers */,
 				084E29E724656A090040FB9D /* Extensions */,
 				08EF7D482462B1F9008B5F3E /* Abstract */,
@@ -241,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				08EF7D492462B239008B5F3E /* BaseViewController.swift */,
+				084E29ED24656D7F0040FB9D /* BaseView.swift */,
 			);
 			path = Abstract;
 			sourceTree = "<group>";
@@ -248,6 +272,7 @@
 		08EF7D4B2462B270008B5F3E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				084E29F2246571A40040FB9D /* Test */,
 				08EF7D4C2462B3CE008B5F3E /* Cards */,
 			);
 			path = Modules;
@@ -477,7 +502,10 @@
 				08EF7D4E2462B5DB008B5F3E /* CardViewController.swift in Sources */,
 				08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */,
 				08EF7D522462B60B008B5F3E /* CardView.swift in Sources */,
+				084E29EE24656D7F0040FB9D /* BaseView.swift in Sources */,
 				084E29EC24656B4E0040FB9D /* CallbackWrapper.swift in Sources */,
+				084E29F4246571B10040FB9D /* TestView.swift in Sources */,
+				084E29F124656DE00040FB9D /* ViewSetupable.swift in Sources */,
 				08EF7D502462B601008B5F3E /* CardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
