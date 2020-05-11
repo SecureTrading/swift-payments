@@ -9,28 +9,52 @@
 import UIKit
 
 // Provided example how to build views
-@objc public final class TestView: BaseView {
+@objc public final class TestMainView: BaseView {
+    /// Closure invoked when someone taps on show details button.
+    var showDetailsButtonTappedClosure: (() -> Void)? {
+        get { return showDetailsButton.onTap }
+        set { showDetailsButton.onTap = newValue }
+    }
+
+    // MARK: Properties
 
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = Fonts.responsive(.bold, ofSizes: [.small: 17, .medium: 18, .large: 20])
-        label.numberOfLines = 0
-        label.setContentHuggingPriority(.defaultLow + 1, for: .vertical)
+        label.numberOfLines = 1
         return label
     }()
 
-    let testContainer: UIView = {
+    private var showDetailsButton: UIButton = {
+        let button = UIButton(type: .system)
+        // button.setTitle(Localizable.NoCommentsCell.addRateButton.text, for: .normal)
+        button.titleLabel?.font = Fonts.responsive(.regular, ofSizes: [.small: 13, .medium: 14, .large: 16])
+        return button
+    }()
+
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, showDetailsButton])
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        return stackView
+    }()
+
+    private let testContainer: UIView = {
         let view = UIView()
         view.backgroundColor = .blue
         return view
     }()
 
-    let testView: UIView = {
+    private let testView: UIView = {
         let view = UIView()
         view.backgroundColor = .red
         return view
     }()
+
+    // other examples
 
 //    private lazy var statisticsStackView: UIStackView = {
 //        let stackView = UIStackView(arrangedSubviews: [statisticsLabel, checkmarkImageView])
@@ -54,10 +78,11 @@ import UIKit
 //    }()
 }
 
-extension TestView: ViewSetupable {
+extension TestMainView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
     func setupViewHierarchy() {
         testContainer.addSubview(testView)
+        testView.addSubview(stackView)
         addSubviews([testContainer])
     }
 
@@ -70,7 +95,13 @@ extension TestView: ViewSetupable {
             equal(testContainer, \.trailingAnchor, constant: 0)
         ])
 
+        stackView.addConstraints([
+            equal(testView, \.centerYAnchor),
+            equal(testView, \.centerXAnchor)
+        ])
+
         // other examples
+
 //        circularProgressbarContainerView.addConstraints([
 //            equal(\.heightAnchor, greaterOrEqual: 150)
 //        ])
@@ -94,4 +125,3 @@ extension TestView: ViewSetupable {
 //        ])
     }
 }
-

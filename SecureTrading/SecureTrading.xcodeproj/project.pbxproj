@@ -15,7 +15,7 @@
 		084E29EC24656B4E0040FB9D /* CallbackWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29EB24656B4E0040FB9D /* CallbackWrapper.swift */; };
 		084E29EE24656D7F0040FB9D /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29ED24656D7F0040FB9D /* BaseView.swift */; };
 		084E29F124656DE00040FB9D /* ViewSetupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29F024656DE00040FB9D /* ViewSetupable.swift */; };
-		084E29F4246571B10040FB9D /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29F3246571B10040FB9D /* TestView.swift */; };
+		084E29F4246571B10040FB9D /* TestMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29F3246571B10040FB9D /* TestMainView.swift */; };
 		084E29F6246573180040FB9D /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29F5246573180040FB9D /* UIStackView.swift */; };
 		084E29F92465826F0040FB9D /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29F82465826F0040FB9D /* Fonts.swift */; };
 		084E29FB2465832C0040FB9D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29FA2465832C0040FB9D /* Colors.swift */; };
@@ -36,6 +36,13 @@
 		084E2A1F24659E2C0040FB9D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A1E24659E2C0040FB9D /* Array.swift */; };
 		084E2A2124659EA70040FB9D /* SDKFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A2024659EA70040FB9D /* SDKFoundation.swift */; };
 		084E2A2324659EE20040FB9D /* DefaultSDKFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A2224659EE20040FB9D /* DefaultSDKFoundation.swift */; };
+		08694877246924F900F625D0 /* TestMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694876246924F900F625D0 /* TestMainViewModel.swift */; };
+		08694879246925EA00F625D0 /* TestMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694878246925EA00F625D0 /* TestMainViewController.swift */; };
+		0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869487A246926FE00F625D0 /* TestMainFlowController.swift */; };
+		0869487D24692A3600F625D0 /* TestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869487C24692A3600F625D0 /* TestDetailsView.swift */; };
+		0869487F24692A4400F625D0 /* TestDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869487E24692A4400F625D0 /* TestDetailsViewModel.swift */; };
+		0869488124692A5600F625D0 /* TestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488024692A5600F625D0 /* TestDetailsViewController.swift */; };
+		0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488224692A7500F625D0 /* TestDetailsFlowController.swift */; };
 		08E4FA6F2462A5EC00837339 /* SecureTradingCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */; };
 		08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFF2462AC32008B5F3E /* APIClient.swift */; };
@@ -83,7 +90,7 @@
 		084E29EB24656B4E0040FB9D /* CallbackWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackWrapper.swift; sourceTree = "<group>"; };
 		084E29ED24656D7F0040FB9D /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		084E29F024656DE00040FB9D /* ViewSetupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetupable.swift; sourceTree = "<group>"; };
-		084E29F3246571B10040FB9D /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		084E29F3246571B10040FB9D /* TestMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainView.swift; sourceTree = "<group>"; };
 		084E29F5246573180040FB9D /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		084E29F82465826F0040FB9D /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		084E29FA2465832C0040FB9D /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -104,6 +111,13 @@
 		084E2A1E24659E2C0040FB9D /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		084E2A2024659EA70040FB9D /* SDKFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKFoundation.swift; sourceTree = "<group>"; };
 		084E2A2224659EE20040FB9D /* DefaultSDKFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSDKFoundation.swift; sourceTree = "<group>"; };
+		08694876246924F900F625D0 /* TestMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainViewModel.swift; sourceTree = "<group>"; };
+		08694878246925EA00F625D0 /* TestMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainViewController.swift; sourceTree = "<group>"; };
+		0869487A246926FE00F625D0 /* TestMainFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainFlowController.swift; sourceTree = "<group>"; };
+		0869487C24692A3600F625D0 /* TestDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsView.swift; sourceTree = "<group>"; };
+		0869487E24692A4400F625D0 /* TestDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsViewModel.swift; sourceTree = "<group>"; };
+		0869488024692A5600F625D0 /* TestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsViewController.swift; sourceTree = "<group>"; };
+		0869488224692A7500F625D0 /* TestDetailsFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsFlowController.swift; sourceTree = "<group>"; };
 		08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCore.h; sourceTree = "<group>"; };
 		08E4FA6E2462A5EC00837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -210,12 +224,15 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		084E29F2246571A40040FB9D /* Test */ = {
+		084E29F2246571A40040FB9D /* TestMain */ = {
 			isa = PBXGroup;
 			children = (
-				084E29F3246571B10040FB9D /* TestView.swift */,
+				084E29F3246571B10040FB9D /* TestMainView.swift */,
+				08694876246924F900F625D0 /* TestMainViewModel.swift */,
+				08694878246925EA00F625D0 /* TestMainViewController.swift */,
+				0869487A246926FE00F625D0 /* TestMainFlowController.swift */,
 			);
-			path = Test;
+			path = TestMain;
 			sourceTree = "<group>";
 		};
 		084E29F7246582530040FB9D /* Appearance */ = {
@@ -252,6 +269,17 @@
 				084E2A1C24659D6A0040FB9D /* TransparentNavigationBar.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		08694875246924CA00F625D0 /* TestDetails */ = {
+			isa = PBXGroup;
+			children = (
+				0869487C24692A3600F625D0 /* TestDetailsView.swift */,
+				0869487E24692A4400F625D0 /* TestDetailsViewModel.swift */,
+				0869488024692A5600F625D0 /* TestDetailsViewController.swift */,
+				0869488224692A7500F625D0 /* TestDetailsFlowController.swift */,
+			);
+			path = TestDetails;
 			sourceTree = "<group>";
 		};
 		08E4FA602462A5EC00837339 = {
@@ -364,7 +392,8 @@
 		08EF7D4B2462B270008B5F3E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				084E29F2246571A40040FB9D /* Test */,
+				08694875246924CA00F625D0 /* TestDetails */,
+				084E29F2246571A40040FB9D /* TestMain */,
 				08EF7D4C2462B3CE008B5F3E /* Cards */,
 			);
 			path = Modules;
@@ -605,6 +634,7 @@
 				084E2A1F24659E2C0040FB9D /* Array.swift in Sources */,
 				08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */,
 				084E2A10246599D90040FB9D /* NavigationFlowController.swift in Sources */,
+				0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */,
 				084E2A03246585330040FB9D /* UICollectionView.swift in Sources */,
 				08EF7D522462B60B008B5F3E /* CardView.swift in Sources */,
 				084E29FD246583B50040FB9D /* BaseViewCell.swift in Sources */,
@@ -612,13 +642,19 @@
 				084E29EE24656D7F0040FB9D /* BaseView.swift in Sources */,
 				084E2A0E246599B70040FB9D /* FlowController.swift in Sources */,
 				084E29EC24656B4E0040FB9D /* CallbackWrapper.swift in Sources */,
-				084E29F4246571B10040FB9D /* TestView.swift in Sources */,
+				084E29F4246571B10040FB9D /* TestMainView.swift in Sources */,
+				08694877246924F900F625D0 /* TestMainViewModel.swift in Sources */,
 				084E29F6246573180040FB9D /* UIStackView.swift in Sources */,
 				084E2A1424659A8E0040FB9D /* BaseFlowController.swift in Sources */,
+				0869487D24692A3600F625D0 /* TestDetailsView.swift in Sources */,
+				08694879246925EA00F625D0 /* TestMainViewController.swift in Sources */,
 				084E29F92465826F0040FB9D /* Fonts.swift in Sources */,
 				084E29F124656DE00040FB9D /* ViewSetupable.swift in Sources */,
 				08EF7D502462B601008B5F3E /* CardViewModel.swift in Sources */,
+				0869487F24692A4400F625D0 /* TestDetailsViewModel.swift in Sources */,
 				084E2A1B24659BD30040FB9D /* PopBackView.swift in Sources */,
+				0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */,
+				0869488124692A5600F625D0 /* TestDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
