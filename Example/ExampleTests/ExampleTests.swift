@@ -2,9 +2,6 @@
 //  ExampleTests.swift
 //  ExampleTests
 //
-//  Created by TIWASZEK on 06/05/2020.
-//  Copyright © 2020 TIWASZEK. All rights reserved.
-//
 
 @testable import SecureTradingApp
 import SecureTradingCore
@@ -18,7 +15,7 @@ class ExampleTests: XCTestCase {
         // Test Core framework availability
         let apiClient = DefaultAPIClient()
         // Test UI framework availability
-        let cardVC = CardViewController(view: CardView(), viewModel: CardViewModel())
+        let testMainVC = ViewControllerFactory.shared.testMainViewController()
     }
 
     override func tearDownWithError() throws {

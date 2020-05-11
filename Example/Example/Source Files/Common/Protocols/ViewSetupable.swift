@@ -2,9 +2,6 @@
 //  ViewSetupable.swift
 //  SecureTradingUI
 //
-//  Created by TIWASZEK on 08/05/2020.
-//  Copyright © 2020 TIWASZEK. All rights reserved.
-//
 
 /// Interface for setting up the view
 protocol ViewSetupable {
