@@ -6,4 +6,19 @@
 //  Copyright © 2020 TIWASZEK. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+// Provided example how to build views
+@objc public final class TestDetailsView: BaseView {
+    // MARK: Properties
+}
+
+extension TestDetailsView: ViewSetupable {
+    /// - SeeAlso: ViewSetupable.setupViewHierarchy
+    func setupViewHierarchy() {
+        addSubviews([])
+    }
+
+    /// - SeeAlso: ViewSetupable.setupConstraints
+    func setupConstraints() {}
+}

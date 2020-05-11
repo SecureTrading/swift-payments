@@ -24,7 +24,7 @@ final class TestMainViewController: BaseViewController<TestMainView, TestMainVie
 
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
-        view.accessibilityIdentifier = "home/view/main"
+        view.accessibilityIdentifier = "test/view/main"
     }
 
     /// - SeeAlso: BaseViewController.setupCallbacks
