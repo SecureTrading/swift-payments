@@ -7,6 +7,5 @@
 //
 
 import Foundation
-import SecureTradingUI
 
 final class MainViewModel {}

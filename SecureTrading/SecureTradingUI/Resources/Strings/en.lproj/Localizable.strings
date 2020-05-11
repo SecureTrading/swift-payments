@@ -8,5 +8,10 @@
 
 PopBack.back = "back";
 
-Test.first = "First";
-Test.second = "Second";
+TestMainViewController.title = "Main";
+TestDetailsViewController.title = "Details";
+TestMainView.titleLabel = "Some title";
+TestMainView.showDetailsButton = "show details";
+
+TestPublic.first = "First";
+TestPublic.second = "Second";

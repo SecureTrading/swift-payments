@@ -23,6 +23,7 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
         view.accessibilityIdentifier = "home/view/main"
+        title = Localizable.MainViewController.title.text
     }
 
     /// - SeeAlso: BaseViewController.setupCallbacks
@@ -39,4 +40,10 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
 
     /// - SeeAlso: BaseViewController.setupProperties
     override func setupProperties() {}
+}
+
+private extension Localizable {
+    enum MainViewController: String, Localized {
+        case title
+    }
 }

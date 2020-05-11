@@ -23,13 +23,13 @@ public final class TestMainView: WhiteBackgroundBaseView {
         label.textColor = .black
         label.font = Fonts.responsive(.bold, ofSizes: [.small: 17, .medium: 18, .large: 20])
         label.numberOfLines = 1
-        label.text = "title" // todo
+        label.text = Localizable.TestMainView.titleLabel.text
         return label
     }()
 
     private var showDetailsButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("show details", for: .normal) // todo
+        button.setTitle(Localizable.TestMainView.showDetailsButton.text, for: .normal)
         button.titleLabel?.font = Fonts.responsive(.regular, ofSizes: [.small: 13, .medium: 14, .large: 16])
         return button
     }()
@@ -45,13 +45,13 @@ public final class TestMainView: WhiteBackgroundBaseView {
 
     private let testContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = .yellow
+        view.backgroundColor = Colors.testContainerBackground
         return view
     }()
 
     private let testView: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = Colors.testViewBackground
         return view
     }()
 
@@ -126,5 +126,12 @@ extension TestMainView: ViewSetupable {
 //            equal(self, \.heightAnchor, to: \.heightAnchor, constant: 0.0, multiplier: 0.35),
 //            equal(badgeImageView, \.heightAnchor, to: \.widthAnchor, constant: 0.0, multiplier: 1)
 //        ])
+    }
+}
+
+private extension Localizable {
+    enum TestMainView: String, Localized {
+        case titleLabel
+        case showDetailsButton
     }
 }

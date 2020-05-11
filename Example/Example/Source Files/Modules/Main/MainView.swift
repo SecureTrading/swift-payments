@@ -22,14 +22,14 @@ final class MainView: WhiteBackgroundBaseView {
     private let showTestMainScreenButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle("show test main screen (from SecureTradingUI)", for: .normal)
+        button.setTitle(Localizable.MainView.showTestMainScreenButton.text, for: .normal)
         return button
     }()
 
     private let showTestMainFlowButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle("show test main flow (from SecureTradingUI)", for: .normal)
+        button.setTitle(Localizable.MainView.showTestMainFlowButton.text, for: .normal)
         return button
     }()
 
@@ -51,8 +51,16 @@ extension MainView: ViewSetupable {
 
     /// - SeeAlso: ViewSetupable.setupConstraints
     func setupConstraints() {
-        stackView.addConstraints(equalToSuperview(with: .init(top: 5, left: 5, bottom: -5, right: -5), usingSafeArea: true))
+        stackView.addConstraints([
+            equal(self, \.centerYAnchor),
+            equal(self, \.centerXAnchor)
+        ])
     }
 }
 
-private extension Localizable {}
+private extension Localizable {
+    enum MainView: String, Localized {
+           case showTestMainScreenButton
+           case showTestMainFlowButton
+       }
+}
