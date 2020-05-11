@@ -41,9 +41,9 @@ final class AppFlowController {
 
     /// Sets and displays Main screen
     private func displayMainScreen() {
-//        let mainTabBarFlowController = MainTabBarFlowController(appFoundation: appFoundation)
-//        childFlowController = mainTabBarFlowController
-//        window.rootViewController = mainTabBarFlowController.rootViewController
+        let mainFlowController = MainFlowController(appFoundation: appFoundation)
+        childFlowController = mainFlowController
+        window.rootViewController = mainFlowController.rootViewController
     }
 
 }
