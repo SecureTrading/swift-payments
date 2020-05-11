@@ -36,7 +36,7 @@ class BaseNavigationFlowController: NSObject, NavigationFlowController {
 
     /// Initializes an instance of the receiver.
     ///
-    /// - Parameter appFoundation: Provides easy access to common dependencies.
+    /// - Parameter sdkFoundation: Provides easy access to common dependencies.
     init(sdkFoundation: SDKFoundation) {
         self.sdkFoundation = sdkFoundation
         navigationController = CustomBackNavigationController(navigationBarClass: TransparentNavigationBar.self, toolbarClass: nil)

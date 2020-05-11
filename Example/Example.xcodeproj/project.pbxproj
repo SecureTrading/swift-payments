@@ -38,6 +38,10 @@
 		08639C7D2469693F00C8F90A /* AppFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C7C2469693F00C8F90A /* AppFlowController.swift */; };
 		08639C8024696A2800C8F90A /* AppFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C7F24696A2800C8F90A /* AppFoundation.swift */; };
 		08639C8224696A4100C8F90A /* DefaultAppFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8124696A4100C8F90A /* DefaultAppFoundation.swift */; };
+		08639C8624696B3100C8F90A /* MainFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8524696B3100C8F90A /* MainFlowController.swift */; };
+		08639C8824696C3F00C8F90A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8724696C3F00C8F90A /* MainViewModel.swift */; };
+		08639C8A24696C5500C8F90A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8924696C5500C8F90A /* MainView.swift */; };
+		08639C8C24696CB100C8F90A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8B24696CB100C8F90A /* MainViewController.swift */; };
 		08E4FA822462A7D100837339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA812462A7D100837339 /* AppDelegate.swift */; };
 		08E4FA862462A7D100837339 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA852462A7D100837339 /* ViewController.swift */; };
 		08E4FA892462A7D100837339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA872462A7D100837339 /* Main.storyboard */; };
@@ -114,6 +118,10 @@
 		08639C7C2469693F00C8F90A /* AppFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowController.swift; sourceTree = "<group>"; };
 		08639C7F24696A2800C8F90A /* AppFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFoundation.swift; sourceTree = "<group>"; };
 		08639C8124696A4100C8F90A /* DefaultAppFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAppFoundation.swift; sourceTree = "<group>"; };
+		08639C8524696B3100C8F90A /* MainFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowController.swift; sourceTree = "<group>"; };
+		08639C8724696C3F00C8F90A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		08639C8924696C5500C8F90A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		08639C8B24696CB100C8F90A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		08E4FA7E2462A7D100837339 /* SecureTradingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureTradingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA812462A7D100837339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08E4FA852462A7D100837339 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +196,7 @@
 		08639C41246967E600C8F90A /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
+				08639C8324696AE800C8F90A /* Modules */,
 				08639C7B2469692100C8F90A /* Application */,
 				08639C422469681E00C8F90A /* Common */,
 			);
@@ -296,6 +305,25 @@
 				08E4FA8C2462A7D800837339 /* LaunchScreen.storyboard */,
 			);
 			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		08639C8324696AE800C8F90A /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				08639C8424696B0500C8F90A /* Main */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		08639C8424696B0500C8F90A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				08639C8524696B3100C8F90A /* MainFlowController.swift */,
+				08639C8724696C3F00C8F90A /* MainViewModel.swift */,
+				08639C8924696C5500C8F90A /* MainView.swift */,
+				08639C8B24696CB100C8F90A /* MainViewController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		08E4FA752462A7D100837339 = {
@@ -514,6 +542,7 @@
 				08639C8224696A4100C8F90A /* DefaultAppFoundation.swift in Sources */,
 				08639C5F2469681E00C8F90A /* BaseNavigationFlowController.swift in Sources */,
 				08639C702469681E00C8F90A /* FlowController.swift in Sources */,
+				08639C8824696C3F00C8F90A /* MainViewModel.swift in Sources */,
 				08639C6C2469681E00C8F90A /* TransparentNavigationBar.swift in Sources */,
 				08639C652469681E00C8F90A /* Colors.swift in Sources */,
 				08639C602469681E00C8F90A /* BaseViewCell.swift in Sources */,
@@ -531,10 +560,13 @@
 				08639C672469681E00C8F90A /* Array.swift in Sources */,
 				08639C7D2469693F00C8F90A /* AppFlowController.swift in Sources */,
 				08639C632469681E00C8F90A /* BaseView.swift in Sources */,
+				08639C8C24696CB100C8F90A /* MainViewController.swift in Sources */,
 				08639C6A2469681E00C8F90A /* UITableView.swift in Sources */,
 				08639C6E2469681E00C8F90A /* NavigationFlowController.swift in Sources */,
 				08639C8024696A2800C8F90A /* AppFoundation.swift in Sources */,
+				08639C8624696B3100C8F90A /* MainFlowController.swift in Sources */,
 				08639C622469681E00C8F90A /* Dequeueable.swift in Sources */,
+				08639C8A24696C5500C8F90A /* MainView.swift in Sources */,
 				08639C722469681E00C8F90A /* CallbackWrapper.swift in Sources */,
 				08E4FA822462A7D100837339 /* AppDelegate.swift in Sources */,
 			);

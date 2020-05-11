@@ -7,9 +7,6 @@
 //
 
 import UIKit
-#if !COCOAPODS
-import SecureTradingCore
-#endif
 
 class BaseNavigationFlowController: NSObject, NavigationFlowController {
     // MARK: Properties
@@ -24,7 +21,7 @@ class BaseNavigationFlowController: NSObject, NavigationFlowController {
     let navigationController: UINavigationController
 
     /// Class that provides easy access to common dependencies.
-    let sdkFoundation: SDKFoundation
+    let appFoundation: AppFoundation
 
     /// Custom navigation controller delegate accessor.
     var customNavigationControllerDelegate: CustomBackNavigationControllerDelegate? {
@@ -37,8 +34,8 @@ class BaseNavigationFlowController: NSObject, NavigationFlowController {
     /// Initializes an instance of the receiver.
     ///
     /// - Parameter appFoundation: Provides easy access to common dependencies.
-    init(sdkFoundation: SDKFoundation) {
-        self.sdkFoundation = sdkFoundation
+    init(appFoundation: AppFoundation) {
+        self.appFoundation = appFoundation
         navigationController = CustomBackNavigationController(navigationBarClass: TransparentNavigationBar.self, toolbarClass: nil)
         super.init()
         navigationController.delegate = self
