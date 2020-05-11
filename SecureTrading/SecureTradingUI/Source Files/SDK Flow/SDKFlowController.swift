@@ -12,6 +12,7 @@ import SecureTradingCore
 #endif
 
 @objc public final class SDKFlowController: NSObject {
+
     // MARK: Properties
 
     private var navigationController: UINavigationController
@@ -36,10 +37,10 @@ import SecureTradingCore
 
     // MARK: Functions
 
-    public func pushTestMainFlow() {
+    public func presentTestMainFlow() {
         let testMainFlowController = TestMainFlowController(sdkFoundation: sdkFoundation)
         childFlowController = testMainFlowController
-        navigationController.pushViewController(testMainFlowController.rootViewController!, animated: true)
+        navigationController.present(testMainFlowController.navigationController, animated: true, completion: nil)
     }
 
 }

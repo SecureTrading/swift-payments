@@ -13,7 +13,7 @@ protocol Localized {}
 extension Localized where Self: RawRepresentable, Self.RawValue == String {
     var text: String {
         let selfClassName = String(describing: type(of: self))
-        return NSLocalizedString("\(selfClassName).\(rawValue)", value: "No localized string found", comment: "")
+        return NSLocalizedString("\(selfClassName).\(rawValue)", bundle: Bundle(for: BaseView.self), value: "No localized string found", comment: "")
     }
 }
 

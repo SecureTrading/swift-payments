@@ -6,8 +6,8 @@
 //  Copyright © 2020 TIWASZEK. All rights reserved.
 //
 
-import UIKit
 import SecureTradingUI
+import UIKit
 
 final class MainFlowController: BaseNavigationFlowController {
     // MARK: Initalization
@@ -29,8 +29,10 @@ final class MainFlowController: BaseNavigationFlowController {
         let mainViewController = MainViewController(view: MainView(), viewModel: MainViewModel())
         mainViewController.eventTriggered = { [unowned self] event in
             switch event {
-            case .didTapShowTestMain:
+            case .didTapShowTestMainScreen:
                 self.showTestMainScreen()
+            case .didTapShowTestMainFlow:
+                self.showTestMainFlow()
             }
         }
         return mainViewController
@@ -40,5 +42,11 @@ final class MainFlowController: BaseNavigationFlowController {
     func showTestMainScreen() {
         let testMainVC = ViewControllerFactory.shared.testMainViewController()
         push(testMainVC, animated: true)
+    }
+
+    var sdkFlowController: SDKFlowController!
+    func showTestMainFlow() {
+        sdkFlowController = SDKFlowController(navigationController: navigationController)
+        sdkFlowController.presentTestMainFlow()
     }
 }

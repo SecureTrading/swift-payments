@@ -11,19 +11,11 @@ import UIKit
 final class PopBackView: UIView {
     // MARK: Properties
 
-    private lazy var arrowImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "")) //todo
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .black
-        return imageView
-    }()
-
     private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.text = Localizable.PopBack.back.text
         label.textColor = .black
         label.font = Fonts.responsive(.regular, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        label.isHidden = true
         return label
     }()
 
@@ -53,23 +45,16 @@ final class PopBackView: UIView {
     private func setup(size: CGSize) {
         backgroundColor = .clear
 
-        addSubviews([arrowImage, textLabel])
+        addSubviews([textLabel])
 
         addConstraints([
             equal(\.heightAnchor, to: size.height),
             equal(\.widthAnchor, to: size.width)
         ])
 
-        arrowImage.addConstraints([
-            equal(\.widthAnchor, to: 20.0),
-            equal(\.heightAnchor, to: 25.0),
-            equal(self, \.centerYAnchor),
-            equal(self, \.leadingAnchor, constant: 0)
-        ])
-
         textLabel.addConstraints([
             equal(self, \.centerYAnchor),
-            equal(arrowImage, \.leadingAnchor, \.trailingAnchor, constant: 8.5),
+            equal(self, \.leadingAnchor, constant: 0),
             equal(self, \.trailingAnchor)
         ])
     }

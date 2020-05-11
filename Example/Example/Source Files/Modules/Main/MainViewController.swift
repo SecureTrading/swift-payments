@@ -9,10 +9,10 @@
 import UIKit
 
 final class MainViewController: BaseViewController<MainView, MainViewModel> {
-
     /// Enum describing events that can be triggered by this controller
     enum Event {
-        case didTapShowTestMain
+        case didTapShowTestMainScreen
+        case didTapShowTestMainFlow
     }
 
     private var transparentNavigationBar: TransparentNavigationBar? { return navigationController?.navigationBar as? TransparentNavigationBar }
@@ -27,9 +27,13 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
 
     /// - SeeAlso: BaseViewController.setupCallbacks
     override func setupCallbacks() {
-        customView.showTestMainButtonTappedClosure = { [weak self] in
+        customView.showTestMainScreenButtonTappedClosure = { [weak self] in
             guard let self = self else { return }
-            self.eventTriggered?(.didTapShowTestMain)
+            self.eventTriggered?(.didTapShowTestMainScreen)
+        }
+        customView.showTestMainFlowButtonTappedClosure = { [weak self] in
+            guard let self = self else { return }
+            self.eventTriggered?(.didTapShowTestMainFlow)
         }
     }
 

@@ -9,20 +9,32 @@
 import UIKit
 
 final class MainView: WhiteBackgroundBaseView {
-    var showTestMainButtonTappedClosure: (() -> Void)? {
-        get { return showTestMainButton.onTap }
-        set { showTestMainButton.onTap = newValue }
+    var showTestMainScreenButtonTappedClosure: (() -> Void)? {
+        get { return showTestMainScreenButton.onTap }
+        set { showTestMainScreenButton.onTap = newValue }
     }
 
-    private let showTestMainButton: UIButton = {
+    var showTestMainFlowButtonTappedClosure: (() -> Void)? {
+        get { return showTestMainFlowButton.onTap }
+        set { showTestMainFlowButton.onTap = newValue }
+    }
+
+    private let showTestMainScreenButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle("show test details (from SecureTradingUI)", for: .normal)
+        button.setTitle("show test main screen (from SecureTradingUI)", for: .normal)
+        return button
+    }()
+
+    private let showTestMainFlowButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
+        button.setTitle("show test main flow (from SecureTradingUI)", for: .normal)
         return button
     }()
 
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [showTestMainButton])
+        let stackView = UIStackView(arrangedSubviews: [showTestMainScreenButton, showTestMainFlowButton])
         stackView.axis = .vertical
         stackView.spacing = 30
         stackView.alignment = .fill

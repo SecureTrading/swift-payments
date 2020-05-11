@@ -293,12 +293,12 @@
 			path = TestDetails;
 			sourceTree = "<group>";
 		};
-		086948862469511400F625D0 /* SDK */ = {
+		086948862469511400F625D0 /* SDK Flow */ = {
 			isa = PBXGroup;
 			children = (
 				0869488424694FAF00F625D0 /* SDKFlowController.swift */,
 			);
-			path = SDK;
+			path = "SDK Flow";
 			sourceTree = "<group>";
 		};
 		08E4FA602462A5EC00837339 = {
@@ -377,7 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				08639C392469577700C8F90A /* Factory */,
-				086948862469511400F625D0 /* SDK */,
+				086948862469511400F625D0 /* SDK Flow */,
 				08EF7D4B2462B270008B5F3E /* Modules */,
 				08EF7D472462B1F1008B5F3E /* Common */,
 			);

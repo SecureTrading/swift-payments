@@ -6,5 +6,7 @@
   Copyright © 2020 TIWASZEK. All rights reserved.
 */
 
+PopBack.back = "back";
+
 Test.first = "First";
 Test.second = "Second";
