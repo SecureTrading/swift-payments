@@ -47,7 +47,7 @@ public class BaseViewController<View: UIView, ViewModel>: UIViewController {
     }
 
     deinit {
-        #if ENV_DEVELOPMENT
+        #if DEBUG
             print("Deinited \(self)")
         #endif
     }
