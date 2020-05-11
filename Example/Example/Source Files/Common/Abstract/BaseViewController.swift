@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class BaseViewController<View: UIView, ViewModel>: UIViewController {
+class BaseViewController<View: UIView, ViewModel>: UIViewController {
     /// Custom view of view controller.
     let customView: View
 
@@ -16,7 +16,7 @@ public class BaseViewController<View: UIView, ViewModel>: UIViewController {
     let viewModel: ViewModel
 
     /// - SeeAlso: UIViewController.preferredStatusBarStyle
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
 
@@ -36,12 +36,12 @@ public class BaseViewController<View: UIView, ViewModel>: UIViewController {
     }
 
     /// - SeeAlso: UIViewController.loadView()
-    public override func loadView() {
+    override func loadView() {
         view = customView
     }
 
     /// - SeeAlso: UIViewController.viewDidLoad()
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupProperties()

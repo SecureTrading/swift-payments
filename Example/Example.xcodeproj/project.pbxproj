@@ -35,6 +35,9 @@
 		08639C722469681E00C8F90A /* CallbackWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C5D2469681E00C8F90A /* CallbackWrapper.swift */; };
 		08639C752469685500C8F90A /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C742469685500C8F90A /* Localizable.swift */; };
 		08639C782469689600C8F90A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08639C7A2469689600C8F90A /* Localizable.strings */; };
+		08639C7D2469693F00C8F90A /* AppFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C7C2469693F00C8F90A /* AppFlowController.swift */; };
+		08639C8024696A2800C8F90A /* AppFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C7F24696A2800C8F90A /* AppFoundation.swift */; };
+		08639C8224696A4100C8F90A /* DefaultAppFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8124696A4100C8F90A /* DefaultAppFoundation.swift */; };
 		08E4FA822462A7D100837339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA812462A7D100837339 /* AppDelegate.swift */; };
 		08E4FA862462A7D100837339 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA852462A7D100837339 /* ViewController.swift */; };
 		08E4FA892462A7D100837339 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA872462A7D100837339 /* Main.storyboard */; };
@@ -108,6 +111,9 @@
 		08639C5D2469681E00C8F90A /* CallbackWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackWrapper.swift; sourceTree = "<group>"; };
 		08639C742469685500C8F90A /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		08639C792469689600C8F90A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		08639C7C2469693F00C8F90A /* AppFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowController.swift; sourceTree = "<group>"; };
+		08639C7F24696A2800C8F90A /* AppFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFoundation.swift; sourceTree = "<group>"; };
+		08639C8124696A4100C8F90A /* DefaultAppFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAppFoundation.swift; sourceTree = "<group>"; };
 		08E4FA7E2462A7D100837339 /* SecureTradingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureTradingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA812462A7D100837339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08E4FA852462A7D100837339 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +188,7 @@
 		08639C41246967E600C8F90A /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
+				08639C7B2469692100C8F90A /* Application */,
 				08639C422469681E00C8F90A /* Common */,
 			);
 			path = "Source Files";
@@ -272,6 +279,25 @@
 			path = Strings;
 			sourceTree = "<group>";
 		};
+		08639C7B2469692100C8F90A /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				08E4FA812462A7D100837339 /* AppDelegate.swift */,
+				08639C7C2469693F00C8F90A /* AppFlowController.swift */,
+				08639C7F24696A2800C8F90A /* AppFoundation.swift */,
+				08639C8124696A4100C8F90A /* DefaultAppFoundation.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		08639C7E246969A900C8F90A /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				08E4FA8C2462A7D800837339 /* LaunchScreen.storyboard */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
 		08E4FA752462A7D100837339 = {
 			isa = PBXGroup;
 			children = (
@@ -300,11 +326,10 @@
 				08639C41246967E600C8F90A /* Source Files */,
 				082FC7A2246300A100D4E2B6 /* ObjectiveC */,
 				082FC79D2462FE6200D4E2B6 /* Resources */,
+				08639C7E246969A900C8F90A /* Interfaces */,
 				082FC7932462DB1000D4E2B6 /* SupportingFiles */,
-				08E4FA812462A7D100837339 /* AppDelegate.swift */,
 				08E4FA852462A7D100837339 /* ViewController.swift */,
 				08E4FA872462A7D100837339 /* Main.storyboard */,
-				08E4FA8C2462A7D800837339 /* LaunchScreen.storyboard */,
 				082FC79E2462FF2500D4E2B6 /* Example-Bridging-Header.h */,
 			);
 			path = Example;
@@ -486,6 +511,7 @@
 			files = (
 				08639C692469681E00C8F90A /* UICollectionView.swift in Sources */,
 				08639C6F2469681E00C8F90A /* ViewSetupable.swift in Sources */,
+				08639C8224696A4100C8F90A /* DefaultAppFoundation.swift in Sources */,
 				08639C5F2469681E00C8F90A /* BaseNavigationFlowController.swift in Sources */,
 				08639C702469681E00C8F90A /* FlowController.swift in Sources */,
 				08639C6C2469681E00C8F90A /* TransparentNavigationBar.swift in Sources */,
@@ -503,9 +529,11 @@
 				08639C712469681E00C8F90A /* NavigationDelegate.swift in Sources */,
 				08639C6D2469681E00C8F90A /* CustomBackNavigationController.swift in Sources */,
 				08639C672469681E00C8F90A /* Array.swift in Sources */,
+				08639C7D2469693F00C8F90A /* AppFlowController.swift in Sources */,
 				08639C632469681E00C8F90A /* BaseView.swift in Sources */,
 				08639C6A2469681E00C8F90A /* UITableView.swift in Sources */,
 				08639C6E2469681E00C8F90A /* NavigationFlowController.swift in Sources */,
+				08639C8024696A2800C8F90A /* AppFoundation.swift in Sources */,
 				08639C622469681E00C8F90A /* Dequeueable.swift in Sources */,
 				08639C722469681E00C8F90A /* CallbackWrapper.swift in Sources */,
 				08E4FA822462A7D100837339 /* AppDelegate.swift in Sources */,

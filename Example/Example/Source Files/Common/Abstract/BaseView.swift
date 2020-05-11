@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class BaseView: UIView {
+class BaseView: UIView {
     /// Indicating if keyboard should be closed on touch
     var closeKeyboardOnTouch = true
 
@@ -25,7 +25,7 @@ public class BaseView: UIView {
     }
 
     /// - SeeAlso: UIView.touchesBegan()
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         if closeKeyboardOnTouch {
             endEditing(true)
