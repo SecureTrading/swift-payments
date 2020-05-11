@@ -9,7 +9,7 @@
 import UIKit
 
 // Provided example how to build views
-public final class TestMainView: BaseView {
+public final class TestMainView: WhiteBackgroundBaseView {
     /// Closure invoked when someone taps on show details button.
     var showDetailsButtonTappedClosure: (() -> Void)? {
         get { return showDetailsButton.onTap }
@@ -23,20 +23,21 @@ public final class TestMainView: BaseView {
         label.textColor = .black
         label.font = Fonts.responsive(.bold, ofSizes: [.small: 17, .medium: 18, .large: 20])
         label.numberOfLines = 1
+        label.text = "title" // todo
         return label
     }()
 
     private var showDetailsButton: UIButton = {
         let button = UIButton(type: .system)
-        // button.setTitle(Localizable.NoCommentsCell.addRateButton.text, for: .normal)
+        button.setTitle("show details", for: .normal) // todo
         button.titleLabel?.font = Fonts.responsive(.regular, ofSizes: [.small: 13, .medium: 14, .large: 16])
         return button
     }()
 
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, showDetailsButton])
-        stackView.axis = .horizontal
-        stackView.spacing = 5
+        stackView.axis = .vertical
+        stackView.spacing = 15
         stackView.alignment = .fill
         stackView.distribution = .fill
         return stackView
@@ -44,7 +45,7 @@ public final class TestMainView: BaseView {
 
     private let testContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = .blue
+        view.backgroundColor = .yellow
         return view
     }()
 
@@ -82,7 +83,7 @@ extension TestMainView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
     func setupViewHierarchy() {
         testContainer.addSubview(testView)
-        testView.addSubview(stackView)
+        testContainer.addSubview(stackView)
         addSubviews([testContainer])
     }
 
@@ -92,12 +93,14 @@ extension TestMainView: ViewSetupable {
 
         testView.addConstraints([
             equal(testContainer, \.topAnchor, constant: 0),
-            equal(testContainer, \.trailingAnchor, constant: 0)
+            equal(testContainer, \.trailingAnchor, constant: 0),
+            equal(\.heightAnchor, to: 150),
+            equal(\.widthAnchor, to: 150)
         ])
 
         stackView.addConstraints([
-            equal(testView, \.centerYAnchor),
-            equal(testView, \.centerXAnchor)
+            equal(testContainer, \.centerYAnchor),
+            equal(testContainer, \.centerXAnchor)
         ])
 
         // other examples

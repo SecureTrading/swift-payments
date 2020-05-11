@@ -7,12 +7,6 @@
 //
 
 import Foundation
-import SecureTradingCore
 import SecureTradingUI
 
-final class MainViewModel {
-    // Test Core framework availability
-    let apiClient = DefaultAPIClient()
-    // Test UI framework availability
-    let testMainVC = ViewControllerFactory.shared.testMainViewController
-}
+final class MainViewModel {}

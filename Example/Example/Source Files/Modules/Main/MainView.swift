@@ -9,15 +9,20 @@
 import UIKit
 
 final class MainView: WhiteBackgroundBaseView {
-    private let showTestDetailsButton: UIButton = {
+    var showTestMainButtonTappedClosure: (() -> Void)? {
+        get { return showTestMainButton.onTap }
+        set { showTestMainButton.onTap = newValue }
+    }
+
+    private let showTestMainButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle("show test details", for: .normal)
+        button.setTitle("show test details (from SecureTradingUI)", for: .normal)
         return button
     }()
 
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [showTestDetailsButton])
+        let stackView = UIStackView(arrangedSubviews: [showTestMainButton])
         stackView.axis = .vertical
         stackView.spacing = 30
         stackView.alignment = .fill
