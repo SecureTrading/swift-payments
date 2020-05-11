@@ -168,6 +168,7 @@
 		082FC7932462DB1000D4E2B6 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				082FC79E2462FF2500D4E2B6 /* Example-Bridging-Header.h */,
 				08E4FA8F2462A7D800837339 /* Info.plist */,
 			);
 			path = SupportingFiles;
@@ -355,7 +356,6 @@
 				082FC79D2462FE6200D4E2B6 /* Resources */,
 				08639C7E246969A900C8F90A /* Interfaces */,
 				082FC7932462DB1000D4E2B6 /* SupportingFiles */,
-				082FC79E2462FF2500D4E2B6 /* Example-Bridging-Header.h */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -698,7 +698,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "$(_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(_BUNDLE_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(_ENVIRONMENTS)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Example/Example-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Example/SupportingFiles/Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
