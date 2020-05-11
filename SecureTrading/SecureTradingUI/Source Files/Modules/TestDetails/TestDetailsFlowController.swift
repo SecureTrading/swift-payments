@@ -11,7 +11,7 @@ import UIKit
 import SecureTradingCore
 #endif
 
-final class PlaceDetailsFlowController: BaseFlowController {
+final class TestDetailsFlowController: BaseFlowController {
     // MARK: Parameters
 
     /// Provides easy access to common dependencies

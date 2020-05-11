@@ -23,7 +23,7 @@ public class BaseViewController<View: UIView, ViewModel>: UIViewController {
     /// Initializes view controller with given View.
     ///
     /// - Parameter view: Maker for the UIView.
-    public init(view: @escaping @autoclosure () -> View, viewModel: ViewModel) {
+    init(view: @escaping @autoclosure () -> View, viewModel: ViewModel) {
         customView = view()
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)

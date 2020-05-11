@@ -9,7 +9,7 @@
 import UIKit
 
 // Provided example how to build views
-@objc public final class TestDetailsView: BaseView {
+final class TestDetailsView: BaseView {
     // MARK: Properties
 }
 

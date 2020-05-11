@@ -9,7 +9,7 @@
 import UIKit
 
 // Provided example how to build views
-@objc public final class TestMainView: BaseView {
+public final class TestMainView: BaseView {
     /// Closure invoked when someone taps on show details button.
     var showDetailsButtonTappedClosure: (() -> Void)? {
         get { return showDetailsButton.onTap }

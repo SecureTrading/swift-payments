@@ -11,7 +11,7 @@ import Foundation
 import SecureTradingCore
 #endif
 
-@objc public final class TestDetailsViewModel: NSObject {
+final class TestDetailsViewModel: NSObject {
     /// - SeeAlso: AppFoundation.apiClient
     private let apiClient: APIClient
 

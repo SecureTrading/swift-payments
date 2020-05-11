@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TestMainViewController: BaseViewController<TestMainView, TestMainViewModel> {
+public final class TestMainViewController: BaseViewController<TestMainView, TestMainViewModel> {
 
     // MARK: Properties
 

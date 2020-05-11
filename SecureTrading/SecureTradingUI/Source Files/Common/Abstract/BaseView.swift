@@ -13,7 +13,7 @@ public class BaseView: UIView {
     var closeKeyboardOnTouch = true
 
     /// Initialize an instance and calls required methods
-    public init() {
+    init() {
         super.init(frame: .zero)
         guard let setupableView = self as? ViewSetupable else { return }
         setupableView.setupView()

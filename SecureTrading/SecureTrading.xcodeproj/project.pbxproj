@@ -36,6 +36,8 @@
 		084E2A1F24659E2C0040FB9D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A1E24659E2C0040FB9D /* Array.swift */; };
 		084E2A2124659EA70040FB9D /* SDKFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A2024659EA70040FB9D /* SDKFoundation.swift */; };
 		084E2A2324659EE20040FB9D /* DefaultSDKFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A2224659EE20040FB9D /* DefaultSDKFoundation.swift */; };
+		08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */; };
+		08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3C2469591400C8F90A /* ViewModelFactory.swift */; };
 		08694877246924F900F625D0 /* TestMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694876246924F900F625D0 /* TestMainViewModel.swift */; };
 		08694879246925EA00F625D0 /* TestMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694878246925EA00F625D0 /* TestMainViewController.swift */; };
 		0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869487A246926FE00F625D0 /* TestMainFlowController.swift */; };
@@ -43,14 +45,12 @@
 		0869487F24692A4400F625D0 /* TestDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869487E24692A4400F625D0 /* TestDetailsViewModel.swift */; };
 		0869488124692A5600F625D0 /* TestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488024692A5600F625D0 /* TestDetailsViewController.swift */; };
 		0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488224692A7500F625D0 /* TestDetailsFlowController.swift */; };
+		0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488424694FAF00F625D0 /* SDKFlowController.swift */; };
 		08E4FA6F2462A5EC00837339 /* SecureTradingCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */; };
 		08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFF2462AC32008B5F3E /* APIClient.swift */; };
 		08EF7D422462B12F008B5F3E /* SecureTradingUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 08EF7D402462B12F008B5F3E /* SecureTradingUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D492462B239008B5F3E /* BaseViewController.swift */; };
-		08EF7D4E2462B5DB008B5F3E /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D4D2462B5DB008B5F3E /* CardViewController.swift */; };
-		08EF7D502462B601008B5F3E /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D4F2462B601008B5F3E /* CardViewModel.swift */; };
-		08EF7D522462B60B008B5F3E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D512462B60B008B5F3E /* CardView.swift */; };
 		08EF7D542462B790008B5F3E /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
@@ -111,6 +111,8 @@
 		084E2A1E24659E2C0040FB9D /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		084E2A2024659EA70040FB9D /* SDKFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKFoundation.swift; sourceTree = "<group>"; };
 		084E2A2224659EE20040FB9D /* DefaultSDKFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSDKFoundation.swift; sourceTree = "<group>"; };
+		08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
+		08639C3C2469591400C8F90A /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		08694876246924F900F625D0 /* TestMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainViewModel.swift; sourceTree = "<group>"; };
 		08694878246925EA00F625D0 /* TestMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainViewController.swift; sourceTree = "<group>"; };
 		0869487A246926FE00F625D0 /* TestMainFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainFlowController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		0869487E24692A4400F625D0 /* TestDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsViewModel.swift; sourceTree = "<group>"; };
 		0869488024692A5600F625D0 /* TestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsViewController.swift; sourceTree = "<group>"; };
 		0869488224692A7500F625D0 /* TestDetailsFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsFlowController.swift; sourceTree = "<group>"; };
+		0869488424694FAF00F625D0 /* SDKFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKFlowController.swift; sourceTree = "<group>"; };
 		08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCore.h; sourceTree = "<group>"; };
 		08E4FA6E2462A5EC00837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -127,9 +130,6 @@
 		08EF7D402462B12F008B5F3E /* SecureTradingUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingUI.h; sourceTree = "<group>"; };
 		08EF7D412462B12F008B5F3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08EF7D492462B239008B5F3E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		08EF7D4D2462B5DB008B5F3E /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
-		08EF7D4F2462B601008B5F3E /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
-		08EF7D512462B60B008B5F3E /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +271,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		08639C392469577700C8F90A /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */,
+				08639C3C2469591400C8F90A /* ViewModelFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
 		08694875246924CA00F625D0 /* TestDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +289,14 @@
 				0869488224692A7500F625D0 /* TestDetailsFlowController.swift */,
 			);
 			path = TestDetails;
+			sourceTree = "<group>";
+		};
+		086948862469511400F625D0 /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				0869488424694FAF00F625D0 /* SDKFlowController.swift */,
+			);
+			path = SDK;
 			sourceTree = "<group>";
 		};
 		08E4FA602462A5EC00837339 = {
@@ -357,6 +374,8 @@
 		08EF7D462462B185008B5F3E /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
+				08639C392469577700C8F90A /* Factory */,
+				086948862469511400F625D0 /* SDK */,
 				08EF7D4B2462B270008B5F3E /* Modules */,
 				08EF7D472462B1F1008B5F3E /* Common */,
 			);
@@ -394,19 +413,8 @@
 			children = (
 				08694875246924CA00F625D0 /* TestDetails */,
 				084E29F2246571A40040FB9D /* TestMain */,
-				08EF7D4C2462B3CE008B5F3E /* Cards */,
 			);
 			path = Modules;
-			sourceTree = "<group>";
-		};
-		08EF7D4C2462B3CE008B5F3E /* Cards */ = {
-			isa = PBXGroup;
-			children = (
-				08EF7D4D2462B5DB008B5F3E /* CardViewController.swift */,
-				08EF7D4F2462B601008B5F3E /* CardViewModel.swift */,
-				08EF7D512462B60B008B5F3E /* CardView.swift */,
-			);
-			path = Cards;
 			sourceTree = "<group>";
 		};
 		08EF7D532462B790008B5F3E /* Frameworks */ = {
@@ -623,12 +631,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				084E29E924656A5E0040FB9D /* UIView.swift in Sources */,
+				08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */,
 				084E2A1924659B7B0040FB9D /* CustomBackNavigationController.swift in Sources */,
 				084E29FB2465832C0040FB9D /* Colors.swift in Sources */,
 				084E2A012465841D0040FB9D /* UITableView.swift in Sources */,
 				084E29FF246583E20040FB9D /* Dequeueable.swift in Sources */,
 				084E2A1D24659D6B0040FB9D /* TransparentNavigationBar.swift in Sources */,
-				08EF7D4E2462B5DB008B5F3E /* CardViewController.swift in Sources */,
 				084E2A062465874B0040FB9D /* Localizable.swift in Sources */,
 				084E2A12246599FC0040FB9D /* NavigationDelegate.swift in Sources */,
 				084E2A1F24659E2C0040FB9D /* Array.swift in Sources */,
@@ -636,8 +644,8 @@
 				084E2A10246599D90040FB9D /* NavigationFlowController.swift in Sources */,
 				0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */,
 				084E2A03246585330040FB9D /* UICollectionView.swift in Sources */,
-				08EF7D522462B60B008B5F3E /* CardView.swift in Sources */,
 				084E29FD246583B50040FB9D /* BaseViewCell.swift in Sources */,
+				0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */,
 				084E2A1624659AC50040FB9D /* BaseNavigationFlowController.swift in Sources */,
 				084E29EE24656D7F0040FB9D /* BaseView.swift in Sources */,
 				084E2A0E246599B70040FB9D /* FlowController.swift in Sources */,
@@ -650,9 +658,9 @@
 				08694879246925EA00F625D0 /* TestMainViewController.swift in Sources */,
 				084E29F92465826F0040FB9D /* Fonts.swift in Sources */,
 				084E29F124656DE00040FB9D /* ViewSetupable.swift in Sources */,
-				08EF7D502462B601008B5F3E /* CardViewModel.swift in Sources */,
 				0869487F24692A4400F625D0 /* TestDetailsViewModel.swift in Sources */,
 				084E2A1B24659BD30040FB9D /* PopBackView.swift in Sources */,
+				08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */,
 				0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */,
 				0869488124692A5600F625D0 /* TestDetailsViewController.swift in Sources */,
 			);

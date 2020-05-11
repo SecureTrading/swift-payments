@@ -11,8 +11,7 @@ import UIKit
 import SecureTradingCore
 #endif
 
-final class MainTestFlowController: BaseNavigationFlowController {
-
+final class TestMainFlowController: BaseNavigationFlowController {
     // MARK: Initalization
 
     /// Initializes an instance of the receiver.
@@ -32,11 +31,18 @@ final class MainTestFlowController: BaseNavigationFlowController {
         let testMainViewController = TestMainViewController(view: TestMainView(), viewModel: TestMainViewModel(apiClient: sdkFoundation.apiClient))
         testMainViewController.eventTriggered = { [unowned self] event in
             switch event {
-            case .didTapShowDetails: break
-                //self.showPlaceDetailsScreenFromNofitication(place: place)
+            case .didTapShowDetails:
+                self.showDetailsScreen()
             }
         }
         return testMainViewController
     }
 
+    /// show details screen
+    private func showDetailsScreen() {
+        let testDetailsFlowController = TestDetailsFlowController(sdkFoundation: sdkFoundation)
+        guard let testDetailsController = testDetailsFlowController.rootViewController else { return }
+        add(testDetailsFlowController, with: testDetailsController)
+        push(testDetailsController, animated: true)
+    }
 }
