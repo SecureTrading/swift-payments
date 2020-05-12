@@ -17,6 +17,7 @@ public final class TestMainViewModel: NSObject {
     /// Initializes an instance of the receiver.
     ///
     /// - Parameter apiClient: network tasks manager
+    /// - Parameter closeButtonIsHidden: if it should add a close button to navBar
     init(apiClient: APIClient, closeButtonIsHidden: Bool) {
         self.apiClient = apiClient
         self.closeButtonIsHidden = closeButtonIsHidden

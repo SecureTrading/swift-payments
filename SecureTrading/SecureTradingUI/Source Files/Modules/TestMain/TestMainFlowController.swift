@@ -9,9 +9,9 @@ import SecureTradingCore
 #endif
 
 protocol TestMainFlowControllerDelegate: AnyObject {
-    /// Called when PlaceMapFlowController ended its job.
+    /// Called when TestMainFlowController ended its job.
     ///
-    /// - Parameter flowController: Instance of PlaceMapFlowController which has ended its job.
+    /// - Parameter flowController: Instance of TestMainFlowController which has ended its job.
     func finishedFlow(in flowController: TestMainFlowController)
 }
 

@@ -7,8 +7,6 @@ import UIKit
 
 final class TestDetailsViewController: BaseViewController<TestDetailsView, TestDetailsViewModel> {
 
-    // MARK: Properties
-
     // MARK: Functions
 
     /// - SeeAlso: BaseViewController.setupView

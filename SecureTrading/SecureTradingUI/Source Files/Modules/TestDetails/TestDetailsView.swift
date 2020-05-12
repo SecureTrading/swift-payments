@@ -6,9 +6,7 @@
 import UIKit
 
 // Provided example how to build views
-final class TestDetailsView: WhiteBackgroundBaseView {
-    // MARK: Properties
-}
+final class TestDetailsView: WhiteBackgroundBaseView {}
 
 extension TestDetailsView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupViewHierarchy

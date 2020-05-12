@@ -66,9 +66,7 @@ class BaseNavigationFlowController: NSObject, NavigationFlowController {
     ///   - viewController: View controller which belongs to this flow controller.
     func add(_ flowController: FlowController, with viewController: UIViewController) {
         let viewControllerString = String(describing: viewController)
-        if flowController is BaseFlowController {
-            (flowController as? BaseFlowController)?.navigationDelegate = self
-        }
+        (flowController as? BaseFlowController)?.navigationDelegate = self
         childFlowControllers[viewControllerString] = flowController
     }
 
