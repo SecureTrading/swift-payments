@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         // Test Core framework availability
         let apiClient = DefaultAPIClient()
         // Test UI framework availability
-        let testMainVC = ViewControllerFactory.shared.testMainViewController
+        let testMainVC = ViewControllerFactory.shared.testMainViewController {}
     }
 
 
