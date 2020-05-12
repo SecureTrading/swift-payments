@@ -61,4 +61,3 @@ extension CustomBackNavigationController: UIGestureRecognizerDelegate {
         return viewControllers.count > 1
     }
 }
-

@@ -122,4 +122,3 @@ enum Fonts {
         return size
     }
 }
-
