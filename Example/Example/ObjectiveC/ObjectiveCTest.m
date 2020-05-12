@@ -2,9 +2,6 @@
 //  ObjectiveCTest.m
 //  Example
 //
-//  Created by TIWASZEK on 06/05/2020.
-//  Copyright © 2020 TIWASZEK. All rights reserved.
-//
 
 #import "ObjectiveCTest.h"
 
@@ -13,8 +10,8 @@
 - (void) someTestMethod {
     // Test frameworks availability
     DefaultAPIClient <APIClient> * apiClient = [DefaultAPIClient new];
-    CardView * view = [CardView new];
-    CardViewModel * viewModel = [CardViewModel new];
+    id vc = [[ViewControllerFactory shared] testMainViewControllerWithDidTapShowDetails:^{
+    }];
 }
 
 @end

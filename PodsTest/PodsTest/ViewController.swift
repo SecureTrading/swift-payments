@@ -6,19 +6,15 @@
 //  Copyright © 2020 TIWASZEK. All rights reserved.
 //
 
-import UIKit
 import SecureTradingSDK
+import UIKit
 
 class ViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Test Core framework availability
         let apiClient = DefaultAPIClient()
         // Test UI framework availability
-        let cardVC = CardViewController(view: CardView(), viewModel: CardViewModel())
+        let testMainVC = ViewControllerFactory.shared.testMainViewController {}
     }
-
-
 }
-

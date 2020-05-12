@@ -13,8 +13,8 @@
 - (void) someTestMethod {
     // Test frameworks availability
     DefaultAPIClient <APIClient> * apiClient = [DefaultAPIClient new];
-    CardView * view = [CardView new];
-    CardViewModel * viewModel = [CardViewModel new];
+    id vc = [[ViewControllerFactory shared] testMainViewControllerWithDidTapShowDetails:^{
+    }];
 }
 
 @end

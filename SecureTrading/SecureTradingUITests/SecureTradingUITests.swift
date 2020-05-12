@@ -2,9 +2,6 @@
 //  SecureTradingUITests.swift
 //  SecureTradingUITests
 //
-//  Created by TIWASZEK on 08/05/2020.
-//  Copyright © 2020 TIWASZEK. All rights reserved.
-//
 
 import XCTest
 import SecureTradingUI
@@ -14,7 +11,7 @@ class SecureTradingUITests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         // Test UI framework availability
-        let cardVC = CardViewController(view: CardView(), viewModel: CardViewModel())
+        let testMainVC = ViewControllerFactory.shared.testMainViewController {}
     }
 
     override func tearDownWithError() throws {

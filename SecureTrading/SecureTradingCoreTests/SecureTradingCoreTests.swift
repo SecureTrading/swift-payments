@@ -2,9 +2,6 @@
 //  SecureTradingCoreTests.swift
 //  SecureTradingCoreTests
 //
-//  Created by TIWASZEK on 08/05/2020.
-//  Copyright © 2020 TIWASZEK. All rights reserved.
-//
 
 import XCTest
 import SecureTradingCore
