@@ -6,9 +6,8 @@ opt_in_rules:
 excluded:
 - Carthage
 - Pods
-- SwiftLint/Common/3rdPartyLib
 line_length:
-    warning: 150
+    warning: 200
     error: 300
     ignores_function_declarations: true
     ignores_comments: true
@@ -26,7 +25,19 @@ file_length:
     warning: 1000
     error: 1500
     ignore_comment_only_lines: true
+identifier_name:
+  min_length: 1 # only min_length
+  excluded: # excluded via string array
+    - T
+    - id
+    - URL
+    - Error
+    - Success
 cyclomatic_complexity:
     warning: 15
     error: 25
+force_cast: warning # implicitly
+force_try:
+  severity: warning # explicitly
 reporter: "xcode"
+
