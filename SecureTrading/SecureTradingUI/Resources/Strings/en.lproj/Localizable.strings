@@ -6,6 +6,7 @@
 PopBack.back = "back";
 
 TestMainViewController.title = "Main";
+TestMainViewController.closeButton = "Close";
 TestDetailsViewController.title = "Details";
 TestMainView.titleLabel = "Some title";
 TestMainView.showDetailsButton = "show details";

@@ -37,7 +37,9 @@ final class MainFlowController: BaseNavigationFlowController {
 
     // Test UI framework availability
     func showTestMainScreen() {
-        let testMainVC = ViewControllerFactory.shared.testMainViewController()
+        let testMainVC = ViewControllerFactory.shared.testMainViewController { [unowned self] in
+            self.navigationController.popViewController(animated: true)
+        }
         push(testMainVC, animated: true)
     }
 

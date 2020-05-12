@@ -8,14 +8,27 @@ import UIKit
 import SecureTradingCore
 #endif
 
+protocol TestMainFlowControllerDelegate: AnyObject {
+    /// Called when PlaceMapFlowController ended its job.
+    ///
+    /// - Parameter flowController: Instance of PlaceMapFlowController which has ended its job.
+    func finishedFlow(in flowController: TestMainFlowController)
+}
+
 final class TestMainFlowController: BaseNavigationFlowController {
+
+    /// Flow controller delegate.
+    private weak var delegate: TestMainFlowControllerDelegate?
+
     // MARK: Initalization
 
     /// Initializes an instance of the receiver.
     ///
     /// - Parameter sdkFoundation: Provides easy access to common dependencies
-    override init(sdkFoundation: SDKFoundation) {
+    /// - Parameter delegate: TestMainFlowController delegate
+    init(sdkFoundation: SDKFoundation, delegate: TestMainFlowControllerDelegate?) {
         super.init(sdkFoundation: sdkFoundation)
+        self.delegate = delegate
         set(setupTestMainScreen())
     }
 
@@ -25,11 +38,14 @@ final class TestMainFlowController: BaseNavigationFlowController {
     ///
     /// - Returns: Object of TestMainViewController
     private func setupTestMainScreen() -> UIViewController {
-        let testMainViewController = TestMainViewController(view: TestMainView(), viewModel: TestMainViewModel(apiClient: sdkFoundation.apiClient))
+        let testMainViewController = TestMainViewController(view: TestMainView(), viewModel: TestMainViewModel(apiClient: sdkFoundation.apiClient, closeButtonIsHidden: false))
         testMainViewController.eventTriggered = { [unowned self] event in
             switch event {
             case .didTapShowDetails:
                 self.showDetailsScreen()
+            case .dismissScreen:
+                self.rootViewController?.dismiss(animated: true)
+                self.delegate?.finishedFlow(in: self)
             }
         }
         return testMainViewController
