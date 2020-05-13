@@ -51,4 +51,3 @@ class TransparentNavigationBar: UINavigationBar {
         layoutSubviews()
     }
 }
-
