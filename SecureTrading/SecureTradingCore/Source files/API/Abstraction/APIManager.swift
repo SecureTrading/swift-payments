@@ -22,4 +22,6 @@ public enum GatewayType {
     }
 }
 
-protocol APIManager: AnyObject {}
+@objc public protocol APIManager: AnyObject {
+    func makeGeneralRequest(alias: String, jwt: String, version: String, requests: [RequestObject])
+}

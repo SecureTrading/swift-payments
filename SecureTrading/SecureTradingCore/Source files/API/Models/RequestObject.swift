@@ -11,8 +11,18 @@ public enum TypeDescription: String, Codable {
     case threeDQuery = "THREEDQUERY"
 }
 
-public struct RequestObject: Codable {
+public class RequestObject: NSObject, Codable {
     let typeDescriptions: [TypeDescription]
+
+    @objc public class func create(from url: URL) -> RequestObject {
+        let decoder = JSONDecoder()
+        let item = try! decoder.decode(RequestObject.self, from: try! Data(contentsOf: url))
+        return item
+    }
+
+    public init(typeDescriptions: [TypeDescription]) {
+        self.typeDescriptions = typeDescriptions
+    }
 }
 
 private extension RequestObject {

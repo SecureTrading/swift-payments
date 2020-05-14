@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class DefaultAPIManager: APIManager {
+@objc public final class DefaultAPIManager: NSObject, APIManager {
 
     private let apiClient: APIClient
 

@@ -4,6 +4,7 @@
 //
 
 import SecureTradingUI
+import SecureTradingCore
 import UIKit
 
 final class MainFlowController: BaseNavigationFlowController {
@@ -47,5 +48,11 @@ final class MainFlowController: BaseNavigationFlowController {
     func showTestMainFlow() {
         sdkFlowController = SDKFlowController(navigationController: navigationController)
         sdkFlowController.presentTestMainFlow()
+    }
+
+    private func checkAPIManager() {
+        let authRequest = RequestObject(typeDescriptions: [.auth])
+        let generatedJWT = ""
+        appFoundation.apiManager.makeGeneralRequest(alias: "jwt-pgsmobilesdk", jwt: generatedJWT, version: "1.00", requests: [authRequest])
     }
 }

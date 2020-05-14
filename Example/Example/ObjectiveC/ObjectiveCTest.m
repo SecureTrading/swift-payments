@@ -11,6 +11,8 @@
     // Test frameworks availability
     id vc = [[ViewControllerFactory shared] testMainViewControllerWithDidTapShowDetails:^{
     }];
+
+    
 }
 
 @end
