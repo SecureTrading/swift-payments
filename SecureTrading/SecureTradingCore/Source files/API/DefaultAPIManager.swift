@@ -12,12 +12,12 @@ import Foundation
 
     private let apiClient: APIClient
 
-    public init(gatewayType: GatewayType) {
+    @objc public init(gatewayType: GatewayType) {
         let configuration = DefaultAPIClientConfiguration(scheme: .https, host: gatewayType.host)
         self.apiClient = DefaultAPIClient(configuration: configuration)
     }
 
-    public func makeGeneralRequest(alias: String, jwt: String, version: String, requests: [RequestObject]) {
+    @objc public func makeGeneralRequest(alias: String, jwt: String, version: String, requests: [RequestObject]) {
         let generalRequest = GeneralRequest(alias: alias, jwt: jwt, version: version, requests: requests)
         apiClient.perform(request: generalRequest) { (result) in
             switch result {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum GatewayType {
+@objc public enum GatewayType: Int {
     case european
     case us
 
