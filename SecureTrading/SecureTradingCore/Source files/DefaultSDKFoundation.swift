@@ -8,8 +8,8 @@ public final class DefaultSDKFoundation: SDKFoundation {
 
     public static let shared = DefaultSDKFoundation()
 
-    /// - SeeAlso: AppFoundation.apiClient
-    private(set) lazy public var apiClient: APIClient = {
-        DefaultAPIClient()
+    /// - SeeAlso: SDKFoundation.apiManager
+    private(set) lazy public var apiManager: APIManager = {
+        APIManager()
     }()
 }

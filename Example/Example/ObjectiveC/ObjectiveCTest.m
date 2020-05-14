@@ -9,7 +9,6 @@
 
 - (void) someTestMethod {
     // Test frameworks availability
-    DefaultAPIClient <APIClient> * apiClient = [DefaultAPIClient new];
     id vc = [[ViewControllerFactory shared] testMainViewControllerWithDidTapShowDetails:^{
     }];
 }

@@ -38,7 +38,7 @@ final class TestMainFlowController: BaseNavigationFlowController {
     ///
     /// - Returns: Object of TestMainViewController
     private func setupTestMainScreen() -> UIViewController {
-        let testMainViewController = TestMainViewController(view: TestMainView(), viewModel: TestMainViewModel(apiClient: sdkFoundation.apiClient, closeButtonIsHidden: false))
+        let testMainViewController = TestMainViewController(view: TestMainView(), viewModel: TestMainViewModel(closeButtonIsHidden: false))
         testMainViewController.eventTriggered = { [unowned self] event in
             switch event {
             case .didTapShowDetails:

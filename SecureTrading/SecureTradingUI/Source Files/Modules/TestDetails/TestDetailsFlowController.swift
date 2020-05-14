@@ -32,7 +32,7 @@ final class TestDetailsFlowController: BaseFlowController {
     ///
     /// - Returns: Returns place details view controller.
     private func setupDetailsViewController() -> UIViewController {
-        let testDetailsViewController = TestDetailsViewController(view: TestDetailsView(), viewModel: TestDetailsViewModel(apiClient: sdkFoundation.apiClient))
+        let testDetailsViewController = TestDetailsViewController(view: TestDetailsView(), viewModel: TestDetailsViewModel())
         return testDetailsViewController
     }
 }

@@ -6,8 +6,4 @@
 import Foundation
 import SecureTradingCore
 
-final class DefaultAppFoundation: AppFoundation {
-    public private(set) lazy var apiClient: APIClient = {
-        DefaultAPIClient()
-    }()
-}
+final class DefaultAppFoundation: AppFoundation {}
