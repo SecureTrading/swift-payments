@@ -6,6 +6,7 @@
 //  Copyright © 2020 TIWASZEK. All rights reserved.
 //
 
+// objc workaround
 @objc public enum TypeDescriptionObjc: Int {
     case auth
     case threeDQuery
