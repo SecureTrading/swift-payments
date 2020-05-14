@@ -48,6 +48,8 @@
 		0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488224692A7500F625D0 /* TestDetailsFlowController.swift */; };
 		0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488424694FAF00F625D0 /* SDKFlowController.swift */; };
 		089B41C6246D4B7000F70764 /* APIClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C5246D4B7000F70764 /* APIClientConfiguration.swift */; };
+		089B41C8246D4C7600F70764 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C7246D4C7600F70764 /* APIRequest.swift */; };
+		089B41CA246D4CB700F70764 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C9246D4CB700F70764 /* APIResponse.swift */; };
 		08E4FA6F2462A5EC00837339 /* SecureTradingCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */; };
 		08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFF2462AC32008B5F3E /* APIClient.swift */; };
@@ -125,6 +127,8 @@
 		0869488224692A7500F625D0 /* TestDetailsFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsFlowController.swift; sourceTree = "<group>"; };
 		0869488424694FAF00F625D0 /* SDKFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKFlowController.swift; sourceTree = "<group>"; };
 		089B41C5246D4B7000F70764 /* APIClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientConfiguration.swift; sourceTree = "<group>"; };
+		089B41C7246D4C7600F70764 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		089B41C9246D4CB700F70764 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCore.h; sourceTree = "<group>"; };
 		08E4FA6E2462A5EC00837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -361,6 +365,8 @@
 			children = (
 				08EF7CFF2462AC32008B5F3E /* APIClient.swift */,
 				089B41C5246D4B7000F70764 /* APIClientConfiguration.swift */,
+				089B41C7246D4C7600F70764 /* APIRequest.swift */,
+				089B41C9246D4CB700F70764 /* APIResponse.swift */,
 			);
 			path = Abstraction;
 			sourceTree = "<group>";
@@ -666,10 +672,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				089B41CA246D4CB700F70764 /* APIResponse.swift in Sources */,
 				08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */,
 				08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */,
 				084E2A2124659EA70040FB9D /* SDKFoundation.swift in Sources */,
 				089B41C6246D4B7000F70764 /* APIClientConfiguration.swift in Sources */,
+				089B41C8246D4C7600F70764 /* APIRequest.swift in Sources */,
 				084E2A2324659EE20040FB9D /* DefaultSDKFoundation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
