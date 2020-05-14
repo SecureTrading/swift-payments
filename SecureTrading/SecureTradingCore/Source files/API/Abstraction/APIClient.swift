@@ -14,7 +14,4 @@ protocol APIClient: AnyObject {
     ///   - request: The request to be performed.
     ///   - completion: The completion closure containing result of an operation.
     func perform<Request>(request: Request, completion: @escaping (Result<Request.Response, APIClientError>) -> Void) where Request: APIRequest
-
-    /// Perform last failed API Request
-    func retry()
 }

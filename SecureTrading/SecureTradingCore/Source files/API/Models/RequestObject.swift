@@ -6,12 +6,12 @@
 //  Copyright © 2020 TIWASZEK. All rights reserved.
 //
 
-enum TypeDescription: String, Codable {
+public enum TypeDescription: String, Codable {
     case auth = "AUTH"
     case threeDQuery = "THREEDQUERY"
 }
 
-struct RequestObject: Codable {
+public struct RequestObject: Codable {
     let typeDescriptions: [TypeDescription]
 }
 

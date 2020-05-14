@@ -18,9 +18,6 @@ final class DefaultAPIClient: APIClient {
     /// A range of acceptable status codes.
     private let defaultAcceptableStatusCodes = 200...299
 
-    /// Retry operation.
-    private var retryOperation: (() -> Void)?
-
     /// Default HTTP request headers.
     private var defaultRequestHeaders: [String: String] {
         return [:]
@@ -39,12 +36,6 @@ final class DefaultAPIClient: APIClient {
     }
 
     // MARK: Functions
-
-    func retry() {
-        let oldRetryOperation = retryOperation
-        retryOperation = nil
-        oldRetryOperation?()
-    }
 
     /// - SeeAlso: APIClient.perform(request:completion:)
     func perform<Request>(request: Request, completion: @escaping (Result<Request.Response, APIClientError>) -> Void) where Request: APIRequest {
