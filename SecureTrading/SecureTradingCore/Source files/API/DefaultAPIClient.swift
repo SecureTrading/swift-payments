@@ -38,7 +38,7 @@ final class DefaultAPIClient: APIClient {
         self.urlSession = urlSession
     }
 
-    /// MARK: Functions
+    // MARK: Functions
 
     func retry() {
         let oldRetryOperation = retryOperation
