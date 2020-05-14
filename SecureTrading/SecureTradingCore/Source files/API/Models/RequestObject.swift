@@ -8,6 +8,7 @@
 
 enum TypeDescription: String, Codable {
     case auth = "AUTH"
+    case threeDQuery = "THREEDQUERY"
 }
 
 struct RequestObject: Codable {
