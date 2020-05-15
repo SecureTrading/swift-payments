@@ -47,7 +47,7 @@ final class MainFlowController: BaseNavigationFlowController {
 
     var sdkFlowController: SDKFlowController!
     func showTestMainFlow() {
-        checkAPIManagerFromObjc()
+        //checkAPIManagerFromObjc()
         sdkFlowController = SDKFlowController(navigationController: navigationController)
         sdkFlowController.presentTestMainFlow()
     }
@@ -57,7 +57,8 @@ final class MainFlowController: BaseNavigationFlowController {
         let generatedJWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3QtcGdzbW9iaWxlc2RrIiwiaWF0IjoxNTg5NTI0Nzc2Ljk5MDA0NTEsInBheWxvYWQiOnsiZXhwaXJ5ZGF0ZSI6IjEyXC8yMDIyIiwiYmFzZWFtb3VudCI6MTA1MCwicGFuIjoiNDExMTExMTExMTExMTExMSIsInNlY3VyaXR5Y29kZSI6IjEyMyIsImFjY291bnR0eXBlZGVzY3JpcHRpb24iOiJFQ09NIiwic2l0ZXJlZmVyZW5jZSI6InRlc3RfcGdzbW9iaWxlc2RrNzk0NTgiLCJjdXJyZW5jeWlzbzNhIjoiR0JQIn19.DvrtwnTw7FcIxNN8-BkrKyib0DquFQNKVrKL_kj6nXA"
         // swiftlint:enable line_length
         let authRequest = RequestObject(typeDescriptions: [.auth])
-        appFoundation.apiManager.makeGeneralRequest(jwt: generatedJWT, requests: [authRequest])
+        appFoundation.apiManager.checkJWTDecoding()
+        //appFoundation.apiManager.makeGeneralRequest(jwt: generatedJWT, requests: [authRequest])
     }
 
     let test = ObjectiveCTest()

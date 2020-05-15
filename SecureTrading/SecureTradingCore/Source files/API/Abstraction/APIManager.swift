@@ -21,4 +21,5 @@ import Foundation
 
 @objc public protocol APIManager: AnyObject {
     func makeGeneralRequest(jwt: String, requests: [RequestObject])
+    func checkJWTDecoding()
 }
