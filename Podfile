@@ -8,12 +8,12 @@ end
 
 target 'Example' do
     shared_pods
-    project 'Example/Example.xcworkspace'
+    project 'Example/Example.xcodeproj'
 end
 
 target 'ExampleTests' do
     shared_pods
-    project 'Example/Example.xcworkspace'
+    project 'Example/Example.xcodeproj'
 end
 
 

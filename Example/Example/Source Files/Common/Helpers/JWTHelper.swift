@@ -13,7 +13,6 @@ final class JWTHelper {
     static func createJWT<T: Claims>(basedOn claim: T, signWith secret: String) -> String? {
         //<header>.<payload>.<signature>
         // default header
-        AppLog.log("Starting JWT")
         let header = Header(typ: "JWT")
         
         // base JWT without signature
