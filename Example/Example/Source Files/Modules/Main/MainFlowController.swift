@@ -3,8 +3,8 @@
 //  Example
 //
 
-import SecureTradingUI
 import SecureTradingCore
+import SecureTradingUI
 import UIKit
 
 final class MainFlowController: BaseNavigationFlowController {
@@ -47,6 +47,7 @@ final class MainFlowController: BaseNavigationFlowController {
 
     var sdkFlowController: SDKFlowController!
     func showTestMainFlow() {
+        checkAPIManagerFromObjc()
         sdkFlowController = SDKFlowController(navigationController: navigationController)
         sdkFlowController.presentTestMainFlow()
     }
@@ -54,8 +55,13 @@ final class MainFlowController: BaseNavigationFlowController {
     private func checkAPIManager() {
         let authRequest = RequestObject(typeDescriptions: [.auth])
         // swiftlint:disable line_length
-        let generatedJWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3QtcGdzbW9iaWxlc2RrIiwiaWF0IjoxNTg5NDY3Njg5LjA5ODg3NDEsInBheWxvYWQiOnsiZXhwaXJ5ZGF0ZSI6IjEyXC8yMDIyIiwiYmFzZWFtb3VudCI6MTA1MCwicGFuIjoiNDExMTExMTExMTExMTExMSIsInNlY3VyaXR5Y29kZSI6IjEyMyIsImFjY291bnR0eXBlZGVzY3JpcHRpb24iOiJFQ09NIiwic2l0ZXJlZmVyZW5jZSI6InRlc3RfcGdzbW9iaWxlc2RrNzk0NTgiLCJjdXJyZW5jeWlzbzNhIjoiR0JQIn19.4DANy4Krch5OunHj4ag0UxZTxLPUFVqtPotWDGVLRJA"
+        let generatedJWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3QtcGdzbW9iaWxlc2RrIiwiaWF0IjoxNTg5NTI0Nzc2Ljk5MDA0NTEsInBheWxvYWQiOnsiZXhwaXJ5ZGF0ZSI6IjEyXC8yMDIyIiwiYmFzZWFtb3VudCI6MTA1MCwicGFuIjoiNDExMTExMTExMTExMTExMSIsInNlY3VyaXR5Y29kZSI6IjEyMyIsImFjY291bnR0eXBlZGVzY3JpcHRpb24iOiJFQ09NIiwic2l0ZXJlZmVyZW5jZSI6InRlc3RfcGdzbW9iaWxlc2RrNzk0NTgiLCJjdXJyZW5jeWlzbzNhIjoiR0JQIn19.DvrtwnTw7FcIxNN8-BkrKyib0DquFQNKVrKL_kj6nXA"
         // swiftlint:enable line_length
         appFoundation.apiManager.makeGeneralRequest(alias: "jwt-pgsmobilesdk", jwt: generatedJWT, version: "1.00", requests: [authRequest])
+    }
+
+    let test = ObjectiveCTest()
+    private func checkAPIManagerFromObjc() {
+        test.someTestMethod()
     }
 }
