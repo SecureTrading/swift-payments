@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -51,6 +51,7 @@
 		08EF7D6F2462CEB5008B5F3E /* Test-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 08EF7D6C2462CEB4008B5F3E /* Test-Base.xcconfig */; };
 		08EF7D702462CEB5008B5F3E /* App-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 08EF7D6D2462CEB4008B5F3E /* App-Base.xcconfig */; };
 		08EF7D712462CEB5008B5F3E /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 08EF7D6E2462CEB4008B5F3E /* Development.xcconfig */; };
+		104CFAFF246EA59100D7C76D /* ApplicationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFAFE246EA59100D7C76D /* ApplicationKeys.swift */; };
 		94A613C6B32EE4366E3DAF98 /* libPods-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 246FF584FF47399CC8170185 /* libPods-Example.a */; };
 		B9AD01AA873C0821E5A593D5 /* libPods-ExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6929FF26B3822E6D286A6796 /* libPods-ExampleTests.a */; };
 /* End PBXBuildFile section */
@@ -138,6 +139,7 @@
 		08EF7D6C2462CEB4008B5F3E /* Test-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Test-Base.xcconfig"; sourceTree = "<group>"; };
 		08EF7D6D2462CEB4008B5F3E /* App-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Base.xcconfig"; sourceTree = "<group>"; };
 		08EF7D6E2462CEB4008B5F3E /* Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		104CFAFE246EA59100D7C76D /* ApplicationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationKeys.swift; sourceTree = "<group>"; };
 		246FF584FF47399CC8170185 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38540500549769ED80DE24FE /* Pods-ExampleTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.development.xcconfig"; path = "../../Pods/Target Support Files/Pods-ExampleTests/Pods-ExampleTests.development.xcconfig"; sourceTree = "<group>"; };
 		6929FF26B3822E6D286A6796 /* libPods-ExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -303,6 +305,7 @@
 				08639C7C2469693F00C8F90A /* AppFlowController.swift */,
 				08639C7F24696A2800C8F90A /* AppFoundation.swift */,
 				08639C8124696A4100C8F90A /* DefaultAppFoundation.swift */,
+				104CFAFE246EA59100D7C76D /* ApplicationKeys.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 				08639C612469681E00C8F90A /* BaseFlowController.swift in Sources */,
 				08639C5E2469681E00C8F90A /* BaseViewController.swift in Sources */,
 				082FC7A02462FF2700D4E2B6 /* ObjectiveCTest.m in Sources */,
+				104CFAFF246EA59100D7C76D /* ApplicationKeys.swift in Sources */,
 				08639C642469681E00C8F90A /* Fonts.swift in Sources */,
 				08639C682469681E00C8F90A /* UIStackView.swift in Sources */,
 				08639C712469681E00C8F90A /* NavigationDelegate.swift in Sources */,
