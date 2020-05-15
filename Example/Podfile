@@ -2,18 +2,18 @@
 platform :ios, '11.0'
 use_frameworks!
 
-def common
+def shared_pods
    pod 'SwiftJWT'
 end
  
 target 'Example' do
-   common
+   shared_pods
 end
 
 target 'ExampleTests' do
-   common
+   shared_pods
 end
 
 target 'ExampleUITests' do
-   common
+   shared_pods
 end

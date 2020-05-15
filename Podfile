@@ -1,7 +1,28 @@
 workspace 'SecureTrading'
+inhibit_all_warnings!
+platform :ios, '11.0'
+
+def shared_pods 
+    pod 'SwiftJWT'
+end
 
 target 'Example' do
-    platform :ios, '11.0'
-    pod 'SwiftJWT' 
+    shared_pods
     project 'Example/Example.xcworkspace'
 end
+
+target 'ExampleTests' do
+    shared_pods
+    project 'Example/Example.xcworkspace'
+end
+
+
+plugin 'cocoapods-keys', {
+    :project => "Example",
+    :target => "Example",
+    :keys => [
+      "JWTSecret"
+   ]
+}
+
+
