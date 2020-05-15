@@ -9,6 +9,6 @@ import SecureTradingCore
 final class DefaultAppFoundation: AppFoundation {
     /// - SeeAlso: AppFoundation.apiManager
     private(set) lazy var apiManager: APIManager = {
-        DefaultAPIManager(gatewayType: .european)
+        DefaultAPIManager(gatewayType: .european, username: "jwt-pgsmobilesdk")
     }()
 }

@@ -23,5 +23,5 @@ import Foundation
 }
 
 @objc public protocol APIManager: AnyObject {
-    func makeGeneralRequest(alias: String, jwt: String, version: String, requests: [RequestObject])
+    func makeGeneralRequest(jwt: String, requests: [RequestObject])
 }
