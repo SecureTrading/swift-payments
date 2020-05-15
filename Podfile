@@ -3,7 +3,7 @@ inhibit_all_warnings!
 platform :ios, '11.0'
 
 def shared_pods 
-    pod 'SwiftJWT'
+    pod 'SwiftJWT', '3.5.3'
 end
 
 target 'Example' do
