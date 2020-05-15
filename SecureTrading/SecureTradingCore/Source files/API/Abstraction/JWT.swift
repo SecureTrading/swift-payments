@@ -5,7 +5,6 @@
 
 import Foundation
 
-
 // Protocol defining the form of the decoded JWT
 
 public protocol JWT {

@@ -59,4 +59,12 @@ public struct Claim {
         }
         return nil
     }
+
+    /// value of the claim as `[String]`
+    public var arrayOfObjects: [[String: Any]]? {
+        if let array = value as? [[String: Any]] {
+            return array
+        }
+        return nil
+    }
 }

@@ -2,9 +2,6 @@
 //  DefaultAPIManager.swift
 //  SecureTradingCore
 //
-//  Created by TIWASZEK on 14/05/2020.
-//  Copyright © 2020 TIWASZEK. All rights reserved.
-//
 
 import Foundation
 
@@ -25,9 +22,16 @@ import Foundation
         apiClient.perform(request: generalRequest) { (result) in
             switch result {
             case let .success(response):
-                print(response.jwt)
+                guard let jwtResponses = response.jwtResponses else {
+                    // todo failure
+                    return
+
+                    // todo handle error codes
+
+                }
             case let .failure(error):
-                print(error)
+                // todo return error closure
+                break
             }
         }
     }

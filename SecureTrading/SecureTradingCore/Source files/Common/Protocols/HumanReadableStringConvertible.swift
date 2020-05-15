@@ -2,9 +2,6 @@
 //  HumanReadableStringConvertible.swift
 //  SecureTradingCore
 //
-//  Created by TIWASZEK on 14/05/2020.
-//  Copyright © 2020 TIWASZEK. All rights reserved.
-//
 
 /// Describes a type with a customized human-readable textual representation.
 protocol HumanReadableStringConvertible: CustomStringConvertible {

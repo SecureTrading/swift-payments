@@ -2,9 +2,6 @@
 //  RequestObject.swift
 //  SecureTradingCore
 //
-//  Created by TIWASZEK on 14/05/2020.
-//  Copyright © 2020 TIWASZEK. All rights reserved.
-//
 
 // objc workaround - when you add a new value to TypeDescription, you have to add it here too
 @objc public enum TypeDescriptionObjc: Int {

@@ -2,9 +2,6 @@
 //  GeneralResponse.swift
 //  SecureTradingCore
 //
-//  Created by TIWASZEK on 14/05/2020.
-//  Copyright © 2020 TIWASZEK. All rights reserved.
-//
 
 import Foundation
 
@@ -13,12 +10,14 @@ struct GeneralResponse: APIResponse {
 
     let jwt: String
     let jwtDecoded: DecodedJWT?
+    let jwtResponses: [JWTResponseObject]?
 
     /// - SeeAlso: Swift.Decodable
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         jwt = try container.decode(String.self, forKey: .jwt)
         jwtDecoded = try? DecodedJWT(jwt: jwt)
+        jwtResponses = jwtDecoded?.jwtBodyResponse.responses
     }
 }
 

@@ -18,6 +18,7 @@ public extension JWT {
 struct DecodedJWT: JWT {
     let header: [String: Any]
     let body: [String: Any]
+    let jwtBodyResponse: JWTBodyResponse
     let signature: String?
     let string: String
 
@@ -29,6 +30,7 @@ struct DecodedJWT: JWT {
 
         self.header = try decodeJWTPart(parts[0])
         self.body = try decodeJWTPart(parts[1])
+        self.jwtBodyResponse = try decodeJWTBodyByDecoder(parts[1])
         self.signature = parts[2]
         self.string = jwt
     }
@@ -69,6 +71,19 @@ private func decodeJWTPart(_ value: String) throws -> [String: Any] {
     }
 
     guard let json = try? JSONSerialization.jsonObject(with: bodyData, options: []), let payload = json as? [String: Any] else {
+        throw DecodeError.invalidJSON
+    }
+
+    return payload
+}
+
+private func decodeJWTBodyByDecoder(_ value: String) throws -> JWTBodyResponse {
+    guard let bodyData = base64UrlDecode(value) else {
+        throw DecodeError.invalidBase64Url
+    }
+
+    let decoder = JWTBodyResponse.decoder
+    guard let payload = try? decoder.decode(JWTBodyResponse.self, from: bodyData) else {
         throw DecodeError.invalidJSON
     }
 
