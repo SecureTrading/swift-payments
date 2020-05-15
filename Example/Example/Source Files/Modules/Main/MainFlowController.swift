@@ -38,6 +38,7 @@ final class MainFlowController: BaseNavigationFlowController {
 
     // Test UI framework availability
     func showTestMainScreen() {
+        checkAPIManager()
         let testMainVC = ViewControllerFactory.shared.testMainViewController { [unowned self] in
             self.navigationController.popViewController(animated: true)
         }
@@ -52,7 +53,9 @@ final class MainFlowController: BaseNavigationFlowController {
 
     private func checkAPIManager() {
         let authRequest = RequestObject(typeDescriptions: [.auth])
-        let generatedJWT = ""
+        // swiftlint:disable line_length
+        let generatedJWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3QtcGdzbW9iaWxlc2RrIiwiaWF0IjoxNTg5NDY3Njg5LjA5ODg3NDEsInBheWxvYWQiOnsiZXhwaXJ5ZGF0ZSI6IjEyXC8yMDIyIiwiYmFzZWFtb3VudCI6MTA1MCwicGFuIjoiNDExMTExMTExMTExMTExMSIsInNlY3VyaXR5Y29kZSI6IjEyMyIsImFjY291bnR0eXBlZGVzY3JpcHRpb24iOiJFQ09NIiwic2l0ZXJlZmVyZW5jZSI6InRlc3RfcGdzbW9iaWxlc2RrNzk0NTgiLCJjdXJyZW5jeWlzbzNhIjoiR0JQIn19.4DANy4Krch5OunHj4ag0UxZTxLPUFVqtPotWDGVLRJA"
+        // swiftlint:enable line_length
         appFoundation.apiManager.makeGeneralRequest(alias: "jwt-pgsmobilesdk", jwt: generatedJWT, version: "1.00", requests: [authRequest])
     }
 }

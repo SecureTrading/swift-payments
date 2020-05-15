@@ -43,13 +43,24 @@ struct GeneralRequest: APIRequestModel {
 
     /// - SeeAlso: APIRequestModel.path
     var path: String {
-        return "/jwt"
+        return "/jwt/"
     }
 
+    /// - SeeAlso: Swift.Encodable
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(alias, forKey: .alias)
+        try container.encode(jwt, forKey: .jwt)
+        try container.encode(version, forKey: .version)
+        try container.encode(requests, forKey: .requests)
+    }
 }
 
 private extension GeneralRequest {
     enum CodingKeys: String, CodingKey {
+        case alias
+        case jwt
+        case version
         case requests = "request"
     }
 }

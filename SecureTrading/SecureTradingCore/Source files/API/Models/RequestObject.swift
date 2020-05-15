@@ -6,7 +6,7 @@
 //  Copyright © 2020 TIWASZEK. All rights reserved.
 //
 
-// objc workaround
+// objc workaround - when you add a new value to TypeDescription, you have to add it here too
 @objc public enum TypeDescriptionObjc: Int {
     case auth
     case threeDQuery
@@ -38,6 +38,7 @@ public enum TypeDescription: String, Codable {
         let objcTypes = typeDescriptions.map { TypeDescriptionObjc(rawValue: $0)! }
         self.init(typeDescriptions: objcTypes.map { TypeDescription(rawValue: $0.value)! })
     }
+
 }
 
 private extension RequestObject {
