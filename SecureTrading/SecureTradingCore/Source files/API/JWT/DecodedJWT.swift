@@ -5,7 +5,7 @@
 
 import Foundation
 
-public extension JWT {
+extension JWT {
     /// Return a claim by it's name
     /// - Parameter name: name of the claim in the JWT object
     /// - Returns: a claim of the JWT

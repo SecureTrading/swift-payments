@@ -7,11 +7,13 @@ import Foundation
 
 // Protocol defining the form of the decoded JWT
 
-public protocol JWT {
+protocol JWT {
     /// contents of the token header
     var header: [String: Any] { get }
     /// token body part values
     var body: [String: Any] { get }
+    /// decoded body
+    var jwtBodyResponse: JWTBodyResponse { get }
     /// token signature part
     var signature: String? { get }
     /// jwt string value
