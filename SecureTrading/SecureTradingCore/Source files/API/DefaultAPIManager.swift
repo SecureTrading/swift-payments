@@ -16,21 +16,14 @@ import Foundation
         self.apiClient = DefaultAPIClient(configuration: configuration)
     }
 
-    @objc public func makeGeneralRequest(jwt: String, requests: [RequestObject]) {
+    @objc public func makeGeneralRequest(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: Error) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, requests: requests)
         self.apiClient.perform(request: generalRequest) { result in
             switch result {
             case let .success(response):
-                guard let jwtResponses = response.jwtResponses else {
-                    // todo failure with jwt decoding
-                    return
-
-                            // todo handle error codes
-                            // todo return jwt string
-                }
+                success(response.jwtResponses, jwt)
             case let .failure(error):
-                // todo return general error closure
-                break
+                failure(error)
             }
         }
     }
