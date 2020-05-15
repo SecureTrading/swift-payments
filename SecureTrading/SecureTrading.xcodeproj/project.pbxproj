@@ -61,6 +61,10 @@
 		089B41E1246D600600F70764 /* GeneralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41E0246D600600F70764 /* GeneralRequest.swift */; };
 		089B41E4246D6FCE00F70764 /* GeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41E3246D6FCE00F70764 /* GeneralResponse.swift */; };
 		089B41E6246D791C00F70764 /* DefaultAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41E5246D791C00F70764 /* DefaultAPIManager.swift */; };
+		08C31AF7246E842F00595B21 /* JWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C31AF6246E842F00595B21 /* JWT.swift */; };
+		08C31AF9246E860C00595B21 /* DecodedJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C31AF8246E860C00595B21 /* DecodedJWT.swift */; };
+		08C31AFB246E888100595B21 /* DecodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C31AFA246E888100595B21 /* DecodeError.swift */; };
+		08C31AFD246E8F2C00595B21 /* Claim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C31AFC246E8F2C00595B21 /* Claim.swift */; };
 		08E4FA6F2462A5EC00837339 /* SecureTradingCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */; };
 		08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7CFF2462AC32008B5F3E /* APIClient.swift */; };
@@ -151,6 +155,10 @@
 		089B41E0246D600600F70764 /* GeneralRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralRequest.swift; sourceTree = "<group>"; };
 		089B41E3246D6FCE00F70764 /* GeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralResponse.swift; sourceTree = "<group>"; };
 		089B41E5246D791C00F70764 /* DefaultAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAPIManager.swift; sourceTree = "<group>"; };
+		08C31AF6246E842F00595B21 /* JWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWT.swift; sourceTree = "<group>"; };
+		08C31AF8246E860C00595B21 /* DecodedJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodedJWT.swift; sourceTree = "<group>"; };
+		08C31AFA246E888100595B21 /* DecodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeError.swift; sourceTree = "<group>"; };
+		08C31AFC246E8F2C00595B21 /* Claim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Claim.swift; sourceTree = "<group>"; };
 		08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCore.h; sourceTree = "<group>"; };
 		08E4FA6E2462A5EC00837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -379,6 +387,16 @@
 			path = Responses;
 			sourceTree = "<group>";
 		};
+		08C31AF5246E840300595B21 /* JWT */ = {
+			isa = PBXGroup;
+			children = (
+				08C31AF8246E860C00595B21 /* DecodedJWT.swift */,
+				08C31AFA246E888100595B21 /* DecodeError.swift */,
+				08C31AFC246E8F2C00595B21 /* Claim.swift */,
+			);
+			path = JWT;
+			sourceTree = "<group>";
+		};
 		08E4FA602462A5EC00837339 = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +445,7 @@
 		08EF7CFB2462ABD0008B5F3E /* API */ = {
 			isa = PBXGroup;
 			children = (
+				08C31AF5246E840300595B21 /* JWT */,
 				089B41DC246D5CC300F70764 /* Requests */,
 				089B41E2246D6F1600F70764 /* Responses */,
 				089B41DD246D5CD100F70764 /* Models */,
@@ -441,6 +460,7 @@
 		08EF7CFE2462AC1E008B5F3E /* Abstraction */ = {
 			isa = PBXGroup;
 			children = (
+				08C31AF6246E842F00595B21 /* JWT.swift */,
 				089B41DA246D573900F70764 /* APIManager.swift */,
 				08EF7CFF2462AC32008B5F3E /* APIClient.swift */,
 				089B41C5246D4B7000F70764 /* APIClientConfiguration.swift */,
@@ -759,16 +779,20 @@
 				089B41D9246D53CD00F70764 /* DefaultAPIClientConfiguration.swift in Sources */,
 				08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */,
 				084E2A2124659EA70040FB9D /* SDKFoundation.swift in Sources */,
+				08C31AFD246E8F2C00595B21 /* Claim.swift in Sources */,
 				089B41DB246D573900F70764 /* APIManager.swift in Sources */,
 				089B41E1246D600600F70764 /* GeneralRequest.swift in Sources */,
 				089B41CC246D4DE100F70764 /* APIRequestModel.swift in Sources */,
+				08C31AF9246E860C00595B21 /* DecodedJWT.swift in Sources */,
 				089B41DF246D5ECB00F70764 /* RequestObject.swift in Sources */,
+				08C31AF7246E842F00595B21 /* JWT.swift in Sources */,
 				089B41D0246D4E4B00F70764 /* Dictionary.swift in Sources */,
 				089B41C6246D4B7000F70764 /* APIClientConfiguration.swift in Sources */,
 				089B41E6246D791C00F70764 /* DefaultAPIManager.swift in Sources */,
 				089B41C8246D4C7600F70764 /* APIRequest.swift in Sources */,
 				089B41D2246D52D400F70764 /* APIClientError.swift in Sources */,
 				084E2A2324659EE20040FB9D /* DefaultSDKFoundation.swift in Sources */,
+				08C31AFB246E888100595B21 /* DecodeError.swift in Sources */,
 				089B41E4246D6FCE00F70764 /* GeneralResponse.swift in Sources */,
 				089B41D7246D536600F70764 /* NSError.swift in Sources */,
 			);
