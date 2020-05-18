@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SwiftJWT
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -53,6 +53,13 @@
 		08EF7D422462B12F008B5F3E /* SecureTradingUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 08EF7D402462B12F008B5F3E /* SecureTradingUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D492462B239008B5F3E /* BaseViewController.swift */; };
 		08EF7D542462B790008B5F3E /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; platformFilter = ios; };
+		104CFB12246ECD8000D7C76D /* SecureTrading3DSecure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104CFB09246ECD7F00D7C76D /* SecureTrading3DSecure.framework */; };
+		104CFB17246ECD8000D7C76D /* SecureTrading3DSecureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFB16246ECD8000D7C76D /* SecureTrading3DSecureTests.swift */; };
+		104CFB19246ECD8000D7C76D /* SecureTrading3DSecure.h in Headers */ = {isa = PBXBuildFile; fileRef = 104CFB0B246ECD7F00D7C76D /* SecureTrading3DSecure.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		104CFB28246ECE3A00D7C76D /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; };
+		104CFB2D246ECF2F00D7C76D /* ST3DSecureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */; };
+		104CFB31246ED48600D7C76D /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104CFB23246ECE1A00D7C76D /* CardinalMobile.framework */; };
+		104CFB32246ED48600D7C76D /* CardinalMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 104CFB23246ECE1A00D7C76D /* CardinalMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +84,35 @@
 			remoteGlobalIDString = 08E4FA692462A5EC00837339;
 			remoteInfo = SecureTradingCore;
 		};
+		104CFB13246ECD8000D7C76D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08E4FA612462A5EC00837339 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 104CFB08246ECD7F00D7C76D;
+			remoteInfo = SecureTrading3DSecure;
+		};
+		104CFB2A246ECE3A00D7C76D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08E4FA612462A5EC00837339 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08E4FA692462A5EC00837339;
+			remoteInfo = SecureTradingCore;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		104CFB33246ED48600D7C76D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				104CFB32246ED48600D7C76D /* CardinalMobile.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		082FC7A4246429D200D4E2B6 /* SDK-base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "SDK-base.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +167,14 @@
 		08EF7D402462B12F008B5F3E /* SecureTradingUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingUI.h; sourceTree = "<group>"; };
 		08EF7D412462B12F008B5F3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08EF7D492462B239008B5F3E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		104CFB09246ECD7F00D7C76D /* SecureTrading3DSecure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTrading3DSecure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		104CFB0B246ECD7F00D7C76D /* SecureTrading3DSecure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTrading3DSecure.h; sourceTree = "<group>"; };
+		104CFB0C246ECD7F00D7C76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		104CFB11246ECD7F00D7C76D /* SecureTrading3DSecureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureTrading3DSecureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		104CFB16246ECD8000D7C76D /* SecureTrading3DSecureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTrading3DSecureTests.swift; sourceTree = "<group>"; };
+		104CFB18246ECD8000D7C76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		104CFB23246ECE1A00D7C76D /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CardinalMobile.framework; sourceTree = "<group>"; };
+		104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ST3DSecureManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +206,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				08EF7D542462B790008B5F3E /* SecureTradingCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104CFB06246ECD7F00D7C76D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				104CFB31246ED48600D7C76D /* CardinalMobile.framework in Frameworks */,
+				104CFB28246ECE3A00D7C76D /* SecureTradingCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104CFB0E246ECD7F00D7C76D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				104CFB12246ECD8000D7C76D /* SecureTrading3DSecure.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +369,8 @@
 				08EF7D3F2462B12F008B5F3E /* SecureTradingUI */,
 				084E29CC246562C60040FB9D /* SecureTradingCoreTests */,
 				084E29DC246562DA0040FB9D /* SecureTradingUITests */,
+				104CFB0A246ECD7F00D7C76D /* SecureTrading3DSecure */,
+				104CFB15246ECD8000D7C76D /* SecureTrading3DSecureTests */,
 				08E4FA6B2462A5EC00837339 /* Products */,
 				08EF7D532462B790008B5F3E /* Frameworks */,
 			);
@@ -321,6 +383,8 @@
 				08EF7D3E2462B12F008B5F3E /* SecureTradingUI.framework */,
 				084E29CB246562C60040FB9D /* SecureTradingCoreTests.xctest */,
 				084E29DB246562DA0040FB9D /* SecureTradingUITests.xctest */,
+				104CFB09246ECD7F00D7C76D /* SecureTrading3DSecure.framework */,
+				104CFB11246ECD7F00D7C76D /* SecureTrading3DSecureTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -427,6 +491,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		104CFB0A246ECD7F00D7C76D /* SecureTrading3DSecure */ = {
+			isa = PBXGroup;
+			children = (
+				104CFB22246ECDD400D7C76D /* Source files */,
+				104CFB0B246ECD7F00D7C76D /* SecureTrading3DSecure.h */,
+				104CFB0C246ECD7F00D7C76D /* Info.plist */,
+			);
+			path = SecureTrading3DSecure;
+			sourceTree = "<group>";
+		};
+		104CFB15246ECD8000D7C76D /* SecureTrading3DSecureTests */ = {
+			isa = PBXGroup;
+			children = (
+				104CFB16246ECD8000D7C76D /* SecureTrading3DSecureTests.swift */,
+				104CFB18246ECD8000D7C76D /* Info.plist */,
+			);
+			path = SecureTrading3DSecureTests;
+			sourceTree = "<group>";
+		};
+		104CFB22246ECDD400D7C76D /* Source files */ = {
+			isa = PBXGroup;
+			children = (
+				104CFB23246ECE1A00D7C76D /* CardinalMobile.framework */,
+				104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */,
+			);
+			path = "Source files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -443,6 +535,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				08EF7D422462B12F008B5F3E /* SecureTradingUI.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104CFB04246ECD7F00D7C76D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				104CFB19246ECD8000D7C76D /* SecureTrading3DSecure.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +624,44 @@
 			productReference = 08EF7D3E2462B12F008B5F3E /* SecureTradingUI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		104CFB08246ECD7F00D7C76D /* SecureTrading3DSecure */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 104CFB20246ECD8000D7C76D /* Build configuration list for PBXNativeTarget "SecureTrading3DSecure" */;
+			buildPhases = (
+				104CFB04246ECD7F00D7C76D /* Headers */,
+				104CFB05246ECD7F00D7C76D /* Sources */,
+				104CFB06246ECD7F00D7C76D /* Frameworks */,
+				104CFB07246ECD7F00D7C76D /* Resources */,
+				104CFB33246ED48600D7C76D /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				104CFB2B246ECE3A00D7C76D /* PBXTargetDependency */,
+			);
+			name = SecureTrading3DSecure;
+			productName = SecureTrading3DSecure;
+			productReference = 104CFB09246ECD7F00D7C76D /* SecureTrading3DSecure.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		104CFB10246ECD7F00D7C76D /* SecureTrading3DSecureTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 104CFB21246ECD8000D7C76D /* Build configuration list for PBXNativeTarget "SecureTrading3DSecureTests" */;
+			buildPhases = (
+				104CFB0D246ECD7F00D7C76D /* Sources */,
+				104CFB0E246ECD7F00D7C76D /* Frameworks */,
+				104CFB0F246ECD7F00D7C76D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				104CFB14246ECD8000D7C76D /* PBXTargetDependency */,
+			);
+			name = SecureTrading3DSecureTests;
+			productName = SecureTrading3DSecureTests;
+			productReference = 104CFB11246ECD7F00D7C76D /* SecureTrading3DSecureTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -548,6 +686,13 @@
 						CreatedOnToolsVersion = 11.4.1;
 						LastSwiftMigration = 1140;
 					};
+					104CFB08246ECD7F00D7C76D = {
+						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
+					};
+					104CFB10246ECD7F00D7C76D = {
+						CreatedOnToolsVersion = 11.4;
+					};
 				};
 			};
 			buildConfigurationList = 08E4FA642462A5EC00837339 /* Build configuration list for PBXProject "SecureTrading" */;
@@ -565,8 +710,10 @@
 			targets = (
 				08E4FA692462A5EC00837339 /* SecureTradingCore */,
 				08EF7D3D2462B12F008B5F3E /* SecureTradingUI */,
+				104CFB08246ECD7F00D7C76D /* SecureTrading3DSecure */,
 				084E29CA246562C60040FB9D /* SecureTradingCoreTests */,
 				084E29DA246562DA0040FB9D /* SecureTradingUITests */,
+				104CFB10246ECD7F00D7C76D /* SecureTrading3DSecureTests */,
 			);
 		};
 /* End PBXProject section */
@@ -598,6 +745,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				084E2A0A246593C50040FB9D /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104CFB07246ECD7F00D7C76D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104CFB0F246ECD7F00D7C76D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,6 +872,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		104CFB05246ECD7F00D7C76D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				104CFB2D246ECF2F00D7C76D /* ST3DSecureManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		104CFB0D246ECD7F00D7C76D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				104CFB17246ECD8000D7C76D /* SecureTrading3DSecureTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -731,6 +908,16 @@
 			platformFilter = ios;
 			target = 08E4FA692462A5EC00837339 /* SecureTradingCore */;
 			targetProxy = 08EF7D562462B790008B5F3E /* PBXContainerItemProxy */;
+		};
+		104CFB14246ECD8000D7C76D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 104CFB08246ECD7F00D7C76D /* SecureTrading3DSecure */;
+			targetProxy = 104CFB13246ECD8000D7C76D /* PBXContainerItemProxy */;
+		};
+		104CFB2B246ECE3A00D7C76D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 08E4FA692462A5EC00837339 /* SecureTradingCore */;
+			targetProxy = 104CFB2A246ECE3A00D7C76D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1233,6 +1420,173 @@
 			};
 			name = Release;
 		};
+		104CFB1A246ECD8000D7C76D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0.0.1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = RF242XLR57;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
+					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
+					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
+				);
+				INFOPLIST_FILE = SecureTrading3DSecure/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTrading3DSecure;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		104CFB1B246ECD8000D7C76D /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0.0.1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = RF242XLR57;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
+					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
+					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
+				);
+				INFOPLIST_FILE = SecureTrading3DSecure/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTrading3DSecure;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Development;
+		};
+		104CFB1C246ECD8000D7C76D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0.0.1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = RF242XLR57;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
+					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
+					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
+				);
+				INFOPLIST_FILE = SecureTrading3DSecure/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTrading3DSecure;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		104CFB1D246ECD8000D7C76D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RF242XLR57;
+				INFOPLIST_FILE = SecureTrading3DSecureTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pgs.mchrzastek.SecureTrading3DSecureTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		104CFB1E246ECD8000D7C76D /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RF242XLR57;
+				INFOPLIST_FILE = SecureTrading3DSecureTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pgs.mchrzastek.SecureTrading3DSecureTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Development;
+		};
+		104CFB1F246ECD8000D7C76D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RF242XLR57;
+				INFOPLIST_FILE = SecureTrading3DSecureTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pgs.mchrzastek.SecureTrading3DSecureTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1282,6 +1636,26 @@
 				08EF7D432462B12F008B5F3E /* Debug */,
 				082FC79C2462E1A000D4E2B6 /* Development */,
 				08EF7D442462B12F008B5F3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		104CFB20246ECD8000D7C76D /* Build configuration list for PBXNativeTarget "SecureTrading3DSecure" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				104CFB1A246ECD8000D7C76D /* Debug */,
+				104CFB1B246ECD8000D7C76D /* Development */,
+				104CFB1C246ECD8000D7C76D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		104CFB21246ECD8000D7C76D /* Build configuration list for PBXNativeTarget "SecureTrading3DSecureTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				104CFB1D246ECD8000D7C76D /* Debug */,
+				104CFB1E246ECD8000D7C76D /* Development */,
+				104CFB1F246ECD8000D7C76D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
