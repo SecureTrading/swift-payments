@@ -58,8 +58,7 @@
 		104CFB19246ECD8000D7C76D /* SecureTrading3DSecure.h in Headers */ = {isa = PBXBuildFile; fileRef = 104CFB0B246ECD7F00D7C76D /* SecureTrading3DSecure.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		104CFB28246ECE3A00D7C76D /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; };
 		104CFB2D246ECF2F00D7C76D /* ST3DSecureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */; };
-		104CFB31246ED48600D7C76D /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104CFB23246ECE1A00D7C76D /* CardinalMobile.framework */; };
-		104CFB32246ED48600D7C76D /* CardinalMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 104CFB23246ECE1A00D7C76D /* CardinalMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		10B5B82D2472B925009CE3A8 /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +106,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				104CFB32246ED48600D7C76D /* CardinalMobile.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,8 +171,8 @@
 		104CFB11246ECD7F00D7C76D /* SecureTrading3DSecureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureTrading3DSecureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		104CFB16246ECD8000D7C76D /* SecureTrading3DSecureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTrading3DSecureTests.swift; sourceTree = "<group>"; };
 		104CFB18246ECD8000D7C76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		104CFB23246ECE1A00D7C76D /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CardinalMobile.framework; sourceTree = "<group>"; };
 		104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ST3DSecureManager.swift; sourceTree = "<group>"; };
+		10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CardinalMobile.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,7 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				104CFB31246ED48600D7C76D /* CardinalMobile.framework in Frameworks */,
+				10B5B82D2472B925009CE3A8 /* CardinalMobile.framework in Frameworks */,
 				104CFB28246ECE3A00D7C76D /* SecureTradingCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +362,7 @@
 		08E4FA602462A5EC00837339 = {
 			isa = PBXGroup;
 			children = (
+				10B5B82B2472B870009CE3A8 /* Frameworks */,
 				082FC7A3246429B100D4E2B6 /* Configurations */,
 				08E4FA6C2462A5EC00837339 /* SecureTradingCore */,
 				08EF7D3F2462B12F008B5F3E /* SecureTradingUI */,
@@ -513,10 +512,17 @@
 		104CFB22246ECDD400D7C76D /* Source files */ = {
 			isa = PBXGroup;
 			children = (
-				104CFB23246ECE1A00D7C76D /* CardinalMobile.framework */,
 				104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */,
 			);
 			path = "Source files";
+			sourceTree = "<group>";
+		};
+		10B5B82B2472B870009CE3A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */,
+			);
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1436,6 +1442,7 @@
 					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
 					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
 					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = SecureTrading3DSecure/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1472,6 +1479,7 @@
 					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
 					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
 					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = SecureTrading3DSecure/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1508,6 +1516,7 @@
 					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
 					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
 					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = SecureTrading3DSecure/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
