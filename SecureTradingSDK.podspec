@@ -30,4 +30,13 @@ s.subspec "Core" do |s|
     s.header_dir = "SecureTradingUI"
     s.dependency "SecureTradingSDK/Core"
   end
+
+  s.subspec "3DSecure" do |s|
+    s.source_files   = "SecureTrading/SecureTrading3DSecure/**/*.{h,swift}"
+    s.public_header_files = "SecureTrading/SecureTrading3DSecure/*.{h}"
+    s.vendored_frameworks = 'SecureTrading/Frameworks/CardinalMobile.framework'
+    s.header_dir = "SecureTrading3DSecure"
+    s.dependency "SecureTradingSDK/Core"
+    
+  end
 end

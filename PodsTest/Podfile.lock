@@ -1,9 +1,12 @@
 PODS:
+  - SecureTradingSDK/3DSecure (0.0.1):
+    - SecureTradingSDK/Core
   - SecureTradingSDK/Core (0.0.1)
   - SecureTradingSDK/UI (0.0.1):
     - SecureTradingSDK/Core
 
 DEPENDENCIES:
+  - SecureTradingSDK/3DSecure (from `../`)
   - SecureTradingSDK/Core (from `../`)
   - SecureTradingSDK/UI (from `../`)
 
@@ -12,8 +15,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SecureTradingSDK: 3f14b9c74a5bf40069fa347dfc49f5382bd77bb9
+  SecureTradingSDK: 8c1d18e0641001e10062f59f4eb74075c516affb
 
-PODFILE CHECKSUM: 98bf2e6b63232a5900d8c8bcba4a67e899860ead
+PODFILE CHECKSUM: f8086900230102a56f7327146ed8739d4e4a6ca1
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
