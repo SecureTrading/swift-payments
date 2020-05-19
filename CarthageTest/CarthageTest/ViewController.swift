@@ -9,6 +9,7 @@
 import UIKit
 import SecureTradingUI
 import SecureTradingCore
+import SecureTrading3DSecure
 
 class ViewController: UIViewController {
 
