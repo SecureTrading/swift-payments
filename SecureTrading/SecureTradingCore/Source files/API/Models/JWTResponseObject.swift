@@ -27,18 +27,18 @@
     
     // MARK: Properties
 
-    public let errorCode: Int
-    public let errorMessage: String
+    @objc public let errorCode: Int
+    @objc public let errorMessage: String
 
-    public let settleStatus: Int
+    @objc public let settleStatus: Int
 
-    public let transactionReference: String
+    @objc public let transactionReference: String
 
-    public var responseErrorCode: ResponseErrorCode {
+    @objc public var responseErrorCode: ResponseErrorCode {
         return ResponseErrorCode(rawValue: errorCode) ?? .unknown
     }
 
-    public var responseSettleStatus: ResponseSettleStatus {
+    @objc public var responseSettleStatus: ResponseSettleStatus {
         return ResponseSettleStatus(rawValue: settleStatus)!
     }
 

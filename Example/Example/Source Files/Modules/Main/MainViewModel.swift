@@ -68,7 +68,7 @@ final class MainViewModel {
     }
 
     let test = ObjectiveCTest()
-    private func checkAPIManagerFromObjc() {
+    func checkAPIManagerFromObjc() {
         test.someTestMethod()
     }
 }
