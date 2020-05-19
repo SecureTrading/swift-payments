@@ -30,6 +30,7 @@ import Foundation
 
     // MARK: Functions
 
+    // todo
     @objc public func makeGeneralRequest(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: Error) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, requests: requests)
         self.apiClient.perform(request: generalRequest) { result in

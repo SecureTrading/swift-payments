@@ -3,7 +3,6 @@
 //  SecureTradingCore
 //
 
-// todo create localizable desc
 @objc public enum ResponseErrorCode: Int {
     case successful = 0
     case transactionNotAuhorised = 60022
@@ -15,7 +14,6 @@
     case other
 }
 
-// todo create localizable desc
 @objc public enum ResponseSettleStatus: Int {
     case pendingAutomaticSettlement = 0
     case pendingManualSettlement = 1

@@ -5,8 +5,7 @@
 
 import Foundation
 
-// Protocol defining the form of the decoded JWT
-
+/// Protocol defining the form of the decoded JWT
 protocol JWT {
     /// contents of the token header
     var header: [String: Any] { get }
