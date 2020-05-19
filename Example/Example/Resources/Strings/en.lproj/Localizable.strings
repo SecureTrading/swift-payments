@@ -9,3 +9,4 @@ MainViewController.title = "Example App - Main";
 
 MainView.showTestMainScreenButton = "show test main screen (from SecureTradingUI)";
 MainView.showTestMainFlowButton = "show test main flow (from SecureTradingUI)";
+MainView.makeAuthRequestButton = "make auth request";

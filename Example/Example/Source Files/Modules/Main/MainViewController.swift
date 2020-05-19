@@ -33,6 +33,10 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             guard let self = self else { return }
             self.eventTriggered?(.didTapShowTestMainFlow)
         }
+        customView.makeAuthRequestButtonTappedClosure = { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.makeAuthCall()
+        }
     }
 
     /// - SeeAlso: BaseViewController.setupProperties
