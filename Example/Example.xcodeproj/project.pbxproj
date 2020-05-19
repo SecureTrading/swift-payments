@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		080A321E2473C482002B7471 /* STClaims.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080A321D2473C482002B7471 /* STClaims.swift */; };
 		082FC7962462E18900D4E2B6 /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */; };
 		082FC7972462E18900D4E2B6 /* SecureTradingCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		082FC7982462E18900D4E2B6 /* SecureTradingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */; };
@@ -94,6 +95,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		080A321D2473C482002B7471 /* STClaims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STClaims.swift; sourceTree = "<group>"; };
 		082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		082FC79E2462FF2500D4E2B6 /* Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -184,6 +186,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		080A321F2473C4A4002B7471 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				080A321D2473C482002B7471 /* STClaims.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		082FC7932462DB1000D4E2B6 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +234,7 @@
 		08639C422469681E00C8F90A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				080A321F2473C4A4002B7471 /* Models */,
 				08639C432469681E00C8F90A /* Abstract */,
 				08639C4A2469681E00C8F90A /* Appearance */,
 				08639C4D2469681E00C8F90A /* Extensions */,
@@ -661,6 +672,7 @@
 				08639C7D2469693F00C8F90A /* AppFlowController.swift in Sources */,
 				08639C632469681E00C8F90A /* BaseView.swift in Sources */,
 				08639C8C24696CB100C8F90A /* MainViewController.swift in Sources */,
+				080A321E2473C482002B7471 /* STClaims.swift in Sources */,
 				08639C6A2469681E00C8F90A /* UITableView.swift in Sources */,
 				08639C6E2469681E00C8F90A /* NavigationFlowController.swift in Sources */,
 				08639C8024696A2800C8F90A /* AppFoundation.swift in Sources */,

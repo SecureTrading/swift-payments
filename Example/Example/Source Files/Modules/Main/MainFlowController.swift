@@ -24,7 +24,7 @@ final class MainFlowController: BaseNavigationFlowController {
     ///
     /// - Returns: Object of MainViewController
     private func setupMainScreen() -> UIViewController {
-        let mainViewController = MainViewController(view: MainView(), viewModel: MainViewModel())
+        let mainViewController = MainViewController(view: MainView(), viewModel: MainViewModel(apiManager: appFoundation.apiManager))
         mainViewController.eventTriggered = { [unowned self] event in
             switch event {
             case .didTapShowTestMainScreen:
@@ -38,7 +38,6 @@ final class MainFlowController: BaseNavigationFlowController {
 
     // Test UI framework availability
     func showTestMainScreen() {
-        checkAPIManager()
         let testMainVC = ViewControllerFactory.shared.testMainViewController { [unowned self] in
             self.navigationController.popViewController(animated: true)
         }
@@ -47,22 +46,8 @@ final class MainFlowController: BaseNavigationFlowController {
 
     var sdkFlowController: SDKFlowController!
     func showTestMainFlow() {
-        //checkAPIManagerFromObjc()
         sdkFlowController = SDKFlowController(navigationController: navigationController)
         sdkFlowController.presentTestMainFlow()
     }
 
-    private func checkAPIManager() {
-        // swiftlint:disable line_length
-        let generatedJWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3QtcGdzbW9iaWxlc2RrIiwiaWF0IjoxNTg5NTI0Nzc2Ljk5MDA0NTEsInBheWxvYWQiOnsiZXhwaXJ5ZGF0ZSI6IjEyXC8yMDIyIiwiYmFzZWFtb3VudCI6MTA1MCwicGFuIjoiNDExMTExMTExMTExMTExMSIsInNlY3VyaXR5Y29kZSI6IjEyMyIsImFjY291bnR0eXBlZGVzY3JpcHRpb24iOiJFQ09NIiwic2l0ZXJlZmVyZW5jZSI6InRlc3RfcGdzbW9iaWxlc2RrNzk0NTgiLCJjdXJyZW5jeWlzbzNhIjoiR0JQIn19.DvrtwnTw7FcIxNN8-BkrKyib0DquFQNKVrKL_kj6nXA"
-        // swiftlint:enable line_length
-        let authRequest = RequestObject(typeDescriptions: [.auth])
-        appFoundation.apiManager.checkJWTDecoding()
-        //appFoundation.apiManager.makeGeneralRequest(jwt: generatedJWT, requests: [authRequest])
-    }
-
-    let test = ObjectiveCTest()
-    private func checkAPIManagerFromObjc() {
-        test.someTestMethod()
-    }
 }
