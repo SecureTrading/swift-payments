@@ -27,18 +27,18 @@
     
     // MARK: Properties
 
-    let errorCode: Int
-    let errorMessage: String
+    public let errorCode: Int
+    public let errorMessage: String
 
-    let settleStatus: Int
+    public let settleStatus: Int
 
-    let transactionReference: String
+    public let transactionReference: String
 
-    var responseErrorCode: ResponseErrorCode {
+    public var responseErrorCode: ResponseErrorCode {
         return ResponseErrorCode(rawValue: errorCode) ?? .unknown
     }
 
-    var responseSettleStatus: ResponseSettleStatus {
+    public var responseSettleStatus: ResponseSettleStatus {
         return ResponseSettleStatus(rawValue: settleStatus)!
     }
 

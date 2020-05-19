@@ -26,4 +26,8 @@ extension Localized where Self: RawRepresentable, Self.RawValue == String {
     }
 }
 
-enum Localizable {}
+enum Localizable {
+    enum Alerts: String, Localized {
+        case okButton
+    }
+}

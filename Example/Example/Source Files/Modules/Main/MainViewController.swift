@@ -37,10 +37,28 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             guard let self = self else { return }
             self.viewModel.makeAuthCall()
         }
+
+        viewModel.showAuthSuccess = { [weak self] _ in
+            guard let self = self else { return }
+            self.showAlert(message: "successful payment")
+        }
+
+        viewModel.showAuthError = { [weak self] error in
+            guard let self = self else { return }
+            self.showAlert(message: error)
+        }
     }
 
     /// - SeeAlso: BaseViewController.setupProperties
     override func setupProperties() {}
+
+    // MARK: Helpers
+
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Localizable.Alerts.okButton.text, style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 private extension Localizable {
