@@ -3,7 +3,7 @@
 //  SecureTradingCore
 //
 
-struct JWTBodyPayload: Codable {
+struct JWTBodyPayload: Decodable {
     // MARK: Properties
 
     let responses: [JWTResponseObject]

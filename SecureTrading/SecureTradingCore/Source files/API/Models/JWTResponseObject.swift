@@ -21,38 +21,41 @@
     case instantSettlement = 100
     case paymentAuthorisedButSuspended = 2
     case paymentCancelled = 3
+    case error
 }
 
-@objc public class JWTResponseObject: NSObject, Codable {
-    
+@objc public class JWTResponseObject: NSObject, Decodable {
     // MARK: Properties
 
     @objc public let errorCode: Int
     @objc public let errorMessage: String
 
-    @objc public let settleStatus: Int
+    @objc public let settleStatus: NSNumber?
 
-    @objc public let transactionReference: String
+    @objc public let transactionReference: String?
 
     @objc public var responseErrorCode: ResponseErrorCode {
         return ResponseErrorCode(rawValue: errorCode) ?? .unknown
     }
 
     @objc public var responseSettleStatus: ResponseSettleStatus {
-        return ResponseSettleStatus(rawValue: settleStatus)!
+        return ResponseSettleStatus(rawValue: settleStatus?.intValue ?? -1) ?? .error
     }
 
     // MARK: Initialization
 
     /// - SeeAlso: Swift.Decodable
-    required public init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let errorCodeString = try container.decode(String.self, forKey: .errorCode)
         errorCode = Int(errorCodeString)!
         errorMessage = try container.decode(String.self, forKey: .errorMessage)
-        let settleStatusString = try container.decode(String.self, forKey: .settleStatus)
-        settleStatus = Int(settleStatusString)!
-        transactionReference = try container.decode(String.self, forKey: .transactionReference)
+        if let settleStatusString = try container.decodeIfPresent(String.self, forKey: .settleStatus), let settleStatusInt = Int(settleStatusString) {
+            settleStatus = NSNumber(value: settleStatusInt)
+        } else {
+            settleStatus = nil
+        }
+        transactionReference = try container.decodeIfPresent(String.self, forKey: .transactionReference)
     }
 }
 
