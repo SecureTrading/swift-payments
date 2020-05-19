@@ -8,12 +8,12 @@ open class PaymentPage {
         PaymentPageLocators.cardNumberInput.element.typeText(cardNumber)
     }
     
-    public func fillexpDateInput(expDate: String) {
+    public func fillExpDateInput(expDate: String) {
         PaymentPageLocators.expDateInput.element.tap()
         PaymentPageLocators.expDateInput.element.typeText(expDate)
     }
     
-    public func fillcvvInput(cvvInput: String) {
+    public func fillCvvInput(cvvInput: String) {
         PaymentPageLocators.cvvInput.element.tap()
         PaymentPageLocators.cvvInput.element.typeText(cvvInput)
     }

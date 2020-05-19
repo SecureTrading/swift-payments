@@ -1,10 +1,10 @@
 import XCTest
 
 class PaymentPageTests: UITestBase {
-    
-    // MARK: Page objects
+    // MARK: Payment page object
     lazy var paymentPage: PaymentPage = PaymentPage()
 
+    // MARK: Tests
     func testExample() throws {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

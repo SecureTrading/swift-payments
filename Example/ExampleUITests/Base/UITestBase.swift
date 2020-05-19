@@ -5,6 +5,7 @@ class UITestBase: XCTestCase {
 
     var app = XCUIApplication()
     
+    // MARK: Setup
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
