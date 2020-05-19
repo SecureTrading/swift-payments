@@ -26,6 +26,7 @@
 }
 
 @objc public class JWTResponseObject: NSObject, Codable {
+    
     // MARK: Properties
 
     let errorCode: Int
@@ -42,6 +43,8 @@
     var responseSettleStatus: ResponseSettleStatus {
         return ResponseSettleStatus(rawValue: settleStatus)!
     }
+
+    // MARK: Initialization
 
     /// - SeeAlso: Swift.Decodable
     required public init(from decoder: Decoder) throws {

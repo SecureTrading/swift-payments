@@ -4,6 +4,8 @@
 //
 
 struct JWTBodyPayload: Codable {
+    // MARK: Properties
+
     let responses: [JWTResponseObject]
 }
 
@@ -14,10 +16,11 @@ private extension JWTBodyPayload {
 }
 
 struct JWTBodyResponse: APIResponse {
-
     // MARK: Properties
 
     let responses: [JWTResponseObject]
+
+    // MARK: Initialization
 
     /// - SeeAlso: Swift.Decodable
     init(from decoder: Decoder) throws {

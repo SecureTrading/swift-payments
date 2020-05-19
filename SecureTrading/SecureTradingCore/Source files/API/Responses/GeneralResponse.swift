@@ -6,11 +6,14 @@
 import Foundation
 
 struct GeneralResponse: APIResponse {
+    
     // MARK: Properties
 
     let jwt: String
     let jwtDecoded: DecodedJWT
     let jwtResponses: [JWTResponseObject]
+
+    // MARK: Initialization
 
     /// - SeeAlso: Swift.Decodable
     init(from decoder: Decoder) throws {

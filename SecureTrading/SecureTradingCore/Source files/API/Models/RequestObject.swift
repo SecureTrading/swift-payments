@@ -24,8 +24,15 @@ public enum TypeDescription: String, Codable {
 }
 
 @objc public class RequestObject: NSObject, Codable {
+
+    // MARK: Properties
+
     let typeDescriptions: [TypeDescription]
 
+    // MARK: Initialization
+
+    /// Initializes an instance of the receiver.
+    /// - Parameter typeDescriptions: request type
     public init(typeDescriptions: [TypeDescription]) {
         self.typeDescriptions = typeDescriptions
     }

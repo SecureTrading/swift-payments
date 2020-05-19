@@ -18,9 +18,9 @@ struct GeneralRequest: APIRequestModel {
 
     /// Initializes an instance of the receiver.
     /// - Parameters:
-    ///   - alias: merchant username
+    ///   - alias: merchant's username
     ///   - jwt: generated jwt token
-    ///   - version: API version
+    ///   - version: JSON format version
     ///   - requests: array of request objects
     init(alias: String, jwt: String, version: String, requests: [RequestObject]) {
         self.alias = alias

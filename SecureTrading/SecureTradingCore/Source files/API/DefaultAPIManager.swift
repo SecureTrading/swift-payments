@@ -6,15 +6,29 @@
 import Foundation
 
 @objc public final class DefaultAPIManager: NSObject, APIManager {
+
+    // MARK: Properties
+
+    /// - SeeAlso: APIClient
     private let apiClient: APIClient
+    /// merchant's username
     private let username: String
+    /// JSON format version
     private let version = "1.00"
 
+    // MARK: Initialization
+
+    /// Initializes an instance of the receiver.
+    /// - Parameters:
+    ///   - gatewayType: gateway type (us or european)
+    ///   - username: merchant's username
     @objc public init(gatewayType: GatewayType, username: String) {
         self.username = username
         let configuration = DefaultAPIClientConfiguration(scheme: .https, host: gatewayType.host)
         self.apiClient = DefaultAPIClient(configuration: configuration)
     }
+
+    // MARK: Functions
 
     @objc public func makeGeneralRequest(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: Error) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, requests: requests)

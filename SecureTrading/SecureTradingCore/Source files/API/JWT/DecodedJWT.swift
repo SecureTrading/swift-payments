@@ -16,24 +16,14 @@ extension JWT {
 }
 
 struct DecodedJWT: JWT {
+
+    // MARK: Properties
+
     let header: [String: Any]
     let body: [String: Any]
     let jwtBodyResponse: JWTBodyResponse
     let signature: String?
     let string: String
-
-    init(jwt: String) throws {
-        let parts = jwt.components(separatedBy: ".")
-        guard parts.count == 3 else {
-            throw DecodeError.invalidPartCount
-        }
-
-        self.header = try decodeJWTPart(parts[0])
-        self.body = try decodeJWTPart(parts[1])
-        self.jwtBodyResponse = try decodeJWTBodyByDecoder(parts[1])
-        self.signature = parts[2]
-        self.string = jwt
-    }
 
     var issuer: String? { return claim(name: "iss").string }
     var audience: [String]? { return claim(name: "aud").array }
@@ -49,7 +39,28 @@ struct DecodedJWT: JWT {
         }
         return date.compare(Date()) != ComparisonResult.orderedDescending
     }
+
+    // MARK: Initialization
+
+    /// Initializes an instance of the receiver.
+    /// - Parameter jwt: encoded JWT token
+    /// - Throws: error occurred when decoding the JWT
+    init(jwt: String) throws {
+        let parts = jwt.components(separatedBy: ".")
+        guard parts.count == 3 else {
+            throw DecodeError.invalidPartCount
+        }
+
+        self.header = try decodeJWTPart(parts[0])
+        self.body = try decodeJWTPart(parts[1])
+        self.jwtBodyResponse = try decodeJWTBodyByDecoder(parts[1])
+        self.signature = parts[2]
+        self.string = jwt
+    }
+
 }
+
+// MARK: Decoding methods
 
 private func base64UrlDecode(_ value: String) -> Data? {
     var base64 = value

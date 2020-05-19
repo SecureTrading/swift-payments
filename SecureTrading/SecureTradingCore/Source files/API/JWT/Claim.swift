@@ -6,6 +6,9 @@
 import Foundation
 
 public struct Claim {
+
+    // MARK: Properties
+
     /// raw value of the claim
     let value: Any?
 
