@@ -30,8 +30,20 @@ import Foundation
 
     // MARK: Functions
 
+    @objc public func makeGeneralRequest(jwt: String, request: RequestObject, success: @escaping ((_ jwtResponse: JWTResponseObject, _ jwt: String) -> Void), failure: @escaping ((_ error: Error) -> Void)) {
+        let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, requests: [request])
+        self.apiClient.perform(request: generalRequest) { result in
+            switch result {
+            case let .success(response):
+                success(response.jwtResponses.first!, jwt)
+            case let .failure(error):
+                failure(error)
+            }
+        }
+    }
+
     // todo
-    @objc public func makeGeneralRequest(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: Error) -> Void)) {
+    @objc public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: Error) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, requests: requests)
         self.apiClient.perform(request: generalRequest) { result in
             switch result {
