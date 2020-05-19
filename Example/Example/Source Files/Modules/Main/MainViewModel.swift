@@ -29,10 +29,10 @@ final class MainViewModel {
     
     func makeAuthCall() {
 
-        let claim = STClaims(iss: "jwt-pgsmobilesdk",
+        let claim = STClaims(iss: keys.merchantUsername,
         iat: Date(timeIntervalSinceNow: 60),
         payload: Payload(accounttypedescription: "ECOM",
-                         sitereference: "test_pgsmobilesdk79458",
+                         sitereference: keys.merchantSiteReference,
                          currencyiso3a: "GBP",
                          baseamount: 1050,
                          pan: "4111111111111111",

@@ -8,7 +8,7 @@
 @implementation ObjectiveCTest
 
 - (instancetype)init {
-    self.apiManager = [[DefaultAPIManager alloc] initWithGatewayType: GatewayTypeEuropean username: @"jwt-pgsmobilesdk"];
+    self.apiManager = [[DefaultAPIManager alloc] initWithGatewayType: GatewayTypeEuropean username: @""];
     return self;
 }
 
