@@ -45,7 +45,7 @@ import Foundation
 
     @objc public func makeGeneralRequest(jwt: String, request: RequestObject, success: @escaping ((_ jwtResponse: JWTResponseObject, _ jwt: String) -> Void), failure: @escaping ((_ error: NSError) -> Void)) {
         self.makeGeneralRequest(jwt: jwt, request: request, success: success) { (error: APIClientError) in
-            failure(error as NSError)
+            failure(error.foundationError)
         }
     }
 
@@ -64,7 +64,7 @@ import Foundation
     // todo
     @objc public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: NSError) -> Void)) {
         self.makeGeneralRequests(jwt: jwt, requests: requests, success: success) { (error: APIClientError) in
-            failure(error as NSError)
+            failure(error.foundationError)
         }
     }
 }

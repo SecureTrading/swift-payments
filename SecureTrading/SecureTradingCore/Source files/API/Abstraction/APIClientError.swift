@@ -74,6 +74,44 @@ public enum APIClientError: HumanReadableError {
         }
     }
 
+    /// objc helpers
+    private var domain: String {
+        return "com.securetrading.SecureTradingCore"
+    }
+
+    /// objc helpers
+    private var errorCode: Int {
+        switch self {
+        case .requestBuildError:
+            return 100
+        case .connectionError:
+            return 101
+        case .responseValidationError:
+            return 102
+        case .responseParseError:
+            return 103
+        case .serverError:
+            return 104
+        case .customError:
+            return 105
+        case .unknownError:
+            return 106
+        case .jwtDecodingInvalidBase64Url:
+            return 107
+        case .jwtDecodingInvalidJSON:
+            return 108
+        case .jwtDecodingInvalidPartCount:
+            return 109
+        }
+    }
+
+    /// objc workaround
+    var foundationError: NSError {
+        return NSError(domain: domain, code: errorCode, userInfo: [
+            NSLocalizedDescriptionKey: humanReadableDescription
+        ])
+    }
+
     // MARK: Functions
 
     /// Checks whether error is caused by given status code.

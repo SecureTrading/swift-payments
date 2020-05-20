@@ -55,11 +55,10 @@ final class MainViewModel {
             }
         }) { [weak self] error in
             guard let self = self else { return }
-            // general connection error
-            self.showAuthError?("general connection or decoding error")
+            // general APIClient error
+            self.showAuthError?(error.humanReadableDescription)
         }
     }
-
 
     let test = ObjectiveCTest()
     func checkAPIManagerFromObjc() {
