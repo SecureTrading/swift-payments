@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0830B390247552E400410FC5 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0830B38F247552E400410FC5 /* Bundle.swift */; };
 		084E29CE246562C60040FB9D /* SecureTradingCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29CD246562C60040FB9D /* SecureTradingCoreTests.swift */; };
 		084E29D0246562C60040FB9D /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; platformFilter = ios; };
 		084E29DE246562DA0040FB9D /* SecureTradingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29DD246562DA0040FB9D /* SecureTradingUITests.swift */; };
@@ -133,6 +134,7 @@
 
 /* Begin PBXFileReference section */
 		082FC7A4246429D200D4E2B6 /* SDK-base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "SDK-base.xcconfig"; sourceTree = "<group>"; };
+		0830B38F247552E400410FC5 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		084E29CB246562C60040FB9D /* SecureTradingCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureTradingCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		084E29CD246562C60040FB9D /* SecureTradingCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTradingCoreTests.swift; sourceTree = "<group>"; };
 		084E29CF246562C60040FB9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 			children = (
 				089B41CF246D4E4B00F70764 /* Dictionary.swift */,
 				089B41D6246D536600F70764 /* NSError.swift */,
+				0830B38F247552E400410FC5 /* Bundle.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -944,6 +947,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				089B41CA246D4CB700F70764 /* APIResponse.swift in Sources */,
+				0830B390247552E400410FC5 /* Bundle.swift in Sources */,
 				08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */,
 				08C31B01246EA15100595B21 /* JWTBodyResponse.swift in Sources */,
 				089B41D5246D530800F70764 /* HumanReadableStringConvertible.swift in Sources */,
