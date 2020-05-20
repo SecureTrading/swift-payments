@@ -13,6 +13,6 @@ final class DefaultAppFoundation: AppFoundation {
 
     /// - SeeAlso: AppFoundation.apiManager
     private(set) lazy var apiManager: APIManager = {
-        DefaultAPIManager(gatewayType: .european, username: keys.merchantUsername)
+        DefaultAPIManager(gatewayType: .eu, username: keys.merchantUsername)
     }()
 }

@@ -8,7 +8,7 @@
 @implementation ObjectiveCTest
 
 - (instancetype)init {
-    self.apiManager = [[DefaultAPIManager alloc] initWithGatewayType: GatewayTypeEuropean username: @""];
+    self.apiManager = [[DefaultAPIManager alloc] initWithGatewayType: GatewayTypeEu username: @""];
     return self;
 }
 

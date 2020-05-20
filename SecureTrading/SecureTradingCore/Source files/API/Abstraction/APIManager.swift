@@ -6,12 +6,12 @@
 import Foundation
 
 @objc public enum GatewayType: Int {
-    case european
+    case eu
     case us
 
     var host: String {
         switch self {
-        case .european:
+        case .eu:
             return "webservices.securetrading.net"
         case .us:
             return "webservices.securetrading.us"
