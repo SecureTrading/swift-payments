@@ -34,6 +34,8 @@
 
     @objc public let transactionReference: String?
 
+    @objc public let errorData: [String]?
+
     @objc public var responseErrorCode: ResponseErrorCode {
         return ResponseErrorCode(rawValue: errorCode) ?? .unknown
     }
@@ -50,6 +52,7 @@
         let errorCodeString = try container.decode(String.self, forKey: .errorCode)
         errorCode = Int(errorCodeString)!
         errorMessage = try container.decode(String.self, forKey: .errorMessage)
+        errorData = try container.decodeIfPresent([String].self, forKey: .errorData)
         if let settleStatusString = try container.decodeIfPresent(String.self, forKey: .settleStatus), let settleStatusInt = Int(settleStatusString) {
             settleStatus = NSNumber(value: settleStatusInt)
         } else {
@@ -63,6 +66,7 @@ private extension JWTResponseObject {
     enum CodingKeys: String, CodingKey {
         case errorCode = "errorcode"
         case errorMessage = "errormessage"
+        case errorData = "errordata"
         case settleStatus = "settlestatus"
         case transactionReference = "transactionreference"
     }

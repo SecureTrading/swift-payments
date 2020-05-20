@@ -41,12 +41,8 @@ final class MainViewModel {
                                               securitycode: "123"))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
-        let authRequest = RequestObject(typeDescriptions: [.auth])
 
-//        // swiftlint:disable line_length
-//        let tempJWT =
-//        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3QtcGdzbW9iaWxlc2RrIiwiaWF0IjoxNTg5NTI0Nzc2Ljk5MDA0NTEsInBheWxvYWQiOnsiZXhwaXJ5ZGF0ZSI6IjEyXC8yMDIyIiwiYmFzZWFtb3VudCI6MTA1MCwicGFuIjoiNDExMTExMTExMTExMTExMSIsInNlY3VyaXR5Y29kZSI6IjEyMyIsImFjY291bnR0eXBlZGVzY3JpcHRpb24iOiJFQ09NIiwic2l0ZXJlZmVyZW5jZSI6InRlc3RfcGdzbW9iaWxlc2RrNzk0NTgiLCJjdXJyZW5jeWlzbzNhIjoiR0JQIn19.DvrtwnTw7FcIxNN8-BkrKyib0DquFQNKVrKL_kj6nXA"
-//        // swiftlint:enable line_length
+        let authRequest = RequestObject(typeDescriptions: [.auth])
 
         apiManager.makeGeneralRequest(jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
@@ -64,17 +60,4 @@ final class MainViewModel {
         }
     }
 
-    private func checkAPIManager() {
-        // swiftlint:disable line_length
-        let generatedJWT = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3QtcGdzbW9iaWxlc2RrIiwiaWF0IjoxNTg5NTI0Nzc2Ljk5MDA0NTEsInBheWxvYWQiOnsiZXhwaXJ5ZGF0ZSI6IjEyXC8yMDIyIiwiYmFzZWFtb3VudCI6MTA1MCwicGFuIjoiNDExMTExMTExMTExMTExMSIsInNlY3VyaXR5Y29kZSI6IjEyMyIsImFjY291bnR0eXBlZGVzY3JpcHRpb24iOiJFQ09NIiwic2l0ZXJlZmVyZW5jZSI6InRlc3RfcGdzbW9iaWxlc2RrNzk0NTgiLCJjdXJyZW5jeWlzbzNhIjoiR0JQIn19.DvrtwnTw7FcIxNN8-BkrKyib0DquFQNKVrKL_kj6nXA"
-        // swiftlint:enable line_length
-        let authRequest = RequestObject(typeDescriptions: [.auth])
-        // appFoundation.apiManager.makeGeneralRequest(jwt: generatedJWT, requests: [authRequest])
-        apiManager.checkJWTDecoding()
-    }
-
-    let test = ObjectiveCTest()
-    func checkAPIManagerFromObjc() {
-        test.someTestMethod()
-    }
 }
