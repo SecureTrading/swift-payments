@@ -1,7 +1,7 @@
 import XCTest
 
 class PaymentPageTests: UITestBase {
-    // MARK: Payment page object
+    // MARK: Properties
     lazy var paymentPage: PaymentPage = PaymentPage()
 
     // MARK: Tests
