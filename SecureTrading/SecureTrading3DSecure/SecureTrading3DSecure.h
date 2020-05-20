@@ -2,9 +2,6 @@
 //  SecureTrading3DSecure.h
 //  SecureTrading3DSecure
 //
-//  Created by MCHRZASTEK on 15/05/2020.
-//  Copyright © 2020 TIWASZEK. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 
