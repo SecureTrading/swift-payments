@@ -53,15 +53,10 @@ final class MainViewModel {
                 // transaction error
                 self.showAuthError?(responseObject.errorMessage)
             }
-        }) { [weak self] error in
+        }, failure: { [weak self] error in
             guard let self = self else { return }
             // general APIClient error
             self.showAuthError?(error.humanReadableDescription)
-        }
-    }
-
-    let test = ObjectiveCTest()
-    func checkAPIManagerFromObjc() {
-        test.someTestMethod()
+        })
     }
 }
