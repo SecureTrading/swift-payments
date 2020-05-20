@@ -29,8 +29,12 @@ import Foundation
 
     // MARK: Functions
 
-    // todo
-
+    /// Performs the payment transaction request
+    /// - Parameters:
+    ///   - jwt: encoded JWT token
+    ///   - request: object in which transaction parameters should be specified (e.g. what type - auth, 3dsecure etc)
+    ///   - success: success closure with response object (decoded transaction response, in which settle status and transaction error code can be checked), and and a JWT key that allows you to check the signature
+    ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     public func makeGeneralRequest(jwt: String, request: RequestObject, success: @escaping ((_ jwtResponse: JWTResponseObject, _ jwt: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, requests: [request])
         self.apiClient.perform(request: generalRequest) { result in
@@ -43,12 +47,24 @@ import Foundation
         }
     }
 
+    /// Performs the payment transaction request
+    /// - Parameters:
+    ///   - jwt: encoded JWT token
+    ///   - request: object in which transaction parameters should be specified (e.g. what type - auth, 3dsecure etc)
+    ///   - success: success closure with response object (decoded transaction response, in which settle status and transaction error code can be checked), and and a JWT key that allows you to check the signature
+    ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     @objc public func makeGeneralRequest(jwt: String, request: RequestObject, success: @escaping ((_ jwtResponse: JWTResponseObject, _ jwt: String) -> Void), failure: @escaping ((_ error: NSError) -> Void)) {
         self.makeGeneralRequest(jwt: jwt, request: request, success: success) { (error: APIClientError) in
             failure(error.foundationError)
         }
     }
 
+    /// Performs the payment transaction requests
+    /// - Parameters:
+    ///   - jwt: encoded JWT token
+    ///   - requests: request objects (in each object transaction parameters should be specified - e.g. what type - auth, 3dsecure etc)
+    ///   - success: success closure with response objects (decoded transaction responses, in which settle status and transaction error code can be checked), and and a JWT key that allows you to check the signature
+    ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, requests: requests)
         self.apiClient.perform(request: generalRequest) { result in
@@ -61,7 +77,12 @@ import Foundation
         }
     }
 
-    // todo
+    /// Performs the payment transaction requests
+    /// - Parameters:
+    ///   - jwt: encoded JWT token
+    ///   - requests: request objects (in each object transaction parameters should be specified - e.g. what type - auth, 3dsecure etc)
+    ///   - success: success closure with response objects (decoded transaction responses, in which settle status and transaction error code can be checked), and and a JWT key that allows you to check the signature
+    ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     @objc public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: NSError) -> Void)) {
         self.makeGeneralRequests(jwt: jwt, requests: requests, success: success) { (error: APIClientError) in
             failure(error.foundationError)
