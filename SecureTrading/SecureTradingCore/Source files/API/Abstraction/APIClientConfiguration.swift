@@ -45,7 +45,7 @@ extension APIClientConfiguration {
         /// Feel free to modify it locally for development environment.
         /// Don't push `true` value to repository.
         #if DEBUG
-        return false
+        return true
         #else
         return false
         #endif
@@ -55,7 +55,7 @@ extension APIClientConfiguration {
         /// Feel free to modify it locally for development environment.
         /// Don't push `true` value to repository.
         #if DEBUG
-        return false
+        return true
         #else
         return false
         #endif

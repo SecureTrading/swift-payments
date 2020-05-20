@@ -105,7 +105,7 @@ public enum APIClientError: HumanReadableError {
         }
     }
 
-    /// objc workaround
+    /// expose error for objc
     var foundationError: NSError {
         return NSError(domain: domain, code: errorCode, userInfo: [
             NSLocalizedDescriptionKey: humanReadableDescription
