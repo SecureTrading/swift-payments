@@ -13,7 +13,7 @@
 
 @property (strong, nonatomic) id someTestProperty;
 
-@property (nonatomic, strong, readwrite) DefaultAPIManager <APIManager> *apiManager;
+@property (nonatomic, strong, readwrite) DefaultAPIManager <APIManagerObjc> *apiManager;
 
 - (void) someTestMethod;
 

@@ -4,7 +4,7 @@
 //
 
 /// Describes a type with a customized human-readable textual representation.
-protocol HumanReadableStringConvertible: CustomStringConvertible {
+public protocol HumanReadableStringConvertible: CustomStringConvertible {
 
     /// A human-readable, preferrably localized, textual representation of `self`.
     var humanReadableDescription: String { get }
@@ -15,10 +15,10 @@ protocol HumanReadableStringConvertible: CustomStringConvertible {
 extension HumanReadableStringConvertible {
 
     /// - SeeAlso: CustomStringConvertible.description
-    var description: String {
+    public var description: String {
         return humanReadableDescription
     }
 }
 
 /// An error that has a human-readable textual representation.
-typealias HumanReadableError = Error & HumanReadableStringConvertible
+public typealias HumanReadableError = Error & HumanReadableStringConvertible

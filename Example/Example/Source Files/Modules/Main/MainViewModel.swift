@@ -53,11 +53,16 @@ final class MainViewModel {
                 // transaction error
                 self.showAuthError?(responseObject.errorMessage)
             }
-        }) { [weak self] _ in
+        }) { [weak self] error in
             guard let self = self else { return }
             // general connection error
             self.showAuthError?("general connection or decoding error")
         }
     }
 
+
+    let test = ObjectiveCTest()
+    func checkAPIManagerFromObjc() {
+        test.someTestMethod()
+    }
 }

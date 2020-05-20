@@ -36,6 +36,7 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         customView.makeAuthRequestButtonTappedClosure = { [weak self] in
             guard let self = self else { return }
             self.viewModel.makeAuthCall()
+            //self.viewModel.checkAPIManagerFromObjc()
         }
 
         viewModel.showAuthSuccess = { [weak self] _ in

@@ -6,7 +6,7 @@
 import Foundation
 
 /// Contains errors that can be thrown by `APIClient`.
-enum APIClientError: HumanReadableError {
+public enum APIClientError: HumanReadableError {
     /// The request could not be built.
     case requestBuildError(Error)
     /// There was a connection error.
@@ -43,7 +43,7 @@ enum APIClientError: HumanReadableError {
     }
 
     /// - SeeAlso: HumanReadableStringConvertible.humanReadableDescription
-    var humanReadableDescription: String {
+    public var humanReadableDescription: String {
         switch self {
         case .requestBuildError(let error as NSError):
             return "Failed to build URL request: \(error.humanReadableDescription)"
@@ -81,7 +81,7 @@ enum APIClientError: HumanReadableError {
 /// - unacceptableStatusCode: Thrown if response's status code is acceptable.
 /// - missingResponse: Thrown if response is missing.
 /// - missingData: Thrown if response is missing data.
-enum APIResponseValidationError: Error {
+public enum APIResponseValidationError: Error {
     case unacceptableStatusCode(actual: Int, expected: CountableClosedRange<Int>)
     case missingResponse
     case missingData

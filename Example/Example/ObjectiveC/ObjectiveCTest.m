@@ -27,6 +27,7 @@
         NSLog(@"%li", (long)response.errorCode);
         NSLog(@"%li", (long)response.responseErrorCode);
     } failure:^(NSError * error) {
+        NSLog(@"%@", error.localizedDescription);
     }];
 
 }

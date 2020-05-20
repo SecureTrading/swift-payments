@@ -5,8 +5,7 @@
 
 import Foundation
 
-@objc public final class DefaultAPIManager: NSObject, APIManager {
-
+@objc public final class DefaultAPIManager: NSObject, APIManager, APIManagerObjc {
     // MARK: Properties
 
     /// - SeeAlso: APIClient
@@ -31,7 +30,8 @@ import Foundation
     // MARK: Functions
 
     // todo
-    @objc public func makeGeneralRequest(jwt: String, request: RequestObject, success: @escaping ((_ jwtResponse: JWTResponseObject, _ jwt: String) -> Void), failure: @escaping ((_ error: Error) -> Void)) {
+
+    public func makeGeneralRequest(jwt: String, request: RequestObject, success: @escaping ((_ jwtResponse: JWTResponseObject, _ jwt: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, requests: [request])
         self.apiClient.perform(request: generalRequest) { result in
             switch result {
@@ -43,8 +43,13 @@ import Foundation
         }
     }
 
-    // todo
-    @objc public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: Error) -> Void)) {
+    @objc public func makeGeneralRequest(jwt: String, request: RequestObject, success: @escaping ((_ jwtResponse: JWTResponseObject, _ jwt: String) -> Void), failure: @escaping ((_ error: NSError) -> Void)) {
+        self.makeGeneralRequest(jwt: jwt, request: request, success: success) { (error: APIClientError) in
+            failure(error as NSError)
+        }
+    }
+
+    public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, requests: requests)
         self.apiClient.perform(request: generalRequest) { result in
             switch result {
@@ -56,4 +61,10 @@ import Foundation
         }
     }
 
+    // todo
+    @objc public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: NSError) -> Void)) {
+        self.makeGeneralRequests(jwt: jwt, requests: requests, success: success) { (error: APIClientError) in
+            failure(error as NSError)
+        }
+    }
 }
