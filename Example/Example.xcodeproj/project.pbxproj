@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		080A321E2473C482002B7471 /* STClaims.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080A321D2473C482002B7471 /* STClaims.swift */; };
 		04DD6B60246AD383005E7946 /* UITestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD6B5F246AD383005E7946 /* UITestBase.swift */; };
 		04DD6B66246AF504005E7946 /* PaymentPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD6B65246AF504005E7946 /* PaymentPageTests.swift */; };
 		04DD6B68246AFCF4005E7946 /* PaymentPageLocators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD6B67246AFCF4005E7946 /* PaymentPageLocators.swift */; };
@@ -98,6 +99,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		080A321D2473C482002B7471 /* STClaims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STClaims.swift; sourceTree = "<group>"; };
 		04DD6B5F246AD383005E7946 /* UITestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestBase.swift; sourceTree = "<group>"; };
 		04DD6B65246AF504005E7946 /* PaymentPageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPageTests.swift; sourceTree = "<group>"; };
 		04DD6B67246AFCF4005E7946 /* PaymentPageLocators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPageLocators.swift; sourceTree = "<group>"; };
@@ -192,6 +194,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		080A321F2473C4A4002B7471 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				080A321D2473C482002B7471 /* STClaims.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		04DD6B5E246AD31C005E7946 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +291,7 @@
 		08639C422469681E00C8F90A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				080A321F2473C4A4002B7471 /* Models */,
 				08639C432469681E00C8F90A /* Abstract */,
 				08639C4A2469681E00C8F90A /* Appearance */,
 				08639C4D2469681E00C8F90A /* Extensions */,
@@ -721,6 +732,7 @@
 				08639C7D2469693F00C8F90A /* AppFlowController.swift in Sources */,
 				08639C632469681E00C8F90A /* BaseView.swift in Sources */,
 				08639C8C24696CB100C8F90A /* MainViewController.swift in Sources */,
+				080A321E2473C482002B7471 /* STClaims.swift in Sources */,
 				08639C6A2469681E00C8F90A /* UITableView.swift in Sources */,
 				08639C6E2469681E00C8F90A /* NavigationFlowController.swift in Sources */,
 				08639C8024696A2800C8F90A /* AppFoundation.swift in Sources */,

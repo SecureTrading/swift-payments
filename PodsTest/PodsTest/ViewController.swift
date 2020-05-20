@@ -12,8 +12,6 @@ import UIKit
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Test Core framework availability
-        let apiClient = DefaultAPIClient()
         // Test UI framework availability
         let testMainVC = ViewControllerFactory.shared.testMainViewController {}
     }

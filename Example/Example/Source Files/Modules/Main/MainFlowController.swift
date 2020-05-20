@@ -3,6 +3,7 @@
 //  Example
 //
 
+import SecureTradingCore
 import SecureTradingUI
 import UIKit
 
@@ -23,7 +24,7 @@ final class MainFlowController: BaseNavigationFlowController {
     ///
     /// - Returns: Object of MainViewController
     private func setupMainScreen() -> UIViewController {
-        let mainViewController = MainViewController(view: MainView(), viewModel: MainViewModel())
+        let mainViewController = MainViewController(view: MainView(), viewModel: MainViewModel(apiManager: appFoundation.apiManager))
         mainViewController.eventTriggered = { [unowned self] event in
             switch event {
             case .didTapShowTestMainScreen:
@@ -48,4 +49,5 @@ final class MainFlowController: BaseNavigationFlowController {
         sdkFlowController = SDKFlowController(navigationController: navigationController)
         sdkFlowController.presentTestMainFlow()
     }
+
 }

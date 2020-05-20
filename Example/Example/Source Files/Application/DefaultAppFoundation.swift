@@ -7,7 +7,12 @@ import Foundation
 import SecureTradingCore
 
 final class DefaultAppFoundation: AppFoundation {
-    public private(set) lazy var apiClient: APIClient = {
-        DefaultAPIClient()
+
+    /// Keys for certain scheme
+    private let keys = ApplicationKeys(keys: ExampleKeys())
+
+    /// - SeeAlso: AppFoundation.apiManager
+    private(set) lazy var apiManager: APIManager = {
+        DefaultAPIManager(gatewayType: .eu, username: keys.merchantUsername)
     }()
 }

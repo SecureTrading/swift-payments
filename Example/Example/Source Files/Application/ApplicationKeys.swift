@@ -7,7 +7,6 @@ import Foundation
 
 /// Common interface for securely providing keys
 final class ApplicationKeys {
-
     /// The cocoapods-keys instance
     private let keys: ExampleKeys
 
@@ -20,5 +19,15 @@ final class ApplicationKeys {
     /// JWT secret key
     var jwtSecretKey: String {
         return keys.jWTSecret
+    }
+
+    /// merchant username
+    var merchantUsername: String {
+        return keys.mERCHANT_USERNAME
+    }
+
+    /// merchant site reference
+    var merchantSiteReference: String {
+        return keys.mERCHANT_SITEREFERENCE
     }
 }

@@ -21,7 +21,9 @@ plugin 'cocoapods-keys', {
     :project => "Example",
     :target => "Example",
     :keys => [
-      "JWTSecret"
+      "JWTSecret",
+      "MERCHANT_USERNAME",
+      "MERCHANT_SITEREFERENCE"
    ]
 }
 
