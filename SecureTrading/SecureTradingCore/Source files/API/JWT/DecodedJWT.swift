@@ -48,7 +48,7 @@ struct DecodedJWT: JWT {
     init(jwt: String) throws {
         let parts = jwt.components(separatedBy: ".")
         guard parts.count == 3 else {
-            throw DecodeError.invalidPartCount
+            throw APIClientError.jwtDecodingInvalidPartCount
         }
 
         self.header = try decodeJWTPart(parts[0])
@@ -78,11 +78,11 @@ private func base64UrlDecode(_ value: String) -> Data? {
 
 private func decodeJWTPart(_ value: String) throws -> [String: Any] {
     guard let bodyData = base64UrlDecode(value) else {
-        throw DecodeError.invalidBase64Url
+        throw APIClientError.jwtDecodingInvalidBase64Url
     }
 
     guard let json = try? JSONSerialization.jsonObject(with: bodyData, options: []), let payload = json as? [String: Any] else {
-        throw DecodeError.invalidJSON
+        throw APIClientError.jwtDecodingInvalidJSON
     }
 
     return payload
@@ -90,12 +90,12 @@ private func decodeJWTPart(_ value: String) throws -> [String: Any] {
 
 private func decodeJWTBodyByDecoder(_ value: String) throws -> JWTBodyResponse {
     guard let bodyData = base64UrlDecode(value) else {
-        throw DecodeError.invalidBase64Url
+        throw APIClientError.jwtDecodingInvalidBase64Url
     }
 
     let decoder = JWTBodyResponse.decoder
     guard let payload = try? decoder.decode(JWTBodyResponse.self, from: bodyData) else {
-        throw DecodeError.invalidJSON
+        throw APIClientError.jwtDecodingInvalidJSON
     }
 
     return payload

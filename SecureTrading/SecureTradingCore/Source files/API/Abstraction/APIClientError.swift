@@ -19,8 +19,14 @@ public enum APIClientError: HumanReadableError {
     case serverError(HumanReadableError)
     /// A custom error has occurred.
     case customError(HumanReadableError)
-    //// Something really weird happend. Cannot detect the error.
+    /// Something really weird happend. Cannot detect the error.
     case unknownError
+    /// jwtDecodingError
+    case jwtDecodingInvalidBase64Url
+    /// jwtDecodingError
+    case jwtDecodingInvalidJSON
+    /// jwtDecodingError
+    case jwtDecodingInvalidPartCount
 
     // MARK: Properties
 
@@ -59,6 +65,12 @@ public enum APIClientError: HumanReadableError {
             return error.humanReadableDescription
         case .unknownError:
             return "An unknown network error has occurred."
+        case .jwtDecodingInvalidBase64Url:
+            return "JWT decoding: invalid base64"
+        case .jwtDecodingInvalidJSON:
+            return "JWT decoding: invalid JSON"
+        case .jwtDecodingInvalidPartCount:
+            return "JWT decoding: number of parts does not equal 3"
         }
     }
 
