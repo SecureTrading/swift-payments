@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04DD6B60246AD383005E7946 /* UITestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD6B5F246AD383005E7946 /* UITestBase.swift */; };
+		04DD6B66246AF504005E7946 /* PaymentPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD6B65246AF504005E7946 /* PaymentPageTests.swift */; };
+		04DD6B68246AFCF4005E7946 /* PaymentPageLocators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD6B67246AFCF4005E7946 /* PaymentPageLocators.swift */; };
+		04DD6B6A246D9945005E7946 /* PaymentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD6B69246D9945005E7946 /* PaymentPage.swift */; };
+		04DD6B6D246E94D0005E7946 /* XCTestCaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD6B6C246E94D0005E7946 /* XCTestCaseExtensions.swift */; };
 		082FC7962462E18900D4E2B6 /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */; };
 		082FC7972462E18900D4E2B6 /* SecureTradingCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		082FC7982462E18900D4E2B6 /* SecureTradingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */; };
@@ -47,7 +52,6 @@
 		08E4FA8B2462A7D800837339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA8A2462A7D800837339 /* Assets.xcassets */; };
 		08E4FA8E2462A7D800837339 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA8C2462A7D800837339 /* LaunchScreen.storyboard */; };
 		08E4FA992462A7D800837339 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA982462A7D800837339 /* ExampleTests.swift */; };
-		08E4FAA42462A7D800837339 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FAA32462A7D800837339 /* ExampleUITests.swift */; };
 		08EF7D6F2462CEB5008B5F3E /* Test-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 08EF7D6C2462CEB4008B5F3E /* Test-Base.xcconfig */; };
 		08EF7D702462CEB5008B5F3E /* App-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 08EF7D6D2462CEB4008B5F3E /* App-Base.xcconfig */; };
 		08EF7D712462CEB5008B5F3E /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 08EF7D6E2462CEB4008B5F3E /* Development.xcconfig */; };
@@ -94,6 +98,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04DD6B5F246AD383005E7946 /* UITestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestBase.swift; sourceTree = "<group>"; };
+		04DD6B65246AF504005E7946 /* PaymentPageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPageTests.swift; sourceTree = "<group>"; };
+		04DD6B67246AFCF4005E7946 /* PaymentPageLocators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPageLocators.swift; sourceTree = "<group>"; };
+		04DD6B69246D9945005E7946 /* PaymentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPage.swift; sourceTree = "<group>"; };
+		04DD6B6C246E94D0005E7946 /* XCTestCaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtensions.swift; sourceTree = "<group>"; };
 		082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		082FC79E2462FF2500D4E2B6 /* Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -139,8 +148,7 @@
 		08E4FA982462A7D800837339 /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		08E4FA9A2462A7D800837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08E4FA9F2462A7D800837339 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		08E4FAA32462A7D800837339 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
-		08E4FAA52462A7D800837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08E4FAA52462A7D800837339 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = TestSuites/Info.plist; sourceTree = "<group>"; };
 		08EF7D6C2462CEB4008B5F3E /* Test-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Test-Base.xcconfig"; sourceTree = "<group>"; };
 		08EF7D6D2462CEB4008B5F3E /* App-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Base.xcconfig"; sourceTree = "<group>"; };
 		08EF7D6E2462CEB4008B5F3E /* Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
@@ -184,6 +192,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04DD6B5E246AD31C005E7946 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				04DD6B5F246AD383005E7946 /* UITestBase.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		04DD6B61246AF370005E7946 /* PageObjects */ = {
+			isa = PBXGroup;
+			children = (
+				04DD6B63246AF3A3005E7946 /* Elements */,
+				04DD6B62246AF390005E7946 /* Pages */,
+			);
+			path = PageObjects;
+			sourceTree = "<group>";
+		};
+		04DD6B62246AF390005E7946 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				04DD6B69246D9945005E7946 /* PaymentPage.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		04DD6B63246AF3A3005E7946 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				04DD6B67246AFCF4005E7946 /* PaymentPageLocators.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
+		04DD6B64246AF410005E7946 /* TestSuites */ = {
+			isa = PBXGroup;
+			children = (
+				04DD6B65246AF504005E7946 /* PaymentPageTests.swift */,
+			);
+			path = TestSuites;
+			sourceTree = "<group>";
+		};
+		04DD6B6B246E9480005E7946 /* UiTestUtils */ = {
+			isa = PBXGroup;
+			children = (
+				04DD6B6C246E94D0005E7946 /* XCTestCaseExtensions.swift */,
+			);
+			path = UiTestUtils;
+			sourceTree = "<group>";
+		};
 		082FC7932462DB1000D4E2B6 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,8 +443,8 @@
 		08E4FA972462A7D800837339 /* ExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				08E4FA982462A7D800837339 /* ExampleTests.swift */,
 				08E4FA9A2462A7D800837339 /* Info.plist */,
+				08E4FA982462A7D800837339 /* ExampleTests.swift */,
 			);
 			path = ExampleTests;
 			sourceTree = "<group>";
@@ -395,8 +452,11 @@
 		08E4FAA22462A7D800837339 /* ExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				08E4FAA32462A7D800837339 /* ExampleUITests.swift */,
+				04DD6B6B246E9480005E7946 /* UiTestUtils */,
 				08E4FAA52462A7D800837339 /* Info.plist */,
+				04DD6B64246AF410005E7946 /* TestSuites */,
+				04DD6B61246AF370005E7946 /* PageObjects */,
+				04DD6B5E246AD31C005E7946 /* Base */,
 			);
 			path = ExampleUITests;
 			sourceTree = "<group>";
@@ -686,7 +746,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08E4FAA42462A7D800837339 /* ExampleUITests.swift in Sources */,
+				04DD6B6D246E94D0005E7946 /* XCTestCaseExtensions.swift in Sources */,
+				04DD6B60246AD383005E7946 /* UITestBase.swift in Sources */,
+				04DD6B68246AFCF4005E7946 /* PaymentPageLocators.swift in Sources */,
+				04DD6B6A246D9945005E7946 /* PaymentPage.swift in Sources */,
+				04DD6B66246AF504005E7946 /* PaymentPageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
