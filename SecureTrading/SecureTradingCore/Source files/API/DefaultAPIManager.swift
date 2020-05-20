@@ -14,6 +14,38 @@ import Foundation
     private let username: String
     /// JSON format version
     private let version = "1.00"
+    /// sdk name
+    private let sdkName = "MSDK"
+    /// swift language version
+    private var swiftVersion: String {
+        #if swift(>=5.2)
+        return "swift-5.2"
+        #elseif swift(>=5.1)
+        return "swift-5.1"
+        #elseif swift(>=5.0)
+        return "swift-5.0"
+        #elseif swift(>=4.2)
+        return "swift-4.2"
+        #elseif swift(>=4.1)
+        return "swift-4.1"
+        #endif
+    }
+
+    /// sdk release version
+    private var sdkVersion: String {
+        return Bundle(for: DefaultAPIManager.self).releaseVersionNumber ?? ""
+    }
+
+    /// ios version
+    private var iosVersion: String {
+        let os = ProcessInfo().operatingSystemVersion
+        return "iOS\(os.majorVersion).\(os.minorVersion).\(os.patchVersion)"
+    }
+
+    /// version info for general request parameter
+    private var versionInfo: String {
+        return "\(self.sdkName)::\(self.swiftVersion)::\(self.sdkVersion)::\(self.iosVersion)"
+    }
 
     // MARK: Initialization
 
