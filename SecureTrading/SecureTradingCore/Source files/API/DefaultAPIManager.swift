@@ -68,7 +68,7 @@ import Foundation
     ///   - success: success closure with response object (decoded transaction response, in which settle status and transaction error code can be checked), and and a JWT key that allows you to check the signature
     ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     public func makeGeneralRequest(jwt: String, request: RequestObject, success: @escaping ((_ jwtResponse: JWTResponseObject, _ jwt: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
-        let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, requests: [request])
+        let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, versionInfo: self.versionInfo, requests: [request])
         self.apiClient.perform(request: generalRequest) { result in
             switch result {
             case let .success(response):
@@ -98,7 +98,7 @@ import Foundation
     ///   - success: success closure with response objects (decoded transaction responses, in which settle status and transaction error code can be checked), and and a JWT key that allows you to check the signature
     ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
-        let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, requests: requests)
+        let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, versionInfo: self.versionInfo, requests: requests)
         self.apiClient.perform(request: generalRequest) { result in
             switch result {
             case let .success(response):
