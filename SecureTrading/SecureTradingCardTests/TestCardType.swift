@@ -1,14 +1,14 @@
 //
-//  SecureTradingCardTests.swift
+//  TestCardType.swift
 //  SecureTradingCardTests
 //
-//  Created by MCHRZASTEK on 21/05/2020.
-//  Copyright © 2020 TIWASZEK. All rights reserved.
+//  Created by MCHRZASTEK on 22/05/2020.
 //
 
 import XCTest
+@testable import SecureTradingCard
 
-class SecureTradingCardTests: XCTestCase {
+class TestCardType: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -23,6 +23,13 @@ class SecureTradingCardTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
+    func test_isVisa() {
+        let visaCards = KnownCards.visaCards
+        
+        for card in visaCards {
+            XCTAssertEqual(CardType.visa, CardValidator.cardType(for: card))
+        }
+    }
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
