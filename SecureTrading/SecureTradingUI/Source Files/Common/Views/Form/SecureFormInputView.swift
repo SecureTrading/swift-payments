@@ -5,12 +5,12 @@
 
 import UIKit
 
-public protocol SecureFormInputViewDelegate: class {
+@objc public protocol SecureFormInputViewDelegate: class {
     func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView)
     func inputViewTextFieldDidChange(_ view: SecureFormInputView)
 }
 
-public final class SecureFormInputView: WhiteBackgroundBaseView {
+@objc public final class SecureFormInputView: WhiteBackgroundBaseView {
     // MARK: Properties
 
     private let titleLabel: UILabel = {
@@ -46,16 +46,16 @@ public final class SecureFormInputView: WhiteBackgroundBaseView {
 
     // MARK: Public properties
 
-    public weak var delegate: SecureFormInputViewDelegate?
+    @objc public weak var delegate: SecureFormInputViewDelegate?
 
-    public var regex: String?
+    @objc public var regex: String?
 
-    public var isEmpty: Bool {
+    @objc public var isEmpty: Bool {
         guard let text = textField.text else { return true }
         return text.isEmpty
     }
 
-    public var inputIsValid: Bool {
+    @objc public var inputIsValid: Bool {
         if regex != nil {
             return validateTextRegEx()
         } else {
@@ -63,13 +63,13 @@ public final class SecureFormInputView: WhiteBackgroundBaseView {
         }
     }
 
-    public var isSecuredTextEntry: Bool = false {
+    @objc public var isSecuredTextEntry: Bool = false {
         didSet {
             textField.isSecureTextEntry = isSecuredTextEntry
         }
     }
 
-    public var keyboardType: UIKeyboardType = .default {
+    @objc public var keyboardType: UIKeyboardType = .default {
         didSet {
             textField.keyboardType = keyboardType
         }
@@ -77,13 +77,13 @@ public final class SecureFormInputView: WhiteBackgroundBaseView {
 
     // MARK: - texts
 
-    public var title: String = "default" {
+    @objc public var title: String = "default" {
         didSet {
             titleLabel.text = title
         }
     }
 
-    public var text: String? {
+    @objc public var text: String? {
         get {
             return textField.text
         }
@@ -92,14 +92,14 @@ public final class SecureFormInputView: WhiteBackgroundBaseView {
         }
     }
 
-    public var placeholder: String = "default" {
+    @objc public var placeholder: String = "default" {
         didSet {
             textField.attributedPlaceholder = NSAttributedString(string: placeholder,
                                                                  attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
         }
     }
 
-    public var error: String = "error" {
+    @objc public var error: String = "error" {
         didSet {
             errorLabel.text = error
         }
@@ -107,26 +107,26 @@ public final class SecureFormInputView: WhiteBackgroundBaseView {
 
     // MARK: - colors
 
-    public var titleColor: UIColor = .black {
+    @objc public var titleColor: UIColor = .black {
         didSet {
             titleLabel.textColor = textColor
         }
     }
 
-    public var textColor: UIColor = .black {
+    @objc public var textColor: UIColor = .black {
         didSet {
             textField.textColor = textColor
         }
     }
 
-    public var placeholderColor: UIColor = .lightGray {
+    @objc public var placeholderColor: UIColor = .lightGray {
         didSet {
             textField.attributedPlaceholder = NSAttributedString(string: placeholder,
                                                                  attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
         }
     }
 
-    public var errorColor: UIColor = .red {
+    @objc public var errorColor: UIColor = .red {
         didSet {
             errorLabel.textColor = errorColor
         }
@@ -134,26 +134,26 @@ public final class SecureFormInputView: WhiteBackgroundBaseView {
 
     // MARK: - fonts
 
-    public var titleFont: UIFont = UIFont.systemFont(ofSize: 14) {
+    @objc public var titleFont: UIFont = UIFont.systemFont(ofSize: 14) {
         didSet {
             titleLabel.font = titleFont
         }
     }
 
-    public var textFont: UIFont = UIFont.systemFont(ofSize: 17) {
+    @objc public var textFont: UIFont = UIFont.systemFont(ofSize: 17) {
         didSet {
             textField.font = textFont
         }
     }
 
-    public var placeholderFont: UIFont = UIFont.systemFont(ofSize: 17) {
+    @objc public var placeholderFont: UIFont = UIFont.systemFont(ofSize: 17) {
         didSet {
             textField.attributedPlaceholder = NSAttributedString(string: placeholder,
                                                                  attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
         }
     }
 
-    public var errorFont: UIFont = UIFont.systemFont(ofSize: 14) {
+    @objc public var errorFont: UIFont = UIFont.systemFont(ofSize: 14) {
         didSet {
             errorLabel.font = errorFont
         }
@@ -173,7 +173,7 @@ public final class SecureFormInputView: WhiteBackgroundBaseView {
     }
 
     @discardableResult
-    func validate(silent: Bool, hideError: Bool = false) -> Bool {
+    @objc func validate(silent: Bool, hideError: Bool = false) -> Bool {
         let result = inputIsValid
         if silent == false {
             showHideError(show: !result)
