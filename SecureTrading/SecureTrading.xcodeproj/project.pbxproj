@@ -49,6 +49,8 @@
 		0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488224692A7500F625D0 /* TestDetailsFlowController.swift */; };
 		0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488424694FAF00F625D0 /* SDKFlowController.swift */; };
 		08886ED0247B9D3300BC1637 /* SecureFormInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ECF247B9D3300BC1637 /* SecureFormInputView.swift */; };
+		08886ED2247C0D9A00BC1637 /* CardNumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ED1247C0D9900BC1637 /* CardNumberInputView.swift */; };
+		08886ED5247C107200BC1637 /* CardNumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ED4247C107200BC1637 /* CardNumberFormat.swift */; };
 		089B41C6246D4B7000F70764 /* APIClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C5246D4B7000F70764 /* APIClientConfiguration.swift */; };
 		089B41C8246D4C7600F70764 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C7246D4C7600F70764 /* APIRequest.swift */; };
 		089B41CA246D4CB700F70764 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C9246D4CB700F70764 /* APIResponse.swift */; };
@@ -179,6 +181,8 @@
 		0869488224692A7500F625D0 /* TestDetailsFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsFlowController.swift; sourceTree = "<group>"; };
 		0869488424694FAF00F625D0 /* SDKFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKFlowController.swift; sourceTree = "<group>"; };
 		08886ECF247B9D3300BC1637 /* SecureFormInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFormInputView.swift; sourceTree = "<group>"; };
+		08886ED1247C0D9900BC1637 /* CardNumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumberInputView.swift; sourceTree = "<group>"; };
+		08886ED4247C107200BC1637 /* CardNumberFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumberFormat.swift; sourceTree = "<group>"; };
 		089B41C5246D4B7000F70764 /* APIClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientConfiguration.swift; sourceTree = "<group>"; };
 		089B41C7246D4C7600F70764 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		089B41C9246D4CB700F70764 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -405,9 +409,19 @@
 		08886ECE247B9C5700BC1637 /* Form */ = {
 			isa = PBXGroup;
 			children = (
+				08886ED3247C103D00BC1637 /* Format */,
 				08886ECF247B9D3300BC1637 /* SecureFormInputView.swift */,
+				08886ED1247C0D9900BC1637 /* CardNumberInputView.swift */,
 			);
 			path = Form;
+			sourceTree = "<group>";
+		};
+		08886ED3247C103D00BC1637 /* Format */ = {
+			isa = PBXGroup;
+			children = (
+				08886ED4247C107200BC1637 /* CardNumberFormat.swift */,
+			);
+			path = Format;
 			sourceTree = "<group>";
 		};
 		089B41CD246D4E3000F70764 /* Common */ = {
@@ -994,6 +1008,7 @@
 				08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */,
 				084E29FB2465832C0040FB9D /* Colors.swift in Sources */,
 				084E2A012465841D0040FB9D /* UITableView.swift in Sources */,
+				08886ED2247C0D9A00BC1637 /* CardNumberInputView.swift in Sources */,
 				084E29FF246583E20040FB9D /* Dequeueable.swift in Sources */,
 				084E2A1D24659D6B0040FB9D /* TransparentNavigationBar.swift in Sources */,
 				084E2A062465874B0040FB9D /* Localizable.swift in Sources */,
@@ -1008,6 +1023,7 @@
 				0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */,
 				084E2A1624659AC50040FB9D /* BaseNavigationFlowController.swift in Sources */,
 				084E29EE24656D7F0040FB9D /* BaseView.swift in Sources */,
+				08886ED5247C107200BC1637 /* CardNumberFormat.swift in Sources */,
 				084E2A0E246599B70040FB9D /* FlowController.swift in Sources */,
 				084E29EC24656B4E0040FB9D /* CallbackWrapper.swift in Sources */,
 				084E29F4246571B10040FB9D /* TestMainView.swift in Sources */,

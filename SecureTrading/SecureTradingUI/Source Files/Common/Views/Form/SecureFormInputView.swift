@@ -10,7 +10,7 @@ import UIKit
     func inputViewTextFieldDidChange(_ view: SecureFormInputView)
 }
 
-@objc public final class SecureFormInputView: WhiteBackgroundBaseView {
+@objc public class SecureFormInputView: WhiteBackgroundBaseView {
     // MARK: Properties
 
     private let titleLabel: UILabel = {
