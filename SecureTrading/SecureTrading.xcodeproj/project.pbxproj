@@ -51,6 +51,11 @@
 		08886ED0247B9D3300BC1637 /* SecureFormInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ECF247B9D3300BC1637 /* SecureFormInputView.swift */; };
 		08886ED2247C0D9A00BC1637 /* CardNumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ED1247C0D9900BC1637 /* CardNumberInputView.swift */; };
 		08886ED5247C107200BC1637 /* CardNumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ED4247C107200BC1637 /* CardNumberFormat.swift */; };
+		08886ED9247C1AE500BC1637 /* CardTypeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ED8247C1AE500BC1637 /* CardTypeContainer.swift */; };
+		08886EDC247C1B7900BC1637 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886EDB247C1B7900BC1637 /* CardType.swift */; };
+		08886EDF247C20D900BC1637 /* UnknownCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886EDE247C20D900BC1637 /* UnknownCard.swift */; };
+		08886EE1247C223A00BC1637 /* CardNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886EE0247C223A00BC1637 /* CardNumber.swift */; };
+		08886EE3247C234800BC1637 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886EE2247C234800BC1637 /* String.swift */; };
 		089B41C6246D4B7000F70764 /* APIClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C5246D4B7000F70764 /* APIClientConfiguration.swift */; };
 		089B41C8246D4C7600F70764 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C7246D4C7600F70764 /* APIRequest.swift */; };
 		089B41CA246D4CB700F70764 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C9246D4CB700F70764 /* APIResponse.swift */; };
@@ -183,6 +188,11 @@
 		08886ECF247B9D3300BC1637 /* SecureFormInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFormInputView.swift; sourceTree = "<group>"; };
 		08886ED1247C0D9900BC1637 /* CardNumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumberInputView.swift; sourceTree = "<group>"; };
 		08886ED4247C107200BC1637 /* CardNumberFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumberFormat.swift; sourceTree = "<group>"; };
+		08886ED8247C1AE500BC1637 /* CardTypeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTypeContainer.swift; sourceTree = "<group>"; };
+		08886EDB247C1B7900BC1637 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
+		08886EDE247C20D900BC1637 /* UnknownCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnknownCard.swift; sourceTree = "<group>"; };
+		08886EE0247C223A00BC1637 /* CardNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumber.swift; sourceTree = "<group>"; };
+		08886EE2247C234800BC1637 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		089B41C5246D4B7000F70764 /* APIClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientConfiguration.swift; sourceTree = "<group>"; };
 		089B41C7246D4C7600F70764 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		089B41C9246D4CB700F70764 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -307,6 +317,7 @@
 				084E2A002465841D0040FB9D /* UITableView.swift */,
 				084E2A02246585330040FB9D /* UICollectionView.swift */,
 				084E2A1E24659E2C0040FB9D /* Array.swift */,
+				08886EE2247C234800BC1637 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -409,19 +420,46 @@
 		08886ECE247B9C5700BC1637 /* Form */ = {
 			isa = PBXGroup;
 			children = (
-				08886ED3247C103D00BC1637 /* Format */,
 				08886ECF247B9D3300BC1637 /* SecureFormInputView.swift */,
 				08886ED1247C0D9900BC1637 /* CardNumberInputView.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
 		};
-		08886ED3247C103D00BC1637 /* Format */ = {
+		08886ED6247C1AC000BC1637 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				08886ED7247C1ACE00BC1637 /* Card */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		08886ED7247C1ACE00BC1637 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				08886EDD247C20CB00BC1637 /* Types */,
+				08886EDA247C1B6500BC1637 /* Protocol */,
+				08886ED8247C1AE500BC1637 /* CardTypeContainer.swift */,
+				08886EE0247C223A00BC1637 /* CardNumber.swift */,
 				08886ED4247C107200BC1637 /* CardNumberFormat.swift */,
 			);
-			path = Format;
+			path = Card;
+			sourceTree = "<group>";
+		};
+		08886EDA247C1B6500BC1637 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				08886EDB247C1B7900BC1637 /* CardType.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		08886EDD247C20CB00BC1637 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				08886EDE247C20D900BC1637 /* UnknownCard.swift */,
+			);
+			path = Types;
 			sourceTree = "<group>";
 		};
 		089B41CD246D4E3000F70764 /* Common */ = {
@@ -591,6 +629,7 @@
 		08EF7D472462B1F1008B5F3E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				08886ED6247C1AC000BC1637 /* Model */,
 				084E2A1724659B5B0040FB9D /* Views */,
 				084E29F7246582530040FB9D /* Appearance */,
 				084E29EF24656DC50040FB9D /* Protocols */,
@@ -1002,6 +1041,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08886EDF247C20D900BC1637 /* UnknownCard.swift in Sources */,
 				084E29E924656A5E0040FB9D /* UIView.swift in Sources */,
 				08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */,
 				084E2A1924659B7B0040FB9D /* CustomBackNavigationController.swift in Sources */,
@@ -1010,6 +1050,7 @@
 				084E2A012465841D0040FB9D /* UITableView.swift in Sources */,
 				08886ED2247C0D9A00BC1637 /* CardNumberInputView.swift in Sources */,
 				084E29FF246583E20040FB9D /* Dequeueable.swift in Sources */,
+				08886ED9247C1AE500BC1637 /* CardTypeContainer.swift in Sources */,
 				084E2A1D24659D6B0040FB9D /* TransparentNavigationBar.swift in Sources */,
 				084E2A062465874B0040FB9D /* Localizable.swift in Sources */,
 				084E2A12246599FC0040FB9D /* NavigationDelegate.swift in Sources */,
@@ -1018,6 +1059,7 @@
 				08886ED0247B9D3300BC1637 /* SecureFormInputView.swift in Sources */,
 				084E2A10246599D90040FB9D /* NavigationFlowController.swift in Sources */,
 				0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */,
+				08886EE3247C234800BC1637 /* String.swift in Sources */,
 				084E2A03246585330040FB9D /* UICollectionView.swift in Sources */,
 				084E29FD246583B50040FB9D /* BaseViewCell.swift in Sources */,
 				0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */,
@@ -1026,6 +1068,7 @@
 				08886ED5247C107200BC1637 /* CardNumberFormat.swift in Sources */,
 				084E2A0E246599B70040FB9D /* FlowController.swift in Sources */,
 				084E29EC24656B4E0040FB9D /* CallbackWrapper.swift in Sources */,
+				08886EE1247C223A00BC1637 /* CardNumber.swift in Sources */,
 				084E29F4246571B10040FB9D /* TestMainView.swift in Sources */,
 				08694877246924F900F625D0 /* TestMainViewModel.swift in Sources */,
 				084E29F6246573180040FB9D /* UIStackView.swift in Sources */,
@@ -1039,6 +1082,7 @@
 				08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */,
 				0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */,
 				0869488124692A5600F625D0 /* TestDetailsViewController.swift in Sources */,
+				08886EDC247C1B7900BC1637 /* CardType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@ import UIKit
 
 public class WhiteBackgroundBaseView: BaseView {
     /// Initialize an instance and sets background image
-    override init() {
+    public override init() {
         super.init()
         backgroundColor = UIColor.white
     }

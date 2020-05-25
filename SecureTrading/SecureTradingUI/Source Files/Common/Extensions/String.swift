@@ -6,7 +6,11 @@
 import Foundation
 
 extension String {
+    public static let empty = ""
+    public static let space = " "
+}
 
+extension String {
     /// A substring beginning with a character in an index `from` and ending before a character in an index `to`.
     subscript(from: Int, to: Int) -> String? {
         guard count < to || from >= to else { return nil }
