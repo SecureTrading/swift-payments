@@ -17,7 +17,7 @@ public protocol CardType {
     var cvcLength: Int { get }
 
     /// A set of numbers which, when the first digits of the card number are found, indicate the card issuer - Card types are usually identified by the first n digits. According to ISO/IEC 7812
-    var identifyingDigits: Set<Int> { get }
+    var identificationDigits: Set<Int> { get }
 
     /// checks that it's the same cards
     /// - Parameter cardType: another type of card to check for equality with
