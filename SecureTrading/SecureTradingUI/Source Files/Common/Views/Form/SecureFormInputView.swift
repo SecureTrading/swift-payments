@@ -5,6 +5,11 @@
 
 import UIKit
 
+public protocol SecureFormInputViewDelegate: class {
+    func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView)
+    func inputViewTextFieldDidChange(_ view: SecureFormInputView)
+}
+
 public final class SecureFormInputView: WhiteBackgroundBaseView {
     // MARK: Properties
 
@@ -26,6 +31,7 @@ public final class SecureFormInputView: WhiteBackgroundBaseView {
         label.textColor = .red
         label.font = Fonts.responsive(.regular, ofSizes: [.small: 17, .medium: 18, .large: 20])
         label.numberOfLines = 1
+        label.isHidden = true
         return label
     }()
 
@@ -40,6 +46,23 @@ public final class SecureFormInputView: WhiteBackgroundBaseView {
 
     // MARK: Public properties
 
+    public weak var delegate: SecureFormInputViewDelegate?
+
+    public var regex: String?
+
+    public var isEmpty: Bool {
+        guard let text = textField.text else { return true }
+        return text.isEmpty
+    }
+
+    public var inputIsValid: Bool {
+        if regex != nil {
+            return validateTextRegEx()
+        } else {
+            return !isEmpty
+        }
+    }
+
     public var isSecuredTextEntry: Bool = false {
         didSet {
             textField.isSecureTextEntry = isSecuredTextEntry
@@ -52,7 +75,7 @@ public final class SecureFormInputView: WhiteBackgroundBaseView {
         }
     }
 
-    // MARK: Texts
+    // MARK: - texts
 
     public var title: String = "default" {
         didSet {
@@ -135,9 +158,40 @@ public final class SecureFormInputView: WhiteBackgroundBaseView {
             errorLabel.font = errorFont
         }
     }
+
+    // MARK: Functions
+
+    private func showHideError(show: Bool) {
+        errorLabel.isHidden = !show
+    }
+
+    // MARK: - Validation
+
+    private func validateTextRegEx() -> Bool {
+        guard let text = text, let regex = regex else { return false }
+        return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: text)
+    }
+
+    @discardableResult
+    func validate(silent: Bool, hideError: Bool = false) -> Bool {
+        let result = inputIsValid
+        if silent == false {
+            showHideError(show: !result)
+        }
+
+        if result, hideError {
+            showHideError(show: false)
+        }
+        return result
+    }
 }
 
 extension SecureFormInputView: ViewSetupable {
+    /// - SeeAlso: ViewSetupable.setupProperties
+    func setupProperties() {
+        textField.delegate = self
+    }
+
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
     func setupViewHierarchy() {
         addSubviews([stackView])
@@ -146,5 +200,25 @@ extension SecureFormInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupConstraints
     func setupConstraints() {
         stackView.addConstraints(equalToSuperview(with: .init(top: 5, left: 5, bottom: -5, right: -5), usingSafeArea: false))
+    }
+}
+
+// MARK: TextField delegate
+
+extension SecureFormInputView: UITextFieldDelegate {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        validate(silent: false)
+        delegate?.inputViewTextFieldDidEndEditing(self)
+    }
+
+    @objc func textFieldDidChange(textField: UITextField) {
+        validate(silent: true, hideError: true)
+        textField.isHidden = isEmpty
+        delegate?.inputViewTextFieldDidChange(self)
     }
 }
