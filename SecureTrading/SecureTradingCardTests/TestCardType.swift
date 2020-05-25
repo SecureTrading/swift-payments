@@ -2,8 +2,6 @@
 //  TestCardType.swift
 //  SecureTradingCardTests
 //
-//  Created by MCHRZASTEK on 22/05/2020.
-//
 
 import XCTest
 @testable import SecureTradingCard
@@ -178,12 +176,4 @@ class TestCardType: XCTestCase {
         let sut = givenRange.remove(range: rangeToRemove)
         XCTAssertTrue(sut.count == 0)
     }
-    
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }

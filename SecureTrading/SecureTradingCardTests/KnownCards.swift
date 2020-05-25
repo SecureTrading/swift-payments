@@ -2,8 +2,6 @@
 //  KnownCards.swift
 //  SecureTradingCardTests
 //
-//  Created by MCHRZASTEK on 22/05/2020.
-//
 
 import Foundation
 
