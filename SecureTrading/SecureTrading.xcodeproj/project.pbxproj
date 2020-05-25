@@ -48,6 +48,7 @@
 		0869488124692A5600F625D0 /* TestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488024692A5600F625D0 /* TestDetailsViewController.swift */; };
 		0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488224692A7500F625D0 /* TestDetailsFlowController.swift */; };
 		0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488424694FAF00F625D0 /* SDKFlowController.swift */; };
+		08886ED0247B9D3300BC1637 /* SecureFormInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ECF247B9D3300BC1637 /* SecureFormInputView.swift */; };
 		089B41C6246D4B7000F70764 /* APIClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C5246D4B7000F70764 /* APIClientConfiguration.swift */; };
 		089B41C8246D4C7600F70764 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C7246D4C7600F70764 /* APIRequest.swift */; };
 		089B41CA246D4CB700F70764 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C9246D4CB700F70764 /* APIResponse.swift */; };
@@ -177,6 +178,7 @@
 		0869488024692A5600F625D0 /* TestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsViewController.swift; sourceTree = "<group>"; };
 		0869488224692A7500F625D0 /* TestDetailsFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsFlowController.swift; sourceTree = "<group>"; };
 		0869488424694FAF00F625D0 /* SDKFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKFlowController.swift; sourceTree = "<group>"; };
+		08886ECF247B9D3300BC1637 /* SecureFormInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFormInputView.swift; sourceTree = "<group>"; };
 		089B41C5246D4B7000F70764 /* APIClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientConfiguration.swift; sourceTree = "<group>"; };
 		089B41C7246D4C7600F70764 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		089B41C9246D4CB700F70764 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 		084E2A1724659B5B0040FB9D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				08886ECE247B9C5700BC1637 /* Form */,
 				084E2A1824659B7B0040FB9D /* CustomBackNavigationController.swift */,
 				084E2A1A24659BD30040FB9D /* PopBackView.swift */,
 				084E2A1C24659D6A0040FB9D /* TransparentNavigationBar.swift */,
@@ -397,6 +400,14 @@
 				0869488424694FAF00F625D0 /* SDKFlowController.swift */,
 			);
 			path = "SDK Flow";
+			sourceTree = "<group>";
+		};
+		08886ECE247B9C5700BC1637 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				08886ECF247B9D3300BC1637 /* SecureFormInputView.swift */,
+			);
+			path = Form;
 			sourceTree = "<group>";
 		};
 		089B41CD246D4E3000F70764 /* Common */ = {
@@ -989,6 +1000,7 @@
 				084E2A12246599FC0040FB9D /* NavigationDelegate.swift in Sources */,
 				084E2A1F24659E2C0040FB9D /* Array.swift in Sources */,
 				08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */,
+				08886ED0247B9D3300BC1637 /* SecureFormInputView.swift in Sources */,
 				084E2A10246599D90040FB9D /* NavigationFlowController.swift in Sources */,
 				0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */,
 				084E2A03246585330040FB9D /* UICollectionView.swift in Sources */,
