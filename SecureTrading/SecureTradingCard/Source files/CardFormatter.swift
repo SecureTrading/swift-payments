@@ -3,7 +3,6 @@
 //  SecureTradingCard
 //
 
-
 import Foundation
 
 // TODO:

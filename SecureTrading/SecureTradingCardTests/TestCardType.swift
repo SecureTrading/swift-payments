@@ -141,7 +141,6 @@ class TestCardType: XCTestCase {
         XCTAssertEqual(card.securityCodeLength, 3)
     }
     
-    
     // MARK: Test dependant extensions
     func test_removeClosedRangeFromClosedRange() {
         let givenRange: ClosedRange<Int> = 1...10
@@ -158,7 +157,7 @@ class TestCardType: XCTestCase {
         let rangeToRemove: ClosedRange<Int> = 0...8
         
         let sut = givenRange.remove(range: rangeToRemove)
-        XCTAssertTrue(sut.count == 0)
+        XCTAssertTrue(sut.isEmpty)
     }
     func test_removeClosedRangeFromClosedRange_InvalidUpperbound() {
         let givenRange: ClosedRange<Int> = 1...10
@@ -174,6 +173,6 @@ class TestCardType: XCTestCase {
         let rangeToRemove: ClosedRange<Int> = 0...50
         
         let sut = givenRange.remove(range: rangeToRemove)
-        XCTAssertTrue(sut.count == 0)
+        XCTAssertTrue(sut.isEmpty)
     }
 }

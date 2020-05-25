@@ -60,6 +60,6 @@ struct KnownCards {
         "1234123456785678"
     ]
     
-    static let allCards = [visaCards, mastercardCards, amexCards, discoverCards, jcbCards, dinerCards, maestroCards, pibaCards].flatMap{ $0 }
+    static let allCards = [visaCards, mastercardCards, amexCards, discoverCards, jcbCards, dinerCards, maestroCards, pibaCards].flatMap { $0 }
     
 }

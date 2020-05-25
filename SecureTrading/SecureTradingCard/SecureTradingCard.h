@@ -2,9 +2,6 @@
 //  SecureTradingCard.h
 //  SecureTradingCard
 //
-//  Created by MCHRZASTEK on 21/05/2020.
-//  Copyright © 2020 TIWASZEK. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 

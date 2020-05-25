@@ -21,14 +21,14 @@ extension ClosedRange where Bound == Int {
 }
 
 extension Array where Element == ClosedRange<Int> {
-    func except(ranges: [Element]) -> [Element]{
+    func except(ranges: [Element]) -> [Element] {
         var newRanges: [Element] = []
         var split = false
         // goes throught all ranges and subranges
         // then checks if main range contains dividing range
         // if so, divides main range to exclude subrange
         for mainRange in self.sorted(by: {$0.lowerBound < $1.lowerBound}) {
-            let sortedRanges = ranges.sorted{$0.lowerBound < $1.lowerBound}
+            let sortedRanges = ranges.sorted { $0.lowerBound < $1.lowerBound }
             for subRange in sortedRanges {
                 if mainRange.contains(subRange.lowerBound) {
                     // split
@@ -60,6 +60,7 @@ extension Array where Element == ClosedRange<Int> {
                 // comparing to example above, this avoids 1...6 from adding
                 continue
             }
+            
             if let next = newRanges.getIfExists(at: index + 1) {
                 if range.upperBound > next.upperBound {
                     // modifies range so the upper bound is greater than next range
