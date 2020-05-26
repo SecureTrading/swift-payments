@@ -360,10 +360,10 @@ class TestCardType: XCTestCase {
         XCTAssertTrue(isValid)
     }
     func test_validExpirationDateDoubleDigitLeadingZeroMonth_CustomSeparator() {
-           let date = "05-2022"
+        let date = "05-2022"
         let isValid = CardValidator.isExpirationDateValid(date: date, separator: "-")
-           XCTAssertTrue(isValid)
-       }
+        XCTAssertTrue(isValid)
+    }
     func test_dateInPast_StandardSeparator() {
         let date = "05/2019"
         let isValid = CardValidator.isExpirationDateValid(date: date)
@@ -372,7 +372,55 @@ class TestCardType: XCTestCase {
     func test_currentDate_StandardSeparator() {
         let currentComponents = Calendar.current.dateComponents([.year, .month], from: Date())
         let date = "\(currentComponents.month!)/\(currentComponents.year!)"
-           let isValid = CardValidator.isExpirationDateValid(date: date)
-           XCTAssertTrue(isValid)
-       }
+        let isValid = CardValidator.isExpirationDateValid(date: date)
+        XCTAssertTrue(isValid)
+    }
+    
+    // MARK: - Test CVC
+    func test_validThreeDigitCVC() {
+        let code = "123"
+        let isValid = CardValidator.isCVCValid(cvc: code, cardType: .visa)
+        XCTAssertTrue(isValid)
+    }
+    func test_invalidThreeDigitCVCAmex() {
+        let code = "123"
+        let isValid = CardValidator.isCVCValid(cvc: code, cardType: .amex)
+        XCTAssertFalse(isValid)
+    }
+    func test_fourDigitCVCAmex() {
+        let code = "1234"
+        let isValid = CardValidator.isCVCValid(cvc: code, cardType: .amex)
+        XCTAssertTrue(isValid)
+    }
+    func test_invalidFourDigitCVCVisa() {
+        let code = "1234"
+        let isValid = CardValidator.isCVCValid(cvc: code, cardType: .visa)
+        XCTAssertFalse(isValid)
+    }
+    func test_zeroDigitCVCPIBA() {
+        let code = ""
+        let isValid = CardValidator.isCVCValid(cvc: code, cardType: .piba)
+        XCTAssertTrue(isValid)
+    }
+    func test_invalidMixedDigitCVCVisa() {
+        let code = "1a2b3c"
+        let isValid = CardValidator.isCVCValid(cvc: code, cardType: .visa)
+        XCTAssertFalse(isValid)
+    }
+    func test_invalidNoneDigitCVCVisa() {
+        let code = "abc"
+        let isValid = CardValidator.isCVCValid(cvc: code, cardType: .visa)
+        XCTAssertFalse(isValid)
+    }
+    func test_isCVCNotRequiredForPIBA() {
+        let isRequired = CardValidator.isCVCRequired(for: .piba)
+        XCTAssertFalse(isRequired)
+    }
+    func test_isCVCRequiredForAllExceptPiba() {
+        let allCards = CardType.allCases.filter { $0 != .piba }
+        for card in allCards {
+            let isRequired = CardValidator.isCVCRequired(for: card)
+            XCTAssertTrue(isRequired)
+        }
+    }
 }

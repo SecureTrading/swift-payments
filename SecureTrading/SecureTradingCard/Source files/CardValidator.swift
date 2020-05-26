@@ -79,4 +79,24 @@ public class CardValidator {
         guard let expirationDate = Calendar.current.date(from: expirationDatecomponents) else { return false }
         return !expirationDate.isEarlierThanCurrentMonth()
     }
+    
+    /// Checks if security code is valid
+    /// - Parameters:
+    ///   - cvc: string containig the code
+    ///   - cardType: card type against which the code will be checked
+    /// - Returns: is the code valid
+    public static func isCVCValid(cvc: String, cardType: CardType) -> Bool {
+        let parsedCvc = cvc.onlyDigits
+        
+        // Handles case where 3 digits are required but input is like so: 1a2b3b
+        guard parsedCvc.count == cvc.count else { return false }
+        return parsedCvc.count == cardType.securityCodeLength
+    }
+    
+    /// Checks if security code is required for given card type
+    /// - Parameter cardType: card type against which the requirements will be checked
+    /// - Returns: is CVC required
+    public static func isCVCRequired(for cardType: CardType) -> Bool {
+        return cardType.securityCodeLength > 0
+    }
 }
