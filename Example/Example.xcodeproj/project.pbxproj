@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		080A321E2473C482002B7471 /* STClaims.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080A321D2473C482002B7471 /* STClaims.swift */; };
 		04DD6B60246AD383005E7946 /* UITestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD6B5F246AD383005E7946 /* UITestBase.swift */; };
 		04DD6B66246AF504005E7946 /* PaymentPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD6B65246AF504005E7946 /* PaymentPageTests.swift */; };
 		04DD6B68246AFCF4005E7946 /* PaymentPageLocators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD6B67246AFCF4005E7946 /* PaymentPageLocators.swift */; };
 		04DD6B6A246D9945005E7946 /* PaymentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD6B69246D9945005E7946 /* PaymentPage.swift */; };
 		04DD6B6D246E94D0005E7946 /* XCTestCaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD6B6C246E94D0005E7946 /* XCTestCaseExtensions.swift */; };
+		080A321E2473C482002B7471 /* STClaims.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080A321D2473C482002B7471 /* STClaims.swift */; };
 		082FC7962462E18900D4E2B6 /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */; };
 		082FC7972462E18900D4E2B6 /* SecureTradingCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		082FC7982462E18900D4E2B6 /* SecureTradingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */; };
@@ -61,6 +61,8 @@
 		104CFB03246EB1BC00D7C76D /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFB02246EB1BC00D7C76D /* AppLog.swift */; };
 		104CFB2F246ED0E300D7C76D /* SecureTrading3DSecure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104CFB2E246ED0E300D7C76D /* SecureTrading3DSecure.framework */; };
 		104CFB30246ED0E300D7C76D /* SecureTrading3DSecure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 104CFB2E246ED0E300D7C76D /* SecureTrading3DSecure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1098F3A1247CF4B300414F94 /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; };
+		1098F3A2247CF4B300414F94 /* SecureTradingCard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49F7F7945D41186C28F9061E /* libPods-ExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCB78E01AA2AEB4BE63CE4C /* libPods-ExampleTests.a */; };
 		613B874DD5B4DD1E6266FDE8 /* libPods-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1286B23CF2544C71D88175C0 /* libPods-Example.a */; };
 /* End PBXBuildFile section */
@@ -90,6 +92,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				082FC7972462E18900D4E2B6 /* SecureTradingCore.framework in Embed Frameworks */,
+				1098F3A2247CF4B300414F94 /* SecureTradingCard.framework in Embed Frameworks */,
 				104CFB30246ED0E300D7C76D /* SecureTrading3DSecure.framework in Embed Frameworks */,
 				082FC7992462E18900D4E2B6 /* SecureTradingUI.framework in Embed Frameworks */,
 			);
@@ -99,12 +102,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		080A321D2473C482002B7471 /* STClaims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STClaims.swift; sourceTree = "<group>"; };
 		04DD6B5F246AD383005E7946 /* UITestBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestBase.swift; sourceTree = "<group>"; };
 		04DD6B65246AF504005E7946 /* PaymentPageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPageTests.swift; sourceTree = "<group>"; };
 		04DD6B67246AFCF4005E7946 /* PaymentPageLocators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPageLocators.swift; sourceTree = "<group>"; };
 		04DD6B69246D9945005E7946 /* PaymentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPage.swift; sourceTree = "<group>"; };
 		04DD6B6C246E94D0005E7946 /* XCTestCaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtensions.swift; sourceTree = "<group>"; };
+		080A321D2473C482002B7471 /* STClaims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STClaims.swift; sourceTree = "<group>"; };
 		082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		082FC79E2462FF2500D4E2B6 /* Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -158,6 +161,7 @@
 		104CFB00246EADA800D7C76D /* JWTHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTHelper.swift; sourceTree = "<group>"; };
 		104CFB02246EB1BC00D7C76D /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
 		104CFB2E246ED0E300D7C76D /* SecureTrading3DSecure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTrading3DSecure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1286B23CF2544C71D88175C0 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CCB78E01AA2AEB4BE63CE4C /* libPods-ExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		788625EA1D7B96004F438047 /* Pods-ExampleTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.development.xcconfig"; path = "../../Pods/Target Support Files/Pods-ExampleTests/Pods-ExampleTests.development.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 				104CFB2F246ED0E300D7C76D /* SecureTrading3DSecure.framework in Frameworks */,
 				082FC7982462E18900D4E2B6 /* SecureTradingUI.framework in Frameworks */,
 				613B874DD5B4DD1E6266FDE8 /* libPods-Example.a in Frameworks */,
+				1098F3A1247CF4B300414F94 /* SecureTradingCard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,14 +199,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080A321F2473C4A4002B7471 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				080A321D2473C482002B7471 /* STClaims.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		04DD6B5E246AD31C005E7946 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +246,14 @@
 				04DD6B6C246E94D0005E7946 /* XCTestCaseExtensions.swift */,
 			);
 			path = UiTestUtils;
+			sourceTree = "<group>";
+		};
+		080A321F2473C4A4002B7471 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				080A321D2473C482002B7471 /* STClaims.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		082FC7932462DB1000D4E2B6 /* SupportingFiles */ = {
@@ -475,6 +480,7 @@
 		08EF7CF52462AA1B008B5F3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */,
 				104CFB2E246ED0E300D7C76D /* SecureTrading3DSecure.framework */,
 				082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */,
 				082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */,
