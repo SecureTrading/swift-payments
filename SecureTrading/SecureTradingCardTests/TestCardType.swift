@@ -343,36 +343,36 @@ class TestCardType: XCTestCase {
         XCTAssertNotNil(logo)
     }
     
-    // MARK: - Test security code parsing
-    func test_validSecurityCodeSingleDigitMonth_StandardSeparator() {
-        let cvv = "1/2022"
-        let isValid = CardValidator.isSecurityCodeValid(code: cvv)
+    // MARK: - Test expiration date parsing
+    func test_validExpirationDateSingleDigitMonth_StandardSeparator() {
+        let date = "1/2022"
+        let isValid = CardValidator.isExpirationDateValid(date: date)
         XCTAssertTrue(isValid)
     }
-    func test_validSecurityCodeDoubleDigitMonth_StandardSeparator() {
-        let cvv = "11/2022"
-        let isValid = CardValidator.isSecurityCodeValid(code: cvv)
+    func test_validExpirationDateDoubleDigitMonth_StandardSeparator() {
+        let date = "11/2022"
+        let isValid = CardValidator.isExpirationDateValid(date: date)
         XCTAssertTrue(isValid)
     }
-    func test_validSecurityCodeDoubleDigitLeadingZeroMonth_StandardSeparator() {
-        let cvv = "05/2022"
-        let isValid = CardValidator.isSecurityCodeValid(code: cvv)
+    func test_validExpirationDateDoubleDigitLeadingZeroMonth_StandardSeparator() {
+        let date = "05/2022"
+        let isValid = CardValidator.isExpirationDateValid(date: date)
         XCTAssertTrue(isValid)
     }
-    func test_validSecurityCodeDoubleDigitLeadingZeroMonth_CustomSeparator() {
-           let cvv = "05-2022"
-        let isValid = CardValidator.isSecurityCodeValid(code: cvv, separator: "-")
+    func test_validExpirationDateDoubleDigitLeadingZeroMonth_CustomSeparator() {
+           let date = "05-2022"
+        let isValid = CardValidator.isExpirationDateValid(date: date, separator: "-")
            XCTAssertTrue(isValid)
        }
     func test_dateInPast_StandardSeparator() {
-        let cvv = "05/2019"
-        let isValid = CardValidator.isSecurityCodeValid(code: cvv)
+        let date = "05/2019"
+        let isValid = CardValidator.isExpirationDateValid(date: date)
         XCTAssertFalse(isValid)
     }
     func test_currentDate_StandardSeparator() {
         let currentComponents = Calendar.current.dateComponents([.year, .month], from: Date())
-        let cvv = "\(currentComponents.month!)/\(currentComponents.year!)"
-           let isValid = CardValidator.isSecurityCodeValid(code: cvv)
+        let date = "\(currentComponents.month!)/\(currentComponents.year!)"
+           let isValid = CardValidator.isExpirationDateValid(date: date)
            XCTAssertTrue(isValid)
        }
 }

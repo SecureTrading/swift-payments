@@ -63,21 +63,21 @@ public class CardValidator {
         return possibleLengths.contains(cardNumberLength)
     }
     
-    /// Checks if security code is valid and not in the past
+    /// Checks if expiration date is valid and not in the past
     /// - Parameters:
-    ///   - code: security code string
+    ///   - code: expiration date string
     ///   - separator: optional separator if one used is different than "/"
-    /// - Returns: Security code is valid
-    public static func isSecurityCodeValid(code: String, separator: String? = nil) -> Bool {
-        let codeSeparator = separator ?? "/"
-        let components = code.components(separatedBy: codeSeparator)
+    /// - Returns: Expiration date is valid
+    public static func isExpirationDateValid(date: String, separator: String? = nil) -> Bool {
+        let dateSeparator = separator ?? "/"
+        let components = date.components(separatedBy: dateSeparator)
         guard components.count == 2 else { return false }
         guard let monthComponent = Int(components.first!) else { return false }
         guard let yearComponent = Int(components.last!) else { return false }
         guard (1...12).contains(monthComponent) else { return false }
-        let cvvDatecomponents = DateComponents(year: yearComponent, month: monthComponent)
-        guard let cvvDate = Calendar.current.date(from: cvvDatecomponents) else { return false }
-        return !cvvDate.isEarlierThanCurrentMonth()
+        let expirationDatecomponents = DateComponents(year: yearComponent, month: monthComponent)
+        guard let expirationDate = Calendar.current.date(from: expirationDatecomponents) else { return false }
+        return !expirationDate.isEarlierThanCurrentMonth()
     }
 }
 
