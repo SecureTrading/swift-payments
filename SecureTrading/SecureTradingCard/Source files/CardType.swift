@@ -5,7 +5,7 @@
 
 import Foundation
 
-enum CardType: CaseIterable {
+public enum CardType: CaseIterable {
     case visa
     case mastercard
     case amex
@@ -65,7 +65,7 @@ enum CardType: CaseIterable {
 }
 
 extension CardType: CustomDebugStringConvertible {
-    var debugDescription: String {
+    public var debugDescription: String {
         switch self {
         case .visa: return "Visa"
         case .mastercard: return "MasterCard"

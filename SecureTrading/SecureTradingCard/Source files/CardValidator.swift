@@ -6,12 +6,12 @@
 import Foundation
 
 /// Methods for validating card data
-class CardValidator {
+public class CardValidator {
     /// Returns card type for given card number
     ///
     /// - Parameter number: card number
     /// - Returns: CardType
-    static func cardType(for number: String) -> CardType {
+    public static func cardType(for number: String) -> CardType {
         var cardNumber = number.onlyDigits
         // Only Visa starts with 4
         guard cardNumber.count > 1 || cardNumber.hasPrefix("4") else { return CardType.unknown }

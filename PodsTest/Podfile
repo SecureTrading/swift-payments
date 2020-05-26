@@ -7,5 +7,6 @@ target 'PodsTest' do
   pod 'SecureTradingSDK/Core', :path => '../'
   pod 'SecureTradingSDK/UI', :path => '../'
   pod 'SecureTradingSDK/3DSecure', :path => '../'
+  pod 'SecureTradingSDK/Card', :path => '../'
 
 end
