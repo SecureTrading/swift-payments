@@ -19,10 +19,33 @@ import UIKit
         return label
     }()
 
+    private let textFieldImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+
     private let textField: UITextField = {
         let textField = UITextField()
         textField.autocorrectionType = .no
         return textField
+    }()
+
+    private let textFieldStackViewBackground: UIView = {
+        let view = UIView()
+        view.backgroundColor = .yellow
+        return view
+    }()
+
+    private lazy var textFieldStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [textFieldImageView, textField])
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        return stackView
     }()
 
     private let errorLabel: UILabel = {
@@ -33,7 +56,7 @@ import UIKit
     }()
 
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, textField, errorLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, textFieldStackView, errorLabel])
         stackView.axis = .vertical
         stackView.spacing = 5
         stackView.alignment = .fill
@@ -205,11 +228,16 @@ extension SecureFormInputView: ViewSetupable {
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
     func setupViewHierarchy() {
+        textFieldStackViewBackground.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        textFieldStackView.insertSubview(textFieldStackViewBackground, at: 0)
         addSubviews([stackView])
     }
 
     /// - SeeAlso: ViewSetupable.setupConstraints
     func setupConstraints() {
+        textFieldImageView.addConstraints([
+            equal(\.widthAnchor, to: 30)
+        ])
         stackView.addConstraints(equalToSuperview(with: .init(top: 5, left: 5, bottom: -5, right: -5), usingSafeArea: false))
     }
 }
