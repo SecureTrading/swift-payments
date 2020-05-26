@@ -40,4 +40,34 @@ class TestExpiryDate: XCTestCase {
         let isValid = CardValidator.isExpirationDateValid(date: date)
         XCTAssertTrue(isValid)
     }
+    func test_missingMonthWithSeparator() {
+        let date = "/2019"
+        let isValid = CardValidator.isExpirationDateValid(date: date)
+        XCTAssertFalse(isValid)
+    }
+    func test_missingMonthNoSeparator() {
+        let date = "2019"
+        let isValid = CardValidator.isExpirationDateValid(date: date)
+        XCTAssertFalse(isValid)
+    }
+    func test_empty() {
+        let date = ""
+        let isValid = CardValidator.isExpirationDateValid(date: date)
+        XCTAssertFalse(isValid)
+    }
+    func test_missingYearNoSeparator() {
+        let date = "4"
+        let isValid = CardValidator.isExpirationDateValid(date: date)
+        XCTAssertFalse(isValid)
+    }
+    func test_missingYearWithSeparator() {
+        let date = "4/"
+        let isValid = CardValidator.isExpirationDateValid(date: date)
+        XCTAssertFalse(isValid)
+    }
+    func test_zeroMonth() {
+        let date = "0/2025"
+        let isValid = CardValidator.isExpirationDateValid(date: date)
+        XCTAssertFalse(isValid)
+    }
 }
