@@ -40,7 +40,7 @@ public class CardValidator {
     /// Checks whether card number is valid by evaluating it with Luhn algorithm
     /// - Parameter cardNumber: non-digit characters are skipped
     /// - Returns: true if card number is valid
-    static func isCardNumberLuhnCompliant(cardNumber: String) -> Bool {
+    public static func isCardNumberLuhnCompliant(cardNumber: String) -> Bool {
         let parsedCardNumber = cardNumber.onlyDigits
         
         // The Luhn Algorythm
@@ -51,10 +51,43 @@ public class CardValidator {
         }).reduce(0, +) % 10 == 0
     }
     
-    static func cardNumberHasValidLength(cardNumber number: String, card type: CardType) -> Bool {
+    /// Check if provided card numbe has valid length
+    /// - Parameters:
+    ///   - number: card number, function also parses to digits-only
+    ///   - type: card type to check against for
+    /// - Returns: is card length valid for given card type
+    public static func cardNumberHasValidLength(cardNumber number: String, card type: CardType) -> Bool {
         let cardDigits = number.onlyDigits
         let possibleLengths = type.validNumberLengths
         let cardNumberLength = cardDigits.count
         return possibleLengths.contains(cardNumberLength)
+    }
+    
+    /// Checks if security code is valid and not in the past
+    /// - Parameters:
+    ///   - code: security code string
+    ///   - separator: optional separator if one used is different than "/"
+    /// - Returns: Security code is valid
+    public static func isSecurityCodeValid(code: String, separator: String? = nil) -> Bool {
+        let codeSeparator = separator ?? "/"
+        let components = code.components(separatedBy: codeSeparator)
+        guard components.count == 2 else { return false }
+        guard let monthComponent = Int(components.first!) else { return false }
+        guard let yearComponent = Int(components.last!) else { return false }
+        guard (1...12).contains(monthComponent) else { return false }
+        let cvvDatecomponents = DateComponents(year: yearComponent, month: monthComponent)
+        guard let cvvDate = Calendar.current.date(from: cvvDatecomponents) else { return false }
+        return !cvvDate.isEarlierThanCurrentMonth()
+    }
+}
+
+fileprivate extension Date {
+    /// Checks if date is earlier than current date, compares only month and year components
+    /// - Returns: if date is in past
+    func isEarlierThanCurrentMonth() -> Bool {
+        let now = Date()
+        let currentComponents = Calendar.current.dateComponents([.year, .month], from: now)
+        guard let nowFromComponents = Calendar.current.date(from: currentComponents) else { return false }
+        return self < nowFromComponents
     }
 }
