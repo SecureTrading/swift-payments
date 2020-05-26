@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 public enum CardType: CaseIterable {
     case visa
@@ -76,6 +77,26 @@ public enum CardType: CaseIterable {
         case .piba: return 0
         default:    return 3
         }
+    }
+    
+    var logo: UIImage? {
+        switch self {
+        case .visa: return image(for: "visa")
+        case .mastercard: return image(for: "mastercard")
+        case .amex: return image(for: "amex")
+        case .maestro: return image(for: "maestro")
+        case .discover: return image(for: "discover")
+        case .diners: return image(for: "diners")
+        case .jcb: return image(for: "jcb")
+        case .astropay: return image(for: "astropay")
+        case .piba:  return image(for: "piba")
+        case .unknown: return image(for: "unknown")
+        }
+    }
+    
+    private func image(for name: String) -> UIImage? {
+        let imageName = name + "_logo"
+        return UIImage(named: imageName, in: Bundle(for: CardValidator.self), compatibleWith: nil)
     }
 }
 

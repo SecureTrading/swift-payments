@@ -79,7 +79,6 @@
 		104861FE247BF47E0053209D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104861FD247BF47E0053209D /* String.swift */; };
 		10486200247BF4B20053209D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104861FF247BF4B20053209D /* Array.swift */; };
 		10486202247BF4F40053209D /* CardValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10486201247BF4F40053209D /* CardValidator.swift */; };
-		10486204247BF5550053209D /* CardFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10486203247BF5550053209D /* CardFormatter.swift */; };
 		10486205247BF7050053209D /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; };
 		104CFB12246ECD8000D7C76D /* SecureTrading3DSecure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104CFB09246ECD7F00D7C76D /* SecureTrading3DSecure.framework */; platformFilter = ios; };
 		104CFB17246ECD8000D7C76D /* SecureTrading3DSecureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFB16246ECD8000D7C76D /* SecureTrading3DSecureTests.swift */; };
@@ -89,6 +88,7 @@
 		1092CF482476CA1F0002B2E8 /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1092CF3F2476CA1F0002B2E8 /* SecureTradingCard.framework */; platformFilter = ios; };
 		1092CF4F2476CA1F0002B2E8 /* SecureTradingCard.h in Headers */ = {isa = PBXBuildFile; fileRef = 1092CF412476CA1F0002B2E8 /* SecureTradingCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1092CF5A2476CAFF0002B2E8 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1092CF592476CAFF0002B2E8 /* CardType.swift */; };
+		1098F3A4247D3E0B00414F94 /* CardLogo.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1098F3A3247D3E0B00414F94 /* CardLogo.xcassets */; };
 		10B5B82D2472B925009CE3A8 /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -236,7 +236,6 @@
 		104861FD247BF47E0053209D /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		104861FF247BF4B20053209D /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		10486201247BF4F40053209D /* CardValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardValidator.swift; sourceTree = "<group>"; };
-		10486203247BF5550053209D /* CardFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFormatter.swift; sourceTree = "<group>"; };
 		104CFB09246ECD7F00D7C76D /* SecureTrading3DSecure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTrading3DSecure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		104CFB0B246ECD7F00D7C76D /* SecureTrading3DSecure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTrading3DSecure.h; sourceTree = "<group>"; };
 		104CFB0C246ECD7F00D7C76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -250,6 +249,7 @@
 		1092CF472476CA1F0002B2E8 /* SecureTradingCardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureTradingCardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1092CF4E2476CA1F0002B2E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1092CF592476CAFF0002B2E8 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
+		1098F3A3247D3E0B00414F94 /* CardLogo.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardLogo.xcassets; sourceTree = "<group>"; };
 		10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CardinalMobile.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -715,6 +715,7 @@
 				1092CF582476CABF0002B2E8 /* Source files */,
 				1092CF412476CA1F0002B2E8 /* SecureTradingCard.h */,
 				1092CF422476CA1F0002B2E8 /* Info.plist */,
+				1098F3A3247D3E0B00414F94 /* CardLogo.xcassets */,
 			);
 			path = SecureTradingCard;
 			sourceTree = "<group>";
@@ -735,7 +736,6 @@
 				104861F9247BF3F50053209D /* Common */,
 				1092CF592476CAFF0002B2E8 /* CardType.swift */,
 				10486201247BF4F40053209D /* CardValidator.swift */,
-				10486203247BF5550053209D /* CardFormatter.swift */,
 			);
 			path = "Source files";
 			sourceTree = "<group>";
@@ -1049,6 +1049,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1098F3A4247D3E0B00414F94 /* CardLogo.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1211,7 +1212,6 @@
 			files = (
 				104861FE247BF47E0053209D /* String.swift in Sources */,
 				10486200247BF4B20053209D /* Array.swift in Sources */,
-				10486204247BF5550053209D /* CardFormatter.swift in Sources */,
 				1092CF5A2476CAFF0002B2E8 /* CardType.swift in Sources */,
 				104861FC247BF41E0053209D /* ClosedRange.swift in Sources */,
 				10486202247BF4F40053209D /* CardValidator.swift in Sources */,
