@@ -308,4 +308,71 @@ class TestCardType: XCTestCase {
             }
         }
     }
+    
+    // MARK: - Test logo exists for card issuers
+    func test_hasLogoForVisa() {
+        let logo = CardType.visa.logo
+        XCTAssertNotNil(logo)
+    }
+    func test_hasLogoForAmex() {
+        let logo = CardType.amex.logo
+        XCTAssertNotNil(logo)
+    }
+    func test_hasLogoForPIBA() {
+        let logo = CardType.piba.logo
+        XCTAssertNotNil(logo)
+    }
+    func test_hasLogoForMastercard() {
+        let logo = CardType.mastercard.logo
+        XCTAssertNotNil(logo)
+    }
+    func test_hasLogoForMaestro() {
+        let logo = CardType.maestro.logo
+        XCTAssertNotNil(logo)
+    }
+    func test_hasLogoForDiscover() {
+        let logo = CardType.discover.logo
+        XCTAssertNotNil(logo)
+    }
+    func test_hasLogoForDiners() {
+        let logo = CardType.diners.logo
+        XCTAssertNotNil(logo)
+    }
+    func test_hasLogoForJCB() {
+        let logo = CardType.jcb.logo
+        XCTAssertNotNil(logo)
+    }
+    
+    // MARK: - Test security code parsing
+    func test_validSecurityCodeSingleDigitMonth_StandardSeparator() {
+        let cvv = "1/2022"
+        let isValid = CardValidator.isSecurityCodeValid(code: cvv)
+        XCTAssertTrue(isValid)
+    }
+    func test_validSecurityCodeDoubleDigitMonth_StandardSeparator() {
+        let cvv = "11/2022"
+        let isValid = CardValidator.isSecurityCodeValid(code: cvv)
+        XCTAssertTrue(isValid)
+    }
+    func test_validSecurityCodeDoubleDigitLeadingZeroMonth_StandardSeparator() {
+        let cvv = "05/2022"
+        let isValid = CardValidator.isSecurityCodeValid(code: cvv)
+        XCTAssertTrue(isValid)
+    }
+    func test_validSecurityCodeDoubleDigitLeadingZeroMonth_CustomSeparator() {
+           let cvv = "05-2022"
+        let isValid = CardValidator.isSecurityCodeValid(code: cvv, separator: "-")
+           XCTAssertTrue(isValid)
+       }
+    func test_dateInPast_StandardSeparator() {
+        let cvv = "05/2019"
+        let isValid = CardValidator.isSecurityCodeValid(code: cvv)
+        XCTAssertFalse(isValid)
+    }
+    func test_currentDate_StandardSeparator() {
+        let currentComponents = Calendar.current.dateComponents([.year, .month], from: Date())
+        let cvv = "\(currentComponents.month!)/\(currentComponents.year!)"
+           let isValid = CardValidator.isSecurityCodeValid(code: cvv)
+           XCTAssertTrue(isValid)
+       }
 }
