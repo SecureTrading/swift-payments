@@ -90,6 +90,11 @@
 		1092CF5A2476CAFF0002B2E8 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1092CF592476CAFF0002B2E8 /* CardType.swift */; };
 		1098F3A4247D3E0B00414F94 /* CardLogo.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1098F3A3247D3E0B00414F94 /* CardLogo.xcassets */; };
 		1098F3A6247D579600414F94 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3A5247D579600414F94 /* Date.swift */; };
+		1098F3A8247D5D2200414F94 /* TestExpiryDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3A7247D5D2200414F94 /* TestExpiryDate.swift */; };
+		1098F3AA247D5D9800414F94 /* TestCardTypeLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3A9247D5D9800414F94 /* TestCardTypeLogo.swift */; };
+		1098F3AC247D5DD600414F94 /* TestCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3AB247D5DD600414F94 /* TestCVC.swift */; };
+		1098F3AE247D5E3A00414F94 /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3AD247D5E3A00414F94 /* TestExtensions.swift */; };
+		1098F3B0247D5E8400414F94 /* TestCardNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3AF247D5E8400414F94 /* TestCardNumber.swift */; };
 		10B5B82D2472B925009CE3A8 /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -252,6 +257,11 @@
 		1092CF592476CAFF0002B2E8 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 		1098F3A3247D3E0B00414F94 /* CardLogo.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardLogo.xcassets; sourceTree = "<group>"; };
 		1098F3A5247D579600414F94 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		1098F3A7247D5D2200414F94 /* TestExpiryDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExpiryDate.swift; sourceTree = "<group>"; };
+		1098F3A9247D5D9800414F94 /* TestCardTypeLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardTypeLogo.swift; sourceTree = "<group>"; };
+		1098F3AB247D5DD600414F94 /* TestCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCVC.swift; sourceTree = "<group>"; };
+		1098F3AD247D5E3A00414F94 /* TestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
+		1098F3AF247D5E8400414F94 /* TestCardNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardNumber.swift; sourceTree = "<group>"; };
 		10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CardinalMobile.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -729,6 +739,11 @@
 				1092CF4E2476CA1F0002B2E8 /* Info.plist */,
 				1040C6F12477C503004B9DEA /* KnownCards.swift */,
 				1040C6F32477CD95004B9DEA /* TestCardType.swift */,
+				1098F3A7247D5D2200414F94 /* TestExpiryDate.swift */,
+				1098F3A9247D5D9800414F94 /* TestCardTypeLogo.swift */,
+				1098F3AB247D5DD600414F94 /* TestCVC.swift */,
+				1098F3AD247D5E3A00414F94 /* TestExtensions.swift */,
+				1098F3AF247D5E8400414F94 /* TestCardNumber.swift */,
 			);
 			path = SecureTradingCardTests;
 			sourceTree = "<group>";
@@ -1226,7 +1241,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1098F3AC247D5DD600414F94 /* TestCVC.swift in Sources */,
+				1098F3AE247D5E3A00414F94 /* TestExtensions.swift in Sources */,
 				1040C6F22477C503004B9DEA /* KnownCards.swift in Sources */,
+				1098F3A8247D5D2200414F94 /* TestExpiryDate.swift in Sources */,
+				1098F3B0247D5E8400414F94 /* TestCardNumber.swift in Sources */,
+				1098F3AA247D5D9800414F94 /* TestCardTypeLogo.swift in Sources */,
 				1040C6F42477CD95004B9DEA /* TestCardType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
