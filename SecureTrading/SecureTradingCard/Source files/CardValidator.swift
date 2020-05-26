@@ -73,7 +73,12 @@ public class CardValidator {
         let components = date.components(separatedBy: dateSeparator)
         guard components.count == 2 else { return false }
         guard let monthComponent = Int(components.first!) else { return false }
-        guard let yearComponent = Int(components.last!) else { return false }
+        guard var yearComponent = Int(components.last!) else { return false }
+        // Handle short year notation 22 instead of 2022
+        if yearComponent < 100 {
+            yearComponent += 2000
+        }
+        
         guard (1...12).contains(monthComponent) else { return false }
         let expirationDatecomponents = DateComponents(year: yearComponent, month: monthComponent)
         guard let expirationDate = Calendar.current.date(from: expirationDatecomponents) else { return false }

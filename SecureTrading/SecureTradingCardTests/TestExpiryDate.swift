@@ -70,4 +70,14 @@ class TestExpiryDate: XCTestCase {
         let isValid = CardValidator.isExpirationDateValid(date: date)
         XCTAssertFalse(isValid)
     }
+    func test_shortYear() {
+        let date = "7/25"
+        let isValid = CardValidator.isExpirationDateValid(date: date)
+        XCTAssertTrue(isValid)
+    }
+    func test_cannotDecideIfshortOrinvalid() {
+        let date = "7/125"
+        let isValid = CardValidator.isExpirationDateValid(date: date)
+        XCTAssertFalse(isValid)
+    }
 }
