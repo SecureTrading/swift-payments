@@ -42,8 +42,12 @@ final class MainView: WhiteBackgroundBaseView {
         return button
     }()
 
+    private let cardNumberInput: CardNumberInputView = {
+        CardNumberInputView()
+    }()
+
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [showTestMainScreenButton, showTestMainFlowButton, makeAuthRequestButton])
+        let stackView = UIStackView(arrangedSubviews: [showTestMainScreenButton, showTestMainFlowButton, makeAuthRequestButton, cardNumberInput])
         stackView.axis = .vertical
         stackView.spacing = 30
         stackView.alignment = .fill
