@@ -89,6 +89,7 @@
 		1092CF4F2476CA1F0002B2E8 /* SecureTradingCard.h in Headers */ = {isa = PBXBuildFile; fileRef = 1092CF412476CA1F0002B2E8 /* SecureTradingCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1092CF5A2476CAFF0002B2E8 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1092CF592476CAFF0002B2E8 /* CardType.swift */; };
 		1098F3A4247D3E0B00414F94 /* CardLogo.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1098F3A3247D3E0B00414F94 /* CardLogo.xcassets */; };
+		1098F3A6247D579600414F94 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3A5247D579600414F94 /* Date.swift */; };
 		10B5B82D2472B925009CE3A8 /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -250,6 +251,7 @@
 		1092CF4E2476CA1F0002B2E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1092CF592476CAFF0002B2E8 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 		1098F3A3247D3E0B00414F94 /* CardLogo.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardLogo.xcassets; sourceTree = "<group>"; };
+		1098F3A5247D579600414F94 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CardinalMobile.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -678,6 +680,7 @@
 				104861FB247BF41E0053209D /* ClosedRange.swift */,
 				104861FD247BF47E0053209D /* String.swift */,
 				104861FF247BF4B20053209D /* Array.swift */,
+				1098F3A5247D579600414F94 /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1211,6 +1214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				104861FE247BF47E0053209D /* String.swift in Sources */,
+				1098F3A6247D579600414F94 /* Date.swift in Sources */,
 				10486200247BF4B20053209D /* Array.swift in Sources */,
 				1092CF5A2476CAFF0002B2E8 /* CardType.swift in Sources */,
 				104861FC247BF41E0053209D /* ClosedRange.swift in Sources */,
