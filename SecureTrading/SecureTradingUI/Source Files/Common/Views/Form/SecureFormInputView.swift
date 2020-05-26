@@ -34,6 +34,8 @@ import UIKit
     private let textFieldStackViewBackground: UIView = {
         let view = UIView()
         view.backgroundColor = .yellow
+        view.layer.cornerRadius = 5
+        view.layer.borderWidth = 2
         return view
     }()
 
@@ -133,6 +135,18 @@ import UIKit
         }
     }
 
+    @objc public var textFieldBorderColor: UIColor = UIColor.lightGray.withAlphaComponent(0.6) {
+        didSet {
+            textFieldStackViewBackground.layer.borderColor = textFieldBorderColor.cgColor
+        }
+    }
+
+    @objc public var textFieldBackgroundColor: UIColor = UIColor.lightGray.withAlphaComponent(0.2) {
+        didSet {
+            textFieldStackViewBackground.backgroundColor = textFieldBackgroundColor
+        }
+    }
+
     @objc public var textColor: UIColor = .black {
         didSet {
             textField.textColor = textColor
@@ -183,6 +197,8 @@ import UIKit
 
     private func showHideError(show: Bool) {
         errorLabel.isHidden = !show
+        textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor
+        textFieldStackViewBackground.backgroundColor = show ? errorColor : textFieldBackgroundColor
     }
 
     // MARK: - Validation
@@ -214,6 +230,9 @@ extension SecureFormInputView: ViewSetupable {
         titleLabel.text = title
         titleLabel.textColor = titleColor
         titleLabel.font = titleFont
+
+        textFieldStackViewBackground.backgroundColor = textFieldBackgroundColor
+        textFieldStackViewBackground.layer.borderColor = textFieldBorderColor.cgColor
 
         textField.text = text
         textField.textColor = textColor
