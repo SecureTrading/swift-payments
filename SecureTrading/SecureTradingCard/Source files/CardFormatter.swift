@@ -28,9 +28,3 @@ func formatCardNumberWithMask(number: String) -> String {
     maskedNumber.append(contentsOf: cardNumber[symbolIndex...])
     return maskedNumber
 }
-
-func ck(number: String) {
-    guard number.isEmpty == false else { return }
-    print(number, formatCardNumberWithMask(number: number))
-    ck(number: String(number.dropLast()))
-}

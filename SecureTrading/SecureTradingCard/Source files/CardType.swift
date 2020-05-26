@@ -44,6 +44,21 @@ public enum CardType: CaseIterable {
         }
     }
     
+    var validNumberLengths: Set<Int> {
+        switch self {
+        case .visa:             return [13, 16, 19]
+        case .mastercard:       return [16]
+        case .amex:             return [15]
+        case .maestro:          return [12, 13, 14, 15, 16, 17, 18, 19]
+        case .discover:         return [14, 15, 16, 17, 18, 19]
+        case .diners:           return [14, 15, 16, 17, 18, 19]
+        case .jcb:              return [15, 16, 19]
+        case .astropay:         return [16]
+        case .piba:             return [19]
+        case .unknown:          return [16]
+        }
+    }
+    
     var inputMask: String {
         switch self {
         // 4-6-5

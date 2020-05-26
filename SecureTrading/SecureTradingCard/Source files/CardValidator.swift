@@ -50,4 +50,11 @@ public class CardValidator {
             return isEven ? digit : digit == 9 ? 9 : digit * 2 % 9
         }).reduce(0, +) % 10 == 0
     }
+    
+    static func cardNumberHasValidLength(cardNumber number: String, card type: CardType) -> Bool {
+        let cardDigits = number.onlyDigits
+        let possibleLengths = type.validNumberLengths
+        let cardNumberLength = cardDigits.count
+        return possibleLengths.contains(cardNumberLength)
+    }
 }
