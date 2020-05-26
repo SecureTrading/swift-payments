@@ -6,7 +6,6 @@
 import UIKit
 
 @objc public final class CardNumberInputView: SecureFormInputView {
-
     // MARK: Public Properties
 
     public var cardNumberSeparator: String = .space
@@ -22,6 +21,17 @@ import UIKit
 
     private var cardNumberFormat: CardNumberFormat {
         return CardNumberFormat(cardTypeContainer: cardTypeContainer, separator: cardNumberSeparator)
+    }
+}
+
+extension CardNumberInputView {
+    /// - SeeAlso: SecureFormInputView.setupProperties
+    override func setupProperties() {
+        super.setupProperties()
+
+        title = "Card number"
+        placeholder = "0000 0000 0000 0000"
+        error = "bad card"
     }
 }
 

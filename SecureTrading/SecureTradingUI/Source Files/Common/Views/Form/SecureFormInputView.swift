@@ -224,7 +224,7 @@ import UIKit
 
 extension SecureFormInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
-    func setupProperties() {
+    @objc func setupProperties() {
         textField.delegate = self
 
         titleLabel.text = title
