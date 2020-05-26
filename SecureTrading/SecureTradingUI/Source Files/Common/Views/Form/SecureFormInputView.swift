@@ -15,21 +15,18 @@ import UIKit
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
-        label.font = Fonts.responsive(.regular, ofSizes: [.small: 17, .medium: 18, .large: 20])
         label.numberOfLines = 1
         return label
     }()
 
     private let textField: UITextField = {
         let textField = UITextField()
+        textField.autocorrectionType = .no
         return textField
     }()
 
     private let errorLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .red
-        label.font = Fonts.responsive(.regular, ofSizes: [.small: 17, .medium: 18, .large: 20])
         label.numberOfLines = 1
         label.isHidden = true
         return label
@@ -190,6 +187,20 @@ extension SecureFormInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
     func setupProperties() {
         textField.delegate = self
+
+        titleLabel.text = title
+        titleLabel.textColor = titleColor
+        titleLabel.font = titleFont
+
+        textField.text = text
+        textField.textColor = textColor
+        textField.font = textFont
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder,
+                                                             attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
+
+        errorLabel.text = error
+        errorLabel.textColor = errorColor
+        errorLabel.font = errorFont
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
