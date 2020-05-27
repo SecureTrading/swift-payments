@@ -35,7 +35,7 @@
 		084E2A1924659B7B0040FB9D /* CustomBackNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A1824659B7B0040FB9D /* CustomBackNavigationController.swift */; };
 		084E2A1B24659BD30040FB9D /* PopBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A1A24659BD30040FB9D /* PopBackView.swift */; };
 		084E2A1D24659D6B0040FB9D /* TransparentNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A1C24659D6A0040FB9D /* TransparentNavigationBar.swift */; };
-		084E2A1F24659E2C0040FB9D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A1E24659E2C0040FB9D /* Array.swift */; };
+		084E2A1F24659E2C0040FB9D /* ArrayUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A1E24659E2C0040FB9D /* ArrayUI.swift */; };
 		084E2A2124659EA70040FB9D /* SDKFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A2024659EA70040FB9D /* SDKFoundation.swift */; };
 		084E2A2324659EE20040FB9D /* DefaultSDKFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A2224659EE20040FB9D /* DefaultSDKFoundation.swift */; };
 		08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */; };
@@ -54,7 +54,7 @@
 		08886ED5247C107200BC1637 /* CardNumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ED4247C107200BC1637 /* CardNumberFormat.swift */; };
 		08886ED9247C1AE500BC1637 /* CardTypeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ED8247C1AE500BC1637 /* CardTypeContainer.swift */; };
 		08886EE1247C223A00BC1637 /* CardNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886EE0247C223A00BC1637 /* CardNumber.swift */; };
-		08886EE3247C234800BC1637 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886EE2247C234800BC1637 /* String.swift */; };
+		08886EE3247C234800BC1637 /* StringUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886EE2247C234800BC1637 /* StringUI.swift */; };
 		089B41C6246D4B7000F70764 /* APIClientConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C5246D4B7000F70764 /* APIClientConfiguration.swift */; };
 		089B41C8246D4C7600F70764 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C7246D4C7600F70764 /* APIRequest.swift */; };
 		089B41CA246D4CB700F70764 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41C9246D4CB700F70764 /* APIResponse.swift */; };
@@ -208,7 +208,7 @@
 		084E2A1824659B7B0040FB9D /* CustomBackNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackNavigationController.swift; sourceTree = "<group>"; };
 		084E2A1A24659BD30040FB9D /* PopBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopBackView.swift; sourceTree = "<group>"; };
 		084E2A1C24659D6A0040FB9D /* TransparentNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentNavigationBar.swift; sourceTree = "<group>"; };
-		084E2A1E24659E2C0040FB9D /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		084E2A1E24659E2C0040FB9D /* ArrayUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUI.swift; sourceTree = "<group>"; };
 		084E2A2024659EA70040FB9D /* SDKFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKFoundation.swift; sourceTree = "<group>"; };
 		084E2A2224659EE20040FB9D /* DefaultSDKFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSDKFoundation.swift; sourceTree = "<group>"; };
 		08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 		08886ED4247C107200BC1637 /* CardNumberFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumberFormat.swift; sourceTree = "<group>"; };
 		08886ED8247C1AE500BC1637 /* CardTypeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTypeContainer.swift; sourceTree = "<group>"; };
 		08886EE0247C223A00BC1637 /* CardNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumber.swift; sourceTree = "<group>"; };
-		08886EE2247C234800BC1637 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		08886EE2247C234800BC1637 /* StringUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUI.swift; sourceTree = "<group>"; };
 		089B41C5246D4B7000F70764 /* APIClientConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientConfiguration.swift; sourceTree = "<group>"; };
 		089B41C7246D4C7600F70764 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		089B41C9246D4CB700F70764 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -387,8 +387,8 @@
 				084E29F5246573180040FB9D /* UIStackView.swift */,
 				084E2A002465841D0040FB9D /* UITableView.swift */,
 				084E2A02246585330040FB9D /* UICollectionView.swift */,
-				084E2A1E24659E2C0040FB9D /* Array.swift */,
-				08886EE2247C234800BC1637 /* String.swift */,
+				084E2A1E24659E2C0040FB9D /* ArrayUI.swift */,
+				08886EE2247C234800BC1637 /* StringUI.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1235,12 +1235,12 @@
 				084E2A1D24659D6B0040FB9D /* TransparentNavigationBar.swift in Sources */,
 				084E2A062465874B0040FB9D /* Localizable.swift in Sources */,
 				084E2A12246599FC0040FB9D /* NavigationDelegate.swift in Sources */,
-				084E2A1F24659E2C0040FB9D /* Array.swift in Sources */,
+				084E2A1F24659E2C0040FB9D /* ArrayUI.swift in Sources */,
 				08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */,
 				08886ED0247B9D3300BC1637 /* SecureFormInputView.swift in Sources */,
 				084E2A10246599D90040FB9D /* NavigationFlowController.swift in Sources */,
 				0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */,
-				08886EE3247C234800BC1637 /* String.swift in Sources */,
+				08886EE3247C234800BC1637 /* StringUI.swift in Sources */,
 				084E2A03246585330040FB9D /* UICollectionView.swift in Sources */,
 				084E29FD246583B50040FB9D /* BaseViewCell.swift in Sources */,
 				0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */,

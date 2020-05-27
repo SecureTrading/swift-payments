@@ -89,7 +89,7 @@ import Foundation
 
     /// Checks if expiration date is valid and not in the past
     /// - Parameters:
-    ///   - code: expiration date string
+    ///   - date: expiration date string
     ///   - separator: optional separator if one used is different than "/"
     /// - Returns: Expiration date is valid
     @objc public static func isExpirationDateValid(date: String, separator: String? = nil) -> Bool {
