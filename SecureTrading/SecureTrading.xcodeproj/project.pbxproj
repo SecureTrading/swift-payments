@@ -73,6 +73,7 @@
 		08EF7D422462B12F008B5F3E /* SecureTradingUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 08EF7D402462B12F008B5F3E /* SecureTradingUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D492462B239008B5F3E /* BaseViewController.swift */; };
 		08EF7D542462B790008B5F3E /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; platformFilter = ios; };
+		10402BEA247E64480027CEEA /* TestGatewayEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10402BE9247E64480027CEEA /* TestGatewayEndpoint.swift */; };
 		1040C6F22477C503004B9DEA /* KnownCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040C6F12477C503004B9DEA /* KnownCards.swift */; };
 		1040C6F42477CD95004B9DEA /* TestCardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040C6F32477CD95004B9DEA /* TestCardType.swift */; };
 		104861FC247BF41E0053209D /* ClosedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104861FB247BF41E0053209D /* ClosedRange.swift */; };
@@ -236,6 +237,7 @@
 		08EF7D402462B12F008B5F3E /* SecureTradingUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingUI.h; sourceTree = "<group>"; };
 		08EF7D412462B12F008B5F3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08EF7D492462B239008B5F3E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		10402BE9247E64480027CEEA /* TestGatewayEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGatewayEndpoint.swift; sourceTree = "<group>"; };
 		1040C6F12477C503004B9DEA /* KnownCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownCards.swift; sourceTree = "<group>"; };
 		1040C6F32477CD95004B9DEA /* TestCardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardType.swift; sourceTree = "<group>"; };
 		104861FB247BF41E0053209D /* ClosedRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRange.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			children = (
 				084E29CD246562C60040FB9D /* SecureTradingCoreTests.swift */,
 				084E29CF246562C60040FB9D /* Info.plist */,
+				10402BE9247E64480027CEEA /* TestGatewayEndpoint.swift */,
 			);
 			path = SecureTradingCoreTests;
 			sourceTree = "<group>";
@@ -1125,6 +1128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				084E29CE246562C60040FB9D /* SecureTradingCoreTests.swift in Sources */,
+				10402BEA247E64480027CEEA /* TestGatewayEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

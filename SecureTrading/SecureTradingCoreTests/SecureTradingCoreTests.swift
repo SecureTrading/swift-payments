@@ -11,7 +11,7 @@ class SecureTradingCoreTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         // Test Core framework availability
-        let apiClient = DefaultAPIClient()
+//        let apiClient = DefaultAPIClient()
     }
 
     override func tearDownWithError() throws {
