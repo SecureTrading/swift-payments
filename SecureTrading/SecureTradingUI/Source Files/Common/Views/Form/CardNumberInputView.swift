@@ -3,7 +3,9 @@
 //  SecureTradingUI
 //
 
+#if !COCOAPODS
 import SecureTradingCard
+#endif
 import UIKit
 
 @objc public final class CardNumberInputView: SecureFormInputView {
