@@ -84,7 +84,7 @@ public enum CardType: CaseIterable {
         }
     }
     
-    var logo: UIImage? {
+    public var logo: UIImage? {
         switch self {
         case .visa: return image(for: "visa")
         case .mastercard: return image(for: "mastercard")

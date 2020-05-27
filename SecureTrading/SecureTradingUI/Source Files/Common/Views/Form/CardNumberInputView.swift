@@ -23,6 +23,14 @@ import SecureTradingCard
     private var cardNumberFormat: CardNumberFormat {
         return CardNumberFormat(cardTypeContainer: cardTypeContainer, separator: cardNumberSeparator)
     }
+
+    // MARK: Functions
+    func showCardImage() {
+        let cardType = CardValidator.cardType(for: cardNumber.rawValue)
+        let cardTypeImage = cardType.logo
+
+        textFieldImage = cardTypeImage
+    }
 }
 
 extension CardNumberInputView {
@@ -33,6 +41,10 @@ extension CardNumberInputView {
         title = "Card number"
         placeholder = "0000 0000 0000 0000"
         error = "bad card"
+
+        keyboardType = .numberPad
+
+        showCardImage()
     }
 }
 
@@ -49,6 +61,7 @@ extension CardNumberInputView {
         }
 
         cardNumberFormat.addSeparators(range: range, inTextField: textField, replaceWith: string)
+        showCardImage()
 
         return false
     }

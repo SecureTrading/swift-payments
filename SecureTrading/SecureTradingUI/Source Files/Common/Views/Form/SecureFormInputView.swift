@@ -21,7 +21,8 @@ import UIKit
 
     private let textFieldImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
         return imageView
     }()
 
@@ -42,10 +43,10 @@ import UIKit
     private lazy var textFieldStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [textFieldImageView, textField])
         stackView.axis = .horizontal
-        stackView.spacing = 5
+        stackView.spacing = 10
         stackView.alignment = .fill
         stackView.distribution = .fill
-        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
@@ -193,12 +194,20 @@ import UIKit
         }
     }
 
+    // MARK: - images
+
+    @objc public var textFieldImage: UIImage? {
+        didSet {
+            textFieldImageView.image = textFieldImage
+        }
+    }
+
     // MARK: Functions
 
     private func showHideError(show: Bool) {
         errorLabel.isHidden = !show
         textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor
-        textFieldStackViewBackground.backgroundColor = show ? errorColor : textFieldBackgroundColor
+        textFieldStackViewBackground.backgroundColor = show ? errorColor.withAlphaComponent(0.2) : textFieldBackgroundColor
     }
 
     // MARK: - Validation
@@ -255,7 +264,8 @@ extension SecureFormInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupConstraints
     func setupConstraints() {
         textFieldImageView.addConstraints([
-            equal(\.widthAnchor, to: 30)
+            equal(\.widthAnchor, to: 30),
+            equal(\.heightAnchor, to: 33)
         ])
         stackView.addConstraints(equalToSuperview(with: .init(top: 5, left: 5, bottom: -5, right: -5), usingSafeArea: false))
     }
@@ -274,6 +284,7 @@ extension SecureFormInputView: UITextFieldDelegate {
         delegate?.inputViewTextFieldDidEndEditing(self)
     }
 
+    // todo
     @objc func textFieldDidChange(textField: UITextField) {
         validate(silent: true, hideError: true)
         textField.isHidden = isEmpty
