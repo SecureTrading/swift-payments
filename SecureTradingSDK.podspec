@@ -37,6 +37,12 @@ s.subspec "Core" do |s|
     s.vendored_frameworks = 'SecureTrading/Frameworks/CardinalMobile.framework'
     s.header_dir = "SecureTrading3DSecure"
     s.dependency "SecureTradingSDK/Core"
-    
+  end
+
+  s.subspec "Card" do |s|
+    s.source_files   = "SecureTrading/SecureTradingCard/**/*.{h,swift}"
+    s.public_header_files = "SecureTrading/SecureTradingCard/*.{h}"
+    s.header_dir = "SecureTradingCard"
+    s.dependency "SecureTradingSDK/Core"
   end
 end
