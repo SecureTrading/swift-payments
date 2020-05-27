@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SecureTradingCard
 
 @objc public final class CardNumberInputView: SecureFormInputView {
     // MARK: Public Properties
@@ -15,7 +16,7 @@ import UIKit
         return CardNumber(rawValue: textFieldTextWithoutSeparators)
     }
 
-    public var cardTypeContainer: CardTypeContainer = CardTypeContainer()
+    public var cardTypeContainer: CardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases)
 
     // MARK: Private Properties
 

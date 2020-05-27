@@ -10,8 +10,9 @@ public class CardValidator {
     /// Returns card type for given card number
     ///
     /// - Parameter number: card number
+    /// - Parameter cardTypes: search card collection
     /// - Returns: CardType
-    public static func cardType(for number: String) -> CardType {
+    public static func cardType(for number: String, cardTypes: [CardType] = CardType.allCases) -> CardType {
         var cardNumber = number.onlyDigits
         // Only Visa starts with 4
         guard cardNumber.count > 1 || cardNumber.hasPrefix("4") else { return CardType.unknown }
@@ -27,7 +28,7 @@ public class CardValidator {
         guard let inputIin = Int(cardNumber) else { return CardType.unknown }
         
         // Iterates throught all card types and their IIN ranges
-        for issuer in CardType.allCases {
+        for issuer in cardTypes {
             for range in issuer.iin {
                 if range.contains(inputIin) {
                     return issuer

@@ -37,7 +37,7 @@ public final class CardNumberFormat {
     /// - Parameter cardNumber: The unformatted string of card number
     /// - Returns: The formatted string of card number
     public func addSeparators(cardNumber: String) -> String {
-        let cardType = CardValidator.cardType(for: CardNumber(rawValue: cardNumber).rawValue)
+        let cardType = CardValidator.cardType(for: CardNumber(rawValue: cardNumber).rawValue, cardTypes: cardTypeContainer.cardTypes)
         let groups = cardType.numberGrouping
         var pattern: String?
         for groupCount in groups {
