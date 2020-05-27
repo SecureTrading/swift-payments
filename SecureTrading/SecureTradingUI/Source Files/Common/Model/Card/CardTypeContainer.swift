@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SecureTradingCard
 
 /// This class is used to maintain the range of accepted card types. You can provide different sets of card types for CardNumberInputView and adjust the range of accepted card types individually.
 public class CardTypeContainer {
@@ -30,7 +31,7 @@ public class CardTypeContainer {
     /// Adds the provided card type to the card type array.
     /// - Parameter cardType: the card type
     public func add(cardType: CardType) {
-        if cardTypes.contains(where: { $0.isEqual(to: cardType) }) {
+        if cardTypes.contains(where: { $0 == cardType }) {
             return
         }
         cardTypes.append(cardType)
@@ -39,7 +40,7 @@ public class CardTypeContainer {
     /// Removes the provided card type to the card type array.
     /// - Parameter cardType: the card type
     public func remove(cardType: CardType) {
-        cardTypes = cardTypes.filter { !$0.isEqual(to: cardType) }
+        cardTypes = cardTypes.filter { $0 != cardType }
     }
 
     /// Resets and sets a new set of card types
@@ -49,19 +50,4 @@ public class CardTypeContainer {
         self.cardTypes.append(contentsOf: cardTypes)
     }
 
-    /// It retrieves the card type for a given card number by analysing the issuer's identification numbers.
-    /// - Parameter cardNumber: the card number
-    /// - Returns: instance of card type that matches the card number
-    public func cardType(for cardNumber: CardNumber) -> CardType {
-        for i in (0...min(cardNumber.length, 6)).reversed() {
-            guard let substring = cardNumber.rawValue[0, i], let intSubstring = Int(substring) else { continue }
-
-            if let firstMatchingCardType = cardTypes.filter({
-                $0.identificationDigits.contains(intSubstring)
-                }).first {
-                return firstMatchingCardType
-            }
-        }
-        return UnknownCard()
-    }
 }

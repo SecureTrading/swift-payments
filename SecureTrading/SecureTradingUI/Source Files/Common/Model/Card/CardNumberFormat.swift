@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SecureTradingCard
 
 public final class CardNumberFormat {
     // MARK: Properties
@@ -36,7 +37,7 @@ public final class CardNumberFormat {
     /// - Parameter cardNumber: The unformatted string of card number
     /// - Returns: The formatted string of card number
     public func addSeparators(cardNumber: String) -> String {
-        let cardType = self.cardTypeContainer.cardType(for: CardNumber(rawValue: cardNumber))
+        let cardType = CardValidator.cardType(for: CardNumber(rawValue: cardNumber).rawValue)
         let groups = cardType.numberGrouping
         var pattern: String?
         for groupCount in groups {

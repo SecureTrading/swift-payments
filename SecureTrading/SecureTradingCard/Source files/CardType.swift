@@ -70,7 +70,12 @@ public enum CardType: CaseIterable {
         default:      return "#### #### #### ####"
         }
     }
-    
+
+    public var numberGrouping: [Int] {
+        let stringArray = inputMask.components(separatedBy: String.space)
+        return stringArray.map { $0.count }
+    }
+
     var securityCodeLength: Int {
         switch self {
         case .amex: return 4
