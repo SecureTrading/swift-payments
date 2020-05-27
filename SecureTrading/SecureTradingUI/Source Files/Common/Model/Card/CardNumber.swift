@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct CardNumber: RawRepresentable {
+@objc public class CardNumber: NSObject, RawRepresentable {
     public typealias RawValue = String
 
     public let rawValue: String
@@ -14,14 +14,14 @@ public struct CardNumber: RawRepresentable {
         return rawValue.count
     }
 
-    public init(rawValue: String) {
+    @objc required public init(rawValue: String) {
         self.rawValue = rawValue
     }
 }
 
-extension CardNumber: CustomStringConvertible {
+extension CardNumber {
 
-    public var description: String {
+    public override var description: String {
         return rawValue
     }
 

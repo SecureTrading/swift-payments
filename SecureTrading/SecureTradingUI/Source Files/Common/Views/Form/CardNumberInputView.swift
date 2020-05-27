@@ -7,26 +7,49 @@ import SecureTradingCard
 import UIKit
 
 @objc public final class CardNumberInputView: SecureFormInputView {
+
+    // MARK: Private Properties
+
+    private var cardNumberFormat: CardNumberFormat {
+        return CardNumberFormat(cardTypeContainer: cardTypeContainer, separator: cardNumberSeparator)
+    }
+
     // MARK: Public Properties
 
-    @objc public var cardNumberSeparator: String = .space
+    public var cardTypeContainer: CardTypeContainer
 
-    public var cardTypeContainer: CardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases)
+    @objc public var cardNumberSeparator: String
+
+    @objc public var cardNumber: CardNumber {
+        let textFieldTextWithoutSeparators = cardNumberFormat.removeSeparator(cardNumber: text ?? .empty)
+        return CardNumber(rawValue: textFieldTextWithoutSeparators)
+    }
 
     @objc public override var inputIsValid: Bool {
         let cardType = CardValidator.cardType(for: cardNumber.rawValue, cardTypes: cardTypeContainer.cardTypes)
         return CardValidator.cardNumberHasValidLength(cardNumber: cardNumber.rawValue, card: cardType) && CardValidator.isCardNumberLuhnCompliant(cardNumber: cardNumber.rawValue)
     }
 
-    // MARK: Private Properties
+    // MARK: Initialization
 
-    private var cardNumber: CardNumber {
-        let textFieldTextWithoutSeparators = cardNumberFormat.removeSeparator(cardNumber: text ?? .empty)
-        return CardNumber(rawValue: textFieldTextWithoutSeparators)
+    /// Initializes an instance of the receiver.
+    /// - Parameters:
+    ///   - cardTypeContainer: A card type container that is used to access accepted card types.
+    ///   - cardNumberSeparator: A separator that is used to separate different groups of the card number.
+    public init(cardTypeContainer: CardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases), cardNumberSeparator: String = .space) {
+        self.cardTypeContainer = cardTypeContainer
+        self.cardNumberSeparator = cardNumberSeparator
+        super.init()
     }
 
-    private var cardNumberFormat: CardNumberFormat {
-        return CardNumberFormat(cardTypeContainer: cardTypeContainer, separator: cardNumberSeparator)
+    @objc public init(cardNumberSeparator: String = .space) {
+        self.cardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases)
+        self.cardNumberSeparator = cardNumberSeparator
+        super.init()
+    }
+
+    required init?(coder argument: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: Functions
