@@ -13,3 +13,7 @@ TestMainView.showDetailsButton = "show details";
 
 TestPublic.first = "First";
 TestPublic.second = "Second";
+
+CardNumberInputView.title = "Card number";
+CardNumberInputView.placeholder = "0000 0000 0000 0000";
+CardNumberInputView.error = "bad card number";

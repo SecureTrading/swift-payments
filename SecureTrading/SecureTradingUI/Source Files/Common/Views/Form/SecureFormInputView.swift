@@ -33,7 +33,6 @@ import UIKit
 
     private let textFieldStackViewBackground: UIView = {
         let view = UIView()
-        view.backgroundColor = .yellow
         view.layer.cornerRadius = 5
         view.layer.borderWidth = 2
         return view
@@ -75,6 +74,7 @@ import UIKit
         return text.isEmpty
     }
 
+    /// property to be overwritten by inheriting classes
     @objc public private (set) var inputIsValid: Bool = false
 
     @objc public var isSecuredTextEntry: Bool = false {

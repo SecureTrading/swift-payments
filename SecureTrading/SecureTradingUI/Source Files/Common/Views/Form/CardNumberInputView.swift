@@ -44,9 +44,9 @@ extension CardNumberInputView {
     override func setupProperties() {
         super.setupProperties()
 
-        title = "Card number"
-        placeholder = "0000 0000 0000 0000"
-        error = "bad card number"
+        title = Localizable.CardNumberInputView.title.text
+        placeholder = Localizable.CardNumberInputView.placeholder.text
+        error = Localizable.CardNumberInputView.error.text
 
         keyboardType = .numberPad
 
@@ -87,5 +87,13 @@ extension CardNumberInputView {
         }
 
         return false
+    }
+}
+
+private extension Localizable {
+    enum CardNumberInputView: String, Localized {
+        case title
+        case placeholder
+        case error
     }
 }
