@@ -38,18 +38,29 @@ import Foundation
         return CardType.unknown
     }
 
+    // objc workaround
+    /// Returns card type for given card number
+    ///
+    /// - Parameter number: card number
+    /// - Parameter cardTypes: search card collection
+    /// - Returns: CardType
+    @objc public static func cardType(for number: String, cardTypes: [Int] = CardType.allCases.map { $0.rawValue }) -> CardType {
+        let cardTypeEnums = cardTypes.map { CardType(rawValue: $0)! }
+        return self.cardType(for: number, cardTypes: cardTypeEnums)
+    }
+
     /// Checks whether card number is valid by evaluating it with Luhn algorithm
     /// - Parameter cardNumber: non-digit characters are skipped
     /// - Returns: true if card number is valid
-    public static func isCardNumberLuhnCompliant(cardNumber: String) -> Bool {
+    @objc public static func isCardNumberLuhnCompliant(cardNumber: String) -> Bool {
         let parsedCardNumber = cardNumber.onlyDigits
 
         // The Luhn Algorythm
-        return parsedCardNumber.reversed().enumerated().map({
+        return parsedCardNumber.reversed().enumerated().map {
             let digit = Int(String($0.element))!
             let isEven = $0.offset % 2 == 0
             return isEven ? digit : digit == 9 ? 9 : digit * 2 % 9
-        }).reduce(0, +) % 10 == 0
+        }.reduce(0, +) % 10 == 0
     }
 
     /// Check if provided card numbe has valid length
@@ -57,7 +68,7 @@ import Foundation
     ///   - number: card number, function also parses to digits-only
     ///   - type: card type to check against for
     /// - Returns: is card length valid for given card type
-    public static func cardNumberHasValidLength(cardNumber number: String, card type: CardType) -> Bool {
+    @objc public static func cardNumberHasValidLength(cardNumber number: String, card type: CardType) -> Bool {
         let cardDigits = number.onlyDigits
         let possibleLengths = type.validNumberLengths
         let cardNumberLength = cardDigits.count
@@ -69,7 +80,7 @@ import Foundation
     ///   - number: card number, function also parses to digits-only
     ///   - type: card type to check against for
     /// - Returns: is the card number too long
-    public static func isNumberTooLong(cardNumber number: String, card type: CardType) -> Bool {
+    @objc public static func isNumberTooLong(cardNumber number: String, card type: CardType) -> Bool {
         let cardDigits = number.onlyDigits
         let maxLength = type.validNumberLengths.max()
         let cardNumberLength = cardDigits.count
@@ -81,7 +92,7 @@ import Foundation
     ///   - code: expiration date string
     ///   - separator: optional separator if one used is different than "/"
     /// - Returns: Expiration date is valid
-    public static func isExpirationDateValid(date: String, separator: String? = nil) -> Bool {
+    @objc public static func isExpirationDateValid(date: String, separator: String? = nil) -> Bool {
         let dateSeparator = separator ?? "/"
         let components = date.components(separatedBy: dateSeparator)
         guard components.count == 2 else { return false }
@@ -103,7 +114,7 @@ import Foundation
     ///   - cvc: string containig the code
     ///   - cardType: card type against which the code will be checked
     /// - Returns: is the code valid
-    public static func isCVCValid(cvc: String, cardType: CardType) -> Bool {
+    @objc public static func isCVCValid(cvc: String, cardType: CardType) -> Bool {
         let parsedCvc = cvc.onlyDigits
 
         // Handles case where 3 digits are required but input is like so: 1a2b3b
@@ -114,7 +125,7 @@ import Foundation
     /// Checks if security code is required for given card type
     /// - Parameter cardType: card type against which the requirements will be checked
     /// - Returns: is CVC required
-    public static func isCVCRequired(for cardType: CardType) -> Bool {
+    @objc public static func isCVCRequired(for cardType: CardType) -> Bool {
         return cardType.securityCodeLength > 0
     }
 }

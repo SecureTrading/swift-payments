@@ -16,7 +16,7 @@ import UIKit
 
     // MARK: Public Properties
 
-    public var cardTypeContainer: CardTypeContainer
+    @objc public var cardTypeContainer: CardTypeContainer
 
     @objc public var cardNumberSeparator: String
 
@@ -49,7 +49,7 @@ import UIKit
     // MARK: Functions
 
     private func showCardImage() {
-        let cardType = CardValidator.cardType(for: cardNumber.rawValue)
+        let cardType = CardValidator.cardType(for: cardNumber.rawValue, cardTypes: cardTypeContainer.cardTypes)
         let cardTypeImage = cardType.logo
 
         textFieldImage = cardTypeImage
