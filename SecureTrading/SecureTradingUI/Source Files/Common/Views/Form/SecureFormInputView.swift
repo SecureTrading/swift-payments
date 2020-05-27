@@ -98,6 +98,12 @@ import UIKit
         }
     }
 
+    @objc public var keyboardAppearance: UIKeyboardAppearance = .default {
+        didSet {
+            textField.keyboardAppearance = keyboardAppearance
+        }
+    }
+
     // MARK: - texts
 
     @objc public var title: String = "default" {
