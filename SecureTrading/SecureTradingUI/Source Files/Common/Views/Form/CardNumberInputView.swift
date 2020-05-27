@@ -3,29 +3,35 @@
 //  SecureTradingUI
 //
 
-import UIKit
 import SecureTradingCard
+import UIKit
 
 @objc public final class CardNumberInputView: SecureFormInputView {
     // MARK: Public Properties
 
-    public var cardNumberSeparator: String = .space
-
-    public var cardNumber: CardNumber {
-        let textFieldTextWithoutSeparators = cardNumberFormat.removeSeparator(cardNumber: text ?? .empty)
-        return CardNumber(rawValue: textFieldTextWithoutSeparators)
-    }
+    @objc public var cardNumberSeparator: String = .space
 
     public var cardTypeContainer: CardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases)
 
+    @objc public override var inputIsValid: Bool {
+        let cardType = CardValidator.cardType(for: cardNumber.rawValue, cardTypes: cardTypeContainer.cardTypes)
+        return CardValidator.cardNumberHasValidLength(cardNumber: cardNumber.rawValue, card: cardType) && CardValidator.isCardNumberLuhnCompliant(cardNumber: cardNumber.rawValue)
+    }
+
     // MARK: Private Properties
+
+    private var cardNumber: CardNumber {
+        let textFieldTextWithoutSeparators = cardNumberFormat.removeSeparator(cardNumber: text ?? .empty)
+        return CardNumber(rawValue: textFieldTextWithoutSeparators)
+    }
 
     private var cardNumberFormat: CardNumberFormat {
         return CardNumberFormat(cardTypeContainer: cardTypeContainer, separator: cardNumberSeparator)
     }
 
     // MARK: Functions
-    func showCardImage() {
+
+    private func showCardImage() {
         let cardType = CardValidator.cardType(for: cardNumber.rawValue)
         let cardTypeImage = cardType.logo
 
@@ -40,7 +46,7 @@ extension CardNumberInputView {
 
         title = "Card number"
         placeholder = "0000 0000 0000 0000"
-        error = "bad card"
+        error = "bad card number"
 
         keyboardType = .numberPad
 
@@ -60,8 +66,25 @@ extension CardNumberInputView {
             return false
         }
 
-        cardNumberFormat.addSeparators(range: range, inTextField: textField, replaceWith: string)
-        showCardImage()
+        let isOldValid = inputIsValid
+
+        let parsedCardNumber = CardNumber(rawValue: newTextWithoutSeparators).rawValue
+        let parsedCardType = CardValidator.cardType(for: parsedCardNumber, cardTypes: cardTypeContainer.cardTypes)
+        let isNewValid = CardValidator.cardNumberHasValidLength(cardNumber: parsedCardNumber, card: parsedCardType) && CardValidator.isCardNumberLuhnCompliant(cardNumber: parsedCardNumber)
+
+        let isNewNumberTooLong = CardValidator.isNumberTooLong(cardNumber: parsedCardNumber, card: CardValidator.cardType(for: parsedCardNumber, cardTypes: cardTypeContainer.cardTypes))
+
+        if !isNewNumberTooLong {
+            cardNumberFormat.addSeparators(range: range, inTextField: textField, replaceWith: string)
+            showCardImage()
+        } else if isOldValid {
+            showHideError(show: false)
+            return false
+        }
+
+        if isNewValid {
+            showHideError(show: false)
+        }
 
         return false
     }

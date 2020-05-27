@@ -7,7 +7,6 @@ import UIKit
 
 @objc public protocol SecureFormInputViewDelegate: class {
     func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView)
-    func inputViewTextFieldDidChange(_ view: SecureFormInputView)
 }
 
 @objc public class SecureFormInputView: WhiteBackgroundBaseView {
@@ -71,20 +70,12 @@ import UIKit
 
     @objc public weak var delegate: SecureFormInputViewDelegate?
 
-    @objc public var regex: String?
-
     @objc public var isEmpty: Bool {
         guard let text = textField.text else { return true }
         return text.isEmpty
     }
 
-    @objc public var inputIsValid: Bool {
-        if regex != nil {
-            return validateTextRegEx()
-        } else {
-            return !isEmpty
-        }
-    }
+    @objc public private (set) var inputIsValid: Bool = false
 
     @objc public var isSecuredTextEntry: Bool = false {
         didSet {
@@ -210,18 +201,13 @@ import UIKit
 
     // MARK: Functions
 
-    private func showHideError(show: Bool) {
+    public func showHideError(show: Bool) {
         errorLabel.isHidden = !show
         textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor
         textFieldStackViewBackground.backgroundColor = show ? errorColor.withAlphaComponent(0.2) : textFieldBackgroundColor
     }
 
     // MARK: - Validation
-
-    private func validateTextRegEx() -> Bool {
-        guard let text = text, let regex = regex else { return false }
-        return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: text)
-    }
 
     @discardableResult
     @objc func validate(silent: Bool, hideError: Bool = false) -> Bool {
@@ -290,10 +276,4 @@ extension SecureFormInputView: UITextFieldDelegate {
         delegate?.inputViewTextFieldDidEndEditing(self)
     }
 
-    // todo
-    @objc func textFieldDidChange(textField: UITextField) {
-        validate(silent: true, hideError: true)
-        textField.isHidden = isEmpty
-        delegate?.inputViewTextFieldDidChange(self)
-    }
 }
