@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-public enum CardType: CaseIterable {
+@objc public enum CardType: Int, CaseIterable {
     case visa
     case mastercard
     case amex

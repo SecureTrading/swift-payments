@@ -6,7 +6,7 @@
 import Foundation
 
 /// Methods for validating card data
-public class CardValidator {
+@objc public class CardValidator: NSObject {
     /// Returns card type for given card number
     ///
     /// - Parameter number: card number

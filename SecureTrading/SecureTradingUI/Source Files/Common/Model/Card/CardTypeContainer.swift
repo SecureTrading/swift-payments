@@ -3,11 +3,11 @@
 //  SecureTradingUI
 //
 
-import UIKit
 import SecureTradingCard
+import UIKit
 
 /// This class is used to maintain the range of accepted card types. You can provide different sets of card types for CardNumberInputView and adjust the range of accepted card types individually.
-public class CardTypeContainer {
+@objc public class CardTypeContainer: NSObject {
     // MARK: Properties
 
     private(set) var cardTypes: [CardType]
@@ -15,7 +15,7 @@ public class CardTypeContainer {
     // MARK: Initialization
 
     /// Initializes an instance of the receiver.
-    public init() {
+    public override init() {
         cardTypes = []
     }
 
@@ -24,6 +24,11 @@ public class CardTypeContainer {
     public convenience init<T: Sequence>(cardTypes: T) where T.Iterator.Element == CardType {
         self.init()
         setCardTypes(cardTypes)
+    }
+
+    // objc workaround
+    @objc public convenience init(cardTypes: [Int]) {
+        self.init(cardTypes: cardTypes.map { CardType(rawValue: $0)! })
     }
 
     // MARK: Functions
@@ -49,5 +54,4 @@ public class CardTypeContainer {
         self.cardTypes = []
         self.cardTypes.append(contentsOf: cardTypes)
     }
-
 }

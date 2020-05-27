@@ -36,14 +36,8 @@ import UIKit
     /// - Parameters:
     ///   - cardTypeContainer: A card type container that is used to access accepted card types.
     ///   - cardNumberSeparator: A separator that is used to separate different groups of the card number.
-    public init(cardTypeContainer: CardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases), cardNumberSeparator: String = .space) {
+    @objc public init(cardTypeContainer: CardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases), cardNumberSeparator: String = .space) {
         self.cardTypeContainer = cardTypeContainer
-        self.cardNumberSeparator = cardNumberSeparator
-        super.init()
-    }
-
-    @objc public init(cardNumberSeparator: String = .space) {
-        self.cardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases)
         self.cardNumberSeparator = cardNumberSeparator
         super.init()
     }
