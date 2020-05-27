@@ -13,7 +13,6 @@ final class PopBackView: UIView {
         label.text = Localizable.PopBack.back.text
         label.textColor = .black
         label.font = Fonts.responsive(.regular, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        label.isHidden = true
         return label
     }()
 
