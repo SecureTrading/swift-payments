@@ -42,7 +42,7 @@ extension CvcInputView {
         super.setupProperties()
 
         title = Localizable.CvcInputView.title.text
-        placeholder = Localizable.CvcInputView.placeholder.text
+        placeholder = Localizable.CvcInputView.placeholder3.text
         error = Localizable.CvcInputView.error.text
 
         keyboardType = .numberPad
@@ -61,7 +61,8 @@ extension CvcInputView {
 private extension Localizable {
     enum CvcInputView: String, Localized {
         case title
-        case placeholder
+        case placeholder3
+        case placeholder4
         case error
     }
 }
