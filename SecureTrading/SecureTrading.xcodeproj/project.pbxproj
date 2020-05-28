@@ -41,6 +41,7 @@
 		0853ACA5247FA6B300DF37EE /* KnownMaskedCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */; };
 		0853ACA7247FB00F00DF37EE /* CvcInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA6247FB00F00DF37EE /* CvcInputView.swift */; };
 		0853ACAA247FC34C00DF37EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0853ACA9247FC34C00DF37EE /* Images.xcassets */; };
+		0853ACAC247FF15700DF37EE /* ExpiryDateInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACAB247FF15700DF37EE /* ExpiryDateInputView.swift */; };
 		08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */; };
 		08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3C2469591400C8F90A /* ViewModelFactory.swift */; };
 		08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */; };
@@ -217,6 +218,7 @@
 		0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownMaskedCards.swift; sourceTree = "<group>"; };
 		0853ACA6247FB00F00DF37EE /* CvcInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcInputView.swift; sourceTree = "<group>"; };
 		0853ACA9247FC34C00DF37EE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0853ACAB247FF15700DF37EE /* ExpiryDateInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateInputView.swift; sourceTree = "<group>"; };
 		08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		08639C3C2469591400C8F90A /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBackgroundBaseView.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				08886ECF247B9D3300BC1637 /* SecureFormInputView.swift */,
 				08886ED1247C0D9900BC1637 /* CardNumberInputView.swift */,
 				0853ACA6247FB00F00DF37EE /* CvcInputView.swift */,
+				0853ACAB247FF15700DF37EE /* ExpiryDateInputView.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -1254,6 +1257,7 @@
 				0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */,
 				08886EE3247C234800BC1637 /* StringUI.swift in Sources */,
 				084E2A03246585330040FB9D /* UICollectionView.swift in Sources */,
+				0853ACAC247FF15700DF37EE /* ExpiryDateInputView.swift in Sources */,
 				084E29FD246583B50040FB9D /* BaseViewCell.swift in Sources */,
 				0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */,
 				084E2A1624659AC50040FB9D /* BaseNavigationFlowController.swift in Sources */,
