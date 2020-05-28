@@ -40,6 +40,7 @@
 		0853ACA2247F916C00DF37EE /* TestCardMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA1247F916C00DF37EE /* TestCardMask.swift */; };
 		0853ACA5247FA6B300DF37EE /* KnownMaskedCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */; };
 		0853ACA7247FB00F00DF37EE /* CvcInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA6247FB00F00DF37EE /* CvcInputView.swift */; };
+		0853ACAA247FC34C00DF37EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0853ACA9247FC34C00DF37EE /* Images.xcassets */; };
 		08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */; };
 		08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3C2469591400C8F90A /* ViewModelFactory.swift */; };
 		08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */; };
@@ -215,6 +216,7 @@
 		0853ACA1247F916C00DF37EE /* TestCardMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardMask.swift; sourceTree = "<group>"; };
 		0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownMaskedCards.swift; sourceTree = "<group>"; };
 		0853ACA6247FB00F00DF37EE /* CvcInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcInputView.swift; sourceTree = "<group>"; };
+		0853ACA9247FC34C00DF37EE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		08639C3C2469591400C8F90A /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBackgroundBaseView.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 		084E2A042465860E0040FB9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0853ACA9247FC34C00DF37EE /* Images.xcassets */,
 				084E2A07246593900040FB9D /* Strings */,
 			);
 			path = Resources;
@@ -1104,6 +1107,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				084E2A0A246593C50040FB9D /* Localizable.strings in Resources */,
+				0853ACAA247FC34C00DF37EE /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

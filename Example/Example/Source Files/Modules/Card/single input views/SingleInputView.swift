@@ -10,8 +10,12 @@ final class SingleInputView: WhiteBackgroundBaseView {
         CardNumberInputView()
     }()
 
+    private let cvcInput: CvcInputView = {
+        CvcInputView()
+    }()
+
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [cardNumberInput])
+        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, cvcInput])
         stackView.axis = .vertical
         stackView.spacing = 30
         stackView.alignment = .fill

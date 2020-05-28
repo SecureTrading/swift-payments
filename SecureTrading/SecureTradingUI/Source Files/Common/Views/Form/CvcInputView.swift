@@ -46,6 +46,8 @@ extension CvcInputView {
         error = Localizable.CvcInputView.error.text
 
         keyboardType = .numberPad
+
+        textFieldImage = UIImage(named: "cvc", in: Bundle(for: CvcInputView.self), compatibleWith: nil)
     }
 }
 
