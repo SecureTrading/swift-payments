@@ -11,14 +11,26 @@ import SecureTradingCard
 import UIKit
 
 @objc public final class CvcInputView: SecureFormInputView {
-
     // MARK: Private Properties
 
+    private var expectedInputLength: Int {
+        return cardType.securityCodeLength
+    }
 
     // MARK: Public Properties
 
+    @objc var cardType = CardType.unknown
+
+    @objc var cvc: String {
+        return text ?? .empty
+    }
+
     @objc public override var inputIsValid: Bool {
-        return true // todo
+        if !CardValidator.isCVCRequired(for: cardType) {
+            return true
+        }
+
+        return CardValidator.isCVCValid(cvc: cvc, cardType: cardType)
     }
 
     // MARK: Initialization
@@ -33,7 +45,6 @@ import UIKit
     }
 
     // MARK: Functions
-
 }
 
 extension CvcInputView {
@@ -42,7 +53,7 @@ extension CvcInputView {
         super.setupProperties()
 
         title = Localizable.CvcInputView.title.text
-        placeholder = Localizable.CvcInputView.placeholder3.text
+        placeholder = expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text
         error = Localizable.CvcInputView.error.text
 
         keyboardType = .numberPad
@@ -59,8 +70,21 @@ extension CvcInputView {
 
 extension CvcInputView {
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newText = NSString(string: textField.text ?? .empty).replacingCharacters(in: range, with: string)
 
-        return true
+        let hasOverflow = newText.count > expectedInputLength
+        let index = hasOverflow ?
+            newText.index(newText.startIndex, offsetBy: expectedInputLength) :
+            newText.index(newText.startIndex, offsetBy: newText.count)
+        let currentTextFieldText = String(newText[..<index])
+
+        textField.text = currentTextFieldText
+
+        if inputIsValid {
+            showHideError(show: false)
+        }
+
+        return false
     }
 }
 

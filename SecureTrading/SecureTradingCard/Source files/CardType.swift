@@ -40,6 +40,14 @@ import UIKit
         }
     }
 
+    public var securityCodeLength: Int {
+        switch self {
+        case .amex: return 4
+        case .piba: return 0
+        default: return 3
+        }
+    }
+
     // MARK: Internal properties
 
     var iin: [ClosedRange<Int>] {
@@ -92,14 +100,6 @@ import UIKit
         case .diners: return "#### ###### ####"
         // 4-4-4-4
         default: return "#### #### #### ####"
-        }
-    }
-
-    var securityCodeLength: Int {
-        switch self {
-        case .amex: return 4
-        case .piba: return 0
-        default: return 3
         }
     }
 
