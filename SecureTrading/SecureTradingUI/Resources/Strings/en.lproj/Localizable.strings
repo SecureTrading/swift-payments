@@ -16,4 +16,4 @@ TestPublic.second = "Second";
 
 CardNumberInputView.title = "Card number";
 CardNumberInputView.placeholder = "0000 0000 0000 0000";
-CardNumberInputView.error = "bad card number";
+CardNumberInputView.error = "invalid card number";
