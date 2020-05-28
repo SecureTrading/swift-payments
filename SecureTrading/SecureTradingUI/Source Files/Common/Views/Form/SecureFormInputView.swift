@@ -75,7 +75,7 @@ import UIKit
     }
 
     /// property to be overwritten by inheriting classes
-    @objc public private (set) var inputIsValid: Bool = false
+    @objc public private(set) var inputIsValid: Bool = false
 
     @objc public var isSecuredTextEntry: Bool = false {
         didSet {
@@ -92,6 +92,15 @@ import UIKit
     @objc public var keyboardAppearance: UIKeyboardAppearance = .default {
         didSet {
             textField.keyboardAppearance = keyboardAppearance
+        }
+    }
+
+    @objc public var textFieldTextAligment: NSTextAlignment = .left {
+        didSet {
+            textField.textAlignment = textFieldTextAligment
+            if textFieldTextAligment == .center {
+                textFieldStackView.layoutMargins.right = 20
+            }
         }
     }
 
@@ -275,5 +284,4 @@ extension SecureFormInputView: UITextFieldDelegate {
         validate(silent: false)
         delegate?.inputViewTextFieldDidEndEditing(self)
     }
-
 }

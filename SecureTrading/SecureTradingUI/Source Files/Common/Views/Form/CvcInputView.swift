@@ -47,6 +47,10 @@ extension CvcInputView {
 
         keyboardType = .numberPad
 
+        isSecuredTextEntry = true
+
+        textFieldTextAligment = .center
+
         textFieldImage = UIImage(named: "cvc", in: Bundle(for: CvcInputView.self), compatibleWith: nil)
     }
 }
@@ -56,7 +60,7 @@ extension CvcInputView {
 extension CvcInputView {
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
-        return false
+        return true
     }
 }
 
