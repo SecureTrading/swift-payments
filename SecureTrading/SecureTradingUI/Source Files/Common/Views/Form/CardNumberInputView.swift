@@ -8,8 +8,17 @@ import SecureTradingCard
 #endif
 import UIKit
 
-@objc public final class CardNumberInputView: SecureFormInputView {
+@objc public protocol CardNumberInputViewDelegate {
+    /// Called when the user enters a valid card number.
+    /// - Parameter cardNumberInputView: The `CardNumberInputView` that was used to enter the card number.
+    func cardNumberInputViewDidComplete(_ cardNumberInputView: CardNumberInputView)
 
+    ///  Called when the user has changed the text in `CardNumberInputView`.
+    /// - Parameter cardNumberInputView: `CardNumberInputView`, whose text has been changed.
+    func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView)
+}
+
+@objc public final class CardNumberInputView: SecureFormInputView {
     // MARK: Private Properties
 
     private var cardNumberFormat: CardNumberFormat {
@@ -18,6 +27,8 @@ import UIKit
 
     // MARK: Public Properties
 
+    @objc public weak var cardNumberInputViewDelegate: CardNumberInputViewDelegate?
+
     @objc public var cardTypeContainer: CardTypeContainer
 
     @objc public var cardNumberSeparator: String
@@ -25,6 +36,14 @@ import UIKit
     @objc public var cardNumber: CardNumber {
         let textFieldTextWithoutSeparators = cardNumberFormat.removeSeparator(cardNumber: text ?? .empty)
         return CardNumber(rawValue: textFieldTextWithoutSeparators)
+    }
+
+    @objc public var cardType: CardType {
+        return CardValidator.cardType(for: cardNumber.rawValue, cardTypes: cardTypeContainer.cardTypes)
+    }
+
+    @objc public var isRequiredCvc: Bool {
+        return CardValidator.isCVCRequired(for: cardType)
     }
 
     @objc public override var inputIsValid: Bool {
@@ -96,13 +115,16 @@ extension CardNumberInputView {
         if !isNewNumberTooLong {
             cardNumberFormat.addSeparators(range: range, inTextField: textField, replaceWith: string)
             showCardImage()
+            cardNumberInputViewDelegate?.cardNumberInputViewDidChangeText(self)
         } else if isOldValid {
             showHideError(show: false)
+            cardNumberInputViewDelegate?.cardNumberInputViewDidComplete(self)
             return false
         }
 
         if isNewValid {
             showHideError(show: false)
+            cardNumberInputViewDelegate?.cardNumberInputViewDidComplete(self)
         }
 
         return false

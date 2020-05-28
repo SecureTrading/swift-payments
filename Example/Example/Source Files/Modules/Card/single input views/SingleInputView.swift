@@ -25,6 +25,11 @@ final class SingleInputView: WhiteBackgroundBaseView {
 }
 
 extension SingleInputView: ViewSetupable {
+    /// - SeeAlso: ViewSetupable.setupProperties
+    @objc func setupProperties() {
+        cardNumberInput.cardNumberInputViewDelegate = self
+    }
+
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
     func setupViewHierarchy() {
         addSubviews([stackView])
@@ -36,5 +41,17 @@ extension SingleInputView: ViewSetupable {
             equal(self, \.centerYAnchor),
             equal(self, \.centerXAnchor)
         ])
+    }
+}
+
+extension SingleInputView: CardNumberInputViewDelegate {
+    func cardNumberInputViewDidComplete(_ cardNumberInputView: CardNumberInputView) {
+        cvcInput.cardType = cardNumberInputView.cardType
+        cvcInput.isHidden = !cardNumberInputView.isRequiredCvc
+    }
+
+    func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView) {
+        cvcInput.cardType = cardNumberInputView.cardType
+        cvcInput.isHidden = !cardNumberInputView.isRequiredCvc
     }
 }

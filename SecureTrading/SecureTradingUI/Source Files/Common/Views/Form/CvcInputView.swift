@@ -19,9 +19,13 @@ import UIKit
 
     // MARK: Public Properties
 
-    @objc var cardType = CardType.unknown
+    @objc public var cardType = CardType.unknown {
+        didSet {
+            placeholder = expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text
+        }
+    }
 
-    @objc var cvc: String {
+    @objc public var cvc: String {
         return text ?? .empty
     }
 
@@ -44,7 +48,6 @@ import UIKit
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: Functions
 }
 
 extension CvcInputView {
