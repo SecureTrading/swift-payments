@@ -11,7 +11,6 @@
 		0845BF20247E48E0008AD40F /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1092CF3F2476CA1F0002B2E8 /* SecureTradingCard.framework */; platformFilter = ios; };
 		084E29CE246562C60040FB9D /* SecureTradingCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29CD246562C60040FB9D /* SecureTradingCoreTests.swift */; };
 		084E29D0246562C60040FB9D /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; platformFilter = ios; };
-		084E29DE246562DA0040FB9D /* SecureTradingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29DD246562DA0040FB9D /* SecureTradingUITests.swift */; };
 		084E29E0246562DA0040FB9D /* SecureTradingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7D3E2462B12F008B5F3E /* SecureTradingUI.framework */; platformFilter = ios; };
 		084E29E924656A5E0040FB9D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29E824656A5D0040FB9D /* UIView.swift */; };
 		084E29EC24656B4E0040FB9D /* CallbackWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29EB24656B4E0040FB9D /* CallbackWrapper.swift */; };
@@ -186,7 +185,6 @@
 		084E29CD246562C60040FB9D /* SecureTradingCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTradingCoreTests.swift; sourceTree = "<group>"; };
 		084E29CF246562C60040FB9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		084E29DB246562DA0040FB9D /* SecureTradingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureTradingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		084E29DD246562DA0040FB9D /* SecureTradingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTradingUITests.swift; sourceTree = "<group>"; };
 		084E29DF246562DA0040FB9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		084E29E824656A5D0040FB9D /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		084E29EB24656B4E0040FB9D /* CallbackWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackWrapper.swift; sourceTree = "<group>"; };
@@ -378,7 +376,6 @@
 		084E29DC246562DA0040FB9D /* SecureTradingUITests */ = {
 			isa = PBXGroup;
 			children = (
-				084E29DD246562DA0040FB9D /* SecureTradingUITests.swift */,
 				084E29DF246562DA0040FB9D /* Info.plist */,
 				0853ACA1247F916C00DF37EE /* TestCardMask.swift */,
 				0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */,
@@ -1191,7 +1188,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0853ACA5247FA6B300DF37EE /* KnownMaskedCards.swift in Sources */,
-				084E29DE246562DA0040FB9D /* SecureTradingUITests.swift in Sources */,
 				0853ACA2247F916C00DF37EE /* TestCardMask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
