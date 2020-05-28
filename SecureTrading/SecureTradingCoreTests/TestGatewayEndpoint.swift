@@ -21,7 +21,7 @@ class TestGatewayEndpoint: XCTestCase {
     
     // MARK: - Test Decoded JWT
     func test_throwsForEmptyJWT() {
-        let jwt = invalidJWTEmpty
+        let jwt = ""
         let expectedError = APIClientError.jwtDecodingInvalidPartCount
         XCTAssertThrowsError(try DecodedJWT(jwt: jwt)) { (error) in
             let receivedError = (error as? APIClientError)?.humanReadableDescription
@@ -29,7 +29,7 @@ class TestGatewayEndpoint: XCTestCase {
         }
     }
     func test_throwsForTooManyJWTComponent() {
-        let jwt = invalidJWTEmpty
+        let jwt = "aa.bb.cc.dd"
         let expectedError = APIClientError.jwtDecodingInvalidPartCount
         XCTAssertThrowsError(try DecodedJWT(jwt: jwt)) { (error) in
             let receivedError = (error as? APIClientError)?.humanReadableDescription
@@ -44,6 +44,7 @@ class TestGatewayEndpoint: XCTestCase {
         let jwt = jwtValidResponseBody
         XCTAssertNoThrow(try DecodedJWT(jwt: jwt))
     }
+    
 }
 
 private var jwtInvalidResponseBody: String {
@@ -60,6 +61,9 @@ private var jwtValidResponseBody: String {
         base64urlEncodedString(data: data(for: validHeaderJSON))
         ].joined(separator: ".")
 }
+
+// Helper methods
+
 private var validHeaderJSON: [String: String] {
     return [
         "alg": "HS256",
@@ -101,15 +105,9 @@ private var validResponseBodyJSON: [String: Any] {
         ]
     ]
 }
-private var invalidJWTEmpty: String {
-    return ""
+private var signature: String {
+    return "signature"
 }
-
-private var invalidJWTTooManyComponents: String {
-    return "aa.bb.cc.dd"
-}
-
-// Helper methods
 
 private func data(for json: Any) -> Data {
     return try! JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions(rawValue: 0))
@@ -121,7 +119,3 @@ private func base64urlEncodedString(data: Data) -> String {
         .replacingOccurrences(of: "/", with: "_")
         .replacingOccurrences(of: "=", with: "")
 }
-
-//private var validJWT: String {
-//    return  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1OTA1ODIxNDIsInBheWxvYWQiOnsicmVxdWVzdHJlZmVyZW5jZSI6Ilc1Ny1hdWJrM2RyMyIsInZlcnNpb24iOiIxLjAwIiwiand0IjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnBjM01pT2lKcWQzUXRjR2R6Ylc5aWFXeGxjMlJySWl3aWFXRjBJam94TlRrd05UZ3lNVFF5TENKd1lYbHNiMkZrSWpwN0ltTjFjbkpsYm1ONWFYTnZNMkVpT2lKSFFsQWlMQ0ppWVhObFlXMXZkVzUwSWpveE1EVXdMQ0p6YVhSbGNtVm1aWEpsYm1ObElqb2lkR1Z6ZEY5d1ozTnRiMkpwYkdWelpHczNPVFExT0NJc0ltVjRjR2x5ZVdSaGRHVWlPaUl4TWk4eU1ESXlJaXdpY0dGeVpXNTBkSEpoYm5OaFkzUnBiMjV5WldabGNtVnVZMlVpT2lJMU55MDVMVEU0TURnM0lpd2ljMlZqZFhKcGRIbGpiMlJsSWpvaU1USXpJaXdpWVdOamIzVnVkSFI1Y0dWa1pYTmpjbWx3ZEdsdmJpSTZJa1ZEVDAwaUxDSndZVzRpT2lJME1URXhNVEV4TVRFeE1URXhNVEV4SW4xOS5LRVFhc1Q0UmN2LXBfYlFkQTZPdURuS2E0V3l2Y3F2TTQzQXE2T1QwSTBFIiwicmVzcG9uc2UiOlt7InRyYW5zYWN0aW9uc3RhcnRlZHRpbWVzdGFtcCI6IjIwMjAtMDUtMjcgMTI6MjI6MjIiLCJsaXZlc3RhdHVzIjoiMCIsImlzc3VlciI6IlNlY3VyZVRyYWRpbmcgVGVzdCBJc3N1ZXIxIiwic3BsaXRmaW5hbG51bWJlciI6IjEiLCJkY2NlbmFibGVkIjoiMCIsInNldHRsZWR1ZWRhdGUiOiIyMDIwLTA1LTI3IiwiZXJyb3Jjb2RlIjoiMCIsInRpZCI6IjI3ODgyNzg4IiwibWVyY2hhbnRudW1iZXIiOiIwMDAwMDAwMCIsInNlY3VyaXR5cmVzcG9uc2Vwb3N0Y29kZSI6IjAiLCJ0cmFuc2FjdGlvbnJlZmVyZW5jZSI6IjU3LTktMTgwODciLCJtZXJjaGFudG5hbWUiOiJwZ3MgbW9iaWxlIHNkayIsInBheW1lbnR0eXBlZGVzY3JpcHRpb24iOiJWSVNBIiwiYmFzZWFtb3VudCI6IjEwNTAiLCJhY2NvdW50dHlwZWRlc2NyaXB0aW9uIjoiRUNPTSIsImFjcXVpcmVycmVzcG9uc2Vjb2RlIjoiMDAiLCJyZXF1ZXN0dHlwZWRlc2NyaXB0aW9uIjoiQVVUSCIsInNlY3VyaXR5cmVzcG9uc2VzZWN1cml0eWNvZGUiOiIyIiwiY3VycmVuY3lpc28zYSI6IkdCUCIsImF1dGhjb2RlIjoiVEVTVDk1IiwiZXJyb3JtZXNzYWdlIjoiT2siLCJpc3N1ZXJjb3VudHJ5aXNvMmEiOiJVUyIsIm1lcmNoYW50Y291bnRyeWlzbzJhIjoiR0IiLCJtYXNrZWRwYW4iOiI0MTExMTEjIyMjIyMxMTExIiwic2VjdXJpdHlyZXNwb25zZWFkZHJlc3MiOiIwIiwib3BlcmF0b3JuYW1lIjoiand0LXBnc21vYmlsZXNkayIsInNldHRsZXN0YXR1cyI6IjAifV0sInNlY3JhbmQiOiJFOG5aNTN0cklpRERjZmwifSwiYXVkIjoiand0LXBnc21vYmlsZXNkayJ9.njV_OISIDtVCvCsoewUvV2sou2dDLS8kvgL8P-L0r7E"
-//}
