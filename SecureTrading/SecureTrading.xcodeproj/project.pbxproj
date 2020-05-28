@@ -38,6 +38,8 @@
 		084E2A1F24659E2C0040FB9D /* ArrayUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A1E24659E2C0040FB9D /* ArrayUI.swift */; };
 		084E2A2124659EA70040FB9D /* SDKFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A2024659EA70040FB9D /* SDKFoundation.swift */; };
 		084E2A2324659EE20040FB9D /* DefaultSDKFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A2224659EE20040FB9D /* DefaultSDKFoundation.swift */; };
+		0853ACA2247F916C00DF37EE /* TestCardMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA1247F916C00DF37EE /* TestCardMask.swift */; };
+		0853ACA5247FA6B300DF37EE /* KnownMaskedCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */; };
 		08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */; };
 		08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3C2469591400C8F90A /* ViewModelFactory.swift */; };
 		08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */; };
@@ -211,6 +213,8 @@
 		084E2A1E24659E2C0040FB9D /* ArrayUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUI.swift; sourceTree = "<group>"; };
 		084E2A2024659EA70040FB9D /* SDKFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKFoundation.swift; sourceTree = "<group>"; };
 		084E2A2224659EE20040FB9D /* DefaultSDKFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSDKFoundation.swift; sourceTree = "<group>"; };
+		0853ACA1247F916C00DF37EE /* TestCardMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardMask.swift; sourceTree = "<group>"; };
+		0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownMaskedCards.swift; sourceTree = "<group>"; };
 		08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		08639C3C2469591400C8F90A /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBackgroundBaseView.swift; sourceTree = "<group>"; };
@@ -376,6 +380,8 @@
 			children = (
 				084E29DD246562DA0040FB9D /* SecureTradingUITests.swift */,
 				084E29DF246562DA0040FB9D /* Info.plist */,
+				0853ACA1247F916C00DF37EE /* TestCardMask.swift */,
+				0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */,
 			);
 			path = SecureTradingUITests;
 			sourceTree = "<group>";
@@ -1184,7 +1190,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0853ACA5247FA6B300DF37EE /* KnownMaskedCards.swift in Sources */,
 				084E29DE246562DA0040FB9D /* SecureTradingUITests.swift in Sources */,
+				0853ACA2247F916C00DF37EE /* TestCardMask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
