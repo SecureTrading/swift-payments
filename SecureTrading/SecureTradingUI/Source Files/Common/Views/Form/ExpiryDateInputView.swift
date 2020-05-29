@@ -100,6 +100,10 @@ import UIKit
     private let tFieldStViewTrailingLessConstraint = "tFieldStViewTrailingLessConstraint"
     private let tFieldStViewCenterXConstraint = "tFieldStViewCenterXConstraint"
 
+    private var expectedInputLength: Int {
+         return 2
+     }
+
     // MARK: Public properties
 
     @objc public weak var delegate: SecureFormInputViewDelegate?
@@ -451,7 +455,25 @@ extension ExpiryDateInputView: UITextFieldDelegate {
     }
 
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return true
+        let newText = NSString(string: textField.text ?? .empty).replacingCharacters(in: range, with: string)
+
+        if !newText.isEmpty, !newText.isNumeric() {
+            return false
+        }
+
+        let hasOverflow = newText.count > expectedInputLength
+        let index = hasOverflow ?
+            newText.index(newText.startIndex, offsetBy: expectedInputLength) :
+            newText.index(newText.startIndex, offsetBy: newText.count)
+        let currentTextFieldText = String(newText[..<index])
+
+        textField.text = currentTextFieldText
+
+        if isInputValid {
+            showHideError(show: false)
+        }
+
+        return false
     }
 }
 
