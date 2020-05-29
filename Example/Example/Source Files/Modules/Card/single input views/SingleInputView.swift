@@ -10,8 +10,12 @@ final class SingleInputView: WhiteBackgroundBaseView {
         CardNumberInputView()
     }()
 
+    private let cvcInput: CvcInputView = {
+        CvcInputView()
+    }()
+
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [cardNumberInput])
+        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, cvcInput])
         stackView.axis = .vertical
         stackView.spacing = 30
         stackView.alignment = .fill
@@ -21,6 +25,11 @@ final class SingleInputView: WhiteBackgroundBaseView {
 }
 
 extension SingleInputView: ViewSetupable {
+    /// - SeeAlso: ViewSetupable.setupProperties
+    @objc func setupProperties() {
+        cardNumberInput.cardNumberInputViewDelegate = self
+    }
+
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
     func setupViewHierarchy() {
         addSubviews([stackView])
@@ -32,5 +41,17 @@ extension SingleInputView: ViewSetupable {
             equal(self, \.centerYAnchor),
             equal(self, \.centerXAnchor)
         ])
+    }
+}
+
+extension SingleInputView: CardNumberInputViewDelegate {
+    func cardNumberInputViewDidComplete(_ cardNumberInputView: CardNumberInputView) {
+        cvcInput.cardType = cardNumberInputView.cardType
+        cvcInput.isHidden = !cardNumberInputView.isCVCRequired
+    }
+
+    func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView) {
+        cvcInput.cardType = cardNumberInputView.cardType
+        cvcInput.isHidden = !cardNumberInputView.isCVCRequired
     }
 }
