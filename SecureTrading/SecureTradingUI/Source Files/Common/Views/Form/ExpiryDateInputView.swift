@@ -10,6 +10,24 @@ import SecureTradingCard
 #endif
 import UIKit
 
+private class MonthTextField: UITextField {
+    func autocomplete(_ text: String) -> String {
+        let length = text.count
+        if length != 1 {
+            return text
+        }
+
+        let monthNumber = Int(text) ?? 0
+        if monthNumber > 1 {
+            return "0" + text
+        }
+
+        return text
+    }
+}
+
+private class YearTextField: UITextField {}
+
 @objc public class ExpiryDateInputView: WhiteBackgroundBaseView, SecureFormInputView {
     // MARK: Properties
 
@@ -26,15 +44,15 @@ import UIKit
         return imageView
     }()
 
-    private let monthTextField: UITextField = {
-        let textField = UITextField()
+    private let monthTextField: MonthTextField = {
+        let textField = MonthTextField()
         textField.autocorrectionType = .no
         textField.textAlignment = .right
         return textField
     }()
 
-    private let yearTextField: UITextField = {
-        let textField = UITextField()
+    private let yearTextField: YearTextField = {
+        let textField = YearTextField()
         textField.autocorrectionType = .no
         textField.textAlignment = .left
         return textField
@@ -101,10 +119,14 @@ import UIKit
     private let tFieldStViewCenterXConstraint = "tFieldStViewCenterXConstraint"
 
     private var expectedInputLength: Int {
-         return 2
-     }
+        return 2
+    }
 
     // MARK: Public properties
+
+    @objc public var expiryDate: String {
+        return text ?? .empty
+    }
 
     @objc public weak var delegate: SecureFormInputViewDelegate?
 
@@ -113,8 +135,7 @@ import UIKit
     }
 
     @objc public var isInputValid: Bool {
-        // todo
-        return true
+        return CardValidator.isExpirationDateValid(date: expiryDate, separator: separatorLabel.text ?? "/")
     }
 
     @objc public var isSecuredTextEntry: Bool = false {
@@ -455,11 +476,13 @@ extension ExpiryDateInputView: UITextFieldDelegate {
     }
 
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let newText = NSString(string: textField.text ?? .empty).replacingCharacters(in: range, with: string)
+        var newText = NSString(string: textField.text ?? .empty).replacingCharacters(in: range, with: string)
 
         if !newText.isEmpty, !newText.isNumeric() {
             return false
         }
+
+        newText = (textField as? MonthTextField)?.autocomplete(newText) ?? newText
 
         let hasOverflow = newText.count > expectedInputLength
         let index = hasOverflow ?
