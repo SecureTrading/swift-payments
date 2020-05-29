@@ -47,11 +47,11 @@ extension SingleInputView: ViewSetupable {
 extension SingleInputView: CardNumberInputViewDelegate {
     func cardNumberInputViewDidComplete(_ cardNumberInputView: CardNumberInputView) {
         cvcInput.cardType = cardNumberInputView.cardType
-        cvcInput.isHidden = !cardNumberInputView.isRequiredCvc
+        cvcInput.isHidden = !cardNumberInputView.isCVCRequired
     }
 
     func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView) {
         cvcInput.cardType = cardNumberInputView.cardType
-        cvcInput.isHidden = !cardNumberInputView.isRequiredCvc
+        cvcInput.isHidden = !cardNumberInputView.isCVCRequired
     }
 }

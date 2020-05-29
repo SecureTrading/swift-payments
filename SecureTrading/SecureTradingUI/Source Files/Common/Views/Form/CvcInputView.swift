@@ -2,8 +2,6 @@
 //  CVCInputView.swift
 //  SecureTradingUI
 //
-//  Created by TIWASZEK on 28/05/2020.
-//
 
 #if !COCOAPODS
 import SecureTradingCard
@@ -29,7 +27,7 @@ import UIKit
         return text ?? .empty
     }
 
-    @objc public override var inputIsValid: Bool {
+    @objc public override var isInputValid: Bool {
         if !CardValidator.isCVCRequired(for: cardType) {
             return true
         }
@@ -83,7 +81,7 @@ extension CvcInputView {
 
         textField.text = currentTextFieldText
 
-        if inputIsValid {
+        if isInputValid {
             showHideError(show: false)
         }
 

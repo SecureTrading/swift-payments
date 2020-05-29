@@ -42,11 +42,11 @@ import UIKit
         return CardValidator.cardType(for: cardNumber.rawValue, cardTypes: cardTypeContainer.cardTypes)
     }
 
-    @objc public var isRequiredCvc: Bool {
+    @objc public var isCVCRequired: Bool {
         return CardValidator.isCVCRequired(for: cardType)
     }
 
-    @objc public override var inputIsValid: Bool {
+    @objc public override var isInputValid: Bool {
         let cardType = CardValidator.cardType(for: cardNumber.rawValue, cardTypes: cardTypeContainer.cardTypes)
         return CardValidator.cardNumberHasValidLength(cardNumber: cardNumber.rawValue, card: cardType) && CardValidator.isCardNumberLuhnCompliant(cardNumber: cardNumber.rawValue)
     }
@@ -104,7 +104,7 @@ extension CardNumberInputView {
             return false
         }
 
-        let isOldValid = inputIsValid
+        let isOldValid = isInputValid
 
         let parsedCardNumber = CardNumber(rawValue: newTextWithoutSeparators).rawValue
         let parsedCardType = CardValidator.cardType(for: parsedCardNumber, cardTypes: cardTypeContainer.cardTypes)
