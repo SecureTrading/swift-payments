@@ -94,6 +94,9 @@ import UIKit
         return stackView
     }()
 
+    private let textFieldInternalStackViewLeadingEqualConstraint = "textFieldInternalStackViewLeadingEqualConstraint"
+    private let textFieldInternalStackViewTrailingEqualConstraint = "textFieldInternalStackViewTrailingEqualConstraint"
+
     // MARK: Public properties
 
     @objc public weak var delegate: SecureFormInputViewDelegate?
@@ -102,8 +105,10 @@ import UIKit
         return monthTextField.text?.isEmpty ?? true && yearTextField.text?.isEmpty ?? true
     }
 
-    /// property to be overwritten by inheriting classes
-    @objc public private(set) var isInputValid: Bool = false
+    @objc public var isInputValid: Bool {
+        // todo
+        return true
+    }
 
     @objc public var isSecuredTextEntry: Bool = false {
         didSet {
@@ -128,7 +133,42 @@ import UIKit
 
     @objc public var textFieldTextAligment: NSTextAlignment = .left {
         didSet {
-            // todo
+            rebuildTextFieldInternalStackViewConstraints()
+
+            let leadingEqualConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: textFieldInternalStackViewLeadingEqualConstraint)
+            let trailingEqualConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: textFieldInternalStackViewTrailingEqualConstraint)
+            let leadingGreaterConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: "leadingGreater")
+            let trailingLessConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: "trailingLess")
+            let centerXConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: "centerX")
+
+            leadingEqualConstraint?.isActive = false
+            leadingGreaterConstraint?.isActive = false
+            trailingEqualConstraint?.isActive = false
+            trailingLessConstraint?.isActive = false
+            centerXConstraint?.isActive = false
+
+            switch textFieldTextAligment {
+            case .center, .natural:
+                leadingEqualConstraint?.isActive = false
+                leadingGreaterConstraint?.isActive = true
+                trailingEqualConstraint?.isActive = false
+                trailingLessConstraint?.isActive = true
+                centerXConstraint?.isActive = true
+            case .left, .justified:
+                leadingEqualConstraint?.isActive = true
+                leadingGreaterConstraint?.isActive = false
+                trailingEqualConstraint?.isActive = false
+                trailingLessConstraint?.isActive = true
+                centerXConstraint?.isActive = false
+            case .right:
+                leadingEqualConstraint?.isActive = false
+                leadingGreaterConstraint?.isActive = true
+                trailingEqualConstraint?.isActive = true
+                trailingLessConstraint?.isActive = false
+                centerXConstraint?.isActive = false
+            @unknown default:
+                return
+            }
         }
     }
 
@@ -145,7 +185,7 @@ import UIKit
             return "\(monthTextField.text ?? .empty)\(separatorLabel.text ?? .empty)\(yearTextField.text ?? .empty)"
         }
         set {
-            guard let newValue = newValue, let range = newValue.rangeOfCharacter(from: setWithourSpecialChars.inverted) else { return }
+            guard let newValue = newValue, let range = newValue.rangeOfCharacter(from: setWithoutSpecialChars.inverted) else { return }
             let separator = newValue[range.lowerBound..<range.upperBound]
             guard separator.count == 1 else { return }
 
@@ -249,14 +289,14 @@ import UIKit
 
     // MARK: Helpers
 
-    private let setWithourSpecialChars = CharacterSet(charactersIn:
+    private let setWithoutSpecialChars = CharacterSet(charactersIn:
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     )
 
     // MARK: Functions
 
     private func updatePlaceholder(current: String) {
-        guard let range = current.rangeOfCharacter(from: setWithourSpecialChars.inverted) else { return }
+        guard let range = current.rangeOfCharacter(from: setWithoutSpecialChars.inverted) else { return }
         let separator = current[range.lowerBound..<range.upperBound]
         guard separator.count == 1 else { return }
 
@@ -267,6 +307,36 @@ import UIKit
                                                                   attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
         yearTextField.attributedPlaceholder = NSAttributedString(string: placeholderArray[1],
                                                                  attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
+    }
+
+    private func rebuildTextFieldInternalStackViewConstraints() {
+        if let leadingEqual = textFieldInternalStackViewContainer.constraint(withIdentifier: textFieldInternalStackViewLeadingEqualConstraint) {
+            leadingEqual.isActive = false
+        }
+
+        if let trailingEqual = textFieldInternalStackViewContainer.constraint(withIdentifier: textFieldInternalStackViewTrailingEqualConstraint) {
+            trailingEqual.isActive = false
+        }
+
+        if let leadingGreater = textFieldInternalStackViewContainer.constraint(withIdentifier: "leadingGreater") {
+            leadingGreater.isActive = false
+        }
+
+        if let trailingLess = textFieldInternalStackViewContainer.constraint(withIdentifier: "trailingLess") {
+            trailingLess.isActive = false
+        }
+
+        if let centerX = textFieldInternalStackViewContainer.constraint(withIdentifier: "centerX") {
+            centerX.isActive = false
+        }
+
+        textFieldInternalStackView.addConstraints([
+            equal(textFieldInternalStackViewContainer, \.leadingAnchor, \.leadingAnchor, greaterOrEqual: 0, identifier: "leadingGreater"),
+            equal(textFieldInternalStackViewContainer, \.trailingAnchor, \.trailingAnchor, lessOrEqual: 0, identifier: "trailingLess"),
+            equal(textFieldInternalStackViewContainer, \.leadingAnchor, \.leadingAnchor, constant: 0, identifier: textFieldInternalStackViewLeadingEqualConstraint),
+            equal(textFieldInternalStackViewContainer, \.trailingAnchor, \.trailingAnchor, constant: 0, identifier: textFieldInternalStackViewTrailingEqualConstraint),
+            equal(textFieldInternalStackViewContainer, \.centerXAnchor, \.centerXAnchor, constant: 0, identifier: "centerX")
+        ])
     }
 
     func showHideError(show: Bool) {
@@ -319,7 +389,7 @@ extension ExpiryDateInputView: ViewSetupable {
 
         keyboardType = .numberPad
 
-        textFieldTextAligment = .center
+        textFieldTextAligment = .right
 
         textFieldImage = UIImage(named: "calendar", in: Bundle(for: CvcInputView.self), compatibleWith: nil)
     }
@@ -341,11 +411,29 @@ extension ExpiryDateInputView: ViewSetupable {
 
         textFieldInternalStackView.addConstraints([
             equal(textFieldInternalStackViewContainer, \.topAnchor),
-            equal(textFieldInternalStackViewContainer, \.bottomAnchor),
-            equal(textFieldInternalStackViewContainer, \.leadingAnchor, \.leadingAnchor, greaterOrEqual: 0),
-            equal(textFieldInternalStackViewContainer, \.trailingAnchor, \.trailingAnchor, lessOrEqual: 0),
-            equal(textFieldInternalStackViewContainer, \.centerXAnchor)
+            equal(textFieldInternalStackViewContainer, \.bottomAnchor)
         ])
+        rebuildTextFieldInternalStackViewConstraints()
+
+        if let leadingEqual = textFieldInternalStackViewContainer.constraint(withIdentifier: textFieldInternalStackViewLeadingEqualConstraint) {
+            leadingEqual.isActive = false
+        }
+
+        if let trailingEqual = textFieldInternalStackViewContainer.constraint(withIdentifier: textFieldInternalStackViewTrailingEqualConstraint) {
+            trailingEqual.isActive = false
+        }
+
+        if let leadingGreater = textFieldInternalStackViewContainer.constraint(withIdentifier: "leadingGreater") {
+            leadingGreater.isActive = true
+        }
+
+        if let trailingLess = textFieldInternalStackViewContainer.constraint(withIdentifier: "trailingLess") {
+            trailingLess.isActive = true
+        }
+
+        if let centerX = textFieldInternalStackViewContainer.constraint(withIdentifier: "centerX") {
+            centerX.isActive = true
+        }
 
         stackView.addConstraints(equalToSuperview(with: .init(top: 5, left: 5, bottom: -5, right: -5), usingSafeArea: false))
     }
