@@ -84,8 +84,6 @@ final class StubbedURLSessionDataTask: URLSessionDataTask {
         // swiftlint:enable force_try
         let response: HTTPURLResponse?
         
-        
-        
         if let headers = request.allHTTPHeaderFields, headers["Authorization"] == "Bearer", jsonFile != "authn.session.put" {
             response = HTTPURLResponse(url: request.url!, statusCode: 401, httpVersion: nil, headerFields: nil)
         } else {

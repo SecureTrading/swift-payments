@@ -29,7 +29,7 @@ class TestDecodedJWT: XCTestCase {
         let jwt = [headerJSON.data.base64URLEncoded,
                    headerJSON.data.base64URLEncoded,
                    signature
-        ].joined(separator: ".")
+            ].joined(separator: ".")
         XCTAssertThrowsError(try DecodedJWT(jwt: jwt))
     }
     func test_DoesntThrowForValidResponseBody() {
@@ -234,17 +234,17 @@ class TestDecodedJWT: XCTestCase {
 // MARK: Helper methods
 func getJWT(withBody body: [String: Any]? = nil) -> String {
     if let body = body {
-    return [
-        headerJSON.data.base64URLEncoded,
-        body.data.base64URLEncoded,
-        signature
-        ].joined(separator: ".")
+        return [
+            headerJSON.data.base64URLEncoded,
+            body.data.base64URLEncoded,
+            signature
+            ].joined(separator: ".")
     } else {
         return [
-        headerJSON.data.base64URLEncoded,
-        modify(newBodyFields: [:], newResponseFields: [:]).data.base64URLEncoded,
-        signature
-        ].joined(separator: ".")
+            headerJSON.data.base64URLEncoded,
+            modify(newBodyFields: [:], newResponseFields: [:]).data.base64URLEncoded,
+            signature
+            ].joined(separator: ".")
     }
 }
 
@@ -254,9 +254,9 @@ func modify(newBodyFields: [String: Any], newResponseFields: [String: Any]) -> [
         response[field.key] = field.value
     }
     var baseResponse = baseResponseBodyJSON
-       for field in newBodyFields {
-           baseResponse[field.key] = field.value
-       }
+    for field in newBodyFields {
+        baseResponse[field.key] = field.value
+    }
     baseResponse["payload"] = ["response": [response]]
     return baseResponse
 }
@@ -269,13 +269,13 @@ private var headerJSON: [String: String] {
 }
 private var baseResponseBodyJSON: [String: Any] {
     return [
-           "aud": "jwt-pgsmobilesdk",
-           "iat": 1590582142,
-           "payload":
-               [
-                   "response": [baseResponseJSON]
-           ]
-       ]
+        "aud": "jwt-pgsmobilesdk",
+        "iat": 1590582142,
+        "payload":
+            [
+                "response": [baseResponseJSON]
+        ]
+    ]
 }
 private var baseResponseJSON: [String: Any] {
     return [

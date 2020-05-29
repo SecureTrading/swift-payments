@@ -7,7 +7,7 @@ import XCTest
 @testable import SecureTradingCore
 
 class TestGeneralRequest: XCTestCase {
-
+    
     var request: GeneralRequest!
     
     override func setUp() {
@@ -28,22 +28,16 @@ class TestGeneralRequest: XCTestCase {
         let sut = request!
         XCTAssertEqual(sut.method, APIRequestMethod.post)
     }
-    
-    
-    
-    
-    
-    
 }
 
 extension GeneralRequest: Decodable {
     enum CodingKeys: String, CodingKey {
-           case alias
-           case jwt
-           case version
-           case versionInfo = "versioninfo"
-           case requests = "request"
-       }
+        case alias
+        case jwt
+        case version
+        case versionInfo = "versioninfo"
+        case requests = "request"
+    }
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let alias = try container.decode(String.self, forKey: .alias)
