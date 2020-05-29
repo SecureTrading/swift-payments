@@ -259,7 +259,7 @@ extension ExpiryDateInputView: ViewSetupable {
 
         textFieldTextAligment = .center
 
-        textFieldImage = UIImage(named: "cvc", in: Bundle(for: CvcInputView.self), compatibleWith: nil)
+        textFieldImage = UIImage(named: "calendar", in: Bundle(for: CvcInputView.self), compatibleWith: nil)
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy

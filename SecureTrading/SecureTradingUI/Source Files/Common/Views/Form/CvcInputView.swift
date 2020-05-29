@@ -73,6 +73,10 @@ extension CvcInputView {
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newText = NSString(string: textField.text ?? .empty).replacingCharacters(in: range, with: string)
 
+        if !newText.isEmpty, !newText.isNumeric() {
+            return false
+        }
+
         let hasOverflow = newText.count > expectedInputLength
         let index = hasOverflow ?
             newText.index(newText.startIndex, offsetBy: expectedInputLength) :
