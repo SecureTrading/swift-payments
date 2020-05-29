@@ -94,8 +94,11 @@ import UIKit
         return stackView
     }()
 
-    private let textFieldInternalStackViewLeadingEqualConstraint = "textFieldInternalStackViewLeadingEqualConstraint"
-    private let textFieldInternalStackViewTrailingEqualConstraint = "textFieldInternalStackViewTrailingEqualConstraint"
+    private let tFieldStViewLeadingEqualConstraint = "tFieldStViewLeadingEqualConstraint"
+    private let tFieldStViewTrailingEqualConstraint = "tFieldStViewTrailingEqualConstraint"
+    private let tFieldStViewLeadingGreaterConstraint = "tFieldStViewLeadingGreaterConstraint"
+    private let tFieldStViewTrailingLessConstraint = "tFieldStViewTrailingLessConstraint"
+    private let tFieldStViewCenterXConstraint = "tFieldStViewCenterXConstraint"
 
     // MARK: Public properties
 
@@ -135,17 +138,11 @@ import UIKit
         didSet {
             rebuildTextFieldInternalStackViewConstraints()
 
-            let leadingEqualConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: textFieldInternalStackViewLeadingEqualConstraint)
-            let trailingEqualConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: textFieldInternalStackViewTrailingEqualConstraint)
-            let leadingGreaterConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: "leadingGreater")
-            let trailingLessConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: "trailingLess")
-            let centerXConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: "centerX")
-
-            leadingEqualConstraint?.isActive = false
-            leadingGreaterConstraint?.isActive = false
-            trailingEqualConstraint?.isActive = false
-            trailingLessConstraint?.isActive = false
-            centerXConstraint?.isActive = false
+            let leadingEqualConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewLeadingEqualConstraint)
+            let trailingEqualConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewTrailingEqualConstraint)
+            let leadingGreaterConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewLeadingGreaterConstraint)
+            let trailingLessConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewTrailingLessConstraint)
+            let centerXConstraint = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewCenterXConstraint)
 
             switch textFieldTextAligment {
             case .center, .natural:
@@ -310,32 +307,32 @@ import UIKit
     }
 
     private func rebuildTextFieldInternalStackViewConstraints() {
-        if let leadingEqual = textFieldInternalStackViewContainer.constraint(withIdentifier: textFieldInternalStackViewLeadingEqualConstraint) {
+        if let leadingEqual = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewLeadingEqualConstraint) {
             leadingEqual.isActive = false
         }
 
-        if let trailingEqual = textFieldInternalStackViewContainer.constraint(withIdentifier: textFieldInternalStackViewTrailingEqualConstraint) {
+        if let trailingEqual = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewTrailingEqualConstraint) {
             trailingEqual.isActive = false
         }
 
-        if let leadingGreater = textFieldInternalStackViewContainer.constraint(withIdentifier: "leadingGreater") {
+        if let leadingGreater = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewLeadingGreaterConstraint) {
             leadingGreater.isActive = false
         }
 
-        if let trailingLess = textFieldInternalStackViewContainer.constraint(withIdentifier: "trailingLess") {
+        if let trailingLess = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewTrailingLessConstraint) {
             trailingLess.isActive = false
         }
 
-        if let centerX = textFieldInternalStackViewContainer.constraint(withIdentifier: "centerX") {
+        if let centerX = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewCenterXConstraint) {
             centerX.isActive = false
         }
 
         textFieldInternalStackView.addConstraints([
-            equal(textFieldInternalStackViewContainer, \.leadingAnchor, \.leadingAnchor, greaterOrEqual: 0, identifier: "leadingGreater"),
-            equal(textFieldInternalStackViewContainer, \.trailingAnchor, \.trailingAnchor, lessOrEqual: 0, identifier: "trailingLess"),
-            equal(textFieldInternalStackViewContainer, \.leadingAnchor, \.leadingAnchor, constant: 0, identifier: textFieldInternalStackViewLeadingEqualConstraint),
-            equal(textFieldInternalStackViewContainer, \.trailingAnchor, \.trailingAnchor, constant: 0, identifier: textFieldInternalStackViewTrailingEqualConstraint),
-            equal(textFieldInternalStackViewContainer, \.centerXAnchor, \.centerXAnchor, constant: 0, identifier: "centerX")
+            equal(textFieldInternalStackViewContainer, \.leadingAnchor, \.leadingAnchor, greaterOrEqual: 0, identifier: tFieldStViewLeadingGreaterConstraint),
+            equal(textFieldInternalStackViewContainer, \.trailingAnchor, \.trailingAnchor, lessOrEqual: 0, identifier: tFieldStViewTrailingLessConstraint),
+            equal(textFieldInternalStackViewContainer, \.leadingAnchor, \.leadingAnchor, constant: 0, identifier: tFieldStViewLeadingEqualConstraint),
+            equal(textFieldInternalStackViewContainer, \.trailingAnchor, \.trailingAnchor, constant: 0, identifier: tFieldStViewTrailingEqualConstraint),
+            equal(textFieldInternalStackViewContainer, \.centerXAnchor, \.centerXAnchor, constant: 0, identifier: tFieldStViewCenterXConstraint)
         ])
     }
 
@@ -389,7 +386,7 @@ extension ExpiryDateInputView: ViewSetupable {
 
         keyboardType = .numberPad
 
-        textFieldTextAligment = .right
+        textFieldTextAligment = .center
 
         textFieldImage = UIImage(named: "calendar", in: Bundle(for: CvcInputView.self), compatibleWith: nil)
     }
@@ -413,25 +410,26 @@ extension ExpiryDateInputView: ViewSetupable {
             equal(textFieldInternalStackViewContainer, \.topAnchor),
             equal(textFieldInternalStackViewContainer, \.bottomAnchor)
         ])
+
         rebuildTextFieldInternalStackViewConstraints()
 
-        if let leadingEqual = textFieldInternalStackViewContainer.constraint(withIdentifier: textFieldInternalStackViewLeadingEqualConstraint) {
+        if let leadingEqual = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewLeadingEqualConstraint) {
             leadingEqual.isActive = false
         }
 
-        if let trailingEqual = textFieldInternalStackViewContainer.constraint(withIdentifier: textFieldInternalStackViewTrailingEqualConstraint) {
+        if let trailingEqual = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewTrailingEqualConstraint) {
             trailingEqual.isActive = false
         }
 
-        if let leadingGreater = textFieldInternalStackViewContainer.constraint(withIdentifier: "leadingGreater") {
+        if let leadingGreater = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewLeadingGreaterConstraint) {
             leadingGreater.isActive = true
         }
 
-        if let trailingLess = textFieldInternalStackViewContainer.constraint(withIdentifier: "trailingLess") {
+        if let trailingLess = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewTrailingLessConstraint) {
             trailingLess.isActive = true
         }
 
-        if let centerX = textFieldInternalStackViewContainer.constraint(withIdentifier: "centerX") {
+        if let centerX = textFieldInternalStackViewContainer.constraint(withIdentifier: tFieldStViewCenterXConstraint) {
             centerX.isActive = true
         }
 
