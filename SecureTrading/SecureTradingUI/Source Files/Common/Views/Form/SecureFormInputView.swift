@@ -75,7 +75,7 @@ import UIKit
     }
 
     /// property to be overwritten by inheriting classes
-    @objc public private(set) var inputIsValid: Bool = false
+    @objc public private(set) var isInputValid: Bool = false
 
     @objc public var isSecuredTextEntry: Bool = false {
         didSet {
@@ -220,7 +220,7 @@ import UIKit
 
     @discardableResult
     @objc public func validate(silent: Bool, hideError: Bool = false) -> Bool {
-        let result = inputIsValid
+        let result = isInputValid
         if silent == false {
             showHideError(show: !result)
         }
