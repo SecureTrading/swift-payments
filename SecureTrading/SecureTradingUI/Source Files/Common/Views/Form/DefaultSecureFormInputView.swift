@@ -5,10 +5,6 @@
 
 import UIKit
 
-@objc public protocol SecureFormInputViewDelegate: class {
-    func inputViewTextFieldDidEndEditing(_ view: DefaultSecureFormInputView)
-}
-
 @objc public class DefaultSecureFormInputView: WhiteBackgroundBaseView, SecureFormInputView {
     // MARK: Properties
 

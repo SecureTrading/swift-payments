@@ -7,6 +7,10 @@
 
 import UIKit
 
+@objc public protocol SecureFormInputViewDelegate: class {
+    func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView)
+}
+
 @objc public protocol SecureFormInputView: AnyObject {
     var isEmpty: Bool { get }
 
