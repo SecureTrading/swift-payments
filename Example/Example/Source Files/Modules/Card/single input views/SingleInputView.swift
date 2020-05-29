@@ -10,12 +10,16 @@ final class SingleInputView: WhiteBackgroundBaseView {
         CardNumberInputView()
     }()
 
+    private let expiryDateInput: ExpiryDateInputView = {
+        ExpiryDateInputView()
+    }()
+
     private let cvcInput: CvcInputView = {
         CvcInputView()
     }()
 
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, cvcInput])
+        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput])
         stackView.axis = .vertical
         stackView.spacing = 30
         stackView.alignment = .fill
