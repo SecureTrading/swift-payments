@@ -11,6 +11,7 @@ import SecureTradingCard
 import UIKit
 
 @objc public class ExpiryDateInputView: WhiteBackgroundBaseView, SecureFormInputView {
+
     // MARK: Properties
 
     private let titleLabel: UILabel = {
@@ -26,10 +27,23 @@ import UIKit
         return imageView
     }()
 
-    private let textField: UITextField = {
+    private let monthTextField: UITextField = {
         let textField = UITextField()
         textField.autocorrectionType = .no
         return textField
+    }()
+
+    private let yearTextField: UITextField = {
+        let textField = UITextField()
+        textField.autocorrectionType = .no
+        return textField
+    }()
+
+    private let separatorLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.text = "/"
+        return label
     }()
 
     private let textFieldStackViewBackground: UIView = {
@@ -39,8 +53,17 @@ import UIKit
         return view
     }()
 
+    private lazy var textFieldInternalStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [monthTextField, separatorLabel, yearTextField])
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        return stackView
+    }()
+
     private lazy var textFieldStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [textFieldImageView, textField])
+        let stackView = UIStackView(arrangedSubviews: [textFieldImageView, textFieldInternalStackView])
         stackView.axis = .horizontal
         stackView.spacing = 10
         stackView.alignment = .fill
@@ -71,8 +94,7 @@ import UIKit
     @objc public weak var delegate: SecureFormInputViewDelegate?
 
     @objc public var isEmpty: Bool {
-        guard let text = textField.text else { return true }
-        return text.isEmpty
+        return monthTextField.text?.isEmpty ?? true && yearTextField.text?.isEmpty ?? true
     }
 
     /// property to be overwritten by inheriting classes
@@ -80,28 +102,28 @@ import UIKit
 
     @objc public var isSecuredTextEntry: Bool = false {
         didSet {
-            textField.isSecureTextEntry = isSecuredTextEntry
+            monthTextField.isSecureTextEntry = isSecuredTextEntry
+            yearTextField.isSecureTextEntry = isSecuredTextEntry
         }
     }
 
     @objc public var keyboardType: UIKeyboardType = .default {
         didSet {
-            textField.keyboardType = keyboardType
+            monthTextField.keyboardType = keyboardType
+            yearTextField.keyboardType = keyboardType
         }
     }
 
     @objc public var keyboardAppearance: UIKeyboardAppearance = .default {
         didSet {
-            textField.keyboardAppearance = keyboardAppearance
+            monthTextField.keyboardAppearance = keyboardAppearance
+            yearTextField.keyboardAppearance = keyboardAppearance
         }
     }
 
     @objc public var textFieldTextAligment: NSTextAlignment = .left {
         didSet {
-            textField.textAlignment = textFieldTextAligment
-            if textFieldTextAligment == .center {
-                textFieldStackView.layoutMargins.right = 20
-            }
+            // todo
         }
     }
 
@@ -114,18 +136,20 @@ import UIKit
     }
 
     @objc public var text: String? {
+        //todo
         get {
-            return textField.text
+            return ""
         }
         set {
-            textField.text = newValue
+
         }
     }
 
-    @objc public var placeholder: String = "default" {
+    @objc public var placeholder: String = "MM / YY" {
         didSet {
-            textField.attributedPlaceholder = NSAttributedString(string: placeholder,
-                                                                 attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
+            // todo
+//            textField.attributedPlaceholder = NSAttributedString(string: placeholder,
+//                                                                 attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
         }
     }
 
@@ -157,14 +181,16 @@ import UIKit
 
     @objc public var textColor: UIColor = .black {
         didSet {
-            textField.textColor = textColor
+            monthTextField.textColor = textColor
+            yearTextField.textColor = textColor
         }
     }
 
     @objc public var placeholderColor: UIColor = .lightGray {
         didSet {
-            textField.attributedPlaceholder = NSAttributedString(string: placeholder,
-                                                                 attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
+            // todo
+//            textField.attributedPlaceholder = NSAttributedString(string: placeholder,
+//                                                                 attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
         }
     }
 
@@ -184,14 +210,16 @@ import UIKit
 
     @objc public var textFont: UIFont = UIFont.systemFont(ofSize: 17) {
         didSet {
-            textField.font = textFont
+            monthTextField.font = textFont
+            yearTextField.font = textFont
         }
     }
 
     @objc public var placeholderFont: UIFont = UIFont.systemFont(ofSize: 17) {
         didSet {
-            textField.attributedPlaceholder = NSAttributedString(string: placeholder,
-                                                                 attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
+            // todo
+//            textField.attributedPlaceholder = NSAttributedString(string: placeholder,
+//                                                                 attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
         }
     }
 
@@ -236,7 +264,8 @@ import UIKit
 extension ExpiryDateInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
-        textField.delegate = self
+        monthTextField.delegate = self
+        yearTextField.delegate = self
 
         titleLabel.textColor = titleColor
         titleLabel.font = titleFont
@@ -244,15 +273,15 @@ extension ExpiryDateInputView: ViewSetupable {
         textFieldStackViewBackground.backgroundColor = textFieldBackgroundColor
         textFieldStackViewBackground.layer.borderColor = textFieldBorderColor.cgColor
 
-        textField.text = text
-        textField.textColor = textColor
-        textField.font = textFont
+//        monthTextField.text = text
+//        monthTextField.textColor = textColor
+//        monthTextField.font = textFont
 
         errorLabel.textColor = errorColor
         errorLabel.font = errorFont
 
         title = Localizable.ExpiryDateInputView.title.text
-        placeholder = Localizable.ExpiryDateInputView.placeholder.text
+        //placeholder = Localizable.ExpiryDateInputView.placeholder.text
         error = Localizable.ExpiryDateInputView.error.text
 
         keyboardType = .numberPad
@@ -293,8 +322,7 @@ extension ExpiryDateInputView: UITextFieldDelegate {
     }
 
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
-        return false
+        return true
     }
 }
 
