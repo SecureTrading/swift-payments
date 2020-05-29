@@ -66,3 +66,9 @@ private extension GeneralRequest {
         case requests = "request"
     }
 }
+
+extension GeneralRequest: CustomStringConvertible {
+    var description: String {
+        return "\(alias), \(jwt), \(version), \(versionInfo)"
+    }
+}
