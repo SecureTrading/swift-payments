@@ -11,7 +11,6 @@ import SecureTradingCard
 import UIKit
 
 @objc public class ExpiryDateInputView: WhiteBackgroundBaseView, SecureFormInputView {
-
     // MARK: Properties
 
     private let titleLabel: UILabel = {
@@ -44,7 +43,6 @@ import UIKit
     private let separatorLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.text = "/"
         return label
     }()
 
@@ -143,22 +141,29 @@ import UIKit
     }
 
     @objc public var text: String? {
-        //todo
         get {
-            return ""
+            return "\(monthTextField.text ?? .empty)\(separatorLabel.text ?? .empty)\(yearTextField.text ?? .empty)"
         }
         set {
+            guard let newValue = newValue, let range = newValue.rangeOfCharacter(from: setWithourSpecialChars.inverted) else { return }
+            let separator = newValue[range.lowerBound..<range.upperBound]
+            guard separator.count == 1 else { return }
 
+            separatorLabel.text = String(separator)
+            let placeholderArray = newValue.components(separatedBy: separator)
+            monthTextField.text = placeholderArray[0]
+            yearTextField.text = placeholderArray[1]
         }
     }
 
-    @objc public var placeholder: String = "MM / YY" {
-        didSet {
-            monthTextField.placeholder = "MM"
-            yearTextField.placeholder = "YY"
-            // todo
-//            textField.attributedPlaceholder = NSAttributedString(string: placeholder,
-//                                                                 attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
+    private var placeholderPrivate: String = "MM/YY"
+    @objc public var placeholder: String {
+        get {
+            return placeholderPrivate
+        }
+        set {
+            updatePlaceholder(current: newValue)
+            placeholderPrivate = newValue
         }
     }
 
@@ -197,9 +202,7 @@ import UIKit
 
     @objc public var placeholderColor: UIColor = .lightGray {
         didSet {
-            // todo
-//            textField.attributedPlaceholder = NSAttributedString(string: placeholder,
-//                                                                 attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
+            updatePlaceholder(current: placeholderPrivate)
         }
     }
 
@@ -226,9 +229,7 @@ import UIKit
 
     @objc public var placeholderFont: UIFont = UIFont.systemFont(ofSize: 17) {
         didSet {
-            // todo
-//            textField.attributedPlaceholder = NSAttributedString(string: placeholder,
-//                                                                 attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
+            updatePlaceholder(current: placeholderPrivate)
         }
     }
 
@@ -246,7 +247,27 @@ import UIKit
         }
     }
 
+    // MARK: Helpers
+
+    private let setWithourSpecialChars = CharacterSet(charactersIn:
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    )
+
     // MARK: Functions
+
+    private func updatePlaceholder(current: String) {
+        guard let range = current.rangeOfCharacter(from: setWithourSpecialChars.inverted) else { return }
+        let separator = current[range.lowerBound..<range.upperBound]
+        guard separator.count == 1 else { return }
+
+        separatorLabel.text = String(separator)
+        let placeholderArray = current.components(separatedBy: separator)
+
+        monthTextField.attributedPlaceholder = NSAttributedString(string: placeholderArray[0],
+                                                                  attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
+        yearTextField.attributedPlaceholder = NSAttributedString(string: placeholderArray[1],
+                                                                 attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
+    }
 
     func showHideError(show: Bool) {
         errorLabel.isHidden = !show
@@ -282,9 +303,12 @@ extension ExpiryDateInputView: ViewSetupable {
         textFieldStackViewBackground.backgroundColor = textFieldBackgroundColor
         textFieldStackViewBackground.layer.borderColor = textFieldBorderColor.cgColor
 
-//        monthTextField.text = text
-//        monthTextField.textColor = textColor
-//        monthTextField.font = textFont
+        monthTextField.text = text
+        monthTextField.textColor = textColor
+        monthTextField.font = textFont
+        yearTextField.text = text
+        yearTextField.textColor = textColor
+        yearTextField.font = textFont
 
         errorLabel.textColor = errorColor
         errorLabel.font = errorFont
