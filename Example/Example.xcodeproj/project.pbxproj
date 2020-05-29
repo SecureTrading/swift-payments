@@ -18,6 +18,9 @@
 		082FC7982462E18900D4E2B6 /* SecureTradingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */; };
 		082FC7992462E18900D4E2B6 /* SecureTradingUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		082FC7A02462FF2700D4E2B6 /* ObjectiveCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 082FC79F2462FF2700D4E2B6 /* ObjectiveCTest.m */; };
+		0845BF28247EAF23008AD40F /* SingleInputViewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0845BF27247EAF23008AD40F /* SingleInputViewsController.swift */; };
+		0845BF2A247EAF38008AD40F /* SingleInputViewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0845BF29247EAF38008AD40F /* SingleInputViewsModel.swift */; };
+		0845BF2C247EAF4C008AD40F /* SingleInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0845BF2B247EAF4C008AD40F /* SingleInputView.swift */; };
 		08639C5E2469681E00C8F90A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C442469681E00C8F90A /* BaseViewController.swift */; };
 		08639C5F2469681E00C8F90A /* BaseNavigationFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C452469681E00C8F90A /* BaseNavigationFlowController.swift */; };
 		08639C602469681E00C8F90A /* BaseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C462469681E00C8F90A /* BaseViewCell.swift */; };
@@ -113,6 +116,9 @@
 		082FC79E2462FF2500D4E2B6 /* Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		082FC79F2462FF2700D4E2B6 /* ObjectiveCTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCTest.m; sourceTree = "<group>"; };
 		082FC7A12463008E00D4E2B6 /* ObjectiveCTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveCTest.h; sourceTree = "<group>"; };
+		0845BF27247EAF23008AD40F /* SingleInputViewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInputViewsController.swift; sourceTree = "<group>"; };
+		0845BF29247EAF38008AD40F /* SingleInputViewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInputViewsModel.swift; sourceTree = "<group>"; };
+		0845BF2B247EAF4C008AD40F /* SingleInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInputView.swift; sourceTree = "<group>"; };
 		08639C442469681E00C8F90A /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		08639C452469681E00C8F90A /* BaseNavigationFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationFlowController.swift; sourceTree = "<group>"; };
 		08639C462469681E00C8F90A /* BaseViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewCell.swift; sourceTree = "<group>"; };
@@ -283,6 +289,24 @@
 			path = ObjectiveC;
 			sourceTree = "<group>";
 		};
+		0845BF25247EAED7008AD40F /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				0845BF26247EAEE7008AD40F /* single input views */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		0845BF26247EAEE7008AD40F /* single input views */ = {
+			isa = PBXGroup;
+			children = (
+				0845BF27247EAF23008AD40F /* SingleInputViewsController.swift */,
+				0845BF29247EAF38008AD40F /* SingleInputViewsModel.swift */,
+				0845BF2B247EAF4C008AD40F /* SingleInputView.swift */,
+			);
+			path = "single input views";
+			sourceTree = "<group>";
+		};
 		08639C41246967E600C8F90A /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,6 +429,7 @@
 		08639C8324696AE800C8F90A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0845BF25247EAED7008AD40F /* Card */,
 				08639C8424696B0500C8F90A /* Main */,
 			);
 			path = Modules;
@@ -714,6 +739,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08639C692469681E00C8F90A /* UICollectionView.swift in Sources */,
+				0845BF2A247EAF38008AD40F /* SingleInputViewsModel.swift in Sources */,
 				08639C6F2469681E00C8F90A /* ViewSetupable.swift in Sources */,
 				08639C8224696A4100C8F90A /* DefaultAppFoundation.swift in Sources */,
 				08639C5F2469681E00C8F90A /* BaseNavigationFlowController.swift in Sources */,
@@ -725,6 +751,7 @@
 				08639C752469685500C8F90A /* Localizable.swift in Sources */,
 				08639C6B2469681E00C8F90A /* PopBackView.swift in Sources */,
 				104CFB01246EADA800D7C76D /* JWTHelper.swift in Sources */,
+				0845BF2C247EAF4C008AD40F /* SingleInputView.swift in Sources */,
 				08639C662469681E00C8F90A /* UIView.swift in Sources */,
 				08639C612469681E00C8F90A /* BaseFlowController.swift in Sources */,
 				08639C5E2469681E00C8F90A /* BaseViewController.swift in Sources */,
@@ -736,6 +763,7 @@
 				08639C6D2469681E00C8F90A /* CustomBackNavigationController.swift in Sources */,
 				08639C672469681E00C8F90A /* Array.swift in Sources */,
 				08639C7D2469693F00C8F90A /* AppFlowController.swift in Sources */,
+				0845BF28247EAF23008AD40F /* SingleInputViewsController.swift in Sources */,
 				08639C632469681E00C8F90A /* BaseView.swift in Sources */,
 				08639C8C24696CB100C8F90A /* MainViewController.swift in Sources */,
 				080A321E2473C482002B7471 /* STClaims.swift in Sources */,
