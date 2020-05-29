@@ -8,7 +8,7 @@ import SecureTradingCard
 #endif
 import UIKit
 
-@objc public final class CvcInputView: SecureFormInputView {
+@objc public final class CvcInputView: DefaultSecureFormInputView {
     // MARK: Private Properties
 
     private var expectedInputLength: Int {

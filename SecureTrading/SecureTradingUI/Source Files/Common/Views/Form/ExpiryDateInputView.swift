@@ -10,15 +10,15 @@ import SecureTradingCard
 #endif
 import UIKit
 
-@objc public final class ExpiryDateInputView: SecureFormInputView {
+@objc public final class ExpiryDateInputView: DefaultSecureFormInputView {
     // MARK: Private Properties
 
 
     // MARK: Public Properties
 
-    @objc public override var inputIsValid: Bool {
-        return true
-    }
+//    @objc public override var inputIsValid: Bool {
+//        return true
+//    }
 
     // MARK: Initialization
 
