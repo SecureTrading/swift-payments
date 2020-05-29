@@ -30,12 +30,14 @@ import UIKit
     private let monthTextField: UITextField = {
         let textField = UITextField()
         textField.autocorrectionType = .no
+        textField.textAlignment = .right
         return textField
     }()
 
     private let yearTextField: UITextField = {
         let textField = UITextField()
         textField.autocorrectionType = .no
+        textField.textAlignment = .left
         return textField
     }()
 
@@ -53,6 +55,11 @@ import UIKit
         return view
     }()
 
+    private let textFieldInternalStackViewContainer: UIView = {
+        let view = UIView()
+        return view
+    }()
+
     private lazy var textFieldInternalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [monthTextField, separatorLabel, yearTextField])
         stackView.axis = .horizontal
@@ -63,7 +70,7 @@ import UIKit
     }()
 
     private lazy var textFieldStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [textFieldImageView, textFieldInternalStackView])
+        let stackView = UIStackView(arrangedSubviews: [textFieldImageView, textFieldInternalStackViewContainer])
         stackView.axis = .horizontal
         stackView.spacing = 10
         stackView.alignment = .fill
@@ -147,6 +154,8 @@ import UIKit
 
     @objc public var placeholder: String = "MM / YY" {
         didSet {
+            monthTextField.placeholder = "MM"
+            yearTextField.placeholder = "YY"
             // todo
 //            textField.attributedPlaceholder = NSAttributedString(string: placeholder,
 //                                                                 attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
@@ -281,7 +290,7 @@ extension ExpiryDateInputView: ViewSetupable {
         errorLabel.font = errorFont
 
         title = Localizable.ExpiryDateInputView.title.text
-        //placeholder = Localizable.ExpiryDateInputView.placeholder.text
+        placeholder = Localizable.ExpiryDateInputView.placeholder.text
         error = Localizable.ExpiryDateInputView.error.text
 
         keyboardType = .numberPad
@@ -295,6 +304,7 @@ extension ExpiryDateInputView: ViewSetupable {
     func setupViewHierarchy() {
         textFieldStackViewBackground.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         textFieldStackView.insertSubview(textFieldStackViewBackground, at: 0)
+        textFieldInternalStackViewContainer.addSubview(textFieldInternalStackView)
         addSubviews([stackView])
     }
 
@@ -304,6 +314,15 @@ extension ExpiryDateInputView: ViewSetupable {
             equal(\.widthAnchor, to: 30),
             equal(\.heightAnchor, to: 33)
         ])
+
+        textFieldInternalStackView.addConstraints([
+            equal(textFieldInternalStackViewContainer, \.topAnchor),
+            equal(textFieldInternalStackViewContainer, \.bottomAnchor),
+            equal(textFieldInternalStackViewContainer, \.leadingAnchor, \.leadingAnchor, greaterOrEqual: 0),
+            equal(textFieldInternalStackViewContainer, \.trailingAnchor, \.trailingAnchor, lessOrEqual: 0),
+            equal(textFieldInternalStackViewContainer, \.centerXAnchor)
+        ])
+
         stackView.addConstraints(equalToSuperview(with: .init(top: 5, left: 5, bottom: -5, right: -5), usingSafeArea: false))
     }
 }
