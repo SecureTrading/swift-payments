@@ -473,7 +473,7 @@ extension ExpiryDateInputView: UITextFieldDelegate {
     }
 
     public func textFieldDidBeginEditing(_ textField: UITextField) {
-        if (textField.text ?? "").isEmpty {
+        if (textField.text ?? "").isEmpty  || textField is MonthTextField {
             textField.text = UITextField.emptyCharacter
         }
     }
@@ -505,7 +505,9 @@ extension ExpiryDateInputView: UITextFieldDelegate {
         let currentTextFieldText = String(newText[..<index])
         let overflowText = String(newText[index...])
 
-        textField.text = currentTextFieldText
+        if newText.count <= 2 {
+            textField.text = currentTextFieldText
+        }
 
         if textField is MonthTextField, currentTextFieldText.count > 1 {
             self.textField(textField, didEnterFullData: currentTextFieldText)
@@ -544,7 +546,7 @@ extension ExpiryDateInputView {
             return
         }
 
-        nextTextField?.delegate?.textField?(nextTextField!, shouldChangeCharactersIn: NSMakeRange(0, (nextField.text ?? "").count), replacementString: prefillText)
+        nextTextField?.delegate?.textField?(nextField, shouldChangeCharactersIn: NSRange(location: 0, length: (nextField.text ?? .empty).count), replacementString: prefillText)
     }
 }
 
