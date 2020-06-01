@@ -9,6 +9,11 @@ import SecureTradingCard
 import UIKit
 
 private class MonthTextField: BackwardTextField {
+
+    // todo
+    /// Description
+    /// - Parameter text: text description
+    /// - Returns: description
     func autocomplete(_ text: String) -> String {
         let length = text.count
         if length != 1 {
@@ -110,6 +115,8 @@ private class YearTextField: BackwardTextField {}
         return stackView
     }()
 
+    private var placeholderPrivate: String = "MM/YY"
+
     private let tFieldStViewLeadingEqualConstraint = "tFieldStViewLeadingEqualConstraint"
     private let tFieldStViewTrailingEqualConstraint = "tFieldStViewTrailingEqualConstraint"
     private let tFieldStViewLeadingGreaterConstraint = "tFieldStViewLeadingGreaterConstraint"
@@ -122,6 +129,10 @@ private class YearTextField: BackwardTextField {}
     private var expectedInputLength: Int {
         return 2
     }
+
+    private let setWithoutSpecialChars = CharacterSet(charactersIn:
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    )
 
     // MARK: Public properties
 
@@ -219,7 +230,6 @@ private class YearTextField: BackwardTextField {}
         }
     }
 
-    private var placeholderPrivate: String = "MM/YY"
     @objc public var placeholder: String {
         get {
             return placeholderPrivate
@@ -310,12 +320,6 @@ private class YearTextField: BackwardTextField {}
         }
     }
 
-    // MARK: Helpers
-
-    private let setWithoutSpecialChars = CharacterSet(charactersIn:
-        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-    )
-
     // MARK: Functions
 
     private func updatePlaceholder(current: String) {
@@ -371,7 +375,7 @@ private class YearTextField: BackwardTextField {}
     // MARK: - Validation
 
     @discardableResult
-    @objc func validate(silent: Bool, hideError: Bool = false) -> Bool {
+    func validate(silent: Bool, hideError: Bool = false) -> Bool {
         let result = isInputValid
         if silent == false {
             showHideError(show: !result)
@@ -478,7 +482,7 @@ extension ExpiryDateInputView: UITextFieldDelegate {
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         hasStartedMonthEditing = textField is MonthTextField ? true : hasStartedMonthEditing
         hasStartedYearEditing = textField is YearTextField ? true : hasStartedYearEditing
-        if (textField.text ?? "").isEmpty || textField is MonthTextField {
+        if (textField.text ?? .empty).isEmpty || textField is MonthTextField {
             textField.text = UITextField.emptyCharacter
         }
     }
@@ -533,14 +537,29 @@ extension ExpiryDateInputView: UITextFieldDelegate {
 }
 
 extension ExpiryDateInputView {
+    // todo
+    /// Description
+    /// - Parameters:
+    ///   - textField: textField description
+    ///   - didEnterFullData: didEnterFullData description
     public func textField(_ textField: UITextField, didEnterFullData: String) {
         selectNext(textField, prefillText: nil)
     }
 
+    // todo
+    /// Description
+    /// - Parameters:
+    ///   - textField: textField description
+    ///   - didEnterFullData: didEnterFullData description
     public func textField(_ textField: UITextField, didEnterOverflowData overflowText: String) {
         selectNext(textField, prefillText: overflowText)
     }
 
+    // todo
+    /// Description
+    /// - Parameters:
+    ///   - textField: textField description
+    ///   - prefillText: prefillText description
     private func selectNext(_ textField: UITextField, prefillText: String?) {
         var nextTextField: UITextField?
         if textField == monthTextField {
