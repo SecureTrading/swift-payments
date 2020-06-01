@@ -13,8 +13,23 @@ import UIKit
 private class MonthTextField: UITextField {
     func autocomplete(_ text: String) -> String {
         let length = text.count
-        if length != 1 {
+        if length < 1 {
             return text
+        }
+
+        if length > 1 {
+
+            return text
+//            let first = String(text.first!)
+//            let monthNumber = Int(first) ?? 0
+//            if monthNumber > 1 {
+//                return "0" + first
+//            } else {
+//                if length > 2 {
+//                } else {
+//                    return text
+//                }
+//            }
         }
 
         let monthNumber = Int(text) ?? 0
