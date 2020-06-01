@@ -7,9 +7,10 @@ import XCTest
 @testable import SecureTradingCore
 
 class TestGeneralResponse: XCTestCase {
-    func test_smth() throws {
-        let jwtData = getJWT().data(using: .utf8)!
-        //let response = try JSONDecoder().decode(GeneralResponse.self, from: jwtData)
-       // print(response)
+    func test_responseDecoding() throws {
+        let jwt = ["jwt": getJWT()]
+        let data = try JSONSerialization.data(withJSONObject: jwt, options: JSONSerialization.WritingOptions(rawValue: 0))
+        let response = try JSONDecoder().decode(GeneralResponse.self, from: data)
+        XCTAssertNotNil(response)
     }
 }
