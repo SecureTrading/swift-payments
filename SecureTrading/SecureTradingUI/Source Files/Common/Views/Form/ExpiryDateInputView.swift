@@ -116,6 +116,9 @@ private class YearTextField: BackwardTextField {}
     private let tFieldStViewTrailingLessConstraint = "tFieldStViewTrailingLessConstraint"
     private let tFieldStViewCenterXConstraint = "tFieldStViewCenterXConstraint"
 
+    private var hasStartedMonthEditing = false
+    private var hasStartedYearEditing = false
+
     private var expectedInputLength: Int {
         return 2
     }
@@ -473,13 +476,17 @@ extension ExpiryDateInputView: UITextFieldDelegate {
     }
 
     public func textFieldDidBeginEditing(_ textField: UITextField) {
-        if (textField.text ?? "").isEmpty  || textField is MonthTextField {
+        hasStartedMonthEditing = textField is MonthTextField ? true : hasStartedMonthEditing
+        hasStartedYearEditing = textField is YearTextField ? true : hasStartedYearEditing
+        if (textField.text ?? "").isEmpty || textField is MonthTextField {
             textField.text = UITextField.emptyCharacter
         }
     }
 
     public func textFieldDidEndEditing(_ textField: UITextField) {
-        validate(silent: false)
+        if hasStartedMonthEditing, hasStartedYearEditing {
+            validate(silent: false)
+        }
         delegate?.inputViewTextFieldDidEndEditing(self)
     }
 
