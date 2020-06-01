@@ -2,15 +2,13 @@
 //  ExpiryDateInputView.swift
 //  SecureTradingUI
 //
-//  Created by TIWASZEK on 28/05/2020.
-//
 
 #if !COCOAPODS
 import SecureTradingCard
 #endif
 import UIKit
 
-private class MonthTextField: UITextField {
+private class MonthTextField: BackwardTextField {
     func autocomplete(_ text: String) -> String {
         let length = text.count
         if length != 1 {
@@ -26,7 +24,7 @@ private class MonthTextField: UITextField {
     }
 }
 
-private class YearTextField: UITextField {}
+private class YearTextField: BackwardTextField {}
 
 @objc public class ExpiryDateInputView: WhiteBackgroundBaseView, SecureFormInputView {
     // MARK: Properties
@@ -386,6 +384,10 @@ private class YearTextField: UITextField {}
 extension ExpiryDateInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
+        yearTextField.deleteLastCharCallback = { [weak self] _ in
+            self?.monthTextField.becomeFirstResponder()
+        }
+
         monthTextField.delegate = self
         yearTextField.delegate = self
 
@@ -470,13 +472,25 @@ extension ExpiryDateInputView: UITextFieldDelegate {
         return true
     }
 
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
+        if (textField.text ?? "").isEmpty {
+            textField.text = UITextField.emptyCharacter
+        }
+    }
+
     public func textFieldDidEndEditing(_ textField: UITextField) {
         validate(silent: false)
         delegate?.inputViewTextFieldDidEndEditing(self)
     }
 
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        var newText = NSString(string: textField.text ?? .empty).replacingCharacters(in: range, with: string)
+        var newText = NSString(string: textField.text ?? .empty).replacingCharacters(in: range, with: string).replacingOccurrences(of: UITextField.emptyCharacter, with: String.empty)
+
+        let deletingLastChar = !(textField.text ?? .empty).isEmpty && textField.text != UITextField.emptyCharacter && newText.isEmpty
+        if deletingLastChar {
+            textField.text = UITextField.emptyCharacter
+            return false
+        }
 
         if !newText.isEmpty, !newText.isNumeric() {
             return false

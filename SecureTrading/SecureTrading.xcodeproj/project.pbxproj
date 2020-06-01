@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0818DE3A24851BDE00A8B25A /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE3924851BDE00A8B25A /* UITextField.swift */; };
+		0818DE3C24851C2200A8B25A /* BackwardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE3B24851C2200A8B25A /* BackwardTextField.swift */; };
 		0830B390247552E400410FC5 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0830B38F247552E400410FC5 /* Bundle.swift */; };
 		0845BF20247E48E0008AD40F /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1092CF3F2476CA1F0002B2E8 /* SecureTradingCard.framework */; platformFilter = ios; };
 		084D7DC62480D6BE002E43BC /* SecureFormInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D7DC52480D6BE002E43BC /* SecureFormInputView.swift */; };
@@ -183,6 +185,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0818DE3924851BDE00A8B25A /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		0818DE3B24851C2200A8B25A /* BackwardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackwardTextField.swift; sourceTree = "<group>"; };
 		082FC7A4246429D200D4E2B6 /* SDK-base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "SDK-base.xcconfig"; sourceTree = "<group>"; };
 		0830B38F247552E400410FC5 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		084D7DC52480D6BE002E43BC /* SecureFormInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFormInputView.swift; sourceTree = "<group>"; };
@@ -400,6 +404,7 @@
 				084E2A02246585330040FB9D /* UICollectionView.swift */,
 				084E2A1E24659E2C0040FB9D /* ArrayUI.swift */,
 				08886EE2247C234800BC1637 /* StringUI.swift */,
+				0818DE3924851BDE00A8B25A /* UITextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -469,6 +474,7 @@
 				084E2A1824659B7B0040FB9D /* CustomBackNavigationController.swift */,
 				084E2A1A24659BD30040FB9D /* PopBackView.swift */,
 				084E2A1C24659D6A0040FB9D /* TransparentNavigationBar.swift */,
+				0818DE3B24851C2200A8B25A /* BackwardTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1243,6 +1249,7 @@
 				084E29E924656A5E0040FB9D /* UIView.swift in Sources */,
 				08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */,
 				084E2A1924659B7B0040FB9D /* CustomBackNavigationController.swift in Sources */,
+				0818DE3A24851BDE00A8B25A /* UITextField.swift in Sources */,
 				08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */,
 				084E29FB2465832C0040FB9D /* Colors.swift in Sources */,
 				084E2A012465841D0040FB9D /* UITableView.swift in Sources */,
@@ -1283,6 +1290,7 @@
 				08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */,
 				0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */,
 				0869488124692A5600F625D0 /* TestDetailsViewController.swift in Sources */,
+				0818DE3C24851C2200A8B25A /* BackwardTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
