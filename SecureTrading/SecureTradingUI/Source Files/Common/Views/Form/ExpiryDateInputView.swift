@@ -527,14 +527,14 @@ extension ExpiryDateInputView: UITextFieldDelegate {
 
 extension ExpiryDateInputView {
     public func textField(_ textField: UITextField, didEnterFullData: String) {
-        select(textField, prefillText: nil)
+        selectNext(textField, prefillText: nil)
     }
 
     public func textField(_ textField: UITextField, didEnterOverflowData overflowText: String) {
-        select(textField, prefillText: overflowText)
+        selectNext(textField, prefillText: overflowText)
     }
 
-    private func select(_ textField: UITextField, prefillText: String?) {
+    private func selectNext(_ textField: UITextField, prefillText: String?) {
         var nextTextField: UITextField?
         if textField == monthTextField {
             nextTextField = yearTextField
