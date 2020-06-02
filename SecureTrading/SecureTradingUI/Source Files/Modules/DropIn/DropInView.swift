@@ -5,32 +5,37 @@
 
 import UIKit
 
-final class DropInView: WhiteBackgroundBaseView {
-    var payButtonTappedClosure: (() -> Void)? {
+@objc public final class DropInView: WhiteBackgroundBaseView {
+
+    @objc public var isFormValid: Bool {
+        return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid
+    }
+
+    @objc public var payButtonTappedClosure: (() -> Void)? {
         get { return payButton.onTap }
         set { payButton.onTap = newValue }
     }
 
-    private let cardNumberInput: CardNumberInputView = {
+    @objc public let cardNumberInput: CardNumberInputView = {
         CardNumberInputView()
     }()
 
-    private let expiryDateInput: ExpiryDateInputView = {
+    @objc public let expiryDateInput: ExpiryDateInputView = {
         ExpiryDateInputView()
     }()
 
-    private let cvcInput: CvcInputView = {
+    @objc public let cvcInput: CvcInputView = {
         CvcInputView()
     }()
 
-    private let payButton: UIButton = {
+    @objc public let payButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
         button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
         button.setTitle(Localizable.DropInView.payButton.text, for: .normal)
         button.titleLabel?.numberOfLines = 0
         button.titleLabel?.lineBreakMode = .byWordWrapping
-        button.backgroundColor = .darkGray
+        button.backgroundColor = .red
         button.layer.cornerRadius = 6
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return button
@@ -72,22 +77,21 @@ extension DropInView: ViewSetupable {
 }
 
 extension DropInView: CardNumberInputViewDelegate {
-    func cardNumberInputViewDidComplete(_ cardNumberInputView: CardNumberInputView) {
+    public func cardNumberInputViewDidComplete(_ cardNumberInputView: CardNumberInputView) {
         cvcInput.cardType = cardNumberInputView.cardType
         cvcInput.isHidden = !cardNumberInputView.isCVCRequired
     }
 
-    func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView) {
+    public func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView) {
         cvcInput.cardType = cardNumberInputView.cardType
         cvcInput.isHidden = !cardNumberInputView.isCVCRequired
     }
 }
 
 extension DropInView: SecureFormInputViewDelegate {
-    func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView) {}
+    public func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView) {}
 
-    func showHideError(_ show: Bool) {
-        let isFormValid = cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid
+    public func showHideError(_ show: Bool) {
         payButton.backgroundColor = isFormValid ? UIColor.darkGray : UIColor.red
     }
 }
