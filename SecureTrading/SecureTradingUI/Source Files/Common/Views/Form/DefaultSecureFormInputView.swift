@@ -5,11 +5,7 @@
 
 import UIKit
 
-@objc public protocol SecureFormInputViewDelegate: class {
-    func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView)
-}
-
-@objc public class SecureFormInputView: WhiteBackgroundBaseView {
+@objc public class DefaultSecureFormInputView: WhiteBackgroundBaseView, SecureFormInputView {
     // MARK: Properties
 
     private let titleLabel: UILabel = {
@@ -210,7 +206,7 @@ import UIKit
 
     // MARK: Functions
 
-    public func showHideError(show: Bool) {
+    func showHideError(show: Bool) {
         errorLabel.isHidden = !show
         textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor
         textFieldStackViewBackground.backgroundColor = show ? errorColor.withAlphaComponent(0.2) : textFieldBackgroundColor
@@ -219,7 +215,7 @@ import UIKit
     // MARK: - Validation
 
     @discardableResult
-    @objc public func validate(silent: Bool, hideError: Bool = false) -> Bool {
+    func validate(silent: Bool, hideError: Bool = false) -> Bool {
         let result = isInputValid
         if silent == false {
             showHideError(show: !result)
@@ -232,7 +228,7 @@ import UIKit
     }
 }
 
-extension SecureFormInputView: ViewSetupable {
+extension DefaultSecureFormInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
         textField.delegate = self
@@ -274,7 +270,7 @@ extension SecureFormInputView: ViewSetupable {
 
 // MARK: TextField delegate
 
-extension SecureFormInputView: UITextFieldDelegate {
+extension DefaultSecureFormInputView: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

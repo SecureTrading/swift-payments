@@ -18,7 +18,7 @@ import UIKit
     func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView)
 }
 
-@objc public final class CardNumberInputView: SecureFormInputView {
+@objc public final class CardNumberInputView: DefaultSecureFormInputView {
     // MARK: Private Properties
 
     private var cardNumberFormat: CardNumberFormat {
@@ -100,7 +100,7 @@ extension CardNumberInputView {
         let newTextWithSeparators = textFieldTextWithSeparators.replacingCharacters(in: range, with: string)
         let newTextWithoutSeparators = cardNumberFormat.removeSeparator(cardNumber: newTextWithSeparators)
 
-        if !newTextWithoutSeparators.isEmpty, !newTextWithoutSeparators.isNumeric() {
+        if !newTextWithoutSeparators.isEmpty, !newTextWithoutSeparators.isNumeric {
             return false
         }
 

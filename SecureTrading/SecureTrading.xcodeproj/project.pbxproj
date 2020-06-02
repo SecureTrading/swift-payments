@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0818DE3A24851BDE00A8B25A /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE3924851BDE00A8B25A /* UITextField.swift */; };
+		0818DE3C24851C2200A8B25A /* BackwardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE3B24851C2200A8B25A /* BackwardTextField.swift */; };
 		0830B390247552E400410FC5 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0830B38F247552E400410FC5 /* Bundle.swift */; };
 		0845BF20247E48E0008AD40F /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1092CF3F2476CA1F0002B2E8 /* SecureTradingCard.framework */; platformFilter = ios; };
+		084D7DC62480D6BE002E43BC /* SecureFormInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D7DC52480D6BE002E43BC /* SecureFormInputView.swift */; };
 		084E29CE246562C60040FB9D /* SecureTradingCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29CD246562C60040FB9D /* SecureTradingCoreTests.swift */; };
 		084E29D0246562C60040FB9D /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; platformFilter = ios; };
 		084E29E0246562DA0040FB9D /* SecureTradingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7D3E2462B12F008B5F3E /* SecureTradingUI.framework */; platformFilter = ios; };
@@ -41,6 +44,7 @@
 		0853ACA5247FA6B300DF37EE /* KnownMaskedCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */; };
 		0853ACA7247FB00F00DF37EE /* CvcInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA6247FB00F00DF37EE /* CvcInputView.swift */; };
 		0853ACAA247FC34C00DF37EE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0853ACA9247FC34C00DF37EE /* Images.xcassets */; };
+		0853ACAC247FF15700DF37EE /* ExpiryDateInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACAB247FF15700DF37EE /* ExpiryDateInputView.swift */; };
 		08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */; };
 		08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3C2469591400C8F90A /* ViewModelFactory.swift */; };
 		08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */; };
@@ -52,7 +56,7 @@
 		0869488124692A5600F625D0 /* TestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488024692A5600F625D0 /* TestDetailsViewController.swift */; };
 		0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488224692A7500F625D0 /* TestDetailsFlowController.swift */; };
 		0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869488424694FAF00F625D0 /* SDKFlowController.swift */; };
-		08886ED0247B9D3300BC1637 /* SecureFormInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ECF247B9D3300BC1637 /* SecureFormInputView.swift */; };
+		08886ED0247B9D3300BC1637 /* DefaultSecureFormInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ECF247B9D3300BC1637 /* DefaultSecureFormInputView.swift */; };
 		08886ED2247C0D9A00BC1637 /* CardNumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ED1247C0D9900BC1637 /* CardNumberInputView.swift */; };
 		08886ED5247C107200BC1637 /* CardNumberFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ED4247C107200BC1637 /* CardNumberFormat.swift */; };
 		08886ED9247C1AE500BC1637 /* CardTypeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886ED8247C1AE500BC1637 /* CardTypeContainer.swift */; };
@@ -190,8 +194,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0818DE3924851BDE00A8B25A /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		0818DE3B24851C2200A8B25A /* BackwardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackwardTextField.swift; sourceTree = "<group>"; };
 		082FC7A4246429D200D4E2B6 /* SDK-base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "SDK-base.xcconfig"; sourceTree = "<group>"; };
 		0830B38F247552E400410FC5 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		084D7DC52480D6BE002E43BC /* SecureFormInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFormInputView.swift; sourceTree = "<group>"; };
 		084E29CB246562C60040FB9D /* SecureTradingCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureTradingCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		084E29CF246562C60040FB9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		084E29DB246562DA0040FB9D /* SecureTradingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureTradingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +232,7 @@
 		0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownMaskedCards.swift; sourceTree = "<group>"; };
 		0853ACA6247FB00F00DF37EE /* CvcInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcInputView.swift; sourceTree = "<group>"; };
 		0853ACA9247FC34C00DF37EE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0853ACAB247FF15700DF37EE /* ExpiryDateInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiryDateInputView.swift; sourceTree = "<group>"; };
 		08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		08639C3C2469591400C8F90A /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBackgroundBaseView.swift; sourceTree = "<group>"; };
@@ -236,7 +244,7 @@
 		0869488024692A5600F625D0 /* TestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsViewController.swift; sourceTree = "<group>"; };
 		0869488224692A7500F625D0 /* TestDetailsFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsFlowController.swift; sourceTree = "<group>"; };
 		0869488424694FAF00F625D0 /* SDKFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKFlowController.swift; sourceTree = "<group>"; };
-		08886ECF247B9D3300BC1637 /* SecureFormInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFormInputView.swift; sourceTree = "<group>"; };
+		08886ECF247B9D3300BC1637 /* DefaultSecureFormInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSecureFormInputView.swift; sourceTree = "<group>"; };
 		08886ED1247C0D9900BC1637 /* CardNumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumberInputView.swift; sourceTree = "<group>"; };
 		08886ED4247C107200BC1637 /* CardNumberFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardNumberFormat.swift; sourceTree = "<group>"; };
 		08886ED8247C1AE500BC1637 /* CardTypeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTypeContainer.swift; sourceTree = "<group>"; };
@@ -418,6 +426,7 @@
 				084E2A02246585330040FB9D /* UICollectionView.swift */,
 				084E2A1E24659E2C0040FB9D /* ArrayUI.swift */,
 				08886EE2247C234800BC1637 /* StringUI.swift */,
+				0818DE3924851BDE00A8B25A /* UITextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -437,6 +446,7 @@
 				084E2A0D246599B70040FB9D /* FlowController.swift */,
 				084E2A0F246599D90040FB9D /* NavigationFlowController.swift */,
 				084E2A11246599FC0040FB9D /* NavigationDelegate.swift */,
+				084D7DC52480D6BE002E43BC /* SecureFormInputView.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -486,6 +496,7 @@
 				084E2A1824659B7B0040FB9D /* CustomBackNavigationController.swift */,
 				084E2A1A24659BD30040FB9D /* PopBackView.swift */,
 				084E2A1C24659D6A0040FB9D /* TransparentNavigationBar.swift */,
+				0818DE3B24851C2200A8B25A /* BackwardTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -521,9 +532,10 @@
 		08886ECE247B9C5700BC1637 /* Form */ = {
 			isa = PBXGroup;
 			children = (
-				08886ECF247B9D3300BC1637 /* SecureFormInputView.swift */,
+				08886ECF247B9D3300BC1637 /* DefaultSecureFormInputView.swift */,
 				08886ED1247C0D9900BC1637 /* CardNumberInputView.swift */,
 				0853ACA6247FB00F00DF37EE /* CvcInputView.swift */,
+				0853ACAB247FF15700DF37EE /* ExpiryDateInputView.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -1278,6 +1290,7 @@
 				084E29E924656A5E0040FB9D /* UIView.swift in Sources */,
 				08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */,
 				084E2A1924659B7B0040FB9D /* CustomBackNavigationController.swift in Sources */,
+				0818DE3A24851BDE00A8B25A /* UITextField.swift in Sources */,
 				08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */,
 				084E29FB2465832C0040FB9D /* Colors.swift in Sources */,
 				084E2A012465841D0040FB9D /* UITableView.swift in Sources */,
@@ -1290,13 +1303,15 @@
 				084E2A12246599FC0040FB9D /* NavigationDelegate.swift in Sources */,
 				084E2A1F24659E2C0040FB9D /* ArrayUI.swift in Sources */,
 				08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */,
-				08886ED0247B9D3300BC1637 /* SecureFormInputView.swift in Sources */,
+				08886ED0247B9D3300BC1637 /* DefaultSecureFormInputView.swift in Sources */,
 				084E2A10246599D90040FB9D /* NavigationFlowController.swift in Sources */,
 				0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */,
 				08886EE3247C234800BC1637 /* StringUI.swift in Sources */,
 				084E2A03246585330040FB9D /* UICollectionView.swift in Sources */,
+				0853ACAC247FF15700DF37EE /* ExpiryDateInputView.swift in Sources */,
 				084E29FD246583B50040FB9D /* BaseViewCell.swift in Sources */,
 				0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */,
+				084D7DC62480D6BE002E43BC /* SecureFormInputView.swift in Sources */,
 				084E2A1624659AC50040FB9D /* BaseNavigationFlowController.swift in Sources */,
 				084E29EE24656D7F0040FB9D /* BaseView.swift in Sources */,
 				08886ED5247C107200BC1637 /* CardNumberFormat.swift in Sources */,
@@ -1316,6 +1331,7 @@
 				08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */,
 				0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */,
 				0869488124692A5600F625D0 /* TestDetailsViewController.swift in Sources */,
+				0818DE3C24851C2200A8B25A /* BackwardTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
