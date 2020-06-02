@@ -26,6 +26,11 @@ final class MainView: WhiteBackgroundBaseView {
         set { showSingleInputViewsButton.onTap = newValue }
     }
 
+    var showDropInControllerButtonTappedClosure: (() -> Void)? {
+        get { return showDropInControllerButton.onTap }
+        set { showDropInControllerButton.onTap = newValue }
+    }
+
     private let makeAuthRequestButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
@@ -54,8 +59,15 @@ final class MainView: WhiteBackgroundBaseView {
         return button
     }()
 
+    private let showDropInControllerButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
+        button.setTitle(Localizable.MainView.showDropInControllerButton.text, for: .normal)
+        return button
+    }()
+
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [showTestMainScreenButton, showTestMainFlowButton, makeAuthRequestButton, showSingleInputViewsButton])
+        let stackView = UIStackView(arrangedSubviews: [showTestMainScreenButton, showTestMainFlowButton, makeAuthRequestButton, showSingleInputViewsButton, showDropInControllerButton])
         stackView.axis = .vertical
         stackView.spacing = 30
         stackView.alignment = .fill
@@ -85,5 +97,6 @@ private extension Localizable {
         case showTestMainFlowButton
         case makeAuthRequestButton
         case showSingleInputViewsButton
+        case showDropInControllerButton
     }
 }

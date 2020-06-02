@@ -6,7 +6,6 @@
 import UIKit
 
 final class DropInView: WhiteBackgroundBaseView {
-
     var payButtonTappedClosure: (() -> Void)? {
         get { return payButton.onTap }
         set { payButton.onTap = newValue }
@@ -32,7 +31,7 @@ final class DropInView: WhiteBackgroundBaseView {
     }()
 
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput])
+        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, payButton])
         stackView.axis = .vertical
         stackView.spacing = 30
         stackView.alignment = .fill
@@ -54,7 +53,12 @@ extension DropInView: ViewSetupable {
 
     /// - SeeAlso: ViewSetupable.setupConstraints
     func setupConstraints() {
-        stackView.addConstraints(equalToSuperview(with: .init(top: 15, left: 30, bottom: -15, right: -30), usingSafeArea: true))
+        stackView.addConstraints([
+            equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: 15),
+            equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, lessOrEqual: -15),
+            equal(self, \.leadingAnchor, constant: 30),
+            equal(self, \.trailingAnchor, constant: -30)
+        ])
     }
 }
 

@@ -25,4 +25,9 @@ import UIKit
         }
         return viewController
     }
+
+    @objc public func dropInViewController() -> UIViewController {
+        let viewController = DropInViewController(view: DropInView(), viewModel: DropInViewModel())
+        return viewController
+    }
 }

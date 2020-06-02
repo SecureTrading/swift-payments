@@ -33,6 +33,8 @@ final class MainFlowController: BaseNavigationFlowController {
                 self.showTestMainFlow()
             case .didTapShowSingleInputViews:
                 self.showSingleInputViewsSceen()
+            case .didTapShowDropInController:
+                self.showDropInViewController()
             }
         }
         return mainViewController
@@ -42,6 +44,11 @@ final class MainFlowController: BaseNavigationFlowController {
         let vc = SingleInputViewsController(view: SingleInputView(), viewModel: SingleInputViewsModel())
         push(vc, animated: true)
     }
+
+    func showDropInViewController() {
+        let dropInVC = ViewControllerFactory.shared.dropInViewController()
+          push(dropInVC, animated: true)
+      }
 
     // Test UI framework availability
     func showTestMainScreen() {
