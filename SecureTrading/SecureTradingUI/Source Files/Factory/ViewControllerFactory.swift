@@ -3,6 +3,9 @@
 //  SecureTradingUI
 //
 
+#if !COCOAPODS
+import SecureTradingCore
+#endif
 import Foundation
 import UIKit
 
@@ -26,8 +29,8 @@ import UIKit
         return viewController
     }
 
-    @objc public func dropInViewController() -> UIViewController {
-        let viewController = DropInViewController(view: DropInView(), viewModel: DropInViewModel())
+    @objc public func dropInViewController(jwt: String, gatewayType: GatewayType, username: String) -> UIViewController {
+        let viewController = DropInViewController(view: DropInView(), viewModel: DropInViewModel(jwt: jwt, gatewayType: gatewayType, username: username))
         return viewController
     }
 }

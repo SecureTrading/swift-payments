@@ -46,7 +46,9 @@ final class MainFlowController: BaseNavigationFlowController {
     }
 
     func showDropInViewController() {
-        let dropInVC = ViewControllerFactory.shared.dropInViewController()
+        // todo
+        let jwt = ""
+        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, gatewayType: .eu, username: appFoundation.keys.merchantUsername)
           push(dropInVC, animated: true)
       }
 

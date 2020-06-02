@@ -30,3 +30,5 @@ ExpiryDateInputView.error = "Invalid expiry date";
 PayButton.title = "Pay";
 
 DropInViewController.title = "Payment";
+
+Alerts.okButton = "Ok";
