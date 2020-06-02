@@ -12,6 +12,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
     /// - SeeAlso: BaseViewController.setupCallbacks
     override func setupCallbacks() {
         customView.payButtonTappedClosure = { [weak self] in
+            self?.customView.payButton.startProcessing()
             guard let self = self else { return }
             let isFormValid = self.viewModel.validateForm(view: self.customView)
             if isFormValid {

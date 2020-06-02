@@ -67,8 +67,8 @@ import UIKit
     private func configureView() {
         addSubview(self.spinner)
         self.spinner.addConstraints([
-            equal(self, \.centerXAnchor),
-            equal(self, \.trailingAnchor, constant: -5)
+            equal(self, \.centerYAnchor),
+            equal(self, \.trailingAnchor, constant: -15)
         ])
         layer.cornerRadius = 6
         contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
