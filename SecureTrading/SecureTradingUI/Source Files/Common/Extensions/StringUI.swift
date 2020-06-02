@@ -14,7 +14,7 @@ extension String {
         return String(self[startIndex..<endIndex])
     }
 
-    func isNumeric() -> Bool {
+    var isNumeric: Bool {
         guard !self.isEmpty else { return false }
         let nums: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         return Set(self).isSubset(of: nums)

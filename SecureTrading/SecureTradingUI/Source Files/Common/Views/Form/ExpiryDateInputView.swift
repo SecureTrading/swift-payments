@@ -9,7 +9,6 @@ import SecureTradingCard
 import UIKit
 
 private class MonthTextField: BackwardTextField {
-
     /// Returns automatically the completed text for the current month. For example, if you enter "4", it should return "04" instead.
     /// - Parameter text: entered text
     /// - Returns: auto-completed string.
@@ -502,7 +501,7 @@ extension ExpiryDateInputView: UITextFieldDelegate {
             return false
         }
 
-        if !newText.isEmpty, !newText.isNumeric() {
+        if !newText.isEmpty, !newText.isNumeric {
             return false
         }
 

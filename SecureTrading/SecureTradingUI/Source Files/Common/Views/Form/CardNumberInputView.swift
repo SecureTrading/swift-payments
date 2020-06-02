@@ -100,7 +100,7 @@ extension CardNumberInputView {
         let newTextWithSeparators = textFieldTextWithSeparators.replacingCharacters(in: range, with: string)
         let newTextWithoutSeparators = cardNumberFormat.removeSeparator(cardNumber: newTextWithSeparators)
 
-        if !newTextWithoutSeparators.isEmpty, !newTextWithoutSeparators.isNumeric() {
+        if !newTextWithoutSeparators.isNumeric {
             return false
         }
 
