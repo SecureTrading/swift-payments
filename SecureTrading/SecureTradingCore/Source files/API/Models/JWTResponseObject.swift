@@ -50,7 +50,7 @@
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let errorCodeString = try container.decode(String.self, forKey: .errorCode)
-        errorCode = Int(errorCodeString)!
+        errorCode = Int(errorCodeString) ?? -1
         errorMessage = try container.decode(String.self, forKey: .errorMessage)
         errorData = try container.decodeIfPresent([String].self, forKey: .errorData)
         if let settleStatusString = try container.decodeIfPresent(String.self, forKey: .settleStatus), let settleStatusInt = Int(settleStatusString) {

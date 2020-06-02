@@ -43,7 +43,7 @@ import Foundation
     }
 
     /// version info for general request parameter
-    private var versionInfo: String {
+    var versionInfo: String {
         return "\(self.sdkName)::\(self.swiftVersion)::\(self.sdkVersion)::\(self.iosVersion)"
     }
 

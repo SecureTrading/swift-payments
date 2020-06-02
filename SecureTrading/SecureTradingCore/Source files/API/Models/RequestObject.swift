@@ -41,7 +41,7 @@ public enum TypeDescription: String, Codable {
     /// Initializes an instance of the receiver.
     /// - Parameter typeDescriptions: request type
     @objc public convenience init(typeDescriptions: [Int]) {
-        let objcTypes = typeDescriptions.map { TypeDescriptionObjc(rawValue: $0)! }
+        let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
         self.init(typeDescriptions: objcTypes.map { TypeDescription(rawValue: $0.value)! })
     }
 
