@@ -13,3 +13,12 @@ TestMainView.showDetailsButton = "show details";
 
 TestPublic.first = "First";
 TestPublic.second = "Second";
+
+CardNumberInputView.title = "Card number";
+CardNumberInputView.placeholder = "0000 0000 0000 0000";
+CardNumberInputView.error = "invalid card number";
+
+CvcInputView.title = "Security code";
+CvcInputView.placeholder3 = "***";
+CvcInputView.placeholder4 = "****";
+CvcInputView.error = "invalid cvc code";

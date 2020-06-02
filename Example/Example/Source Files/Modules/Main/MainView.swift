@@ -21,6 +21,11 @@ final class MainView: WhiteBackgroundBaseView {
         set { makeAuthRequestButton.onTap = newValue }
     }
 
+    var showSingleInputViewsButtonTappedClosure: (() -> Void)? {
+        get { return showSingleInputViewsButton.onTap }
+        set { showSingleInputViewsButton.onTap = newValue }
+    }
+
     private let makeAuthRequestButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
@@ -42,8 +47,15 @@ final class MainView: WhiteBackgroundBaseView {
         return button
     }()
 
+    private let showSingleInputViewsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
+        button.setTitle(Localizable.MainView.showSingleInputViewsButton.text, for: .normal)
+        return button
+    }()
+
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [showTestMainScreenButton, showTestMainFlowButton, makeAuthRequestButton])
+        let stackView = UIStackView(arrangedSubviews: [showTestMainScreenButton, showTestMainFlowButton, makeAuthRequestButton, showSingleInputViewsButton])
         stackView.axis = .vertical
         stackView.spacing = 30
         stackView.alignment = .fill
@@ -72,5 +84,6 @@ private extension Localizable {
         case showTestMainScreenButton
         case showTestMainFlowButton
         case makeAuthRequestButton
+        case showSingleInputViewsButton
     }
 }

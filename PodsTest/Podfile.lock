@@ -5,6 +5,7 @@ PODS:
     - SecureTradingSDK/Core
   - SecureTradingSDK/Core (0.0.1)
   - SecureTradingSDK/UI (0.0.1):
+    - SecureTradingSDK/Card
     - SecureTradingSDK/Core
 
 DEPENDENCIES:
@@ -18,8 +19,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SecureTradingSDK: eb61f7edd2ca4bd7689a4fb1db77c1ae4be1c41f
+  SecureTradingSDK: cb502bd3dd931f31b2a56b6244fd681123417a27
 
 PODFILE CHECKSUM: 400c0cea5ab904eb77ceed703e916b3d29d2a14a
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.8.3

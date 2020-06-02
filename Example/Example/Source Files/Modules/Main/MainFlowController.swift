@@ -31,9 +31,16 @@ final class MainFlowController: BaseNavigationFlowController {
                 self.showTestMainScreen()
             case .didTapShowTestMainFlow:
                 self.showTestMainFlow()
+            case .didTapShowSingleInputViews:
+                self.showSingleInputViewsSceen()
             }
         }
         return mainViewController
+    }
+
+    func showSingleInputViewsSceen() {
+        let vc = SingleInputViewsController(view: SingleInputView(), viewModel: SingleInputViewsModel())
+        push(vc, animated: true)
     }
 
     // Test UI framework availability

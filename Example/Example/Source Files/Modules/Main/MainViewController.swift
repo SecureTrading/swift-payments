@@ -10,6 +10,7 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
     enum Event {
         case didTapShowTestMainScreen
         case didTapShowTestMainFlow
+        case didTapShowSingleInputViews
     }
 
     private var transparentNavigationBar: TransparentNavigationBar? { return navigationController?.navigationBar as? TransparentNavigationBar }
@@ -36,6 +37,10 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         customView.makeAuthRequestButtonTappedClosure = { [weak self] in
             guard let self = self else { return }
             self.viewModel.makeAuthCall()
+        }
+        customView.showSingleInputViewsButtonTappedClosure = { [weak self] in
+            guard let self = self else { return }
+            self.eventTriggered?(.didTapShowSingleInputViews)
         }
 
         viewModel.showAuthSuccess = { [weak self] _ in

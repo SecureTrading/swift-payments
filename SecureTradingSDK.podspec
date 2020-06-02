@@ -29,6 +29,7 @@ s.subspec "Core" do |s|
     s.public_header_files = "SecureTrading/SecureTradingUI/*.{h}"
     s.header_dir = "SecureTradingUI"
     s.dependency "SecureTradingSDK/Core"
+    s.dependency "SecureTradingSDK/Card"
   end
 
   s.subspec "3DSecure" do |s|
