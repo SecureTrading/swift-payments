@@ -15,15 +15,15 @@ class TestGeneralRequest: XCTestCase {
         request = GeneralRequest(alias: "alias", jwt: "jwt.jwt.jwt", version: "1.0", versionInfo: "Info version", requests: [])
     }
     func test_encodedDoesntLoseData() throws {
-        let encoded = try request!.encoder.encode(request!)
+        let encoded = try request.encoder.encode(request)
         let decoded = try JSONDecoder().decode(GeneralRequest.self, from: encoded)
-        XCTAssertEqual(request!.description, decoded.description)
+        XCTAssertEqual(request.description, decoded.description)
     }
     func test_pathIsJWT() throws {
-        XCTAssertEqual(request!.path, "/jwt/")
+        XCTAssertEqual(request.path, "/jwt/")
     }
     func test_httpMethodIsPost() throws {
-        XCTAssertEqual(request!.method, APIRequestMethod.post)
+        XCTAssertEqual(request.method, APIRequestMethod.post)
     }
 }
 
