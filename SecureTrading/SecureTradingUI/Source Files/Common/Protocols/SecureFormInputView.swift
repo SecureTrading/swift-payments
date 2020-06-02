@@ -7,6 +7,7 @@ import UIKit
 
 @objc public protocol SecureFormInputViewDelegate: class {
     func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView)
+    func showHideError(_ show: Bool)
 }
 
 @objc public protocol SecureFormInputView: AnyObject {

@@ -50,6 +50,9 @@ extension DropInView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
         cardNumberInput.cardNumberInputViewDelegate = self
+        cardNumberInput.delegate = self
+        cvcInput.delegate = self
+        expiryDateInput.delegate = self
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
@@ -77,6 +80,15 @@ extension DropInView: CardNumberInputViewDelegate {
     func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView) {
         cvcInput.cardType = cardNumberInputView.cardType
         cvcInput.isHidden = !cardNumberInputView.isCVCRequired
+    }
+}
+
+extension DropInView: SecureFormInputViewDelegate {
+    func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView) {}
+
+    func showHideError(_ show: Bool) {
+        let isFormValid = cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid
+        payButton.backgroundColor = isFormValid ? UIColor.darkGray : UIColor.red
     }
 }
 
