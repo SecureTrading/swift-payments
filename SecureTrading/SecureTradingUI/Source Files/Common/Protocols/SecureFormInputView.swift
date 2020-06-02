@@ -11,7 +11,6 @@ import UIKit
     func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView)
 }
 
-// todo descriptions
 @objc public protocol SecureFormInputView: AnyObject {
     var isEmpty: Bool { get }
 

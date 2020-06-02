@@ -10,10 +10,9 @@ import UIKit
 
 private class MonthTextField: BackwardTextField {
 
-    // todo
-    /// Description
-    /// - Parameter text: text description
-    /// - Returns: description
+    /// Returns automatically the completed text for the current month. For example, if you enter "4", it should return "04" instead.
+    /// - Parameter text: entered text
+    /// - Returns: auto-completed string.
     func autocomplete(_ text: String) -> String {
         let length = text.count
         if length != 1 {
@@ -537,29 +536,26 @@ extension ExpiryDateInputView: UITextFieldDelegate {
 }
 
 extension ExpiryDateInputView {
-    // todo
-    /// Description
+    /// Called whenever full data has been entered into `textField`.
     /// - Parameters:
-    ///   - textField: textField description
-    ///   - didEnterFullData: didEnterFullData description
+    ///   - textField: text field with updated information
+    ///   - didEnterFullData: Full information that has been entered into the `textField`
     public func textField(_ textField: UITextField, didEnterFullData: String) {
         selectNext(textField, prefillText: nil)
     }
 
-    // todo
-    /// Description
+    /// Called every time more text is entered into `textField` than necessary.
     /// - Parameters:
-    ///   - textField: textField description
-    ///   - didEnterFullData: didEnterFullData description
+    ///   - textField: A text field that has received more information than required.
+    ///   - overflowText: Text overflow that does not fit into the `textField` and can be entered into the next receiver
     public func textField(_ textField: UITextField, didEnterOverflowData overflowText: String) {
         selectNext(textField, prefillText: overflowText)
     }
 
-    // todo
-    /// Description
+    /// Moves on to the next text field
     /// - Parameters:
-    ///   - textField: textField description
-    ///   - prefillText: prefillText description
+    ///   - textField: current text field
+    ///   - prefillText: text that will be entered in the next text field
     private func selectNext(_ textField: UITextField, prefillText: String?) {
         var nextTextField: UITextField?
         if textField == monthTextField {
