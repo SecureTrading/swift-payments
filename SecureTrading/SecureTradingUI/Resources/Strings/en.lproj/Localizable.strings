@@ -26,3 +26,6 @@ CvcInputView.error = "invalid cvc code";
 ExpiryDateInputView.title = "Expiry date";
 ExpiryDateInputView.placeholder = "MM/YY";
 ExpiryDateInputView.error = "Invalid expiry date";
+
+DropInView.payButton = "Pay";
+DropInViewController.title = "Payment";

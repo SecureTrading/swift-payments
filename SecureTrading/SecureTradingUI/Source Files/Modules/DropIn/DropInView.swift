@@ -2,12 +2,16 @@
 //  DropInView.swift
 //  SecureTradingUI
 //
-//  Created by TIWASZEK on 02/06/2020.
-//
 
 import UIKit
 
 final class DropInView: WhiteBackgroundBaseView {
+
+    var payButtonTappedClosure: (() -> Void)? {
+        get { return payButton.onTap }
+        set { payButton.onTap = newValue }
+    }
+
     private let cardNumberInput: CardNumberInputView = {
         CardNumberInputView()
     }()
@@ -18,6 +22,13 @@ final class DropInView: WhiteBackgroundBaseView {
 
     private let cvcInput: CvcInputView = {
         CvcInputView()
+    }()
+
+    private let payButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
+        button.setTitle(Localizable.DropInView.payButton.text, for: .normal)
+        return button
     }()
 
     private lazy var stackView: UIStackView = {
@@ -56,5 +67,11 @@ extension DropInView: CardNumberInputViewDelegate {
     func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView) {
         cvcInput.cardType = cardNumberInputView.cardType
         cvcInput.isHidden = !cardNumberInputView.isCVCRequired
+    }
+}
+
+private extension Localizable {
+    enum DropInView: String, Localized {
+        case payButton
     }
 }

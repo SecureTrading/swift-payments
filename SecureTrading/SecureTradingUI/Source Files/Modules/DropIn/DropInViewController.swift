@@ -2,7 +2,27 @@
 //  DropInViewController.swift
 //  SecureTradingUI
 //
-//  Created by TIWASZEK on 02/06/2020.
-//
 
-import Foundation
+final class DropInViewController: BaseViewController<DropInView, DropInViewModel> {
+    /// - SeeAlso: BaseViewController.setupView
+    override func setupView() {
+        title = Localizable.DropInViewController.title.text
+    }
+
+    /// - SeeAlso: BaseViewController.setupCallbacks
+    override func setupCallbacks() {
+        customView.payButtonTappedClosure = { [weak self] in
+            guard let self = self else { return }
+            // todo
+        }
+    }
+
+    /// - SeeAlso: BaseViewController.setupProperties
+    override func setupProperties() {}
+}
+
+private extension Localizable {
+    enum DropInViewController: String, Localized {
+        case title
+    }
+}
