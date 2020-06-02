@@ -27,5 +27,6 @@ ExpiryDateInputView.title = "Expiry date";
 ExpiryDateInputView.placeholder = "MM/YY";
 ExpiryDateInputView.error = "Invalid expiry date";
 
-DropInView.payButton = "Pay";
+PayButton.title = "Pay";
+
 DropInViewController.title = "Payment";

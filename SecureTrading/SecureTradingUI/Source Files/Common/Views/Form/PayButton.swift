@@ -6,7 +6,7 @@
 import UIKit
 
 @objc public final class PayButton: UIButton {
-    // MARK: Properties
+    // MARK: Private properties
 
     private lazy var spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .white)
@@ -14,6 +14,40 @@ import UIKit
         spinner.hidesWhenStopped = true
         return spinner
     }()
+
+    // MARK: Public properties
+
+    @objc public override var isEnabled: Bool {
+        didSet {
+            if self.isEnabled {
+                self.backgroundColor = self.enabledBackgroundColor
+            } else {
+                self.backgroundColor = self.disabledBackgroundColor
+            }
+        }
+    }
+
+    @objc public var enabledBackgroundColor: UIColor = .darkGray
+
+    @objc public var disabledBackgroundColor: UIColor = UIColor.darkGray.withAlphaComponent(0.5)
+
+    @objc public var title: String = "pay" {
+        didSet {
+            setTitle(title, for: .normal)
+        }
+    }
+
+    @objc public var titleColor: UIColor = .white {
+        didSet {
+            tintColor = self.titleColor
+        }
+    }
+
+    @objc public var titleFont: UIFont = UIFont.systemFont(ofSize: 14) {
+        didSet {
+            titleLabel?.font = self.titleFont
+        }
+    }
 
     // MARK: Initialization
 
@@ -36,8 +70,16 @@ import UIKit
             equal(self, \.centerXAnchor),
             equal(self, \.trailingAnchor, constant: -5)
         ])
-        self.layer.cornerRadius = 6
-        self.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layer.cornerRadius = 6
+        contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        titleLabel?.numberOfLines = 0
+        titleLabel?.lineBreakMode = .byWordWrapping
+
+        tintColor = self.titleColor
+        titleLabel?.font = self.titleFont
+
+        self.isEnabled = false
+        self.title = Localizable.PayButton.title.text
     }
 
     // MARK: Public functions
@@ -51,34 +93,10 @@ import UIKit
         self.isUserInteractionEnabled = true
         self.spinner.stopAnimating()
     }
+}
 
-    @objc public var title: String = "default" {
-        didSet {
-
-        }
-    }
-
-    @objc public var titleColor: UIColor = .black {
-        didSet {
-
-        }
-    }
-
-    @objc public var enabledBackgroundColor: UIColor = .black {
-        didSet {
-
-        }
-    }
-
-    @objc public var disabledBackgroundColor: UIColor = .black {
-        didSet {
-
-        }
-    }
-
-    @objc public var titleFont: UIFont = UIFont.systemFont(ofSize: 14) {
-        didSet {
-
-        }
+private extension Localizable {
+    enum PayButton: String, Localized {
+        case title
     }
 }

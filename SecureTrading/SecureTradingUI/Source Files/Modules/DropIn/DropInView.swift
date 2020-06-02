@@ -6,7 +6,6 @@
 import UIKit
 
 @objc public final class DropInView: WhiteBackgroundBaseView {
-
     @objc public var isFormValid: Bool {
         return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid
     }
@@ -28,17 +27,8 @@ import UIKit
         CvcInputView()
     }()
 
-    @objc public let payButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.tintColor = .white
-        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle(Localizable.DropInView.payButton.text, for: .normal)
-        button.titleLabel?.numberOfLines = 0
-        button.titleLabel?.lineBreakMode = .byWordWrapping
-        button.backgroundColor = .red
-        button.layer.cornerRadius = 6
-        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        return button
+    @objc public let payButton: PayButton = {
+        PayButton()
     }()
 
     private lazy var stackView: UIStackView = {
@@ -105,12 +95,6 @@ extension DropInView: SecureFormInputViewDelegate {
     public func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView) {}
 
     public func showHideError(_ show: Bool) {
-        payButton.backgroundColor = isFormValid ? UIColor.darkGray : UIColor.red
-    }
-}
-
-private extension Localizable {
-    enum DropInView: String, Localized {
-        case payButton
+        payButton.isEnabled = isFormValid
     }
 }
