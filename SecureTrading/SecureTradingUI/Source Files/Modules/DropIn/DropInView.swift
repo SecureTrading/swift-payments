@@ -49,6 +49,12 @@ import UIKit
         stackView.distribution = .fill
         return stackView
     }()
+
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
 }
 
 extension DropInView: ViewSetupable {
@@ -62,17 +68,24 @@ extension DropInView: ViewSetupable {
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
     func setupViewHierarchy() {
-        addSubviews([stackView])
+        scrollView.addSubview(stackView)
+        addSubviews([scrollView])
     }
 
     /// - SeeAlso: ViewSetupable.setupConstraints
     func setupConstraints() {
-        stackView.addConstraints([
+        scrollView.addConstraints([
             equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: 15),
-            equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, lessOrEqual: -15),
+            equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: -15),
             equal(self, \.leadingAnchor, constant: 30),
             equal(self, \.trailingAnchor, constant: -30)
         ])
+
+        scrollView.addConstraints([
+            equal(stackView, \.widthAnchor, to: \.widthAnchor, constant: 0.0)
+        ])
+
+        stackView.addConstraints(equalToSuperview(with: .init(top: 0, left: 0, bottom: 0, right: 0), usingSafeArea: false))
     }
 }
 
