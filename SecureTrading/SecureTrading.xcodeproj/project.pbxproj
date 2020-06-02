@@ -86,7 +86,6 @@
 		104CFB28246ECE3A00D7C76D /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; };
 		104CFB2D246ECF2F00D7C76D /* ST3DSecureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */; };
 		1051D221247FEE0F008E4970 /* TestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D220247FEE0F008E4970 /* TestAPIManager.swift */; };
-		1051D22324810040008E4970 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22224810040008E4970 /* Mocks.swift */; };
 		1051D22524813F66008E4970 /* TestGeneralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22424813F65008E4970 /* TestGeneralRequest.swift */; };
 		1051D22724814B4D008E4970 /* TestDecodedJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22624814B4D008E4970 /* TestDecodedJWT.swift */; };
 		1051D229248157EF008E4970 /* TestGeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D228248157EF008E4970 /* TestGeneralResponse.swift */; };
@@ -101,6 +100,9 @@
 		1098F3AC247D5DD600414F94 /* TestCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3AB247D5DD600414F94 /* TestCVC.swift */; };
 		1098F3AE247D5E3A00414F94 /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3AD247D5E3A00414F94 /* TestExtensions.swift */; };
 		1098F3B0247D5E8400414F94 /* TestCardNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3AF247D5E8400414F94 /* TestCardNumber.swift */; };
+		1099519D24863DDA00E8E401 /* NetworkMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1099519C24863DDA00E8E401 /* NetworkMocks.swift */; };
+		1099519F24863DE400E8E401 /* APIMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1099519E24863DE400E8E401 /* APIMocks.swift */; };
+		109951A124863DF000E8E401 /* DecodingMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A024863DF000E8E401 /* DecodingMocks.swift */; };
 		10B5B82D2472B925009CE3A8 /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -256,7 +258,6 @@
 		104CFB18246ECD8000D7C76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ST3DSecureManager.swift; sourceTree = "<group>"; };
 		1051D220247FEE0F008E4970 /* TestAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPIManager.swift; sourceTree = "<group>"; };
-		1051D22224810040008E4970 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		1051D22424813F65008E4970 /* TestGeneralRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeneralRequest.swift; sourceTree = "<group>"; };
 		1051D22624814B4D008E4970 /* TestDecodedJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDecodedJWT.swift; sourceTree = "<group>"; };
 		1051D228248157EF008E4970 /* TestGeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeneralResponse.swift; sourceTree = "<group>"; };
@@ -274,6 +275,9 @@
 		1098F3AB247D5DD600414F94 /* TestCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCVC.swift; sourceTree = "<group>"; };
 		1098F3AD247D5E3A00414F94 /* TestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
 		1098F3AF247D5E8400414F94 /* TestCardNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardNumber.swift; sourceTree = "<group>"; };
+		1099519C24863DDA00E8E401 /* NetworkMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMocks.swift; sourceTree = "<group>"; };
+		1099519E24863DE400E8E401 /* APIMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMocks.swift; sourceTree = "<group>"; };
+		109951A024863DF000E8E401 /* DecodingMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingMocks.swift; sourceTree = "<group>"; };
 		10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CardinalMobile.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -359,7 +363,6 @@
 				084E29CF246562C60040FB9D /* Info.plist */,
 				10402BE9247E64480027CEEA /* TestGatewayEndpoint.swift */,
 				1051D220247FEE0F008E4970 /* TestAPIManager.swift */,
-				1051D22224810040008E4970 /* Mocks.swift */,
 				1051D22424813F65008E4970 /* TestGeneralRequest.swift */,
 				1051D22624814B4D008E4970 /* TestDecodedJWT.swift */,
 				1051D228248157EF008E4970 /* TestGeneralResponse.swift */,
@@ -591,6 +594,7 @@
 		08EF7CFA2462AAAC008B5F3E /* Source files */ = {
 			isa = PBXGroup;
 			children = (
+				1099519924863B4C00E8E401 /* Mocks */,
 				089B41CD246D4E3000F70764 /* Common */,
 				08EF7CFB2462ABD0008B5F3E /* API */,
 				084E2A2024659EA70040FB9D /* SDKFoundation.swift */,
@@ -774,6 +778,16 @@
 				10486201247BF4F40053209D /* CardValidator.swift */,
 			);
 			path = "Source files";
+			sourceTree = "<group>";
+		};
+		1099519924863B4C00E8E401 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				1099519C24863DDA00E8E401 /* NetworkMocks.swift */,
+				1099519E24863DE400E8E401 /* APIMocks.swift */,
+				109951A024863DF000E8E401 /* DecodingMocks.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		10B5B82B2472B870009CE3A8 /* Frameworks */ = {
@@ -1147,7 +1161,6 @@
 				1051D229248157EF008E4970 /* TestGeneralResponse.swift in Sources */,
 				10402BEA247E64480027CEEA /* TestGatewayEndpoint.swift in Sources */,
 				1051D22524813F66008E4970 /* TestGeneralRequest.swift in Sources */,
-				1051D22324810040008E4970 /* Mocks.swift in Sources */,
 				105492E72484E3C000E545E4 /* TestRequestObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1168,6 +1181,7 @@
 				0830B390247552E400410FC5 /* Bundle.swift in Sources */,
 				08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */,
 				08C31B01246EA15100595B21 /* JWTBodyResponse.swift in Sources */,
+				1099519F24863DE400E8E401 /* APIMocks.swift in Sources */,
 				089B41D5246D530800F70764 /* HumanReadableStringConvertible.swift in Sources */,
 				089B41D9246D53CD00F70764 /* DefaultAPIClientConfiguration.swift in Sources */,
 				08EF7D002462AC32008B5F3E /* APIClient.swift in Sources */,
@@ -1182,9 +1196,11 @@
 				089B41D0246D4E4B00F70764 /* Dictionary.swift in Sources */,
 				089B41C6246D4B7000F70764 /* APIClientConfiguration.swift in Sources */,
 				089B41E6246D791C00F70764 /* DefaultAPIManager.swift in Sources */,
+				1099519D24863DDA00E8E401 /* NetworkMocks.swift in Sources */,
 				089B41C8246D4C7600F70764 /* APIRequest.swift in Sources */,
 				089B41D2246D52D400F70764 /* APIClientError.swift in Sources */,
 				08C31B03246EA25300595B21 /* JWTResponseObject.swift in Sources */,
+				109951A124863DF000E8E401 /* DecodingMocks.swift in Sources */,
 				084E2A2324659EE20040FB9D /* DefaultSDKFoundation.swift in Sources */,
 				089B41E4246D6FCE00F70764 /* GeneralResponse.swift in Sources */,
 				089B41D7246D536600F70764 /* NSError.swift in Sources */,
