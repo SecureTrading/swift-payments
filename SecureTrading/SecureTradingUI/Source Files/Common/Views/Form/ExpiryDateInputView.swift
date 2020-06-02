@@ -8,7 +8,7 @@ import SecureTradingCard
 #endif
 import UIKit
 
-private class MonthTextField: BackwardTextField {
+class MonthTextField: BackwardTextField {
     /// Returns automatically the completed text for the current month. For example, if you enter "4", it should return "04" instead.
     /// - Parameter text: entered text
     /// - Returns: auto-completed string.
@@ -27,12 +27,12 @@ private class MonthTextField: BackwardTextField {
     }
 }
 
-private class YearTextField: BackwardTextField {}
+class YearTextField: BackwardTextField {}
 
 @objc public class ExpiryDateInputView: WhiteBackgroundBaseView, SecureFormInputView {
     // MARK: Properties
 
-    private let titleLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
         return label
@@ -45,14 +45,14 @@ private class YearTextField: BackwardTextField {}
         return imageView
     }()
 
-    private let monthTextField: MonthTextField = {
+    let monthTextField: MonthTextField = {
         let textField = MonthTextField()
         textField.autocorrectionType = .no
         textField.textAlignment = .right
         return textField
     }()
 
-    private let yearTextField: YearTextField = {
+    let yearTextField: YearTextField = {
         let textField = YearTextField()
         textField.autocorrectionType = .no
         textField.textAlignment = .left
@@ -97,7 +97,7 @@ private class YearTextField: BackwardTextField {}
         return stackView
     }()
 
-    private let errorLabel: UILabel = {
+    let errorLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
         label.isHidden = true
@@ -248,7 +248,7 @@ private class YearTextField: BackwardTextField {}
 
     @objc public var titleColor: UIColor = .black {
         didSet {
-            titleLabel.textColor = textColor
+            titleLabel.textColor = titleColor
         }
     }
 
