@@ -2,8 +2,6 @@
 //  SecureFormInputView.swift
 //  SecureTradingUI
 //
-//  Created by TIWASZEK on 29/05/2020.
-//
 
 import UIKit
 
