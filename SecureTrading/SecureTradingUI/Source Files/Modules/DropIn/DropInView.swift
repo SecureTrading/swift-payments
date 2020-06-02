@@ -25,8 +25,14 @@ final class DropInView: WhiteBackgroundBaseView {
 
     private let payButton: UIButton = {
         let button = UIButton(type: .system)
+        button.tintColor = .white
         button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
         button.setTitle(Localizable.DropInView.payButton.text, for: .normal)
+        button.titleLabel?.numberOfLines = 0
+        button.titleLabel?.lineBreakMode = .byWordWrapping
+        button.backgroundColor = .darkGray
+        button.layer.cornerRadius = 6
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return button
     }()
 
