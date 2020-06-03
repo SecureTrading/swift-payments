@@ -56,9 +56,6 @@
 		08E4FA8B2462A7D800837339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA8A2462A7D800837339 /* Assets.xcassets */; };
 		08E4FA8E2462A7D800837339 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA8C2462A7D800837339 /* LaunchScreen.storyboard */; };
 		08E4FA992462A7D800837339 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA982462A7D800837339 /* ExampleTests.swift */; };
-		08EF7D6F2462CEB5008B5F3E /* Test-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 08EF7D6C2462CEB4008B5F3E /* Test-Base.xcconfig */; };
-		08EF7D702462CEB5008B5F3E /* App-Base.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 08EF7D6D2462CEB4008B5F3E /* App-Base.xcconfig */; };
-		08EF7D712462CEB5008B5F3E /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 08EF7D6E2462CEB4008B5F3E /* Development.xcconfig */; };
 		104CFAFF246EA59100D7C76D /* ApplicationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFAFE246EA59100D7C76D /* ApplicationKeys.swift */; };
 		104CFB01246EADA800D7C76D /* JWTHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFB00246EADA800D7C76D /* JWTHelper.swift */; };
 		104CFB03246EB1BC00D7C76D /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFB02246EB1BC00D7C76D /* AppLog.swift */; };
@@ -601,7 +598,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = TIWASZEK;
 				TargetAttributes = {
 					08E4FA7D2462A7D100837339 = {
@@ -643,12 +640,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08EF7D712462CEB5008B5F3E /* Development.xcconfig in Resources */,
 				08E4FA8E2462A7D800837339 /* LaunchScreen.storyboard in Resources */,
-				08EF7D6F2462CEB5008B5F3E /* Test-Base.xcconfig in Resources */,
 				08639C782469689600C8F90A /* Localizable.strings in Resources */,
 				08E4FA8B2462A7D800837339 /* Assets.xcassets in Resources */,
-				08EF7D702462CEB5008B5F3E /* App-Base.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
