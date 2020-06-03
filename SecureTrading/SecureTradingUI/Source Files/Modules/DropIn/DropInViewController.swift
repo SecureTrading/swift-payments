@@ -18,6 +18,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             let isFormValid = self.viewModel.validateForm(view: self.customView)
             if isFormValid {
                 self.customView.payButton.startProcessing()
+                //customView.cardNumberInput.cardNumber
                 print("FORM VALID")
                 // todo make auth req
             }

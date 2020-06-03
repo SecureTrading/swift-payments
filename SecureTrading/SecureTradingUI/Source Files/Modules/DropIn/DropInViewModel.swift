@@ -18,6 +18,8 @@ final class DropInViewModel {
 
     // todo add card prefill
 
+    private var card: Card?
+
     var showAuthSuccess: ((ResponseSettleStatus) -> Void)?
     var showAuthError: ((String) -> Void)?
 
@@ -33,7 +35,9 @@ final class DropInViewModel {
 
     // MARK: Functions
 
-    func makeAuthCall() {
+    func makeAuthCall(number: String, cvc: String, expiryDate: String) {
+
+        self.card = Card.create(number: number, cvc: cvc, expiryDate: expiryDate)
 
         // todo get card from fields
 
