@@ -21,7 +21,7 @@ import UIKit
         return imageView
     }()
 
-    let textField: UITextField = {
+    private let textField: UITextField = {
         let textField = UITextField()
         textField.autocorrectionType = .no
         return textField
@@ -109,12 +109,7 @@ import UIKit
     }
 
     @objc public var text: String? {
-        get {
-            return textField.text
-        }
-        set {
-            textField.text = newValue
-        }
+        return textField.text
     }
 
     @objc public var placeholder: String = "default" {

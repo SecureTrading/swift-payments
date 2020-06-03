@@ -4,8 +4,8 @@
 //
 
 #if !COCOAPODS
-import SecureTradingCore
 import SecureTradingCard
+import SecureTradingCore
 #endif
 import UIKit
 
@@ -27,15 +27,6 @@ import UIKit
     }
 
     // MARK: Public Properties
-
-    @objc public override var text: String? {
-         get {
-             return textField.text
-         }
-         set {
-            textField.text = newValue?.isNumeric ?? false ? cardNumberFormat.addSeparators(cardNumber: newValue!) : String.empty
-         }
-     }
 
     @objc public weak var cardNumberInputViewDelegate: CardNumberInputViewDelegate?
 

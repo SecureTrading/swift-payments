@@ -4,8 +4,8 @@
 //
 
 #if !COCOAPODS
-import SecureTradingCore
 import SecureTradingCard
+import SecureTradingCore
 #endif
 import UIKit
 
@@ -17,15 +17,6 @@ import UIKit
     }
 
     // MARK: Public Properties
-
-    @objc public override var text: String? {
-        get {
-            return textField.text
-        }
-        set {
-           textField.text = newValue?.isNumeric ?? false ? newValue : String.empty
-        }
-    }
 
     @objc public var cardType = CardType.unknown {
         didSet {
@@ -56,7 +47,6 @@ import UIKit
     required init?(coder argument: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
 
 extension CvcInputView {
