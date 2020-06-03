@@ -36,8 +36,8 @@ public enum TypeDescription: String, Codable {
     /// Initializes an instance of the receiver.
     /// - Parameters:
     ///   - typeDescriptions: request type
-    ///   - cardNumber: This is the long number printed on the front of the customer’s card.
-    ///   - securityCode: This is the three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
+    ///   - cardNumber: The long number printed on the front of the customer’s card.
+    ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
     ///   - expiryDate: The expiry date printed on the card.
     public init(typeDescriptions: [TypeDescription], cardNumber: String? = nil, securityCode: String? = nil, expiryDate: String? = nil) {
         self.typeDescriptions = typeDescriptions
@@ -50,8 +50,8 @@ public enum TypeDescription: String, Codable {
     /// Initializes an instance of the receiver.
     /// - Parameters:
     ///   - typeDescriptions: request type
-    ///   - cardNumber: This is the long number printed on the front of the customer’s card.
-    ///   - securityCode: This is the three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
+    ///   - cardNumber: The long number printed on the front of the customer’s card.
+    ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
     ///   - expiryDate: The expiry date printed on the card.
     @objc public convenience init(typeDescriptions: [Int], cardNumber: String? = nil, securityCode: String? = nil, expiryDate: String? = nil) {
         let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }

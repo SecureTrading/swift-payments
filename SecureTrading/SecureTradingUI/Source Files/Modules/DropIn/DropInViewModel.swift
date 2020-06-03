@@ -19,8 +19,6 @@ final class DropInViewModel {
 
     private let typeDescriptions: [TypeDescription]
 
-    // todo add card prefill
-
     private var card: Card?
 
     var showAuthSuccess: ((ResponseSettleStatus) -> Void)?
@@ -31,6 +29,10 @@ final class DropInViewModel {
     /// Initializes an instance of the receiver.
     ///
     /// - Parameter apiManager: API manager
+    /// - Parameter jwt: jwt token
+    /// - Parameter typeDescriptions: request types (AUTH, THREEDQUERY...)
+    /// - Parameter gatewayType: gateway type (us or european)
+    /// - Parameter username: merchant's username
     init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String) {
         self.jwt = jwt
         self.typeDescriptions = typeDescriptions
@@ -39,6 +41,11 @@ final class DropInViewModel {
 
     // MARK: Functions
 
+    /// makes payment transaction request
+    /// - Parameters:
+    ///   - cardNumber: The long number printed on the front of the customer’s card.
+    ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
+    ///   - expiryDate: The expiry date printed on the card.
     func makeRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
 
         self.card = Card(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
@@ -64,6 +71,9 @@ final class DropInViewModel {
         })
     }
 
+    /// Validates all input views in form
+    /// - Parameter view: form view
+    /// - Returns: result of validation
     @discardableResult
     func validateForm(view: DropInView) -> Bool {
         let cardNumberValidationResult = view.cardNumberInput.validate(silent: false)
