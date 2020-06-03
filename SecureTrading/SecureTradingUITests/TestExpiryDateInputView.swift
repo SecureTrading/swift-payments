@@ -73,7 +73,7 @@ class TestExpiryDateInputView: XCTestCase {
     func test_expiryDate() {
         sut.monthTextField.text = "08"
         sut.yearTextField.text = "2043"
-        XCTAssertEqual(sut.expiryDate, "08/2043")
+        XCTAssertEqual(sut.expiryDate.rawValue, "08/2043")
     }
     func test_isInputValid() {
         sut.monthTextField.text = "08"

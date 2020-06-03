@@ -35,7 +35,7 @@ public enum TypeDescription: String, Codable {
 
     /// Initializes an instance of the receiver.
     /// - Parameters:
-    /// - typeDescriptions: request type
+    ///   - typeDescriptions: request type
     ///   - cardNumber: This is the long number printed on the front of the customer’s card.
     ///   - securityCode: This is the three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
     ///   - expiryDate: The expiry date printed on the card.
@@ -49,7 +49,7 @@ public enum TypeDescription: String, Codable {
     // objc workaround
     /// Initializes an instance of the receiver.
     /// - Parameters:
-    /// - typeDescriptions: request type
+    ///   - typeDescriptions: request type
     ///   - cardNumber: This is the long number printed on the front of the customer’s card.
     ///   - securityCode: This is the three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
     ///   - expiryDate: The expiry date printed on the card.
