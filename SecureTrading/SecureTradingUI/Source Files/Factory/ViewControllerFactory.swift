@@ -40,12 +40,9 @@ import UIKit
         return viewController
     }
 
-    @objc public func dropInViewController(jwt: String, typeDescriptions: [Int], gatewayType: GatewayType, username: String) -> UIViewController {
+    @objc public func dropInViewController(jwt: String, typeDescriptions: [Int], gatewayType: GatewayType, username: String, successfulPaymentCompletion: @escaping () -> Void) -> UIViewController {
         let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
         let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
-        let viewController = DropInViewController(view: DropInView(), viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username))
-
-        // todo completion
-        return viewController
+        return self.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, successfulPaymentCompletion: successfulPaymentCompletion)
     }
 }
