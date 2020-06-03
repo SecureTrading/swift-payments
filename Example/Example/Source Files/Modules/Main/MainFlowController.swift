@@ -33,8 +33,8 @@ final class MainFlowController: BaseNavigationFlowController {
                 self.showTestMainFlow()
             case .didTapShowSingleInputViews:
                 self.showSingleInputViewsSceen()
-            case .didTapShowDropInController:
-                self.showDropInViewController()
+            case .didTapShowDropInController(let jwt):
+                self.showDropInViewController(jwt: jwt)
             }
         }
         return mainViewController
@@ -45,12 +45,10 @@ final class MainFlowController: BaseNavigationFlowController {
         push(vc, animated: true)
     }
 
-    func showDropInViewController() {
-        // todo
-        let jwt = ""
+    func showDropInViewController(jwt: String) {
         let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, gatewayType: .eu, username: appFoundation.keys.merchantUsername)
-          push(dropInVC, animated: true)
-      }
+        push(dropInVC, animated: true)
+    }
 
     // Test UI framework availability
     func showTestMainScreen() {
@@ -65,5 +63,4 @@ final class MainFlowController: BaseNavigationFlowController {
         sdkFlowController = SDKFlowController(navigationController: navigationController)
         sdkFlowController.presentTestMainFlow()
     }
-
 }

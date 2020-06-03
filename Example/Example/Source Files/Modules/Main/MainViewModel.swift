@@ -29,9 +29,24 @@ final class MainViewModel {
 
     // MARK: Functions
 
+    func getJwtTokenWithoutCardData() -> String? {
+        let claim = STClaims(iss: keys.merchantUsername,
+                             iat: Date(timeIntervalSinceNow: 0),
+                             payload: Payload(accounttypedescription: "ECOM",
+                                              sitereference: keys.merchantSiteReference,
+                                              currencyiso3a: "GBP",
+                                              baseamount: 1050,
+                                              pan: nil,
+                                              expirydate: nil,
+                                              securitycode: nil))
+
+        guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return nil }
+        return jwt
+    }
+
     func makeAuthCall() {
         let claim = STClaims(iss: keys.merchantUsername,
-                             iat: Date(timeIntervalSinceNow: 60),
+                             iat: Date(timeIntervalSinceNow: 0),
                              payload: Payload(accounttypedescription: "ECOM",
                                               sitereference: keys.merchantSiteReference,
                                               currencyiso3a: "GBP",

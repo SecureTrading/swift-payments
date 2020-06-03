@@ -16,7 +16,7 @@ struct Payload: Codable {
     let sitereference: String
     let currencyiso3a: String
     let baseamount: Int
-    let pan: String
-    let expirydate: String
-    let securitycode: String
+    let pan: String?
+    let expirydate: String?
+    let securitycode: String?
 }
