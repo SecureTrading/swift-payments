@@ -35,13 +35,16 @@ final class DropInViewModel {
 
     // MARK: Functions
 
-    func makeAuthCall(number: CardNumber, cvc: CVC, expiryDate: ExpiryDate) {
+    func makeAuthCall(cardNumber: CardNumber, securityCode: CVC, expiryDate: ExpiryDate) {
 
-        self.card = Card(number: number, cvc: cvc, expiryDate: expiryDate)
+        self.card = Card(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
+        let cardNumber = self.card?.cardNumber.rawValue
+        let securityCode = self.card?.securityCode.rawValue
+        let expiryDate = self.card?.expiryDate.rawValue
 
-        let authRequest = RequestObject(typeDescriptions: [.auth])
+        let authRequest = RequestObject(typeDescriptions: [.auth], cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
 
-        apiManager.makeGeneralRequest(card: self.card, jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
+        apiManager.makeGeneralRequest(jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:

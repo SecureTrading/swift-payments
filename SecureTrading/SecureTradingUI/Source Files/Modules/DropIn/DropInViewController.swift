@@ -18,11 +18,11 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             let isFormValid = self.viewModel.validateForm(view: self.customView)
             if isFormValid {
                 self.customView.payButton.startProcessing()
-                let number = self.customView.cardNumberInput.cardNumber
+                let cardNumber = self.customView.cardNumberInput.cardNumber
                 let cvc = self.customView.cvcInput.cvc
                 let expiryDate = self.customView.expiryDateInput.expiryDate
 
-                self.viewModel.makeAuthCall(number: number, cvc: cvc, expiryDate: expiryDate)
+                self.viewModel.makeAuthCall(cardNumber: cardNumber, securityCode: cvc, expiryDate: expiryDate)
             }
         }
 

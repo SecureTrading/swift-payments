@@ -23,7 +23,7 @@
     //NSMutableArray *requestObjects = [[NSMutableArray alloc] init];
     //[requestObjects addObject: requestObject];
 
-    [self.apiManager makeGeneralRequestWithCard:NULL jwt:@"" request:requestObject success:^(JWTResponseObject * response, NSString * jwt) {
+    [self.apiManager makeGeneralRequestWithJwt:@"" request:requestObject success:^(JWTResponseObject * response, NSString * jwt) {
         NSLog(@"%li", (long)response.errorCode);
         NSLog(@"%li", (long)response.responseErrorCode);
     } failure:^(NSError * error) {

@@ -10,21 +10,21 @@ import Foundation
 @objc public class Card: NSObject {
     @objc public let cardNumber: CardNumber
 
-    @objc public let verificationCode: CVC
+    @objc public let securityCode: CVC
 
     @objc public let expiryDate: ExpiryDate
 
-    @objc public static func create(number: String, cvc: String, expiryDate: String) -> Card {
-        let cardNumber = CardNumber(rawValue: number)
-        let cardCVC = CVC(rawValue: cvc)
+    @objc public static func create(cardNumber: String, securityCode: String, expiryDate: String) -> Card {
+        let number = CardNumber(rawValue: cardNumber)
+        let cvc = CVC(rawValue: securityCode)
         let cardExpiryDate = ExpiryDate(rawValue: expiryDate)
 
-        return Card(number: cardNumber, cvc: cardCVC, expiryDate: cardExpiryDate)
+        return Card(cardNumber: number, securityCode: cvc, expiryDate: cardExpiryDate)
     }
 
-    @objc public init(number: CardNumber, cvc: CVC, expiryDate: ExpiryDate) {
-        self.cardNumber = number
-        self.verificationCode = cvc
+    @objc public init(cardNumber: CardNumber, securityCode: CVC, expiryDate: ExpiryDate) {
+        self.cardNumber = cardNumber
+        self.securityCode = securityCode
         self.expiryDate = expiryDate
     }
 }

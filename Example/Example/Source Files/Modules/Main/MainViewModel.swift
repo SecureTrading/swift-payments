@@ -44,7 +44,7 @@ final class MainViewModel {
 
         let authRequest = RequestObject(typeDescriptions: [.auth])
 
-        apiManager.makeGeneralRequest(card: nil, jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
+        apiManager.makeGeneralRequest(jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:
