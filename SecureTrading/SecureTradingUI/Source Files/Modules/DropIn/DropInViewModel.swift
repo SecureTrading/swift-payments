@@ -35,9 +35,9 @@ final class DropInViewModel {
 
     // MARK: Functions
 
-    func makeAuthCall(number: String, cvc: String, expiryDate: String) {
+    func makeAuthCall(number: CardNumber, cvc: CVC, expiryDate: ExpiryDate) {
 
-        self.card = Card.create(number: number, cvc: cvc, expiryDate: expiryDate)
+        self.card = Card(number: number, cvc: cvc, expiryDate: expiryDate)
 
         // todo get card from fields
 
