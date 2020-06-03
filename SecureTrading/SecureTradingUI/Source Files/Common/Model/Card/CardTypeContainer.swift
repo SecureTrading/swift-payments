@@ -30,7 +30,7 @@ import UIKit
 
     // objc workaround
     @objc public convenience init(cardTypes: [Int]) {
-        self.init(cardTypes: cardTypes.map { CardType(rawValue: $0)! })
+        self.init(cardTypes: cardTypes.compactMap { CardType(rawValue: $0) })
     }
 
     // MARK: Functions
@@ -44,7 +44,7 @@ import UIKit
         cardTypes.append(cardType)
     }
 
-    /// Removes the provided card type to the card type array.
+    /// Removes the provided card type from the card type array.
     /// - Parameter cardType: the card type
     public func remove(cardType: CardType) {
         cardTypes = cardTypes.filter { $0 != cardType }
