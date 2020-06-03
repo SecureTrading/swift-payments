@@ -29,8 +29,14 @@ import UIKit
         return viewController
     }
 
-    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String) -> UIViewController {
+    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, successfulPaymentCompletion: @escaping () -> Void) -> UIViewController {
         let viewController = DropInViewController(view: DropInView(), viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: gatewayType, username: username))
+        viewController.eventTriggered = { event in
+            switch event {
+            case .successfulPayment:
+                successfulPaymentCompletion()
+            }
+        }
         return viewController
     }
 
@@ -38,6 +44,8 @@ import UIKit
         let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
         let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
         let viewController = DropInViewController(view: DropInView(), viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username))
+
+        // todo completion
         return viewController
     }
 }
