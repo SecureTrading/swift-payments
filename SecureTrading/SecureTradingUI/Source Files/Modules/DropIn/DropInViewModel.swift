@@ -4,6 +4,7 @@
 //
 
 #if !COCOAPODS
+import SecureTradingCard
 import SecureTradingCore
 #endif
 import Foundation
@@ -35,11 +36,11 @@ final class DropInViewModel {
 
     // MARK: Functions
 
-    func makeAuthCall(cardNumber: CardNumber, securityCode: CVC, expiryDate: ExpiryDate) {
+    func makeAuthCall(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
 
         self.card = Card(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
         let cardNumber = self.card?.cardNumber.rawValue
-        let securityCode = self.card?.securityCode.rawValue
+        let securityCode = self.card?.securityCode?.rawValue
         let expiryDate = self.card?.expiryDate.rawValue
 
         let authRequest = RequestObject(typeDescriptions: [.auth], cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)

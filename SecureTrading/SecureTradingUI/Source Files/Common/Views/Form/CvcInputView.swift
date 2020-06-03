@@ -24,8 +24,9 @@ import UIKit
         }
     }
 
-    @objc public var cvc: CVC {
-        return CVC(rawValue: text ?? .empty)
+    @objc public var cvc: CVC? {
+        guard let text = text, !text.isEmpty else { return nil }
+        return CVC(rawValue: text)
     }
 
     @objc public override var isInputValid: Bool {
@@ -33,7 +34,7 @@ import UIKit
             return true
         }
 
-        return CardValidator.isCVCValid(cvc: cvc.rawValue, cardType: cardType)
+        return CardValidator.isCVCValid(cvc: cvc?.rawValue ?? .empty, cardType: cardType)
     }
 
     // MARK: Initialization

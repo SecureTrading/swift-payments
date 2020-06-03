@@ -13,10 +13,10 @@
 		0818DE41248659B800A8B25A /* DropInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE40248659B800A8B25A /* DropInViewModel.swift */; };
 		0818DE43248659C900A8B25A /* DropInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE42248659C900A8B25A /* DropInViewController.swift */; };
 		0818DE45248680D900A8B25A /* PayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE44248680D900A8B25A /* PayButton.swift */; };
-		0818DE502487AA5C00A8B25A /* CardNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886EE0247C223A00BC1637 /* CardNumber.swift */; };
-		0818DE512487AA8C00A8B25A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE462487867B00A8B25A /* Card.swift */; };
-		0818DE522487AA9500A8B25A /* CVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE482487873E00A8B25A /* CVC.swift */; };
-		0818DE532487AAA300A8B25A /* Expiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE4A248788E800A8B25A /* Expiry.swift */; };
+		0818DE552487B98400A8B25A /* CVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE482487873E00A8B25A /* CVC.swift */; };
+		0818DE562487B98800A8B25A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE462487867B00A8B25A /* Card.swift */; };
+		0818DE572487B99000A8B25A /* Expiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE4A248788E800A8B25A /* Expiry.swift */; };
+		0818DE582487B99400A8B25A /* CardNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08886EE0247C223A00BC1637 /* CardNumber.swift */; };
 		0830B390247552E400410FC5 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0830B38F247552E400410FC5 /* Bundle.swift */; };
 		0845BF20247E48E0008AD40F /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1092CF3F2476CA1F0002B2E8 /* SecureTradingCard.framework */; platformFilter = ios; };
 		084D7DC62480D6BE002E43BC /* SecureFormInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D7DC52480D6BE002E43BC /* SecureFormInputView.swift */; };
@@ -419,20 +419,12 @@
 		0818DE4E2487AA2B00A8B25A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0818DE4F2487AA3700A8B25A /* Card */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		0818DE4F2487AA3700A8B25A /* Card */ = {
-			isa = PBXGroup;
-			children = (
 				0818DE482487873E00A8B25A /* CVC.swift */,
 				0818DE462487867B00A8B25A /* Card.swift */,
 				0818DE4A248788E800A8B25A /* Expiry.swift */,
 				08886EE0247C223A00BC1637 /* CardNumber.swift */,
 			);
-			path = Card;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		082FC7A3246429B100D4E2B6 /* Configurations */ = {
@@ -615,7 +607,6 @@
 		089B41CD246D4E3000F70764 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				0818DE4E2487AA2B00A8B25A /* Models */,
 				089B41D3246D52F000F70764 /* Protocols */,
 				089B41CE246D4E3600F70764 /* Extensions */,
 			);
@@ -830,6 +821,7 @@
 		104861F9247BF3F50053209D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0818DE4E2487AA2B00A8B25A /* Models */,
 				104861FA247BF3FD0053209D /* Extensions */,
 			);
 			path = Common;
@@ -1313,10 +1305,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0818DE532487AAA300A8B25A /* Expiry.swift in Sources */,
 				089B41CA246D4CB700F70764 /* APIResponse.swift in Sources */,
 				0830B390247552E400410FC5 /* Bundle.swift in Sources */,
-				0818DE522487AA9500A8B25A /* CVC.swift in Sources */,
 				08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */,
 				08C31B01246EA15100595B21 /* JWTBodyResponse.swift in Sources */,
 				1099519F24863DE400E8E401 /* APIMocks.swift in Sources */,
@@ -1338,11 +1328,9 @@
 				089B41C8246D4C7600F70764 /* APIRequest.swift in Sources */,
 				089B41D2246D52D400F70764 /* APIClientError.swift in Sources */,
 				08C31B03246EA25300595B21 /* JWTResponseObject.swift in Sources */,
-				0818DE512487AA8C00A8B25A /* Card.swift in Sources */,
 				109951A124863DF000E8E401 /* DecodingMocks.swift in Sources */,
 				084E2A2324659EE20040FB9D /* DefaultSDKFoundation.swift in Sources */,
 				089B41E4246D6FCE00F70764 /* GeneralResponse.swift in Sources */,
-				0818DE502487AA5C00A8B25A /* CardNumber.swift in Sources */,
 				089B41D7246D536600F70764 /* NSError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1426,8 +1414,12 @@
 				1098F3A6247D579600414F94 /* Date.swift in Sources */,
 				10486200247BF4B20053209D /* Array.swift in Sources */,
 				1092CF5A2476CAFF0002B2E8 /* CardType.swift in Sources */,
+				0818DE582487B99400A8B25A /* CardNumber.swift in Sources */,
 				104861FC247BF41E0053209D /* ClosedRange.swift in Sources */,
+				0818DE572487B99000A8B25A /* Expiry.swift in Sources */,
 				10486202247BF4F40053209D /* CardValidator.swift in Sources */,
+				0818DE552487B98400A8B25A /* CVC.swift in Sources */,
+				0818DE562487B98800A8B25A /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
