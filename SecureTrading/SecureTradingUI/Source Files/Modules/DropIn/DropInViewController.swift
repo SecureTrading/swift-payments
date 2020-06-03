@@ -29,8 +29,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
         viewModel.showAuthSuccess = { [weak self] _ in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
-            // todo add to localizable
-            self.showAlert(message: "successful payment")
+            self.showAlert(message: Localizable.DropInViewController.successfulPayment.text)
         }
 
         viewModel.showAuthError = { [weak self] error in
@@ -56,5 +55,6 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
 private extension Localizable {
     enum DropInViewController: String, Localized {
         case title
+        case successfulPayment
     }
 }
