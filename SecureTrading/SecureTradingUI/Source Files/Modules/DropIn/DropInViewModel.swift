@@ -39,11 +39,9 @@ final class DropInViewModel {
 
         self.card = Card(number: number, cvc: cvc, expiryDate: expiryDate)
 
-        // todo get card from fields
-
         let authRequest = RequestObject(typeDescriptions: [.auth])
 
-        apiManager.makeGeneralRequest(jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
+        apiManager.makeGeneralRequest(card: self.card, jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:
