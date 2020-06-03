@@ -134,8 +134,8 @@ class YearTextField: BackwardTextField {}
 
     // MARK: Public properties
 
-    @objc public var expiryDate: String {
-        return text ?? .empty
+    @objc public var expiryDate: ExpiryDate {
+        return ExpiryDate(rawValue: text ?? .empty)
     }
 
     @objc public weak var delegate: SecureFormInputViewDelegate?
@@ -145,7 +145,7 @@ class YearTextField: BackwardTextField {}
     }
 
     @objc public var isInputValid: Bool {
-        return CardValidator.isExpirationDateValid(date: expiryDate, separator: separatorLabel.text ?? "/")
+        return CardValidator.isExpirationDateValid(date: expiryDate.rawValue, separator: separatorLabel.text ?? "/")
     }
 
     @objc public var isSecuredTextEntry: Bool = false {

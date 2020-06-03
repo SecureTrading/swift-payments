@@ -23,8 +23,8 @@ import UIKit
         }
     }
 
-    @objc public var cvc: String {
-        return text ?? .empty
+    @objc public var cvc: CVC {
+        return CVC(rawValue: text ?? .empty)
     }
 
     @objc public override var isInputValid: Bool {
@@ -32,7 +32,7 @@ import UIKit
             return true
         }
 
-        return CardValidator.isCVCValid(cvc: cvc, cardType: cardType)
+        return CardValidator.isCVCValid(cvc: cvc.rawValue, cardType: cardType)
     }
 
     // MARK: Initialization
