@@ -71,8 +71,8 @@ class TestDecodedJWT: XCTestCase {
             XCTAssertEqual(response.responseErrorCode, ResponseErrorCode.transactionNotAuhorised)
         }
     }
-    func test_responseHasErrorCode3000FieldError() throws {
-        let body = modify(newBodyFields: [:], newResponseFields: ["errorcode": "3000"])
+    func test_responseHasErrorCode30000FieldError() throws {
+        let body = modify(newBodyFields: [:], newResponseFields: ["errorcode": "30000"])
         let jwt = getJWT(withBody: body)
         let responses = try DecodedJWT(jwt: jwt).jwtBodyResponse.responses
         for response in responses {

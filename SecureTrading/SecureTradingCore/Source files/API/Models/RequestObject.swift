@@ -21,6 +21,13 @@
 public enum TypeDescription: String, Codable {
     case auth = "AUTH"
     case threeDQuery = "THREEDQUERY"
+    
+    var code: Int {
+        switch self {
+        case .auth: return TypeDescriptionObjc.auth.rawValue
+        case .threeDQuery: return TypeDescriptionObjc.threeDQuery.rawValue
+        }
+    }
 }
 
 @objc public class RequestObject: NSObject, Codable {

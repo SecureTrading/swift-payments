@@ -72,6 +72,10 @@ import Foundation
         self.apiClient.perform(request: generalRequest) { result in
             switch result {
             case let .success(response):
+                if response.jwtResponses.first!.requestTypeDescription(contains: request.typeDescriptions.first!) {
+                    
+                }
+                // TODO:
                 success(response.jwtResponses.first!, jwt)
             case let .failure(error):
                 failure(error)

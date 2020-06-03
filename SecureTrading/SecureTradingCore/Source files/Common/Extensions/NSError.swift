@@ -11,5 +11,8 @@ extension NSError: HumanReadableStringConvertible {
     public var humanReadableDescription: String {
         return "\(localizedDescription) (\(code))"
     }
-
+    
+    static var domain: String {
+        return "com.securetrading.SecureTradingCore"
+    }
 }

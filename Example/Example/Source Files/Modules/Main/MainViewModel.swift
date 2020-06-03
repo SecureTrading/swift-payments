@@ -30,19 +30,28 @@ final class MainViewModel {
     // MARK: Functions
 
     func makeAuthCall() {
+//        let claim = STClaims(iss: keys.merchantUsername,
+//                             iat: Date(timeIntervalSinceNow: 60),
+//                             payload: Payload(accounttypedescription: "ECOM",
+//                                              sitereference: keys.merchantSiteReference,
+//                                              currencyiso3a: "GBP",
+//                                              baseamount: 1050,
+//                                              pan: "4111111111111111",
+//                                              expirydate: "12/2022",
+//                                              securitycode: "123"))
         let claim = STClaims(iss: keys.merchantUsername,
-                             iat: Date(timeIntervalSinceNow: 60),
-                             payload: Payload(accounttypedescription: "ECOM",
-                                              sitereference: keys.merchantSiteReference,
-                                              currencyiso3a: "GBP",
-                                              baseamount: 1050,
-                                              pan: "4111111111111111",
-                                              expirydate: "12/2022",
-                                              securitycode: "123"))
+                                    iat: Date(timeIntervalSinceNow: -60),
+                                    payload: Payload(accounttypedescription: "ECOM",
+                                                     sitereference: keys.merchantSiteReference,
+                                                     currencyiso3a: "GBP",
+                                                     baseamount: 1100,
+                                                     pan: "4111111111111111",
+                                                     expirydate: "12/2022",
+                                                     securitycode: "123"))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
 
-        let authRequest = RequestObject(typeDescriptions: [.auth])
+        let authRequest = RequestObject(typeDescriptions: [.auth, .threeDQuery])
 
         apiManager.makeGeneralRequest(jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }

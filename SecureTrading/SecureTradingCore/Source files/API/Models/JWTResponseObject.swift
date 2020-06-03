@@ -5,12 +5,12 @@
 
 @objc public enum ResponseErrorCode: Int {
     case successful = 0
-    case transactionNotAuhorised = 60022
-    case declinedByIssuingBank = 70000
-    case fieldError = 3000
-    case bankSystemError = 60010
-    case manualInvestigationRequired = 60034
-    case unknown = 99999
+    case transactionNotAuhorised = 60_022
+    case declinedByIssuingBank = 70_000
+    case fieldError = 30_000
+    case bankSystemError = 60_010
+    case manualInvestigationRequired = 60_034
+    case unknown = 99_999
     case other
 }
 
@@ -26,26 +26,28 @@
 
 @objc public class JWTResponseObject: NSObject, Decodable {
     // MARK: Properties
-
+    
     @objc public let errorCode: Int
     @objc public let errorMessage: String
-
+    
     @objc public let settleStatus: NSNumber?
-
+    
     @objc public let transactionReference: String?
-
+    
     @objc public let errorData: [String]?
-
+    
     @objc public var responseErrorCode: ResponseErrorCode {
         return ResponseErrorCode(rawValue: errorCode) ?? .unknown
     }
-
+    
     @objc public var responseSettleStatus: ResponseSettleStatus {
         return ResponseSettleStatus(rawValue: settleStatus?.intValue ?? -1) ?? .error
     }
-
+    
+    private var requestTypeDescription: TypeDescription?
+    
     // MARK: Initialization
-
+    
     /// - SeeAlso: Swift.Decodable
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -59,6 +61,21 @@
             settleStatus = nil
         }
         transactionReference = try container.decodeIfPresent(String.self, forKey: .transactionReference)
+        if let type = try container.decodeIfPresent(String.self, forKey: .requestTypeDescription), let typeDescription = TypeDescription(rawValue: type) {
+            requestTypeDescription = typeDescription
+        } else {
+            requestTypeDescription = nil
+        }
+    }
+    
+    // MARK: Methods
+    public func requestTypeDescription(contains description: TypeDescription) -> Bool {
+        guard let type = requestTypeDescription else { return false }
+        return description.rawValue == type.rawValue
+    }
+    @objc public func requestTypeDescription(contains description: TypeDescriptionObjc) -> Bool {
+        guard let type = requestTypeDescription else { return false }
+        return description.rawValue == type.code
     }
 }
 
@@ -69,5 +86,6 @@ private extension JWTResponseObject {
         case errorData = "errordata"
         case settleStatus = "settlestatus"
         case transactionReference = "transactionreference"
+        case requestTypeDescription = "requesttypedescription"
     }
 }

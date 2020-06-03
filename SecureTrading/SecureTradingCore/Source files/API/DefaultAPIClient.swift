@@ -56,11 +56,20 @@ final class DefaultAPIClient: APIClient {
                 // Parse a response.
                 let decoder = Request.Response.decoder
                 let parsedResponse = try decoder.decode(Request.Response.self, from: data)
-
+                
+                // check if request's type description matches response's type description
+                request
+                (parsedResponse as! GeneralResponse).jwtDecoded
                 // Resolve success with a parsed response.
                 resolveSuccess(parsedResponse)
-            } catch {
-                resolveFailure(.responseParseError(error), data)
+            } catch let err {
+                do {
+                    // check if has error and resolve failure
+                    let responseError = try JSONDecoder().decode(ResponseError.self, from: data)
+                    resolveFailure(.responseParseError(responseError.error), data)
+                } catch {
+                    resolveFailure(.responseParseError(err), data)
+                }
             }
         }
 
