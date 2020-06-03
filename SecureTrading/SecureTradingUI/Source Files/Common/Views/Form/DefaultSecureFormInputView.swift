@@ -134,7 +134,7 @@ import UIKit
 
     @objc public var titleColor: UIColor = .black {
         didSet {
-            titleLabel.textColor = textColor
+            titleLabel.textColor = titleColor
         }
     }
 
