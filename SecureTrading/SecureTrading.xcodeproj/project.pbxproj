@@ -12,7 +12,6 @@
 		0830B390247552E400410FC5 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0830B38F247552E400410FC5 /* Bundle.swift */; };
 		0845BF20247E48E0008AD40F /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1092CF3F2476CA1F0002B2E8 /* SecureTradingCard.framework */; platformFilter = ios; };
 		084D7DC62480D6BE002E43BC /* SecureFormInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D7DC52480D6BE002E43BC /* SecureFormInputView.swift */; };
-		084E29CE246562C60040FB9D /* SecureTradingCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29CD246562C60040FB9D /* SecureTradingCoreTests.swift */; };
 		084E29D0246562C60040FB9D /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; platformFilter = ios; };
 		084E29E0246562DA0040FB9D /* SecureTradingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EF7D3E2462B12F008B5F3E /* SecureTradingUI.framework */; platformFilter = ios; };
 		084E29E924656A5E0040FB9D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29E824656A5D0040FB9D /* UIView.swift */; };
@@ -118,6 +117,10 @@
 		1099519D24863DDA00E8E401 /* NetworkMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1099519C24863DDA00E8E401 /* NetworkMocks.swift */; };
 		1099519F24863DE400E8E401 /* APIMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1099519E24863DE400E8E401 /* APIMocks.swift */; };
 		109951A124863DF000E8E401 /* DecodingMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A024863DF000E8E401 /* DecodingMocks.swift */; };
+		109951A324865F7A00E8E401 /* TestExpiryDateInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A224865F7A00E8E401 /* TestExpiryDateInputView.swift */; };
+		109951A524867E9400E8E401 /* TextCVCInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A424867E9400E8E401 /* TextCVCInputView.swift */; };
+		109951A724867F2B00E8E401 /* TestCardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A624867F2B00E8E401 /* TestCardInputView.swift */; };
+		109951A92486A53A00E8E401 /* TestCardTypeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A82486A53A00E8E401 /* TestCardTypeContainer.swift */; };
 		10B5B82D2472B925009CE3A8 /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -313,6 +316,10 @@
 		1099519C24863DDA00E8E401 /* NetworkMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMocks.swift; sourceTree = "<group>"; };
 		1099519E24863DE400E8E401 /* APIMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMocks.swift; sourceTree = "<group>"; };
 		109951A024863DF000E8E401 /* DecodingMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingMocks.swift; sourceTree = "<group>"; };
+		109951A224865F7A00E8E401 /* TestExpiryDateInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExpiryDateInputView.swift; sourceTree = "<group>"; };
+		109951A424867E9400E8E401 /* TextCVCInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCVCInputView.swift; sourceTree = "<group>"; };
+		109951A624867F2B00E8E401 /* TestCardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardInputView.swift; sourceTree = "<group>"; };
+		109951A82486A53A00E8E401 /* TestCardTypeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardTypeContainer.swift; sourceTree = "<group>"; };
 		10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CardinalMobile.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -413,6 +420,10 @@
 				084E29DF246562DA0040FB9D /* Info.plist */,
 				0853ACA1247F916C00DF37EE /* TestCardMask.swift */,
 				0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */,
+				109951A224865F7A00E8E401 /* TestExpiryDateInputView.swift */,
+				109951A424867E9400E8E401 /* TextCVCInputView.swift */,
+				109951A624867F2B00E8E401 /* TestCardInputView.swift */,
+				109951A82486A53A00E8E401 /* TestCardTypeContainer.swift */,
 			);
 			path = SecureTradingUITests;
 			sourceTree = "<group>";
@@ -1245,6 +1256,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0853ACA5247FA6B300DF37EE /* KnownMaskedCards.swift in Sources */,
+				109951A92486A53A00E8E401 /* TestCardTypeContainer.swift in Sources */,
+				109951A524867E9400E8E401 /* TextCVCInputView.swift in Sources */,
+				109951A724867F2B00E8E401 /* TestCardInputView.swift in Sources */,
+				109951A324865F7A00E8E401 /* TestExpiryDateInputView.swift in Sources */,
 				0853ACA2247F916C00DF37EE /* TestCardMask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
