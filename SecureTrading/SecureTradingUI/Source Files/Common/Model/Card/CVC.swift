@@ -10,9 +10,9 @@ import Foundation
 @objc public class CVC: NSObject, RawRepresentable {
     public typealias RawValue = String
 
-    public let rawValue: String
+    @objc public let rawValue: String
 
-    public var length: Int {
+    @objc public var length: Int {
         return rawValue.count
     }
 
