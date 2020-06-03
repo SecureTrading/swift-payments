@@ -17,6 +17,8 @@ final class DropInViewModel {
     /// - SeeAlso: SecureTradingCore.apiManager
     private let apiManager: APIManager
 
+    private let typeDescriptions: [TypeDescription]
+
     // todo add card prefill
 
     private var card: Card?
@@ -29,21 +31,22 @@ final class DropInViewModel {
     /// Initializes an instance of the receiver.
     ///
     /// - Parameter apiManager: API manager
-    init(jwt: String, gatewayType: GatewayType, username: String) {
+    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String) {
         self.jwt = jwt
+        self.typeDescriptions = typeDescriptions
         self.apiManager = DefaultAPIManager(gatewayType: gatewayType, username: username)
     }
 
     // MARK: Functions
 
-    func makeAuthCall(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
+    func makeRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
 
         self.card = Card(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
         let cardNumber = self.card?.cardNumber.rawValue
         let securityCode = self.card?.securityCode?.rawValue
         let expiryDate = self.card?.expiryDate.rawValue
 
-        let authRequest = RequestObject(typeDescriptions: [.auth], cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
+        let authRequest = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
 
         apiManager.makeGeneralRequest(jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }

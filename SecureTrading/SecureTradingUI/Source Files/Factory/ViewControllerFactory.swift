@@ -29,8 +29,15 @@ import UIKit
         return viewController
     }
 
-    @objc public func dropInViewController(jwt: String, gatewayType: GatewayType, username: String) -> UIViewController {
-        let viewController = DropInViewController(view: DropInView(), viewModel: DropInViewModel(jwt: jwt, gatewayType: gatewayType, username: username))
+    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String) -> UIViewController {
+        let viewController = DropInViewController(view: DropInView(), viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: gatewayType, username: username))
+        return viewController
+    }
+
+    @objc public func dropInViewController(jwt: String, typeDescriptions: [Int], gatewayType: GatewayType, username: String) -> UIViewController {
+        let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
+        let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
+        let viewController = DropInViewController(view: DropInView(), viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username))
         return viewController
     }
 }

@@ -8,7 +8,7 @@
     case auth
     case threeDQuery
 
-    var value: String {
+    public var value: String {
         switch self {
         case .auth:
             return "AUTH"
