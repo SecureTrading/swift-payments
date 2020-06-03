@@ -13,6 +13,9 @@
 		0818DE41248659B800A8B25A /* DropInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE40248659B800A8B25A /* DropInViewModel.swift */; };
 		0818DE43248659C900A8B25A /* DropInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE42248659C900A8B25A /* DropInViewController.swift */; };
 		0818DE45248680D900A8B25A /* PayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE44248680D900A8B25A /* PayButton.swift */; };
+		0818DE472487867B00A8B25A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE462487867B00A8B25A /* Card.swift */; };
+		0818DE492487873E00A8B25A /* CVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE482487873E00A8B25A /* CVC.swift */; };
+		0818DE4B248788E800A8B25A /* Expiry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE4A248788E800A8B25A /* Expiry.swift */; };
 		0830B390247552E400410FC5 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0830B38F247552E400410FC5 /* Bundle.swift */; };
 		0845BF20247E48E0008AD40F /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1092CF3F2476CA1F0002B2E8 /* SecureTradingCard.framework */; platformFilter = ios; };
 		084D7DC62480D6BE002E43BC /* SecureFormInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D7DC52480D6BE002E43BC /* SecureFormInputView.swift */; };
@@ -203,6 +206,9 @@
 		0818DE40248659B800A8B25A /* DropInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropInViewModel.swift; sourceTree = "<group>"; };
 		0818DE42248659C900A8B25A /* DropInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropInViewController.swift; sourceTree = "<group>"; };
 		0818DE44248680D900A8B25A /* PayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayButton.swift; sourceTree = "<group>"; };
+		0818DE462487867B00A8B25A /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		0818DE482487873E00A8B25A /* CVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVC.swift; sourceTree = "<group>"; };
+		0818DE4A248788E800A8B25A /* Expiry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expiry.swift; sourceTree = "<group>"; };
 		082FC7A4246429D200D4E2B6 /* SDK-base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "SDK-base.xcconfig"; sourceTree = "<group>"; };
 		0830B38F247552E400410FC5 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		084D7DC52480D6BE002E43BC /* SecureFormInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureFormInputView.swift; sourceTree = "<group>"; };
@@ -572,6 +578,9 @@
 				08886ED8247C1AE500BC1637 /* CardTypeContainer.swift */,
 				08886EE0247C223A00BC1637 /* CardNumber.swift */,
 				08886ED4247C107200BC1637 /* CardNumberFormat.swift */,
+				0818DE462487867B00A8B25A /* Card.swift */,
+				0818DE482487873E00A8B25A /* CVC.swift */,
+				0818DE4A248788E800A8B25A /* Expiry.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -1308,11 +1317,13 @@
 			files = (
 				0818DE43248659C900A8B25A /* DropInViewController.swift in Sources */,
 				084E29E924656A5E0040FB9D /* UIView.swift in Sources */,
+				0818DE492487873E00A8B25A /* CVC.swift in Sources */,
 				08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */,
 				084E2A1924659B7B0040FB9D /* CustomBackNavigationController.swift in Sources */,
 				0818DE3A24851BDE00A8B25A /* UITextField.swift in Sources */,
 				08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */,
 				084E29FB2465832C0040FB9D /* Colors.swift in Sources */,
+				0818DE4B248788E800A8B25A /* Expiry.swift in Sources */,
 				084E2A012465841D0040FB9D /* UITableView.swift in Sources */,
 				0818DE45248680D900A8B25A /* PayButton.swift in Sources */,
 				08886ED2247C0D9A00BC1637 /* CardNumberInputView.swift in Sources */,
@@ -1333,6 +1344,7 @@
 				0853ACAC247FF15700DF37EE /* ExpiryDateInputView.swift in Sources */,
 				084E29FD246583B50040FB9D /* BaseViewCell.swift in Sources */,
 				0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */,
+				0818DE472487867B00A8B25A /* Card.swift in Sources */,
 				084D7DC62480D6BE002E43BC /* SecureFormInputView.swift in Sources */,
 				084E2A1624659AC50040FB9D /* BaseNavigationFlowController.swift in Sources */,
 				084E29EE24656D7F0040FB9D /* BaseView.swift in Sources */,
