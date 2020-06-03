@@ -18,6 +18,15 @@ import UIKit
 
     // MARK: Public Properties
 
+    @objc public override var text: String? {
+        get {
+            return textField.text
+        }
+        set {
+           textField.text = newValue?.isNumeric ?? false ? newValue : String.empty
+        }
+    }
+
     @objc public var cardType = CardType.unknown {
         didSet {
             placeholder = expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text

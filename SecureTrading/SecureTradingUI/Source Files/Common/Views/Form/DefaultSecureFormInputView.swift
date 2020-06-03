@@ -21,7 +21,7 @@ import UIKit
         return imageView
     }()
 
-    private let textField: UITextField = {
+    let textField: UITextField = {
         let textField = UITextField()
         textField.autocorrectionType = .no
         return textField
