@@ -15,8 +15,6 @@ import UIKit
         return cardType.securityCodeLength
     }
 
-    private let inputViewStyleManager: InputViewStyleManager?
-
     // MARK: Public Properties
 
     @objc public var cardType = CardType.unknown {
@@ -38,19 +36,6 @@ import UIKit
         return CardValidator.isCVCValid(cvc: cvc?.rawValue ?? .empty, cardType: cardType)
     }
 
-    // MARK: Initialization
-
-    /// Initializes an instance of the receiver.
-    /// - Parameters:
-    ///   - inputViewStyleManager: instance of manager to customize view
-    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil) {
-        self.inputViewStyleManager = inputViewStyleManager
-        super.init()
-    }
-
-    required init?(coder argument: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
 
 extension CvcInputView {

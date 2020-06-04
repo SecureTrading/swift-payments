@@ -25,8 +25,6 @@ import UIKit
         return CardNumberFormat(cardTypeContainer: cardTypeContainer, separator: cardNumberSeparator)
     }
 
-    private let inputViewStyleManager: InputViewStyleManager?
-
     // MARK: Public Properties
 
     @objc public weak var cardNumberInputViewDelegate: CardNumberInputViewDelegate?
@@ -63,8 +61,7 @@ import UIKit
     @objc public init(cardTypeContainer: CardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases), cardNumberSeparator: String = .space, inputViewStyleManager: InputViewStyleManager? = nil) {
         self.cardTypeContainer = cardTypeContainer
         self.cardNumberSeparator = cardNumberSeparator
-        self.inputViewStyleManager = inputViewStyleManager
-        super.init()
+        super.init(inputViewStyleManager: inputViewStyleManager)
     }
 
     required init?(coder argument: NSCoder) {

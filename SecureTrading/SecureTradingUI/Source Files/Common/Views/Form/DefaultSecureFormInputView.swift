@@ -61,6 +61,8 @@ import UIKit
         return stackView
     }()
 
+    let inputViewStyleManager: InputViewStyleManager?
+
     // MARK: Public properties
 
     @objc public weak var delegate: SecureFormInputViewDelegate?
@@ -213,6 +215,20 @@ import UIKit
         delegate?.showHideError(show)
     }
 
+    // MARK: Initialization
+
+    /// Initializes an instance of the receiver.
+    /// - Parameters:
+    ///   - inputViewStyleManager: instance of manager to customize view
+    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil) {
+        self.inputViewStyleManager = inputViewStyleManager
+        super.init()
+    }
+    
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Validation
 
     @discardableResult

@@ -132,6 +132,8 @@ class YearTextField: BackwardTextField {}
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     )
 
+    let inputViewStyleManager: InputViewStyleManager?
+
     // MARK: Public properties
 
     @objc public var expiryDate: ExpiryDate {
@@ -306,6 +308,20 @@ class YearTextField: BackwardTextField {}
         }
     }
 
+    // MARK: Initialization
+
+    /// Initializes an instance of the receiver.
+    /// - Parameters:
+    ///   - inputViewStyleManager: instance of manager to customize view
+    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil) {
+        self.inputViewStyleManager = inputViewStyleManager
+        super.init()
+    }
+
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: Functions
 
     private func updatePlaceholder(current: String) {
@@ -409,6 +425,8 @@ extension ExpiryDateInputView: ViewSetupable {
         textFieldTextAligment = .center
 
         textFieldImage = UIImage(named: "calendar", in: Bundle(for: CvcInputView.self), compatibleWith: nil)
+
+        customizeView(inputViewStyleManager: inputViewStyleManager)
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
