@@ -16,19 +16,19 @@ import UIKit
     }
 
     @objc public lazy private(set) var cardNumberInput: CardNumberInputView = {
-        CardNumberInputView(inputViewStyleManager: inputViewStyleManager)
+        CardNumberInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
     @objc public lazy private(set) var expiryDateInput: ExpiryDateInputView = {
-        ExpiryDateInputView(inputViewStyleManager: inputViewStyleManager)
+        ExpiryDateInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
     @objc public lazy private(set) var cvcInput: CvcInputView = {
-        CvcInputView(inputViewStyleManager: inputViewStyleManager)
+        CvcInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    @objc public let payButton: PayButton = {
-        PayButton()
+    @objc public lazy private(set) var payButton: PayButton = {
+        PayButton(payButtonStyleManager: dropInViewStyleManager?.payButtonStyleManager)
     }()
 
     private lazy var stackView: UIStackView = {
@@ -46,15 +46,15 @@ import UIKit
         return scrollView
     }()
 
-    let inputViewStyleManager: InputViewStyleManager?
+    let dropInViewStyleManager: DropInViewStyleManager?
 
     // MARK: Initialization
 
      /// Initializes an instance of the receiver.
      /// - Parameters:
-     ///   - inputViewStyleManager: instance of manager to customize view
-     @objc public init(inputViewStyleManager: InputViewStyleManager?) {
-         self.inputViewStyleManager = inputViewStyleManager
+     ///   - dropInViewStyleManager: instance of manager to customize view
+     @objc public init(dropInViewStyleManager: DropInViewStyleManager?) {
+         self.dropInViewStyleManager = dropInViewStyleManager
          super.init()
      }
 

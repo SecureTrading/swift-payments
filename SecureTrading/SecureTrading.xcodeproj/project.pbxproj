@@ -84,6 +84,7 @@
 		089B41E4246D6FCE00F70764 /* GeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41E3246D6FCE00F70764 /* GeneralResponse.swift */; };
 		089B41E6246D791C00F70764 /* DefaultAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41E5246D791C00F70764 /* DefaultAPIManager.swift */; };
 		08C1E80724890AFF007496D9 /* PayButtonStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C1E80624890AFF007496D9 /* PayButtonStyleManager.swift */; };
+		08C1E8092489207E007496D9 /* DropInViewStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C1E8082489207E007496D9 /* DropInViewStyleManager.swift */; };
 		08C31AF7246E842F00595B21 /* JWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C31AF6246E842F00595B21 /* JWT.swift */; };
 		08C31AF9246E860C00595B21 /* DecodedJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C31AF8246E860C00595B21 /* DecodedJWT.swift */; };
 		08C31AFD246E8F2C00595B21 /* Claim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C31AFC246E8F2C00595B21 /* Claim.swift */; };
@@ -285,6 +286,7 @@
 		089B41E3246D6FCE00F70764 /* GeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralResponse.swift; sourceTree = "<group>"; };
 		089B41E5246D791C00F70764 /* DefaultAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAPIManager.swift; sourceTree = "<group>"; };
 		08C1E80624890AFF007496D9 /* PayButtonStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayButtonStyleManager.swift; sourceTree = "<group>"; };
+		08C1E8082489207E007496D9 /* DropInViewStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropInViewStyleManager.swift; sourceTree = "<group>"; };
 		08C31AF6246E842F00595B21 /* JWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWT.swift; sourceTree = "<group>"; };
 		08C31AF8246E860C00595B21 /* DecodedJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodedJWT.swift; sourceTree = "<group>"; };
 		08C31AFC246E8F2C00595B21 /* Claim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Claim.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 			children = (
 				0818DE5A2488E36200A8B25A /* InputViewStyleManager.swift */,
 				08C1E80624890AFF007496D9 /* PayButtonStyleManager.swift */,
+				08C1E8082489207E007496D9 /* DropInViewStyleManager.swift */,
 			);
 			path = "Style managers";
 			sourceTree = "<group>";
@@ -1403,6 +1406,7 @@
 				0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */,
 				0869488124692A5600F625D0 /* TestDetailsViewController.swift in Sources */,
 				0818DE3C24851C2200A8B25A /* BackwardTextField.swift in Sources */,
+				08C1E8092489207E007496D9 /* DropInViewStyleManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
