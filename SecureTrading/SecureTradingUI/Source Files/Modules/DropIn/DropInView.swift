@@ -15,26 +15,26 @@ import UIKit
         set { payButton.onTap = newValue }
     }
 
-    @objc public lazy private(set) var cardNumberInput: CardNumberInputView = {
+    @objc public private(set) lazy var cardNumberInput: CardNumberInputView = {
         CardNumberInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    @objc public lazy private(set) var expiryDateInput: ExpiryDateInputView = {
+    @objc public private(set) lazy var expiryDateInput: ExpiryDateInputView = {
         ExpiryDateInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    @objc public lazy private(set) var cvcInput: CvcInputView = {
+    @objc public private(set) lazy var cvcInput: CvcInputView = {
         CvcInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    @objc public lazy private(set) var payButton: PayButton = {
+    @objc public private(set) lazy var payButton: PayButton = {
         PayButton(payButtonStyleManager: dropInViewStyleManager?.payButtonStyleManager)
     }()
 
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, payButton])
         stackView.axis = .vertical
-        stackView.spacing = 30
+        stackView.spacing = spacingBeetwenInputViews
         stackView.alignment = .fill
         stackView.distribution = .fill
         return stackView
@@ -48,25 +48,48 @@ import UIKit
 
     let dropInViewStyleManager: DropInViewStyleManager?
 
+    @objc public var spacingBeetwenInputViews: CGFloat = 30 {
+        didSet {
+            stackView.spacing = spacingBeetwenInputViews
+        }
+    }
+
+    @objc public var insets: UIEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: -15, right: -30)
+
     // MARK: Initialization
 
-     /// Initializes an instance of the receiver.
-     /// - Parameters:
-     ///   - dropInViewStyleManager: instance of manager to customize view
-     @objc public init(dropInViewStyleManager: DropInViewStyleManager?) {
-         self.dropInViewStyleManager = dropInViewStyleManager
-         super.init()
-     }
+    /// Initializes an instance of the receiver.
+    /// - Parameters:
+    ///   - dropInViewStyleManager: instance of manager to customize view
+    @objc public init(dropInViewStyleManager: DropInViewStyleManager?) {
+        self.dropInViewStyleManager = dropInViewStyleManager
+        super.init()
+    }
 
-     required init?(coder _: NSCoder) {
-         fatalError("init(coder:) has not been implemented")
-     }
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: Functions
 
     private func customizeView(dropInViewStyleManager: DropInViewStyleManager?) {
-        self.backgroundColor = dropInViewStyleManager?.backgroundColor ?? .white
-        // todo
+        backgroundColor = dropInViewStyleManager?.backgroundColor ?? .white
+        if let spacingBeetwenInputViews = dropInViewStyleManager?.spacingBeetwenInputViews {
+            self.spacingBeetwenInputViews = spacingBeetwenInputViews
+        }
+        if let insets = dropInViewStyleManager?.insets {
+            self.insets = insets
+        }
+        buildScrollViewConstraints()
+    }
+
+    private func buildScrollViewConstraints() {
+        scrollView.addConstraints([
+            equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: insets.top),
+            equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: insets.bottom),
+            equal(self, \.leadingAnchor, constant: insets.left),
+            equal(self, \.trailingAnchor, constant: insets.right)
+        ])
     }
 }
 
@@ -90,12 +113,6 @@ extension DropInView: ViewSetupable {
 
     /// - SeeAlso: ViewSetupable.setupConstraints
     func setupConstraints() {
-        scrollView.addConstraints([
-            equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: 15),
-            equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: -15),
-            equal(self, \.leadingAnchor, constant: 30),
-            equal(self, \.trailingAnchor, constant: -30)
-        ])
 
         scrollView.addConstraints([
             equal(stackView, \.widthAnchor, to: \.widthAnchor, constant: 0.0)

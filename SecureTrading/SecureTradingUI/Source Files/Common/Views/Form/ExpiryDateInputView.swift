@@ -474,7 +474,7 @@ extension ExpiryDateInputView: ViewSetupable {
             centerX.isActive = true
         }
 
-        stackView.addConstraints(equalToSuperview(with: .init(top: 5, left: 5, bottom: -5, right: -5), usingSafeArea: false))
+        stackView.addConstraints(equalToSuperview(with: .init(top: 0, left: 0, bottom: 0, right: 0), usingSafeArea: false))
     }
 }
 

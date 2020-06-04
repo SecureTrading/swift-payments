@@ -249,7 +249,7 @@ extension DefaultSecureFormInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
         backgroundColor = .clear
-        
+
         textField.delegate = self
 
         titleLabel.text = title
@@ -283,7 +283,7 @@ extension DefaultSecureFormInputView: ViewSetupable {
             equal(\.widthAnchor, to: 30),
             equal(\.heightAnchor, to: 33)
         ])
-        stackView.addConstraints(equalToSuperview(with: .init(top: 5, left: 5, bottom: -5, right: -5), usingSafeArea: false))
+        stackView.addConstraints(equalToSuperview(with: .init(top: 0, left: 0, bottom: 0, right: 0), usingSafeArea: false))
     }
 }
 

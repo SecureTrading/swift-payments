@@ -88,7 +88,7 @@ import UIKit
             equal(self, \.trailingAnchor, constant: -15)
         ])
         layer.cornerRadius = 6
-        contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         titleLabel?.numberOfLines = 0
         titleLabel?.lineBreakMode = .byWordWrapping
 
