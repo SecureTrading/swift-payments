@@ -60,4 +60,14 @@ import UIKit
     // MARK: - images
 
     var textFieldImage: UIImage? { get set }
+
+    //func customizeView(inputViewStyleManager: InputViewStyleManager)
+}
+
+extension SecureFormInputView {
+    public func customizeView(inputViewStyleManager: InputViewStyleManager?) {
+        if let titleColor = inputViewStyleManager?.textColor {
+            self.titleColor = titleColor
+        }
+    }
 }

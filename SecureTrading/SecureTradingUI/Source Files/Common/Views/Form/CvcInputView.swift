@@ -15,6 +15,8 @@ import UIKit
         return cardType.securityCodeLength
     }
 
+    private let inputViewStyleManager: InputViewStyleManager?
+
     // MARK: Public Properties
 
     @objc public var cardType = CardType.unknown {
@@ -39,7 +41,10 @@ import UIKit
     // MARK: Initialization
 
     /// Initializes an instance of the receiver.
-    @objc public override init() {
+    /// - Parameters:
+    ///   - inputViewStyleManager: instance of manager to customize view
+    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil) {
+        self.inputViewStyleManager = inputViewStyleManager
         super.init()
     }
 
@@ -64,6 +69,8 @@ extension CvcInputView {
         textFieldTextAligment = .center
 
         textFieldImage = UIImage(named: "cvc", in: Bundle(for: CvcInputView.self), compatibleWith: nil)
+
+        customizeView(inputViewStyleManager: inputViewStyleManager)
     }
 }
 

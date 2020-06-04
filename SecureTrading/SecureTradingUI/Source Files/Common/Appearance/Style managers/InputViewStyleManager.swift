@@ -6,11 +6,6 @@
 import UIKit
 
 @objc public class InputViewStyleManager: NSObject {
-    // MARK: - texts
-
-    @objc public let title: String?
-    @objc public let placeholder: String?
-    @objc public let error: String?
 
     // MARK: - colors
 
@@ -32,10 +27,7 @@ import UIKit
 
     @objc public var textFieldImage: UIImage?
 
-    @objc public init(title: String?, placeholder: String?, error: String?, titleColor: UIColor?, textFieldBorderColor: UIColor?, textFieldBackgroundColor: UIColor?, textColor: UIColor?, placeholderColor: UIColor?, errorColor: UIColor?, titleFont: UIFont?, textFont: UIFont?, placeholderFont: UIFont?, errorFont: UIFont?, textFieldImage: UIImage?) {
-        self.title = title
-        self.placeholder = placeholder
-        self.error = error
+    @objc public init(titleColor: UIColor?, textFieldBorderColor: UIColor?, textFieldBackgroundColor: UIColor?, textColor: UIColor?, placeholderColor: UIColor?, errorColor: UIColor?, titleFont: UIFont?, textFont: UIFont?, placeholderFont: UIFont?, errorFont: UIFont?, textFieldImage: UIImage?) {
         self.titleColor = titleColor
         self.textFieldBorderColor = textFieldBorderColor
         self.textFieldBackgroundColor = textFieldBackgroundColor
