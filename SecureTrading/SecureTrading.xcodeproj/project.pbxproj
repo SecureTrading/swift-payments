@@ -83,6 +83,7 @@
 		089B41E1246D600600F70764 /* GeneralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41E0246D600600F70764 /* GeneralRequest.swift */; };
 		089B41E4246D6FCE00F70764 /* GeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41E3246D6FCE00F70764 /* GeneralResponse.swift */; };
 		089B41E6246D791C00F70764 /* DefaultAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089B41E5246D791C00F70764 /* DefaultAPIManager.swift */; };
+		08C1E80724890AFF007496D9 /* PayButtonStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C1E80624890AFF007496D9 /* PayButtonStyleManager.swift */; };
 		08C31AF7246E842F00595B21 /* JWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C31AF6246E842F00595B21 /* JWT.swift */; };
 		08C31AF9246E860C00595B21 /* DecodedJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C31AF8246E860C00595B21 /* DecodedJWT.swift */; };
 		08C31AFD246E8F2C00595B21 /* Claim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C31AFC246E8F2C00595B21 /* Claim.swift */; };
@@ -283,6 +284,7 @@
 		089B41E0246D600600F70764 /* GeneralRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralRequest.swift; sourceTree = "<group>"; };
 		089B41E3246D6FCE00F70764 /* GeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralResponse.swift; sourceTree = "<group>"; };
 		089B41E5246D791C00F70764 /* DefaultAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAPIManager.swift; sourceTree = "<group>"; };
+		08C1E80624890AFF007496D9 /* PayButtonStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayButtonStyleManager.swift; sourceTree = "<group>"; };
 		08C31AF6246E842F00595B21 /* JWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWT.swift; sourceTree = "<group>"; };
 		08C31AF8246E860C00595B21 /* DecodedJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodedJWT.swift; sourceTree = "<group>"; };
 		08C31AFC246E8F2C00595B21 /* Claim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Claim.swift; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 			isa = PBXGroup;
 			children = (
 				0818DE5A2488E36200A8B25A /* InputViewStyleManager.swift */,
+				08C1E80624890AFF007496D9 /* PayButtonStyleManager.swift */,
 			);
 			path = "Style managers";
 			sourceTree = "<group>";
@@ -1352,6 +1355,7 @@
 			files = (
 				0818DE43248659C900A8B25A /* DropInViewController.swift in Sources */,
 				084E29E924656A5E0040FB9D /* UIView.swift in Sources */,
+				08C1E80724890AFF007496D9 /* PayButtonStyleManager.swift in Sources */,
 				08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */,
 				084E2A1924659B7B0040FB9D /* CustomBackNavigationController.swift in Sources */,
 				0818DE3A24851BDE00A8B25A /* UITextField.swift in Sources */,
