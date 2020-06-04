@@ -70,6 +70,11 @@ import UIKit
         return text.isEmpty
     }
 
+    @discardableResult
+    public override func becomeFirstResponder() -> Bool {
+        textField.becomeFirstResponder()
+    }
+
     /// property to be overwritten by inheriting classes
     @objc public private(set) var isInputValid: Bool = false
 
@@ -109,12 +114,7 @@ import UIKit
     }
 
     @objc public var text: String? {
-        get {
-            return textField.text
-        }
-        set {
-            textField.text = newValue
-        }
+        return textField.text
     }
 
     @objc public var placeholder: String = "default" {
@@ -134,7 +134,7 @@ import UIKit
 
     @objc public var titleColor: UIColor = .black {
         didSet {
-            titleLabel.textColor = textColor
+            titleLabel.textColor = titleColor
         }
     }
 
@@ -210,6 +210,7 @@ import UIKit
         errorLabel.isHidden = !show
         textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor
         textFieldStackViewBackground.backgroundColor = show ? errorColor.withAlphaComponent(0.2) : textFieldBackgroundColor
+        delegate?.showHideError(show)
     }
 
     // MARK: - Validation

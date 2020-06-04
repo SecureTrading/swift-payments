@@ -7,6 +7,7 @@ import UIKit
 
 @objc public protocol SecureFormInputViewDelegate: class {
     func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView)
+    func showHideError(_ show: Bool)
 }
 
 @objc public protocol SecureFormInputView: AnyObject {
@@ -26,7 +27,7 @@ import UIKit
 
     var title: String { get set }
 
-    var text: String? { get set }
+    var text: String? { get }
 
     var placeholder: String { get set }
 

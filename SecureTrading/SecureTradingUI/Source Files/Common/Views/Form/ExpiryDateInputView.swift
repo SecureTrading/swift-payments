@@ -134,8 +134,8 @@ class YearTextField: BackwardTextField {}
 
     // MARK: Public properties
 
-    @objc public var expiryDate: String {
-        return text ?? .empty
+    @objc public var expiryDate: ExpiryDate {
+        return ExpiryDate(rawValue: text ?? .empty)
     }
 
     @objc public weak var delegate: SecureFormInputViewDelegate?
@@ -145,7 +145,7 @@ class YearTextField: BackwardTextField {}
     }
 
     @objc public var isInputValid: Bool {
-        return CardValidator.isExpirationDateValid(date: expiryDate, separator: separatorLabel.text ?? "/")
+        return CardValidator.isExpirationDateValid(date: expiryDate.rawValue, separator: separatorLabel.text ?? "/")
     }
 
     @objc public var isSecuredTextEntry: Bool = false {
@@ -213,19 +213,7 @@ class YearTextField: BackwardTextField {}
     }
 
     @objc public var text: String? {
-        get {
-            return "\(monthTextField.text ?? .empty)\(separatorLabel.text ?? .empty)\(yearTextField.text ?? .empty)"
-        }
-        set {
-            guard let newValue = newValue, let range = newValue.rangeOfCharacter(from: setWithoutSpecialChars.inverted) else { return }
-            let separator = newValue[range.lowerBound..<range.upperBound]
-            guard separator.count == 1 else { return }
-
-            separatorLabel.text = String(separator)
-            let placeholderArray = newValue.components(separatedBy: separator)
-            monthTextField.text = placeholderArray[0]
-            yearTextField.text = placeholderArray[1]
-        }
+        return "\(monthTextField.text ?? .empty)\(separatorLabel.text ?? .empty)\(yearTextField.text ?? .empty)"
     }
 
     @objc public var placeholder: String {

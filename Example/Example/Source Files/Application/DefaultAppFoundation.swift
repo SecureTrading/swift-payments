@@ -8,8 +8,8 @@ import SecureTradingCore
 
 final class DefaultAppFoundation: AppFoundation {
 
-    /// Keys for certain scheme
-    private let keys = ApplicationKeys(keys: ExampleKeys())
+    /// - SeeAlso: AppFoundation.keys
+    private(set) var keys = ApplicationKeys(keys: ExampleKeys())
 
     /// - SeeAlso: AppFoundation.apiManager
     private(set) lazy var apiManager: APIManager = {

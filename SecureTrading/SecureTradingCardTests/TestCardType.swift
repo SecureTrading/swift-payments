@@ -15,7 +15,7 @@ class TestCardType: XCTestCase {
         // more digits are needed
         let expectedType = CardType.unknown
         let cardNumber = "5"
-        XCTAssertEqual(expectedType, CardValidator.cardType(for: cardNumber))
+        XCTAssertEqual(expectedType, CardValidator.cardType(for: cardNumber, cardTypes: CardType.allCases))
     }
     func test_isUnknownForNonDigit() {
         // if card number starts with other digit that 4
@@ -23,13 +23,13 @@ class TestCardType: XCTestCase {
         // more digits are needed
         let expectedType = CardType.unknown
         let cardNumber = "5@dsa"
-        XCTAssertEqual(expectedType, CardValidator.cardType(for: cardNumber))
+        XCTAssertEqual(expectedType, CardValidator.cardType(for: cardNumber, cardTypes: CardType.allCases))
     }
     func test_isUnknown() {
         let expectedType = CardType.unknown
         let cardNumbers = KnownCards.invalidCards
         for card in cardNumbers {
-            XCTAssertEqual(expectedType, CardValidator.cardType(for: card))
+            XCTAssertEqual(expectedType, CardValidator.cardType(for: card, cardTypes: CardType.allCases))
         }
     }
     func test_isVisa() {
@@ -37,13 +37,13 @@ class TestCardType: XCTestCase {
         let cardNumbers = KnownCards.visaCards
         
         for card in cardNumbers {
-            XCTAssertEqual(expectedType, CardValidator.cardType(for: card))
+            XCTAssertEqual(expectedType, CardValidator.cardType(for: card, cardTypes: CardType.allCases))
         }
     }
     func test_isVisaIfStartsWith4() {
         let expectedType = CardType.visa
         let cardNumber = "4"
-        XCTAssertEqual(expectedType, CardValidator.cardType(for: cardNumber))
+        XCTAssertEqual(expectedType, CardValidator.cardType(for: cardNumber, cardTypes: CardType.allCases))
         
     }
     func test_isMasterCard() {
@@ -51,7 +51,7 @@ class TestCardType: XCTestCase {
         let cardNumbers = KnownCards.mastercardCards
         
         for card in cardNumbers {
-            XCTAssertEqual(expectedType, CardValidator.cardType(for: card))
+            XCTAssertEqual(expectedType, CardValidator.cardType(for: card, cardTypes: CardType.allCases))
         }
     }
     func test_isMaestro() {
@@ -59,7 +59,7 @@ class TestCardType: XCTestCase {
         let cardNumbers = KnownCards.maestroCards
         
         for card in cardNumbers {
-            XCTAssertEqual(expectedType, CardValidator.cardType(for: card))
+            XCTAssertEqual(expectedType, CardValidator.cardType(for: card, cardTypes: CardType.allCases))
         }
     }
     func test_isAmex() {
@@ -67,7 +67,7 @@ class TestCardType: XCTestCase {
         let cardNumbers = KnownCards.amexCards
         
         for card in cardNumbers {
-            XCTAssertEqual(expectedType, CardValidator.cardType(for: card))
+            XCTAssertEqual(expectedType, CardValidator.cardType(for: card, cardTypes: CardType.allCases))
         }
     }
     func test_isJCB() {
@@ -75,7 +75,7 @@ class TestCardType: XCTestCase {
         let cardNumbers = KnownCards.jcbCards
         
         for card in cardNumbers {
-            XCTAssertEqual(expectedType, CardValidator.cardType(for: card))
+            XCTAssertEqual(expectedType, CardValidator.cardType(for: card, cardTypes: CardType.allCases))
         }
     }
     func test_isDiners() {
@@ -83,7 +83,7 @@ class TestCardType: XCTestCase {
         let cardNumbers = KnownCards.dinerCards
         
         for card in cardNumbers {
-            XCTAssertEqual(expectedType, CardValidator.cardType(for: card))
+            XCTAssertEqual(expectedType, CardValidator.cardType(for: card, cardTypes: CardType.allCases))
         }
     }
     func test_isDiscover() {
@@ -92,7 +92,7 @@ class TestCardType: XCTestCase {
         
         for card in cardNumbers {
             print("Discover: \(card)")
-            XCTAssertEqual(expectedType, CardValidator.cardType(for: card))
+            XCTAssertEqual(expectedType, CardValidator.cardType(for: card, cardTypes: CardType.allCases))
         }
     }
     func test_isPIBA() {
@@ -100,7 +100,7 @@ class TestCardType: XCTestCase {
         let cardNumbers = KnownCards.pibaCards
         
         for card in cardNumbers {
-            XCTAssertEqual(expectedType, CardValidator.cardType(for: card))
+            XCTAssertEqual(expectedType, CardValidator.cardType(for: card, cardTypes: CardType.allCases))
         }
     }
 }

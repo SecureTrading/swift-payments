@@ -11,6 +11,7 @@ MainView.showTestMainScreenButton = "show test main screen (from SecureTradingUI
 MainView.showTestMainFlowButton = "show test main flow (from SecureTradingUI)";
 MainView.makeAuthRequestButton = "make auth request (with test card 41111...)";
 MainView.showSingleInputViewsButton = "show single input views";
+MainView.showDropInControllerButton = "show drop in view controller (make auth req)";
 
 Alerts.okButton = "Ok";
 

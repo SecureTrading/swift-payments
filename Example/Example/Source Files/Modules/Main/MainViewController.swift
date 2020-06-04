@@ -11,6 +11,7 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         case didTapShowTestMainScreen
         case didTapShowTestMainFlow
         case didTapShowSingleInputViews
+        case didTapShowDropInController(String)
     }
 
     private var transparentNavigationBar: TransparentNavigationBar? { return navigationController?.navigationBar as? TransparentNavigationBar }
@@ -41,6 +42,11 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         customView.showSingleInputViewsButtonTappedClosure = { [weak self] in
             guard let self = self else { return }
             self.eventTriggered?(.didTapShowSingleInputViews)
+        }
+        customView.showDropInControllerButtonTappedClosure = { [weak self] in
+            guard let self = self else { return }
+            guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
+            self.eventTriggered?(.didTapShowDropInController(jwt))
         }
 
         viewModel.showAuthSuccess = { [weak self] _ in
