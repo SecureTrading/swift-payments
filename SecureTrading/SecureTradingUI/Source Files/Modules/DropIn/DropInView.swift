@@ -15,16 +15,16 @@ import UIKit
         set { payButton.onTap = newValue }
     }
 
-    @objc public let cardNumberInput: CardNumberInputView = {
-        CardNumberInputView()
+    @objc public lazy private(set) var cardNumberInput: CardNumberInputView = {
+        CardNumberInputView(inputViewStyleManager: inputViewStyleManager)
     }()
 
-    @objc public let expiryDateInput: ExpiryDateInputView = {
-        ExpiryDateInputView()
+    @objc public lazy private(set) var expiryDateInput: ExpiryDateInputView = {
+        ExpiryDateInputView(inputViewStyleManager: inputViewStyleManager)
     }()
 
-    @objc public let cvcInput: CvcInputView = {
-        CvcInputView()
+    @objc public lazy private(set) var cvcInput: CvcInputView = {
+        CvcInputView(inputViewStyleManager: inputViewStyleManager)
     }()
 
     @objc public let payButton: PayButton = {
@@ -45,6 +45,22 @@ import UIKit
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
+
+    let inputViewStyleManager: InputViewStyleManager?
+
+    // MARK: Initialization
+
+     /// Initializes an instance of the receiver.
+     /// - Parameters:
+     ///   - inputViewStyleManager: instance of manager to customize view
+     @objc public init(inputViewStyleManager: InputViewStyleManager?) {
+         self.inputViewStyleManager = inputViewStyleManager
+         super.init()
+     }
+
+     required init?(coder _: NSCoder) {
+         fatalError("init(coder:) has not been implemented")
+     }
 }
 
 extension DropInView: ViewSetupable {

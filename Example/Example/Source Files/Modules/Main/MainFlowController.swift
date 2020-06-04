@@ -42,7 +42,7 @@ final class MainFlowController: BaseNavigationFlowController {
 
     func showSingleInputViewsSceen() {
         // swiftlint:disable line_length
-        let inputViewStyleManager = InputViewStyleManager(titleColor: .brown, textFieldBorderColor: .blue, textFieldBackgroundColor: .yellow, textColor: .purple, placeholderColor: .orange, errorColor: .green, titleFont: UIFont.systemFont(ofSize: 24, weight: .bold), textFont: UIFont.systemFont(ofSize: 22, weight: .regular), placeholderFont: UIFont.systemFont(ofSize: 18, weight: .regular), errorFont: UIFont.systemFont(ofSize: 26, weight: .regular), textFieldImage: nil)
+        let inputViewStyleManager = InputViewStyleManager(titleColor: .brown, textFieldBorderColor: .blue, textFieldBackgroundColor: .yellow, textColor: .purple, placeholderColor: .orange, errorColor: .green, titleFont: UIFont.systemFont(ofSize: 24, weight: .bold), textFont: UIFont.systemFont(ofSize: 24, weight: .regular), placeholderFont: UIFont.systemFont(ofSize: 18, weight: .regular), errorFont: UIFont.systemFont(ofSize: 26, weight: .regular), textFieldImage: nil)
         // swiftlint:enable line_length
         let vc = SingleInputViewsController(view: SingleInputView(inputViewStyleManager: inputViewStyleManager), viewModel: SingleInputViewsModel())
         push(vc, animated: true)

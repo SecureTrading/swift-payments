@@ -38,7 +38,7 @@ import UIKit
     ///   - successfulPaymentCompletion: Closure triggered by pressing the button in the successful payment alert
     /// - Returns: instance of DropInViewController
     public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, successfulPaymentCompletion: @escaping () -> Void) -> UIViewController {
-        let viewController = DropInViewController(view: DropInView(), viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: gatewayType, username: username))
+        let viewController = DropInViewController(view: DropInView(inputViewStyleManager: nil), viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: gatewayType, username: username))
         viewController.eventTriggered = { event in
             switch event {
             case .successfulPayment:
