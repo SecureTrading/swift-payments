@@ -372,6 +372,7 @@ class YearTextField: BackwardTextField {}
         errorLabel.isHidden = !show
         textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor
         textFieldStackViewBackground.backgroundColor = show ? errorColor.withAlphaComponent(0.2) : textFieldBackgroundColor
+        delegate?.showHideError(show)
     }
 
     // MARK: - Validation
