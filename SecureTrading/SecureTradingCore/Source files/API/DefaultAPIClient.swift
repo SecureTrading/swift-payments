@@ -56,16 +56,13 @@ final class DefaultAPIClient: APIClient {
                 // Parse a response.
                 let decoder = Request.Response.decoder
                 let parsedResponse = try decoder.decode(Request.Response.self, from: data)
-                
-                // check if request's type description matches response's type description
-                if request.isValidAgainstResponse(parsedResponse) {
-                    // Resolve success with a parsed response.
+                // validate response
+                do {
+                    try ResponseValidator.validate(request: request, response: parsedResponse)
                     resolveSuccess(parsedResponse)
-                } else {
-                    // failure
-                    resolveFailure(.responseValidationError(.mismatchedDescriptionTypes), data)
+                } catch let validationError as APIClientError {
+                    resolveFailure(validationError, data)
                 }
-                
             } catch let err {
                 do {
                     // check if has error and resolve failure

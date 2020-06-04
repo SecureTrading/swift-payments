@@ -136,6 +136,7 @@ public enum APIResponseValidationError: Error {
     case missingResponse
     case missingData
     case mismatchedDescriptionTypes
+    case invalidField(code: ResponseErrorDetail)
     // MARK: Properties
 
     /// - SeeAlso: Error.localizedDescription
@@ -146,7 +147,9 @@ public enum APIResponseValidationError: Error {
         case .missingResponse, .missingData:
             return "Missing data."
         case .mismatchedDescriptionTypes:
-            return "Unexpected description types in response"
+            return "Unexpected description types in response."
+        case .invalidField(let code):
+            return "Invalid field: \(code)"
         }
     }
 }

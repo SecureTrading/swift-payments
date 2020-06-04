@@ -23,6 +23,13 @@
     case paymentCancelled = 3
     case error
 }
+@objc public enum ResponseErrorDetail: Int {
+    case invalidPAN
+    case invalidSecurityCode
+    case invalidJWT
+    case invalidExpiryDate
+    case none
+}
 
 @objc public class JWTResponseObject: NSObject, Decodable {
     // MARK: Properties
@@ -42,6 +49,24 @@
     
     @objc public var responseSettleStatus: ResponseSettleStatus {
         return ResponseSettleStatus(rawValue: settleStatus?.intValue ?? -1) ?? .error
+    }
+    
+    @objc public var errorDetails: ResponseErrorDetail {
+        // confirmed with ST, error data will only have max 1 element at the time,
+        // even when there are multiple errors
+        // errors are parsed one by one on the gateway
+
+        switch responseErrorCode {
+        case .fieldError:
+            switch errorData?.first {
+            case "pan": return ResponseErrorDetail.invalidPAN
+            case "jwt": return ResponseErrorDetail.invalidJWT
+            case "securitycode": return ResponseErrorDetail.invalidSecurityCode
+            case "expirydate": return ResponseErrorDetail.invalidExpiryDate
+            default: return ResponseErrorDetail.none
+            }
+        default: return ResponseErrorDetail.none
+        }
     }
     
     private var requestTypeDescription: TypeDescription?

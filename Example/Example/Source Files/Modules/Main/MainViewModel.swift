@@ -30,15 +30,6 @@ final class MainViewModel {
     // MARK: Functions
 
     func makeAuthCall() {
-//        let claim = STClaims(iss: keys.merchantUsername,
-//                             iat: Date(timeIntervalSinceNow: 60),
-//                             payload: Payload(accounttypedescription: "ECOM",
-//                                              sitereference: keys.merchantSiteReference,
-//                                              currencyiso3a: "GBP",
-//                                              baseamount: 1050,
-//                                              pan: "4111111111111111",
-//                                              expirydate: "12/2022",
-//                                              securitycode: "123"))
         let claim = STClaims(iss: keys.merchantUsername,
                                     iat: Date(timeIntervalSinceNow: 0),
                                     payload: Payload(accounttypedescription: "ECOM",
@@ -64,8 +55,26 @@ final class MainViewModel {
             }
         }, failure: { [weak self] error in
             guard let self = self else { return }
-            // general APIClient error
-            self.showAuthError?(error.humanReadableDescription)
+            switch error {
+            case .responseValidationError(let responseError):
+                switch responseError {
+                case .invalidField(let errorCode):
+                    var message = "Invalid field: "
+                    switch errorCode {
+                    case .invalidPAN: message += "PAN"
+                    case .invalidSecurityCode: message += "Security code"
+                    case .invalidJWT: message += "JWT"
+                    case .invalidExpiryDate: message += "Expiry date"
+                    case .none: message += ""
+                    }
+                    // Update UI
+                    self.showAuthError?(message)
+                default:
+                    self.showAuthError?(error.humanReadableDescription)
+                }
+            default:
+                self.showAuthError?(error.humanReadableDescription)
+            }
         })
     }
 }
