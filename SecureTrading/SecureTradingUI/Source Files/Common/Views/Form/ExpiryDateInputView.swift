@@ -29,7 +29,7 @@ class MonthTextField: BackwardTextField {
 
 class YearTextField: BackwardTextField {}
 
-@objc public class ExpiryDateInputView: WhiteBackgroundBaseView, SecureFormInputView {
+@objc public class ExpiryDateInputView: BaseView, SecureFormInputView {
     // MARK: Properties
 
     let titleLabel: UILabel = {
@@ -393,6 +393,8 @@ class YearTextField: BackwardTextField {}
 extension ExpiryDateInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
+        backgroundColor = .clear
+
         yearTextField.deleteLastCharCallback = { [weak self] _ in
             self?.monthTextField.becomeFirstResponder()
         }

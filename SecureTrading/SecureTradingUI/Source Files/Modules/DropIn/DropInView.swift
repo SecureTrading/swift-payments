@@ -5,7 +5,7 @@
 
 import UIKit
 
-@objc public final class DropInView: WhiteBackgroundBaseView {
+@objc public final class DropInView: BaseView {
     @objc public var isFormValid: Bool {
         return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid
     }
@@ -61,6 +61,13 @@ import UIKit
      required init?(coder _: NSCoder) {
          fatalError("init(coder:) has not been implemented")
      }
+
+    // MARK: Functions
+
+    private func customizeView(dropInViewStyleManager: DropInViewStyleManager?) {
+        self.backgroundColor = dropInViewStyleManager?.backgroundColor ?? .white
+        // todo
+    }
 }
 
 extension DropInView: ViewSetupable {
@@ -71,6 +78,8 @@ extension DropInView: ViewSetupable {
         cvcInput.delegate = self
         expiryDateInput.delegate = self
         cardNumberInput.becomeFirstResponder()
+
+        customizeView(dropInViewStyleManager: dropInViewStyleManager)
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy

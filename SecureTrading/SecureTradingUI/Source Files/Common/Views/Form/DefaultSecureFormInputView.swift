@@ -5,7 +5,7 @@
 
 import UIKit
 
-@objc public class DefaultSecureFormInputView: WhiteBackgroundBaseView, SecureFormInputView {
+@objc public class DefaultSecureFormInputView: BaseView, SecureFormInputView {
     // MARK: Properties
 
     private let titleLabel: UILabel = {
@@ -248,6 +248,8 @@ import UIKit
 extension DefaultSecureFormInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
+        backgroundColor = .clear
+        
         textField.delegate = self
 
         titleLabel.text = title
