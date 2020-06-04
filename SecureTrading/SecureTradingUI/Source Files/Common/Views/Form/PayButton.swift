@@ -41,7 +41,7 @@ import UIKit
 
     @objc public var titleColor: UIColor = .white {
         didSet {
-            tintColor = self.titleColor
+            setTitleColor(self.titleColor, for: .normal)
         }
     }
 
@@ -92,16 +92,16 @@ import UIKit
         titleLabel?.numberOfLines = 0
         titleLabel?.lineBreakMode = .byWordWrapping
 
-        tintColor = self.titleColor
+        setTitleColor(self.titleColor, for: .normal)
         titleLabel?.font = self.titleFont
 
-        self.isEnabled = false
         self.title = Localizable.PayButton.title.text
 
         self.spinner.style = self.spinnerStyle
         self.spinner.color = self.spinnerColor
 
         self.customizeView(payButtonStyleManager: self.payButtonStyleManager)
+        self.isEnabled = false
     }
 
     private func customizeView(payButtonStyleManager: PayButtonStyleManager?) {

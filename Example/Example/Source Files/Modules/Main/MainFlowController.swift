@@ -49,7 +49,8 @@ final class MainFlowController: BaseNavigationFlowController {
     }
 
     func showDropInViewController(jwt: String) {
-        let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: nil, payButtonStyleManager: nil, backgroundColor: .yellow)
+        let payButtonStyleManager = PayButtonStyleManager(titleColor: .yellow, enabledBackgroundColor: .black, disabledBackgroundColor: .red, titleFont: UIFont.systemFont(ofSize: 24, weight: .bold), spinnerColor: .orange)
+        let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: nil, payButtonStyleManager: payButtonStyleManager, backgroundColor: .white)
         let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: [.auth], gatewayType: .eu, username: appFoundation.keys.merchantUsername, dropInViewStyleManager: dropInViewStyleManager) { [unowned self] in
             self.navigationController.popViewController(animated: true)
         }
