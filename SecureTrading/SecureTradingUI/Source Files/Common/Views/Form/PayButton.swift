@@ -15,6 +15,8 @@ import UIKit
         return spinner
     }()
 
+    let payButtonStyleManager: PayButtonStyleManager?
+
     // MARK: Public properties
 
     @objc public override var isEnabled: Bool {
@@ -49,10 +51,25 @@ import UIKit
         }
     }
 
+    @objc public var spinnerStyle: UIActivityIndicatorView.Style = .white {
+        didSet {
+            self.spinner.style = self.spinnerStyle
+        }
+    }
+
+    @objc public var spinnerColor: UIColor = .white {
+        didSet {
+            self.spinner.color = self.spinnerColor
+        }
+    }
+
     // MARK: Initialization
 
     /// Initialize an instance and calls required methods
-    @objc public init() {
+    /// - Parameters:
+    ///   - payButtonStyleManager: instance of manager to customize view
+    @objc public init(payButtonStyleManager: PayButtonStyleManager? = nil) {
+        self.payButtonStyleManager = payButtonStyleManager
         super.init(frame: .zero)
         self.configureView()
     }
@@ -80,6 +97,37 @@ import UIKit
 
         self.isEnabled = false
         self.title = Localizable.PayButton.title.text
+
+        self.spinner.style = self.spinnerStyle
+        self.spinner.color = self.spinnerColor
+
+        self.customizeView(payButtonStyleManager: self.payButtonStyleManager)
+    }
+
+    private func customizeView(payButtonStyleManager: PayButtonStyleManager?) {
+        if let titleColor = payButtonStyleManager?.titleColor {
+            self.titleColor = titleColor
+        }
+
+        if let enabledBackgroundColor = payButtonStyleManager?.enabledBackgroundColor {
+            self.enabledBackgroundColor = enabledBackgroundColor
+        }
+
+        if let disabledBackgroundColor = payButtonStyleManager?.disabledBackgroundColor {
+            self.disabledBackgroundColor = disabledBackgroundColor
+        }
+
+        if let titleFont = payButtonStyleManager?.titleFont {
+            self.titleFont = titleFont
+        }
+
+        if let spinnerStyle = payButtonStyleManager?.spinnerStyle {
+            self.spinnerStyle = spinnerStyle
+        }
+
+        if let spinnerColor = payButtonStyleManager?.spinnerColor {
+            self.spinnerColor = spinnerColor
+        }
     }
 
     // MARK: Public functions
