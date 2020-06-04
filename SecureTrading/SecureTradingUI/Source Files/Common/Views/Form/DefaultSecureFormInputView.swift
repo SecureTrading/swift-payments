@@ -70,6 +70,11 @@ import UIKit
         return text.isEmpty
     }
 
+    @discardableResult
+    public override func becomeFirstResponder() -> Bool {
+        textField.becomeFirstResponder()
+    }
+
     /// property to be overwritten by inheriting classes
     @objc public private(set) var isInputValid: Bool = false
 

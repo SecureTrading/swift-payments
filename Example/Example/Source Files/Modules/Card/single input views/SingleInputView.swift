@@ -32,6 +32,7 @@ extension SingleInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
         cardNumberInput.cardNumberInputViewDelegate = self
+        cardNumberInput.becomeFirstResponder()
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy

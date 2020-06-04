@@ -54,6 +54,7 @@ extension DropInView: ViewSetupable {
         cardNumberInput.delegate = self
         cvcInput.delegate = self
         expiryDateInput.delegate = self
+        cardNumberInput.becomeFirstResponder()
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
