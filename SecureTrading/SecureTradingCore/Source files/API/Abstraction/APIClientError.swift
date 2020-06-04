@@ -135,7 +135,7 @@ public enum APIResponseValidationError: Error {
     case unacceptableStatusCode(actual: Int, expected: CountableClosedRange<Int>)
     case missingResponse
     case missingData
-
+    case mismatchedDescriptionTypes
     // MARK: Properties
 
     /// - SeeAlso: Error.localizedDescription
@@ -145,6 +145,8 @@ public enum APIResponseValidationError: Error {
             return "Unacceptable status code: \(actual)."
         case .missingResponse, .missingData:
             return "Missing data."
+        case .mismatchedDescriptionTypes:
+            return "Unexpected description types in response"
         }
     }
 }

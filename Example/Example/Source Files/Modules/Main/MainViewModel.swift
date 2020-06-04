@@ -40,7 +40,7 @@ final class MainViewModel {
 //                                              expirydate: "12/2022",
 //                                              securitycode: "123"))
         let claim = STClaims(iss: keys.merchantUsername,
-                                    iat: Date(timeIntervalSinceNow: -60),
+                                    iat: Date(timeIntervalSinceNow: 0),
                                     payload: Payload(accounttypedescription: "ECOM",
                                                      sitereference: keys.merchantSiteReference,
                                                      currencyiso3a: "GBP",
@@ -51,7 +51,7 @@ final class MainViewModel {
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
 
-        let authRequest = RequestObject(typeDescriptions: [.auth, .threeDQuery])
+        let authRequest = RequestObject(typeDescriptions: [.auth])
 
         apiManager.makeGeneralRequest(jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }

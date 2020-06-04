@@ -46,6 +46,9 @@ protocol APIRequest: Encodable {
     ///
     /// - Returns: A built URL request instance.
     func build(againstBaseURL baseURL: URL, defaultHeaders: [String: String]) throws -> URLRequest
+    
+    // checks whether request is valid against the response
+    func isValidAgainstResponse(_ response: APIResponse) -> Bool
 }
 
 extension APIRequest {
@@ -56,5 +59,9 @@ extension APIRequest {
 
     var encoder: JSONEncoder {
         return JSONEncoder()
+    }
+    
+    func isValidAgainstResponse(_ response: APIResponse) -> Bool {
+        return true
     }
 }

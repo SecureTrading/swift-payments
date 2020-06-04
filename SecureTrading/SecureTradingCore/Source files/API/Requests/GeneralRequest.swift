@@ -6,17 +6,17 @@
 import Foundation
 
 struct GeneralRequest: APIRequestModel {
-
+    
     // MARK: Properties
-
+    
     private let alias: String
     private let jwt: String
     private let version: String
     private let versionInfo: String
     private let requests: [RequestObject]
-
+    
     // MARK: Initialization
-
+    
     /// Initializes an instance of the receiver.
     /// - Parameters:
     ///   - alias: merchant's username
@@ -31,21 +31,21 @@ struct GeneralRequest: APIRequestModel {
         self.versionInfo = versionInfo
         self.requests = requests
     }
-
+    
     // MARK: APIRequestModel
-
+    
     typealias Response = GeneralResponse
-
+    
     /// - SeeAlso: APIRequestModel.method
     var method: APIRequestMethod {
         return .post
     }
-
+    
     /// - SeeAlso: APIRequestModel.path
     var path: String {
         return "/jwt/"
     }
-
+    
     /// - SeeAlso: Swift.Encodable
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -54,6 +54,17 @@ struct GeneralRequest: APIRequestModel {
         try container.encode(version, forKey: .version)
         try container.encode(versionInfo, forKey: .versionInfo)
         try container.encode(requests, forKey: .requests)
+    }
+    
+    func isValidAgainstResponse(_ response: APIResponse) -> Bool {
+        // check if response type description is the same as request type description
+        // most likely to be adjusted for request with multiple types, like auth and 3dsecure
+        guard let generalResponse = (response as? GeneralResponse)?.jwtResponses.first else { return true }
+        let allRequestTypes = self.requests.flatMap { $0.typeDescriptions }
+        // check if types were provided in request
+        guard !allRequestTypes.isEmpty else { return true }
+        let containedTypes = allRequestTypes.filter { generalResponse.requestTypeDescription(contains: $0) }
+        return containedTypes.count == allRequestTypes.count
     }
 }
 
