@@ -82,36 +82,6 @@ import UIKit
     /// property to be overwritten by inheriting classes
     @objc public private(set) var isInputValid: Bool = false
 
-    @objc public var titleSpacing: CGFloat = 5 {
-        didSet {
-            stackView.setCustomSpacing(titleSpacing, after: titleLabel)
-        }
-    }
-
-    @objc public var errorSpacing: CGFloat = 5 {
-        didSet {
-            stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
-        }
-    }
-
-    @objc public var textFieldBorderWidth: CGFloat = 2 {
-        didSet {
-            textFieldStackViewBackground.layer.borderWidth = textFieldBorderWidth
-        }
-    }
-
-    @objc public var textFieldCornerRadius: CGFloat = 5 {
-        didSet {
-            textFieldStackViewBackground.layer.cornerRadius = textFieldCornerRadius
-        }
-    }
-
-    @objc public var textFieldHeightMargins: HeightMargins = HeightMargins(top: 5, bottom: 5) {
-        didSet {
-            textFieldStackView.layoutMargins = UIEdgeInsets(top: textFieldHeightMargins.top, left: 10, bottom: textFieldHeightMargins.bottom, right: 10)
-        }
-    }
-
     @objc public var isSecuredTextEntry: Bool = false {
         didSet {
             textField.isSecureTextEntry = isSecuredTextEntry
@@ -235,6 +205,38 @@ import UIKit
     @objc public var textFieldImage: UIImage? {
         didSet {
             textFieldImageView.image = textFieldImage
+        }
+    }
+
+    // MARK: - spacing/sizes
+
+    @objc public var titleSpacing: CGFloat = 5 {
+        didSet {
+            stackView.setCustomSpacing(titleSpacing, after: titleLabel)
+        }
+    }
+
+    @objc public var errorSpacing: CGFloat = 5 {
+        didSet {
+            stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
+        }
+    }
+
+    @objc public var textFieldBorderWidth: CGFloat = 2 {
+        didSet {
+            textFieldStackViewBackground.layer.borderWidth = textFieldBorderWidth
+        }
+    }
+
+    @objc public var textFieldCornerRadius: CGFloat = 5 {
+        didSet {
+            textFieldStackViewBackground.layer.cornerRadius = textFieldCornerRadius
+        }
+    }
+
+    @objc public var textFieldHeightMargins: HeightMargins = HeightMargins(top: 5, bottom: 5) {
+        didSet {
+            textFieldStackView.layoutMargins = UIEdgeInsets(top: textFieldHeightMargins.top, left: 10, bottom: textFieldHeightMargins.bottom, right: 10)
         }
     }
 

@@ -17,17 +17,15 @@ import UIKit
 
     @objc public let titleFont: UIFont?
 
-    // MARL: - loading spinner
+    // MARK: - loading spinner
 
     @objc public let spinnerStyle: UIActivityIndicatorView.Style
     @objc public let spinnerColor: UIColor?
 
-    // MARK: - spacing
+    // MARK: - spacing/sizes
 
     @objc public var buttonContentHeightMargins: HeightMargins?
-
     @objc public var borderWidth: CGFloat
-
     @objc public var cornerRadius: CGFloat
 
     @objc public init(titleColor: UIColor?, enabledBackgroundColor: UIColor?, disabledBackgroundColor: UIColor?, borderColor: UIColor?, titleFont: UIFont?, spinnerStyle: UIActivityIndicatorView.Style = .white, spinnerColor: UIColor? = nil, buttonContentHeightMargins: HeightMargins? = nil, borderWidth: CGFloat = 0, cornerRadius: CGFloat = 5) {

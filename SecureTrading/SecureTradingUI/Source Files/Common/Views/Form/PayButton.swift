@@ -29,15 +29,7 @@ import UIKit
         }
     }
 
-    @objc public var buttonContentHeightMargins: HeightMargins = HeightMargins(top: 10, bottom: 10) {
-        didSet {
-            contentEdgeInsets = UIEdgeInsets(top: self.buttonContentHeightMargins.top, left: 0, bottom: self.buttonContentHeightMargins.bottom, right: 0)
-        }
-    }
-
-    @objc public var enabledBackgroundColor: UIColor = .darkGray
-
-    @objc public var disabledBackgroundColor: UIColor = UIColor.darkGray.withAlphaComponent(0.5)
+    // MARK: - texts
 
     @objc public var title: String = "pay" {
         didSet {
@@ -45,11 +37,7 @@ import UIKit
         }
     }
 
-    @objc public var titleColor: UIColor = .white {
-        didSet {
-            setTitleColor(self.titleColor, for: .normal)
-        }
-    }
+    // MARK: - fonts
 
     @objc public var titleFont: UIFont = UIFont.systemFont(ofSize: 14) {
         didSet {
@@ -57,9 +45,43 @@ import UIKit
         }
     }
 
+    // MARK: - colors
+
+    @objc public var enabledBackgroundColor: UIColor = .darkGray
+
+    @objc public var disabledBackgroundColor: UIColor = UIColor.darkGray.withAlphaComponent(0.5)
+
+    @objc public var titleColor: UIColor = .white {
+        didSet {
+            setTitleColor(self.titleColor, for: .normal)
+        }
+    }
+
     @objc public var borderColor: UIColor = UIColor.clear {
         didSet {
             layer.borderColor = self.borderColor.cgColor
+        }
+    }
+
+    // MARK: - loading spinner
+
+    @objc public var spinnerStyle: UIActivityIndicatorView.Style = .white {
+        didSet {
+            self.spinner.style = self.spinnerStyle
+        }
+    }
+
+    @objc public var spinnerColor: UIColor = .white {
+        didSet {
+            self.spinner.color = self.spinnerColor
+        }
+    }
+
+    // MARK: - sizes
+
+    @objc public var buttonContentHeightMargins: HeightMargins = HeightMargins(top: 10, bottom: 10) {
+        didSet {
+            contentEdgeInsets = UIEdgeInsets(top: self.buttonContentHeightMargins.top, left: 0, bottom: self.buttonContentHeightMargins.bottom, right: 0)
         }
     }
 
@@ -72,18 +94,6 @@ import UIKit
     @objc public var cornerRadius: CGFloat = 5 {
         didSet {
             layer.cornerRadius = cornerRadius
-        }
-    }
-
-    @objc public var spinnerStyle: UIActivityIndicatorView.Style = .white {
-        didSet {
-            self.spinner.style = self.spinnerStyle
-        }
-    }
-
-    @objc public var spinnerColor: UIColor = .white {
-        didSet {
-            self.spinner.color = self.spinnerColor
         }
     }
 
@@ -120,10 +130,9 @@ import UIKit
         titleLabel?.numberOfLines = 0
         titleLabel?.lineBreakMode = .byWordWrapping
 
+        self.title = Localizable.PayButton.title.text
         setTitleColor(self.titleColor, for: .normal)
         titleLabel?.font = self.titleFont
-
-        self.title = Localizable.PayButton.title.text
 
         self.spinner.style = self.spinnerStyle
         self.spinner.color = self.spinnerColor
