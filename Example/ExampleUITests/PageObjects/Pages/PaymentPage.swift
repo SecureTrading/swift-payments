@@ -43,4 +43,3 @@ open class PaymentPage {
         return PaymentPageLocators.cvvValidationMessage.element.label
     }
 }
-

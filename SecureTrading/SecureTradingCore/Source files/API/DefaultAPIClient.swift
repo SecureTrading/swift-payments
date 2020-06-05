@@ -123,7 +123,7 @@ final class DefaultAPIClient: APIClient {
                     resolveFailure(.responseValidationError(.missingData), nil)
                     return
                 }
-                
+
                 // Validate against acceptable status codes.
                 guard self.defaultAcceptableStatusCodes.contains(response.statusCode) else {
                     let validationError = APIClientError.responseValidationError(.unacceptableStatusCode(actual: response.statusCode, expected: self.defaultAcceptableStatusCodes))
