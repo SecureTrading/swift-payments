@@ -13,58 +13,32 @@ import dnssd
 //           print(error)
 //       }
 
-enum ResolveType: DNSServiceProtocol {
-    case ipv4 = 1, ipv6 = 2, any = 3
-}
+private let dict = HostResolver.SafeDict<HostResolver>()
 
-class Resolver {
-    public static var queue: DispatchQueue {
-        get {
-            return _queue
-        }
-        set {
-            _queue.setSpecific(key: queueKey, value: "")
-            _queue = newValue
-            _queue.setSpecific(key: queueKey, value: "ResolverQueue")
-        }
-    }
-
-    fileprivate static let queueKey = DispatchSpecificKey<String>()
-    private static var _queue = {
+class HostResolver {
+    private static var queue = {
         return DispatchQueue(label: "ResolverQueue")
     }()
 
-    public static var activeCount: Int {
-        return dict.count
-    }
-
     public let hostname: String
-    fileprivate let resolveType: ResolveType
-    fileprivate let firstResult: Bool
-    public var ipv4Result: [String] = []
-    public var ipv6Result: [String] = []
-    public var result: [String] {
-        return ipv4Result + ipv6Result
-    }
+    public var result: [String: Int] = [:]
+    private let firstResult = false
+    private var cancelled = false
 
-    var cancelled = false
+    private var ref: DNSServiceRef?
+    private var id: UnsafeMutablePointer<Int>?
+    private var completionHandler: ((HostResolver?, DNSServiceErrorType?)->())!
+    private let timeout: Int
+    private let timer = DispatchSource.makeTimerSource(queue: HostResolver.queue)
 
-    fileprivate var ref: DNSServiceRef?
-    fileprivate var id: UnsafeMutablePointer<Int>?
-    fileprivate var completionHandler: ((Resolver?, DNSServiceErrorType?)->())!
-    fileprivate let timeout: Int
-    fileprivate let timer = DispatchSource.makeTimerSource(queue: Resolver.queue)
-
-    public static func resolve(hostname: String, qtype: ResolveType = .ipv4, firstResult: Bool = true, timeout: Int = 3, completionHanlder: @escaping (Resolver?, DNSServiceErrorType?)->()) -> Bool {
-        let resolver = Resolver(hostname: hostname, qtype: qtype, firstResult: firstResult, timeout: timeout)
+    public static func resolve(hostname: String, timeout: Int = 3, completionHanlder: @escaping (HostResolver?, DNSServiceErrorType?)->()) -> Bool {
+        let resolver = HostResolver(hostname: hostname, timeout: timeout)
         resolver.completionHandler = completionHanlder
         return resolver.resolve()
     }
 
-    fileprivate init(hostname: String, qtype: ResolveType, firstResult: Bool, timeout: Int) {
+    private init(hostname: String, timeout: Int) {
         self.hostname = hostname
-        self.resolveType = qtype
-        self.firstResult = firstResult
         self.timeout = timeout
     }
 
@@ -81,18 +55,11 @@ class Resolver {
             self.timer.setEventHandler(handler: self.timeoutHandler)
             
             result = self.hostname.withCString { (ptr: UnsafePointer<Int8>) in
-                guard DNSServiceGetAddrInfo(&self.ref, 0, 0, self.resolveType.rawValue, self.hostname, { (sdRef, flags, interfaceIndex, errorCode, ptr, address, ttl, context) in
+                guard DNSServiceGetAddrInfo(&self.ref, 0, 0, ResolveType.ipv4.rawValue, self.hostname, { (sdRef, flags, interfaceIndex, errorCode, ptr, address, ttl, context) in
                     // Note this callback block will be called on `Resolver.queue`.
 
-                    guard let resolver = dict.get(context!.bindMemory(to: Int.self, capacity: 1)) else {
-                        NSLog("Error: Got some unknown resolver.")
-                        return
-                    }
-
-                    guard !resolver.cancelled else {
-                        return
-                    }
-
+                    guard let resolver = dict.get(context!.bindMemory(to: Int.self, capacity: 1)) else { return }
+                    guard !resolver.cancelled else { return }
                     guard errorCode == DNSServiceErrorType(kDNSServiceErr_NoError) else {
                         resolver.release()
                         resolver.completionHandler(nil, errorCode)
@@ -107,18 +74,7 @@ class Resolver {
                                 var sin_addr = addr.pointee.sin_addr
                                 inet_ntop(AF_INET, &sin_addr, buf.baseAddress, socklen_t(INET_ADDRSTRLEN))
                                 let addr = String(cString: buf.baseAddress!)
-                                print("IP: \(addr) TTL: \(ttl)")
-                                resolver.ipv4Result.append(addr)
-                            }
-                        }
-                    case AF_INET6:
-                        var buffer = [Int8](repeating: 0, count: Int(INET6_ADDRSTRLEN))
-                        _ = buffer.withUnsafeMutableBufferPointer { buf in
-                            address?.withMemoryRebound(to: sockaddr_in6.self, capacity: 1) { addr in
-                                var sin6_addr = addr.pointee.sin6_addr
-                                inet_ntop(AF_INET6, &sin6_addr, buf.baseAddress, socklen_t(INET6_ADDRSTRLEN))
-                                let addr = String(cString: buf.baseAddress!)
-                                resolver.ipv6Result.append(addr)
+                                resolver.result[addr] = NSNumber(value: ttl).intValue
                             }
                         }
                     default:
@@ -132,18 +88,12 @@ class Resolver {
                 }, self.id) == DNSServiceErrorType(kDNSServiceErr_NoError) else {
                     return false
                 }
-                DNSServiceSetDispatchQueue(self.ref, Resolver.queue)
+                DNSServiceSetDispatchQueue(self.ref, HostResolver.queue)
                 self.timer.resume()
                 return true
             }
         }
-
-        if DispatchQueue.getSpecific(key: Resolver.queueKey) == "ResolverQueue" {
-            action.perform()
-        } else {
-            Resolver.queue.sync(execute: action)
-        }
-
+        HostResolver.queue.sync(execute: action)
         return result
     }
 
@@ -156,9 +106,7 @@ class Resolver {
 
     func release() {
         cancelled = true
-
         timer.cancel()
-
         if ref != nil {
             DNSServiceRefDeallocate(ref)
             ref = nil
@@ -170,43 +118,28 @@ class Resolver {
     }
 }
 
-
-/// This class is not thread-safe.
-class SafeDict<T> {
-    private var dict: [Int:T] = [:]
-    private var curr = 0
-
-    var count: Int {
-        return dict.count
+fileprivate extension HostResolver {
+    enum ResolveType: DNSServiceProtocol {
+        case ipv4 = 1
     }
-
-    func insert(value: T) -> UnsafeMutablePointer<Int> {
-        let ptr = UnsafeMutablePointer<Int>.allocate(capacity: 1)
-        ptr.pointee = curr
-        dict[curr] = value
-        curr += 1
-        return ptr
-    }
-
-    func get(_ id: Int) -> T? {
-        return dict[id]
-    }
-
-    func get(_ id: UnsafePointer<Int>) -> T? {
-        return get(id.pointee)
-    }
-
-    func remove(_ id: Int) -> T? {
-        return dict.removeValue(forKey: id)
-    }
-
-    func remove(_ id: UnsafeMutablePointer<Int>) -> T? {
-        defer {
-            id.deallocate()
+    /// This class is not thread-safe.
+    class SafeDict<T> {
+        private var dict: [Int:T] = [:]
+        private var curr = 0
+        var count: Int { return dict.count }
+        func insert(value: T) -> UnsafeMutablePointer<Int> {
+            let ptr = UnsafeMutablePointer<Int>.allocate(capacity: 1)
+            ptr.pointee = curr
+            dict[curr] = value
+            curr += 1
+            return ptr
         }
-        return remove(id.pointee)
+        func get(_ id: Int) -> T? { return dict[id] }
+        func get(_ id: UnsafePointer<Int>) -> T? { return get(id.pointee) }
+        func remove(_ id: Int) -> T? { return dict.removeValue(forKey: id) }
+        func remove(_ id: UnsafeMutablePointer<Int>) -> T? {
+            defer { id.deallocate() }
+            return remove(id.pointee)
+        }
     }
-
 }
-
-private let dict = SafeDict<Resolver>()
