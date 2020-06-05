@@ -53,6 +53,11 @@ import UIKit
         return scrollView
     }()
 
+    private let stackViewLeadingConstraint = "stackViewLeadingConstraint"
+    private let stackViewTrailingConstraint = "stackViewTrailingConstraint"
+    private let stackViewTopConstraint = "stackViewTopConstraint"
+    private let stackViewBottomConstraint = "stackViewBottomConstraint"
+
     let dropInViewStyleManager: DropInViewStyleManager?
 
     @objc public var spacingBeetwenInputViews: CGFloat = 30 {
@@ -61,8 +66,11 @@ import UIKit
         }
     }
 
-    // todo reset constraints
-    @objc public var insets: UIEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: -15, right: -30)
+    @objc public var insets: UIEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: -15, right: -30) {
+        didSet {
+            buildStackViewConstraints()
+        }
+    }
 
     // MARK: Initialization
 
@@ -88,11 +96,32 @@ import UIKit
         if let insets = dropInViewStyleManager?.insets {
             self.insets = insets
         }
-        buildScrollViewConstraints()
+        buildStackViewConstraints()
     }
 
-    private func buildScrollViewConstraints() {
-        stackView.addConstraints(equalToSuperview(with: .init(top: insets.top, left: insets.left, bottom: insets.bottom, right: insets.right), usingSafeArea: false))
+    private func buildStackViewConstraints() {
+        if let top = stackContainer.constraint(withIdentifier: stackViewTopConstraint) {
+            top.isActive = false
+        }
+
+        if let bottom = stackContainer.constraint(withIdentifier: stackViewBottomConstraint) {
+            bottom.isActive = false
+        }
+
+        if let leading = stackContainer.constraint(withIdentifier: stackViewLeadingConstraint) {
+            leading.isActive = false
+        }
+
+        if let trailing = stackContainer.constraint(withIdentifier: stackViewTrailingConstraint) {
+            trailing.isActive = false
+        }
+
+        stackView.addConstraints([
+            equal(stackContainer, \.topAnchor, \.topAnchor, constant: insets.top, identifier: stackViewTopConstraint),
+            equal(stackContainer, \.bottomAnchor, \.bottomAnchor, constant: insets.bottom, identifier: stackViewBottomConstraint),
+            equal(stackContainer, \.leadingAnchor, \.leadingAnchor, constant: insets.left, identifier: stackViewLeadingConstraint),
+            equal(stackContainer, \.trailingAnchor, \.trailingAnchor, constant: insets.right, identifier: stackViewTrailingConstraint)
+        ])
     }
 }
 
@@ -129,6 +158,8 @@ extension DropInView: ViewSetupable {
         stackContainer.addConstraints([
             equal(self, \.widthAnchor, to: \.widthAnchor, constant: 0.0)
         ])
+
+        buildStackViewConstraints()
     }
 }
 
