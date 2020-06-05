@@ -61,7 +61,9 @@ import UIKit
     @objc public init(cardTypeContainer: CardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases), cardNumberSeparator: String = .space, inputViewStyleManager: InputViewStyleManager? = nil) {
         self.cardTypeContainer = cardTypeContainer
         self.cardNumberSeparator = cardNumberSeparator
-        super.init(inputViewStyleManager: inputViewStyleManager)
+        self.accessibilityIdentifier = "st-card-number-input"
+        self.textField.accessibilityIdentifier = "st-card-number-input-textfield"
+        self.errorLabel.accessibilityIdentifier = "st-card-number-message"
     }
 
     required init?(coder argument: NSCoder) {

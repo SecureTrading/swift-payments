@@ -36,6 +36,20 @@ import UIKit
         return CardValidator.isCVCValid(cvc: cvc?.rawValue ?? .empty, cardType: cardType)
     }
 
+    // MARK: Initialization
+
+    /// Initializes an instance of the receiver.
+    @objc public override init() {
+        super.init()
+        self.accessibilityIdentifier = "st-security-code-input"
+        self.textField.accessibilityIdentifier = "st-security-code-input-textfield"
+        self.errorLabel.accessibilityIdentifier = "st-security-code-input-message"
+    }
+
+    required init?(coder argument: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
 }
 
 extension CvcInputView {
