@@ -57,6 +57,24 @@ import UIKit
         }
     }
 
+    @objc public var borderColor: UIColor = UIColor.clear {
+        didSet {
+            layer.borderColor = self.borderColor.cgColor
+        }
+    }
+
+    @objc public var borderWidth: CGFloat = 0 {
+        didSet {
+            layer.borderWidth = borderWidth
+        }
+    }
+
+    @objc public var cornerRadius: CGFloat = 5 {
+        didSet {
+            layer.cornerRadius = cornerRadius
+        }
+    }
+
     @objc public var spinnerStyle: UIActivityIndicatorView.Style = .white {
         didSet {
             self.spinner.style = self.spinnerStyle
@@ -93,7 +111,11 @@ import UIKit
             equal(self, \.centerYAnchor),
             equal(self, \.trailingAnchor, constant: -15)
         ])
-        layer.cornerRadius = 6
+
+        layer.borderColor = self.borderColor.cgColor
+        layer.borderWidth = self.borderWidth
+        layer.cornerRadius = self.cornerRadius
+
         contentEdgeInsets = UIEdgeInsets(top: self.buttonContentHeightMargins.top, left: 0, bottom: self.buttonContentHeightMargins.bottom, right: 0)
         titleLabel?.numberOfLines = 0
         titleLabel?.lineBreakMode = .byWordWrapping
@@ -123,6 +145,10 @@ import UIKit
             self.disabledBackgroundColor = disabledBackgroundColor
         }
 
+        if let borderColor = payButtonStyleManager?.borderColor {
+            self.borderColor = borderColor
+        }
+
         if let titleFont = payButtonStyleManager?.titleFont {
             self.titleFont = titleFont
         }
@@ -137,6 +163,14 @@ import UIKit
 
         if let buttonContentHeightMargins = payButtonStyleManager?.buttonContentHeightMargins {
             self.buttonContentHeightMargins = buttonContentHeightMargins
+        }
+
+        if let borderWidth = payButtonStyleManager?.borderWidth {
+            self.borderWidth = borderWidth
+        }
+
+        if let cornerRadius = payButtonStyleManager?.cornerRadius {
+            self.cornerRadius = cornerRadius
         }
     }
 

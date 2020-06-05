@@ -27,10 +27,12 @@ import UIKit
         return textField
     }()
 
-    private let textFieldStackViewBackground: UIView = {
+    private lazy var textFieldStackViewBackground: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 5
-        view.layer.borderWidth = 2
+        view.backgroundColor = textFieldBackgroundColor
+        view.layer.cornerRadius = textFieldCornerRadius
+        view.layer.borderWidth = textFieldBorderWidth
+        view.layer.borderColor = textFieldBorderColor.cgColor
         return view
     }()
 
@@ -89,6 +91,18 @@ import UIKit
     @objc public var errorSpacing: CGFloat = 5 {
         didSet {
             stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
+        }
+    }
+
+    @objc public var textFieldBorderWidth: CGFloat = 2 {
+        didSet {
+            textFieldStackViewBackground.layer.borderWidth = textFieldBorderWidth
+        }
+    }
+
+    @objc public var textFieldCornerRadius: CGFloat = 5 {
+        didSet {
+            textFieldStackViewBackground.layer.cornerRadius = textFieldCornerRadius
         }
     }
 
@@ -273,9 +287,6 @@ extension DefaultSecureFormInputView: ViewSetupable {
         titleLabel.text = title
         titleLabel.textColor = titleColor
         titleLabel.font = titleFont
-
-        textFieldStackViewBackground.backgroundColor = textFieldBackgroundColor
-        textFieldStackViewBackground.layer.borderColor = textFieldBorderColor.cgColor
 
         textField.text = text
         textField.textColor = textColor

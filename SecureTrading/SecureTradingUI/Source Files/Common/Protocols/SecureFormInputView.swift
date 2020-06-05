@@ -61,13 +61,17 @@ import UIKit
 
     var textFieldImage: UIImage? { get set }
 
-    // MARK: - spacing
+    // MARK: - spacing/sizes
 
     var titleSpacing: CGFloat { get set }
 
     var errorSpacing: CGFloat { get set }
 
     var textFieldHeightMargins: HeightMargins { get set }
+
+    var textFieldBorderWidth: CGFloat { get set }
+
+    var textFieldCornerRadius: CGFloat { get set }
 }
 
 extension SecureFormInputView {
@@ -126,6 +130,14 @@ extension SecureFormInputView {
 
         if let textFieldHeightMargins = inputViewStyleManager?.textFieldHeightMargins {
             self.textFieldHeightMargins = textFieldHeightMargins
+        }
+
+        if let textFieldBorderWidth = inputViewStyleManager?.textFieldBorderWidth {
+            self.textFieldBorderWidth = textFieldBorderWidth
+        }
+
+        if let textFieldCornerRadius = inputViewStyleManager?.textFieldCornerRadius {
+            self.textFieldCornerRadius = textFieldCornerRadius
         }
     }
 }

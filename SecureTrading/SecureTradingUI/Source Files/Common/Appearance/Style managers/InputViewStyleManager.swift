@@ -36,13 +36,15 @@ import UIKit
 
     @objc public var textFieldImage: UIImage?
 
-    // MARK: - spacing
+    // MARK: - spacing/sizes
 
     @objc public var titleSpacing: CGFloat
     @objc public var errorSpacing: CGFloat
     @objc public var textFieldHeightMargins: HeightMargins?
+    @objc public var textFieldBorderWidth: CGFloat
+    @objc public var textFieldCornerRadius: CGFloat
 
-    @objc public init(titleColor: UIColor?, textFieldBorderColor: UIColor?, textFieldBackgroundColor: UIColor?, textColor: UIColor?, placeholderColor: UIColor?, errorColor: UIColor?, titleFont: UIFont?, textFont: UIFont?, placeholderFont: UIFont?, errorFont: UIFont?, textFieldImage: UIImage?, titleSpacing: CGFloat = 5, errorSpacing: CGFloat = 5, textFieldHeightMargins: HeightMargins? = nil) {
+    @objc public init(titleColor: UIColor?, textFieldBorderColor: UIColor?, textFieldBackgroundColor: UIColor?, textColor: UIColor?, placeholderColor: UIColor?, errorColor: UIColor?, titleFont: UIFont?, textFont: UIFont?, placeholderFont: UIFont?, errorFont: UIFont?, textFieldImage: UIImage?, titleSpacing: CGFloat = 5, errorSpacing: CGFloat = 5, textFieldHeightMargins: HeightMargins? = nil, textFieldBorderWidth: CGFloat = 2, textFieldCornerRadius: CGFloat = 5) {
         self.titleColor = titleColor
         self.textFieldBorderColor = textFieldBorderColor
         self.textFieldBackgroundColor = textFieldBackgroundColor
@@ -57,5 +59,7 @@ import UIKit
         self.titleSpacing = titleSpacing
         self.errorSpacing = errorSpacing
         self.textFieldHeightMargins = textFieldHeightMargins
+        self.textFieldBorderWidth = textFieldBorderWidth
+        self.textFieldCornerRadius = textFieldCornerRadius
     }
 }
