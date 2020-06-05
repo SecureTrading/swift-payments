@@ -6,12 +6,10 @@
 import Foundation
 import dnssd
 
-// TODO: clean up and simplyfy to only ip address and TTL
-/// Usage
-//Resolver.resolve(hostname: "webservices.securetrading.us", qtype: .ipv4, firstResult: false, timeout: 10) { (resolver, error) in
-//           print(resolver)
-//           print(error)
-//       }
+///Usage
+//HostResolver.resolve(hostname: "webservices.securetrading.us", qtype: .ipv4, firstResult: false, timeout: 10) { (resolver, error) in
+//  print(resolver?.result)
+//}
 
 private let dict = HostResolver.SafeDict<HostResolver>()
 
@@ -27,11 +25,11 @@ class HostResolver {
 
     private var ref: DNSServiceRef?
     private var id: UnsafeMutablePointer<Int>?
-    private var completionHandler: ((HostResolver?, DNSServiceErrorType?)->())!
+    private var completionHandler: ((HostResolver?, DNSServiceErrorType?) -> Void)!
     private let timeout: Int
     private let timer = DispatchSource.makeTimerSource(queue: HostResolver.queue)
 
-    public static func resolve(hostname: String, timeout: Int = 3, completionHanlder: @escaping (HostResolver?, DNSServiceErrorType?)->()) -> Bool {
+    public static func resolve(hostname: String, timeout: Int = 3, completionHanlder: @escaping (HostResolver?, DNSServiceErrorType?) -> Void) -> Bool {
         let resolver = HostResolver(hostname: hostname, timeout: timeout)
         resolver.completionHandler = completionHanlder
         return resolver.resolve()
@@ -54,8 +52,8 @@ class HostResolver {
             self.timer.schedule(deadline: DispatchTime.now() + DispatchTimeInterval.seconds(self.timeout))
             self.timer.setEventHandler(handler: self.timeoutHandler)
             
-            result = self.hostname.withCString { (ptr: UnsafePointer<Int8>) in
-                guard DNSServiceGetAddrInfo(&self.ref, 0, 0, ResolveType.ipv4.rawValue, self.hostname, { (sdRef, flags, interfaceIndex, errorCode, ptr, address, ttl, context) in
+            result = self.hostname.withCString { (_: UnsafePointer<Int8>) in
+                guard DNSServiceGetAddrInfo(&self.ref, 0, 0, ResolveType.ipv4.rawValue, self.hostname, { (_, flags, _, errorCode, _, address, ttl, context) in
                     // Note this callback block will be called on `Resolver.queue`.
 
                     guard let resolver = dict.get(context!.bindMemory(to: Int.self, capacity: 1)) else { return }
@@ -66,13 +64,13 @@ class HostResolver {
                         return
                     }
 
-                    switch (Int32(address!.pointee.sa_family)) {
+                    switch Int32(address!.pointee.sa_family) {
                     case AF_INET:
                         var buffer = [Int8](repeating: 0, count: Int(INET_ADDRSTRLEN))
                         _ = buffer.withUnsafeMutableBufferPointer { buf in
                             address?.withMemoryRebound(to: sockaddr_in.self, capacity: 1) { addr in
-                                var sin_addr = addr.pointee.sin_addr
-                                inet_ntop(AF_INET, &sin_addr, buf.baseAddress, socklen_t(INET_ADDRSTRLEN))
+                                var sinAddr = addr.pointee.sin_addr
+                                inet_ntop(AF_INET, &sinAddr, buf.baseAddress, socklen_t(INET_ADDRSTRLEN))
                                 let addr = String(cString: buf.baseAddress!)
                                 resolver.result[addr] = NSNumber(value: ttl).intValue
                             }
@@ -81,7 +79,7 @@ class HostResolver {
                         break
                     }
 
-                    if (resolver.firstResult || flags & DNSServiceFlags(kDNSServiceFlagsMoreComing) == 0) {
+                    if resolver.firstResult || flags & DNSServiceFlags(kDNSServiceFlagsMoreComing) == 0 {
                         resolver.release()
                         return resolver.completionHandler(resolver, nil)
                     }
@@ -124,7 +122,7 @@ fileprivate extension HostResolver {
     }
     /// This class is not thread-safe.
     class SafeDict<T> {
-        private var dict: [Int:T] = [:]
+        private var dict: [Int: T] = [:]
         private var curr = 0
         var count: Int { return dict.count }
         func insert(value: T) -> UnsafeMutablePointer<Int> {
