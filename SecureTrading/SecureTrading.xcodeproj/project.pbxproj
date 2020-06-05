@@ -102,7 +102,6 @@
 		104CFB28246ECE3A00D7C76D /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; };
 		104CFB2D246ECF2F00D7C76D /* ST3DSecureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */; };
 		105073F72489AA760036F7AD /* ResponseValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105073F62489AA760036F7AD /* ResponseValidator.swift */; };
-		105073F92489AB660036F7AD /* HostResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105073F82489AB660036F7AD /* HostResolver.swift */; };
 		1051D221247FEE0F008E4970 /* TestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D220247FEE0F008E4970 /* TestAPIManager.swift */; };
 		1051D22524813F66008E4970 /* TestGeneralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22424813F65008E4970 /* TestGeneralRequest.swift */; };
 		1051D22724814B4D008E4970 /* TestDecodedJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22624814B4D008E4970 /* TestDecodedJWT.swift */; };
@@ -302,7 +301,6 @@
 		104CFB18246ECD8000D7C76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ST3DSecureManager.swift; sourceTree = "<group>"; };
 		105073F62489AA760036F7AD /* ResponseValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseValidator.swift; sourceTree = "<group>"; };
-		105073F82489AB660036F7AD /* HostResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostResolver.swift; sourceTree = "<group>"; };
 		1051D220247FEE0F008E4970 /* TestAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPIManager.swift; sourceTree = "<group>"; };
 		1051D22424813F65008E4970 /* TestGeneralRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeneralRequest.swift; sourceTree = "<group>"; };
 		1051D22624814B4D008E4970 /* TestDecodedJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDecodedJWT.swift; sourceTree = "<group>"; };
@@ -708,7 +706,6 @@
 				08EF7CFC2462ABF1008B5F3E /* DefaultAPIClient.swift */,
 				089B41D8246D53CD00F70764 /* DefaultAPIClientConfiguration.swift */,
 				089B41E5246D791C00F70764 /* DefaultAPIManager.swift */,
-				105073F82489AB660036F7AD /* HostResolver.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1309,7 +1306,6 @@
 				084E2A2324659EE20040FB9D /* DefaultSDKFoundation.swift in Sources */,
 				089B41E4246D6FCE00F70764 /* GeneralResponse.swift in Sources */,
 				089B41D7246D536600F70764 /* NSError.swift in Sources */,
-				105073F92489AB660036F7AD /* HostResolver.swift in Sources */,
 				1049CDA12487B883008982DC /* ResponseError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
