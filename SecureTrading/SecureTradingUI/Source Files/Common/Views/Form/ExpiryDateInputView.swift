@@ -350,6 +350,10 @@ class YearTextField: BackwardTextField {}
     @objc public init(inputViewStyleManager: InputViewStyleManager? = nil) {
         self.inputViewStyleManager = inputViewStyleManager
         super.init()
+        self.accessibilityIdentifier = "st-expiration-date-input"
+        self.monthTextField.accessibilityIdentifier = "st-expiration-date-input-month-textfield"
+        self.yearTextField.accessibilityIdentifier = "st-expiration-date-input-year-textfield"
+        self.errorLabel.accessibilityIdentifier = "st-expiration-date-message"
     }
 
     required init?(coder _: NSCoder) {
