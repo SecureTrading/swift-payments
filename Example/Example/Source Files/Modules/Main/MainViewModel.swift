@@ -42,7 +42,7 @@ final class MainViewModel {
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
 
-        let authRequest = RequestObject(typeDescriptions: [.auth])
+        let authRequest = RequestObject(typeDescriptions: [.accountCheck, .threeDQuery, .auth])
 
         apiManager.makeGeneralRequest(jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
@@ -65,6 +65,7 @@ final class MainViewModel {
                     case .invalidSecurityCode: message += "Security code"
                     case .invalidJWT: message += "JWT"
                     case .invalidExpiryDate: message += "Expiry date"
+                    case .invalidTermURL: message += "Terms URL"
                     case .none: message += ""
                     }
                     // Update UI

@@ -58,6 +58,11 @@ final class DefaultAPIClient: APIClient {
                 let parsedResponse = try decoder.decode(Request.Response.self, from: data)
                 // validate response
                 do {
+                    // TODO: one response may be success and other may fails
+                    // e.g request is for account check, 3d secure and auth
+                    // account check is success but 3d secure fails
+                    // find a way to return that information
+                    // so there is no need for another account check request
                     try ResponseValidator.validate(request: request, response: parsedResponse)
                     resolveSuccess(parsedResponse)
                 } catch let validationError as APIClientError {

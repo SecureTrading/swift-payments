@@ -28,6 +28,7 @@
     case invalidSecurityCode
     case invalidJWT
     case invalidExpiryDate
+    case invalidTermURL
     case none
 }
 
@@ -63,6 +64,7 @@
             case "jwt": return ResponseErrorDetail.invalidJWT
             case "securitycode": return ResponseErrorDetail.invalidSecurityCode
             case "expirydate": return ResponseErrorDetail.invalidExpiryDate
+            case "termurl": return ResponseErrorDetail.invalidTermURL
             default: return ResponseErrorDetail.none
             }
         default: return ResponseErrorDetail.none

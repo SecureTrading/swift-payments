@@ -11,7 +11,7 @@ class ResponseValidator {
         // then check for data integrity
         if let response = response as? GeneralResponse {
             if response.jwtDecoded.hasErrors {
-                // incorrect request: invalid pan, security code, jwt
+                // incorrect request: invalid pan, expiry date, security code, jwt
                 if let firstResponseWithError = response.jwtDecoded.jwtBodyResponse.responses
                     .first(where: { $0.responseErrorCode != ResponseErrorCode.successful }) {
                     throw APIClientError.responseValidationError(.invalidField(code: firstResponseWithError.errorDetails))
