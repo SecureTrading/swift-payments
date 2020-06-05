@@ -150,6 +150,18 @@ class YearTextField: BackwardTextField {}
         return CardValidator.isExpirationDateValid(date: expiryDate.rawValue, separator: separatorLabel.text ?? "/")
     }
 
+    @objc public var titleSpacing: CGFloat = 5 {
+        didSet {
+            stackView.setCustomSpacing(titleSpacing, after: titleLabel)
+        }
+    }
+
+    @objc public var errorSpacing: CGFloat = 5 {
+        didSet {
+            stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
+        }
+    }
+
     @objc public var isSecuredTextEntry: Bool = false {
         didSet {
             monthTextField.isSecureTextEntry = isSecuredTextEntry
@@ -428,6 +440,9 @@ extension ExpiryDateInputView: ViewSetupable {
         textFieldTextAligment = .center
 
         textFieldImage = UIImage(named: "calendar", in: Bundle(for: CvcInputView.self), compatibleWith: nil)
+
+        stackView.setCustomSpacing(titleSpacing, after: titleLabel)
+        stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
 
         customizeView(inputViewStyleManager: inputViewStyleManager)
     }

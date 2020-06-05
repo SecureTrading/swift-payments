@@ -80,6 +80,18 @@ import UIKit
     /// property to be overwritten by inheriting classes
     @objc public private(set) var isInputValid: Bool = false
 
+    @objc public var titleSpacing: CGFloat = 5 {
+        didSet {
+            stackView.setCustomSpacing(titleSpacing, after: titleLabel)
+        }
+    }
+
+    @objc public var errorSpacing: CGFloat = 5 {
+        didSet {
+            stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
+        }
+    }
+
     @objc public var isSecuredTextEntry: Bool = false {
         didSet {
             textField.isSecureTextEntry = isSecuredTextEntry
@@ -224,11 +236,11 @@ import UIKit
         self.inputViewStyleManager = inputViewStyleManager
         super.init()
     }
-    
+
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Validation
 
     @discardableResult
@@ -268,6 +280,8 @@ extension DefaultSecureFormInputView: ViewSetupable {
         errorLabel.text = error
         errorLabel.textColor = errorColor
         errorLabel.font = errorFont
+        stackView.setCustomSpacing(titleSpacing, after: titleLabel)
+        stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
@@ -295,7 +309,7 @@ extension DefaultSecureFormInputView: UITextFieldDelegate {
         return true
     }
 
-    public func textFieldDidEndEditing(_ textField: UITextField) {
+    public func textFieldDidEndEditing(_: UITextField) {
         validate(silent: false)
         delegate?.inputViewTextFieldDidEndEditing(self)
     }

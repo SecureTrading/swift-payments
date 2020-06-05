@@ -60,6 +60,12 @@ import UIKit
     // MARK: - images
 
     var textFieldImage: UIImage? { get set }
+
+    // MARK: - spacing
+
+    var titleSpacing: CGFloat { get set }
+
+    var errorSpacing: CGFloat { get set }
 }
 
 extension SecureFormInputView {
@@ -106,6 +112,14 @@ extension SecureFormInputView {
 
         if let textFieldImage = inputViewStyleManager?.textFieldImage {
             self.textFieldImage = textFieldImage
+        }
+
+        if let titleSpacing = inputViewStyleManager?.titleSpacing {
+            self.titleSpacing = titleSpacing
+        }
+
+        if let errorSpacing = inputViewStyleManager?.errorSpacing {
+            self.errorSpacing = errorSpacing
         }
     }
 }

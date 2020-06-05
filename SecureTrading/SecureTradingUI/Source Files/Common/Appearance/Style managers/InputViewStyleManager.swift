@@ -27,7 +27,12 @@ import UIKit
 
     @objc public var textFieldImage: UIImage?
 
-    @objc public init(titleColor: UIColor?, textFieldBorderColor: UIColor?, textFieldBackgroundColor: UIColor?, textColor: UIColor?, placeholderColor: UIColor?, errorColor: UIColor?, titleFont: UIFont?, textFont: UIFont?, placeholderFont: UIFont?, errorFont: UIFont?, textFieldImage: UIImage?) {
+    // MARK: - spacing
+
+    @objc public var titleSpacing: CGFloat
+    @objc public var errorSpacing: CGFloat
+
+    @objc public init(titleColor: UIColor?, textFieldBorderColor: UIColor?, textFieldBackgroundColor: UIColor?, textColor: UIColor?, placeholderColor: UIColor?, errorColor: UIColor?, titleFont: UIFont?, textFont: UIFont?, placeholderFont: UIFont?, errorFont: UIFont?, textFieldImage: UIImage?, titleSpacing: CGFloat = 5, errorSpacing: CGFloat = 5) {
         self.titleColor = titleColor
         self.textFieldBorderColor = textFieldBorderColor
         self.textFieldBackgroundColor = textFieldBackgroundColor
@@ -39,5 +44,7 @@ import UIKit
         self.placeholderFont = placeholderFont
         self.errorFont = errorFont
         self.textFieldImage = textFieldImage
+        self.titleSpacing = titleSpacing
+        self.errorSpacing = errorSpacing
     }
 }
