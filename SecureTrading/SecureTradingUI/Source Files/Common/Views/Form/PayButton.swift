@@ -29,6 +29,12 @@ import UIKit
         }
     }
 
+    @objc public var buttonContentHeightMargins: HeightMargins = HeightMargins(top: 10, bottom: 10) {
+        didSet {
+            contentEdgeInsets = UIEdgeInsets(top: self.buttonContentHeightMargins.top, left: 0, bottom: self.buttonContentHeightMargins.bottom, right: 0)
+        }
+    }
+
     @objc public var enabledBackgroundColor: UIColor = .darkGray
 
     @objc public var disabledBackgroundColor: UIColor = UIColor.darkGray.withAlphaComponent(0.5)
@@ -88,7 +94,7 @@ import UIKit
             equal(self, \.trailingAnchor, constant: -15)
         ])
         layer.cornerRadius = 6
-        contentEdgeInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        contentEdgeInsets = UIEdgeInsets(top: self.buttonContentHeightMargins.top, left: 0, bottom: self.buttonContentHeightMargins.bottom, right: 0)
         titleLabel?.numberOfLines = 0
         titleLabel?.lineBreakMode = .byWordWrapping
 
@@ -127,6 +133,10 @@ import UIKit
 
         if let spinnerColor = payButtonStyleManager?.spinnerColor {
             self.spinnerColor = spinnerColor
+        }
+
+        if let buttonContentHeightMargins = payButtonStyleManager?.buttonContentHeightMargins {
+            self.buttonContentHeightMargins = buttonContentHeightMargins
         }
     }
 

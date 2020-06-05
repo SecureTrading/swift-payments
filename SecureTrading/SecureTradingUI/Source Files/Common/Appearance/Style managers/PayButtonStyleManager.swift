@@ -22,12 +22,17 @@ import UIKit
     @objc public let spinnerStyle: UIActivityIndicatorView.Style
     @objc public let spinnerColor: UIColor?
 
-    @objc public init(titleColor: UIColor?, enabledBackgroundColor: UIColor?, disabledBackgroundColor: UIColor?, titleFont: UIFont?, spinnerStyle: UIActivityIndicatorView.Style = .white, spinnerColor: UIColor? = nil) {
+    // MARK: - spacing
+
+    @objc public var buttonContentHeightMargins: HeightMargins?
+
+    @objc public init(titleColor: UIColor?, enabledBackgroundColor: UIColor?, disabledBackgroundColor: UIColor?, titleFont: UIFont?, spinnerStyle: UIActivityIndicatorView.Style = .white, spinnerColor: UIColor? = nil, buttonContentHeightMargins: HeightMargins? = nil) {
         self.titleColor = titleColor
         self.enabledBackgroundColor = enabledBackgroundColor
         self.disabledBackgroundColor = disabledBackgroundColor
         self.titleFont = titleFont
         self.spinnerStyle = spinnerStyle
         self.spinnerColor = spinnerColor
+        self.buttonContentHeightMargins = buttonContentHeightMargins
     }
 }
