@@ -31,6 +31,12 @@ import UIKit
         PayButton(payButtonStyleManager: dropInViewStyleManager?.payButtonStyleManager)
     }()
 
+    private let stackContainer: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, payButton])
         stackView.axis = .vertical
@@ -43,6 +49,7 @@ import UIKit
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
 
@@ -84,12 +91,7 @@ import UIKit
     }
 
     private func buildScrollViewConstraints() {
-        scrollView.addConstraints([
-            equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: insets.top),
-            equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: insets.bottom),
-            equal(self, \.leadingAnchor, constant: insets.left),
-            equal(self, \.trailingAnchor, constant: insets.right)
-        ])
+        stackView.addConstraints(equalToSuperview(with: .init(top: insets.top, left: insets.left, bottom: insets.bottom, right: insets.right), usingSafeArea: false))
     }
 }
 
@@ -107,18 +109,25 @@ extension DropInView: ViewSetupable {
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
     func setupViewHierarchy() {
-        scrollView.addSubview(stackView)
+        stackContainer.addSubview(stackView)
+        scrollView.addSubview(stackContainer)
         addSubviews([scrollView])
     }
 
     /// - SeeAlso: ViewSetupable.setupConstraints
     func setupConstraints() {
-
         scrollView.addConstraints([
-            equal(stackView, \.widthAnchor, to: \.widthAnchor, constant: 0.0)
+            equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: 0),
+            equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            equal(self, \.leadingAnchor, constant: 0),
+            equal(self, \.trailingAnchor, constant: 0)
         ])
 
-        stackView.addConstraints(equalToSuperview(with: .init(top: 0, left: 0, bottom: 0, right: 0), usingSafeArea: false))
+        stackContainer.addConstraints(equalToSuperview(with: .init(top: 0, left: 0, bottom: 0, right: 0), usingSafeArea: false))
+
+        stackContainer.addConstraints([
+            equal(self, \.widthAnchor, to: \.widthAnchor, constant: 0.0)
+        ])
     }
 }
 

@@ -49,7 +49,7 @@ import UIKit
 
     private let errorLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         label.isHidden = true
         return label
     }()

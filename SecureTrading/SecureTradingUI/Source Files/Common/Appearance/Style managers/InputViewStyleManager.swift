@@ -9,7 +9,7 @@ import UIKit
     @objc public var top: CGFloat
     @objc public var bottom: CGFloat
 
-    @objc init(top: CGFloat, bottom: CGFloat) {
+    @objc public init(top: CGFloat, bottom: CGFloat) {
         self.top = top
         self.bottom = bottom
     }
