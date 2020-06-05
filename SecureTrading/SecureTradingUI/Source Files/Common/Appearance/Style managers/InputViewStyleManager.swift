@@ -5,8 +5,17 @@
 
 import UIKit
 
-@objc public class InputViewStyleManager: NSObject {
+@objc public class HeightMargins: NSObject {
+    @objc public var top: CGFloat
+    @objc public var bottom: CGFloat
 
+    @objc init(top: CGFloat, bottom: CGFloat) {
+        self.top = top
+        self.bottom = bottom
+    }
+}
+
+@objc public class InputViewStyleManager: NSObject {
     // MARK: - colors
 
     @objc public let titleColor: UIColor?
@@ -31,8 +40,9 @@ import UIKit
 
     @objc public var titleSpacing: CGFloat
     @objc public var errorSpacing: CGFloat
+    @objc public var textFieldHeightMargins: HeightMargins?
 
-    @objc public init(titleColor: UIColor?, textFieldBorderColor: UIColor?, textFieldBackgroundColor: UIColor?, textColor: UIColor?, placeholderColor: UIColor?, errorColor: UIColor?, titleFont: UIFont?, textFont: UIFont?, placeholderFont: UIFont?, errorFont: UIFont?, textFieldImage: UIImage?, titleSpacing: CGFloat = 5, errorSpacing: CGFloat = 5) {
+    @objc public init(titleColor: UIColor?, textFieldBorderColor: UIColor?, textFieldBackgroundColor: UIColor?, textColor: UIColor?, placeholderColor: UIColor?, errorColor: UIColor?, titleFont: UIFont?, textFont: UIFont?, placeholderFont: UIFont?, errorFont: UIFont?, textFieldImage: UIImage?, titleSpacing: CGFloat = 5, errorSpacing: CGFloat = 5, textFieldHeightMargins: HeightMargins? = nil) {
         self.titleColor = titleColor
         self.textFieldBorderColor = textFieldBorderColor
         self.textFieldBackgroundColor = textFieldBackgroundColor
@@ -46,5 +56,6 @@ import UIKit
         self.textFieldImage = textFieldImage
         self.titleSpacing = titleSpacing
         self.errorSpacing = errorSpacing
+        self.textFieldHeightMargins = textFieldHeightMargins
     }
 }

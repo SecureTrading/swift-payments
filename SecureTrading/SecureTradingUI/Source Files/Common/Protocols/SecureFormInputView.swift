@@ -66,6 +66,8 @@ import UIKit
     var titleSpacing: CGFloat { get set }
 
     var errorSpacing: CGFloat { get set }
+
+    var textFieldHeightMargins: HeightMargins { get set }
 }
 
 extension SecureFormInputView {
@@ -120,6 +122,10 @@ extension SecureFormInputView {
 
         if let errorSpacing = inputViewStyleManager?.errorSpacing {
             self.errorSpacing = errorSpacing
+        }
+
+        if let textFieldHeightMargins = inputViewStyleManager?.textFieldHeightMargins {
+            self.textFieldHeightMargins = textFieldHeightMargins
         }
     }
 }

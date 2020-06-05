@@ -40,7 +40,7 @@ import UIKit
         stackView.spacing = 10
         stackView.alignment = .fill
         stackView.distribution = .fill
-        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        stackView.layoutMargins = UIEdgeInsets(top: textFieldHeightMargins.top, left: 10, bottom: textFieldHeightMargins.bottom, right: 10)
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
@@ -89,6 +89,12 @@ import UIKit
     @objc public var errorSpacing: CGFloat = 5 {
         didSet {
             stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
+        }
+    }
+
+    @objc public var textFieldHeightMargins: HeightMargins = HeightMargins(top: 5, bottom: 5) {
+        didSet {
+            textFieldStackView.layoutMargins = UIEdgeInsets(top: textFieldHeightMargins.top, left: 10, bottom: textFieldHeightMargins.bottom, right: 10)
         }
     }
 
