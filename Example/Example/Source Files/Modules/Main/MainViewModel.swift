@@ -31,14 +31,14 @@ final class MainViewModel {
 
     func makeAuthCall() {
         let claim = STClaims(iss: keys.merchantUsername,
-                                    iat: Date(timeIntervalSinceNow: 0),
-                                    payload: Payload(accounttypedescription: "ECOM",
-                                                     sitereference: keys.merchantSiteReference,
-                                                     currencyiso3a: "GBP",
-                                                     baseamount: 1100,
-                                                     pan: "4111111111111111",
-                                                     expirydate: "12/2022",
-                                                     securitycode: "123"))
+                             iat: Date(timeIntervalSinceNow: 0),
+                             payload: Payload(accounttypedescription: "ECOM",
+                                              sitereference: keys.merchantSiteReference,
+                                              currencyiso3a: "GBP",
+                                              baseamount: 1100,
+                                              pan: "4111111111111111",
+                                              expirydate: "12/2022",
+                                              securitycode: "123"))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
 

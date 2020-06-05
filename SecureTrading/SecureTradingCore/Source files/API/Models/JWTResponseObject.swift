@@ -23,6 +23,7 @@
     case paymentCancelled = 3
     case error
 }
+
 @objc public enum ResponseErrorDetail: Int {
     case invalidPAN = 12_501
     case invalidSecurityCode = 12_502
@@ -34,24 +35,24 @@
 
 @objc public class JWTResponseObject: NSObject, Decodable {
     // MARK: Properties
-    
+
     @objc public let errorCode: Int
     @objc public let errorMessage: String
-    
+
     @objc public let settleStatus: NSNumber?
-    
+
     @objc public let transactionReference: String?
-    
+
     @objc public let errorData: [String]?
-    
+
     @objc public var responseErrorCode: ResponseErrorCode {
         return ResponseErrorCode(rawValue: errorCode) ?? .unknown
     }
-    
+
     @objc public var responseSettleStatus: ResponseSettleStatus {
         return ResponseSettleStatus(rawValue: settleStatus?.intValue ?? -1) ?? .error
     }
-    
+
     @objc public var errorDetails: ResponseErrorDetail {
         // confirmed with ST, error data will only have max 1 element at the time,
         // even when there are multiple errors
@@ -70,11 +71,11 @@
         default: return ResponseErrorDetail.none
         }
     }
-    
+
     private var requestTypeDescription: TypeDescription?
-    
+
     // MARK: Initialization
-    
+
     /// - SeeAlso: Swift.Decodable
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -94,12 +95,14 @@
             requestTypeDescription = nil
         }
     }
-    
+
     // MARK: Methods
+
     public func requestTypeDescription(contains description: TypeDescription) -> Bool {
         guard let type = requestTypeDescription else { return false }
         return description.rawValue == type.rawValue
     }
+
     @objc public func requestTypeDescription(contains description: TypeDescriptionObjc) -> Bool {
         guard let type = requestTypeDescription else { return false }
         return description.rawValue == type.code
