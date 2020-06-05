@@ -21,7 +21,7 @@ import UIKit
         return imageView
     }()
 
-    private let textField: UITextField = {
+    let textField: UITextField = {
         let textField = UITextField()
         textField.autocorrectionType = .no
         return textField
@@ -45,7 +45,7 @@ import UIKit
         return stackView
     }()
 
-    private let errorLabel: UILabel = {
+    let errorLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
         label.isHidden = true

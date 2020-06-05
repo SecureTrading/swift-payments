@@ -61,6 +61,9 @@ import UIKit
         self.cardTypeContainer = cardTypeContainer
         self.cardNumberSeparator = cardNumberSeparator
         super.init()
+        self.accessibilityIdentifier = "st-card-number-input"
+        self.textField.accessibilityIdentifier = "st-card-number-input-textfield"
+        self.errorLabel.accessibilityIdentifier = "st-card-number-message"
     }
 
     required init?(coder argument: NSCoder) {
