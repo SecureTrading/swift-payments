@@ -366,6 +366,7 @@ class YearTextField: BackwardTextField {}
         separatorLabel.text = String(separator)
         let placeholderArray = current.components(separatedBy: separator)
 
+        separatorLabel.textColor = placeholderColor
         monthTextField.attributedPlaceholder = NSAttributedString(string: placeholderArray[0],
                                                                   attributes: [NSAttributedString.Key.foregroundColor: placeholderColor, NSAttributedString.Key.font: placeholderFont])
         yearTextField.attributedPlaceholder = NSAttributedString(string: placeholderArray[1],
