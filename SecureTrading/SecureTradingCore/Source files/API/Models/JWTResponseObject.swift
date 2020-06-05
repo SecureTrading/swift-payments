@@ -24,12 +24,12 @@
     case error
 }
 @objc public enum ResponseErrorDetail: Int {
-    case invalidPAN
-    case invalidSecurityCode
-    case invalidJWT
-    case invalidExpiryDate
-    case invalidTermURL
-    case none
+    case invalidPAN = 12_501
+    case invalidSecurityCode = 12_502
+    case invalidJWT = 12_503
+    case invalidExpiryDate = 12_504
+    case invalidTermURL = 12_505
+    case none = 12_500
 }
 
 @objc public class JWTResponseObject: NSObject, Decodable {

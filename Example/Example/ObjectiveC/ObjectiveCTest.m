@@ -27,9 +27,14 @@
         NSLog(@"%li", (long)response.errorCode);
         NSLog(@"%li", (long)response.responseErrorCode);
     } failure:^(NSError * error) {
+        switch (error.code) {
+            case ResponseErrorDetailInvalidExpiryDate: NSLog(@"invalid Expiry Date: %@", error.localizedDescription);
+            case ResponseErrorDetailInvalidJWT : NSLog(@"invalid JWT: %@", error.localizedDescription);
+            case ResponseErrorDetailInvalidPAN : NSLog(@"invalid PAN: %@", error.localizedDescription);
+            case ResponseErrorDetailInvalidTermURL : NSLog(@"invalid Term URL - 3dSecure: %@", error.localizedDescription);
+        }
         NSLog(@"%@", error.localizedDescription);
     }];
-
 }
 
 @end

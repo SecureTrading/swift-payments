@@ -75,41 +75,44 @@ public enum APIClientError: HumanReadableError {
     }
 
     /// objc helpers
-    private var domain: String {
-        return "com.securetrading.SecureTradingCore"
-    }
-
-    /// objc helpers
     private var errorCode: Int {
         switch self {
         case .requestBuildError:
-            return 100
+            return 10_000
         case .connectionError:
-            return 101
+            return 11_000
         case .responseValidationError:
-            return 102
+            return 12_000
         case .responseParseError:
-            return 103
+            return 13_000
         case .serverError:
-            return 104
+            return 14_000
         case .customError:
-            return 105
+            return 15_000
         case .unknownError:
-            return 106
+            return 16_000
         case .jwtDecodingInvalidBase64Url:
-            return 107
+            return 17_000
         case .jwtDecodingInvalidJSON:
-            return 108
+            return 18_000
         case .jwtDecodingInvalidPartCount:
-            return 109
+            return 19_000
         }
     }
 
     /// expose error for objc
     var foundationError: NSError {
-        return NSError(domain: domain, code: errorCode, userInfo: [
-            NSLocalizedDescriptionKey: humanReadableDescription
-        ])
+        switch self {
+        case .responseValidationError(let responseError):
+            let localizedError = humanReadableDescription + " " + responseError.localizedDescription
+            return NSError(domain: NSError.domain, code: responseError.errorCode, userInfo: [
+                NSLocalizedDescriptionKey: localizedError
+            ])
+        default:
+            return NSError(domain: NSError.domain, code: errorCode, userInfo: [
+                NSLocalizedDescriptionKey: humanReadableDescription
+            ])
+        }
     }
 
     // MARK: Functions
@@ -150,6 +153,18 @@ public enum APIResponseValidationError: Error {
             return "Unexpected description types in response."
         case .invalidField(let code):
             return "Invalid field: \(code)"
+        }
+    }
+
+    var errorCode: Int {
+        // The error code adds to the error code value of responseValidationError in APIClientError
+        // which it extends to more detailed level
+        switch self {
+        case .mismatchedDescriptionTypes: return 12_100
+        case .missingData: return 12_200
+        case .missingResponse: return 12_300
+        case .unacceptableStatusCode: return 12_400
+        case .invalidField(let responseErrorDetail): return responseErrorDetail.rawValue
         }
     }
 }
