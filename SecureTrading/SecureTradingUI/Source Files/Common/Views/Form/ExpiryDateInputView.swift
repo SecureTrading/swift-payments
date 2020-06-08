@@ -144,8 +144,23 @@ class YearTextField: BackwardTextField {}
 
     @objc public weak var delegate: SecureFormInputViewDelegate?
 
+    @objc public var isEnabled: Bool = true {
+        didSet {
+            monthTextField.isEnabled = isEnabled
+            yearTextField.isEnabled = isEnabled
+            if isEnabled {
+                alpha = 1.0
+            } else {
+                alpha = 0.4
+                monthTextField.text = .empty
+                yearTextField.text = .empty
+                showHideError(show: false)
+            }
+        }
+    }
+
     @objc public var isEmpty: Bool {
-        return (monthTextField.text?.isEmpty ?? true || monthTextField.text ==  UITextField.emptyCharacter) && (yearTextField.text?.isEmpty ?? true || yearTextField.text ==  UITextField.emptyCharacter)
+        return (monthTextField.text?.isEmpty ?? true || monthTextField.text == UITextField.emptyCharacter) && (yearTextField.text?.isEmpty ?? true || yearTextField.text == UITextField.emptyCharacter)
     }
 
     @objc public var isInputValid: Bool {
@@ -357,9 +372,9 @@ class YearTextField: BackwardTextField {}
         self.inputViewStyleManager = inputViewStyleManager
         super.init()
         self.accessibilityIdentifier = "st-expiration-date-input"
-        self.monthTextField.accessibilityIdentifier = "st-expiration-date-input-month-textfield"
-        self.yearTextField.accessibilityIdentifier = "st-expiration-date-input-year-textfield"
-        self.errorLabel.accessibilityIdentifier = "st-expiration-date-message"
+        monthTextField.accessibilityIdentifier = "st-expiration-date-input-month-textfield"
+        yearTextField.accessibilityIdentifier = "st-expiration-date-input-year-textfield"
+        errorLabel.accessibilityIdentifier = "st-expiration-date-message"
     }
 
     required init?(coder _: NSCoder) {
@@ -475,6 +490,17 @@ extension ExpiryDateInputView: ViewSetupable {
 
         stackView.setCustomSpacing(titleSpacing, after: titleLabel)
         stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
+
+        monthTextField.isEnabled = isEnabled
+        yearTextField.isEnabled = isEnabled
+        if isEnabled {
+            alpha = 1.0
+        } else {
+            alpha = 0.4
+            monthTextField.text = .empty
+            yearTextField.text = .empty
+            showHideError(show: false)
+        }
 
         customizeView(inputViewStyleManager: inputViewStyleManager)
     }
