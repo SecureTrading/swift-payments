@@ -134,6 +134,12 @@ import UIKit
         }
     }
 
+    @objc public var emptyError: String = "empty error" {
+        didSet {
+            errorLabel.text = error
+        }
+    }
+
     // MARK: - colors
 
     @objc public var titleColor: UIColor = .black {
@@ -243,6 +249,7 @@ import UIKit
     // MARK: Functions
 
     func showHideError(show: Bool) {
+        errorLabel.text = isEmpty ? emptyError : error
         errorLabel.isHidden = !show
         textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor
         textFieldStackViewBackground.backgroundColor = show ? errorColor.withAlphaComponent(0.1) : textFieldBackgroundColor

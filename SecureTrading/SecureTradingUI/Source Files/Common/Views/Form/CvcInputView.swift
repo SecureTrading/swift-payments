@@ -62,6 +62,7 @@ extension CvcInputView {
         title = Localizable.CvcInputView.title.text
         placeholder = expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text
         error = Localizable.CvcInputView.error.text
+        emptyError = Localizable.CvcInputView.emptyError.text
 
         keyboardType = .numberPad
 
@@ -107,5 +108,6 @@ private extension Localizable {
         case placeholder3
         case placeholder4
         case error
+        case emptyError
     }
 }
