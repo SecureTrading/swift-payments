@@ -51,6 +51,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
 
         viewModel.showValidationError = { [weak self] error in
             guard let self = self else { return }
+            self.customView.payButton.stopProcessing()
             switch error {
             case .invalidPAN: self.customView.cardNumberInput.showHideError(show: true)
             case .invalidSecurityCode: self.customView.cvcInput.showHideError(show: true)
