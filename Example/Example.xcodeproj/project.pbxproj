@@ -898,7 +898,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 6GJ86WKP5G;
+				DEVELOPMENT_TEAM = PJS6ZUUFN8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(_ENVIRONMENTS)",
@@ -911,7 +911,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(_BUNDLE_IDENTIFIER)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.development3;
 				PRODUCT_NAME = "$(_BUNDLE_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(_ENVIRONMENTS)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Example/SupportingFiles/Example-Bridging-Header.h";
