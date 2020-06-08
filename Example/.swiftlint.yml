@@ -7,7 +7,7 @@ excluded:
 - Carthage
 - Pods
 line_length:
-    warning: 200
+    warning: 250
     error: 300
     ignores_function_declarations: true
     ignores_comments: true
