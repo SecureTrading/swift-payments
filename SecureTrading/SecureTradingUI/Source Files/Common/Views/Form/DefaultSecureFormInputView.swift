@@ -245,7 +245,7 @@ import UIKit
     func showHideError(show: Bool) {
         errorLabel.isHidden = !show
         textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor
-        textFieldStackViewBackground.backgroundColor = show ? errorColor.withAlphaComponent(0.2) : textFieldBackgroundColor
+        textFieldStackViewBackground.backgroundColor = show ? errorColor.withAlphaComponent(0.1) : textFieldBackgroundColor
         delegate?.showHideError(show)
     }
 
