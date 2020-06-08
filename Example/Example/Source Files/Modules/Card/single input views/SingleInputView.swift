@@ -6,16 +6,16 @@
 import UIKit
 
 final class SingleInputView: WhiteBackgroundBaseView {
-    private let cardNumberInput: CardNumberInputView = {
-        CardNumberInputView()
+    private lazy var cardNumberInput: CardNumberInputView = {
+        CardNumberInputView(inputViewStyleManager: inputViewStyleManager)
     }()
 
-    private let expiryDateInput: ExpiryDateInputView = {
-        ExpiryDateInputView()
+    private lazy var expiryDateInput: ExpiryDateInputView = {
+        ExpiryDateInputView(inputViewStyleManager: inputViewStyleManager)
     }()
 
-    private let cvcInput: CvcInputView = {
-        CvcInputView()
+    private lazy var cvcInput: CvcInputView = {
+        CvcInputView(inputViewStyleManager: inputViewStyleManager)
     }()
 
     private lazy var stackView: UIStackView = {
@@ -26,6 +26,22 @@ final class SingleInputView: WhiteBackgroundBaseView {
         stackView.distribution = .fill
         return stackView
     }()
+
+    let inputViewStyleManager: InputViewStyleManager?
+
+    // MARK: Initialization
+
+     /// Initializes an instance of the receiver.
+     /// - Parameters:
+     ///   - inputViewStyleManager: instance of manager to customize view
+     @objc public init(inputViewStyleManager: InputViewStyleManager?) {
+         self.inputViewStyleManager = inputViewStyleManager
+         super.init()
+     }
+
+     required init?(coder _: NSCoder) {
+         fatalError("init(coder:) has not been implemented")
+     }
 }
 
 extension SingleInputView: ViewSetupable {
@@ -52,11 +68,11 @@ extension SingleInputView: ViewSetupable {
 extension SingleInputView: CardNumberInputViewDelegate {
     func cardNumberInputViewDidComplete(_ cardNumberInputView: CardNumberInputView) {
         cvcInput.cardType = cardNumberInputView.cardType
-        cvcInput.isHidden = !cardNumberInputView.isCVCRequired
+        cvcInput.isEnabled = cardNumberInputView.isCVCRequired
     }
 
     func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView) {
         cvcInput.cardType = cardNumberInputView.cardType
-        cvcInput.isHidden = !cardNumberInputView.isCVCRequired
+        cvcInput.isEnabled = cardNumberInputView.isCVCRequired
     }
 }

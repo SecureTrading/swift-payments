@@ -6,7 +6,6 @@
 import Foundation
 
 final class DefaultAPIClient: APIClient {
-
     // MARK: Properties
 
     /// - SeeAlso: APIClient.configuration
@@ -39,14 +38,13 @@ final class DefaultAPIClient: APIClient {
 
     /// - SeeAlso: APIClient.perform(request:completion:)
     func perform<Request>(request: Request, completion: @escaping (Result<Request.Response, APIClientError>) -> Void) where Request: APIRequest {
-
         // Create convenience completion closures that will be reused later.
         let resolveSuccess: (Request.Response) -> Void = { response in
             let result: Result<Request.Response, APIClientError> = .success(response)
             DispatchQueue.main.async { completion(result) }
         }
 
-        let resolveFailure: (APIClientError, Data?) -> Void = { error, data in
+        let resolveFailure: (APIClientError, Data?) -> Void = { error, _ in
             let result: Result<Request.Response, APIClientError> = .failure(error)
             DispatchQueue.main.async { completion(result) }
         }
@@ -56,11 +54,28 @@ final class DefaultAPIClient: APIClient {
                 // Parse a response.
                 let decoder = Request.Response.decoder
                 let parsedResponse = try decoder.decode(Request.Response.self, from: data)
-
-                // Resolve success with a parsed response.
-                resolveSuccess(parsedResponse)
-            } catch {
-                resolveFailure(.responseParseError(error), data)
+                // validate response
+                do {
+                    // one response may be success and other may fail
+                    // e.g request is for account check, 3d secure and auth
+                    // account check is success but 3d secure fails
+                    // a way to return that information may be needed
+                    // so there is no need for another account check request
+                    // the need will be resolved at the time when more complex
+                    // requests will be implemented
+                    try ResponseValidator.validate(request: request, response: parsedResponse)
+                    resolveSuccess(parsedResponse)
+                } catch let validationError as APIClientError {
+                    resolveFailure(validationError, data)
+                }
+            } catch let err {
+                do {
+                    // check if has error and resolve failure
+                    let responseError = try JSONDecoder().decode(ResponseError.self, from: data)
+                    resolveFailure(.responseParseError(responseError.error), data)
+                } catch {
+                    resolveFailure(.responseParseError(err), data)
+                }
             }
         }
 

@@ -7,6 +7,7 @@
 @objc public enum TypeDescriptionObjc: Int {
     case auth
     case threeDQuery
+    case accountCheck
 
     public var value: String {
         switch self {
@@ -14,6 +15,8 @@
             return "AUTH"
         case .threeDQuery:
             return "THREEDQUERY"
+        case .accountCheck:
+            return "ACCOUNTCHECK"
         }
     }
 }
@@ -21,6 +24,15 @@
 public enum TypeDescription: String, Codable {
     case auth = "AUTH"
     case threeDQuery = "THREEDQUERY"
+    case accountCheck = "ACCOUNTCHECK"
+    
+    var code: Int {
+        switch self {
+        case .auth: return TypeDescriptionObjc.auth.rawValue
+        case .threeDQuery: return TypeDescriptionObjc.threeDQuery.rawValue
+        case .accountCheck: return TypeDescriptionObjc.accountCheck.rawValue
+        }
+    }
 }
 
 @objc public class RequestObject: NSObject, Codable {

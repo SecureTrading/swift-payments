@@ -19,7 +19,7 @@ import UIKit
 
     @objc public var cardType = CardType.unknown {
         didSet {
-            placeholder = expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text
+            placeholder = cardType == .piba ? Localizable.CvcInputView.placeholderPiba.text : expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text
         }
     }
 
@@ -39,16 +39,19 @@ import UIKit
     // MARK: Initialization
 
     /// Initializes an instance of the receiver.
-    @objc public override init() {
-        super.init()
+    /// - Parameters:
+    ///   - inputViewStyleManager: instance of manager to customize view
+    @objc public override init(inputViewStyleManager: InputViewStyleManager? = nil) {
+        super.init(inputViewStyleManager: inputViewStyleManager)
         self.accessibilityIdentifier = "st-security-code-input"
         self.textField.accessibilityIdentifier = "st-security-code-input-textfield"
         self.errorLabel.accessibilityIdentifier = "st-security-code-input-message"
     }
-
-    required init?(coder argument: NSCoder) {
+    
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
 extension CvcInputView {
@@ -57,8 +60,9 @@ extension CvcInputView {
         super.setupProperties()
 
         title = Localizable.CvcInputView.title.text
-        placeholder = expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text
+        placeholder = cardType == .piba ? Localizable.CvcInputView.placeholderPiba.text : expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text
         error = Localizable.CvcInputView.error.text
+        emptyError = Localizable.CvcInputView.emptyError.text
 
         keyboardType = .numberPad
 
@@ -67,6 +71,8 @@ extension CvcInputView {
         textFieldTextAligment = .center
 
         textFieldImage = UIImage(named: "cvc", in: Bundle(for: CvcInputView.self), compatibleWith: nil)
+
+        customizeView(inputViewStyleManager: inputViewStyleManager)
     }
 }
 
@@ -101,6 +107,8 @@ private extension Localizable {
         case title
         case placeholder3
         case placeholder4
+        case placeholderPiba
         case error
+        case emptyError
     }
 }

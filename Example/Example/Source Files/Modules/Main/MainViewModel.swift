@@ -50,14 +50,14 @@ final class MainViewModel {
                              payload: Payload(accounttypedescription: "ECOM",
                                               sitereference: keys.merchantSiteReference,
                                               currencyiso3a: "GBP",
-                                              baseamount: 1050,
+                                              baseamount: 1100,
                                               pan: "4111111111111111",
                                               expirydate: "12/2022",
                                               securitycode: "123"))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
 
-        let authRequest = RequestObject(typeDescriptions: [.auth])
+        let authRequest = RequestObject(typeDescriptions: [.accountCheck, .threeDQuery, .auth])
 
         apiManager.makeGeneralRequest(jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
@@ -70,8 +70,27 @@ final class MainViewModel {
             }
         }, failure: { [weak self] error in
             guard let self = self else { return }
-            // general APIClient error
-            self.showAuthError?(error.humanReadableDescription)
+            switch error {
+            case .responseValidationError(let responseError):
+                switch responseError {
+                case .invalidField(let errorCode):
+                    var message = "Invalid field: "
+                    switch errorCode {
+                    case .invalidPAN: message += "PAN"
+                    case .invalidSecurityCode: message += "Security code"
+                    case .invalidJWT: message += "JWT"
+                    case .invalidExpiryDate: message += "Expiry date"
+                    case .invalidTermURL: message += "Terms URL"
+                    case .none: message += ""
+                    }
+                    // Update UI
+                    self.showAuthError?(message)
+                default:
+                    self.showAuthError?(error.humanReadableDescription)
+                }
+            default:
+                self.showAuthError?(error.humanReadableDescription)
+            }
         })
     }
 }

@@ -57,10 +57,11 @@ import UIKit
     /// - Parameters:
     ///   - cardTypeContainer: A card type container that is used to access accepted card types.
     ///   - cardNumberSeparator: A separator that is used to separate different groups of the card number.
-    @objc public init(cardTypeContainer: CardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases), cardNumberSeparator: String = .space) {
+    ///   - inputViewStyleManager: instance of manager to customize view
+    @objc public init(cardTypeContainer: CardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases), cardNumberSeparator: String = .space, inputViewStyleManager: InputViewStyleManager? = nil) {
         self.cardTypeContainer = cardTypeContainer
         self.cardNumberSeparator = cardNumberSeparator
-        super.init()
+        super.init(inputViewStyleManager: inputViewStyleManager)
         self.accessibilityIdentifier = "st-card-number-input"
         self.textField.accessibilityIdentifier = "st-card-number-input-textfield"
         self.errorLabel.accessibilityIdentifier = "st-card-number-message"
@@ -88,10 +89,13 @@ extension CardNumberInputView {
         title = Localizable.CardNumberInputView.title.text
         placeholder = Localizable.CardNumberInputView.placeholder.text
         error = Localizable.CardNumberInputView.error.text
+        emptyError = Localizable.CardNumberInputView.emptyError.text
 
         keyboardType = .numberPad
 
         showCardImage()
+
+        customizeView(inputViewStyleManager: inputViewStyleManager)
     }
 }
 
@@ -139,5 +143,6 @@ private extension Localizable {
         case title
         case placeholder
         case error
+        case emptyError
     }
 }
