@@ -39,16 +39,19 @@ import UIKit
     // MARK: Initialization
 
     /// Initializes an instance of the receiver.
-    @objc public override init() {
-        super.init()
+    /// - Parameters:
+    ///   - inputViewStyleManager: instance of manager to customize view
+    @objc public override init(inputViewStyleManager: InputViewStyleManager? = nil) {
+        super.init(inputViewStyleManager: inputViewStyleManager)
         self.accessibilityIdentifier = "st-security-code-input"
         self.textField.accessibilityIdentifier = "st-security-code-input-textfield"
         self.errorLabel.accessibilityIdentifier = "st-security-code-input-message"
     }
-
-    required init?(coder argument: NSCoder) {
+    
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
 extension CvcInputView {
@@ -67,6 +70,8 @@ extension CvcInputView {
         textFieldTextAligment = .center
 
         textFieldImage = UIImage(named: "cvc", in: Bundle(for: CvcInputView.self), compatibleWith: nil)
+
+        customizeView(inputViewStyleManager: inputViewStyleManager)
     }
 }
 

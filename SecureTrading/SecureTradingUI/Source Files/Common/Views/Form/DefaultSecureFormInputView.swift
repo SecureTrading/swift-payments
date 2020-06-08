@@ -5,7 +5,7 @@
 
 import UIKit
 
-@objc public class DefaultSecureFormInputView: WhiteBackgroundBaseView, SecureFormInputView {
+@objc public class DefaultSecureFormInputView: BaseView, SecureFormInputView {
     // MARK: Properties
 
     private let titleLabel: UILabel = {
@@ -27,10 +27,12 @@ import UIKit
         return textField
     }()
 
-    private let textFieldStackViewBackground: UIView = {
+    private lazy var textFieldStackViewBackground: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 5
-        view.layer.borderWidth = 2
+        view.backgroundColor = textFieldBackgroundColor
+        view.layer.cornerRadius = textFieldCornerRadius
+        view.layer.borderWidth = textFieldBorderWidth
+        view.layer.borderColor = textFieldBorderColor.cgColor
         return view
     }()
 
@@ -40,14 +42,14 @@ import UIKit
         stackView.spacing = 10
         stackView.alignment = .fill
         stackView.distribution = .fill
-        stackView.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        stackView.layoutMargins = UIEdgeInsets(top: textFieldHeightMargins.top, left: 10, bottom: textFieldHeightMargins.bottom, right: 10)
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
 
     let errorLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 1
+        label.numberOfLines = 0
         label.isHidden = true
         return label
     }()
@@ -60,6 +62,8 @@ import UIKit
         stackView.distribution = .fill
         return stackView
     }()
+
+    let inputViewStyleManager: InputViewStyleManager?
 
     // MARK: Public properties
 
@@ -204,13 +208,59 @@ import UIKit
         }
     }
 
+    // MARK: - spacing/sizes
+
+    @objc public var titleSpacing: CGFloat = 5 {
+        didSet {
+            stackView.setCustomSpacing(titleSpacing, after: titleLabel)
+        }
+    }
+
+    @objc public var errorSpacing: CGFloat = 5 {
+        didSet {
+            stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
+        }
+    }
+
+    @objc public var textFieldBorderWidth: CGFloat = 2 {
+        didSet {
+            textFieldStackViewBackground.layer.borderWidth = textFieldBorderWidth
+        }
+    }
+
+    @objc public var textFieldCornerRadius: CGFloat = 5 {
+        didSet {
+            textFieldStackViewBackground.layer.cornerRadius = textFieldCornerRadius
+        }
+    }
+
+    @objc public var textFieldHeightMargins: HeightMargins = HeightMargins(top: 5, bottom: 5) {
+        didSet {
+            textFieldStackView.layoutMargins = UIEdgeInsets(top: textFieldHeightMargins.top, left: 10, bottom: textFieldHeightMargins.bottom, right: 10)
+        }
+    }
+
     // MARK: Functions
 
     func showHideError(show: Bool) {
         errorLabel.isHidden = !show
         textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor
-        textFieldStackViewBackground.backgroundColor = show ? errorColor.withAlphaComponent(0.2) : textFieldBackgroundColor
+        textFieldStackViewBackground.backgroundColor = show ? errorColor.withAlphaComponent(0.1) : textFieldBackgroundColor
         delegate?.showHideError(show)
+    }
+
+    // MARK: Initialization
+
+    /// Initializes an instance of the receiver.
+    /// - Parameters:
+    ///   - inputViewStyleManager: instance of manager to customize view
+    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil) {
+        self.inputViewStyleManager = inputViewStyleManager
+        super.init()
+    }
+
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Validation
@@ -232,14 +282,13 @@ import UIKit
 extension DefaultSecureFormInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
+        backgroundColor = .clear
+
         textField.delegate = self
 
         titleLabel.text = title
         titleLabel.textColor = titleColor
         titleLabel.font = titleFont
-
-        textFieldStackViewBackground.backgroundColor = textFieldBackgroundColor
-        textFieldStackViewBackground.layer.borderColor = textFieldBorderColor.cgColor
 
         textField.text = text
         textField.textColor = textColor
@@ -250,6 +299,8 @@ extension DefaultSecureFormInputView: ViewSetupable {
         errorLabel.text = error
         errorLabel.textColor = errorColor
         errorLabel.font = errorFont
+        stackView.setCustomSpacing(titleSpacing, after: titleLabel)
+        stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
@@ -265,7 +316,7 @@ extension DefaultSecureFormInputView: ViewSetupable {
             equal(\.widthAnchor, to: 30),
             equal(\.heightAnchor, to: 33)
         ])
-        stackView.addConstraints(equalToSuperview(with: .init(top: 5, left: 5, bottom: -5, right: -5), usingSafeArea: false))
+        stackView.addConstraints(equalToSuperview(with: .init(top: 0, left: 0, bottom: 0, right: 0), usingSafeArea: false))
     }
 }
 
@@ -277,7 +328,7 @@ extension DefaultSecureFormInputView: UITextFieldDelegate {
         return true
     }
 
-    public func textFieldDidEndEditing(_ textField: UITextField) {
+    public func textFieldDidEndEditing(_: UITextField) {
         validate(silent: false)
         delegate?.inputViewTextFieldDidEndEditing(self)
     }
