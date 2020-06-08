@@ -16,7 +16,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Test UI framework availability
         let testMainVC = ViewControllerFactory.shared.testMainViewController {}
     }

@@ -39,6 +39,10 @@ struct DecodedJWT: JWT {
         }
         return date.compare(Date()) != ComparisonResult.orderedDescending
     }
+    
+    var hasErrors: Bool {
+        return jwtBodyResponse.responses.contains { $0.responseErrorCode != ResponseErrorCode.successful }
+    }
 
     // MARK: Initialization
 

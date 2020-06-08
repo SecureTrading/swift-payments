@@ -5,12 +5,12 @@
 
 @objc public enum ResponseErrorCode: Int {
     case successful = 0
-    case transactionNotAuhorised = 60022
-    case declinedByIssuingBank = 70000
-    case fieldError = 3000
-    case bankSystemError = 60010
-    case manualInvestigationRequired = 60034
-    case unknown = 99999
+    case transactionNotAuhorised = 60_022
+    case declinedByIssuingBank = 70_000
+    case fieldError = 30_000
+    case bankSystemError = 60_010
+    case manualInvestigationRequired = 60_034
+    case unknown = 99_999
     case other
 }
 
@@ -22,6 +22,15 @@
     case paymentAuthorisedButSuspended = 2
     case paymentCancelled = 3
     case error
+}
+
+@objc public enum ResponseErrorDetail: Int {
+    case invalidPAN = 12_501
+    case invalidSecurityCode = 12_502
+    case invalidJWT = 12_503
+    case invalidExpiryDate = 12_504
+    case invalidTermURL = 12_505
+    case none = 12_500
 }
 
 @objc public class JWTResponseObject: NSObject, Decodable {
@@ -44,6 +53,27 @@
         return ResponseSettleStatus(rawValue: settleStatus?.intValue ?? -1) ?? .error
     }
 
+    @objc public var errorDetails: ResponseErrorDetail {
+        // confirmed with ST, error data will only have max 1 element at the time,
+        // even when there are multiple errors
+        // errors are parsed one by one on the gateway
+
+        switch responseErrorCode {
+        case .fieldError:
+            switch errorData?.first {
+            case "pan": return ResponseErrorDetail.invalidPAN
+            case "jwt": return ResponseErrorDetail.invalidJWT
+            case "securitycode": return ResponseErrorDetail.invalidSecurityCode
+            case "expirydate": return ResponseErrorDetail.invalidExpiryDate
+            case "termurl": return ResponseErrorDetail.invalidTermURL
+            default: return ResponseErrorDetail.none
+            }
+        default: return ResponseErrorDetail.none
+        }
+    }
+
+    private var requestTypeDescription: TypeDescription?
+
     // MARK: Initialization
 
     /// - SeeAlso: Swift.Decodable
@@ -59,6 +89,23 @@
             settleStatus = nil
         }
         transactionReference = try container.decodeIfPresent(String.self, forKey: .transactionReference)
+        if let type = try container.decodeIfPresent(String.self, forKey: .requestTypeDescription), let typeDescription = TypeDescription(rawValue: type) {
+            requestTypeDescription = typeDescription
+        } else {
+            requestTypeDescription = nil
+        }
+    }
+
+    // MARK: Methods
+
+    public func requestTypeDescription(contains description: TypeDescription) -> Bool {
+        guard let type = requestTypeDescription else { return false }
+        return description.rawValue == type.rawValue
+    }
+
+    @objc public func requestTypeDescription(contains description: TypeDescriptionObjc) -> Bool {
+        guard let type = requestTypeDescription else { return false }
+        return description.rawValue == type.code
     }
 }
 
@@ -69,5 +116,6 @@ private extension JWTResponseObject {
         case errorData = "errordata"
         case settleStatus = "settlestatus"
         case transactionReference = "transactionreference"
+        case requestTypeDescription = "requesttypedescription"
     }
 }

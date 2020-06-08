@@ -6,7 +6,6 @@
 import Foundation
 
 struct GeneralRequest: APIRequestModel {
-
     // MARK: Properties
 
     private let alias: String
@@ -54,6 +53,17 @@ struct GeneralRequest: APIRequestModel {
         try container.encode(version, forKey: .version)
         try container.encode(versionInfo, forKey: .versionInfo)
         try container.encode(requests, forKey: .requests)
+    }
+
+    func isValidAgainstResponse(_ response: APIResponse) -> Bool {
+        // check if response type description is the same as request type description
+        // most likely to be adjusted for request with multiple types, like auth and 3dsecure
+        guard let generalResponse = (response as? GeneralResponse)?.jwtResponses.first else { return true }
+        let allRequestTypes = requests.flatMap { $0.typeDescriptions }
+        // check if types were provided in request
+        guard !allRequestTypes.isEmpty else { return true }
+        let containedTypes = allRequestTypes.filter { generalResponse.requestTypeDescription(contains: $0) }
+        return containedTypes.count == allRequestTypes.count
     }
 }
 
