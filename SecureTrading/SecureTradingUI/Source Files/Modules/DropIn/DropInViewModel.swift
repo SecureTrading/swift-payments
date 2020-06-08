@@ -23,6 +23,7 @@ final class DropInViewModel {
 
     var showAuthSuccess: ((ResponseSettleStatus) -> Void)?
     var showAuthError: ((String) -> Void)?
+    var showValidationError: ((ResponseErrorDetail) -> Void)?
 
     // MARK: Initialization
 
@@ -47,7 +48,6 @@ final class DropInViewModel {
     ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
     ///   - expiryDate: The expiry date printed on the card.
     func makeRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
-
         self.card = Card(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
         let cardNumber = self.card?.cardNumber.rawValue
         let securityCode = self.card?.securityCode?.rawValue
@@ -55,7 +55,7 @@ final class DropInViewModel {
 
         let authRequest = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
 
-        apiManager.makeGeneralRequest(jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
+        self.apiManager.makeGeneralRequest(jwt: self.jwt, request: authRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:
@@ -69,17 +69,12 @@ final class DropInViewModel {
             case .responseValidationError(let responseError):
                 switch responseError {
                 case .invalidField(let errorCode):
-                    var message = "Invalid field: "
                     switch errorCode {
-                    case .invalidPAN: message += "PAN"
-                    case .invalidSecurityCode: message += "Security code"
-                    case .invalidJWT: message += "JWT"
-                    case .invalidExpiryDate: message += "Expiry date"
-                    case .invalidTermURL: message += "Terms URL"
-                    case .none: message += ""
+                    case .invalidPAN, .invalidSecurityCode, .invalidExpiryDate:
+                        self.showValidationError?(errorCode)
+                    default: self.showAuthError?(error.humanReadableDescription)
                     }
-                    // Update UI
-                    self.showAuthError?(message)
+
                 default:
                     self.showAuthError?(error.humanReadableDescription)
                 }

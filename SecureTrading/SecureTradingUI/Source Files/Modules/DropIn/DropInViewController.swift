@@ -48,6 +48,16 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             self.customView.payButton.stopProcessing()
             self.showAlert(message: error, completionHandler: nil)
         }
+
+        viewModel.showValidationError = { [weak self] error in
+            guard let self = self else { return }
+            switch error {
+            case .invalidPAN: self.customView.cardNumberInput.showHideError(show: true)
+            case .invalidSecurityCode: self.customView.cvcInput.showHideError(show: true)
+            case .invalidExpiryDate: self.customView.expiryDateInput.showHideError(show: true)
+            default: return
+            }
+        }
     }
 
     /// - SeeAlso: BaseViewController.setupProperties
