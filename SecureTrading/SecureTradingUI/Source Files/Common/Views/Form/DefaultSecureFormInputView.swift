@@ -322,14 +322,7 @@ extension DefaultSecureFormInputView: ViewSetupable {
         stackView.setCustomSpacing(titleSpacing, after: titleLabel)
         stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
 
-        textField.isEnabled = isEnabled
-        if isEnabled {
-            alpha = 1.0
-        } else {
-            alpha = 0.4
-            textField.text = .empty
-            showHideError(show: false)
-        }
+        isEnabled = true
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy

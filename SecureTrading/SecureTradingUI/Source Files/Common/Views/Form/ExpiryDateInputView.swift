@@ -493,14 +493,8 @@ extension ExpiryDateInputView: ViewSetupable {
 
         monthTextField.isEnabled = isEnabled
         yearTextField.isEnabled = isEnabled
-        if isEnabled {
-            alpha = 1.0
-        } else {
-            alpha = 0.4
-            monthTextField.text = .empty
-            yearTextField.text = .empty
-            showHideError(show: false)
-        }
+
+        isEnabled = true
 
         customizeView(inputViewStyleManager: inputViewStyleManager)
     }
