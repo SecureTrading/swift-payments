@@ -60,7 +60,7 @@ extension CvcInputView {
         super.setupProperties()
 
         title = Localizable.CvcInputView.title.text
-        placeholder = expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text
+        placeholder = cardType == .piba ? Localizable.CvcInputView.placeholderPiba.text : expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text
         error = Localizable.CvcInputView.error.text
         emptyError = Localizable.CvcInputView.emptyError.text
 
@@ -107,6 +107,7 @@ private extension Localizable {
         case title
         case placeholder3
         case placeholder4
+        case placeholderPiba
         case error
         case emptyError
     }

@@ -15,13 +15,14 @@ TestPublic.first = "First";
 TestPublic.second = "Second";
 
 CardNumberInputView.title = "Card number";
-CardNumberInputView.placeholder = "0000 0000 0000 0000";
+CardNumberInputView.placeholder = "xxxx xxxx xxxx xxxx";
 CardNumberInputView.error = "Invalid card number";
 CardNumberInputView.emptyError = "Card number is required";
 
 CvcInputView.title = "Security code";
 CvcInputView.placeholder3 = "***";
 CvcInputView.placeholder4 = "****";
+CvcInputView.placeholderPiba = "N/A";
 CvcInputView.error = "Invalid security code";
 CvcInputView.emptyError = "Security code is required";
 
