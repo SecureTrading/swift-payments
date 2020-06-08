@@ -16,7 +16,7 @@ class ResponseValidator {
                     .first(where: { $0.responseErrorCode != ResponseErrorCode.successful }) {
                     throw APIClientError.responseValidationError(.invalidField(code: firstResponseWithError.errorDetails))
                 }
-            } else if request.isValidAgainstResponse(response) {
+            } else if !request.isValidAgainstResponse(response) {
                 // check if request's type description matches response's type description
                 throw APIClientError.responseValidationError(.mismatchedDescriptionTypes)
             }

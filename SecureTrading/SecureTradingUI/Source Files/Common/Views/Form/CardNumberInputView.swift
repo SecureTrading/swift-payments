@@ -89,6 +89,7 @@ extension CardNumberInputView {
         title = Localizable.CardNumberInputView.title.text
         placeholder = Localizable.CardNumberInputView.placeholder.text
         error = Localizable.CardNumberInputView.error.text
+        emptyError = Localizable.CardNumberInputView.emptyError.text
 
         keyboardType = .numberPad
 
@@ -142,5 +143,6 @@ private extension Localizable {
         case title
         case placeholder
         case error
+        case emptyError
     }
 }

@@ -15,17 +15,21 @@ TestPublic.first = "First";
 TestPublic.second = "Second";
 
 CardNumberInputView.title = "Card number";
-CardNumberInputView.placeholder = "0000 0000 0000 0000";
-CardNumberInputView.error = "invalid card number";
+CardNumberInputView.placeholder = "xxxx xxxx xxxx xxxx";
+CardNumberInputView.error = "Invalid card number";
+CardNumberInputView.emptyError = "Card number is required";
 
 CvcInputView.title = "Security code";
 CvcInputView.placeholder3 = "***";
 CvcInputView.placeholder4 = "****";
-CvcInputView.error = "invalid cvc code";
+CvcInputView.placeholderPiba = "N/A";
+CvcInputView.error = "Invalid security code";
+CvcInputView.emptyError = "Security code is required";
 
 ExpiryDateInputView.title = "Expiry date";
 ExpiryDateInputView.placeholder = "MM/YY";
 ExpiryDateInputView.error = "Invalid expiry date";
+ExpiryDateInputView.emptyError = "Expiry date is required";
 
 PayButton.title = "Pay";
 

@@ -144,8 +144,23 @@ class YearTextField: BackwardTextField {}
 
     @objc public weak var delegate: SecureFormInputViewDelegate?
 
+    @objc public var isEnabled: Bool = true {
+        didSet {
+            monthTextField.isEnabled = isEnabled
+            yearTextField.isEnabled = isEnabled
+            if isEnabled {
+                alpha = 1.0
+            } else {
+                alpha = 0.4
+                monthTextField.text = .empty
+                yearTextField.text = .empty
+                showHideError(show: false)
+            }
+        }
+    }
+
     @objc public var isEmpty: Bool {
-        return monthTextField.text?.isEmpty ?? true && yearTextField.text?.isEmpty ?? true
+        return (monthTextField.text?.isEmpty ?? true || monthTextField.text == UITextField.emptyCharacter) && (yearTextField.text?.isEmpty ?? true || yearTextField.text == UITextField.emptyCharacter)
     }
 
     @objc public var isInputValid: Bool {
@@ -231,6 +246,12 @@ class YearTextField: BackwardTextField {}
     }
 
     @objc public var error: String = "error" {
+        didSet {
+            errorLabel.text = error
+        }
+    }
+
+    @objc public var emptyError: String = "empty error" {
         didSet {
             errorLabel.text = error
         }
@@ -351,9 +372,9 @@ class YearTextField: BackwardTextField {}
         self.inputViewStyleManager = inputViewStyleManager
         super.init()
         self.accessibilityIdentifier = "st-expiration-date-input"
-        self.monthTextField.accessibilityIdentifier = "st-expiration-date-input-month-textfield"
-        self.yearTextField.accessibilityIdentifier = "st-expiration-date-input-year-textfield"
-        self.errorLabel.accessibilityIdentifier = "st-expiration-date-message"
+        monthTextField.accessibilityIdentifier = "st-expiration-date-input-month-textfield"
+        yearTextField.accessibilityIdentifier = "st-expiration-date-input-year-textfield"
+        errorLabel.accessibilityIdentifier = "st-expiration-date-message"
     }
 
     required init?(coder _: NSCoder) {
@@ -408,6 +429,7 @@ class YearTextField: BackwardTextField {}
     }
 
     func showHideError(show: Bool) {
+        errorLabel.text = isEmpty ? emptyError : error
         errorLabel.isHidden = !show
         textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor
         textFieldStackViewBackground.backgroundColor = show ? errorColor.withAlphaComponent(0.1) : textFieldBackgroundColor
@@ -458,6 +480,7 @@ extension ExpiryDateInputView: ViewSetupable {
         title = Localizable.ExpiryDateInputView.title.text
         placeholder = Localizable.ExpiryDateInputView.placeholder.text
         error = Localizable.ExpiryDateInputView.error.text
+        emptyError = Localizable.ExpiryDateInputView.emptyError.text
 
         keyboardType = .numberPad
 
@@ -467,6 +490,8 @@ extension ExpiryDateInputView: ViewSetupable {
 
         stackView.setCustomSpacing(titleSpacing, after: titleLabel)
         stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
+
+        isEnabled = true
 
         customizeView(inputViewStyleManager: inputViewStyleManager)
     }
@@ -624,5 +649,6 @@ private extension Localizable {
         case title
         case placeholder
         case error
+        case emptyError
     }
 }

@@ -166,12 +166,12 @@ extension DropInView: ViewSetupable {
 extension DropInView: CardNumberInputViewDelegate {
     public func cardNumberInputViewDidComplete(_ cardNumberInputView: CardNumberInputView) {
         cvcInput.cardType = cardNumberInputView.cardType
-        cvcInput.isHidden = !cardNumberInputView.isCVCRequired
+        cvcInput.isEnabled = cardNumberInputView.isCVCRequired
     }
 
     public func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView) {
         cvcInput.cardType = cardNumberInputView.cardType
-        cvcInput.isHidden = !cardNumberInputView.isCVCRequired
+        cvcInput.isEnabled = cardNumberInputView.isCVCRequired
     }
 }
 
