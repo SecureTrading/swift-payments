@@ -74,6 +74,19 @@ import UIKit
         return text.isEmpty
     }
 
+    @objc public var isEnabled: Bool = true {
+        didSet {
+            self.textField.isEnabled = isEnabled
+            if self.isEnabled {
+                self.alpha = 1.0
+            } else {
+                self.alpha = 0.4
+                self.textField.text = .empty
+                self.showHideError(show: false)
+            }
+        }
+    }
+
     @discardableResult
     public override func becomeFirstResponder() -> Bool {
         textField.becomeFirstResponder()

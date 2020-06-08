@@ -19,7 +19,7 @@ import UIKit
 
     @objc public var cardType = CardType.unknown {
         didSet {
-            placeholder = expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text
+            placeholder = cardType == .piba ? Localizable.CvcInputView.placeholderPiba.text : expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text
         }
     }
 
