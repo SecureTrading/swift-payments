@@ -8,7 +8,7 @@ import Foundation
 /// Modified URL session extension by Alley for retrying data tasks
 public extension URLSession {
     ///    Default number of retries to attempt on each `URLRequest` instance. To customize, supply desired value to `perform()`
-    static var maximumNumberOfRetries: Int = 5
+    static var maximumNumberOfRetries: Int = 20
 
     ///    Output types
     typealias DataResult = Result<Data, APIClientError>
@@ -22,11 +22,12 @@ public extension URLSession {
     ///   - callback: Closure to return the result of the request's execution.
     func perform(_ urlRequest: URLRequest,
                  maxRetries: Int = URLSession.maximumNumberOfRetries,
+                 maxRetryInterval: TimeInterval,
                  callback: @escaping Callback) {
         if maxRetries <= 0 {
             fatalError("maxRetries must be 1 or larger.")
         }
-        let networkRequest = NetworkRequest(urlRequest, 0, maxRetries, callback)
+        let networkRequest = NetworkRequest(urlRequest, 0, maxRetries, retryUntil: Date().timeIntervalSince1970 + maxRetryInterval, callback)
         authenticate(networkRequest)
     }
 }
@@ -38,6 +39,7 @@ private extension URLSession {
         urlRequest: URLRequest,
         currentRetries: Int,
         maxRetries: Int,
+        retryUntil: TimeInterval,
         callback: Callback
     )
 
@@ -46,13 +48,14 @@ private extension URLSession {
         let currentRetries = networkRequest.currentRetries
         let max = networkRequest.maxRetries
         let callback = networkRequest.callback
-        debugPrint("Retrying network request: \(currentRetries)/\(max)")
-        if currentRetries >= max {
+
+        // Stop retrying after max number of retries is exceeded
+        // or timeout for all retries exceeded retry until
+        if (currentRetries >= max) || (Date().timeIntervalSince1970 > networkRequest.retryUntil) {
             //    Too many unsuccessful attemps
             callback( .failure( .inaccessible ) )
             return
         }
-
         //    NOTE: this is the place to handle OAuth2
         //    or some other form of URLRequest‘s authorization
 

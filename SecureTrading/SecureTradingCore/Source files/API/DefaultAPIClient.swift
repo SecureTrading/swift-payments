@@ -26,16 +26,15 @@ final class DefaultAPIClient: APIClient {
     /// - Parameters:
     ///   - configuration: A base configuration of the client
     ///   - urlSession: URL session as a main interface for performing requests.
-    init(configuration: APIClientConfiguration, urlSession: URLSession = .shared) {
+    init(configuration: APIClientConfiguration, urlSession: URLSession) {
         self.configuration = configuration
         self.urlSession = urlSession
-        // TODO: set timeouts
     }
 
     // MARK: Functions
 
     /// - SeeAlso: APIClient.perform(request:completion:)
-    func perform<Request>(request: Request, maxRetries: Int = 5, completion: @escaping (Result<Request.Response, APIClientError>) -> Void) where Request: APIRequest {
+    func perform<Request>(request: Request, maxRetries: Int = 5, maxRetryInterval: TimeInterval = 40, completion: @escaping (Result<Request.Response, APIClientError>) -> Void) where Request: APIRequest {
         // Create convenience completion closures that will be reused later.
         let resolveSuccess: (Request.Response) -> Void = { response in
             let result: Result<Request.Response, APIClientError> = .success(response)
@@ -88,7 +87,7 @@ final class DefaultAPIClient: APIClient {
             }
             // perform the network request
             // on failure, retry for specified number of times
-            urlSession.perform(builtRequest, maxRetries: maxRetries) { [weak self] (dataResult) in
+            urlSession.perform(builtRequest, maxRetries: maxRetries, maxRetryInterval: maxRetryInterval) { [weak self] (dataResult) in
                 // If API client instance doesn't exist, return.
                 guard let self = self else {
                     return
