@@ -61,13 +61,31 @@ final class DropInViewModel {
             case .successful:
                 self.showAuthSuccess?(responseObject.responseSettleStatus)
             default:
-                // transaction error
                 self.showAuthError?(responseObject.errorMessage)
             }
         }, failure: { [weak self] error in
             guard let self = self else { return }
-            // general APIClient error
-            self.showAuthError?(error.humanReadableDescription)
+            switch error {
+            case .responseValidationError(let responseError):
+                switch responseError {
+                case .invalidField(let errorCode):
+                    var message = "Invalid field: "
+                    switch errorCode {
+                    case .invalidPAN: message += "PAN"
+                    case .invalidSecurityCode: message += "Security code"
+                    case .invalidJWT: message += "JWT"
+                    case .invalidExpiryDate: message += "Expiry date"
+                    case .invalidTermURL: message += "Terms URL"
+                    case .none: message += ""
+                    }
+                    // Update UI
+                    self.showAuthError?(message)
+                default:
+                    self.showAuthError?(error.humanReadableDescription)
+                }
+            default:
+                self.showAuthError?(error.humanReadableDescription)
+            }
         })
     }
 
