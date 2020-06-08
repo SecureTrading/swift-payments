@@ -69,7 +69,7 @@ import Foundation
     ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     public func makeGeneralRequest(jwt: String, request: RequestObject, success: @escaping ((_ jwtResponse: JWTResponseObject, _ jwt: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, versionInfo: self.versionInfo, requests: [request])
-        self.apiClient.perform(request: generalRequest) { result in
+        self.apiClient.perform(request: generalRequest, maxRetries: 5) { result in
             switch result {
             case let .success(response):
                 success(response.jwtResponses.first!, jwt)
@@ -99,7 +99,7 @@ import Foundation
     ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, versionInfo: self.versionInfo, requests: requests)
-        self.apiClient.perform(request: generalRequest) { result in
+        self.apiClient.perform(request: generalRequest, maxRetries: 5) { result in
             switch result {
             case let .success(response):
                 success(response.jwtResponses, jwt)

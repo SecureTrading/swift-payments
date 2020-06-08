@@ -57,7 +57,7 @@ final class MainViewModel {
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
 
-        let authRequest = RequestObject(typeDescriptions: [.accountCheck, .threeDQuery, .auth])
+        let authRequest = RequestObject(typeDescriptions: [.auth])
 
         apiManager.makeGeneralRequest(jwt: jwt, request: authRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }

@@ -27,6 +27,11 @@ public enum APIClientError: HumanReadableError {
     case jwtDecodingInvalidJSON
     /// jwtDecodingError
     case jwtDecodingInvalidPartCount
+    /// request inaccessible after retries
+    case inaccessible
+    /// `URLSession` errors are passed-through, handle as appropriate.
+    /// needed to determine whether a retry of request should happen
+    case urlError(URLError)
 
     // MARK: Properties
 
@@ -71,7 +76,30 @@ public enum APIClientError: HumanReadableError {
             return "JWT decoding: invalid JSON"
         case .jwtDecodingInvalidPartCount:
             return "JWT decoding: number of parts does not equal 3"
+        case .inaccessible:
+            return "Failed to receive a response for request after given retries"
+        case .urlError(let urlError):
+            return "URL Error: \(urlError.localizedDescription)"
         }
+    }
+
+    /// Used to determine whether a network request should be retried
+    var shouldRetry: Bool {
+        switch self {
+        case .urlError(let urlError):
+            //  retry for network issues
+            switch urlError.code {
+            case URLError.timedOut,
+                 URLError.cannotFindHost,
+                 URLError.cannotConnectToHost,
+                 URLError.networkConnectionLost,
+                 URLError.dnsLookupFailed:
+                return true
+            default: break
+            }
+        default: break
+        }
+        return false
     }
 
     /// objc helpers
@@ -97,6 +125,10 @@ public enum APIClientError: HumanReadableError {
             return 18_000
         case .jwtDecodingInvalidPartCount:
             return 19_000
+        case .inaccessible:
+            return 20_000
+        case .urlError(let urlError):
+            return urlError.code.rawValue
         }
     }
 
