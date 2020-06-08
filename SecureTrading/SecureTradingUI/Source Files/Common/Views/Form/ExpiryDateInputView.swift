@@ -491,9 +491,6 @@ extension ExpiryDateInputView: ViewSetupable {
         stackView.setCustomSpacing(titleSpacing, after: titleLabel)
         stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
 
-        monthTextField.isEnabled = isEnabled
-        yearTextField.isEnabled = isEnabled
-
         isEnabled = true
 
         customizeView(inputViewStyleManager: inputViewStyleManager)
