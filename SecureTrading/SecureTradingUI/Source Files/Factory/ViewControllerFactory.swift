@@ -49,6 +49,26 @@ import UIKit
         return viewController
     }
 
+    /// creates instances of the AddCardViewController
+    /// - Parameters:
+    ///   - jwt: jwt: jwt token
+    ///   - typeDescriptions: request types (AUTH, THREEDQUERY...)
+    ///   - gatewayType: gateway type (us or european)
+    ///   - username: merchant's username
+    ///   - cardAddedCompletion: Closure triggered by pressing the button in the card added alert
+    ///   - dropInViewStyleManager: instance of manager to customize view
+    /// - Returns: instance of DropInViewController
+    public func addCardViewController(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, dropInViewStyleManager: DropInViewStyleManager? = nil, cardAddedCompletion: @escaping () -> Void) -> UIViewController {
+        let viewController = AddCardViewController(view: AddCardView(dropInViewStyleManager: dropInViewStyleManager), viewModel: AddCardViewModel(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: gatewayType, username: username))
+        viewController.eventTriggered = { event in
+            switch event {
+            case .added:
+                cardAddedCompletion()
+            }
+        }
+        return viewController
+    }
+
     // objc workaround
     /// creates instances of the DropInViewController
     /// - Parameters:
@@ -63,5 +83,21 @@ import UIKit
         let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
         let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
         return self.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: successfulPaymentCompletion)
+    }
+
+    // objc workaround
+    /// creates instances of the DropInViewController
+    /// - Parameters:
+    ///   - jwt: jwt: jwt token
+    ///   - typeDescriptions: request types (AUTH, THREEDQUERY...)
+    ///   - gatewayType: gateway type (us or european)
+    ///   - username: merchant's username
+    ///   - cardAddedCompletion: Closure triggered by pressing the button in the successful payment alert
+    ///   - dropInViewStyleManager: instance of manager to customize view
+    /// - Returns: instance of DropInViewController
+    @objc public func addCardViewController(jwt: String, typeDescriptions: [Int], gatewayType: GatewayType, username: String, dropInViewStyleManager: DropInViewStyleManager? = nil, cardAddedCompletion: @escaping () -> Void) -> UIViewController {
+        let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
+        let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
+        return self.addCardViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, dropInViewStyleManager: dropInViewStyleManager, cardAddedCompletion: cardAddedCompletion)
     }
 }

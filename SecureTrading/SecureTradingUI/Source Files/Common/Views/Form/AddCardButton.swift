@@ -1,15 +1,15 @@
 //
-//  PayButton.swift
+//  AddCardButton.swift
 //  SecureTradingUI
 //
 
 import UIKit
 
 /// A subclass of RequestButton, consists of title and spinner for the request interval
-@objc public final class PayButton: RequestButton {
+@objc public final class AddCardButton: RequestButton {
     // MARK: Private properties
 
-    let payButtonStyleManager: PayButtonStyleManager?
+    let addCardButtonStyleManager: AddCardButtonStyleManager?
 
     // MARK: Public properties
 
@@ -25,10 +25,10 @@ import UIKit
 
     /// Initialize an instance and calls required methods
     /// - Parameters:
-    ///   - payButtonStyleManager: instance of manager to customize view
-    @objc public init(payButtonStyleManager: PayButtonStyleManager? = nil) {
-        self.payButtonStyleManager = payButtonStyleManager
-        super.init(requestButtonStyleManager: payButtonStyleManager)
+    ///   - addCardButtonStyleManager: instance of manager to customize view
+    @objc public init(addCardButtonStyleManager: AddCardButtonStyleManager? = nil) {
+        self.addCardButtonStyleManager = addCardButtonStyleManager
+        super.init(requestButtonStyleManager: addCardButtonStyleManager)
         self.configureView()
     }
 
@@ -41,12 +41,12 @@ import UIKit
 
     public override func configureView() {
         super.configureView()
-        self.title = Localizable.PayButton.title.text
+        self.title = Localizable.AddCardButton.title.text
     }
 }
 
 private extension Localizable {
-    enum PayButton: String, Localized {
+    enum AddCardButton: String, Localized {
         case title
     }
 }

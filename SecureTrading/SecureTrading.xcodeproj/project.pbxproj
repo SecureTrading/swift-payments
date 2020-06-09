@@ -114,6 +114,13 @@
 		104CFB28246ECE3A00D7C76D /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; };
 		104CFB2D246ECF2F00D7C76D /* ST3DSecureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */; };
 		105073F72489AA760036F7AD /* ResponseValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105073F62489AA760036F7AD /* ResponseValidator.swift */; };
+		1050A94B248FDB1900E84A6D /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A94A248FDB1900E84A6D /* AddCardViewController.swift */; };
+		1050A94D248FDBE400E84A6D /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A94C248FDBE400E84A6D /* AddCardView.swift */; };
+		1050A94F248FDD4700E84A6D /* AddCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A94E248FDD4700E84A6D /* AddCardViewModel.swift */; };
+		1050A951248FE2F100E84A6D /* RequestButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A950248FE2F100E84A6D /* RequestButton.swift */; };
+		1050A953248FE3F800E84A6D /* RequestButtonStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A952248FE3F800E84A6D /* RequestButtonStyleManager.swift */; };
+		1050A955248FE5A900E84A6D /* AddCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A954248FE5A900E84A6D /* AddCardButton.swift */; };
+		1050A957248FE61800E84A6D /* AddCardButtonStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A956248FE61800E84A6D /* AddCardButtonStyleManager.swift */; };
 		1051D221247FEE0F008E4970 /* TestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D220247FEE0F008E4970 /* TestAPIManager.swift */; };
 		1051D22524813F66008E4970 /* TestGeneralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22424813F65008E4970 /* TestGeneralRequest.swift */; };
 		1051D22724814B4D008E4970 /* TestDecodedJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22624814B4D008E4970 /* TestDecodedJWT.swift */; };
@@ -325,6 +332,13 @@
 		104CFB18246ECD8000D7C76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ST3DSecureManager.swift; sourceTree = "<group>"; };
 		105073F62489AA760036F7AD /* ResponseValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseValidator.swift; sourceTree = "<group>"; };
+		1050A94A248FDB1900E84A6D /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
+		1050A94C248FDBE400E84A6D /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
+		1050A94E248FDD4700E84A6D /* AddCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewModel.swift; sourceTree = "<group>"; };
+		1050A950248FE2F100E84A6D /* RequestButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestButton.swift; sourceTree = "<group>"; };
+		1050A952248FE3F800E84A6D /* RequestButtonStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestButtonStyleManager.swift; sourceTree = "<group>"; };
+		1050A954248FE5A900E84A6D /* AddCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardButton.swift; sourceTree = "<group>"; };
+		1050A956248FE61800E84A6D /* AddCardButtonStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardButtonStyleManager.swift; sourceTree = "<group>"; };
 		1051D220247FEE0F008E4970 /* TestAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPIManager.swift; sourceTree = "<group>"; };
 		1051D22424813F65008E4970 /* TestGeneralRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeneralRequest.swift; sourceTree = "<group>"; };
 		1051D22624814B4D008E4970 /* TestDecodedJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDecodedJWT.swift; sourceTree = "<group>"; };
@@ -425,6 +439,7 @@
 		0818DE3D2486598700A8B25A /* DropIn */ = {
 			isa = PBXGroup;
 			children = (
+				1050A949248FDAA900E84A6D /* AddCard */,
 				0818DE3E248659A800A8B25A /* DropInView.swift */,
 				0818DE40248659B800A8B25A /* DropInViewModel.swift */,
 				0818DE42248659C900A8B25A /* DropInViewController.swift */,
@@ -449,6 +464,8 @@
 				0818DE5A2488E36200A8B25A /* InputViewStyleManager.swift */,
 				08C1E80624890AFF007496D9 /* PayButtonStyleManager.swift */,
 				08C1E8082489207E007496D9 /* DropInViewStyleManager.swift */,
+				1050A952248FE3F800E84A6D /* RequestButtonStyleManager.swift */,
+				1050A956248FE61800E84A6D /* AddCardButtonStyleManager.swift */,
 			);
 			path = "Style managers";
 			sourceTree = "<group>";
@@ -610,6 +627,8 @@
 				0853ACA6247FB00F00DF37EE /* CvcInputView.swift */,
 				0853ACAB247FF15700DF37EE /* ExpiryDateInputView.swift */,
 				0818DE44248680D900A8B25A /* PayButton.swift */,
+				1050A950248FE2F100E84A6D /* RequestButton.swift */,
+				1050A954248FE5A900E84A6D /* AddCardButton.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -894,6 +913,16 @@
 				104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */,
 			);
 			path = "Source files";
+			sourceTree = "<group>";
+		};
+		1050A949248FDAA900E84A6D /* AddCard */ = {
+			isa = PBXGroup;
+			children = (
+				1050A94A248FDB1900E84A6D /* AddCardViewController.swift */,
+				1050A94C248FDBE400E84A6D /* AddCardView.swift */,
+				1050A94E248FDD4700E84A6D /* AddCardViewModel.swift */,
+			);
+			path = AddCard;
 			sourceTree = "<group>";
 		};
 		1092CF402476CA1F0002B2E8 /* SecureTradingCard */ = {
@@ -1377,6 +1406,7 @@
 				0818DE43248659C900A8B25A /* DropInViewController.swift in Sources */,
 				084E29E924656A5E0040FB9D /* UIView.swift in Sources */,
 				08C1E80724890AFF007496D9 /* PayButtonStyleManager.swift in Sources */,
+				1050A957248FE61800E84A6D /* AddCardButtonStyleManager.swift in Sources */,
 				08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */,
 				084E2A1924659B7B0040FB9D /* CustomBackNavigationController.swift in Sources */,
 				0818DE3A24851BDE00A8B25A /* UITextField.swift in Sources */,
@@ -1388,6 +1418,7 @@
 				08886ED2247C0D9A00BC1637 /* CardNumberInputView.swift in Sources */,
 				084E29FF246583E20040FB9D /* Dequeueable.swift in Sources */,
 				08886ED9247C1AE500BC1637 /* CardTypeContainer.swift in Sources */,
+				1050A94D248FDBE400E84A6D /* AddCardView.swift in Sources */,
 				084E2A1D24659D6B0040FB9D /* TransparentNavigationBar.swift in Sources */,
 				0853ACA7247FB00F00DF37EE /* CvcInputView.swift in Sources */,
 				084E2A062465874B0040FB9D /* Localizable.swift in Sources */,
@@ -1400,15 +1431,19 @@
 				0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */,
 				08886EE3247C234800BC1637 /* StringUI.swift in Sources */,
 				084E2A03246585330040FB9D /* UICollectionView.swift in Sources */,
+				1050A953248FE3F800E84A6D /* RequestButtonStyleManager.swift in Sources */,
 				0853ACAC247FF15700DF37EE /* ExpiryDateInputView.swift in Sources */,
+				1050A94F248FDD4700E84A6D /* AddCardViewModel.swift in Sources */,
 				084E29FD246583B50040FB9D /* BaseViewCell.swift in Sources */,
 				0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */,
 				084D7DC62480D6BE002E43BC /* SecureFormInputView.swift in Sources */,
 				084E2A1624659AC50040FB9D /* BaseNavigationFlowController.swift in Sources */,
 				084E29EE24656D7F0040FB9D /* BaseView.swift in Sources */,
+				1050A94B248FDB1900E84A6D /* AddCardViewController.swift in Sources */,
 				08886ED5247C107200BC1637 /* CardNumberFormat.swift in Sources */,
 				084E2A0E246599B70040FB9D /* FlowController.swift in Sources */,
 				084E29EC24656B4E0040FB9D /* CallbackWrapper.swift in Sources */,
+				1050A951248FE2F100E84A6D /* RequestButton.swift in Sources */,
 				084E29F4246571B10040FB9D /* TestMainView.swift in Sources */,
 				08694877246924F900F625D0 /* TestMainViewModel.swift in Sources */,
 				084E29F6246573180040FB9D /* UIStackView.swift in Sources */,
@@ -1420,6 +1455,7 @@
 				084E29F124656DE00040FB9D /* ViewSetupable.swift in Sources */,
 				0869487F24692A4400F625D0 /* TestDetailsViewModel.swift in Sources */,
 				084E2A1B24659BD30040FB9D /* PopBackView.swift in Sources */,
+				1050A955248FE5A900E84A6D /* AddCardButton.swift in Sources */,
 				08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */,
 				0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */,
 				0869488124692A5600F625D0 /* TestDetailsViewController.swift in Sources */,

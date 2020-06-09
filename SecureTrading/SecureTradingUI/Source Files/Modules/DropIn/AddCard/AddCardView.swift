@@ -1,18 +1,18 @@
 //
-//  DropInView.swift
+//  AddCardView.swift
 //  SecureTradingUI
 //
 
 import UIKit
 
-@objc public final class DropInView: BaseView {
+@objc public final class AddCardView: BaseView {
     @objc public var isFormValid: Bool {
         return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid
     }
 
-    @objc public var payButtonTappedClosure: (() -> Void)? {
-        get { return payButton.onTap }
-        set { payButton.onTap = newValue }
+    @objc public var addCardButtonTappedClosure: (() -> Void)? {
+        get { return addCardButton.onTap }
+        set { addCardButton.onTap = newValue }
     }
 
     @objc public private(set) lazy var cardNumberInput: CardNumberInputView = {
@@ -27,11 +27,11 @@ import UIKit
         CvcInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    @objc public private(set) lazy var payButton: PayButton = {
-        guard let styleManager = dropInViewStyleManager?.requestButtonStyleManager as? PayButtonStyleManager else {
-            fatalError("Expected style manager of type PayButtonStyleManager")
+    @objc public private(set) lazy var addCardButton: AddCardButton = {
+        guard let styleManager = dropInViewStyleManager?.requestButtonStyleManager as? AddCardButtonStyleManager else {
+            fatalError("Expected style manager of type AddCardButtonStyleManager")
         }
-        return PayButton(payButtonStyleManager: styleManager)
+        return AddCardButton(addCardButtonStyleManager: styleManager)
     }()
 
     private let stackContainer: UIView = {
@@ -41,7 +41,7 @@ import UIKit
     }()
 
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, payButton])
+        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, addCardButton])
         stackView.axis = .vertical
         stackView.spacing = spacingBeetwenInputViews
         stackView.alignment = .fill
@@ -128,7 +128,7 @@ import UIKit
     }
 }
 
-extension DropInView: ViewSetupable {
+extension AddCardView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
         cardNumberInput.cardNumberInputViewDelegate = self
@@ -166,7 +166,7 @@ extension DropInView: ViewSetupable {
     }
 }
 
-extension DropInView: CardNumberInputViewDelegate {
+extension AddCardView: CardNumberInputViewDelegate {
     public func cardNumberInputViewDidComplete(_ cardNumberInputView: CardNumberInputView) {
         cvcInput.cardType = cardNumberInputView.cardType
         cvcInput.isEnabled = cardNumberInputView.isCVCRequired
@@ -178,10 +178,10 @@ extension DropInView: CardNumberInputViewDelegate {
     }
 }
 
-extension DropInView: SecureFormInputViewDelegate {
+extension AddCardView: SecureFormInputViewDelegate {
     public func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView) {}
 
     public func showHideError(_ show: Bool) {
-        payButton.isEnabled = isFormValid
+        addCardButton.isEnabled = isFormValid
     }
 }
