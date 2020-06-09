@@ -69,6 +69,19 @@ import UIKit
 
     @objc public weak var delegate: SecureFormInputViewDelegate?
 
+    @objc public var isEnabled: Bool = true {
+        didSet {
+            textField.isEnabled = isEnabled
+            if isEnabled {
+                alpha = 1.0
+            } else {
+                alpha = 0.4
+                textField.text = .empty
+                showHideError(show: false)
+            }
+        }
+    }
+
     @objc public var isEmpty: Bool {
         guard let text = textField.text else { return true }
         return text.isEmpty
@@ -129,6 +142,12 @@ import UIKit
     }
 
     @objc public var error: String = "error" {
+        didSet {
+            errorLabel.text = error
+        }
+    }
+
+    @objc public var emptyError: String = "empty error" {
         didSet {
             errorLabel.text = error
         }
@@ -243,6 +262,7 @@ import UIKit
     // MARK: Functions
 
     func showHideError(show: Bool) {
+        errorLabel.text = isEmpty ? emptyError : error
         errorLabel.isHidden = !show
         textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor
         textFieldStackViewBackground.backgroundColor = show ? errorColor.withAlphaComponent(0.1) : textFieldBackgroundColor
@@ -301,6 +321,8 @@ extension DefaultSecureFormInputView: ViewSetupable {
         errorLabel.font = errorFont
         stackView.setCustomSpacing(titleSpacing, after: titleLabel)
         stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
+
+        isEnabled = true
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
