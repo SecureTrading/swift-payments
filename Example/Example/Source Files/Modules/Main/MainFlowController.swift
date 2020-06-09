@@ -83,8 +83,7 @@ final class MainFlowController: BaseNavigationFlowController {
                                                           textFieldBorderWidth: 1,
                                                           textFieldCornerRadius: 6)
 
-        // TODO: change to add card button
-        // perfomr account check request
+        // TODO:
         // save card reference details
         // store in singleton for now
 

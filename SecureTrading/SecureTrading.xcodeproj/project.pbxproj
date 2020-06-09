@@ -121,6 +121,7 @@
 		1050A953248FE3F800E84A6D /* RequestButtonStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A952248FE3F800E84A6D /* RequestButtonStyleManager.swift */; };
 		1050A955248FE5A900E84A6D /* AddCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A954248FE5A900E84A6D /* AddCardButton.swift */; };
 		1050A957248FE61800E84A6D /* AddCardButtonStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A956248FE61800E84A6D /* AddCardButtonStyleManager.swift */; };
+		1050A959249000A300E84A6D /* STCardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A958249000A300E84A6D /* STCardReference.swift */; };
 		1051D221247FEE0F008E4970 /* TestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D220247FEE0F008E4970 /* TestAPIManager.swift */; };
 		1051D22524813F66008E4970 /* TestGeneralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22424813F65008E4970 /* TestGeneralRequest.swift */; };
 		1051D22724814B4D008E4970 /* TestDecodedJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22624814B4D008E4970 /* TestDecodedJWT.swift */; };
@@ -339,6 +340,7 @@
 		1050A952248FE3F800E84A6D /* RequestButtonStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestButtonStyleManager.swift; sourceTree = "<group>"; };
 		1050A954248FE5A900E84A6D /* AddCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardButton.swift; sourceTree = "<group>"; };
 		1050A956248FE61800E84A6D /* AddCardButtonStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardButtonStyleManager.swift; sourceTree = "<group>"; };
+		1050A958249000A300E84A6D /* STCardReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STCardReference.swift; sourceTree = "<group>"; };
 		1051D220247FEE0F008E4970 /* TestAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPIManager.swift; sourceTree = "<group>"; };
 		1051D22424813F65008E4970 /* TestGeneralRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeneralRequest.swift; sourceTree = "<group>"; };
 		1051D22624814B4D008E4970 /* TestDecodedJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDecodedJWT.swift; sourceTree = "<group>"; };
@@ -691,6 +693,7 @@
 			children = (
 				08C31B02246EA25300595B21 /* JWTResponseObject.swift */,
 				089B41DE246D5ECB00F70764 /* RequestObject.swift */,
+				1050A958249000A300E84A6D /* STCardReference.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1365,6 +1368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1050A959249000A300E84A6D /* STCardReference.swift in Sources */,
 				089B41CA246D4CB700F70764 /* APIResponse.swift in Sources */,
 				0830B390247552E400410FC5 /* Bundle.swift in Sources */,
 				105D3BDB248E54FB00CF1ECC /* URLSession.swift in Sources */,

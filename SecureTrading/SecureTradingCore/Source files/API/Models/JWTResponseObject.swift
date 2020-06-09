@@ -53,6 +53,8 @@
         return ResponseSettleStatus(rawValue: settleStatus?.intValue ?? -1) ?? .error
     }
 
+    @objc public let cardReference: STCardReference?
+
     @objc public var errorDetails: ResponseErrorDetail {
         // confirmed with ST, error data will only have max 1 element at the time,
         // even when there are multiple errors
@@ -89,6 +91,11 @@
             settleStatus = nil
         }
         transactionReference = try container.decodeIfPresent(String.self, forKey: .transactionReference)
+        if let maskedPan = try container.decodeIfPresent(String.self, forKey: .maskedPan), let paymentDescription = try container.decodeIfPresent(String.self, forKey: .paymentDescription), let reference = transactionReference {
+            cardReference = STCardReference(reference: reference, cardType: paymentDescription, pan: maskedPan)
+        } else {
+            cardReference = nil
+        }
         if let type = try container.decodeIfPresent(String.self, forKey: .requestTypeDescription), let typeDescription = TypeDescription(rawValue: type) {
             requestTypeDescription = typeDescription
         } else {
@@ -117,5 +124,7 @@ private extension JWTResponseObject {
         case settleStatus = "settlestatus"
         case transactionReference = "transactionreference"
         case requestTypeDescription = "requesttypedescription"
+        case maskedPan = "maskedpan"
+        case paymentDescription = "paymenttypedescription"
     }
 }
