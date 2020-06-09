@@ -31,6 +31,16 @@ import Foundation
         #endif
     }
 
+    // MARK: Timeouts
+    /// The maximum number a request will retry
+    private let maxNumberOfRetries: Int = 20
+    /// The maximum time interval in seconds a request will retry
+    /// depending on what will happen first, number of retries or time limit
+    private let maxIntervalForRetries: TimeInterval = 40
+    /// The maximum time allowed in seconds for request to return a response
+    /// Set on URLSession
+    private let maxRequestTime: TimeInterval = 5
+
     /// sdk release version
     private var sdkVersion: String {
         return Bundle(for: DefaultAPIManager.self).releaseVersionNumber ?? ""
@@ -56,7 +66,11 @@ import Foundation
     @objc public init(gatewayType: GatewayType, username: String) {
         self.username = username
         let configuration = DefaultAPIClientConfiguration(scheme: .https, host: gatewayType.host)
-        self.apiClient = DefaultAPIClient(configuration: configuration)
+
+        // configure URLSession and set time limit for request
+        let session = URLSession.shared
+        session.configuration.timeoutIntervalForResource = maxRequestTime
+        self.apiClient = DefaultAPIClient(configuration: configuration, urlSession: session)
     }
 
     // MARK: Functions
@@ -69,7 +83,9 @@ import Foundation
     ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     public func makeGeneralRequest(jwt: String, request: RequestObject, success: @escaping ((_ jwtResponse: JWTResponseObject, _ jwt: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, versionInfo: self.versionInfo, requests: [request])
-        self.apiClient.perform(request: generalRequest) { result in
+        self.apiClient.perform(request: generalRequest,
+                               maxRetries: maxNumberOfRetries,
+                               maxRetryInterval: maxIntervalForRetries) { result in
             switch result {
             case let .success(response):
                 success(response.jwtResponses.first!, jwt)
@@ -99,7 +115,9 @@ import Foundation
     ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, versionInfo: self.versionInfo, requests: requests)
-        self.apiClient.perform(request: generalRequest) { result in
+        self.apiClient.perform(request: generalRequest,
+                               maxRetries: maxNumberOfRetries,
+                               maxRetryInterval: maxIntervalForRetries) { result in
             switch result {
             case let .success(response):
                 success(response.jwtResponses, jwt)

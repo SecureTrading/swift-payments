@@ -119,6 +119,7 @@
 		1051D22724814B4D008E4970 /* TestDecodedJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22624814B4D008E4970 /* TestDecodedJWT.swift */; };
 		1051D229248157EF008E4970 /* TestGeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D228248157EF008E4970 /* TestGeneralResponse.swift */; };
 		105492E72484E3C000E545E4 /* TestRequestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105492E62484E3C000E545E4 /* TestRequestObject.swift */; };
+		105D3BDB248E54FB00CF1ECC /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105D3BDA248E54FB00CF1ECC /* URLSession.swift */; };
 		1092CF482476CA1F0002B2E8 /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1092CF3F2476CA1F0002B2E8 /* SecureTradingCard.framework */; platformFilter = ios; };
 		1092CF4F2476CA1F0002B2E8 /* SecureTradingCard.h in Headers */ = {isa = PBXBuildFile; fileRef = 1092CF412476CA1F0002B2E8 /* SecureTradingCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1092CF5A2476CAFF0002B2E8 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1092CF592476CAFF0002B2E8 /* CardType.swift */; };
@@ -329,6 +330,7 @@
 		1051D22624814B4D008E4970 /* TestDecodedJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDecodedJWT.swift; sourceTree = "<group>"; };
 		1051D228248157EF008E4970 /* TestGeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeneralResponse.swift; sourceTree = "<group>"; };
 		105492E62484E3C000E545E4 /* TestRequestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRequestObject.swift; sourceTree = "<group>"; };
+		105D3BDA248E54FB00CF1ECC /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		1092CF3F2476CA1F0002B2E8 /* SecureTradingCard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1092CF412476CA1F0002B2E8 /* SecureTradingCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCard.h; sourceTree = "<group>"; };
 		1092CF422476CA1F0002B2E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -644,6 +646,7 @@
 				089B41CF246D4E4B00F70764 /* Dictionary.swift */,
 				089B41D6246D536600F70764 /* NSError.swift */,
 				0830B38F247552E400410FC5 /* Bundle.swift */,
+				105D3BDA248E54FB00CF1ECC /* URLSession.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1335,6 +1338,7 @@
 			files = (
 				089B41CA246D4CB700F70764 /* APIResponse.swift in Sources */,
 				0830B390247552E400410FC5 /* Bundle.swift in Sources */,
+				105D3BDB248E54FB00CF1ECC /* URLSession.swift in Sources */,
 				08EF7CFD2462ABF1008B5F3E /* DefaultAPIClient.swift in Sources */,
 				08C31B01246EA15100595B21 /* JWTBodyResponse.swift in Sources */,
 				1099519F24863DE400E8E401 /* APIMocks.swift in Sources */,

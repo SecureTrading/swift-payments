@@ -27,7 +27,7 @@ final class MockAPIClient: APIClient {
         return MockAPIClientConfiguration()
     }
     
-    func perform<Request>(request: Request, completion: @escaping (Result<Request.Response, APIClientError>) -> Void) where Request: APIRequest {
+    func perform<Request>(request: Request, maxRetries: Int = 20, maxRetryInterval: TimeInterval = 40, completion: @escaping (Result<Request.Response, APIClientError>) -> Void) where Request: APIRequest {
         // Empty by design
     }
     

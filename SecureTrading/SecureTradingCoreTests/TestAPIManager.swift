@@ -8,7 +8,19 @@ import XCTest
 
 class TestAPIManager: XCTestCase {
     var api: DefaultAPIClient!
-    
+
+    func setAPIClientMock(withRequestTimeout: TimeInterval = 40, resourceTimeout: TimeInterval = 60) -> DefaultAPIClient {
+        let configuration = DefaultAPIClientConfiguration(
+            scheme: .https,
+            host: GatewayType.eu.host)
+        let config = URLSessionConfiguration.default
+        config.protocolClasses = [URLProtocolMock.self]
+        config.timeoutIntervalForResource = resourceTimeout
+        config.timeoutIntervalForRequest = withRequestTimeout
+        let session = URLSession(configuration: config)
+        return DefaultAPIClient(configuration: configuration, urlSession: session)
+    }
+
     override func setUp() {
         super.setUp()
         let configuration = DefaultAPIClientConfiguration(
@@ -190,5 +202,110 @@ class TestAPIManager: XCTestCase {
         let given = DefaultAPIManager(gatewayType: .eu, username: "st").versionInfo
         let expected = "MSDK::swift-5.2::0.0.1::iOS13.4.0"
         XCTAssertEqual(given, expected)
+    }
+    func test_requestRetry10timesForTimeout() throws {
+        let expectation = XCTestExpectation(description: "Expectation: \(#function)")
+        let request = EmptyRequestMock()
+        let expectedNumberOfRetries: Int = 10
+        var retryNumber: Int = 0
+        URLProtocolMock.requestHandler = { request in
+            retryNumber += 1
+            throw URLError(URLError.timedOut)
+        }
+        api.perform(request: request, maxRetries: expectedNumberOfRetries) { (result) in
+            switch result {
+            case .failure(let e):
+                XCTAssertEqual(expectedNumberOfRetries, retryNumber)
+                XCTAssertEqual(e.foundationError.code, APIClientError.inaccessible.foundationError.code)
+            case .success:
+                XCTFail("Should not fail")
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1.0)
+    }
+    func test_requestRetry10timesForCannotFindHost() throws {
+        let expectation = XCTestExpectation(description: "Expectation: \(#function)")
+        let request = EmptyRequestMock()
+        let expectedNumberOfRetries: Int = 10
+        var retryNumber: Int = 0
+        URLProtocolMock.requestHandler = { request in
+            retryNumber += 1
+            throw URLError(URLError.cannotFindHost)
+        }
+        api.perform(request: request, maxRetries: expectedNumberOfRetries) { (result) in
+            switch result {
+            case .failure(let e):
+                XCTAssertEqual(expectedNumberOfRetries, retryNumber)
+                XCTAssertEqual(e.foundationError.code, APIClientError.inaccessible.foundationError.code)
+            case .success:
+                XCTFail("Should not fail")
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1.0)
+    }
+    func test_requestRetry10timesForCannotConnectToHost() throws {
+        let expectation = XCTestExpectation(description: "Expectation: \(#function)")
+        let request = EmptyRequestMock()
+        let expectedNumberOfRetries: Int = 10
+        var retryNumber: Int = 0
+        URLProtocolMock.requestHandler = { request in
+            retryNumber += 1
+            throw URLError(URLError.cannotConnectToHost)
+        }
+        api.perform(request: request, maxRetries: expectedNumberOfRetries) { (result) in
+            switch result {
+            case .failure(let e):
+                XCTAssertEqual(expectedNumberOfRetries, retryNumber)
+                XCTAssertEqual(e.foundationError.code, APIClientError.inaccessible.foundationError.code)
+            case .success:
+                XCTFail("Should not fail")
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1.0)
+    }
+    func test_requestRetry10timesForNetworkConnectionLost() throws {
+        let expectation = XCTestExpectation(description: "Expectation: \(#function)")
+        let request = EmptyRequestMock()
+        let expectedNumberOfRetries: Int = 10
+        var retryNumber: Int = 0
+        URLProtocolMock.requestHandler = { request in
+            retryNumber += 1
+            throw URLError(URLError.networkConnectionLost)
+        }
+        api.perform(request: request, maxRetries: expectedNumberOfRetries) { (result) in
+            switch result {
+            case .failure(let e):
+                XCTAssertEqual(expectedNumberOfRetries, retryNumber)
+                XCTAssertEqual(e.foundationError.code, APIClientError.inaccessible.foundationError.code)
+            case .success:
+                XCTFail("Should not fail")
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1.0)
+    }
+    func test_requestRetry10timesForDNSLookupFailed() throws {
+        let expectation = XCTestExpectation(description: "Expectation: \(#function)")
+        let request = EmptyRequestMock()
+        let expectedNumberOfRetries: Int = 10
+        var retryNumber: Int = 0
+        URLProtocolMock.requestHandler = { request in
+            retryNumber += 1
+            throw URLError(URLError.dnsLookupFailed)
+        }
+        api.perform(request: request, maxRetries: expectedNumberOfRetries) { (result) in
+            switch result {
+            case .failure(let e):
+                XCTAssertEqual(expectedNumberOfRetries, retryNumber)
+                XCTAssertEqual(e.foundationError.code, APIClientError.inaccessible.foundationError.code)
+            case .success:
+                XCTFail("Should not fail")
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1.0)
     }
 }

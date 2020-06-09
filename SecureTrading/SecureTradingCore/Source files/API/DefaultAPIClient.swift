@@ -14,9 +14,6 @@ final class DefaultAPIClient: APIClient {
     /// An instance of url session perfoming requests.
     private let urlSession: URLSession
 
-    /// A range of acceptable status codes.
-    private let defaultAcceptableStatusCodes = 200...299
-
     /// Default HTTP request headers.
     private var defaultRequestHeaders: [String: String] {
         return [:]
@@ -29,7 +26,7 @@ final class DefaultAPIClient: APIClient {
     /// - Parameters:
     ///   - configuration: A base configuration of the client
     ///   - urlSession: URL session as a main interface for performing requests.
-    init(configuration: APIClientConfiguration, urlSession: URLSession = .shared) {
+    init(configuration: APIClientConfiguration, urlSession: URLSession) {
         self.configuration = configuration
         self.urlSession = urlSession
     }
@@ -37,7 +34,7 @@ final class DefaultAPIClient: APIClient {
     // MARK: Functions
 
     /// - SeeAlso: APIClient.perform(request:completion:)
-    func perform<Request>(request: Request, completion: @escaping (Result<Request.Response, APIClientError>) -> Void) where Request: APIRequest {
+    func perform<Request>(request: Request, maxRetries: Int = 5, maxRetryInterval: TimeInterval = 40, completion: @escaping (Result<Request.Response, APIClientError>) -> Void) where Request: APIRequest {
         // Create convenience completion closures that will be reused later.
         let resolveSuccess: (Request.Response) -> Void = { response in
             let result: Result<Request.Response, APIClientError> = .success(response)
@@ -70,6 +67,8 @@ final class DefaultAPIClient: APIClient {
                 }
             } catch let err {
                 do {
+                    // Tries to parse response as JSON in the case of JWT parsing failure
+                    // this happens when JWT has invalid or missing field, like iss
                     // check if has error and resolve failure
                     let responseError = try JSONDecoder().decode(ResponseError.self, from: data)
                     resolveFailure(.responseParseError(responseError.error), data)
@@ -89,58 +88,35 @@ final class DefaultAPIClient: APIClient {
                 print(request.debugDescription)
             }
 
-            // Send a built request.
-            urlSession.dataTask(with: builtRequest) { [weak self] data, response, error in
-
+            // perform the network request and retry automatically if needed
+            urlSession.perform(builtRequest, maxRetries: maxRetries, maxRetryInterval: maxRetryInterval) { [weak self] dataResult in
                 // If API client instance doesn't exist, return.
                 guard let self = self else {
                     return
                 }
 
-                // If there was an error, resolve failure immediately.
-                if let error = error {
-                    resolveFailure(.connectionError(error), data)
-                    return
-                }
-
-                guard !request.isNoContentResponse else {
-                    parseClosure("{ }".data(using: .utf8)!)
-                    return
-                }
-
-                // If the response is invalid, resolve failure immediately.
-                guard let response = response as? HTTPURLResponse else {
-                    resolveFailure(.responseValidationError(.missingResponse), data)
-                    return
-                }
-
-                // If data is missing, resolve failure immediately. Missing
-                // data is not the same as zero-width data – the former is
-                // considered erroreus.
-                guard let data = data else {
-                    resolveFailure(.responseValidationError(.missingData), nil)
-                    return
-                }
-
-                // Validate against acceptable status codes.
-                guard self.defaultAcceptableStatusCodes.contains(response.statusCode) else {
-                    let validationError = APIClientError.responseValidationError(.unacceptableStatusCode(actual: response.statusCode, expected: self.defaultAcceptableStatusCodes))
-                    resolveFailure(validationError, data)
-                    return
-                }
-
-                // Print to console if configured.
-                if self.configuration.printResponses {
-                    print("------------------------------")
-                    debugPrint(builtRequest.debugDescription)
-                    do {
-                        debugPrint(try JSONSerialization.jsonObject(with: data))
-                    } catch {
-                        print("Encoutered an error when serializing json object: \(error)")
+                // check response and parse it appropriately
+                switch dataResult {
+                case .success(let data):
+                    guard !request.isNoContentResponse else {
+                        parseClosure("{ }".data(using: .utf8)!)
+                        return
                     }
+                    // Print to console if configured.
+                    if self.configuration.printResponses {
+                        print("------------------------------")
+                        debugPrint(builtRequest.debugDescription)
+                        do {
+                            debugPrint(try JSONSerialization.jsonObject(with: data))
+                        } catch {
+                            print("Encoutered an error when serializing json object: \(error)")
+                        }
+                    }
+                    parseClosure(data)
+                case .failure(let networkError):
+                    resolveFailure(networkError, nil)
                 }
-                parseClosure(data)
-            }.resume()
+            }
         } catch {
             resolveFailure(.requestBuildError(error), nil)
         }
