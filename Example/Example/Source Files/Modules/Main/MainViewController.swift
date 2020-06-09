@@ -48,10 +48,23 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
             self.eventTriggered?(.didTapShowDropInController(jwt))
         }
+        customView.accountCheckRequest = { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.makeAccountCheckRequest()
+        }
+        customView.accountCheckWithAuthRequest = { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.makeAccountCheckWithAuthRequest()
+        }
 
         viewModel.showAuthSuccess = { [weak self] _ in
             guard let self = self else { return }
             self.showAlert(message: "successful payment")
+        }
+
+        viewModel.showRequestSuccess = { [weak self] _ in
+            guard let self = self else { return }
+            self.showAlert(message: "The request has been successfully completed")
         }
 
         viewModel.showAuthError = { [weak self] error in

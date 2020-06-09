@@ -31,6 +31,16 @@ final class MainView: WhiteBackgroundBaseView {
         set { showDropInControllerButton.onTap = newValue }
     }
 
+    var accountCheckRequest: (() -> Void)? {
+        get { return makeAccountCheckRequestButton.onTap }
+        set { makeAccountCheckRequestButton.onTap = newValue }
+    }
+
+    var accountCheckWithAuthRequest: (() -> Void)? {
+        get { return makeAccountCheckWithAuthRequestButton.onTap }
+        set { makeAccountCheckWithAuthRequestButton.onTap = newValue }
+    }
+
     private let makeAuthRequestButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
@@ -66,8 +76,28 @@ final class MainView: WhiteBackgroundBaseView {
         return button
     }()
 
+    private let makeAccountCheckRequestButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
+        button.setTitle(Localizable.MainView.makeAccountCheckRequestButton.text, for: .normal)
+        return button
+    }()
+
+    private let makeAccountCheckWithAuthRequestButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
+        button.setTitle(Localizable.MainView.makeAccountCheckWithAuthRequestButton.text, for: .normal)
+        return button
+    }()
+
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [showTestMainScreenButton, showTestMainFlowButton, makeAuthRequestButton, showSingleInputViewsButton, showDropInControllerButton])
+        let stackView = UIStackView(arrangedSubviews: [showTestMainScreenButton,
+                                                       showTestMainFlowButton,
+                                                       makeAuthRequestButton,
+                                                       showSingleInputViewsButton,
+                                                       showDropInControllerButton,
+                                                       makeAccountCheckRequestButton,
+                                                       makeAccountCheckWithAuthRequestButton])
         stackView.axis = .vertical
         stackView.spacing = 30
         stackView.alignment = .fill
@@ -98,5 +128,7 @@ private extension Localizable {
         case makeAuthRequestButton
         case showSingleInputViewsButton
         case showDropInControllerButton
+        case makeAccountCheckRequestButton
+        case makeAccountCheckWithAuthRequestButton
     }
 }
