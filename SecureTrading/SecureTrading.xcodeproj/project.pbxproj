@@ -56,6 +56,8 @@
 		08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */; };
 		08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3C2469591400C8F90A /* ViewModelFactory.swift */; };
 		08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */; };
+		08648A4D248FA8C300EE1E95 /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */; };
+		08648A4E248FA8C300EE1E95 /* CardinalMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		08694877246924F900F625D0 /* TestMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694876246924F900F625D0 /* TestMainViewModel.swift */; };
 		08694879246925EA00F625D0 /* TestMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694878246925EA00F625D0 /* TestMainViewController.swift */; };
 		0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869487A246926FE00F625D0 /* TestMainFlowController.swift */; };
@@ -134,7 +136,6 @@
 		109951A524867E9400E8E401 /* TextCVCInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A424867E9400E8E401 /* TextCVCInputView.swift */; };
 		109951A724867F2B00E8E401 /* TestCardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A624867F2B00E8E401 /* TestCardInputView.swift */; };
 		109951A92486A53A00E8E401 /* TestCardTypeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A82486A53A00E8E401 /* TestCardTypeContainer.swift */; };
-		10B5B82D2472B925009CE3A8 /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,6 +204,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				08648A4E248FA8C300EE1E95 /* CardinalMobile.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +262,7 @@
 		08639C3A246957CF00C8F90A /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		08639C3C2469591400C8F90A /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBackgroundBaseView.swift; sourceTree = "<group>"; };
+		08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CardinalMobile.framework; sourceTree = "<group>"; };
 		08694876246924F900F625D0 /* TestMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainViewModel.swift; sourceTree = "<group>"; };
 		08694878246925EA00F625D0 /* TestMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainViewController.swift; sourceTree = "<group>"; };
 		0869487A246926FE00F625D0 /* TestMainFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainFlowController.swift; sourceTree = "<group>"; };
@@ -346,7 +349,6 @@
 		109951A424867E9400E8E401 /* TextCVCInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCVCInputView.swift; sourceTree = "<group>"; };
 		109951A624867F2B00E8E401 /* TestCardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardInputView.swift; sourceTree = "<group>"; };
 		109951A82486A53A00E8E401 /* TestCardTypeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardTypeContainer.swift; sourceTree = "<group>"; };
-		10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CardinalMobile.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,7 +388,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10B5B82D2472B925009CE3A8 /* CardinalMobile.framework in Frameworks */,
+				08648A4D248FA8C300EE1E95 /* CardinalMobile.framework in Frameworks */,
 				104CFB28246ECE3A00D7C76D /* SecureTradingCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -940,7 +942,7 @@
 		10B5B82B2472B870009CE3A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				10B5B82C2472B8FA009CE3A8 /* CardinalMobile.framework */,
+				08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
