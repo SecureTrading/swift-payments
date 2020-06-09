@@ -41,6 +41,12 @@ final class MainView: WhiteBackgroundBaseView {
         set { makeAccountCheckWithAuthRequestButton.onTap = newValue }
     }
 
+    var storeCardReferenceRequest: (() -> Void)? {
+        get { return storeCardReferenceButton.onTap }
+        set { storeCardReferenceButton.onTap = newValue }
+    }
+
+    // MARK: Action Buttons
     private let makeAuthRequestButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
@@ -90,14 +96,20 @@ final class MainView: WhiteBackgroundBaseView {
         return button
     }()
 
+    private let storeCardReferenceButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
+        button.setTitle(Localizable.MainView.storeCardReferenceButton.text, for: .normal)
+        return button
+    }()
+
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [showTestMainScreenButton,
-                                                       showTestMainFlowButton,
-                                                       makeAuthRequestButton,
+        let stackView = UIStackView(arrangedSubviews: [makeAuthRequestButton,
                                                        showSingleInputViewsButton,
                                                        showDropInControllerButton,
                                                        makeAccountCheckRequestButton,
-                                                       makeAccountCheckWithAuthRequestButton])
+                                                       makeAccountCheckWithAuthRequestButton,
+                                                       storeCardReferenceButton])
         stackView.axis = .vertical
         stackView.spacing = 30
         stackView.alignment = .fill
@@ -130,5 +142,6 @@ private extension Localizable {
         case showDropInControllerButton
         case makeAccountCheckRequestButton
         case makeAccountCheckWithAuthRequestButton
+        case storeCardReferenceButton
     }
 }

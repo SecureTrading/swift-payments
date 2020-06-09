@@ -93,6 +93,8 @@ final class MainViewModel {
         makeRequest(with: jwt, request: authRequest)
     }
 
+    
+
     private func makeRequest(with jwt: String, request: RequestObject) {
         apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
