@@ -1,7 +1,6 @@
 import XCTest
 
 open class PaymentPage {
-
     // MARK: Actions
     public func fillPaymentForm(cardNumber: String, month: String, cvvInput: String) {
         fillCardNumberInput(cardNumber: cardNumber)

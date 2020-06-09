@@ -1,7 +1,6 @@
 import XCTest
 
 extension XCTestCase {
-    
     /// Take screenshot method
     /// - Parameters:
     ///   - element: element from current view

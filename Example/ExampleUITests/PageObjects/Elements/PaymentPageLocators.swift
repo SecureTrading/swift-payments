@@ -2,13 +2,12 @@ import Foundation
 import XCTest
 
 enum PaymentPageLocators: String {
-
     //ToDo - Change locators id
     case cardNumberInput = "st-card-number-input-textfield"
     case monthInput = "st-expiration-date-input-month-textfield"
     case yearInput = "st-expiration-date-input-year-textfield"
     case cvvInput = "st-security-code-input-textfield"
-    case submitButton = "submitButton"
+    case submitButton = "Pay"
     case applePayButton = "applePayButton"
     case creditCardValidationMessage = "st-card-number-message"
     case expDateValidationMessage = "st-expiration-date-message"
