@@ -67,6 +67,8 @@ final class DefaultAPIClient: APIClient {
                 }
             } catch let err {
                 do {
+                    // Tries to parse response as JSON in the case of JWT parsing failure
+                    // this happens when JWT has invalid or missing field, like iss
                     // check if has error and resolve failure
                     let responseError = try JSONDecoder().decode(ResponseError.self, from: data)
                     resolveFailure(.responseParseError(responseError.error), data)
@@ -85,14 +87,15 @@ final class DefaultAPIClient: APIClient {
                 print("------------------------------")
                 print(request.debugDescription)
             }
-            // perform the network request
-            // on failure, retry for specified number of times
-            urlSession.perform(builtRequest, maxRetries: maxRetries, maxRetryInterval: maxRetryInterval) { [weak self] (dataResult) in
+
+            // perform the network request and retry automatically if needed
+            urlSession.perform(builtRequest, maxRetries: maxRetries, maxRetryInterval: maxRetryInterval) { [weak self] dataResult in
                 // If API client instance doesn't exist, return.
                 guard let self = self else {
                     return
                 }
 
+                // check response and parse it appropriately
                 switch dataResult {
                 case .success(let data):
                     guard !request.isNoContentResponse else {

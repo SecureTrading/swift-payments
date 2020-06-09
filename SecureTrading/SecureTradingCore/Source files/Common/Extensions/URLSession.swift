@@ -6,6 +6,9 @@
 import Foundation
 
 /// Modified URL session extension by Alley for retrying data tasks
+/// with given maximum number of retries and maximum time interval for all retries
+/// Failure is casted into APIClientError
+/// - SeeAlso: APIClientError.swift
 public extension URLSession {
     ///    Default number of retries to attempt on each `URLRequest` instance. To customize, supply desired value to `perform()`
     static var maximumNumberOfRetries: Int = 20
@@ -18,7 +21,8 @@ public extension URLSession {
     /// If any authentication needs to be done, it's handled internally by this methods and its derivatives.
     /// - Parameters:
     ///   - urlRequest: URLRequest instance to execute.
-    ///   - maxRetries: Number of automatic retries (default is 10).
+    ///   - maxRetries: Number of automatic retries (default is 20).
+    ///   - maxRetryInterval: Maximum time in seconds allowed for all retry attemps
     ///   - callback: Closure to return the result of the request's execution.
     func perform(_ urlRequest: URLRequest,
                  maxRetries: Int = URLSession.maximumNumberOfRetries,
@@ -33,8 +37,8 @@ public extension URLSession {
 }
 
 private extension URLSession {
-    ///    Helper type which groups `URLRequest` (input), `Callback` from the caller (output)
-    ///    along with helpful processing properties, like number of retries.
+    /// Helper type which groups `URLRequest` (input), `Callback` from the caller (output)
+    /// along with helpful processing properties, like number of retries.
     typealias NetworkRequest = (
         urlRequest: URLRequest,
         currentRetries: Int,
@@ -43,7 +47,7 @@ private extension URLSession {
         callback: Callback
     )
 
-    ///    Extra-step where `URLRequest`'s authorization should be handled, before actually performing the URLRequest in `execute()`
+    /// Extra-step where `URLRequest`'s authorization should be handled, before actually performing the URLRequest in `execute()`
     func authenticate(_ networkRequest: NetworkRequest) {
         let currentRetries = networkRequest.currentRetries
         let max = networkRequest.maxRetries
@@ -53,7 +57,7 @@ private extension URLSession {
         // or timeout for all retries exceeded retry until
         if (currentRetries >= max) || (Date().timeIntervalSince1970 > networkRequest.retryUntil) {
             //    Too many unsuccessful attemps
-            callback( .failure( .inaccessible ) )
+            callback(.failure(.inaccessible))
             return
         }
         //    NOTE: this is the place to handle OAuth2
@@ -63,7 +67,7 @@ private extension URLSession {
         execute(networkRequest)
     }
 
-    ///    Creates the instance of `URLSessionDataTask`, performs it then lightly processes the response before calling `validate`.
+    /// Creates the instance of `URLSessionDataTask`, performs it then lightly processes the response before calling `validate`.
     func execute(_ networkRequest: NetworkRequest) {
         let urlRequest = networkRequest.urlRequest
 
@@ -74,13 +78,15 @@ private extension URLSession {
         task.resume()
     }
 
-    ///    Process results of `URLSessionDataTask` and converts it into `DataResult` instance
+    /// Process results of `URLSessionDataTask` and converts it into `DataResult` instance
+    /// Also performs a validation on response and received data
     func process(_ data: Data?, _ urlResponse: URLResponse?, _ error: Error?, for networkRequest: NetworkRequest) -> DataResult {
+        // Check for network specific errors, like cannot connect or dns lookup
         if let urlError = error as? URLError {
-            return .failure( APIClientError.urlError(urlError) )
+            return .failure(APIClientError.urlError(urlError))
 
         } else if let otherError = error {
-            return .failure( APIClientError.connectionError(otherError) )
+            return .failure(APIClientError.connectionError(otherError))
         }
 
         // If the response is invalid, resolve failure immediately.
@@ -88,21 +94,22 @@ private extension URLSession {
             return .failure(APIClientError.responseValidationError(.missingResponse))
         }
 
+        // Only status codes in this range are treated as success
         let defaultAcceptableStatusCodes = 200...299
         guard defaultAcceptableStatusCodes.contains(httpURLResponse.statusCode) else {
-            return .failure( APIClientError.responseValidationError(.unacceptableStatusCode(actual: httpURLResponse.statusCode, expected: defaultAcceptableStatusCodes)))
+            return .failure(APIClientError.responseValidationError(.unacceptableStatusCode(actual: httpURLResponse.statusCode, expected: defaultAcceptableStatusCodes)))
         }
 
         // If data is missing, resolve failure immediately. Missing
         // data is not the same as zero-width data – the former is
         // considered erroreus.
         guard let data = data else {
-            return .failure( APIClientError.responseValidationError(.missingData) )
+            return .failure(APIClientError.responseValidationError(.missingData))
         }
         return .success(data)
     }
 
-    ///    Checks the result of URLSessionDataTask and if there were errors, should the URLRequest be retried.
+    /// Checks the result of URLSessionDataTask and if there were errors, should the URLRequest be retried.
     func validate(_ result: DataResult, for networkRequest: NetworkRequest) {
         let callback = networkRequest.callback
 
@@ -121,7 +128,7 @@ private extension URLSession {
                     newRequest.currentRetries += 1
                     //    try again, going through authentication again
                     //    (since it's quite possible that Auth token or whatever has expired)
-                    self.authenticate(newRequest)
+                    authenticate(newRequest)
                     return
                 }
             }

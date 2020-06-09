@@ -135,6 +135,7 @@ public enum APIClientError: HumanReadableError {
     /// expose error for objc
     var foundationError: NSError {
         switch self {
+            // compose more detailed and descriptive error
         case .responseValidationError(let responseError):
             let localizedError = humanReadableDescription + " " + responseError.localizedDescription
             return NSError(domain: NSError.domain, code: responseError.errorCode, userInfo: [
@@ -163,9 +164,11 @@ public enum APIClientError: HumanReadableError {
 
 /// Contains API response validation errors.
 ///
-/// - unacceptableStatusCode: Thrown if response's status code is acceptable.
+/// - unacceptableStatusCode: Thrown if response's status code is not acceptable.
 /// - missingResponse: Thrown if response is missing.
 /// - missingData: Thrown if response is missing data.
+/// - mismatchedDescriptionTypes: Thrown when response type descriptions does not match request's ones
+/// - invalidField: Thrown when one of fields in JWT does not pass validation on gateway side
 public enum APIResponseValidationError: Error {
     case unacceptableStatusCode(actual: Int, expected: CountableClosedRange<Int>)
     case missingResponse
