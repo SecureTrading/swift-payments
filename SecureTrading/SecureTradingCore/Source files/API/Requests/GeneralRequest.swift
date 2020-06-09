@@ -58,12 +58,14 @@ struct GeneralRequest: APIRequestModel {
     func isValidAgainstResponse(_ response: APIResponse) -> Bool {
         // check if response type description is the same as request type description
         // most likely to be adjusted for request with multiple types, like auth and 3dsecure
-        guard let generalResponse = (response as? GeneralResponse)?.jwtResponses.first else { return true }
+        guard let generalResponses = (response as? GeneralResponse)?.jwtResponses else { return true }
         let allRequestTypes = requests.flatMap { $0.typeDescriptions }
         // check if types were provided in request
         guard !allRequestTypes.isEmpty else { return true }
-        let containedTypes = allRequestTypes.filter { generalResponse.requestTypeDescription(contains: $0) }
-        return containedTypes.count == allRequestTypes.count
+        let containedTypes = allRequestTypes.filter { type in
+            generalResponses.contains(where: {$0.requestTypeDescription(contains: type)})
+        }
+        return containedTypes == allRequestTypes
     }
 }
 
