@@ -41,9 +41,14 @@ final class MainView: WhiteBackgroundBaseView {
         set { makeAccountCheckWithAuthRequestButton.onTap = newValue }
     }
 
-    var storeCardReferenceRequest: (() -> Void)? {
-        get { return storeCardReferenceButton.onTap }
-        set { storeCardReferenceButton.onTap = newValue }
+    var addCardReferenceRequest: (() -> Void)? {
+        get { return addCardReferenceButton.onTap }
+        set { addCardReferenceButton.onTap = newValue }
+    }
+
+    var payWithWalletRequest: (() -> Void)? {
+        get { return payWithWalletButton.onTap }
+        set { payWithWalletButton.onTap = newValue }
     }
 
     // MARK: Action Buttons
@@ -96,10 +101,17 @@ final class MainView: WhiteBackgroundBaseView {
         return button
     }()
 
-    private let storeCardReferenceButton: UIButton = {
+    private let addCardReferenceButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle(Localizable.MainView.storeCardReferenceButton.text, for: .normal)
+        button.setTitle(Localizable.MainView.addCardReferenceButton.text, for: .normal)
+        return button
+    }()
+
+    private let payWithWalletButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
+        button.setTitle(Localizable.MainView.payWithWalletButton.text, for: .normal)
         return button
     }()
 
@@ -109,7 +121,8 @@ final class MainView: WhiteBackgroundBaseView {
                                                        showDropInControllerButton,
                                                        makeAccountCheckRequestButton,
                                                        makeAccountCheckWithAuthRequestButton,
-                                                       storeCardReferenceButton])
+                                                       addCardReferenceButton,
+                                                       payWithWalletButton])
         stackView.axis = .vertical
         stackView.spacing = 30
         stackView.alignment = .fill
@@ -142,6 +155,7 @@ private extension Localizable {
         case showDropInControllerButton
         case makeAccountCheckRequestButton
         case makeAccountCheckWithAuthRequestButton
-        case storeCardReferenceButton
+        case addCardReferenceButton
+        case payWithWalletButton
     }
 }

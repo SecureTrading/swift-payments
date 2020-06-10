@@ -61,6 +61,7 @@
 		104CFB03246EB1BC00D7C76D /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFB02246EB1BC00D7C76D /* AppLog.swift */; };
 		104CFB2F246ED0E300D7C76D /* SecureTrading3DSecure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104CFB2E246ED0E300D7C76D /* SecureTrading3DSecure.framework */; };
 		104CFB30246ED0E300D7C76D /* SecureTrading3DSecure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 104CFB2E246ED0E300D7C76D /* SecureTrading3DSecure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1050AB7F2490CB25001844BF /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB7E2490CB25001844BF /* Wallet.swift */; };
 		1098F3A1247CF4B300414F94 /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; };
 		1098F3A2247CF4B300414F94 /* SecureTradingCard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49F7F7945D41186C28F9061E /* libPods-ExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCB78E01AA2AEB4BE63CE4C /* libPods-ExampleTests.a */; };
@@ -164,6 +165,7 @@
 		104CFB00246EADA800D7C76D /* JWTHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTHelper.swift; sourceTree = "<group>"; };
 		104CFB02246EB1BC00D7C76D /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
 		104CFB2E246ED0E300D7C76D /* SecureTrading3DSecure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTrading3DSecure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1050AB7E2490CB25001844BF /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1286B23CF2544C71D88175C0 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CCB78E01AA2AEB4BE63CE4C /* libPods-ExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -255,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				080A321D2473C482002B7471 /* STClaims.swift */,
+				1050AB7E2490CB25001844BF /* Wallet.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -732,6 +735,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1050AB7F2490CB25001844BF /* Wallet.swift in Sources */,
 				08639C692469681E00C8F90A /* UICollectionView.swift in Sources */,
 				0845BF2A247EAF38008AD40F /* SingleInputViewsModel.swift in Sources */,
 				08639C6F2469681E00C8F90A /* ViewSetupable.swift in Sources */,

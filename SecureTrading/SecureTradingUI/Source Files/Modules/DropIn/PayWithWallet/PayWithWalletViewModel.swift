@@ -1,5 +1,5 @@
 //
-//  AddCardViewModel.swift
+//  PayWithWalletViewModel.swift
 //  SecureTradingUI
 //
 
@@ -9,7 +9,7 @@ import SecureTradingCore
 #endif
 import Foundation
 
-final class AddCardViewModel {
+final class PayWithWalletViewModel {
     // MARK: Properties
 
     private let jwt: String
@@ -34,7 +34,8 @@ final class AddCardViewModel {
     /// - Parameter typeDescriptions: request types (AUTH, THREEDQUERY...)
     /// - Parameter gatewayType: gateway type (us or european)
     /// - Parameter username: merchant's username
-    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String) {
+    /// - Parameter cards: cards from wallet, provided by merchant
+    init(cards: [STCardReference], jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String) {
         self.jwt = jwt
         self.typeDescriptions = typeDescriptions
         self.apiManager = DefaultAPIManager(gatewayType: gatewayType, username: username)
@@ -82,16 +83,5 @@ final class AddCardViewModel {
                 self.showAuthError?(error.humanReadableDescription)
             }
         })
-    }
-
-    /// Validates all input views in form
-    /// - Parameter view: form view
-    /// - Returns: result of validation
-    @discardableResult
-    func validateForm(view: AddCardView) -> Bool {
-        let cardNumberValidationResult = view.cardNumberInput.validate(silent: false)
-        let expiryDateValidationResult = view.expiryDateInput.validate(silent: false)
-        let cvcValidationResult = view.cvcInput.validate(silent: false)
-        return cardNumberValidationResult && expiryDateValidationResult && cvcValidationResult
     }
 }

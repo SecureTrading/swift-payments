@@ -122,6 +122,9 @@
 		1050A955248FE5A900E84A6D /* AddCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A954248FE5A900E84A6D /* AddCardButton.swift */; };
 		1050A957248FE61800E84A6D /* AddCardButtonStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A956248FE61800E84A6D /* AddCardButtonStyleManager.swift */; };
 		1050A959249000A300E84A6D /* STCardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A958249000A300E84A6D /* STCardReference.swift */; };
+		1050AB822490CE58001844BF /* PayWithWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB812490CE58001844BF /* PayWithWalletView.swift */; };
+		1050AB842490CE6E001844BF /* PayWithWalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB832490CE6E001844BF /* PayWithWalletViewModel.swift */; };
+		1050AB862490CE86001844BF /* PayWithWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB852490CE86001844BF /* PayWithWalletViewController.swift */; };
 		1051D221247FEE0F008E4970 /* TestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D220247FEE0F008E4970 /* TestAPIManager.swift */; };
 		1051D22524813F66008E4970 /* TestGeneralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22424813F65008E4970 /* TestGeneralRequest.swift */; };
 		1051D22724814B4D008E4970 /* TestDecodedJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22624814B4D008E4970 /* TestDecodedJWT.swift */; };
@@ -341,6 +344,9 @@
 		1050A954248FE5A900E84A6D /* AddCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardButton.swift; sourceTree = "<group>"; };
 		1050A956248FE61800E84A6D /* AddCardButtonStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardButtonStyleManager.swift; sourceTree = "<group>"; };
 		1050A958249000A300E84A6D /* STCardReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STCardReference.swift; sourceTree = "<group>"; };
+		1050AB812490CE58001844BF /* PayWithWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWithWalletView.swift; sourceTree = "<group>"; };
+		1050AB832490CE6E001844BF /* PayWithWalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWithWalletViewModel.swift; sourceTree = "<group>"; };
+		1050AB852490CE86001844BF /* PayWithWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayWithWalletViewController.swift; sourceTree = "<group>"; };
 		1051D220247FEE0F008E4970 /* TestAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPIManager.swift; sourceTree = "<group>"; };
 		1051D22424813F65008E4970 /* TestGeneralRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeneralRequest.swift; sourceTree = "<group>"; };
 		1051D22624814B4D008E4970 /* TestDecodedJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDecodedJWT.swift; sourceTree = "<group>"; };
@@ -441,6 +447,7 @@
 		0818DE3D2486598700A8B25A /* DropIn */ = {
 			isa = PBXGroup;
 			children = (
+				1050AB802490CE31001844BF /* PayWithWallet */,
 				1050A949248FDAA900E84A6D /* AddCard */,
 				0818DE3E248659A800A8B25A /* DropInView.swift */,
 				0818DE40248659B800A8B25A /* DropInViewModel.swift */,
@@ -928,6 +935,16 @@
 			path = AddCard;
 			sourceTree = "<group>";
 		};
+		1050AB802490CE31001844BF /* PayWithWallet */ = {
+			isa = PBXGroup;
+			children = (
+				1050AB812490CE58001844BF /* PayWithWalletView.swift */,
+				1050AB832490CE6E001844BF /* PayWithWalletViewModel.swift */,
+				1050AB852490CE86001844BF /* PayWithWalletViewController.swift */,
+			);
+			path = PayWithWallet;
+			sourceTree = "<group>";
+		};
 		1092CF402476CA1F0002B2E8 /* SecureTradingCard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1413,6 +1430,7 @@
 				1050A957248FE61800E84A6D /* AddCardButtonStyleManager.swift in Sources */,
 				08639C3B246957CF00C8F90A /* ViewControllerFactory.swift in Sources */,
 				084E2A1924659B7B0040FB9D /* CustomBackNavigationController.swift in Sources */,
+				1050AB842490CE6E001844BF /* PayWithWalletViewModel.swift in Sources */,
 				0818DE3A24851BDE00A8B25A /* UITextField.swift in Sources */,
 				08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */,
 				084E29FB2465832C0040FB9D /* Colors.swift in Sources */,
@@ -1433,6 +1451,7 @@
 				08886ED0247B9D3300BC1637 /* DefaultSecureFormInputView.swift in Sources */,
 				084E2A10246599D90040FB9D /* NavigationFlowController.swift in Sources */,
 				0869488324692A7500F625D0 /* TestDetailsFlowController.swift in Sources */,
+				1050AB862490CE86001844BF /* PayWithWalletViewController.swift in Sources */,
 				08886EE3247C234800BC1637 /* StringUI.swift in Sources */,
 				084E2A03246585330040FB9D /* UICollectionView.swift in Sources */,
 				1050A953248FE3F800E84A6D /* RequestButtonStyleManager.swift in Sources */,
@@ -1462,6 +1481,7 @@
 				1050A955248FE5A900E84A6D /* AddCardButton.swift in Sources */,
 				08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */,
 				0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */,
+				1050AB822490CE58001844BF /* PayWithWalletView.swift in Sources */,
 				0869488124692A5600F625D0 /* TestDetailsViewController.swift in Sources */,
 				0818DE3C24851C2200A8B25A /* BackwardTextField.swift in Sources */,
 				08C1E8092489207E007496D9 /* DropInViewStyleManager.swift in Sources */,

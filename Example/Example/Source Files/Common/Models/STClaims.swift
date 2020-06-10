@@ -19,4 +19,5 @@ struct Payload: Codable {
     let pan: String?
     let expirydate: String?
     let securitycode: String?
+    let parenttransactionreference: String?
 }

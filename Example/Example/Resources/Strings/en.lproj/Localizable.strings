@@ -14,7 +14,8 @@ MainView.showSingleInputViewsButton = "show single input views";
 MainView.showDropInControllerButton = "show drop in view controller (make auth req)";
 MainView.makeAccountCheckRequestButton = "'Account check' request";
 MainView.makeAccountCheckWithAuthRequestButton = "'Account check & Auth' request";
-MainView.storeCardReferenceButton = "Store card";
+MainView.addCardReferenceButton = "Add card";
+MainView.payWithWalletButton = "Pay with saved card";
 
 Alerts.okButton = "Ok";
 

@@ -39,7 +39,8 @@ final class MainViewModel {
                                               baseamount: 1050,
                                               pan: nil,
                                               expirydate: nil,
-                                              securitycode: nil))
+                                              securitycode: nil,
+                                              parenttransactionreference: nil))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return nil }
         return jwt
@@ -54,7 +55,8 @@ final class MainViewModel {
                                               baseamount: 1100,
                                               pan: "4111111111111111",
                                               expirydate: "12/2022",
-                                              securitycode: "123"))
+                                              securitycode: "123",
+                                              parenttransactionreference: nil))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
         let authRequest = RequestObject(typeDescriptions: [.auth])
@@ -70,7 +72,8 @@ final class MainViewModel {
                                               baseamount: 1100,
                                               pan: "4111111111111111",
                                               expirydate: "12/2022",
-                                              securitycode: "123"))
+                                              securitycode: "123",
+                                              parenttransactionreference: nil))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
         let authRequest = RequestObject(typeDescriptions: [.accountCheck])
@@ -84,16 +87,16 @@ final class MainViewModel {
                                               sitereference: keys.merchantSiteReference,
                                               currencyiso3a: "GBP",
                                               baseamount: 1100,
-                                              pan: "4111111111111111",
-                                              expirydate: "12/2022",
-                                              securitycode: "123"))
+                                              pan: nil,
+                                              expirydate: nil,
+                                              securitycode: nil,
+                                              parenttransactionreference: "59-9-34731")
+            )
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
-        let authRequest = RequestObject(typeDescriptions: [.accountCheck, .auth])
+        let authRequest = RequestObject(typeDescriptions: [.auth])
         makeRequest(with: jwt, request: authRequest)
     }
-
-    
 
     private func makeRequest(with jwt: String, request: RequestObject) {
         apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _ in

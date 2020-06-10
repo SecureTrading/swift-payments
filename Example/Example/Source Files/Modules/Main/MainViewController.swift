@@ -12,7 +12,8 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         case didTapShowTestMainFlow
         case didTapShowSingleInputViews
         case didTapShowDropInController(String)
-        case didTapStoreCard(String)
+        case didTapAddCard(String)
+        case didTapPayWithWallet(String)
     }
 
     private var transparentNavigationBar: TransparentNavigationBar? { return navigationController?.navigationBar as? TransparentNavigationBar }
@@ -57,10 +58,15 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             guard let self = self else { return }
             self.viewModel.makeAccountCheckWithAuthRequest()
         }
-        customView.storeCardReferenceRequest = { [weak self] in
+        customView.addCardReferenceRequest = { [weak self] in
             guard let self = self else { return }
             guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
-            self.eventTriggered?(.didTapStoreCard(jwt))
+            self.eventTriggered?(.didTapAddCard(jwt))
+        }
+        customView.payWithWalletRequest = { [weak self] in
+            guard let self = self else { return }
+            guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
+            self.eventTriggered?(.didTapPayWithWallet(jwt))
         }
 
         viewModel.showAuthSuccess = { [weak self] _ in

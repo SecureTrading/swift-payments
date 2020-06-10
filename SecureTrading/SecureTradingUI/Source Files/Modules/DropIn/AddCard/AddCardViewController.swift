@@ -3,12 +3,15 @@
 //  SecureTradingUI
 //
 
+#if !COCOAPODS
+import SecureTradingCore
+#endif
 import UIKit
 
 final class AddCardViewController: BaseViewController<AddCardView, AddCardViewModel> {
     /// Enum describing events that can be triggered by this controller
     enum Event {
-        case added
+        case added(cardReference: STCardReference?)
     }
 
     /// Callback with triggered event
@@ -34,12 +37,12 @@ final class AddCardViewController: BaseViewController<AddCardView, AddCardViewMo
             }
         }
 
-        viewModel.showAuthSuccess = { [weak self] _ in
+        viewModel.showCardAddedSuccess = { [weak self] cardReference in
             guard let self = self else { return }
             self.customView.addCardButton.stopProcessing()
             self.showAlert(message: Localizable.AddCardViewController.cardAdded.text) { [weak self] _ in
                 guard let self = self else { return }
-                self.eventTriggered?(.added)
+                self.eventTriggered?(.added(cardReference: cardReference))
             }
         }
 
