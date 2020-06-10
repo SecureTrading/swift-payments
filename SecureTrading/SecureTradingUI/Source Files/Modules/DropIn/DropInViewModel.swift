@@ -42,7 +42,7 @@ final class DropInViewModel {
 
     // MARK: Api requests
 
-    /// makes payment transaction request
+    /// executes payment transaction request
     /// - Parameters:
     ///   - cardNumber: The long number printed on the front of the customer’s card.
     ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
@@ -84,6 +84,8 @@ final class DropInViewModel {
         })
     }
 
+    /// executes js init request - to get threeDInit (JWT token) to setup the Cardinal
+    /// - Parameter completion: closure with following parameters: cache token and JWT token
     func makeJSInitRequest(completion: @escaping ((String, String) -> Void)) {
 
         let jsInitRequest = RequestObject(typeDescriptions: [.jsInit])
@@ -103,7 +105,7 @@ final class DropInViewModel {
 
     }
 
-    // MARK: Flow
+    // MARK: Transaction flow
 
     func performTransaction(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
         guard typeDescriptions.contains(.threeDQuery) else {
