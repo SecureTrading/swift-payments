@@ -34,7 +34,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             }
         }
 
-        viewModel.showAuthSuccess = { [weak self] _ in
+        viewModel.showTransactionSuccess = { [weak self] _ in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             self.showAlert(message: Localizable.DropInViewController.successfulPayment.text) { [weak self] _ in
@@ -43,7 +43,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             }
         }
 
-        viewModel.showAuthError = { [weak self] error in
+        viewModel.showTransactionError = { [weak self] error in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             self.showAlert(message: error, completionHandler: nil)
