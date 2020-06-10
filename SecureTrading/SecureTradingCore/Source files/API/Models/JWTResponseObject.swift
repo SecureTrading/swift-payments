@@ -45,6 +45,10 @@
 
     @objc public let errorData: [String]?
 
+    @objc public let threeDInit: String?
+
+    @objc public let cacheToken: String?
+
     @objc public var responseErrorCode: ResponseErrorCode {
         return ResponseErrorCode(rawValue: errorCode) ?? .unknown
     }
@@ -94,6 +98,8 @@
         } else {
             requestTypeDescription = nil
         }
+        threeDInit = try container.decodeIfPresent(String.self, forKey: .threeDInit)
+        cacheToken = try container.decodeIfPresent(String.self, forKey: .cacheToken)
     }
 
     // MARK: Methods
@@ -117,5 +123,7 @@ private extension JWTResponseObject {
         case settleStatus = "settlestatus"
         case transactionReference = "transactionreference"
         case requestTypeDescription = "requesttypedescription"
+        case threeDInit = "threedinit"
+        case cacheToken = "cacheToken"
     }
 }
