@@ -124,6 +124,6 @@ private extension JWTResponseObject {
         case transactionReference = "transactionreference"
         case requestTypeDescription = "requesttypedescription"
         case threeDInit = "threedinit"
-        case cacheToken = "cacheToken"
+        case cacheToken = "cachetoken"
     }
 }
