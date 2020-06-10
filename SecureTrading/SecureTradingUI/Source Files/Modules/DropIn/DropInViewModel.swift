@@ -21,8 +21,8 @@ final class DropInViewModel {
 
     private var card: Card?
 
-    var showAuthSuccess: ((ResponseSettleStatus) -> Void)?
-    var showAuthError: ((String) -> Void)?
+    var showTransactionSuccess: ((ResponseSettleStatus) -> Void)?
+    var showTransactionError: ((String) -> Void)?
     var showValidationError: ((ResponseErrorDetail) -> Void)?
 
     // MARK: Initialization
@@ -40,9 +40,9 @@ final class DropInViewModel {
         self.apiManager = DefaultAPIManager(gatewayType: gatewayType, username: username)
     }
 
-    // MARK: Functions
+    // MARK: Api requests
 
-    /// makes payment transaction request
+    /// executes payment transaction request
     /// - Parameters:
     ///   - cardNumber: The long number printed on the front of the customer’s card.
     ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
@@ -59,9 +59,9 @@ final class DropInViewModel {
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:
-                self.showAuthSuccess?(responseObject.responseSettleStatus)
+                self.showTransactionSuccess?(responseObject.responseSettleStatus)
             default:
-                self.showAuthError?(responseObject.errorMessage)
+                self.showTransactionError?(responseObject.errorMessage)
             }
         }, failure: { [weak self] error in
             guard let self = self else { return }
@@ -72,17 +72,62 @@ final class DropInViewModel {
                     switch errorCode {
                     case .invalidPAN, .invalidSecurityCode, .invalidExpiryDate:
                         self.showValidationError?(errorCode)
-                    default: self.showAuthError?(error.humanReadableDescription)
+                    default: self.showTransactionError?(error.humanReadableDescription)
                     }
 
                 default:
-                    self.showAuthError?(error.humanReadableDescription)
+                    self.showTransactionError?(error.humanReadableDescription)
                 }
             default:
-                self.showAuthError?(error.humanReadableDescription)
+                self.showTransactionError?(error.humanReadableDescription)
             }
         })
     }
+
+    /// executes js init request - to get threeDInit (JWT token) to setup the Cardinal
+    /// - Parameter completion: closure with following parameters: cache token and JWT token
+    func makeJSInitRequest(completion: @escaping ((String, String) -> Void)) {
+
+        let jsInitRequest = RequestObject(typeDescriptions: [.jsInit])
+
+        self.apiManager.makeGeneralRequest(jwt: self.jwt, request: jsInitRequest, success: { [weak self] responseObject, _ in
+            guard let self = self else { return }
+            switch responseObject.responseErrorCode {
+            case .successful:
+                completion(responseObject.cacheToken!, responseObject.threeDInit!)
+            default:
+                self.showTransactionError?(responseObject.errorMessage)
+            }
+        }, failure: { [weak self] error in
+            guard let self = self else { return }
+            self.showTransactionError?(error.humanReadableDescription)
+        })
+
+    }
+
+    // MARK: Transaction flow
+
+    func performTransaction(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
+        guard typeDescriptions.contains(.threeDQuery) else {
+            makeRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
+            return
+        }
+
+        perform3DSecureFlow()
+    }
+
+    // MARK: 3DSecure flow
+
+    func perform3DSecureFlow() {
+        makeJSInitRequest { (cacheToken, threeDInit) in
+            // todo
+            print(cacheToken)
+            print(threeDInit)
+        }
+
+    }
+
+    // MARK: Validation
 
     /// Validates all input views in form
     /// - Parameter view: form view
