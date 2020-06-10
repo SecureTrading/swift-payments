@@ -5,11 +5,14 @@
 
 import Foundation
 
-/// An example implementation of Wallet functionality as a Singlgeton
+/// An example implementation of Wallet functionality as a Singleton
 /// Only for demo purposes
-/// Real application should store those data in a database
+/// Real application should store those data in a local database or on its own backend and request when needed
 class Wallet {
-    private init() {}
+    private init() {
+        // Left for now for testing purposes
+        // mockCards()
+    }
     private var cards: [STCardReference] = []
     static let shared: Wallet = Wallet()
 
@@ -18,6 +21,12 @@ class Wallet {
         return cards
     }
 
+    private func mockCards() {
+        for _ in 1...5 {
+            cards.append(STCardReference(reference: "ref1", cardType: "VISA", pan: "4111#####1111"))
+        }
+    }
+    
     /// Removes all card references
     func removeAll() {
         cards.removeAll()

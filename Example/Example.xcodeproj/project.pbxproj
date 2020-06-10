@@ -62,6 +62,10 @@
 		104CFB2F246ED0E300D7C76D /* SecureTrading3DSecure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104CFB2E246ED0E300D7C76D /* SecureTrading3DSecure.framework */; };
 		104CFB30246ED0E300D7C76D /* SecureTrading3DSecure.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 104CFB2E246ED0E300D7C76D /* SecureTrading3DSecure.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1050AB7F2490CB25001844BF /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB7E2490CB25001844BF /* Wallet.swift */; };
+		1050AB892490FF97001844BF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB882490FF97001844BF /* WalletViewController.swift */; };
+		1050AB8B2490FFE1001844BF /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB8A2490FFE1001844BF /* WalletView.swift */; };
+		1050AB8D2491000B001844BF /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB8C2491000B001844BF /* WalletViewModel.swift */; };
+		1050AB8F24912BF5001844BF /* CardReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB8E24912BF5001844BF /* CardReferenceView.swift */; };
 		1098F3A1247CF4B300414F94 /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; };
 		1098F3A2247CF4B300414F94 /* SecureTradingCard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49F7F7945D41186C28F9061E /* libPods-ExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCB78E01AA2AEB4BE63CE4C /* libPods-ExampleTests.a */; };
@@ -166,6 +170,10 @@
 		104CFB02246EB1BC00D7C76D /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
 		104CFB2E246ED0E300D7C76D /* SecureTrading3DSecure.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTrading3DSecure.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1050AB7E2490CB25001844BF /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		1050AB882490FF97001844BF /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		1050AB8A2490FFE1001844BF /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		1050AB8C2491000B001844BF /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
+		1050AB8E24912BF5001844BF /* CardReferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardReferenceView.swift; sourceTree = "<group>"; };
 		1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1286B23CF2544C71D88175C0 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CCB78E01AA2AEB4BE63CE4C /* libPods-ExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -372,6 +380,7 @@
 				08639C542469681E00C8F90A /* PopBackView.swift */,
 				08639C552469681E00C8F90A /* TransparentNavigationBar.swift */,
 				08639C562469681E00C8F90A /* CustomBackNavigationController.swift */,
+				1050AB8E24912BF5001844BF /* CardReferenceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -429,6 +438,7 @@
 		08639C8324696AE800C8F90A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1050AB872490FF77001844BF /* Wallet */,
 				0845BF25247EAED7008AD40F /* Card */,
 				08639C8424696B0500C8F90A /* Main */,
 			);
@@ -523,6 +533,16 @@
 				08EF7D6E2462CEB4008B5F3E /* Development.xcconfig */,
 			);
 			path = Configurations;
+			sourceTree = "<group>";
+		};
+		1050AB872490FF77001844BF /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				1050AB882490FF97001844BF /* WalletViewController.swift */,
+				1050AB8A2490FFE1001844BF /* WalletView.swift */,
+				1050AB8C2491000B001844BF /* WalletViewModel.swift */,
+			);
+			path = Wallet;
 			sourceTree = "<group>";
 		};
 		B03121038599EDD8E8D94689 /* Pods */ = {
@@ -736,6 +756,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1050AB7F2490CB25001844BF /* Wallet.swift in Sources */,
+				1050AB8D2491000B001844BF /* WalletViewModel.swift in Sources */,
 				08639C692469681E00C8F90A /* UICollectionView.swift in Sources */,
 				0845BF2A247EAF38008AD40F /* SingleInputViewsModel.swift in Sources */,
 				08639C6F2469681E00C8F90A /* ViewSetupable.swift in Sources */,
@@ -752,6 +773,7 @@
 				0845BF2C247EAF4C008AD40F /* SingleInputView.swift in Sources */,
 				08639C662469681E00C8F90A /* UIView.swift in Sources */,
 				08639C612469681E00C8F90A /* BaseFlowController.swift in Sources */,
+				1050AB8B2490FFE1001844BF /* WalletView.swift in Sources */,
 				08639C5E2469681E00C8F90A /* BaseViewController.swift in Sources */,
 				082FC7A02462FF2700D4E2B6 /* ObjectiveCTest.m in Sources */,
 				104CFAFF246EA59100D7C76D /* ApplicationKeys.swift in Sources */,
@@ -763,6 +785,7 @@
 				08639C7D2469693F00C8F90A /* AppFlowController.swift in Sources */,
 				0845BF28247EAF23008AD40F /* SingleInputViewsController.swift in Sources */,
 				08639C632469681E00C8F90A /* BaseView.swift in Sources */,
+				1050AB8F24912BF5001844BF /* CardReferenceView.swift in Sources */,
 				08639C8C24696CB100C8F90A /* MainViewController.swift in Sources */,
 				080A321E2473C482002B7471 /* STClaims.swift in Sources */,
 				08639C6A2469681E00C8F90A /* UITableView.swift in Sources */,
@@ -771,6 +794,7 @@
 				08639C8624696B3100C8F90A /* MainFlowController.swift in Sources */,
 				08639C622469681E00C8F90A /* Dequeueable.swift in Sources */,
 				08639C8A24696C5500C8F90A /* MainView.swift in Sources */,
+				1050AB892490FF97001844BF /* WalletViewController.swift in Sources */,
 				104CFB03246EB1BC00D7C76D /* AppLog.swift in Sources */,
 				08639C8E2469711500C8F90A /* WhiteBackgroundBaseView.swift in Sources */,
 				08639C722469681E00C8F90A /* CallbackWrapper.swift in Sources */,

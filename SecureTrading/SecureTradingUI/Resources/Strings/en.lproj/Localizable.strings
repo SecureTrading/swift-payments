@@ -42,5 +42,3 @@ AddCardViewController.title = "Add card";
 AddCardViewController.cardAdded = "The card has been added";
 AddCardButton.title = "Add card";
 
-PayWithWalletViewController.title = "Payment";
-PayWithWalletViewController.pay = "Pay with saved card";

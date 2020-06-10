@@ -69,27 +69,6 @@ import UIKit
         return viewController
     }
 
-    /// creates instances of the PayWithWalletViewController
-    /// - Parameters:
-    ///   - jwt: jwt: jwt token
-    ///   - typeDescriptions: request types (AUTH, THREEDQUERY...)
-    ///   - gatewayType: gateway type (us or european)
-    ///   - username: merchant's username
-    ///   - cardAddedCompletion: Closure triggered by pressing the button in the card added alert
-    ///   - dropInViewStyleManager: instance of manager to customize view
-    ///   - walletCards: card references passed by merchant
-    /// - Returns: instance of DropInViewController
-    public func payWithWalletViewController(walletCards: [STCardReference], jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, dropInViewStyleManager: DropInViewStyleManager? = nil, cardAddedCompletion: @escaping () -> Void) -> UIViewController {
-        let viewController = PayWithWalletViewController(view: PayWithWalletView(dropInViewStyleManager: dropInViewStyleManager), viewModel: PayWithWalletViewModel(cards: walletCards, jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: gatewayType, username: username))
-        viewController.eventTriggered = { event in
-//            switch event {
-//            case .added():
-//                cardAddedCompletion()
-//            }
-        }
-        return viewController
-    }
-
     // MARK: Objective C accessible methods
 
     // objc workaround
@@ -122,22 +101,5 @@ import UIKit
         let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
         let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
         return self.addCardViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, dropInViewStyleManager: dropInViewStyleManager, cardAddedCompletion: cardAddedCompletion)
-    }
-
-    // objc workaround
-    /// creates instances of the PayWithWalletViewController
-    /// - Parameters:
-    ///   - jwt: jwt: jwt token
-    ///   - typeDescriptions: request types (AUTH, THREEDQUERY...)
-    ///   - gatewayType: gateway type (us or european)
-    ///   - username: merchant's username
-    ///   - cardAddedCompletion: Closure triggered by pressing the button in the successful payment alert
-    ///   - dropInViewStyleManager: instance of manager to customize view
-    ///   - walletCards: card references passed by merchant
-    /// - Returns: instance of DropInViewController
-    @objc public func payWithWalletViewController(walletCards: [STCardReference], jwt: String, typeDescriptions: [Int], gatewayType: GatewayType, username: String, dropInViewStyleManager: DropInViewStyleManager? = nil, cardAddedCompletion: @escaping () -> Void) -> UIViewController {
-        let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
-        let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
-        return self.payWithWalletViewController(walletCards: walletCards, jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, dropInViewStyleManager: dropInViewStyleManager, cardAddedCompletion: cardAddedCompletion)
     }
 }

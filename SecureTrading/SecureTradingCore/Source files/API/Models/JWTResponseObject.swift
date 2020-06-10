@@ -30,6 +30,7 @@
     case invalidJWT = 12_503
     case invalidExpiryDate = 12_504
     case invalidTermURL = 12_505
+    case parentTransactionReference = 12_506
     case none = 12_500
 }
 
@@ -68,6 +69,7 @@
             case "securitycode": return ResponseErrorDetail.invalidSecurityCode
             case "expirydate": return ResponseErrorDetail.invalidExpiryDate
             case "termurl": return ResponseErrorDetail.invalidTermURL
+            case "parenttransactionreference": return ResponseErrorDetail.parentTransactionReference
             default: return ResponseErrorDetail.none
             }
         default: return ResponseErrorDetail.none

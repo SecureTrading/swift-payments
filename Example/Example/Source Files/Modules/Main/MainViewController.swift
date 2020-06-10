@@ -13,7 +13,7 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         case didTapShowSingleInputViews
         case didTapShowDropInController(String)
         case didTapAddCard(String)
-        case didTapPayWithWallet(String)
+        case payWithWalletRequest
     }
 
     private var transparentNavigationBar: TransparentNavigationBar? { return navigationController?.navigationBar as? TransparentNavigationBar }
@@ -65,8 +65,7 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         }
         customView.payWithWalletRequest = { [weak self] in
             guard let self = self else { return }
-            guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
-            self.eventTriggered?(.didTapPayWithWallet(jwt))
+            self.eventTriggered?(.payWithWalletRequest)
         }
 
         viewModel.showAuthSuccess = { [weak self] _ in

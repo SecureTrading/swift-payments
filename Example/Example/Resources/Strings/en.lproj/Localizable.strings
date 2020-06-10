@@ -20,3 +20,6 @@ MainView.payWithWalletButton = "Pay with saved card";
 Alerts.okButton = "Ok";
 
 SingleInputViewsController.title = "Single input views";
+
+WalletViewController.title = "Wallet";
+WalletViewController.paid = "Successful payment transaction";
