@@ -84,6 +84,25 @@ final class DropInViewModel {
         })
     }
 
+    func makeJSInitRequest() {
+
+        let jsInitRequest = RequestObject(typeDescriptions: [.jsInit])
+
+        self.apiManager.makeGeneralRequest(jwt: self.jwt, request: jsInitRequest, success: { [weak self] responseObject, _ in
+            guard let self = self else { return }
+            switch responseObject.responseErrorCode {
+            case .successful:
+                break // todo
+            default:
+                self.showAuthError?(responseObject.errorMessage)
+            }
+        }, failure: { [weak self] error in
+            guard let self = self else { return }
+            self.showAuthError?(error.humanReadableDescription)
+        })
+
+    }
+
     /// Validates all input views in form
     /// - Parameter view: form view
     /// - Returns: result of validation
