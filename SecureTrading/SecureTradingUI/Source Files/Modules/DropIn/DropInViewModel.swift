@@ -19,6 +19,8 @@ final class DropInViewModel {
 
     private let typeDescriptions: [TypeDescription]
 
+    private let isLiveStatus: Bool
+
     private var card: Card?
 
     var showTransactionSuccess: ((ResponseSettleStatus) -> Void)?
@@ -34,10 +36,12 @@ final class DropInViewModel {
     /// - Parameter typeDescriptions: request types (AUTH, THREEDQUERY...)
     /// - Parameter gatewayType: gateway type (us or european)
     /// - Parameter username: merchant's username
-    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String) {
+    /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
+    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, isLiveStatus: Bool) {
         self.jwt = jwt
         self.typeDescriptions = typeDescriptions
         self.apiManager = DefaultAPIManager(gatewayType: gatewayType, username: username)
+        self.isLiveStatus = isLiveStatus
     }
 
     // MARK: Api requests
