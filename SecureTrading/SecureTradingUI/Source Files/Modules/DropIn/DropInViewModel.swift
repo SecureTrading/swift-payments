@@ -21,6 +21,8 @@ final class DropInViewModel {
 
     private let isLiveStatus: Bool
 
+    private let isDeferInit: Bool
+
     private var card: Card?
 
     var showTransactionSuccess: ((ResponseSettleStatus) -> Void)?
@@ -37,11 +39,13 @@ final class DropInViewModel {
     /// - Parameter gatewayType: gateway type (us or european)
     /// - Parameter username: merchant's username
     /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
-    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, isLiveStatus: Bool) {
+    /// - Parameter isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
+    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool) {
         self.jwt = jwt
         self.typeDescriptions = typeDescriptions
         self.apiManager = DefaultAPIManager(gatewayType: gatewayType, username: username)
         self.isLiveStatus = isLiveStatus
+        self.isDeferInit = isDeferInit
     }
 
     // MARK: Api requests

@@ -54,7 +54,7 @@ public final class ST3DSecureManager {
         session.configure(config)
     }
 
-    public func setup(with jwt: String) {
+    public func setup(with jwt: String, cardNumber: String) {
         // JWT provided by ST in response to JSINIT request
         // TODO: session setup
     }
