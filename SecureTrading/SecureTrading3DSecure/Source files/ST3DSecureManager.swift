@@ -27,10 +27,10 @@ public final class ST3DSecureManager {
     public init(isLiveStatus: Bool) {
         self.isLiveStatus = isLiveStatus
         self.session = CardinalSession()
-        self.configure()
+        configure()
     }
 
-    // MARK: - Public methods
+    // MARK: - Private methods
 
     /// Configure session with env type, timeouts and UI
     private func configure() {
@@ -55,7 +55,14 @@ public final class ST3DSecureManager {
         session.configure(config)
     }
 
-    // JWT provided by ST in response to JSINIT request
+    // MARK: - Public methods
+
+    /// Authenticating merchant's credentials (jwt) and completing the data collection process
+    /// - Parameters:
+    ///   - jwt: JWT provided by ST in response to JSINIT request
+    ///   - cardNumber: parameter passed when the consumer has already entered card number, e.g. in case of JS defer init
+    ///   - completion: success closure with following parameters: consumer session id
+    ///   - failure: if there was an error with setup, cardinal will call this closure with validate response object
     public func setup(with jwt: String, cardNumber: String? = nil, completion: @escaping ((String) -> Void), failure: @escaping ((CardinalResponse) -> Void)) {
         guard let cardNumber = cardNumber else {
             session.setup(jwtString: jwt, completed: { consumerSessionId in

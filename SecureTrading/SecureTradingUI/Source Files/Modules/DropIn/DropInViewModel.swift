@@ -116,7 +116,7 @@ final class DropInViewModel {
     }
 
     /// executes js init request (to get threeDInit - JWT token to setup the Cardinal) and Cardinal setup
-    /// - Parameter completion: closure with following parameters: consumer session id
+    /// - Parameter completion: success closure with following parameters: consumer session id
     /// - Parameter failure: closure with error message
     private func makeJSInitRequest(completion: @escaping ((String) -> Void), failure: @escaping ((String) -> Void)) {
         let jsInitRequest = RequestObject(typeDescriptions: [.jsInit])
@@ -141,6 +141,11 @@ final class DropInViewModel {
 
     // MARK: Transaction flow
 
+    /// executes payment transaction flow
+    /// - Parameters:
+    ///   - cardNumber: The long number printed on the front of the customer’s card.
+    ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
+    ///   - expiryDate: The expiry date printed on the card.
     func performTransaction(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
         self.card = Card(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
 
