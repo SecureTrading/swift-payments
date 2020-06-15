@@ -38,12 +38,14 @@ import UIKit
     ///   - successfulPaymentCompletion: Closure triggered by pressing the button in the successful payment alert
     ///   - dropInViewStyleManager: instance of manager to customize view
     /// - Returns: instance of DropInViewController
-    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping () -> Void) -> UIViewController {
+    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping (STCardReference?) -> Void) -> UIViewController {
         let viewController = DropInViewController(view: DropInView(dropInViewStyleManager: dropInViewStyleManager), viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: gatewayType, username: username))
         viewController.eventTriggered = { event in
             switch event {
             case .successfulPayment:
-                successfulPaymentCompletion()
+                successfulPaymentCompletion(nil)
+            case .successfulPaymentCardAdded(let cardReferece):
+                successfulPaymentCompletion(cardReferece)
             }
         }
         return viewController
@@ -81,7 +83,7 @@ import UIKit
     ///   - successfulPaymentCompletion: Closure triggered by pressing the button in the successful payment alert
     ///   - dropInViewStyleManager: instance of manager to customize view
     /// - Returns: instance of DropInViewController
-    @objc public func dropInViewController(jwt: String, typeDescriptions: [Int], gatewayType: GatewayType, username: String, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping () -> Void) -> UIViewController {
+    @objc public func dropInViewController(jwt: String, typeDescriptions: [Int], gatewayType: GatewayType, username: String, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping (STCardReference?) -> Void) -> UIViewController {
         let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
         let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
         return self.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: successfulPaymentCompletion)

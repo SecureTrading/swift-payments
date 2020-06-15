@@ -3,12 +3,16 @@
 //  SecureTradingUI
 //
 
+#if !COCOAPODS
+import SecureTradingCore
+#endif
 import UIKit
 
 final class DropInViewController: BaseViewController<DropInView, DropInViewModel> {
     /// Enum describing events that can be triggered by this controller
     enum Event {
         case successfulPayment
+        case successfulPaymentCardAdded(STCardReference)
     }
 
     /// Callback with triggered event
@@ -29,17 +33,21 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
                 let cardNumber = self.customView.cardNumberInput.cardNumber
                 let cvc = self.customView.cvcInput.cvc
                 let expiryDate = self.customView.expiryDateInput.expiryDate
-
+                self.viewModel.isSaveCardEnabled = self.customView.saveCardView.isSaveCardEnabled
                 self.viewModel.makeRequest(cardNumber: cardNumber, securityCode: cvc, expiryDate: expiryDate)
             }
         }
 
-        viewModel.showAuthSuccess = { [weak self] _ in
+        viewModel.showAuthSuccess = { [weak self] (statusCode, cardReference) in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             self.showAlert(message: Localizable.DropInViewController.successfulPayment.text) { [weak self] _ in
                 guard let self = self else { return }
-                self.eventTriggered?(.successfulPayment)
+                if let cardRef = cardReference {
+                    self.eventTriggered?(.successfulPaymentCardAdded(cardRef))
+                } else {
+                    self.eventTriggered?(.successfulPayment)
+                }
             }
         }
 

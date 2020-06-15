@@ -21,7 +21,8 @@ final class DropInViewModel {
 
     private var card: Card?
 
-    var showAuthSuccess: ((ResponseSettleStatus) -> Void)?
+    var isSaveCardEnabled: Bool = true
+    var showAuthSuccess: ((ResponseSettleStatus, STCardReference?) -> Void)?
     var showAuthError: ((String) -> Void)?
     var showValidationError: ((ResponseErrorDetail) -> Void)?
 
@@ -59,7 +60,7 @@ final class DropInViewModel {
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:
-                self.showAuthSuccess?(responseObject.responseSettleStatus)
+                self.showAuthSuccess?(responseObject.responseSettleStatus, self.isSaveCardEnabled ? responseObject.cardReference : nil )
             default:
                 self.showAuthError?(responseObject.errorMessage)
             }

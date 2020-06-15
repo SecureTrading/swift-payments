@@ -35,7 +35,9 @@ import UIKit
 
     // MARK: Public properties
 
-    @objc public weak var delegate: SecureFormInputViewDelegate?
+    @objc public var isSaveCardEnabled: Bool {
+        return toggleButton.isOn
+    }
 
     // MARK: - texts
 
@@ -47,9 +49,10 @@ import UIKit
 
     // MARK: - colors
 
-    @objc public var titleColor: UIColor = .black {
+    @objc public var color: UIColor = .black {
         didSet {
-            titleLabel.textColor = titleColor
+            titleLabel.textColor = color
+            toggleButton.onTintColor = color
         }
     }
 
