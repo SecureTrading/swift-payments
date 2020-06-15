@@ -87,19 +87,11 @@ final class DropInViewModel {
     private func makePaymentRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
         let request = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue)
 
-        self.makeGeneralRequest(jwt: self.jwt, request: request)
-    }
-
-    /// executes general transaction request
-    /// - Parameters:
-    ///   - jwt: jwt token
-    ///   - request: request object
-    private func makeGeneralRequest(jwt: String, request: RequestObject) {
         self.apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:
-                self.showTransactionSuccess?(responseObject.responseSettleStatus)
+                self.handlePaymentTransactionResponse(responseObject: responseObject)
             default:
                 self.showTransactionError?(responseObject.errorMessage)
             }
@@ -183,16 +175,58 @@ final class DropInViewModel {
 
     // MARK: 3DSecure flow
 
+    private func handlePaymentTransactionResponse(responseObject: JWTResponseObject) {
+
+        
+    }
+
     private func createAuthenticationSessionWithCardinal(transactionId: String, transactionPayload: String) {
-        self.threeDSecureManager.continueSession(with: transactionId, payload: transactionPayload, sessionAuthenticationValidateJWT: { [weak self] jwt in
-            guard let self = self else { return }
+        let dispatchGroup = DispatchGroup()
+        let dispatchQueue = DispatchQueue(label: "3dsecure-flow")
+        let dispatchSemaphore = DispatchSemaphore(value: 0)
+        var jwtForValidation: String?
+        var jwtResponseObject: JWTResponseObject?
+        var transactionError: String?
+
+        dispatchQueue.async {
+            dispatchGroup.enter()
+            self.threeDSecureManager.continueSession(with: transactionId, payload: transactionPayload, sessionAuthenticationValidateJWT: { jwt in
+                jwtForValidation = jwt
+                dispatchSemaphore.signal()
+                dispatchGroup.leave()
+            }, sessionAuthenticationFailure: {
+                // todo error message
+                transactionError = "authentication error"
+                dispatchSemaphore.signal()
+                dispatchGroup.leave()
+            })
+
+            dispatchSemaphore.wait()
+            guard let jwtForValidation = jwtForValidation else { return }
+            dispatchGroup.enter()
+
             let request = RequestObject(typeDescriptions: [.auth])
-            self.makeGeneralRequest(jwt: jwt, request: request)
-        }, sessionAuthenticationFailure: { [weak self] in
-            guard let self = self else { return }
-            // todo error message
-            self.showTransactionError?("authentication error")
-        })
+            self.apiManager.makeGeneralRequest(jwt: jwtForValidation, request: request, success: { responseObject, _ in
+                switch responseObject.responseErrorCode {
+                case .successful:
+                    jwtResponseObject = responseObject
+                default:
+                    transactionError = responseObject.errorMessage
+                }
+            }, failure: { error in
+                transactionError = error.humanReadableDescription
+            })
+        }
+
+        dispatchGroup.notify(queue: dispatchQueue) {
+            DispatchQueue.main.async {
+                guard let error = transactionError else {
+                    self.showTransactionSuccess?(jwtResponseObject!.responseSettleStatus)
+                    return
+                }
+                self.showTransactionError?(error)
+            }
+        }
     }
 
     // MARK: Validation
