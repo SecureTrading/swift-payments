@@ -4,7 +4,11 @@
 //
 
 import UIKit
+import SecureTradingUI
 
+class WalletCell: UITableViewCell {
+
+}
 /// An example implementation of Wallet functionality
 final class WalletView: WhiteBackgroundBaseView {
 
@@ -34,25 +38,33 @@ final class WalletView: WhiteBackgroundBaseView {
         return scrollView
     }()
 
+    fileprivate lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(dequeueableCell: WalletCell.self)
+        tableView.dataSource = self
+        tableView.delegate = self
+        return tableView
+    }()
+
     private let stackViewLeadingConstraint = "stackViewLeadingConstraint"
     private let stackViewTrailingConstraint = "stackViewTrailingConstraint"
     private let stackViewTopConstraint = "stackViewTopConstraint"
     private let stackViewBottomConstraint = "stackViewBottomConstraint"
 
-    private let stackContainer: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-    }()
+//    private let stackContainer: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .clear
+//        return view
+//    }()
 
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: cardReferences)
-        stackView.axis = .vertical
-        stackView.spacing = 30
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        return stackView
-    }()
+//    private lazy var stackView: UIStackView = {
+//        let stackView = UIStackView(arrangedSubviews: cardReferences)
+//        stackView.axis = .vertical
+//        stackView.spacing = 30
+//        stackView.alignment = .fill
+//        stackView.distribution = .fill
+//        return stackView
+//    }()
 
     // MARK: Initialization
 
@@ -76,6 +88,7 @@ final class WalletView: WhiteBackgroundBaseView {
                 }
             }
         }
+        tableView.reloadData()
     }
 
     required init?(coder _: NSCoder) {
@@ -95,27 +108,44 @@ final class WalletView: WhiteBackgroundBaseView {
     }
 }
 
+extension WalletView: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(dequeueableCell: WalletCell.self)
+        cell.textLabel?.text = cardReferences[indexPath.row].card.maskedPan
+        return cell
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cardReferences.count
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
+    }
+
+}
 extension WalletView: ViewSetupable {
 
-    private func buildStackViewConstraints() {
-        stackContainer.constraint(withIdentifier: stackViewTopConstraint)?.isActive = false
-        stackContainer.constraint(withIdentifier: stackViewBottomConstraint)?.isActive = false
-        stackContainer.constraint(withIdentifier: stackViewLeadingConstraint)?.isActive = false
-        stackContainer.constraint(withIdentifier: stackViewTrailingConstraint)?.isActive = false
-
-        stackView.addConstraints([
-            equal(stackContainer, \.topAnchor, \.topAnchor, constant: 0, identifier: stackViewTopConstraint),
-            equal(stackContainer, \.bottomAnchor, \.bottomAnchor, constant: 0, identifier: stackViewBottomConstraint),
-            equal(stackContainer, \.leadingAnchor, \.leadingAnchor, constant: 0, identifier: stackViewLeadingConstraint),
-            equal(stackContainer, \.trailingAnchor, \.trailingAnchor, constant: 0, identifier: stackViewTrailingConstraint)
-        ])
-    }
+//    private func buildStackViewConstraints() {
+//        stackContainer.constraint(withIdentifier: stackViewTopConstraint)?.isActive = false
+//        stackContainer.constraint(withIdentifier: stackViewBottomConstraint)?.isActive = false
+//        stackContainer.constraint(withIdentifier: stackViewLeadingConstraint)?.isActive = false
+//        stackContainer.constraint(withIdentifier: stackViewTrailingConstraint)?.isActive = false
+//
+//        stackView.addConstraints([
+//            equal(stackContainer, \.topAnchor, \.topAnchor, constant: 0, identifier: stackViewTopConstraint),
+//            equal(stackContainer, \.bottomAnchor, \.bottomAnchor, constant: 0, identifier: stackViewBottomConstraint),
+//            equal(stackContainer, \.leadingAnchor, \.leadingAnchor, constant: 0, identifier: stackViewLeadingConstraint),
+//            equal(stackContainer, \.trailingAnchor, \.trailingAnchor, constant: 0, identifier: stackViewTrailingConstraint)
+//        ])
+//    }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
     func setupViewHierarchy() {
-        stackContainer.addSubview(stackView)
-        scrollView.addSubview(stackContainer)
-        addSubviews([scrollView])
+//        stackContainer.addSubview(stackView)
+//        scrollView.addSubview(stackContainer)
+        addSubviews([tableView])
         self.addSubview(payButton)
         payButton.addConstraints([
             equal(self, \.bottomAnchor, \.bottomAnchor, constant: -40, identifier: stackViewBottomConstraint),
@@ -126,19 +156,21 @@ extension WalletView: ViewSetupable {
 
     /// - SeeAlso: ViewSetupable.setupConstraints
     func setupConstraints() {
-        scrollView.addConstraints([
+        print("a")
+
+        tableView.addConstraints([
             equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: 0),
             equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: 0),
             equal(self, \.leadingAnchor, constant: 0),
             equal(self, \.trailingAnchor, constant: 0)
         ])
-
-        stackContainer.addConstraints(equalToSuperview(with: .init(top: 0, left: 20, bottom: 0, right: 20), usingSafeArea: false))
-
-        stackContainer.addConstraints([
-            equal(self, \.widthAnchor, to: \.widthAnchor, constant: 0.0)
-        ])
-
-        buildStackViewConstraints()
+//
+//        stackContainer.addConstraints(equalToSuperview(with: .init(top: 0, left: 20, bottom: 0, right: 20), usingSafeArea: false))
+//
+//        stackContainer.addConstraints([
+//            equal(self, \.widthAnchor, to: \.widthAnchor, constant: 0.0)
+//        ])
+//
+//        buildStackViewConstraints()
     }
 }
