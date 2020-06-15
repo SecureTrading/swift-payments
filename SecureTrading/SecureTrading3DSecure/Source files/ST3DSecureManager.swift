@@ -54,8 +54,27 @@ public final class ST3DSecureManager {
         session.configure(config)
     }
 
-    public func setup(with jwt: String, cardNumber: String) {
-        // JWT provided by ST in response to JSINIT request
-        // TODO: session setup
+    // JWT provided by ST in response to JSINIT request
+    public func setup(with jwt: String, cardNumber: String? = nil, completion: @escaping ((String) -> Void), failure: @escaping ((CardinalResponse) -> Void)) {
+        guard let cardNumber = cardNumber else {
+            session.setup(jwtString: jwt, completed: { consumerSessionId in
+                completion(consumerSessionId)
+            }, validated: { validateResponse in
+                failure(validateResponse)
+            })
+            return
+        }
+
+        session.setup(jwtString: jwt, account: cardNumber, completed: { consumerSessionId in
+            // You may have your Submit button disabled on page load. Once you are setup
+            // for CCA, you may then enable it. This will prevent users from submitting
+            // their order before CCA is ready.
+            completion(consumerSessionId)
+        }, validated: { validateResponse in
+            // Handle failed setup
+            // If there was an error with setup, cardinal will call this function with
+            // validate response and empty serverJWT
+            failure(validateResponse)
+        })
     }
 }

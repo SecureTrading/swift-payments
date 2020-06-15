@@ -6,6 +6,7 @@
 #if !COCOAPODS
 import SecureTradingCard
 import SecureTradingCore
+import SecureTrading3DSecure
 #endif
 import Foundation
 
@@ -14,8 +15,11 @@ final class DropInViewModel {
 
     private let jwt: String
 
-    /// - SeeAlso: SecureTradingCore.apiManager
+    /// - SeeAlso: SecureTradingCore.APIManager
     private let apiManager: APIManager
+
+    /// - SeeAlso: SecureTrading3DSecure.ST3DSecureManager
+    private let threeDSecureManager: ST3DSecureManager
 
     private let typeDescriptions: [TypeDescription]
 
@@ -46,9 +50,14 @@ final class DropInViewModel {
         self.apiManager = DefaultAPIManager(gatewayType: gatewayType, username: username)
         self.isLiveStatus = isLiveStatus
         self.isDeferInit = isDeferInit
+        self.threeDSecureManager = ST3DSecureManager(isLiveStatus: self.isLiveStatus)
 
         if !isDeferInit {
+            makeJSInitRequest(completion: { (cacheToken, threeDInit) in
 
+            }) { (errorMessage) in
+
+            }
         }
     }
 
