@@ -4,9 +4,9 @@
 //
 
 #if !COCOAPODS
+import SecureTrading3DSecure
 import SecureTradingCard
 import SecureTradingCore
-import SecureTrading3DSecure
 #endif
 import Foundation
 
@@ -26,6 +26,14 @@ final class DropInViewModel {
     private let isLiveStatus: Bool
 
     private let isDeferInit: Bool
+
+    private var isJsInitCompleted: Bool = false
+
+    private var jsInitError: String?
+
+    private var jsInitCacheToken: String?
+
+    private var shouldStartTransactionAfterJsInit: Bool = false
 
     private var card: Card?
 
@@ -53,11 +61,18 @@ final class DropInViewModel {
         self.threeDSecureManager = ST3DSecureManager(isLiveStatus: self.isLiveStatus)
 
         if !isDeferInit {
-            makeJSInitRequest(completion: { (cacheToken, threeDInit) in
-
-            }) { (errorMessage) in
-
-            }
+            self.makeJSInitRequest(completion: { [weak self] _ in
+                guard let self = self else { return }
+                self.isJsInitCompleted = true
+                if let card = self.card, self.shouldStartTransactionAfterJsInit {
+                    self.shouldStartTransactionAfterJsInit = false
+                    self.makeRequest(cardNumber: card.cardNumber, securityCode: card.securityCode, expiryDate: card.expiryDate)
+                }
+            }, failure: { [weak self] errorMessage in
+                guard let self = self else { return }
+                self.isJsInitCompleted = true
+                self.jsInitError = errorMessage
+            })
         }
     }
 
@@ -69,12 +84,8 @@ final class DropInViewModel {
     ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
     ///   - expiryDate: The expiry date printed on the card.
     func makeRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
-        self.card = Card(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
-        let cardNumber = self.card?.cardNumber.rawValue
-        let securityCode = self.card?.securityCode?.rawValue
-        let expiryDate = self.card?.expiryDate.rawValue
 
-        let authRequest = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
+        let authRequest = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue)
 
         self.apiManager.makeGeneralRequest(jwt: self.jwt, request: authRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
@@ -105,48 +116,55 @@ final class DropInViewModel {
         })
     }
 
-    /// executes js init request - to get threeDInit (JWT token) to setup the Cardinal
-    /// - Parameter completion: closure with following parameters: cache token and JWT token
+    /// executes js init request (to get threeDInit - JWT token to setup the Cardinal) and Cardinal setup
+    /// - Parameter completion: closure with following parameters: consumer session id
     /// - Parameter failure: closure with error message
-    func makeJSInitRequest(completion: @escaping ((String, String) -> Void), failure: @escaping ((String) -> Void)) {
-
+    func makeJSInitRequest(completion: @escaping ((String) -> Void), failure: @escaping ((String) -> Void)) {
         let jsInitRequest = RequestObject(typeDescriptions: [.jsInit])
 
         self.apiManager.makeGeneralRequest(jwt: self.jwt, request: jsInitRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:
-                completion(responseObject.cacheToken!, responseObject.threeDInit!)
+                self.jsInitCacheToken = responseObject.cacheToken!
+                self.threeDSecureManager.setup(with: responseObject.threeDInit!, completion: { consumerSessionId in
+                    completion(consumerSessionId)
+                }, failure: { validateResponse in
+                    failure(validateResponse.errorDescription)
+                })
             default:
                 failure(responseObject.errorMessage)
             }
-        }, failure: { [weak self] error in
-            guard let self = self else { return }
+        }, failure: { error in
             failure(error.humanReadableDescription)
         })
-
     }
 
     // MARK: Transaction flow
 
     func performTransaction(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
-//        guard typeDescriptions.contains(.threeDQuery) else {
-//            makeRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
-//            return
-//        }
-//
-//        perform3DSecureFlow()
-    }
+        self.card = Card(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
 
-    // MARK: 3DSecure flow
+        if !self.isDeferInit {
+            guard self.isJsInitCompleted else {
+                self.shouldStartTransactionAfterJsInit = true
+                return
+            }
 
-    func perform3DSecureFlow() {
-//        makeJSInitRequest { (cacheToken, threeDInit) in
-//            // todo
-//            print(cacheToken)
-//            print(threeDInit)
-//        }
-
+            guard let jsInitError = jsInitError else {
+                self.makeRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
+                return
+            }
+            self.showTransactionError?(jsInitError)
+        } else {
+            self.makeJSInitRequest(completion: { [weak self] _ in
+                guard let self = self else { return }
+                self.makeRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
+            }, failure: { [weak self] errorMessage in
+                guard let self = self else { return }
+                self.showTransactionError?(errorMessage)
+            })
+        }
     }
 
     // MARK: Validation
