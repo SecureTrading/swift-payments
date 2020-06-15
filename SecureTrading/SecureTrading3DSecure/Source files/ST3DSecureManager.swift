@@ -6,6 +6,32 @@
 import CardinalMobile
 import Foundation
 
+@objc public enum CardinalInitWarnings: Int {
+    case jailbroken
+    case integrityTampered
+    case emulatorBeingUsed
+    case debuggerAttached
+    case osNotSupported
+    case appFromNotTrustedSource
+
+    public var localizedDescription: String {
+        switch self {
+        case .jailbroken:
+            return "jailbroken"
+        case .integrityTampered:
+            return "integrity tampered"
+        case .emulatorBeingUsed:
+            return "emulator being used"
+        case .debuggerAttached:
+            return "debugger attached"
+        case .osNotSupported:
+            return "os not supported"
+        case .appFromNotTrustedSource:
+            return "app from not trusted source"
+        }
+    }
+}
+
 /// Base manager for dealing with 3D secure challenges via Cardinal Commerce SDK
 public final class ST3DSecureManager {
     // MARK: - Private properties
@@ -14,10 +40,44 @@ public final class ST3DSecureManager {
 
     private let isLiveStatus: Bool
 
-    // MARK: - Public proprties
+    // MARK: - Public properties
 
-    public var warrnings: [Warning] {
-        return session.getWarnings()
+    /// get a list of all the Warnings detected by the SDK
+    public var warnings: [CardinalInitWarnings] {
+        let warnings = session.getWarnings()
+        var cardinalWarnings: [CardinalInitWarnings] = []
+
+        // The device is jailbroken.
+        if warnings.first(where: { $0.warningID == "SW01" }) != nil {
+            cardinalWarnings.append(.jailbroken)
+        }
+
+        // The integrity of the SDK has tampered.
+        if warnings.first(where: { $0.warningID == "SW02" }) != nil {
+            cardinalWarnings.append(.integrityTampered)
+        }
+
+        // An emulator is being used to run the App.
+        if warnings.first(where: { $0.warningID == "SW03" }) != nil {
+            cardinalWarnings.append(.emulatorBeingUsed)
+        }
+
+        // A debugger is attached to the App.
+        if warnings.first(where: { $0.warningID == "SW04" }) != nil {
+            cardinalWarnings.append(.debuggerAttached)
+        }
+
+        // The OS or the OS version is not supported.
+        if warnings.first(where: { $0.warningID == "SW05" }) != nil {
+            cardinalWarnings.append(.osNotSupported)
+        }
+
+        // The application is not installed from a trusted source.
+        if warnings.first(where: { $0.warningID == "SW06" }) != nil {
+            cardinalWarnings.append(.appFromNotTrustedSource)
+        }
+
+        return cardinalWarnings
     }
 
     // MARK: - Public initializers

@@ -40,12 +40,14 @@ import UIKit
     ///   - isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment - default behaviour)
     ///   - isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
     /// - Returns: instance of DropInViewController
-    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping () -> Void) -> UIViewController {
+    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping () -> Void, cardinalWarningsCompletion: (() -> Void)? = nil) -> UIViewController {
         let viewController = DropInViewController(view: DropInView(dropInViewStyleManager: dropInViewStyleManager), viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit))
         viewController.eventTriggered = { event in
             switch event {
             case .successfulPayment:
                 successfulPaymentCompletion()
+            case .cardinalWarnings:
+                cardinalWarningsCompletion?()
             }
         }
         return viewController

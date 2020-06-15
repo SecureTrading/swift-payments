@@ -9,6 +9,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
     /// Enum describing events that can be triggered by this controller
     enum Event {
         case successfulPayment
+        case cardinalWarnings
     }
 
     /// Callback with triggered event
@@ -49,6 +50,14 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             self.showAlert(message: error, completionHandler: nil)
         }
 
+        viewModel.showCardinalWarnings = { [weak self] warningsMessage in
+            guard let self = self else { return }
+            self.showAlert(message: warningsMessage) { [weak self] _ in
+                guard let self = self else { return }
+                self.eventTriggered?(.cardinalWarnings)
+            }
+        }
+
         viewModel.showValidationError = { [weak self] error in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
@@ -63,6 +72,11 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
 
     /// - SeeAlso: BaseViewController.setupProperties
     override func setupProperties() {}
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.handleCardinalWarnings()
+    }
 
     // MARK: Alerts
 
