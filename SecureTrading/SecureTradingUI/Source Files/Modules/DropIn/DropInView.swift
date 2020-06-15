@@ -27,6 +27,10 @@ import UIKit
         CvcInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
+    @objc public private(set) lazy var saveCardView: SaveCardOptionView = {
+        return SaveCardOptionView()
+    }()
+
     @objc public private(set) lazy var payButton: PayButton = {
         guard let styleManager = dropInViewStyleManager?.requestButtonStyleManager as? PayButtonStyleManager else {
             fatalError("Expected style manager of type PayButtonStyleManager")
@@ -41,7 +45,7 @@ import UIKit
     }()
 
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, payButton])
+        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, saveCardView, payButton])
         stackView.axis = .vertical
         stackView.spacing = spacingBeetwenInputViews
         stackView.alignment = .fill
