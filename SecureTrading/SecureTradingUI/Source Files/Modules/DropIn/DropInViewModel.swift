@@ -67,7 +67,7 @@ final class DropInViewModel {
                 self.isJsInitCompleted = true
                 if let card = self.card, self.shouldStartTransactionAfterJsInit {
                     self.shouldStartTransactionAfterJsInit = false
-                    self.makeRequest(cardNumber: card.cardNumber, securityCode: card.securityCode, expiryDate: card.expiryDate)
+                    self.makePaymentRequest(cardNumber: card.cardNumber, securityCode: card.securityCode, expiryDate: card.expiryDate)
                 }
             }, failure: { [weak self] errorMessage in
                 guard let self = self else { return }
@@ -84,10 +84,18 @@ final class DropInViewModel {
     ///   - cardNumber: The long number printed on the front of the customer’s card.
     ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
     ///   - expiryDate: The expiry date printed on the card.
-    private func makeRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
-        let authRequest = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue)
+    private func makePaymentRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
+        let request = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue)
 
-        self.apiManager.makeGeneralRequest(jwt: self.jwt, request: authRequest, success: { [weak self] responseObject, _ in
+        self.makeGeneralRequest(jwt: self.jwt, request: request)
+    }
+
+    /// executes general transaction request
+    /// - Parameters:
+    ///   - jwt: jwt token
+    ///   - request: request object
+    private func makeGeneralRequest(jwt: String, request: RequestObject) {
+        self.apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:
@@ -157,7 +165,7 @@ final class DropInViewModel {
             }
 
             guard let jsInitError = jsInitError else {
-                self.makeRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
+                self.makePaymentRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
                 return
             }
 
@@ -165,7 +173,7 @@ final class DropInViewModel {
         } else {
             self.makeJSInitRequest(completion: { [weak self] _ in
                 guard let self = self else { return }
-                self.makeRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
+                self.makePaymentRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
             }, failure: { [weak self] errorMessage in
                 guard let self = self else { return }
                 self.showTransactionError?(errorMessage)
@@ -173,13 +181,27 @@ final class DropInViewModel {
         }
     }
 
+    // MARK: 3DSecure flow
+
+    private func createAuthenticationSessionWithCardinal(transactionId: String, transactionPayload: String) {
+        self.threeDSecureManager.continueSession(with: transactionId, payload: transactionPayload, sessionAuthenticationValidateJWT: { [weak self] jwt in
+            guard let self = self else { return }
+            let request = RequestObject(typeDescriptions: [.auth])
+            self.makeGeneralRequest(jwt: jwt, request: request)
+        }, sessionAuthenticationFailure: { [weak self] in
+            guard let self = self else { return }
+            // todo error message
+            self.showTransactionError?("authentication error")
+        })
+    }
+
     // MARK: Validation
 
     func handleCardinalWarnings() {
-        let warnings = threeDSecureManager.warnings
+        let warnings = self.threeDSecureManager.warnings
         guard !warnings.isEmpty else { return }
-        let warningsErrorMessage = warnings.map({ $0.localizedDescription }).joined(separator: ", ")
-        cardinalWarningsCompletion?(warningsErrorMessage, warnings)
+        let warningsErrorMessage = warnings.map { $0.localizedDescription }.joined(separator: ", ")
+        self.cardinalWarningsCompletion?(warningsErrorMessage, warnings)
     }
 
     /// Validates all input views in form

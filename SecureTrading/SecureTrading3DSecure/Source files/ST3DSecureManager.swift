@@ -40,6 +40,9 @@ public final class ST3DSecureManager {
 
     private let isLiveStatus: Bool
 
+    private var sessionAuthenticationValidateJWT: ((String) -> Void)?
+    private var sessionAuthenticationFailure: (() -> Void)?
+
     // MARK: - Public properties
 
     /// get a list of all the Warnings detected by the SDK
@@ -150,7 +153,9 @@ public final class ST3DSecureManager {
     /// - Parameters:
     ///   - transactionId: transaction id
     ///   - payload: transaction payload
-    public func continueSession(with transactionId: String, payload: String) {
+    public func continueSession(with transactionId: String, payload: String, sessionAuthenticationValidateJWT: @escaping ((String) -> Void), sessionAuthenticationFailure: @escaping (() -> Void)) {
+        self.sessionAuthenticationValidateJWT = sessionAuthenticationValidateJWT
+        self.sessionAuthenticationFailure = sessionAuthenticationFailure
         session.continueWith(transactionId: transactionId, payload: payload, validationDelegate: self)
     }
 }
@@ -164,26 +169,26 @@ extension ST3DSecureManager: CardinalValidationDelegate {
     public func cardinalSession(cardinalSession session: CardinalSession!, stepUpValidated validateResponse: CardinalResponse!, serverJWT: String!) {
         // The field ActionCode should be used to determine the overall state of the transaction. On the first pass, we recommend that on an ActionCode of 'SUCCESS' or 'NOACTION' you send the response JWT to your backend for verification.
         switch validateResponse.actionCode {
-        // Handle successful transaction, send JWT to backend to verify
-        case .success:
-            break
         // Handle no actionable outcome
         case .noAction:
-            break
-        // Handle failed transaction attempt
-        case .failure:
-            break
-        // Handle service level error
-        case .error:
-            break
+            fallthrough
         // Handle transaction canceled by user
         case .cancel:
-            break
+            fallthrough
         // Handle transaction timedout
         case .timeout:
-            break
+            fallthrough
+        // Handle successful transaction, send JWT to backend to verify
+        case .success:
+            sessionAuthenticationValidateJWT?(serverJWT)
+        // Handle failed transaction attempt
+        case .failure:
+            fallthrough
+        // Handle service level error
+        case .error:
+            fallthrough
         @unknown default:
-            break
+            sessionAuthenticationFailure?()
         }
     }
 }
