@@ -176,8 +176,7 @@ final class DropInViewModel {
     // MARK: 3DSecure flow
 
     private func handlePaymentTransactionResponse(responseObject: JWTResponseObject) {
-
-        
+        print(responseObject)
     }
 
     private func createAuthenticationSessionWithCardinal(transactionId: String, transactionPayload: String) {
