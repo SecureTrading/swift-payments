@@ -116,12 +116,20 @@ final class MainView: WhiteBackgroundBaseView {
     }()
 
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [makeAuthRequestButton,
+        let onMerchantLabel = UILabel()
+        onMerchantLabel.textAlignment = .center
+        onMerchantLabel.text = "On merchant"
+        let onSDKLabel = UILabel()
+        onSDKLabel.textAlignment = .center
+        onSDKLabel.text = "On SDK"
+        let stackView = UIStackView(arrangedSubviews: [onSDKLabel,
+                                                       makeAuthRequestButton,
                                                        showSingleInputViewsButton,
                                                        showDropInControllerButton,
                                                        makeAccountCheckRequestButton,
                                                        makeAccountCheckWithAuthRequestButton,
                                                        addCardReferenceButton,
+                                                       onMerchantLabel,
                                                        payWithWalletButton])
         stackView.axis = .vertical
         stackView.spacing = 30
