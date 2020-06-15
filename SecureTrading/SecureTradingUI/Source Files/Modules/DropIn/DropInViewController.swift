@@ -4,12 +4,15 @@
 //
 
 import UIKit
+#if !COCOAPODS
+import SecureTrading3DSecure
+#endif
 
 final class DropInViewController: BaseViewController<DropInView, DropInViewModel> {
     /// Enum describing events that can be triggered by this controller
     enum Event {
         case successfulPayment
-        case cardinalWarnings
+        case cardinalWarnings(String, [CardinalInitWarnings])
     }
 
     /// Callback with triggered event
@@ -50,12 +53,9 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             self.showAlert(message: error, completionHandler: nil)
         }
 
-        viewModel.showCardinalWarnings = { [weak self] warningsMessage in
+        viewModel.cardinalWarningsCompletion = { [weak self] warningsMessage, warnings in
             guard let self = self else { return }
-            self.showAlert(message: warningsMessage) { [weak self] _ in
-                guard let self = self else { return }
-                self.eventTriggered?(.cardinalWarnings)
-            }
+            self.eventTriggered?(.cardinalWarnings(warningsMessage, warnings))
         }
 
         viewModel.showValidationError = { [weak self] error in

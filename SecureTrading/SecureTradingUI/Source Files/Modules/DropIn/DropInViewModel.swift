@@ -40,7 +40,7 @@ final class DropInViewModel {
     var showTransactionSuccess: ((ResponseSettleStatus) -> Void)?
     var showTransactionError: ((String) -> Void)?
     var showValidationError: ((ResponseErrorDetail) -> Void)?
-    var showCardinalWarnings: ((String) -> Void)?
+    var cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)?
 
     // MARK: Initialization
 
@@ -179,7 +179,7 @@ final class DropInViewModel {
         let warnings = threeDSecureManager.warnings
         guard !warnings.isEmpty else { return }
         let warningsErrorMessage = warnings.map({ $0.localizedDescription }).joined(separator: ", ")
-        showCardinalWarnings?(warningsErrorMessage)
+        cardinalWarningsCompletion?(warningsErrorMessage, warnings)
     }
 
     /// Validates all input views in form

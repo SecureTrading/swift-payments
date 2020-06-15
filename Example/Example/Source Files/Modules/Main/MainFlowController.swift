@@ -58,8 +58,10 @@ final class MainFlowController: BaseNavigationFlowController {
 
         let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: [.auth], gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: false, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: { [unowned self] in
             self.navigationController.popViewController(animated: true)
-        }, cardinalWarningsCompletion: { [unowned self] in
-            self.navigationController.popViewController(animated: true)
+        }, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
+            self.showAlert(controller: self.navigationController, message: warningsMessage) { _ in
+                self.navigationController.popViewController(animated: true)
+            }
         })
 
         // swiftlint:enable line_length
@@ -79,5 +81,11 @@ final class MainFlowController: BaseNavigationFlowController {
     func showTestMainFlow() {
         sdkFlowController = SDKFlowController(navigationController: navigationController)
         sdkFlowController.presentTestMainFlow()
+    }
+
+    private func showAlert(controller: UIViewController, message: String, completionHandler: ((UIAlertAction) -> Void)?) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Localizable.Alerts.okButton.text, style: .default, handler: completionHandler))
+        controller.present(alert, animated: true, completion: nil)
     }
 }
