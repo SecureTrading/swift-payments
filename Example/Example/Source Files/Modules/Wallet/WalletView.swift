@@ -14,9 +14,6 @@ final class WalletView: WhiteBackgroundBaseView {
         PayButton()
     }()
 
-    /// Stores temporary all card references
-    //    private let cardReferences: [CardReferenceView]
-
     // MARK: Callbacks
     /// Tapped on Pay button
     var payWithWalletRequest: (() -> Void)? {
@@ -25,6 +22,7 @@ final class WalletView: WhiteBackgroundBaseView {
     }
     /// Selected a card reference from a list
     var cardFromWalletSelected: ((STCardReference) -> Void)?
+    var addNewPaymentMethod: (() -> Void)?
 
     // MARK: View hierarchy
 
@@ -58,18 +56,18 @@ final class WalletView: WhiteBackgroundBaseView {
     }
     enum Section {
         case paymentMethods(rows: [Row])
-        case addMethod(rows: [Row])
+        case addMethod(showHeader: Bool, rows: [Row])
 
         var rows: [Row] {
             switch self {
             case .paymentMethods(let rows): return rows
-            case .addMethod(let rows): return rows
+            case .addMethod(_, let rows): return rows
             }
         }
         var title: String? {
             switch self {
             case .paymentMethods: return "PAYMENT METHODS"
-            case .addMethod: return "Tap the card you wish to pay with and click the 'Pay' button to process the payment"
+            case .addMethod(let showHeader, _): return showHeader ? "Tap the card you wish to pay with and click the 'Pay' button to process the payment" : nil
             }
         }
     }
@@ -81,9 +79,13 @@ final class WalletView: WhiteBackgroundBaseView {
     ///   - inputViewStyleManager: instance of manager to customize view
     @objc public init(walletCards: [STCardReference]) {
         super.init()
+        reloadCards(walletCards)
+    }
+
+    @objc public func reloadCards(_ cards: [STCardReference]) {
         items = [
-            Section.paymentMethods(rows: walletCards.map { Row.cardReference($0) }),
-            Section.addMethod(rows: [Row.addCard(title: "Add Payment method")])
+            Section.paymentMethods(rows: cards.map { Row.cardReference($0) }),
+            Section.addMethod(showHeader: !cards.isEmpty, rows: [Row.addCard(title: "Add Payment method")])
         ]
     }
 
@@ -139,7 +141,7 @@ extension WalletView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch items[section] {
         case .paymentMethods: return 40
-        case .addMethod: return 70
+        case .addMethod(let showHeader, _): return showHeader ? 70 : 0
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -149,7 +151,8 @@ extension WalletView: UITableViewDataSource, UITableViewDelegate {
             payButton.isEnabled = true
         case .addCard:
             payButton.isEnabled = false
-            // TODO: show add card view
+            tableView.deselectRow(at: indexPath, animated: false)
+            addNewPaymentMethod?()
         }
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 class Wallet {
     private init() {
         // Left for now for testing purposes
-        mockCards()
+        // mockCards()
     }
     private var cards: [STCardReference] = []
     static let shared: Wallet = Wallet()
