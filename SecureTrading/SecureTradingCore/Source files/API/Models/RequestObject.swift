@@ -49,6 +49,7 @@ public enum TypeDescription: String, Codable {
     let expiryDate: String?
     let termUrl: String?
     let threeDResponse: String?
+    let cacheToken: String?
 
     // MARK: Initialization
 
@@ -60,13 +61,14 @@ public enum TypeDescription: String, Codable {
     ///   - expiryDate: The expiry date printed on the card.
     ///   - termUrl: terms url
     ///   - threeDResponse: JWT token for validation
-    public init(typeDescriptions: [TypeDescription], cardNumber: String? = nil, securityCode: String? = nil, expiryDate: String? = nil, termUrl: String? = nil, threeDResponse: String? = nil) {
+    public init(typeDescriptions: [TypeDescription], cardNumber: String? = nil, securityCode: String? = nil, expiryDate: String? = nil, termUrl: String? = nil, threeDResponse: String? = nil, cacheToken: String? = nil) {
         self.typeDescriptions = typeDescriptions
         self.cardNumber = cardNumber
         self.securityCode = securityCode
         self.expiryDate = expiryDate
         self.termUrl = termUrl
         self.threeDResponse = threeDResponse
+        self.cacheToken = cacheToken
     }
 
     // objc workaround
@@ -90,5 +92,6 @@ private extension RequestObject {
         case expiryDate = "expirydate"
         case termUrl = "termurl"
         case threeDResponse = "threedresponse"
+        case cacheToken = "cachetoken"
     }
 }

@@ -85,7 +85,7 @@ final class DropInViewModel {
     ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
     ///   - expiryDate: The expiry date printed on the card.
     private func makePaymentRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
-        let request = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue)
+        let request = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue, termUrl: "https://termurl.com", cacheToken: self.jsInitCacheToken)
 
         self.apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
@@ -204,8 +204,8 @@ final class DropInViewModel {
             guard let jwtForValidation = jwtForValidation else { return }
             dispatchGroup.enter()
 
-            let request = RequestObject(typeDescriptions: [.auth])
-            self.apiManager.makeGeneralRequest(jwt: jwtForValidation, request: request, success: { responseObject, _ in
+            let request = RequestObject(typeDescriptions: [.auth], cardNumber: self.card?.cardNumber.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate.rawValue, threeDResponse: jwtForValidation, cacheToken: self.jsInitCacheToken)
+            self.apiManager.makeGeneralRequest(jwt: self.jwt, request: request, success: { responseObject, _ in
                 switch responseObject.responseErrorCode {
                 case .successful:
                     jwtResponseObject = responseObject
