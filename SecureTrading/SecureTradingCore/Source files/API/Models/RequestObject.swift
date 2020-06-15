@@ -47,20 +47,26 @@ public enum TypeDescription: String, Codable {
     let cardNumber: String?
     let securityCode: String?
     let expiryDate: String?
+    let termUrl: String?
+    let threeDResponse: String?
 
     // MARK: Initialization
 
     /// Initializes an instance of the receiver.
     /// - Parameters:
-    ///   - typeDescriptions: request type
+    ///   - typeDescriptions: request types
     ///   - cardNumber: The long number printed on the front of the customer’s card.
     ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
     ///   - expiryDate: The expiry date printed on the card.
-    public init(typeDescriptions: [TypeDescription], cardNumber: String? = nil, securityCode: String? = nil, expiryDate: String? = nil) {
+    ///   - termUrl: terms url
+    ///   - threeDResponse: JWT token for validation
+    public init(typeDescriptions: [TypeDescription], cardNumber: String? = nil, securityCode: String? = nil, expiryDate: String? = nil, termUrl: String? = nil, threeDResponse: String? = nil) {
         self.typeDescriptions = typeDescriptions
         self.cardNumber = cardNumber
         self.securityCode = securityCode
         self.expiryDate = expiryDate
+        self.termUrl = termUrl
+        self.threeDResponse = threeDResponse
     }
 
     // objc workaround
@@ -82,5 +88,7 @@ private extension RequestObject {
         case cardNumber = "pan"
         case securityCode = "securitycode"
         case expiryDate = "expirydate"
+        case termUrl = "termurl"
+        case threeDResponse = "threedresponse"
     }
 }
