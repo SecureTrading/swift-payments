@@ -145,4 +145,45 @@ public final class ST3DSecureManager {
             failure(validateResponse)
         })
     }
+
+    /// Create the authentication session - call this method to hand control to SDK for performing the challenge between the user and the issuing bank.
+    /// - Parameters:
+    ///   - transactionId: transaction id
+    ///   - payload: transaction payload
+    public func continueSession(with transactionId: String, payload: String) {
+        session.continueWith(transactionId: transactionId, payload: payload, validationDelegate: self)
+    }
+}
+
+extension ST3DSecureManager: CardinalValidationDelegate {
+    /// This method is triggered when the transaction has been terminated. This is how SDK hands back control to the merchant's application. This method will include data on how the transaction attempt ended and you should have your logic for reviewing the results of the transaction and making decisions regarding next steps.
+    /// - Parameters:
+    ///   - session: session object
+    ///   - validateResponse: validate response object
+    ///   - serverJWT: token which should be send to ST backend for validation (AUTH request)
+    public func cardinalSession(cardinalSession session: CardinalSession!, stepUpValidated validateResponse: CardinalResponse!, serverJWT: String!) {
+        // The field ActionCode should be used to determine the overall state of the transaction. On the first pass, we recommend that on an ActionCode of 'SUCCESS' or 'NOACTION' you send the response JWT to your backend for verification.
+        switch validateResponse.actionCode {
+        // Handle successful transaction, send JWT to backend to verify
+        case .success:
+            break
+        // Handle no actionable outcome
+        case .noAction:
+            break
+        // Handle failed transaction attempt
+        case .failure:
+            break
+        // Handle service level error
+        case .error:
+            break
+        // Handle transaction canceled by user
+        case .cancel:
+            break
+        // Handle transaction timedout
+        case .timeout:
+            break
+        @unknown default:
+            break
+        }
+    }
 }
