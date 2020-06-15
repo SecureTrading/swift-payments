@@ -27,6 +27,7 @@ public final class ST3DSecureManager {
     public init(isLiveStatus: Bool) {
         self.isLiveStatus = isLiveStatus
         self.session = CardinalSession()
+        self.configure()
     }
 
     // MARK: - Public methods

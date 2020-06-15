@@ -83,8 +83,7 @@ final class DropInViewModel {
     ///   - cardNumber: The long number printed on the front of the customer’s card.
     ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
     ///   - expiryDate: The expiry date printed on the card.
-    func makeRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
-
+    private func makeRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
         let authRequest = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue)
 
         self.apiManager.makeGeneralRequest(jwt: self.jwt, request: authRequest, success: { [weak self] responseObject, _ in
@@ -119,7 +118,7 @@ final class DropInViewModel {
     /// executes js init request (to get threeDInit - JWT token to setup the Cardinal) and Cardinal setup
     /// - Parameter completion: closure with following parameters: consumer session id
     /// - Parameter failure: closure with error message
-    func makeJSInitRequest(completion: @escaping ((String) -> Void), failure: @escaping ((String) -> Void)) {
+    private func makeJSInitRequest(completion: @escaping ((String) -> Void), failure: @escaping ((String) -> Void)) {
         let jsInitRequest = RequestObject(typeDescriptions: [.jsInit])
 
         self.apiManager.makeGeneralRequest(jwt: self.jwt, request: jsInitRequest, success: { [weak self] responseObject, _ in
@@ -155,6 +154,7 @@ final class DropInViewModel {
                 self.makeRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
                 return
             }
+
             self.showTransactionError?(jsInitError)
         } else {
             self.makeJSInitRequest(completion: { [weak self] _ in
