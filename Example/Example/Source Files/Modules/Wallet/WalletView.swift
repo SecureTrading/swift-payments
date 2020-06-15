@@ -6,9 +6,6 @@
 import UIKit
 import SecureTradingUI
 
-class WalletCell: UITableViewCell {
-
-}
 /// An example implementation of Wallet functionality
 final class WalletView: WhiteBackgroundBaseView {
 
@@ -18,7 +15,7 @@ final class WalletView: WhiteBackgroundBaseView {
     }()
 
     /// Stores temporary all card references
-    private let cardReferences: [CardReferenceView]
+    //    private let cardReferences: [CardReferenceView]
 
     // MARK: Callbacks
     /// Tapped on Pay button
@@ -31,40 +28,51 @@ final class WalletView: WhiteBackgroundBaseView {
 
     // MARK: View hierarchy
 
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-        return scrollView
-    }()
-
     fileprivate lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(dequeueableCell: WalletCell.self)
+        tableView.register(dequeueableCell: WalletCardTableViewCell.self)
+        tableView.register(dequeueableCell: WalletAddCardTableViewCell.self)
+
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        tableView.tableFooterView = UIView()
         return tableView
     }()
 
-    private let stackViewLeadingConstraint = "stackViewLeadingConstraint"
-    private let stackViewTrailingConstraint = "stackViewTrailingConstraint"
-    private let stackViewTopConstraint = "stackViewTopConstraint"
-    private let stackViewBottomConstraint = "stackViewBottomConstraint"
+    var items: [Section] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    enum Row {
+        case cardReference(STCardReference)
+        case addCard(title: String)
 
-//    private let stackContainer: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = .clear
-//        return view
-//    }()
+        var card: STCardReference? {
+            switch self {
+            case .cardReference(let cardRef): return cardRef
+            case .addCard: return nil
+            }
+        }
+    }
+    enum Section {
+        case paymentMethods(rows: [Row])
+        case addMethod(rows: [Row])
 
-//    private lazy var stackView: UIStackView = {
-//        let stackView = UIStackView(arrangedSubviews: cardReferences)
-//        stackView.axis = .vertical
-//        stackView.spacing = 30
-//        stackView.alignment = .fill
-//        stackView.distribution = .fill
-//        return stackView
-//    }()
+        var rows: [Row] {
+            switch self {
+            case .paymentMethods(let rows): return rows
+            case .addMethod(let rows): return rows
+            }
+        }
+        var title: String? {
+            switch self {
+            case .paymentMethods: return "PAYMENT METHODS"
+            case .addMethod: return "Tap the card you wish to pay with and click the 'Pay' button to process the payment"
+            }
+        }
+    }
 
     // MARK: Initialization
 
@@ -72,105 +80,100 @@ final class WalletView: WhiteBackgroundBaseView {
     /// - Parameters:
     ///   - inputViewStyleManager: instance of manager to customize view
     @objc public init(walletCards: [STCardReference]) {
-        cardReferences = walletCards.map { CardReferenceView(cardReference: $0) }
         super.init()
-
-        // set up touch up inside handler for selecting/deselecting
-        cardReferences.forEach { [weak self] cardView in
-            guard let self = self else { return }
-            cardView.tap = { (card, isSelected) in
-                self.payButton.isEnabled = isSelected
-                if isSelected {
-                    self.unselectAll(except: cardView)
-                    self.cardFromWalletSelected?(card)
-                } else {
-                    self.unselectAll()
-                }
-            }
-        }
-        tableView.reloadData()
+        items = [
+            Section.paymentMethods(rows: walletCards.map { Row.cardReference($0) }),
+            Section.addMethod(rows: [Row.addCard(title: "Add Payment method")])
+        ]
     }
 
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    // MARK: Private functions
-
-    /// Unselects all cards in stack view
-    /// - Parameter current: Current card reference, needed for omiting selection
-    private func unselectAll(except current: CardReferenceView? = nil) {
-        if let current = current {
-            cardReferences.filter { $0 != current }.forEach { $0.isSelected = false }
-        } else {
-            cardReferences.forEach { $0.isSelected = false }
-        }
-    }
 }
 
 extension WalletView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeue(dequeueableCell: WalletCell.self)
-        cell.textLabel?.text = cardReferences[indexPath.row].card.maskedPan
-        return cell
+        switch items[indexPath.section].rows[indexPath.row] {
+        case .cardReference(let cardReference):
+            let cell = tableView.dequeue(dequeueableCell: WalletCardTableViewCell.self)
+            cell.configure(cardReference: cardReference)
+            return cell
+        case .addCard(let title):
+            let cell = tableView.dequeue(dequeueableCell: WalletAddCardTableViewCell.self)
+            cell.configure(title: title)
+            return cell
+        }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return items.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cardReferences.count
+        return items[section].rows.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        switch items[indexPath.section].rows[indexPath.row] {
+        case .addCard: return 44
+        case .cardReference: return 70
+        }
     }
-
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let title = items[section].title {
+            let header = UIView()
+            header.backgroundColor = UIColor.groupTableViewBackground
+            let label = UILabel()
+            label.text = title
+            label.textColor = UIColor.gray
+            label.numberOfLines = 0
+            header.addSubview(label)
+            label.addConstraints([
+                equal(header, \.topAnchor, \.topAnchor, constant: 2),
+                       equal(header, \.bottomAnchor, \.bottomAnchor, constant: 2),
+                       equal(header, \.leadingAnchor, \.leadingAnchor, constant: 20),
+                       equal(header, \.trailingAnchor, \.trailingAnchor, constant: -20)
+                   ])
+            return header
+        }
+        return nil
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch items[section] {
+        case .paymentMethods: return 40
+        case .addMethod: return 70
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch items[indexPath.section].rows[indexPath.row] {
+        case .cardReference(let card):
+            cardFromWalletSelected?(card)
+            payButton.isEnabled = true
+        case .addCard:
+            payButton.isEnabled = false
+            // TODO: show add card view
+        }
+    }
 }
-extension WalletView: ViewSetupable {
 
-//    private func buildStackViewConstraints() {
-//        stackContainer.constraint(withIdentifier: stackViewTopConstraint)?.isActive = false
-//        stackContainer.constraint(withIdentifier: stackViewBottomConstraint)?.isActive = false
-//        stackContainer.constraint(withIdentifier: stackViewLeadingConstraint)?.isActive = false
-//        stackContainer.constraint(withIdentifier: stackViewTrailingConstraint)?.isActive = false
-//
-//        stackView.addConstraints([
-//            equal(stackContainer, \.topAnchor, \.topAnchor, constant: 0, identifier: stackViewTopConstraint),
-//            equal(stackContainer, \.bottomAnchor, \.bottomAnchor, constant: 0, identifier: stackViewBottomConstraint),
-//            equal(stackContainer, \.leadingAnchor, \.leadingAnchor, constant: 0, identifier: stackViewLeadingConstraint),
-//            equal(stackContainer, \.trailingAnchor, \.trailingAnchor, constant: 0, identifier: stackViewTrailingConstraint)
-//        ])
-//    }
+extension WalletView: ViewSetupable {
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
     func setupViewHierarchy() {
-//        stackContainer.addSubview(stackView)
-//        scrollView.addSubview(stackContainer)
-        addSubviews([tableView])
         self.addSubview(payButton)
         payButton.addConstraints([
-            equal(self, \.bottomAnchor, \.bottomAnchor, constant: -40, identifier: stackViewBottomConstraint),
-            equal(self, \.leadingAnchor, \.leadingAnchor, constant: 20, identifier: stackViewLeadingConstraint),
-            equal(self, \.trailingAnchor, \.trailingAnchor, constant: -20, identifier: stackViewTrailingConstraint)
+            equal(self, \.bottomAnchor, \.bottomAnchor, constant: -40),
+            equal(self, \.leadingAnchor, \.leadingAnchor, constant: 20),
+            equal(self, \.trailingAnchor, \.trailingAnchor, constant: -20)
         ])
+        addSubviews([tableView])
     }
 
     /// - SeeAlso: ViewSetupable.setupConstraints
     func setupConstraints() {
-        print("a")
-
         tableView.addConstraints([
             equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: 0),
-            equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            equal(payButton, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             equal(self, \.leadingAnchor, constant: 0),
             equal(self, \.trailingAnchor, constant: 0)
         ])
-//
-//        stackContainer.addConstraints(equalToSuperview(with: .init(top: 0, left: 20, bottom: 0, right: 20), usingSafeArea: false))
-//
-//        stackContainer.addConstraints([
-//            equal(self, \.widthAnchor, to: \.widthAnchor, constant: 0.0)
-//        ])
-//
-//        buildStackViewConstraints()
     }
 }
