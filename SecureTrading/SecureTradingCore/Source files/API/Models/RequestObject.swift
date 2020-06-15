@@ -5,7 +5,7 @@
 
 // objc workaround - when you add a new value to TypeDescription, you have to add it here too
 @objc public enum TypeDescriptionObjc: Int {
-    case auth
+    case auth = 0
     case threeDQuery
     case accountCheck
     case jsInit
