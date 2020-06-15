@@ -31,6 +31,11 @@ final class MainView: WhiteBackgroundBaseView {
         set { showDropInControllerButton.onTap = newValue }
     }
 
+    var showDropInControllerWithWarningsButtonTappedClosure: (() -> Void)? {
+           get { return showDropInControllerWithWarningsButton.onTap }
+           set { showDropInControllerWithWarningsButton.onTap = newValue }
+       }
+
     var accountCheckRequest: (() -> Void)? {
         get { return makeAccountCheckRequestButton.onTap }
         set { makeAccountCheckRequestButton.onTap = newValue }
@@ -76,6 +81,13 @@ final class MainView: WhiteBackgroundBaseView {
         return button
     }()
 
+    private let showDropInControllerWithWarningsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
+        button.setTitle(Localizable.MainView.showDropInControllerWithWarningsButton.text, for: .normal)
+        return button
+    }()
+
     private let makeAccountCheckRequestButton: UIButton = {
         let button = UIButton(type: .system)
         button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
@@ -96,6 +108,7 @@ final class MainView: WhiteBackgroundBaseView {
                                                        makeAuthRequestButton,
                                                        showSingleInputViewsButton,
                                                        showDropInControllerButton,
+                                                       showDropInControllerWithWarningsButton,
                                                        makeAccountCheckRequestButton,
                                                        makeAccountCheckWithAuthRequestButton])
         stackView.axis = .vertical
@@ -128,6 +141,7 @@ private extension Localizable {
         case makeAuthRequestButton
         case showSingleInputViewsButton
         case showDropInControllerButton
+        case showDropInControllerWithWarningsButton
         case makeAccountCheckRequestButton
         case makeAccountCheckWithAuthRequestButton
     }

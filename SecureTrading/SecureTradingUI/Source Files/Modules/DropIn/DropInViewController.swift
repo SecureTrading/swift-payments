@@ -4,11 +4,15 @@
 //
 
 import UIKit
+#if !COCOAPODS
+import SecureTrading3DSecure
+#endif
 
 final class DropInViewController: BaseViewController<DropInView, DropInViewModel> {
     /// Enum describing events that can be triggered by this controller
     enum Event {
         case successfulPayment
+        case cardinalWarnings(String, [CardinalInitWarnings])
     }
 
     /// Callback with triggered event
@@ -30,7 +34,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
                 let cvc = self.customView.cvcInput.cvc
                 let expiryDate = self.customView.expiryDateInput.expiryDate
 
-                self.viewModel.makeRequest(cardNumber: cardNumber, securityCode: cvc, expiryDate: expiryDate)
+                self.viewModel.performTransaction(cardNumber: cardNumber, securityCode: cvc, expiryDate: expiryDate)
             }
         }
 
@@ -49,6 +53,11 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             self.showAlert(message: error, completionHandler: nil)
         }
 
+        viewModel.cardinalWarningsCompletion = { [weak self] warningsMessage, warnings in
+            guard let self = self else { return }
+            self.eventTriggered?(.cardinalWarnings(warningsMessage, warnings))
+        }
+
         viewModel.showValidationError = { [weak self] error in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
@@ -63,6 +72,11 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
 
     /// - SeeAlso: BaseViewController.setupProperties
     override func setupProperties() {}
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.handleCardinalWarnings()
+    }
 
     // MARK: Alerts
 
