@@ -46,6 +46,10 @@ final class DropInViewModel {
         self.apiManager = DefaultAPIManager(gatewayType: gatewayType, username: username)
         self.isLiveStatus = isLiveStatus
         self.isDeferInit = isDeferInit
+
+        if !isDeferInit {
+
+        }
     }
 
     // MARK: Api requests
@@ -94,7 +98,8 @@ final class DropInViewModel {
 
     /// executes js init request - to get threeDInit (JWT token) to setup the Cardinal
     /// - Parameter completion: closure with following parameters: cache token and JWT token
-    func makeJSInitRequest(completion: @escaping ((String, String) -> Void)) {
+    /// - Parameter failure: closure with error message
+    func makeJSInitRequest(completion: @escaping ((String, String) -> Void), failure: @escaping ((String) -> Void)) {
 
         let jsInitRequest = RequestObject(typeDescriptions: [.jsInit])
 
@@ -104,11 +109,11 @@ final class DropInViewModel {
             case .successful:
                 completion(responseObject.cacheToken!, responseObject.threeDInit!)
             default:
-                self.showTransactionError?(responseObject.errorMessage)
+                failure(responseObject.errorMessage)
             }
         }, failure: { [weak self] error in
             guard let self = self else { return }
-            self.showTransactionError?(error.humanReadableDescription)
+            failure(error.humanReadableDescription)
         })
 
     }
@@ -116,22 +121,22 @@ final class DropInViewModel {
     // MARK: Transaction flow
 
     func performTransaction(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
-        guard typeDescriptions.contains(.threeDQuery) else {
-            makeRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
-            return
-        }
-
-        perform3DSecureFlow()
+//        guard typeDescriptions.contains(.threeDQuery) else {
+//            makeRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
+//            return
+//        }
+//
+//        perform3DSecureFlow()
     }
 
     // MARK: 3DSecure flow
 
     func perform3DSecureFlow() {
-        makeJSInitRequest { (cacheToken, threeDInit) in
-            // todo
-            print(cacheToken)
-            print(threeDInit)
-        }
+//        makeJSInitRequest { (cacheToken, threeDInit) in
+//            // todo
+//            print(cacheToken)
+//            print(threeDInit)
+//        }
 
     }
 
