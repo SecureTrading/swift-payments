@@ -176,7 +176,19 @@ final class DropInViewModel {
     // MARK: 3DSecure flow
 
     private func handlePaymentTransactionResponse(responseObject: JWTResponseObject) {
-        print(responseObject)
+
+        guard typeDescriptions.contains(.threeDQuery) else {
+            self.showTransactionSuccess?(responseObject.responseSettleStatus)
+            return
+        }
+
+        // bypass 3dsecure
+        guard let cardEnrolled = responseObject.cardEnrolled, responseObject.acsUrl != nil, cardEnrolled == "Y" else {
+            createAuthenticationSessionWithCardinal(transactionId: responseObject.transactionReference!, transactionPayload: responseObject.threeDPayload!)
+            return
+        }
+
+        self.showTransactionSuccess?(responseObject.responseSettleStatus)
     }
 
     private func createAuthenticationSessionWithCardinal(transactionId: String, transactionPayload: String) {
@@ -212,8 +224,10 @@ final class DropInViewModel {
                 default:
                     transactionError = responseObject.errorMessage
                 }
+                dispatchGroup.leave()
             }, failure: { error in
                 transactionError = error.humanReadableDescription
+                dispatchGroup.leave()
             })
         }
 
