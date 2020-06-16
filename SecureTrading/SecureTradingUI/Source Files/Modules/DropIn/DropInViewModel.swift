@@ -85,9 +85,10 @@ final class DropInViewModel {
     ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
     ///   - expiryDate: The expiry date printed on the card.
     private func makePaymentRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
-        let request = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue, termUrl: "https://termurl.com", cacheToken: self.jsInitCacheToken)
+        let termUrl = self.typeDescriptions.contains(.threeDQuery) ? "https://termurl.com" : nil
+        let request = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
 
-        self.apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _ in
+        self.apiManager.makeGeneralRequest(jwt: self.jwt, request: request, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:
@@ -176,19 +177,18 @@ final class DropInViewModel {
     // MARK: 3DSecure flow
 
     private func handlePaymentTransactionResponse(responseObject: JWTResponseObject) {
-
-        guard typeDescriptions.contains(.threeDQuery) else {
+        guard self.typeDescriptions.contains(.threeDQuery) else {
             self.showTransactionSuccess?(responseObject.responseSettleStatus)
             return
         }
 
         // bypass 3dsecure
         guard let cardEnrolled = responseObject.cardEnrolled, responseObject.acsUrl != nil, cardEnrolled == "Y" else {
-            createAuthenticationSessionWithCardinal(transactionId: responseObject.transactionReference!, transactionPayload: responseObject.threeDPayload!)
+            self.showTransactionSuccess?(responseObject.responseSettleStatus)
             return
         }
 
-        self.showTransactionSuccess?(responseObject.responseSettleStatus)
+        self.createAuthenticationSessionWithCardinal(transactionId: responseObject.acquirerTransactionReference!, transactionPayload: responseObject.threeDPayload ?? .empty)
     }
 
     private func createAuthenticationSessionWithCardinal(transactionId: String, transactionPayload: String) {

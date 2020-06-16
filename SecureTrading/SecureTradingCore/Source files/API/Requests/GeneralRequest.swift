@@ -56,6 +56,8 @@ struct GeneralRequest: APIRequestModel {
     }
 
     func isValidAgainstResponse(_ response: APIResponse) -> Bool {
+        // todo - probably to remove
+        return true
         // check if response type description is the same as request type description
         // most likely to be adjusted for request with multiple types, like auth and 3dsecure
         guard let generalResponses = (response as? GeneralResponse)?.jwtResponses else { return true }
