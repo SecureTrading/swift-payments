@@ -24,7 +24,18 @@ final class MainFlowController: BaseNavigationFlowController {
     ///
     /// - Returns: Object of MainViewController
     private func setupMainScreen() -> UIViewController {
-        let mainViewController = MainViewController(view: MainView(), viewModel: MainViewModel(apiManager: appFoundation.apiManager))
+        let viewItems = [
+            MainViewModel.Section.onSDK(rows:
+                [
+                    MainViewModel.Row.performAuthRequestInBackground,
+                    MainViewModel.Row.presentSingleInputComponents,
+                    MainViewModel.Row.presentPayByCardForm,
+                    MainViewModel.Row.performAccountCheck,
+                    MainViewModel.Row.performAccountCheckWithAuth,
+                    MainViewModel.Row.presentAddCardForm]),
+            MainViewModel.Section.onMerchant(rows: [MainViewModel.Row.presentWalletForm])
+        ]
+        let mainViewController = MainViewController(view: MainView(), viewModel: MainViewModel(apiManager: appFoundation.apiManager, items: viewItems))
         mainViewController.eventTriggered = { [unowned self] event in
             switch event {
             case .didTapShowTestMainScreen:
@@ -64,13 +75,13 @@ final class MainFlowController: BaseNavigationFlowController {
         // swiftlint:disable line_length
 
         let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: [.auth], gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: false, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: { [unowned self] cardReference in
-             Wallet.shared.add(card: cardReference)
+            Wallet.shared.add(card: cardReference)
             self.navigationController.popViewController(animated: true)
-        }, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
-            guard handleCardinalWarnings else { return }
-            self.showAlert(controller: self.navigationController, message: warningsMessage) { _ in
-                self.navigationController.popViewController(animated: true)
-            }
+            }, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
+                guard handleCardinalWarnings else { return }
+                self.showAlert(controller: self.navigationController, message: warningsMessage) { _ in
+                    self.navigationController.popViewController(animated: true)
+                }
         })
 
         // swiftlint:enable line_length

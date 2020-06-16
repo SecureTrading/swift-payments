@@ -23,7 +23,7 @@ final class WalletViewModel {
     var getUsername: String {
         return keys.merchantUsername
     }
-    
+
     /// - Parameter apiManager: API manager
     init(apiManager: APIManager) {
         self.apiManager = apiManager

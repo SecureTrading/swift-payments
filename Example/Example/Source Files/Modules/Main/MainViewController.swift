@@ -30,6 +30,8 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         let imageView = UIImageView(image: UIImage(named: "trustPaymentsLogo"))
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView
+
+        customView.dataSource = viewModel
     }
 
     /// - SeeAlso: BaseViewController.setupCallbacks

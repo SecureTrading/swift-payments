@@ -47,7 +47,7 @@ final class WalletViewController: BaseViewController<WalletView, WalletViewModel
             let dropInVC = ViewControllerFactory.shared.addCardViewController(jwt: jwt,
                                                                               typeDescriptions: [.accountCheck],
                                                                               gatewayType: .eu,
-                                                                              username: self.viewModel.getUsername(),
+                                                                              username: self.viewModel.getUsername,
                                                                               dropInViewStyleManager: dropInViewStyleManager) { [weak self] cardReference in
                                                                                 Wallet.shared.add(card: cardReference)
                                                                                 self?.customView.reloadCards(Wallet.shared.allCards)

@@ -6,8 +6,18 @@
 import Foundation
 import SwiftJWT
 
+protocol MainViewModelDataSource: class {
+    func row(at index: IndexPath) -> MainViewModel.Row?
+    func numberOfSections() -> Int
+    func numberOfRows(at section: Int) -> Int
+    func title(for section: Int) -> String?
+}
+
 final class MainViewModel {
     // MARK: Properties
+
+    /// Stores Sections and rows representing the main view
+    fileprivate var items: [Section]
 
     /// - SeeAlso: AppFoundation.apiManager
     private let apiManager: APIManager
@@ -24,8 +34,9 @@ final class MainViewModel {
     /// Initializes an instance of the receiver.
     ///
     /// - Parameter apiManager: API manager
-    init(apiManager: APIManager) {
+    init(apiManager: APIManager, items: [Section]) {
         self.apiManager = apiManager
+        self.items = items
     }
 
     // MARK: Functions
@@ -96,7 +107,7 @@ final class MainViewModel {
                                               expirydate: nil,
                                               securitycode: nil,
                                               parenttransactionreference: "59-9-34731")
-            )
+        )
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
         let authRequest = RequestObject(typeDescriptions: [.accountCheck, .auth])
@@ -138,5 +149,93 @@ final class MainViewModel {
                     self.showAuthError?(error.humanReadableDescription)
                 }
         })
+    }
+}
+
+// MARK: MainViewModelDataSource
+extension MainViewModel: MainViewModelDataSource {
+    func row(at index: IndexPath) -> Row? {
+        return items[index.section].rows[index.row]
+    }
+    func numberOfSections() -> Int {
+        return items.count
+    }
+    func numberOfRows(at section: Int) -> Int {
+        return items[section].rows.count
+    }
+    func title(for section: Int) -> String? {
+        return items[section].title
+    }
+}
+
+extension MainViewModel {
+    enum Row {
+        case testMainScreen
+        case testMainFlow
+        case performAuthRequestInBackground
+        case presentSingleInputComponents
+        case presentPayByCardForm
+        case performAccountCheck
+        case performAccountCheckWithAuth
+        case presentAddCardForm
+        case presentWalletForm
+
+        var title: String {
+            switch self {
+            case .testMainScreen:
+                return Localizable.MainViewModel.showTestMainScreenButton.text
+            case .testMainFlow:
+                return Localizable.MainViewModel.showTestMainFlowButton.text
+            case .performAuthRequestInBackground:
+                return Localizable.MainViewModel.makeAuthRequestButton.text
+            case .presentSingleInputComponents:
+                return Localizable.MainViewModel.showSingleInputViewsButton.text
+            case .presentPayByCardForm:
+                return Localizable.MainViewModel.showDropInControllerButton.text
+            case .performAccountCheck:
+                return Localizable.MainViewModel.makeAccountCheckRequestButton.text
+            case .performAccountCheckWithAuth:
+                return Localizable.MainViewModel.makeAccountCheckWithAuthRequestButton.text
+            case .presentAddCardForm:
+                return Localizable.MainViewModel.addCardReferenceButton.text
+            case .presentWalletForm:
+                return Localizable.MainViewModel.payWithWalletButton.text
+            }
+        }
+    }
+    enum Section {
+        case onMerchant(rows: [Row])
+        case onSDK(rows: [Row])
+
+        var rows: [Row] {
+            switch self {
+            case .onMerchant(let rows): return rows
+            case .onSDK(let rows): return rows
+            }
+        }
+
+        var title: String? {
+            switch self {
+            case .onMerchant: return Localizable.MainViewModel.merchantResponsibility.text
+            case .onSDK: return Localizable.MainViewModel.sdkResponsibility.text
+            }
+        }
+    }
+}
+// MARK: Translations
+fileprivate extension Localizable {
+    enum MainViewModel: String, Localized {
+        case showTestMainScreenButton
+        case showTestMainFlowButton
+        case makeAuthRequestButton
+        case showSingleInputViewsButton
+        case showDropInControllerButton
+        case showDropInControllerWithWarningsButton
+        case makeAccountCheckRequestButton
+        case makeAccountCheckWithAuthRequestButton
+        case addCardReferenceButton
+        case payWithWalletButton
+        case merchantResponsibility
+        case sdkResponsibility
     }
 }
