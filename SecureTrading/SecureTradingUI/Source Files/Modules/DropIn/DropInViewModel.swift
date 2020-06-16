@@ -186,8 +186,8 @@ final class DropInViewModel {
 
     // MARK: 3DSecure flow
 
-    /// Checking if you need to perdorm a 3dsecure check (Cardinal Authentication)
-    /// - Parameter responseObject: response object form threedquery request
+    /// Checking if you need to perform a 3dsecure check (Cardinal Authentication)
+    /// - Parameter responseObject: response object from threedquery request
     private func handlePaymentTransactionResponse(responseObject: JWTResponseObject) {
         guard self.typeDescriptions.contains(.threeDQuery) else {
             self.showTransactionSuccess?(responseObject.responseSettleStatus)
