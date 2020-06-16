@@ -38,16 +38,11 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
                 let cvc = self.customView.cvcInput.cvc
                 let expiryDate = self.customView.expiryDateInput.expiryDate
                 self.viewModel.isSaveCardEnabled = self.customView.saveCardView.isSaveCardEnabled
-                self.viewModel.makeRequest(cardNumber: cardNumber, securityCode: cvc, expiryDate: expiryDate)
-            }
-        }
-
-        viewModel.showAuthSuccess = { [weak self] (statusCode, cardReference) in
                 self.viewModel.performTransaction(cardNumber: cardNumber, securityCode: cvc, expiryDate: expiryDate)
             }
         }
 
-        viewModel.showTransactionSuccess = { [weak self] _ in
+        viewModel.showTransactionSuccess = { [weak self] (_, cardReference) in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             self.showAlert(message: Localizable.DropInViewController.successfulPayment.text) { [weak self] _ in

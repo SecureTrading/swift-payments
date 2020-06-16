@@ -6,6 +6,9 @@
 import UIKit
 
 final class MainView: WhiteBackgroundBaseView {
+    // TODO: change after merge
+    var showDropInControllerWithWarningsButtonTappedClosure: (() -> Void)?
+
     fileprivate var items: [Section] = [] {
         didSet {
             tableView.reloadData()

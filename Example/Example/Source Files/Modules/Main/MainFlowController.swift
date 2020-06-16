@@ -34,12 +34,11 @@ final class MainFlowController: BaseNavigationFlowController {
             case .didTapShowSingleInputViews:
                 self.showSingleInputViewsSceen()
             case .didTapShowDropInController(let jwt):
-                self.showDropInViewController(jwt: jwt)
+                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: false)
             case .didTapAddCard(let jwt):
                 self.showAddCardView(jwt: jwt)
             case .payWithWalletRequest:
                 self.showWalletView()
-                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: false)
             case .didTapShowDropInControllerWithWarnings(let jwt):
                 self.showDropInViewController(jwt: jwt, handleCardinalWarnings: true)
             }
@@ -62,7 +61,7 @@ final class MainFlowController: BaseNavigationFlowController {
         let payButtonStyleManager = PayButtonStyleManager(titleColor: .white, enabledBackgroundColor: .black, disabledBackgroundColor: UIColor.lightGray.withAlphaComponent(0.6), borderColor: .clear, titleFont: UIFont.systemFont(ofSize: 16, weight: .medium), spinnerStyle: .white, spinnerColor: .white, buttonContentHeightMargins: HeightMargins(top: 15, bottom: 15), borderWidth: 0, cornerRadius: 6)
 
         let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: inputViewStyleManager, requestButtonStyleManager: payButtonStyleManager, backgroundColor: .white, spacingBeetwenInputViews: 25, insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
-        // swiftlint:enable line_length
+        // swiftlint:disable line_length
 
         let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: [.auth], gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: false, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: { [unowned self] cardReference in
              Wallet.shared.add(card: cardReference)
