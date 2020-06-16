@@ -19,6 +19,11 @@ final class WalletViewModel {
     var showRequestSuccess: ((TypeDescription?) -> Void)?
     var showAuthError: ((String) -> Void)?
 
+    /// Returns merchant user name without exposing Keys object
+    var getUsername: String {
+        return keys.merchantUsername
+    }
+    
     /// - Parameter apiManager: API manager
     init(apiManager: APIManager) {
         self.apiManager = apiManager
@@ -35,11 +40,6 @@ final class WalletViewModel {
         if let card = selectedCard {
             performAuthRequest(with: card)
         }
-    }
-
-    /// Returns merchant user name without exposing Keys object
-    func getUsername() -> String {
-        return keys.merchantUsername
     }
 
     /// Return JWT containing all data needed for AUTH request except card information
