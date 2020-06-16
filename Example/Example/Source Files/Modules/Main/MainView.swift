@@ -6,8 +6,6 @@
 import UIKit
 
 final class MainView: WhiteBackgroundBaseView {
-    // TODO: change after merge
-    var showDropInControllerWithWarningsButtonTappedClosure: (() -> Void)?
 
     /// data source for table view
     weak var dataSource: MainViewModelDataSource?
@@ -35,6 +33,7 @@ final class MainView: WhiteBackgroundBaseView {
     var accountCheckWithAuthRequest: (() -> Void)?
     var addCardReferenceRequest: (() -> Void)?
     var payWithWalletRequest: (() -> Void)?
+    var showDropInControllerWithWarningsButtonTappedClosure: (() -> Void)?
 }
 
 extension MainView: ViewSetupable {
@@ -111,6 +110,8 @@ extension MainView: UITableViewDataSource, UITableViewDelegate {
             addCardReferenceRequest?()
         case .presentWalletForm:
             payWithWalletRequest?()
+        case .showDropInControllerWithWarnings:
+            showDropInControllerWithWarningsButtonTappedClosure?()
         }
     }
 }

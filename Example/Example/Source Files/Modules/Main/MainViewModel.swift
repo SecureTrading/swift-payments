@@ -179,6 +179,7 @@ extension MainViewModel {
         case performAccountCheckWithAuth
         case presentAddCardForm
         case presentWalletForm
+        case showDropInControllerWithWarnings
 
         var title: String {
             switch self {
@@ -200,6 +201,8 @@ extension MainViewModel {
                 return Localizable.MainViewModel.addCardReferenceButton.text
             case .presentWalletForm:
                 return Localizable.MainViewModel.payWithWalletButton.text
+            case .showDropInControllerWithWarnings:
+                return Localizable.MainViewModel.showDropInControllerWithWarningsButton.text
             }
         }
     }
