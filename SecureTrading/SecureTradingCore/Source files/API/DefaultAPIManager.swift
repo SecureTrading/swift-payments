@@ -14,6 +14,8 @@ import Foundation
     private let username: String
     /// JSON format version
     private let version = "1.00"
+    /// accept customer output
+    private let acceptCustomerOutput = "1.00"
     /// sdk name
     private let sdkName = "MSDK"
     /// swift language version
@@ -32,6 +34,7 @@ import Foundation
     }
 
     // MARK: Timeouts
+
     /// The maximum number a request will retry
     private let maxNumberOfRetries: Int = 20
     /// The maximum time interval in seconds a request will retry
@@ -69,7 +72,7 @@ import Foundation
 
         // configure URLSession and set time limit for request
         let session = URLSession.shared
-        session.configuration.timeoutIntervalForResource = maxRequestTime
+        session.configuration.timeoutIntervalForResource = self.maxRequestTime
         self.apiClient = DefaultAPIClient(configuration: configuration, urlSession: session)
     }
 
@@ -82,10 +85,10 @@ import Foundation
     ///   - success: success closure with response object (decoded transaction response, in which settle status and transaction error code can be checked), and and a JWT key that allows you to check the signature
     ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     public func makeGeneralRequest(jwt: String, request: RequestObject, success: @escaping ((_ jwtResponse: JWTResponseObject, _ jwt: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
-        let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, versionInfo: self.versionInfo, requests: [request])
+        let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, versionInfo: self.versionInfo, acceptCustomerOutput: self.acceptCustomerOutput, requests: [request])
         self.apiClient.perform(request: generalRequest,
-                               maxRetries: maxNumberOfRetries,
-                               maxRetryInterval: maxIntervalForRetries) { result in
+                               maxRetries: self.maxNumberOfRetries,
+                               maxRetryInterval: self.maxIntervalForRetries) { result in
             switch result {
             case let .success(response):
                 success(response.jwtResponses.first!, jwt)
@@ -114,10 +117,10 @@ import Foundation
     ///   - success: success closure with response objects (decoded transaction responses, in which settle status and transaction error code can be checked), and and a JWT key that allows you to check the signature
     ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
-        let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, versionInfo: self.versionInfo, requests: requests)
+        let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, versionInfo: self.versionInfo, acceptCustomerOutput: self.acceptCustomerOutput, requests: requests)
         self.apiClient.perform(request: generalRequest,
-                               maxRetries: maxNumberOfRetries,
-                               maxRetryInterval: maxIntervalForRetries) { result in
+                               maxRetries: self.maxNumberOfRetries,
+                               maxRetryInterval: self.maxIntervalForRetries) { result in
             switch result {
             case let .success(response):
                 success(response.jwtResponses, jwt)
