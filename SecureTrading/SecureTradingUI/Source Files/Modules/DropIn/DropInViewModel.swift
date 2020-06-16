@@ -224,11 +224,14 @@ final class DropInViewModel {
                 default:
                     transactionError = responseObject.errorMessage
                 }
+                dispatchSemaphore.signal()
                 dispatchGroup.leave()
             }, failure: { error in
                 transactionError = error.humanReadableDescription
+                dispatchSemaphore.signal()
                 dispatchGroup.leave()
             })
+            dispatchSemaphore.wait()
         }
 
         dispatchGroup.notify(queue: dispatchQueue) {
