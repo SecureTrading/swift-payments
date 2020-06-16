@@ -37,6 +37,8 @@ final class DropInViewModel {
 
     private var card: Card?
 
+    private let requestId: String
+
     var showTransactionSuccess: ((ResponseSettleStatus) -> Void)?
     var showTransactionError: ((String) -> Void)?
     var showValidationError: ((ResponseErrorDetail) -> Void)?
@@ -60,6 +62,11 @@ final class DropInViewModel {
         self.isLiveStatus = isLiveStatus
         self.isDeferInit = isDeferInit
         self.threeDSecureManager = ST3DSecureManager(isLiveStatus: self.isLiveStatus)
+        let randomString = String.randomString(length: 36)
+        let start = randomString.index(randomString.startIndex, offsetBy: 2)
+        let end = randomString.index(randomString.startIndex, offsetBy: 10)
+        let range = start..<end
+        self.requestId = "J-" + randomString[range]
 
         if !isDeferInit {
             self.makeJSInitRequest(completion: { [weak self] _ in
@@ -86,7 +93,7 @@ final class DropInViewModel {
     ///   - expiryDate: The expiry date printed on the card.
     private func makePaymentRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
         let termUrl = self.typeDescriptions.contains(.threeDQuery) ? "https://termurl.com" : nil
-        let request = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
+        let request = RequestObject(typeDescriptions: self.typeDescriptions, requestId: self.requestId, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
 
         self.apiManager.makeGeneralRequest(jwt: self.jwt, request: request, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
@@ -121,7 +128,7 @@ final class DropInViewModel {
     /// - Parameter completion: success closure with following parameters: consumer session id
     /// - Parameter failure: closure with error message
     private func makeJSInitRequest(completion: @escaping ((String) -> Void), failure: @escaping ((String) -> Void)) {
-        let jsInitRequest = RequestObject(typeDescriptions: [.jsInit])
+        let jsInitRequest = RequestObject(typeDescriptions: [.jsInit], requestId: self.requestId)
 
         self.apiManager.makeGeneralRequest(jwt: self.jwt, request: jsInitRequest, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
@@ -216,7 +223,7 @@ final class DropInViewModel {
             guard let jwtForValidation = jwtForValidation else { return }
             dispatchGroup.enter()
 
-            let request = RequestObject(typeDescriptions: [.auth], cardNumber: self.card?.cardNumber.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate.rawValue, threeDResponse: jwtForValidation, cacheToken: self.jsInitCacheToken)
+            let request = RequestObject(typeDescriptions: [.auth], requestId: self.requestId, cardNumber: self.card?.cardNumber.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate.rawValue, threeDResponse: jwtForValidation, cacheToken: self.jsInitCacheToken)
             self.apiManager.makeGeneralRequest(jwt: self.jwt, request: request, success: { responseObject, _ in
                 switch responseObject.responseErrorCode {
                 case .successful:
