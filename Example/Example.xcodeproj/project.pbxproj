@@ -70,6 +70,7 @@
 		1050AB8F24912BF5001844BF /* CardReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB8E24912BF5001844BF /* CardReferenceView.swift */; };
 		1098F3A1247CF4B300414F94 /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; };
 		1098F3A2247CF4B300414F94 /* SecureTradingCard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		10DBCEBA2498BD59005865B0 /* MainViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DBCEB92498BD59005865B0 /* MainViewTableViewCell.swift */; };
 		49F7F7945D41186C28F9061E /* libPods-ExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCB78E01AA2AEB4BE63CE4C /* libPods-ExampleTests.a */; };
 		613B874DD5B4DD1E6266FDE8 /* libPods-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1286B23CF2544C71D88175C0 /* libPods-Example.a */; };
 /* End PBXBuildFile section */
@@ -179,6 +180,7 @@
 		1050AB8C2491000B001844BF /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		1050AB8E24912BF5001844BF /* CardReferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardReferenceView.swift; sourceTree = "<group>"; };
 		1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10DBCEB92498BD59005865B0 /* MainViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewTableViewCell.swift; sourceTree = "<group>"; };
 		1286B23CF2544C71D88175C0 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CCB78E01AA2AEB4BE63CE4C /* libPods-ExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		788625EA1D7B96004F438047 /* Pods-ExampleTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.development.xcconfig"; path = "../../Pods/Target Support Files/Pods-ExampleTests/Pods-ExampleTests.development.xcconfig"; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 		08639C8424696B0500C8F90A /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				10DBCEB82498BD49005865B0 /* Cells */,
 				08639C8524696B3100C8F90A /* MainFlowController.swift */,
 				08639C8724696C3F00C8F90A /* MainViewModel.swift */,
 				08639C8924696C5500C8F90A /* MainView.swift */,
@@ -557,6 +560,14 @@
 				1050AB8C2491000B001844BF /* WalletViewModel.swift */,
 			);
 			path = Wallet;
+			sourceTree = "<group>";
+		};
+		10DBCEB82498BD49005865B0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				10DBCEB92498BD59005865B0 /* MainViewTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		B03121038599EDD8E8D94689 /* Pods */ = {
@@ -774,6 +785,7 @@
 				08639C692469681E00C8F90A /* UICollectionView.swift in Sources */,
 				0845BF2A247EAF38008AD40F /* SingleInputViewsModel.swift in Sources */,
 				08639C6F2469681E00C8F90A /* ViewSetupable.swift in Sources */,
+				10DBCEBA2498BD59005865B0 /* MainViewTableViewCell.swift in Sources */,
 				08639C8224696A4100C8F90A /* DefaultAppFoundation.swift in Sources */,
 				08639C5F2469681E00C8F90A /* BaseNavigationFlowController.swift in Sources */,
 				08639C702469681E00C8F90A /* FlowController.swift in Sources */,

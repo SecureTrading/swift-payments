@@ -6,6 +6,41 @@
 import UIKit
 import SecureTradingUI
 
+fileprivate enum Row {
+    case cardReference(STCardReference)
+    case addCard(title: String)
+
+    var card: STCardReference? {
+        switch self {
+        case .cardReference(let cardRef): return cardRef
+        case .addCard: return nil
+        }
+    }
+}
+fileprivate enum Section {
+    case paymentMethods(rows: [Row])
+    case addMethod(showHeader: Bool, rows: [Row])
+
+    var rows: [Row] {
+        switch self {
+        case .paymentMethods(let rows): return rows
+        case .addMethod(_, let rows): return rows
+        }
+    }
+    var title: String? {
+        switch self {
+        case .paymentMethods: return Localizable.WalletView.paymentMethods.text
+        case .addMethod(let showHeader, _): return showHeader ? Localizable.WalletView.infoText.text : nil
+        }
+    }
+}
+private extension Localizable {
+    enum WalletView: String, Localized {
+        case addPaymentMethod
+        case paymentMethods
+        case infoText
+    }
+}
 /// An example implementation of Wallet functionality
 final class WalletView: WhiteBackgroundBaseView {
 
@@ -22,6 +57,8 @@ final class WalletView: WhiteBackgroundBaseView {
     }
     /// Selected a card reference from a list
     var cardFromWalletSelected: ((STCardReference) -> Void)?
+
+    /// Called by selecting Add new Payment method cell
     var addNewPaymentMethod: (() -> Void)?
 
     // MARK: View hierarchy
@@ -38,37 +75,10 @@ final class WalletView: WhiteBackgroundBaseView {
         return tableView
     }()
 
-    var items: [Section] = [] {
+    /// Data source of table view
+    fileprivate var items: [Section] = [] {
         didSet {
             tableView.reloadData()
-        }
-    }
-    enum Row {
-        case cardReference(STCardReference)
-        case addCard(title: String)
-
-        var card: STCardReference? {
-            switch self {
-            case .cardReference(let cardRef): return cardRef
-            case .addCard: return nil
-            }
-        }
-    }
-    enum Section {
-        case paymentMethods(rows: [Row])
-        case addMethod(showHeader: Bool, rows: [Row])
-
-        var rows: [Row] {
-            switch self {
-            case .paymentMethods(let rows): return rows
-            case .addMethod(_, let rows): return rows
-            }
-        }
-        var title: String? {
-            switch self {
-            case .paymentMethods: return "PAYMENT METHODS"
-            case .addMethod(let showHeader, _): return showHeader ? "Tap the card you wish to pay with and click the 'Pay' button to process the payment" : nil
-            }
         }
     }
 
@@ -76,16 +86,18 @@ final class WalletView: WhiteBackgroundBaseView {
 
     /// Initializes an instance of the receiver.
     /// - Parameters:
-    ///   - inputViewStyleManager: instance of manager to customize view
+    ///   - walletCards: An array of STCardReferences from Wallet
     @objc public init(walletCards: [STCardReference]) {
         super.init()
         reloadCards(walletCards)
     }
 
+    /// Reloads table after adding a new payment method
+    /// - Parameter cards: New card that has been added
     @objc public func reloadCards(_ cards: [STCardReference]) {
         items = [
             Section.paymentMethods(rows: cards.map { Row.cardReference($0) }),
-            Section.addMethod(showHeader: !cards.isEmpty, rows: [Row.addCard(title: "Add Payment method")])
+            Section.addMethod(showHeader: !cards.isEmpty, rows: [Row.addCard(title: Localizable.WalletView.addPaymentMethod.text)])
         ]
     }
 
@@ -94,6 +106,30 @@ final class WalletView: WhiteBackgroundBaseView {
     }
 }
 
+extension WalletView: ViewSetupable {
+    /// - SeeAlso: ViewSetupable.setupViewHierarchy
+    func setupViewHierarchy() {
+        self.addSubview(payButton)
+        payButton.addConstraints([
+            equal(self, \.bottomAnchor, \.bottomAnchor, constant: -40),
+            equal(self, \.leadingAnchor, \.leadingAnchor, constant: 20),
+            equal(self, \.trailingAnchor, \.trailingAnchor, constant: -20)
+        ])
+        addSubviews([tableView])
+    }
+
+    /// - SeeAlso: ViewSetupable.setupConstraints
+    func setupConstraints() {
+        tableView.addConstraints([
+            equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: 0),
+            equal(payButton, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            equal(self, \.leadingAnchor, constant: 0),
+            equal(self, \.trailingAnchor, constant: 0)
+        ])
+    }
+}
+
+// MARK: Wallet view table data source and delegate
 extension WalletView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch items[indexPath.section].rows[indexPath.row] {
@@ -154,29 +190,5 @@ extension WalletView: UITableViewDataSource, UITableViewDelegate {
             tableView.deselectRow(at: indexPath, animated: false)
             addNewPaymentMethod?()
         }
-    }
-}
-
-extension WalletView: ViewSetupable {
-
-    /// - SeeAlso: ViewSetupable.setupViewHierarchy
-    func setupViewHierarchy() {
-        self.addSubview(payButton)
-        payButton.addConstraints([
-            equal(self, \.bottomAnchor, \.bottomAnchor, constant: -40),
-            equal(self, \.leadingAnchor, \.leadingAnchor, constant: 20),
-            equal(self, \.trailingAnchor, \.trailingAnchor, constant: -20)
-        ])
-        addSubviews([tableView])
-    }
-
-    /// - SeeAlso: ViewSetupable.setupConstraints
-    func setupConstraints() {
-        tableView.addConstraints([
-            equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: 0),
-            equal(payButton, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: -50),
-            equal(self, \.leadingAnchor, constant: 0),
-            equal(self, \.trailingAnchor, constant: 0)
-        ])
     }
 }

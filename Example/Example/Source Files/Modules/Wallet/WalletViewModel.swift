@@ -23,11 +23,13 @@ final class WalletViewModel {
         self.apiManager = apiManager
     }
 
+    /// Called to store a reference for currently selected card on Wallet list
+    /// - Parameter card: STCardReference object
     func cardSelected(_ card: STCardReference) {
         selectedCard = card
     }
 
-    /// Performs a Auth request with selected card reference if selected card exists
+    /// Performs an Auth request with selected card reference if selected card exists
     func performAuthRequest() {
         if let card = selectedCard {
             performAuthRequest(with: card)
@@ -37,7 +39,9 @@ final class WalletViewModel {
     func getUsername() -> String {
         return keys.merchantUsername
     }
-    
+
+    /// Return JWT containing all data needed for AUTH request except card information
+    /// - Returns: JWT as String
     func getJwtTokenWithoutCardData() -> String? {
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
@@ -53,7 +57,9 @@ final class WalletViewModel {
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return nil }
         return jwt
     }
-    
+
+    /// Performs an Auth request with parent transaction reference, based on previously used card
+    /// - Parameter card: STCardReference object
     private func performAuthRequest(with card: STCardReference) {
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),

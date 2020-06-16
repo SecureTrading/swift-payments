@@ -9,13 +9,13 @@ MainViewController.title = "Example App - Main";
 
 MainView.showTestMainScreenButton = "show test main screen (from SecureTradingUI)";
 MainView.showTestMainFlowButton = "show test main flow (from SecureTradingUI)";
-MainView.makeAuthRequestButton = "make auth request (with test card 41111...)";
-MainView.showSingleInputViewsButton = "show single input views";
-MainView.showDropInControllerButton = "show drop in view controller (make auth req)";
-MainView.makeAccountCheckRequestButton = "'Account check' request";
-MainView.makeAccountCheckWithAuthRequestButton = "'Account check & Auth' request";
-MainView.addCardReferenceButton = "Add card";
-MainView.payWithWalletButton = "Pay with saved card";
+MainView.makeAuthRequestButton = "Perform AUTH request in background";
+MainView.showSingleInputViewsButton = "Single input components";
+MainView.showDropInControllerButton = "Pay by Card form";
+MainView.makeAccountCheckRequestButton = "Perform 'Account check' request in background";
+MainView.makeAccountCheckWithAuthRequestButton = "Perform Account check & Auth request in background";
+MainView.addCardReferenceButton = "Add card to Wallet";
+MainView.payWithWalletButton = "Pay from Wallet";
 
 Alerts.okButton = "Ok";
 
@@ -23,3 +23,7 @@ SingleInputViewsController.title = "Single input views";
 
 WalletViewController.title = "Wallet";
 WalletViewController.paid = "Successful payment transaction";
+
+WalletView.addPaymentMethod = "Add Payment method";
+WalletView.paymentMethods = "PAYMENT METHODS";
+WalletView.infoText = "Tap the card you wish to pay with and click the 'Pay' button to process the payment";
