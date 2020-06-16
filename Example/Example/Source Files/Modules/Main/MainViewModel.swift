@@ -99,7 +99,7 @@ final class MainViewModel {
             )
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
-        let authRequest = RequestObject(typeDescriptions: [.auth])
+        let authRequest = RequestObject(typeDescriptions: [.accountCheck, .auth])
         makeRequest(with: jwt, request: authRequest)
     }
 
