@@ -7,11 +7,9 @@ import UIKit
 
 /// A subclass of RequestButton, consists of title and spinner for the request interval
 @objc public final class AddCardButton: RequestButton {
-    // MARK: Private properties
+    // MARK: Properties
 
     let addCardButtonStyleManager: AddCardButtonStyleManager?
-
-    // MARK: Public properties
 
     // MARK: - texts
 

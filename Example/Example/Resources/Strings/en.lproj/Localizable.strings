@@ -16,6 +16,8 @@ MainView.makeAccountCheckRequestButton = "Perform 'Account check' request in bac
 MainView.makeAccountCheckWithAuthRequestButton = "Perform Account check & Auth request in background";
 MainView.addCardReferenceButton = "Add card to Wallet";
 MainView.payWithWalletButton = "Pay from Wallet";
+MainView.merchantResponsibility = "Merchant responsibility";
+MainView.sdkResponsibility = "ST SDK responsibility";
 
 Alerts.okButton = "Ok";
 

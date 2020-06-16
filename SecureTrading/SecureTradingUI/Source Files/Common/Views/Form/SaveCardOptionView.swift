@@ -5,6 +5,7 @@
 
 import UIKit
 
+/// A View made of UISwitch and UILabel for selecting whether a card used for transaction should be stored
 @objc public final class SaveCardOptionView: BaseView {
     // MARK: Properties
 
@@ -30,8 +31,6 @@ import UIKit
         stackView.spacing = 5
         return stackView
     }()
-
-    let inputViewStyleManager: InputViewStyleManager?
 
     // MARK: Public properties
 
@@ -62,20 +61,6 @@ import UIKit
         didSet {
             titleLabel.font = titleFont
         }
-    }
-
-    // MARK: Initialization
-
-    /// Initializes an instance of the receiver.
-    /// - Parameters:
-    ///   - inputViewStyleManager: instance of manager to customize view
-    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil) {
-        self.inputViewStyleManager = inputViewStyleManager
-        super.init()
-    }
-
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 

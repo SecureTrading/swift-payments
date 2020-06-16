@@ -30,6 +30,7 @@ final class MainViewModel {
 
     // MARK: Functions
 
+    /// Returns JWT without card data as a String
     func getJwtTokenWithoutCardData() -> String? {
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
@@ -46,6 +47,7 @@ final class MainViewModel {
         return jwt
     }
 
+    /// Performs an AUTH request with card data
     func makeAuthCall() {
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
@@ -63,6 +65,7 @@ final class MainViewModel {
         makeRequest(with: jwt, request: authRequest)
     }
 
+    /// Performs Account check with card data
     func makeAccountCheckRequest() {
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
@@ -80,6 +83,8 @@ final class MainViewModel {
         makeRequest(with: jwt, request: authRequest)
     }
 
+    /// Performs AUTH request without card data
+    /// uses previous card reference
     func makeAccountCheckWithAuthRequest() {
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),

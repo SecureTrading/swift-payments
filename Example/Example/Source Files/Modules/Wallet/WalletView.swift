@@ -6,41 +6,6 @@
 import UIKit
 import SecureTradingUI
 
-fileprivate enum Row {
-    case cardReference(STCardReference)
-    case addCard(title: String)
-
-    var card: STCardReference? {
-        switch self {
-        case .cardReference(let cardRef): return cardRef
-        case .addCard: return nil
-        }
-    }
-}
-fileprivate enum Section {
-    case paymentMethods(rows: [Row])
-    case addMethod(showHeader: Bool, rows: [Row])
-
-    var rows: [Row] {
-        switch self {
-        case .paymentMethods(let rows): return rows
-        case .addMethod(_, let rows): return rows
-        }
-    }
-    var title: String? {
-        switch self {
-        case .paymentMethods: return Localizable.WalletView.paymentMethods.text
-        case .addMethod(let showHeader, _): return showHeader ? Localizable.WalletView.infoText.text : nil
-        }
-    }
-}
-private extension Localizable {
-    enum WalletView: String, Localized {
-        case addPaymentMethod
-        case paymentMethods
-        case infoText
-    }
-}
 /// An example implementation of Wallet functionality
 final class WalletView: WhiteBackgroundBaseView {
 
@@ -92,6 +57,10 @@ final class WalletView: WhiteBackgroundBaseView {
         reloadCards(walletCards)
     }
 
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     /// Reloads table after adding a new payment method
     /// - Parameter cards: New card that has been added
     @objc public func reloadCards(_ cards: [STCardReference]) {
@@ -99,10 +68,6 @@ final class WalletView: WhiteBackgroundBaseView {
             Section.paymentMethods(rows: cards.map { Row.cardReference($0) }),
             Section.addMethod(showHeader: !cards.isEmpty, rows: [Row.addCard(title: Localizable.WalletView.addPaymentMethod.text)])
         ]
-    }
-
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -190,5 +155,42 @@ extension WalletView: UITableViewDataSource, UITableViewDelegate {
             tableView.deselectRow(at: indexPath, animated: false)
             addNewPaymentMethod?()
         }
+    }
+}
+
+private enum Row {
+    case cardReference(STCardReference)
+    case addCard(title: String)
+
+    var card: STCardReference? {
+        switch self {
+        case .cardReference(let cardRef): return cardRef
+        case .addCard: return nil
+        }
+    }
+}
+private enum Section {
+    case paymentMethods(rows: [Row])
+    case addMethod(showHeader: Bool, rows: [Row])
+
+    var rows: [Row] {
+        switch self {
+        case .paymentMethods(let rows): return rows
+        case .addMethod(_, let rows): return rows
+        }
+    }
+    var title: String? {
+        switch self {
+        case .paymentMethods: return Localizable.WalletView.paymentMethods.text
+        case .addMethod(let showHeader, _): return showHeader ? Localizable.WalletView.infoText.text : nil
+        }
+    }
+}
+
+private extension Localizable {
+    enum WalletView: String, Localized {
+        case addPaymentMethod
+        case paymentMethods
+        case infoText
     }
 }

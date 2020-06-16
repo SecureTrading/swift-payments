@@ -24,6 +24,8 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
         view.accessibilityIdentifier = "home/view/main"
+
+        // Trust Payments logo in navigation bar
         let imageView = UIImageView(image: UIImage(named: "trustPaymentsLogo"))
         imageView.contentMode = .scaleAspectFit
         navigationItem.titleView = imageView

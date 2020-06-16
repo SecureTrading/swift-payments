@@ -5,59 +5,6 @@
 
 import UIKit
 
-private enum Row {
-    case testMainScreen
-    case testMainFlow
-    case performAuthRequestInBackground
-    case presentSingleInputComponents
-    case presentPayByCardForm
-    case performAccountCheck
-    case performAccountCheckWithAuth
-    case presentAddCardForm
-    case presentWalletForm
-
-    var title: String {
-        switch self {
-        case .testMainScreen:
-            return Localizable.MainView.showTestMainScreenButton.text
-        case .testMainFlow:
-            return Localizable.MainView.showTestMainFlowButton.text
-        case .performAuthRequestInBackground:
-            return Localizable.MainView.makeAuthRequestButton.text
-        case .presentSingleInputComponents:
-            return Localizable.MainView.showSingleInputViewsButton.text
-        case .presentPayByCardForm:
-            return Localizable.MainView.showDropInControllerButton.text
-        case .performAccountCheck:
-            return Localizable.MainView.makeAccountCheckRequestButton.text
-        case .performAccountCheckWithAuth:
-            return Localizable.MainView.makeAccountCheckWithAuthRequestButton.text
-        case .presentAddCardForm:
-            return Localizable.MainView.addCardReferenceButton.text
-        case .presentWalletForm:
-            return Localizable.MainView.payWithWalletButton.text
-        }
-    }
-}
-private enum Section {
-    case onMerchant(rows: [Row])
-    case onSDK(rows: [Row])
-
-    var rows: [Row] {
-        switch self {
-        case .onMerchant(let rows): return rows
-        case .onSDK(let rows): return rows
-        }
-    }
-
-    var title: String? {
-        switch self {
-        case .onMerchant: return "Merchant responsibility"
-        case .onSDK: return "ST SDK responsibility"
-        }
-    }
-}
-
 final class MainView: WhiteBackgroundBaseView {
     fileprivate var items: [Section] = [] {
         didSet {
@@ -67,10 +14,14 @@ final class MainView: WhiteBackgroundBaseView {
 
     override init() {
         super.init()
-
         // setup data source
         items = [
-            Section.onSDK(rows: [Row.performAuthRequestInBackground, Row.presentSingleInputComponents, Row.presentPayByCardForm, Row.performAccountCheck, Row.performAccountCheckWithAuth, Row.presentAddCardForm]),
+            Section.onSDK(rows: [Row.performAuthRequestInBackground,
+                                 Row.presentSingleInputComponents,
+                                 Row.presentPayByCardForm,
+                                 Row.performAccountCheck,
+                                 Row.performAccountCheckWithAuth,
+                                 Row.presentAddCardForm]),
             Section.onMerchant(rows: [Row.presentWalletForm])
         ]
     }
@@ -118,20 +69,6 @@ extension MainView: ViewSetupable {
             equal(self, \.leadingAnchor, constant: 0),
             equal(self, \.trailingAnchor, constant: 0)
         ])
-    }
-}
-
-fileprivate extension Localizable {
-    enum MainView: String, Localized {
-        case showTestMainScreenButton
-        case showTestMainFlowButton
-        case makeAuthRequestButton
-        case showSingleInputViewsButton
-        case showDropInControllerButton
-        case makeAccountCheckRequestButton
-        case makeAccountCheckWithAuthRequestButton
-        case addCardReferenceButton
-        case payWithWalletButton
     }
 }
 
@@ -192,5 +129,75 @@ extension MainView: UITableViewDataSource, UITableViewDelegate {
         case .presentWalletForm:
             payWithWalletRequest?()
         }
+    }
+}
+
+private enum Row {
+    case testMainScreen
+    case testMainFlow
+    case performAuthRequestInBackground
+    case presentSingleInputComponents
+    case presentPayByCardForm
+    case performAccountCheck
+    case performAccountCheckWithAuth
+    case presentAddCardForm
+    case presentWalletForm
+
+    var title: String {
+        switch self {
+        case .testMainScreen:
+            return Localizable.MainView.showTestMainScreenButton.text
+        case .testMainFlow:
+            return Localizable.MainView.showTestMainFlowButton.text
+        case .performAuthRequestInBackground:
+            return Localizable.MainView.makeAuthRequestButton.text
+        case .presentSingleInputComponents:
+            return Localizable.MainView.showSingleInputViewsButton.text
+        case .presentPayByCardForm:
+            return Localizable.MainView.showDropInControllerButton.text
+        case .performAccountCheck:
+            return Localizable.MainView.makeAccountCheckRequestButton.text
+        case .performAccountCheckWithAuth:
+            return Localizable.MainView.makeAccountCheckWithAuthRequestButton.text
+        case .presentAddCardForm:
+            return Localizable.MainView.addCardReferenceButton.text
+        case .presentWalletForm:
+            return Localizable.MainView.payWithWalletButton.text
+        }
+    }
+}
+private enum Section {
+    case onMerchant(rows: [Row])
+    case onSDK(rows: [Row])
+
+    var rows: [Row] {
+        switch self {
+        case .onMerchant(let rows): return rows
+        case .onSDK(let rows): return rows
+        }
+    }
+
+    var title: String? {
+        switch self {
+        case .onMerchant: return Localizable.MainView.merchantResponsibility.text
+        case .onSDK: return Localizable.MainView.sdkResponsibility.text
+        }
+    }
+}
+
+// MARK: Translations
+fileprivate extension Localizable {
+    enum MainView: String, Localized {
+        case showTestMainScreenButton
+        case showTestMainFlowButton
+        case makeAuthRequestButton
+        case showSingleInputViewsButton
+        case showDropInControllerButton
+        case makeAccountCheckRequestButton
+        case makeAccountCheckWithAuthRequestButton
+        case addCardReferenceButton
+        case payWithWalletButton
+        case merchantResponsibility
+        case sdkResponsibility
     }
 }

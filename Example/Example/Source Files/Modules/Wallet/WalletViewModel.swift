@@ -15,6 +15,7 @@ final class WalletViewModel {
     /// Stores temporary selected card reference
     private var selectedCard: STCardReference?
 
+    /// Callbacks
     var showRequestSuccess: ((TypeDescription?) -> Void)?
     var showAuthError: ((String) -> Void)?
 
@@ -36,6 +37,7 @@ final class WalletViewModel {
         }
     }
 
+    /// Returns merchant user name without exposing Keys object
     func getUsername() -> String {
         return keys.merchantUsername
     }
