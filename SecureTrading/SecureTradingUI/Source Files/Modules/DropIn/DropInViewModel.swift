@@ -39,6 +39,8 @@ final class DropInViewModel {
 
     private let requestId: String
 
+    private let termUrl = "https://termurl.com"
+
     var showTransactionSuccess: ((ResponseSettleStatus) -> Void)?
     var showTransactionError: ((String) -> Void)?
     var showValidationError: ((ResponseErrorDetail) -> Void)?
@@ -92,7 +94,7 @@ final class DropInViewModel {
     ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
     ///   - expiryDate: The expiry date printed on the card.
     private func makePaymentRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
-        let termUrl = self.typeDescriptions.contains(.threeDQuery) ? "https://termurl.com" : nil
+        let termUrl = self.typeDescriptions.contains(.threeDQuery) ? self.termUrl : nil
         let request = RequestObject(typeDescriptions: self.typeDescriptions, requestId: self.requestId, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
 
         self.apiManager.makeGeneralRequest(jwt: self.jwt, request: request, success: { [weak self] responseObject, _ in
@@ -183,6 +185,8 @@ final class DropInViewModel {
 
     // MARK: 3DSecure flow
 
+    /// Checking if you need to perdorm a 3dsecure check (Cardinal Authentication)
+    /// - Parameter responseObject: response object form threedquery request
     private func handlePaymentTransactionResponse(responseObject: JWTResponseObject) {
         guard self.typeDescriptions.contains(.threeDQuery) else {
             self.showTransactionSuccess?(responseObject.responseSettleStatus)
@@ -198,6 +202,10 @@ final class DropInViewModel {
         self.createAuthenticationSessionWithCardinal(transactionId: responseObject.acquirerTransactionReference!, transactionPayload: responseObject.threeDPayload ?? .empty)
     }
 
+    /// Create the authentication session - call this method to hand control to SDK for performing the challenge between the user and the issuing bank.
+    /// - Parameters:
+    ///   - transactionId: acquirerTransactionReference property from threedquery response
+    ///   - transactionPayload: threeDPayload property from threedquery response
     private func createAuthenticationSessionWithCardinal(transactionId: String, transactionPayload: String) {
         let dispatchGroup = DispatchGroup()
         let dispatchQueue = DispatchQueue(label: "3dsecure-flow")
