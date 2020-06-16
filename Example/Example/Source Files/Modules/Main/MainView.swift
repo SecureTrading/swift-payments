@@ -40,32 +40,20 @@ private enum Row {
     }
 }
 private enum Section {
-    case mainHeader
     case onMerchant(rows: [Row])
     case onSDK(rows: [Row])
 
     var rows: [Row] {
         switch self {
-        case .mainHeader: return []
         case .onMerchant(let rows): return rows
         case .onSDK(let rows): return rows
         }
     }
 
-    var title: NSAttributedString? {
+    var title: String? {
         switch self {
-        case .mainHeader:
-            let pinkyColor = UIColor(red: 226.0 / 255.0, green: 34.0 / 255.0, blue: 93.0 / 255.0, alpha: 1.0)
-            let secure = NSMutableAttributedString(string: "secure", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20), NSAttributedString.Key.foregroundColor: UIColor.black])
-            let slash = NSAttributedString(string: "//", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 25), NSAttributedString.Key.foregroundColor: pinkyColor])
-            secure.append(slash)
-            let trading = NSAttributedString(string: "trading", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20), NSAttributedString.Key.foregroundColor: UIColor.black])
-            secure.append(trading)
-            return secure
-        case .onMerchant:
-            return NSAttributedString(string: "Merchant responsibility", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-        case .onSDK:
-            return NSAttributedString(string: "ST SDK responsibility", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        case .onMerchant: return "Merchant responsibility"
+        case .onSDK: return "ST SDK responsibility"
         }
     }
 }
@@ -82,7 +70,6 @@ final class MainView: WhiteBackgroundBaseView {
 
         // setup data source
         items = [
-            Section.mainHeader,
             Section.onSDK(rows: [Row.performAuthRequestInBackground, Row.presentSingleInputComponents, Row.presentPayByCardForm, Row.performAccountCheck, Row.performAccountCheckWithAuth, Row.presentAddCardForm]),
             Section.onMerchant(rows: [Row.presentWalletForm])
         ]
@@ -163,40 +150,20 @@ extension MainView: UITableViewDataSource, UITableViewDelegate {
         return items[section].rows.count
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch items[section] {
-        case .mainHeader:
-            if let title = items[section].title {
-                let header = UIView()
-                header.backgroundColor = UIColor.white
-                let label = UILabel()
-                label.attributedText = title
-                label.numberOfLines = 0
-                label.textAlignment = .center
-                header.addSubview(label)
-                label.addConstraints([
-                    equal(header, \.topAnchor, \.topAnchor, constant: 2),
-                    equal(header, \.bottomAnchor, \.bottomAnchor, constant: 2),
-                    equal(header, \.leadingAnchor, \.leadingAnchor, constant: 20),
-                    equal(header, \.trailingAnchor, \.trailingAnchor, constant: -20)
-                ])
-                return header
-            }
-        default:
-            if let title = items[section].title {
-                let header = UIView()
-                header.backgroundColor = UIColor.groupTableViewBackground
-                let label = UILabel()
-                label.attributedText = title
-                label.numberOfLines = 0
-                header.addSubview(label)
-                label.addConstraints([
-                    equal(header, \.topAnchor, \.topAnchor, constant: 2),
-                    equal(header, \.bottomAnchor, \.bottomAnchor, constant: 2),
-                    equal(header, \.leadingAnchor, \.leadingAnchor, constant: 20),
-                    equal(header, \.trailingAnchor, \.trailingAnchor, constant: -20)
-                ])
-                return header
-            }
+        if let title = items[section].title {
+            let header = UIView()
+            header.backgroundColor = UIColor.groupTableViewBackground
+            let label = UILabel()
+            label.text = title
+            label.numberOfLines = 0
+            header.addSubview(label)
+            label.addConstraints([
+                equal(header, \.topAnchor, \.topAnchor, constant: 2),
+                equal(header, \.bottomAnchor, \.bottomAnchor, constant: 2),
+                equal(header, \.leadingAnchor, \.leadingAnchor, constant: 20),
+                equal(header, \.trailingAnchor, \.trailingAnchor, constant: -20)
+            ])
+            return header
         }
         return nil
     }
