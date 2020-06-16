@@ -110,7 +110,15 @@ final class MainFlowController: BaseNavigationFlowController {
     }
 
     func showWalletView() {
-        let viewController = WalletViewController(view: WalletView(walletCards: Wallet.shared.allCards), viewModel: WalletViewModel(apiManager: appFoundation.apiManager))
+        let cards = Wallet.shared.allCards
+        let viewItems = [
+            WalletViewModel.Section.paymentMethods(rows: cards.map { WalletViewModel.Row.cardReference($0) }),
+            WalletViewModel.Section.addMethod(showHeader: !cards.isEmpty, rows: [WalletViewModel.Row.addCard(title: Localizable.WalletViewModel.addPaymentMethod.text)])
+        ]
+        let viewModel = WalletViewModel(apiManager: appFoundation.apiManager, items: viewItems)
+        let view = WalletView()
+        view.dataSource = viewModel
+        let viewController = WalletViewController(view: view, viewModel: viewModel)
         viewController.eventTriggered = { event in
             switch event {
             case .succesfullTransaction:
@@ -138,5 +146,11 @@ final class MainFlowController: BaseNavigationFlowController {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Localizable.Alerts.okButton.text, style: .default, handler: completionHandler))
         controller.present(alert, animated: true, completion: nil)
+    }
+}
+
+private extension Localizable {
+    enum WalletViewModel: String, Localized {
+        case addPaymentMethod
     }
 }

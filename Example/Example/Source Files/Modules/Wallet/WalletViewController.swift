@@ -50,7 +50,8 @@ final class WalletViewController: BaseViewController<WalletView, WalletViewModel
                                                                               username: self.viewModel.getUsername,
                                                                               dropInViewStyleManager: dropInViewStyleManager) { [weak self] cardReference in
                                                                                 Wallet.shared.add(card: cardReference)
-                                                                                self?.customView.reloadCards(Wallet.shared.allCards)
+                                                                                self?.viewModel.addNewCard(cardReference)
+                                                                                self?.customView.reloadCards()
                                                                                 self?.navigationController?.popViewController(animated: true)
             }
             self.navigationController?.pushViewController(dropInVC, animated: true)

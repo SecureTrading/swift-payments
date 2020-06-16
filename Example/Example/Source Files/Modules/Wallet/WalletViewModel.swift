@@ -5,12 +5,23 @@
 
 import Foundation
 
+protocol WalletViewModelDataSource: class {
+    func row(at index: IndexPath) -> WalletViewModel.Row
+    func numberOfSections() -> Int
+    func numberOfRows(at section: Int) -> Int
+    func title(for section: Int) -> String?
+    func section(at section: Int) -> WalletViewModel.Section
+}
+
 final class WalletViewModel {
     /// - SeeAlso: AppFoundation.apiManager
     private let apiManager: APIManager
 
     /// Keys for certain scheme
     private let keys = ApplicationKeys(keys: ExampleKeys())
+
+    // Stores items on presented on list
+    private var items: [Section] = []
 
     /// Stores temporary selected card reference
     private var selectedCard: STCardReference?
@@ -25,10 +36,24 @@ final class WalletViewModel {
     }
 
     /// - Parameter apiManager: API manager
-    init(apiManager: APIManager) {
+    init(apiManager: APIManager, items: [Section]) {
         self.apiManager = apiManager
+        self.items = items
     }
 
+    /// Updates list items
+    func addNewCard(_ card: STCardReference?) {
+        guard let newCard = card else { return }
+        if let index = items.firstIndex(where: {$0.title == Section.paymentMethods(rows: []).title}) {
+            var newRows = items[index].rows
+            newRows.append(Row.cardReference(newCard))
+            items[index] = Section.paymentMethods(rows: newRows)
+            if let nextIndex = items.firstIndex(where: {$0.title == Section.addMethod(showHeader: false, rows: []).title}) {
+                let nextRows = items[nextIndex].rows
+                items[nextIndex] = Section.addMethod(showHeader: newRows.isEmpty ? false : true, rows: nextRows)
+            }
+        }
+    }
     /// Called to store a reference for currently selected card on Wallet list
     /// - Parameter card: STCardReference object
     func cardSelected(_ card: STCardReference) {
@@ -110,5 +135,61 @@ final class WalletViewModel {
                     self.showAuthError?(error.humanReadableDescription)
                 }
         })
+    }
+}
+
+extension WalletViewModel: WalletViewModelDataSource {
+    func row(at index: IndexPath) -> Row {
+        return items[index.section].rows[index.row]
+    }
+    func numberOfSections() -> Int {
+        return items.count
+    }
+    func numberOfRows(at section: Int) -> Int {
+        return items[section].rows.count
+    }
+    func title(for section: Int) -> String? {
+        return items[section].title
+    }
+    func section(at section: Int) -> Section {
+        return items[section]
+    }
+}
+
+extension WalletViewModel {
+    enum Row {
+        case cardReference(STCardReference)
+        case addCard(title: String)
+
+        var card: STCardReference? {
+            switch self {
+            case .cardReference(let cardRef): return cardRef
+            case .addCard: return nil
+            }
+        }
+    }
+    enum Section {
+        case paymentMethods(rows: [Row])
+        case addMethod(showHeader: Bool, rows: [Row])
+
+        var rows: [Row] {
+            switch self {
+            case .paymentMethods(let rows): return rows
+            case .addMethod(_, let rows): return rows
+            }
+        }
+        var title: String? {
+            switch self {
+            case .paymentMethods: return Localizable.WalletViewModel.paymentMethods.text
+            case .addMethod(let showHeader, _): return showHeader ? Localizable.WalletViewModel.infoText.text : nil
+            }
+        }
+    }
+}
+
+private extension Localizable {
+    enum WalletViewModel: String, Localized {
+        case paymentMethods
+        case infoText
     }
 }
