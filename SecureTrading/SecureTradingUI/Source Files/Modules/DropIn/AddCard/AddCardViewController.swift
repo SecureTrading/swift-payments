@@ -1,5 +1,5 @@
 //
-//  DropInViewController.swift
+//  AddCardViewController.swift
 //  SecureTradingUI
 //
 
@@ -7,16 +7,11 @@
 import SecureTradingCore
 #endif
 import UIKit
-#if !COCOAPODS
-import SecureTrading3DSecure
-#endif
 
-final class DropInViewController: BaseViewController<DropInView, DropInViewModel> {
+final class AddCardViewController: BaseViewController<AddCardView, AddCardViewModel> {
     /// Enum describing events that can be triggered by this controller
     enum Event {
-        case successfulPayment
-        case successfulPaymentCardAdded(STCardReference)
-        case cardinalWarnings(String, [CardinalInitWarnings])
+        case added(cardReference: STCardReference?)
     }
 
     /// Callback with triggered event
@@ -24,51 +19,42 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
 
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
-        title = Localizable.DropInViewController.title.text
+        title = Localizable.AddCardViewController.title.text
     }
 
     /// - SeeAlso: BaseViewController.setupCallbacks
     override func setupCallbacks() {
-        customView.payButtonTappedClosure = { [weak self] in
+        customView.addCardButtonTappedClosure = { [weak self] in
             guard let self = self else { return }
             let isFormValid = self.viewModel.validateForm(view: self.customView)
             if isFormValid {
-                self.customView.payButton.startProcessing()
+                self.customView.addCardButton.startProcessing()
                 let cardNumber = self.customView.cardNumberInput.cardNumber
                 let cvc = self.customView.cvcInput.cvc
                 let expiryDate = self.customView.expiryDateInput.expiryDate
-                self.viewModel.isSaveCardEnabled = self.customView.saveCardView.isSaveCardEnabled
-                self.viewModel.performTransaction(cardNumber: cardNumber, securityCode: cvc, expiryDate: expiryDate)
+
+                self.viewModel.makeRequest(cardNumber: cardNumber, securityCode: cvc, expiryDate: expiryDate)
             }
         }
 
-        viewModel.showTransactionSuccess = { [weak self] (_, cardReference) in
+        viewModel.showCardAddedSuccess = { [weak self] cardReference in
             guard let self = self else { return }
-            self.customView.payButton.stopProcessing()
-            self.showAlert(message: Localizable.DropInViewController.successfulPayment.text) { [weak self] _ in
+            self.customView.addCardButton.stopProcessing()
+            self.showAlert(message: Localizable.AddCardViewController.cardAdded.text) { [weak self] _ in
                 guard let self = self else { return }
-                if let cardRef = cardReference {
-                    self.eventTriggered?(.successfulPaymentCardAdded(cardRef))
-                } else {
-                    self.eventTriggered?(.successfulPayment)
-                }
+                self.eventTriggered?(.added(cardReference: cardReference))
             }
         }
 
-        viewModel.showTransactionError = { [weak self] error in
+        viewModel.showAuthError = { [weak self] error in
             guard let self = self else { return }
-            self.customView.payButton.stopProcessing()
+            self.customView.addCardButton.stopProcessing()
             self.showAlert(message: error, completionHandler: nil)
-        }
-
-        viewModel.cardinalWarningsCompletion = { [weak self] warningsMessage, warnings in
-            guard let self = self else { return }
-            self.eventTriggered?(.cardinalWarnings(warningsMessage, warnings))
         }
 
         viewModel.showValidationError = { [weak self] error in
             guard let self = self else { return }
-            self.customView.payButton.stopProcessing()
+            self.customView.addCardButton.stopProcessing()
             switch error {
             case .invalidPAN: self.customView.cardNumberInput.showHideError(show: true)
             case .invalidSecurityCode: self.customView.cvcInput.showHideError(show: true)
@@ -80,11 +66,6 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
 
     /// - SeeAlso: BaseViewController.setupProperties
     override func setupProperties() {}
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.handleCardinalWarnings()
-    }
 
     // MARK: Alerts
 
@@ -100,8 +81,8 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
 }
 
 private extension Localizable {
-    enum DropInViewController: String, Localized {
+    enum AddCardViewController: String, Localized {
         case title
-        case successfulPayment
+        case cardAdded
     }
 }
