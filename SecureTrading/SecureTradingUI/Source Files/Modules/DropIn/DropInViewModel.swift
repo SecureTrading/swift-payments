@@ -95,7 +95,8 @@ final class DropInViewModel {
     ///   - expiryDate: The expiry date printed on the card.
     private func makePaymentRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
         let termUrl = self.typeDescriptions.contains(.threeDQuery) ? self.termUrl : nil
-        let request = RequestObject(typeDescriptions: self.typeDescriptions, requestId: self.requestId, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
+        let tempTypeDescriptions = self.typeDescriptions.contains(.threeDQuery) ? [.threeDQuery] : self.typeDescriptions
+        let request = RequestObject(typeDescriptions: tempTypeDescriptions, requestId: self.requestId, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
 
         self.apiManager.makeGeneralRequest(jwt: self.jwt, request: request, success: { [weak self] responseObject, _ in
             guard let self = self else { return }
