@@ -39,6 +39,9 @@ final class MainFlowController: BaseNavigationFlowController {
                 self.showAddCardView(jwt: jwt)
             case .payWithWalletRequest:
                 self.showWalletView()
+                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: false)
+            case .didTapShowDropInControllerWithWarnings(let jwt):
+                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: true)
             }
         }
         return mainViewController
@@ -52,7 +55,7 @@ final class MainFlowController: BaseNavigationFlowController {
         push(vc, animated: true)
     }
 
-    func showDropInViewController(jwt: String) {
+    func showDropInViewController(jwt: String, handleCardinalWarnings: Bool) {
         // swiftlint:disable line_length
         let inputViewStyleManager = InputViewStyleManager(titleColor: UIColor.gray, textFieldBorderColor: UIColor.black.withAlphaComponent(0.8), textFieldBackgroundColor: .clear, textColor: .black, placeholderColor: UIColor.lightGray.withAlphaComponent(0.8), errorColor: UIColor.red.withAlphaComponent(0.8), titleFont: UIFont.systemFont(ofSize: 16, weight: .regular), textFont: UIFont.systemFont(ofSize: 16, weight: .regular), placeholderFont: UIFont.systemFont(ofSize: 16, weight: .regular), errorFont: UIFont.systemFont(ofSize: 12, weight: .regular), textFieldImage: nil, titleSpacing: 5, errorSpacing: 3, textFieldHeightMargins: HeightMargins(top: 10, bottom: 10), textFieldBorderWidth: 1, textFieldCornerRadius: 6)
 
@@ -61,10 +64,18 @@ final class MainFlowController: BaseNavigationFlowController {
         let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: inputViewStyleManager, requestButtonStyleManager: payButtonStyleManager, backgroundColor: .white, spacingBeetwenInputViews: 25, insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
         // swiftlint:enable line_length
 
-        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: [.auth], gatewayType: .eu, username: appFoundation.keys.merchantUsername, dropInViewStyleManager: dropInViewStyleManager) { [unowned self] cardReference in
+        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: [.auth], gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: false, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: { [unowned self] cardReference in
              Wallet.shared.add(card: cardReference)
             self.navigationController.popViewController(animated: true)
-        }
+        }, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
+            guard handleCardinalWarnings else { return }
+            self.showAlert(controller: self.navigationController, message: warningsMessage) { _ in
+                self.navigationController.popViewController(animated: true)
+            }
+        })
+
+        // swiftlint:enable line_length
+
         push(dropInVC, animated: true)
     }
 
@@ -111,5 +122,11 @@ final class MainFlowController: BaseNavigationFlowController {
     func showTestMainFlow() {
         sdkFlowController = SDKFlowController(navigationController: navigationController)
         sdkFlowController.presentTestMainFlow()
+    }
+
+    private func showAlert(controller: UIViewController, message: String, completionHandler: ((UIAlertAction) -> Void)?) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Localizable.Alerts.okButton.text, style: .default, handler: completionHandler))
+        controller.present(alert, animated: true, completion: nil)
     }
 }

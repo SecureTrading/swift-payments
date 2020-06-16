@@ -7,12 +7,16 @@
 import SecureTradingCore
 #endif
 import UIKit
+#if !COCOAPODS
+import SecureTrading3DSecure
+#endif
 
 final class DropInViewController: BaseViewController<DropInView, DropInViewModel> {
     /// Enum describing events that can be triggered by this controller
     enum Event {
         case successfulPayment
         case successfulPaymentCardAdded(STCardReference)
+        case cardinalWarnings(String, [CardinalInitWarnings])
     }
 
     /// Callback with triggered event
@@ -39,6 +43,11 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
         }
 
         viewModel.showAuthSuccess = { [weak self] (statusCode, cardReference) in
+                self.viewModel.performTransaction(cardNumber: cardNumber, securityCode: cvc, expiryDate: expiryDate)
+            }
+        }
+
+        viewModel.showTransactionSuccess = { [weak self] _ in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             self.showAlert(message: Localizable.DropInViewController.successfulPayment.text) { [weak self] _ in
@@ -51,10 +60,15 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             }
         }
 
-        viewModel.showAuthError = { [weak self] error in
+        viewModel.showTransactionError = { [weak self] error in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             self.showAlert(message: error, completionHandler: nil)
+        }
+
+        viewModel.cardinalWarningsCompletion = { [weak self] warningsMessage, warnings in
+            guard let self = self else { return }
+            self.eventTriggered?(.cardinalWarnings(warningsMessage, warnings))
         }
 
         viewModel.showValidationError = { [weak self] error in
@@ -71,6 +85,11 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
 
     /// - SeeAlso: BaseViewController.setupProperties
     override func setupProperties() {}
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.handleCardinalWarnings()
+    }
 
     // MARK: Alerts
 

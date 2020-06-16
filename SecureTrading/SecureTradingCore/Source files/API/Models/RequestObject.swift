@@ -8,6 +8,7 @@
     case auth
     case threeDQuery
     case accountCheck
+    case jsInit
 
     public var value: String {
         switch self {
@@ -17,6 +18,8 @@
             return "THREEDQUERY"
         case .accountCheck:
             return "ACCOUNTCHECK"
+        case .jsInit:
+            return "JSINIT"
         }
     }
 }
@@ -25,12 +28,14 @@ public enum TypeDescription: String, Codable {
     case auth = "AUTH"
     case threeDQuery = "THREEDQUERY"
     case accountCheck = "ACCOUNTCHECK"
+    case jsInit = "JSINIT"
     
     var code: Int {
         switch self {
         case .auth: return TypeDescriptionObjc.auth.rawValue
         case .threeDQuery: return TypeDescriptionObjc.threeDQuery.rawValue
         case .accountCheck: return TypeDescriptionObjc.accountCheck.rawValue
+        case .jsInit: return TypeDescriptionObjc.jsInit.rawValue
         }
     }
 }

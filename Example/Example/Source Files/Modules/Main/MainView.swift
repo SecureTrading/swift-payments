@@ -193,6 +193,7 @@ fileprivate extension Localizable {
         case makeAuthRequestButton
         case showSingleInputViewsButton
         case showDropInControllerButton
+        case showDropInControllerWithWarningsButton
         case makeAccountCheckRequestButton
         case makeAccountCheckWithAuthRequestButton
         case addCardReferenceButton

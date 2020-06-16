@@ -18,6 +18,7 @@ MainView.addCardReferenceButton = "Add card to Wallet";
 MainView.payWithWalletButton = "Pay from Wallet";
 MainView.merchantResponsibility = "Merchant responsibility";
 MainView.sdkResponsibility = "ST SDK responsibility";
+MainView.showDropInControllerWithWarningsButton = "show drop in view controller (handle cardinal warnings)";
 
 Alerts.okButton = "Ok";
 

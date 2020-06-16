@@ -14,6 +14,7 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         case didTapShowDropInController(String)
         case didTapAddCard(String)
         case payWithWalletRequest
+        case didTapShowDropInControllerWithWarnings(String)
     }
 
     private var transparentNavigationBar: TransparentNavigationBar? { return navigationController?.navigationBar as? TransparentNavigationBar }
@@ -53,6 +54,11 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             guard let self = self else { return }
             guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
             self.eventTriggered?(.didTapShowDropInController(jwt))
+        }
+        customView.showDropInControllerWithWarningsButtonTappedClosure = { [weak self] in
+            guard let self = self else { return }
+            guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
+            self.eventTriggered?(.didTapShowDropInControllerWithWarnings(jwt))
         }
         customView.accountCheckRequest = { [weak self] in
             guard let self = self else { return }

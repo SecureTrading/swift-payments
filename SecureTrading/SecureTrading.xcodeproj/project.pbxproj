@@ -98,6 +98,7 @@
 		08EF7D422462B12F008B5F3E /* SecureTradingUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 08EF7D402462B12F008B5F3E /* SecureTradingUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF7D492462B239008B5F3E /* BaseViewController.swift */; };
 		08EF7D542462B790008B5F3E /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; platformFilter = ios; };
+		08FEFD6024975043003FEFCC /* SecureTrading3DSecure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104CFB09246ECD7F00D7C76D /* SecureTrading3DSecure.framework */; platformFilter = ios; };
 		10402BEA247E64480027CEEA /* TestGatewayEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10402BE9247E64480027CEEA /* TestGatewayEndpoint.swift */; };
 		1040C6F22477C503004B9DEA /* KnownCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040C6F12477C503004B9DEA /* KnownCards.swift */; };
 		1040C6F42477CD95004B9DEA /* TestCardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040C6F32477CD95004B9DEA /* TestCardType.swift */; };
@@ -176,6 +177,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 08E4FA692462A5EC00837339;
 			remoteInfo = SecureTradingCore;
+		};
+		08FEFD6224975043003FEFCC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08E4FA612462A5EC00837339 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 104CFB08246ECD7F00D7C76D;
+			remoteInfo = SecureTrading3DSecure;
 		};
 		10486207247BF7050053209D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -400,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08EF7D542462B790008B5F3E /* SecureTradingCore.framework in Frameworks */,
+				08FEFD6024975043003FEFCC /* SecureTrading3DSecure.framework in Frameworks */,
 				0845BF20247E48E0008AD40F /* SecureTradingCard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1093,6 +1102,7 @@
 			dependencies = (
 				08EF7D572462B790008B5F3E /* PBXTargetDependency */,
 				0845BF23247E48E0008AD40F /* PBXTargetDependency */,
+				08FEFD6324975043003FEFCC /* PBXTargetDependency */,
 			);
 			name = SecureTradingUI;
 			productName = SecureTradingUI;
@@ -1545,6 +1555,12 @@
 			platformFilter = ios;
 			target = 08E4FA692462A5EC00837339 /* SecureTradingCore */;
 			targetProxy = 08EF7D562462B790008B5F3E /* PBXContainerItemProxy */;
+		};
+		08FEFD6324975043003FEFCC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 104CFB08246ECD7F00D7C76D /* SecureTrading3DSecure */;
+			targetProxy = 08FEFD6224975043003FEFCC /* PBXContainerItemProxy */;
 		};
 		10486208247BF7050053209D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2076,7 +2092,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = RF242XLR57;
+				DEVELOPMENT_TEAM = 4L3BAVLUDD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2113,7 +2129,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = RF242XLR57;
+				DEVELOPMENT_TEAM = 4L3BAVLUDD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2150,7 +2166,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = RF242XLR57;
+				DEVELOPMENT_TEAM = 4L3BAVLUDD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2246,7 +2262,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = RF242XLR57;
+				DEVELOPMENT_TEAM = 4L3BAVLUDD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2276,7 +2292,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = RF242XLR57;
+				DEVELOPMENT_TEAM = 4L3BAVLUDD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2306,7 +2322,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = RF242XLR57;
+				DEVELOPMENT_TEAM = 4L3BAVLUDD;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2333,7 +2349,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RF242XLR57;
+				DEVELOPMENT_TEAM = 4L3BAVLUDD;
 				INFOPLIST_FILE = SecureTradingCardTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2353,7 +2369,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RF242XLR57;
+				DEVELOPMENT_TEAM = 4L3BAVLUDD;
 				INFOPLIST_FILE = SecureTradingCardTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2373,7 +2389,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RF242XLR57;
+				DEVELOPMENT_TEAM = 4L3BAVLUDD;
 				INFOPLIST_FILE = SecureTradingCardTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
