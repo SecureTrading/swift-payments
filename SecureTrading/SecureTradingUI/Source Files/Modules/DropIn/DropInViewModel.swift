@@ -78,7 +78,7 @@ final class DropInViewModel {
                 self.isJsInitCompleted = true
                 if let card = self.card, self.shouldStartTransactionAfterJsInit {
                     self.shouldStartTransactionAfterJsInit = false
-                    self.makePaymentOrTrheeDQueryRequest(cardNumber: card.cardNumber, securityCode: card.securityCode, expiryDate: card.expiryDate)
+                    self.makePaymentOrThreeDQueryRequest(cardNumber: card.cardNumber, securityCode: card.securityCode, expiryDate: card.expiryDate)
                 }
             }, failure: { [weak self] errorMessage in
                 guard let self = self else { return }
@@ -133,7 +133,7 @@ final class DropInViewModel {
     ///   - cardNumber: The long number printed on the front of the customer’s card.
     ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
     ///   - expiryDate: The expiry date printed on the card.
-    private func makePaymentOrTrheeDQueryRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
+    private func makePaymentOrThreeDQueryRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
         let termUrl = self.typeDescriptions.contains(.threeDQuery) ? self.termUrl : nil
         let tempTypeDescriptions = self.typeDescriptions.contains(.threeDQuery) ? [.threeDQuery] : self.typeDescriptions
         let request = RequestObject(typeDescriptions: tempTypeDescriptions, requestId: self.requestId, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
@@ -195,7 +195,7 @@ final class DropInViewModel {
             }
 
             guard let jsInitError = jsInitError else {
-                self.makePaymentOrTrheeDQueryRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
+                self.makePaymentOrThreeDQueryRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
                 return
             }
 
@@ -203,7 +203,7 @@ final class DropInViewModel {
         } else {
             self.makeJSInitRequest(completion: { [weak self] _ in
                 guard let self = self else { return }
-                self.makePaymentOrTrheeDQueryRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
+                self.makePaymentOrThreeDQueryRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
             }, failure: { [weak self] errorMessage in
                 guard let self = self else { return }
                 self.showTransactionError?(errorMessage)
