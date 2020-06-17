@@ -32,7 +32,8 @@ final class MainFlowController: BaseNavigationFlowController {
                     MainViewModel.Row.presentPayByCardForm,
                     MainViewModel.Row.performAccountCheck,
                     MainViewModel.Row.performAccountCheckWithAuth,
-                    MainViewModel.Row.presentAddCardForm]),
+                    MainViewModel.Row.presentAddCardForm
+                ]),
             MainViewModel.Section.onMerchant(rows: [MainViewModel.Row.presentWalletForm])
         ]
         let mainViewController = MainViewController(view: MainView(), viewModel: MainViewModel(apiManager: appFoundation.apiManager, items: viewItems))
@@ -77,11 +78,11 @@ final class MainFlowController: BaseNavigationFlowController {
         let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: [.threeDQuery, .auth], gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: false, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: { [unowned self] cardReference in
             Wallet.shared.add(card: cardReference)
             self.navigationController.popViewController(animated: true)
-            }, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
-                guard handleCardinalWarnings else { return }
-                self.showAlert(controller: self.navigationController, message: warningsMessage) { _ in
-                    self.navigationController.popViewController(animated: true)
-                }
+        }, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
+            guard handleCardinalWarnings else { return }
+            self.showAlert(controller: self.navigationController, message: warningsMessage) { _ in
+                self.navigationController.popViewController(animated: true)
+            }
         })
 
         // swiftlint:enable line_length
@@ -103,8 +104,8 @@ final class MainFlowController: BaseNavigationFlowController {
                                                                           gatewayType: .eu,
                                                                           username: appFoundation.keys.merchantUsername,
                                                                           dropInViewStyleManager: dropInViewStyleManager) { [unowned self] cardReference in
-                                                                            Wallet.shared.add(card: cardReference)
-                                                                            self.navigationController.popViewController(animated: true)
+            Wallet.shared.add(card: cardReference)
+            self.navigationController.popViewController(animated: true)
         }
         push(dropInVC, animated: true)
     }

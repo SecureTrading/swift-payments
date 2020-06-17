@@ -255,7 +255,7 @@ final class DropInViewModel {
         dispatchGroup.notify(queue: dispatchQueue) {
             DispatchQueue.main.async {
                 guard let error = transactionError else {
-                    self.showTransactionSuccess?(jwtResponseObject!.responseSettleStatus, self.isSaveCardEnabled ? responseObject.cardReference : nil)
+                    self.showTransactionSuccess?(jwtResponseObject!.responseSettleStatus, self.isSaveCardEnabled ? jwtResponseObject!.cardReference : nil)
                     return
                 }
                 self.showTransactionError?(error)
