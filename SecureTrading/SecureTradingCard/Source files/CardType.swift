@@ -103,6 +103,21 @@ import UIKit
         }
     }
 
+    public static func cardType(for cardDescription: String) -> CardType {
+        switch cardDescription.lowercased() {
+        case "visa": return .visa
+        case "mastercard": return .mastercard
+        case "amex": return .amex
+        case "maestro": return .maestro
+        case "discover": return .discover
+        case "diners": return .diners
+        case "jcb": return .jcb
+        case "astropay": return .astropay
+        case "piba": return .piba
+        default: return .unknown
+        }
+    }
+
     // MARK: Private properties
 
     private func image(for name: String) -> UIImage? {

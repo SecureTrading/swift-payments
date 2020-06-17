@@ -14,7 +14,11 @@ class ResponseValidator {
                 // incorrect request: invalid pan, expiry date, security code, jwt
                 if let firstResponseWithError = response.jwtDecoded.jwtBodyResponse.responses
                     .first(where: { $0.responseErrorCode != ResponseErrorCode.successful }) {
-                    throw APIClientError.responseValidationError(.invalidField(code: firstResponseWithError.errorDetails))
+                    if firstResponseWithError.responseErrorCode == .fieldError {
+                        throw APIClientError.responseValidationError(.invalidField(code: firstResponseWithError.errorDetails))
+                    } else {
+                        throw NSError(domain: NSError.domain, code: firstResponseWithError.errorCode, userInfo: [NSLocalizedDescriptionKey: firstResponseWithError.errorMessage])
+                    }
                 }
             } else if !request.isValidAgainstResponse(response) {
                 // check if request's type description matches response's type description

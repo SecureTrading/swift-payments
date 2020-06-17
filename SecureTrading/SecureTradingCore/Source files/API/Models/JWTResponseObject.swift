@@ -30,6 +30,7 @@
     case invalidJWT = 12_503
     case invalidExpiryDate = 12_504
     case invalidTermURL = 12_505
+    case parentTransactionReference = 12_506
     case none = 12_500
 }
 
@@ -65,6 +66,8 @@
         return ResponseSettleStatus(rawValue: settleStatus?.intValue ?? -1) ?? .error
     }
 
+    @objc public let cardReference: STCardReference?
+
     @objc public var errorDetails: ResponseErrorDetail {
         // confirmed with ST, error data will only have max 1 element at the time,
         // even when there are multiple errors
@@ -78,6 +81,7 @@
             case "securitycode": return ResponseErrorDetail.invalidSecurityCode
             case "expirydate": return ResponseErrorDetail.invalidExpiryDate
             case "termurl": return ResponseErrorDetail.invalidTermURL
+            case "parenttransactionreference": return ResponseErrorDetail.parentTransactionReference
             default: return ResponseErrorDetail.none
             }
         default: return ResponseErrorDetail.none
@@ -101,6 +105,11 @@
             settleStatus = nil
         }
         transactionReference = try container.decodeIfPresent(String.self, forKey: .transactionReference)
+        if let maskedPan = try container.decodeIfPresent(String.self, forKey: .maskedPan), let paymentDescription = try container.decodeIfPresent(String.self, forKey: .paymentDescription), let reference = transactionReference {
+            cardReference = STCardReference(reference: reference, cardType: paymentDescription, pan: maskedPan)
+        } else {
+            cardReference = nil
+        }
         if let type = try container.decodeIfPresent(String.self, forKey: .requestTypeDescription), let typeDescription = TypeDescription(rawValue: type) {
             requestTypeDescription = typeDescription
         } else {
@@ -135,6 +144,8 @@ private extension JWTResponseObject {
         case settleStatus = "settlestatus"
         case transactionReference = "transactionreference"
         case requestTypeDescription = "requesttypedescription"
+        case maskedPan = "maskedpan"
+        case paymentDescription = "paymenttypedescription"
         case threeDInit = "threedinit"
         case cacheToken = "cachetoken"
         case cardEnrolled = "enrolled"

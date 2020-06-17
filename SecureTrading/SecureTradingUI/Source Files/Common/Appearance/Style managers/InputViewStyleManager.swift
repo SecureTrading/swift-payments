@@ -62,4 +62,23 @@ import UIKit
         self.textFieldBorderWidth = textFieldBorderWidth
         self.textFieldCornerRadius = textFieldCornerRadius
     }
+
+    @objc public static func `default`() -> InputViewStyleManager {
+        return InputViewStyleManager(titleColor: UIColor.gray,
+                              textFieldBorderColor: UIColor.black.withAlphaComponent(0.8),
+                              textFieldBackgroundColor: .clear,
+                              textColor: .black,
+                              placeholderColor: UIColor.lightGray.withAlphaComponent(0.8),
+                              errorColor: UIColor.red.withAlphaComponent(0.8),
+                              titleFont: UIFont.systemFont(ofSize: 16, weight: .regular),
+                              textFont: UIFont.systemFont(ofSize: 16, weight: .regular),
+                              placeholderFont: UIFont.systemFont(ofSize: 16, weight: .regular),
+                              errorFont: UIFont.systemFont(ofSize: 12, weight: .regular),
+                              textFieldImage: nil,
+                              titleSpacing: 5,
+                              errorSpacing: 3,
+                              textFieldHeightMargins: HeightMargins(top: 10, bottom: 10),
+                              textFieldBorderWidth: 1,
+                              textFieldCornerRadius: 6)
+    }
 }

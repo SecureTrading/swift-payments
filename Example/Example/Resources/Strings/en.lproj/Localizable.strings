@@ -7,15 +7,26 @@ PopBack.back = "back";
 
 MainViewController.title = "Example App - Main";
 
-MainView.showTestMainScreenButton = "show test main screen (from SecureTradingUI)";
-MainView.showTestMainFlowButton = "show test main flow (from SecureTradingUI)";
-MainView.makeAuthRequestButton = "make auth request (with test card 41111...)";
-MainView.showSingleInputViewsButton = "show single input views";
-MainView.showDropInControllerButton = "show drop in view controller (make auth req)";
-MainView.showDropInControllerWithWarningsButton = "show drop in view controller (handle cardinal warnings)";
-MainView.makeAccountCheckRequestButton = "'Account check' request";
-MainView.makeAccountCheckWithAuthRequestButton = "'Account check & Auth' request";
+MainViewModel.showTestMainScreenButton = "show test main screen (from SecureTradingUI)";
+MainViewModel.showTestMainFlowButton = "show test main flow (from SecureTradingUI)";
+MainViewModel.makeAuthRequestButton = "Perform AUTH request in background";
+MainViewModel.showSingleInputViewsButton = "Single input components";
+MainViewModel.showDropInControllerButton = "Pay by Card form";
+MainViewModel.makeAccountCheckRequestButton = "Perform 'Account check' request in background";
+MainViewModel.makeAccountCheckWithAuthRequestButton = "Perform Account check & Auth request in background";
+MainViewModel.addCardReferenceButton = "Add card to Wallet";
+MainViewModel.payWithWalletButton = "Pay from Wallet";
+MainViewModel.merchantResponsibility = "Merchant responsibility";
+MainViewModel.sdkResponsibility = "ST SDK responsibility";
+MainViewModel.showDropInControllerWithWarningsButton = "show drop in view controller (handle cardinal warnings)";
 
 Alerts.okButton = "Ok";
 
 SingleInputViewsController.title = "Single input views";
+
+WalletViewController.title = "Wallet";
+WalletViewController.paid = "Successful payment transaction";
+
+WalletViewModel.addPaymentMethod = "Add Payment method";
+WalletViewModel.paymentMethods = "PAYMENT METHODS";
+WalletViewModel.infoText = "Tap the card you wish to pay with and click the 'Pay' button to process the payment";

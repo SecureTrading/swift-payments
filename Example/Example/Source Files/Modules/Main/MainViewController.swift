@@ -12,6 +12,8 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         case didTapShowTestMainFlow
         case didTapShowSingleInputViews
         case didTapShowDropInController(String)
+        case didTapAddCard(String)
+        case payWithWalletRequest
         case didTapShowDropInControllerWithWarnings(String)
     }
 
@@ -23,7 +25,13 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
         view.accessibilityIdentifier = "home/view/main"
-        title = Localizable.MainViewController.title.text
+
+        // Trust Payments logo in navigation bar
+        let imageView = UIImageView(image: UIImage(named: "trustPaymentsLogo"))
+        imageView.contentMode = .scaleAspectFit
+        navigationItem.titleView = imageView
+
+        customView.dataSource = viewModel
     }
 
     /// - SeeAlso: BaseViewController.setupCallbacks
@@ -61,6 +69,15 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         customView.accountCheckWithAuthRequest = { [weak self] in
             guard let self = self else { return }
             self.viewModel.makeAccountCheckWithAuthRequest()
+        }
+        customView.addCardReferenceRequest = { [weak self] in
+            guard let self = self else { return }
+            guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
+            self.eventTriggered?(.didTapAddCard(jwt))
+        }
+        customView.payWithWalletRequest = { [weak self] in
+            guard let self = self else { return }
+            self.eventTriggered?(.payWithWalletRequest)
         }
 
         viewModel.showAuthSuccess = { [weak self] _ in

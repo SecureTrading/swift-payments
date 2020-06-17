@@ -6,143 +6,112 @@
 import UIKit
 
 final class MainView: WhiteBackgroundBaseView {
-    var showTestMainScreenButtonTappedClosure: (() -> Void)? {
-        get { return showTestMainScreenButton.onTap }
-        set { showTestMainScreenButton.onTap = newValue }
-    }
 
-    var showTestMainFlowButtonTappedClosure: (() -> Void)? {
-        get { return showTestMainFlowButton.onTap }
-        set { showTestMainFlowButton.onTap = newValue }
-    }
+    /// data source for table view
+    weak var dataSource: MainViewModelDataSource?
 
-    var makeAuthRequestButtonTappedClosure: (() -> Void)? {
-        get { return makeAuthRequestButton.onTap }
-        set { makeAuthRequestButton.onTap = newValue }
-    }
+    fileprivate lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(dequeueableCell: MainViewTableViewCell.self)
 
-    var showSingleInputViewsButtonTappedClosure: (() -> Void)? {
-        get { return showSingleInputViewsButton.onTap }
-        set { showSingleInputViewsButton.onTap = newValue }
-    }
-
-    var showDropInControllerButtonTappedClosure: (() -> Void)? {
-        get { return showDropInControllerButton.onTap }
-        set { showDropInControllerButton.onTap = newValue }
-    }
-
-    var showDropInControllerWithWarningsButtonTappedClosure: (() -> Void)? {
-           get { return showDropInControllerWithWarningsButton.onTap }
-           set { showDropInControllerWithWarningsButton.onTap = newValue }
-       }
-
-    var accountCheckRequest: (() -> Void)? {
-        get { return makeAccountCheckRequestButton.onTap }
-        set { makeAccountCheckRequestButton.onTap = newValue }
-    }
-
-    var accountCheckWithAuthRequest: (() -> Void)? {
-        get { return makeAccountCheckWithAuthRequestButton.onTap }
-        set { makeAccountCheckWithAuthRequestButton.onTap = newValue }
-    }
-
-    private let makeAuthRequestButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle(Localizable.MainView.makeAuthRequestButton.text, for: .normal)
-        return button
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        tableView.tableFooterView = UIView()
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44
+        return tableView
     }()
 
-    private let showTestMainScreenButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle(Localizable.MainView.showTestMainScreenButton.text, for: .normal)
-        return button
-    }()
-
-    private let showTestMainFlowButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle(Localizable.MainView.showTestMainFlowButton.text, for: .normal)
-        return button
-    }()
-
-    private let showSingleInputViewsButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle(Localizable.MainView.showSingleInputViewsButton.text, for: .normal)
-        return button
-    }()
-
-    private let showDropInControllerButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle(Localizable.MainView.showDropInControllerButton.text, for: .normal)
-        return button
-    }()
-
-    private let showDropInControllerWithWarningsButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle(Localizable.MainView.showDropInControllerWithWarningsButton.text, for: .normal)
-        return button
-    }()
-
-    private let makeAccountCheckRequestButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle(Localizable.MainView.makeAccountCheckRequestButton.text, for: .normal)
-        return button
-    }()
-
-    private let makeAccountCheckWithAuthRequestButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.titleLabel?.font = Fonts.responsive(.medium, ofSizes: [.small: 13, .medium: 14, .large: 16])
-        button.setTitle(Localizable.MainView.makeAccountCheckWithAuthRequestButton.text, for: .normal)
-        return button
-    }()
-
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [showTestMainScreenButton,
-                                                       showTestMainFlowButton,
-                                                       makeAuthRequestButton,
-                                                       showSingleInputViewsButton,
-                                                       showDropInControllerButton,
-                                                       showDropInControllerWithWarningsButton,
-                                                       makeAccountCheckRequestButton,
-                                                       makeAccountCheckWithAuthRequestButton])
-        stackView.axis = .vertical
-        stackView.spacing = 30
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        return stackView
-    }()
+    // callbacks for selected rows
+    var showTestMainScreenButtonTappedClosure: (() -> Void)?
+    var showTestMainFlowButtonTappedClosure: (() -> Void)?
+    var makeAuthRequestButtonTappedClosure: (() -> Void)?
+    var showSingleInputViewsButtonTappedClosure: (() -> Void)?
+    var showDropInControllerButtonTappedClosure: (() -> Void)?
+    var accountCheckRequest: (() -> Void)?
+    var accountCheckWithAuthRequest: (() -> Void)?
+    var addCardReferenceRequest: (() -> Void)?
+    var payWithWalletRequest: (() -> Void)?
+    var showDropInControllerWithWarningsButtonTappedClosure: (() -> Void)?
 }
 
 extension MainView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
     func setupViewHierarchy() {
-        addSubviews([stackView])
+        addSubviews([tableView])
     }
 
     /// - SeeAlso: ViewSetupable.setupConstraints
     func setupConstraints() {
-        stackView.addConstraints([
-            equal(self, \.centerYAnchor),
-            equal(self, \.centerXAnchor)
+        tableView.addConstraints([
+            equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: 0),
+            equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            equal(self, \.leadingAnchor, constant: 0),
+            equal(self, \.trailingAnchor, constant: 0)
         ])
     }
 }
 
-private extension Localizable {
-    enum MainView: String, Localized {
-        case showTestMainScreenButton
-        case showTestMainFlowButton
-        case makeAuthRequestButton
-        case showSingleInputViewsButton
-        case showDropInControllerButton
-        case showDropInControllerWithWarningsButton
-        case makeAccountCheckRequestButton
-        case makeAccountCheckWithAuthRequestButton
+// MARK: Wallet view table data source and delegate
+extension MainView: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = dataSource?.row(at: indexPath)
+        let cell = tableView.dequeue(dequeueableCell: MainViewTableViewCell.self)
+        cell.configure(title: item?.title)
+        return cell
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return dataSource?.numberOfSections() ?? 0
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSource?.numberOfRows(at: section) ?? 0
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let title = dataSource?.title(for: section) {
+            let header = UIView()
+            header.backgroundColor = UIColor.groupTableViewBackground
+            let label = UILabel()
+            label.text = title
+            label.numberOfLines = 0
+            header.addSubview(label)
+            label.addConstraints([
+                equal(header, \.topAnchor, \.topAnchor, constant: 2),
+                equal(header, \.bottomAnchor, \.bottomAnchor, constant: 2),
+                equal(header, \.leadingAnchor, \.leadingAnchor, constant: 20),
+                equal(header, \.trailingAnchor, \.trailingAnchor, constant: -20)
+            ])
+            return header
+        }
+        return nil
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        guard let row = dataSource?.row(at: indexPath) else { return }
+        switch row {
+        case .testMainScreen:
+            showTestMainScreenButtonTappedClosure?()
+        case .testMainFlow:
+            showTestMainFlowButtonTappedClosure?()
+        case .performAuthRequestInBackground:
+            makeAuthRequestButtonTappedClosure?()
+        case .presentSingleInputComponents:
+            showSingleInputViewsButtonTappedClosure?()
+        case .presentPayByCardForm:
+            showDropInControllerButtonTappedClosure?()
+        case .performAccountCheck:
+            accountCheckRequest?()
+        case .performAccountCheckWithAuth:
+            accountCheckWithAuthRequest?()
+        case .presentAddCardForm:
+            addCardReferenceRequest?()
+        case .presentWalletForm:
+            payWithWalletRequest?()
+        case .showDropInControllerWithWarnings:
+            showDropInControllerWithWarningsButtonTappedClosure?()
+        }
     }
 }

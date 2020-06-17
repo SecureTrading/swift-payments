@@ -41,7 +41,9 @@ final class DropInViewModel {
 
     private let termUrl = "https://termurl.com"
 
-    var showTransactionSuccess: ((ResponseSettleStatus) -> Void)?
+    var isSaveCardEnabled: Bool = true
+
+    var showTransactionSuccess: ((ResponseSettleStatus, STCardReference?) -> Void)?
     var showTransactionError: ((String) -> Void)?
     var showValidationError: ((ResponseErrorDetail) -> Void)?
     var cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)?
@@ -190,13 +192,13 @@ final class DropInViewModel {
     /// - Parameter responseObject: response object from threedquery request
     private func handlePaymentTransactionResponse(responseObject: JWTResponseObject) {
         guard self.typeDescriptions.contains(.threeDQuery) else {
-            self.showTransactionSuccess?(responseObject.responseSettleStatus)
+            self.showTransactionSuccess?(responseObject.responseSettleStatus, self.isSaveCardEnabled ? responseObject.cardReference : nil)
             return
         }
 
         // bypass 3dsecure
         guard let cardEnrolled = responseObject.cardEnrolled, responseObject.acsUrl != nil, cardEnrolled == "Y" else {
-            self.showTransactionSuccess?(responseObject.responseSettleStatus)
+            self.showTransactionSuccess?(responseObject.responseSettleStatus, self.isSaveCardEnabled ? responseObject.cardReference : nil)
             return
         }
 
@@ -253,7 +255,7 @@ final class DropInViewModel {
         dispatchGroup.notify(queue: dispatchQueue) {
             DispatchQueue.main.async {
                 guard let error = transactionError else {
-                    self.showTransactionSuccess?(jwtResponseObject!.responseSettleStatus)
+                    self.showTransactionSuccess?(jwtResponseObject!.responseSettleStatus, self.isSaveCardEnabled ? responseObject.cardReference : nil)
                     return
                 }
                 self.showTransactionError?(error)
