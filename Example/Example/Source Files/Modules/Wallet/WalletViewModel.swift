@@ -120,15 +120,9 @@ final class WalletViewModel {
                 switch error {
                 case .responseValidationError(let responseError):
                     switch responseError {
-                    case .invalidField(let errorCode):
-                        var message = "Invalid field: "
-                        switch errorCode {
-                        case .invalidParentTransactionReference: message += "Parent transaction reference"
-                        case .invalidSiteReference: message += "Site reference"
-                        default: message += "Not applicable"
-                        }
+                    case .invalidField:
                         // Update UI
-                        self.showAuthError?(message)
+                        self.showAuthError?(responseError.localizedDescription)
                     default:
                         self.showAuthError?(error.humanReadableDescription)
                     }

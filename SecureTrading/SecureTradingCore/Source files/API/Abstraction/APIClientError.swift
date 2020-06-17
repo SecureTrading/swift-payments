@@ -178,7 +178,7 @@ public enum APIResponseValidationError: Error {
     // MARK: Properties
 
     /// - SeeAlso: Error.localizedDescription
-    var localizedDescription: String {
+    public var localizedDescription: String {
         switch self {
         case .unacceptableStatusCode(let actual, _):
             return "Unacceptable status code: \(actual)."
@@ -187,7 +187,7 @@ public enum APIResponseValidationError: Error {
         case .mismatchedDescriptionTypes:
             return "Unexpected description types in response."
         case .invalidField(let code):
-            return "Invalid field: \(code.rawValue)"
+            return "Invalid field: \(code.message)"
         }
     }
 
