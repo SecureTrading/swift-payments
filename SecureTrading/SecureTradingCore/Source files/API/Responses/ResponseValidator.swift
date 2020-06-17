@@ -15,7 +15,13 @@ class ResponseValidator {
                 if let firstResponseWithError = response.jwtDecoded.jwtBodyResponse.responses
                     .first(where: { $0.responseErrorCode != ResponseErrorCode.successful }) {
                     if firstResponseWithError.responseErrorCode == .fieldError {
-                        throw APIClientError.responseValidationError(.invalidField(code: firstResponseWithError.errorDetails))
+                        switch firstResponseWithError.errorDetails {
+                        // For unhandled case, return error descriptions provided in response
+                        case .none:
+                            throw NSError(domain: NSError.domain, code: firstResponseWithError.errorCode, userInfo: [NSLocalizedDescriptionKey: "\(firstResponseWithError.errorMessage) - \(firstResponseWithError.errorData?.first ?? "Unknown")"])
+                        default:
+                            throw APIClientError.responseValidationError(.invalidField(code: firstResponseWithError.errorDetails))
+                        }
                     } else {
                         throw NSError(domain: NSError.domain, code: firstResponseWithError.errorCode, userInfo: [NSLocalizedDescriptionKey: firstResponseWithError.errorMessage])
                     }
