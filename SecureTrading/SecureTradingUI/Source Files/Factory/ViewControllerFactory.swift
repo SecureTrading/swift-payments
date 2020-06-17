@@ -42,18 +42,17 @@ import UIKit
     ///   - isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
     ///   - cardinalWarningsCompletion: Closure triggered when warnings are detected by the Cardinal (e.g. is the device jailbroken)
     /// - Returns: instance of DropInViewController
-    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription] = [.threeDQuery, .auth], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping (STCardReference?) -> Void, cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)? = nil) -> UIViewController {
-
+    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription] = [.threeDQuery, .auth], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping (ResponseSettleStatus, STCardReference?) -> Void, cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)? = nil) -> UIViewController {
         // swiftlint:disable line_length
         let viewController = DropInViewController(view: DropInView(dropInViewStyleManager: dropInViewStyleManager), viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit))
         // swiftlint:enable line_length
 
         viewController.eventTriggered = { event in
             switch event {
-            case .successfulPayment:
-                successfulPaymentCompletion(nil)
-            case .successfulPaymentCardAdded(let cardReferece):
-                successfulPaymentCompletion(cardReferece)
+            case .successfulPayment(let responseSettleStatus):
+                successfulPaymentCompletion(responseSettleStatus, nil)
+            case .successfulPaymentCardAdded(let responseSettleStatus, let cardReferece):
+                successfulPaymentCompletion(responseSettleStatus, cardReferece)
             case .cardinalWarnings(let warningsMessage, let warnings):
                 cardinalWarningsCompletion?(warningsMessage, warnings)
             }
@@ -96,13 +95,13 @@ import UIKit
     ///   - isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
     ///   - cardinalWarningsCompletion: Closure triggered when warnings are detected by the Cardinal (e.g. is the device jailbroken)
     /// - Returns: instance of DropInViewController
-    @objc public func dropInViewController(jwt: String, typeDescriptions: [Int] = [1, 0], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping (STCardReference?) -> Void, cardinalWarningsCompletion: ((String, [Int]) -> Void)? = nil) -> UIViewController {
+    @objc public func dropInViewController(jwt: String, typeDescriptions: [Int] = [1, 0], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping (ResponseSettleStatus, STCardReference?) -> Void, cardinalWarningsCompletion: ((String, [Int]) -> Void)? = nil) -> UIViewController {
         let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
         let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
 
         // swiftlint:disable line_length
         return self.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: successfulPaymentCompletion, cardinalWarningsCompletion: { warningsMessage, warnings in
-            cardinalWarningsCompletion?(warningsMessage, warnings.map({ $0.rawValue }))
+            cardinalWarningsCompletion?(warningsMessage, warnings.map { $0.rawValue })
         })
         // swiftlint:enable line_length
     }

@@ -14,8 +14,8 @@ import SecureTrading3DSecure
 final class DropInViewController: BaseViewController<DropInView, DropInViewModel> {
     /// Enum describing events that can be triggered by this controller
     enum Event {
-        case successfulPayment
-        case successfulPaymentCardAdded(STCardReference)
+        case successfulPayment(ResponseSettleStatus)
+        case successfulPaymentCardAdded(ResponseSettleStatus, STCardReference)
         case cardinalWarnings(String, [CardinalInitWarnings])
     }
 
@@ -42,15 +42,15 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             }
         }
 
-        viewModel.showTransactionSuccess = { [weak self] (_, cardReference) in
+        viewModel.showTransactionSuccess = { [weak self] (responseSettleStatus, cardReference) in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             self.showAlert(message: Localizable.DropInViewController.successfulPayment.text) { [weak self] _ in
                 guard let self = self else { return }
                 if let cardRef = cardReference {
-                    self.eventTriggered?(.successfulPaymentCardAdded(cardRef))
+                    self.eventTriggered?(.successfulPaymentCardAdded(responseSettleStatus, cardRef))
                 } else {
-                    self.eventTriggered?(.successfulPayment)
+                    self.eventTriggered?(.successfulPayment(responseSettleStatus))
                 }
             }
         }
