@@ -50,6 +50,14 @@
 
     @objc public let cacheToken: String?
 
+    @objc public let cardEnrolled: String?
+
+    @objc public let threeDPayload: String?
+
+    @objc public let acsUrl: String?
+
+    @objc public let acquirerTransactionReference: String?
+
     @objc public var responseErrorCode: ResponseErrorCode {
         return ResponseErrorCode(rawValue: errorCode) ?? .unknown
     }
@@ -109,6 +117,10 @@
         }
         threeDInit = try container.decodeIfPresent(String.self, forKey: .threeDInit)
         cacheToken = try container.decodeIfPresent(String.self, forKey: .cacheToken)
+        cardEnrolled = try container.decodeIfPresent(String.self, forKey: .cardEnrolled)
+        threeDPayload = try container.decodeIfPresent(String.self, forKey: .threeDPayload)
+        acsUrl = try container.decodeIfPresent(String.self, forKey: .acsUrl)
+        acquirerTransactionReference = try container.decodeIfPresent(String.self, forKey: .acquirerTransactionReference)
     }
 
     // MARK: Methods
@@ -136,5 +148,9 @@ private extension JWTResponseObject {
         case paymentDescription = "paymenttypedescription"
         case threeDInit = "threedinit"
         case cacheToken = "cachetoken"
+        case cardEnrolled = "enrolled"
+        case threeDPayload = "threedpayload"
+        case acsUrl = "acsurl"
+        case acquirerTransactionReference = "acquirertransactionreference"
     }
 }

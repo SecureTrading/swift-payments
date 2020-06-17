@@ -19,7 +19,7 @@
 
     NSMutableArray *typeDescriptions =
     [NSMutableArray arrayWithArray:@[@(TypeDescriptionObjcAuth)]];
-    RequestObject * requestObject = [[RequestObject alloc] initWithTypeDescriptions:typeDescriptions cardNumber:NULL securityCode:NULL expiryDate:NULL];
+    RequestObject * requestObject = [[RequestObject alloc] initWithTypeDescriptions:typeDescriptions requestId: NULL cardNumber:NULL securityCode:NULL expiryDate:NULL termUrl: NULL threeDResponse: NULL cacheToken: NULL];
     //NSMutableArray *requestObjects = [[NSMutableArray alloc] init];
     //[requestObjects addObject: requestObject];
 
