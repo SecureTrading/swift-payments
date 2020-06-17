@@ -30,8 +30,22 @@
     case invalidJWT = 12_503
     case invalidExpiryDate = 12_504
     case invalidTermURL = 12_505
-    case parentTransactionReference = 12_506
+    case invalidParentTransactionReference = 12_506
+    case invalidSiteReference = 12_507
     case none = 12_500
+
+    public var message: String {
+        switch self {
+        case .invalidPAN: return "PAN"
+        case .invalidSecurityCode: return "Security code"
+        case .invalidJWT: return "JWT"
+        case .invalidExpiryDate: return "Expiry date"
+        case .invalidTermURL: return "Term URL"
+        case .invalidParentTransactionReference: return "Parent transaction reference"
+        case .invalidSiteReference: return "Site reference"
+        case .none: return "Unknown"
+        }
+    }
 }
 
 @objc public class JWTResponseObject: NSObject, Decodable {
@@ -81,7 +95,8 @@
             case "securitycode": return ResponseErrorDetail.invalidSecurityCode
             case "expirydate": return ResponseErrorDetail.invalidExpiryDate
             case "termurl": return ResponseErrorDetail.invalidTermURL
-            case "parenttransactionreference": return ResponseErrorDetail.parentTransactionReference
+            case "parenttransactionreference": return ResponseErrorDetail.invalidParentTransactionReference
+            case "sitereference": return ResponseErrorDetail.invalidSiteReference
             default: return ResponseErrorDetail.none
             }
         default: return ResponseErrorDetail.none

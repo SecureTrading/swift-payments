@@ -72,6 +72,8 @@ final class AddCardViewModel {
                     switch errorCode {
                     case .invalidPAN, .invalidSecurityCode, .invalidExpiryDate:
                         self.showValidationError?(errorCode)
+                    case .invalidParentTransactionReference, .invalidSiteReference:
+                        self.showAuthError?(responseError.localizedDescription)
                     default: self.showAuthError?(error.humanReadableDescription)
                     }
 

@@ -145,19 +145,9 @@ final class MainViewModel {
                 switch error {
                 case .responseValidationError(let responseError):
                     switch responseError {
-                    case .invalidField(let errorCode):
-                        var message = "Invalid field: "
-                        switch errorCode {
-                        case .invalidPAN: message += "PAN"
-                        case .invalidSecurityCode: message += "Security code"
-                        case .invalidJWT: message += "JWT"
-                        case .invalidExpiryDate: message += "Expiry date"
-                        case .invalidTermURL: message += "Terms URL"
-                        case .parentTransactionReference: message += "Parent transaction reference"
-                        case .none: message += ""
-                        }
+                    case .invalidField:
                         // Update UI
-                        self.showAuthError?(message)
+                        self.showAuthError?(responseError.localizedDescription)
                     default:
                         self.showAuthError?(error.humanReadableDescription)
                     }
