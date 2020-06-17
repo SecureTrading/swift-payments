@@ -16,6 +16,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
     enum Event {
         case successfulPayment(ResponseSettleStatus)
         case successfulPaymentCardAdded(ResponseSettleStatus, STCardReference)
+        case transactionFailure
         case cardinalWarnings(String, [CardinalInitWarnings])
     }
 
@@ -42,7 +43,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             }
         }
 
-        viewModel.showTransactionSuccess = { [weak self] (responseSettleStatus, cardReference) in
+        viewModel.showTransactionSuccess = { [weak self] responseSettleStatus, cardReference in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             self.showAlert(message: Localizable.DropInViewController.successfulPayment.text) { [weak self] _ in
@@ -58,7 +59,10 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
         viewModel.showTransactionError = { [weak self] error in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
-            self.showAlert(message: error, completionHandler: nil)
+            self.showAlert(message: error, completionHandler: { [weak self] _ in
+                guard let self = self else { return }
+                self.eventTriggered?(.transactionFailure)
+            })
         }
 
         viewModel.cardinalWarningsCompletion = { [weak self] warningsMessage, warnings in

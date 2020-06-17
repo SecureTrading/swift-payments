@@ -78,7 +78,7 @@ final class MainFlowController: BaseNavigationFlowController {
         let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: [.threeDQuery, .auth], gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: false, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: { [unowned self] _, cardReference in
             Wallet.shared.add(card: cardReference)
             self.navigationController.popViewController(animated: true)
-        }, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
+        }, transactionFailure: {}, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
             guard handleCardinalWarnings else { return }
             self.showAlert(controller: self.navigationController, message: warningsMessage) { _ in
                 self.navigationController.popViewController(animated: true)
