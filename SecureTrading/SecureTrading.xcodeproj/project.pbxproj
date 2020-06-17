@@ -147,6 +147,7 @@
 		109951A524867E9400E8E401 /* TextCVCInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A424867E9400E8E401 /* TextCVCInputView.swift */; };
 		109951A724867F2B00E8E401 /* TestCardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A624867F2B00E8E401 /* TestCardInputView.swift */; };
 		109951A92486A53A00E8E401 /* TestCardTypeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A82486A53A00E8E401 /* TestCardTypeContainer.swift */; };
+		10DBCEBC24990EC4005865B0 /* StyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DBCEBB24990EC4005865B0 /* StyleManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -377,6 +378,7 @@
 		109951A424867E9400E8E401 /* TextCVCInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCVCInputView.swift; sourceTree = "<group>"; };
 		109951A624867F2B00E8E401 /* TestCardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardInputView.swift; sourceTree = "<group>"; };
 		109951A82486A53A00E8E401 /* TestCardTypeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardTypeContainer.swift; sourceTree = "<group>"; };
+		10DBCEBB24990EC4005865B0 /* StyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -479,6 +481,7 @@
 				08C1E8082489207E007496D9 /* DropInViewStyleManager.swift */,
 				1050A952248FE3F800E84A6D /* RequestButtonStyleManager.swift */,
 				1050A956248FE61800E84A6D /* AddCardButtonStyleManager.swift */,
+				10DBCEBB24990EC4005865B0 /* StyleManager.swift */,
 			);
 			path = "Style managers";
 			sourceTree = "<group>";
@@ -1437,6 +1440,7 @@
 				08886ED9247C1AE500BC1637 /* CardTypeContainer.swift in Sources */,
 				1050A94D248FDBE400E84A6D /* AddCardView.swift in Sources */,
 				084E2A1D24659D6B0040FB9D /* TransparentNavigationBar.swift in Sources */,
+				10DBCEBC24990EC4005865B0 /* StyleManager.swift in Sources */,
 				0853ACA7247FB00F00DF37EE /* CvcInputView.swift in Sources */,
 				084E2A062465874B0040FB9D /* Localizable.swift in Sources */,
 				084E2A12246599FC0040FB9D /* NavigationDelegate.swift in Sources */,

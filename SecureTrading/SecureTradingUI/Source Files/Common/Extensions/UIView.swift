@@ -299,3 +299,12 @@ func equalToSuperview(with insets: UIEdgeInsets = .zero, usingSafeArea: Bool = t
 
     return [leading, top, trailing, bottom]
 }
+
+extension UIView {
+    func highlightIfNeeded() {
+        if StyleManager.shared.highlightViewsBasedOnResponsibility {
+            self.layer.borderColor = StyleManager.sdkHighlightColor.cgColor
+            self.layer.borderWidth = 2
+        }
+    }
+}

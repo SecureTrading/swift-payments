@@ -23,5 +23,6 @@ final class WalletCardTableViewCell: UITableViewCell {
         imageView?.image = CardType.cardType(for: cardReference.cardType).logo
         textLabel?.text = cardReference.cardType
         detailTextLabel?.text = cardReference.maskedPan
+        self.highlightIfNeeded()
     }
 }

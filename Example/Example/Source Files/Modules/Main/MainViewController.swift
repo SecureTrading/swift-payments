@@ -97,7 +97,11 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
     }
 
     /// - SeeAlso: BaseViewController.setupProperties
-    override func setupProperties() {}
+    override func setupProperties() {
+        StyleManager.shared.highlightViewsValueChanged = { [weak self] highlight in
+            self?.customView.highlightIfNeeded(unhighlightColor: UIColor.clear, unhighlightBorderWith: 0)
+        }
+    }
 
     // MARK: Helpers
 

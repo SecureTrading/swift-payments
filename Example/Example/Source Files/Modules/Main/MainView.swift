@@ -23,6 +23,34 @@ final class MainView: WhiteBackgroundBaseView {
         return tableView
     }()
 
+    fileprivate lazy var highlightViewsControl: UIView = {
+        let toggle = UISwitch()
+        toggle.addTarget(self, action: #selector(toggleAction(_:)), for: .valueChanged)
+        let label = UILabel()
+        label.text = "Highlight views based on responsibility"
+
+        let legendLabel = UILabel()
+        let merchFirst = NSMutableAttributedString(string: "---", attributes: [NSAttributedString.Key.foregroundColor: UIColor.green, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)])
+        let merchSecond = NSAttributedString(string: " Merchant", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        merchFirst.append(merchSecond)
+        let sdkFirst = NSMutableAttributedString(string: "  ---", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)])
+        merchFirst.append(sdkFirst)
+        let sdkSecond = NSAttributedString(string: " SDK", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        merchFirst.append(sdkSecond)
+        legendLabel.attributedText = merchFirst
+
+        let rightStack = UIStackView(arrangedSubviews: [label, legendLabel])
+        rightStack.axis = .vertical
+        rightStack.distribution = .equalSpacing
+        rightStack.alignment = .fill
+        let stack = UIStackView(arrangedSubviews: [toggle, rightStack])
+        stack.axis = .horizontal
+        stack.distribution = .fillProportionally
+        stack.alignment = .center
+        stack.spacing = 10
+        return stack
+    }()
+
     // callbacks for selected rows
     var showTestMainScreenButtonTappedClosure: (() -> Void)?
     var showTestMainFlowButtonTappedClosure: (() -> Void)?
@@ -34,12 +62,16 @@ final class MainView: WhiteBackgroundBaseView {
     var addCardReferenceRequest: (() -> Void)?
     var payWithWalletRequest: (() -> Void)?
     var showDropInControllerWithWarningsButtonTappedClosure: (() -> Void)?
+
+    @objc func toggleAction(_ sender: UISwitch) {
+        StyleManager.shared.highlightViewsBasedOnResponsibility = sender.isOn
+    }
 }
 
 extension MainView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
     func setupViewHierarchy() {
-        addSubviews([tableView])
+        addSubviews([tableView, highlightViewsControl])
     }
 
     /// - SeeAlso: ViewSetupable.setupConstraints
@@ -49,6 +81,11 @@ extension MainView: ViewSetupable {
             equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: 0),
             equal(self, \.leadingAnchor, constant: 0),
             equal(self, \.trailingAnchor, constant: 0)
+        ])
+        highlightViewsControl.addConstraints([
+            equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            equal(self, \.leadingAnchor, constant: 20),
+            equal(self, \.trailingAnchor, constant: -20)
         ])
     }
 }
