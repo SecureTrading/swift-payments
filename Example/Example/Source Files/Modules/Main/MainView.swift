@@ -30,14 +30,16 @@ final class MainView: WhiteBackgroundBaseView {
         label.text = "Highlight views based on responsibility"
 
         let legendLabel = UILabel()
-        let merchFirst = NSMutableAttributedString(string: "---", attributes: [NSAttributedString.Key.foregroundColor: UIColor.green, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)])
-        let merchSecond = NSAttributedString(string: " Merchant", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-        merchFirst.append(merchSecond)
-        let sdkFirst = NSMutableAttributedString(string: "  ---", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red, NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)])
-        merchFirst.append(sdkFirst)
-        let sdkSecond = NSAttributedString(string: " SDK", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-        merchFirst.append(sdkSecond)
-        legendLabel.attributedText = merchFirst
+        let legendAttrString = NSMutableAttributedString(string: "---", attributes: [.foregroundColor: UIColor.green,
+                                                                                     .font: UIFont.boldSystemFont(ofSize: 20)])
+        let merchSecond = NSAttributedString(string: " Merchant", attributes: [.foregroundColor: UIColor.black])
+        legendAttrString.append(merchSecond)
+        let sdkFirst = NSMutableAttributedString(string: "  ---", attributes: [.foregroundColor: UIColor.red,
+                                                                               .font: UIFont.boldSystemFont(ofSize: 20)])
+        legendAttrString.append(sdkFirst)
+        let sdkSecond = NSAttributedString(string: " SDK", attributes: [.foregroundColor: UIColor.black])
+        legendAttrString.append(sdkSecond)
+        legendLabel.attributedText = legendAttrString
 
         let rightStack = UIStackView(arrangedSubviews: [label, legendLabel])
         rightStack.axis = .vertical
