@@ -34,6 +34,7 @@ final class MainView: WhiteBackgroundBaseView {
     var addCardReferenceRequest: (() -> Void)?
     var payWithWalletRequest: (() -> Void)?
     var showDropInControllerWithWarningsButtonTappedClosure: (() -> Void)?
+    var subscriptionRequest: (() -> Void)?
 }
 
 extension MainView: ViewSetupable {
@@ -112,6 +113,8 @@ extension MainView: UITableViewDataSource, UITableViewDelegate {
             payWithWalletRequest?()
         case .showDropInControllerWithWarnings:
             showDropInControllerWithWarningsButtonTappedClosure?()
+        case .subscription:
+            subscriptionRequest?()
         }
     }
 }

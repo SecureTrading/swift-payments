@@ -113,6 +113,22 @@ final class MainViewModel {
         let authRequest = RequestObject(typeDescriptions: [.accountCheck, .auth])
         makeRequest(with: jwt, request: authRequest)
     }
+    func performSubscription() {
+        let claim = STClaims(iss: keys.merchantUsername,
+                                    iat: Date(timeIntervalSinceNow: 0),
+                                    payload: Payload(accounttypedescription: "ECOM",
+                                                     sitereference: keys.merchantSiteReference,
+                                                     currencyiso3a: "GBP",
+                                                     baseamount: 199,
+                                                     pan: "4111111111111111",
+                                                     expirydate: "12/2022",
+                                                     securitycode: "123",
+                                                     parenttransactionreference: nil))
+
+               guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
+        let authRequest = RequestObject(typeDescriptions: [.auth, .subscription])
+               makeRequest(with: jwt, request: authRequest)
+    }
 
     private func makeRequest(with jwt: String, request: RequestObject) {
         apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _ in
@@ -180,6 +196,7 @@ extension MainViewModel {
         case presentAddCardForm
         case presentWalletForm
         case showDropInControllerWithWarnings
+        case subscription
 
         var title: String {
             switch self {
@@ -203,6 +220,8 @@ extension MainViewModel {
                 return Localizable.MainViewModel.payWithWalletButton.text
             case .showDropInControllerWithWarnings:
                 return Localizable.MainViewModel.showDropInControllerWithWarningsButton.text
+            case .subscription:
+                return Localizable.MainViewModel.subscription.text
             }
         }
     }
@@ -240,5 +259,6 @@ fileprivate extension Localizable {
         case payWithWalletButton
         case merchantResponsibility
         case sdkResponsibility
+        case subscription
     }
 }

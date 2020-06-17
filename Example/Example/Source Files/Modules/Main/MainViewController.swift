@@ -79,6 +79,9 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             guard let self = self else { return }
             self.eventTriggered?(.payWithWalletRequest)
         }
+        customView.subscriptionRequest = { [weak self] in
+            self?.viewModel.performSubscription()
+        }
 
         viewModel.showAuthSuccess = { [weak self] _ in
             guard let self = self else { return }
