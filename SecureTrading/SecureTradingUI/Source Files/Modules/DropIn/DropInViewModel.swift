@@ -84,13 +84,23 @@ final class DropInViewModel {
                 guard let self = self else { return }
                 self.isJsInitCompleted = true
                 self.jsInitError = errorMessage
+                if self.shouldStartTransactionAfterJsInit {
+                    self.shouldStartTransactionAfterJsInit = false
+                    self.showTransactionError?(errorMessage)
+                }
             })
         }
     }
 
     // MARK: Api requests
 
-    func makeRequest(request: RequestObject, success: @escaping ((JWTResponseObject) -> Void), transactionError: @escaping ((String) -> Void), validationError: @escaping ((ResponseErrorDetail) -> Void)) {
+    /// executes payment transaction request
+    /// - Parameters:
+    ///   - request: RequestObject instance
+    ///   - success: success closure
+    ///   - transactionError: failure closure (general error)
+    ///   - validationError: failure closure (card validation error)
+    func makePaymentRequest(request: RequestObject, success: @escaping ((JWTResponseObject) -> Void), transactionError: @escaping ((String) -> Void), validationError: @escaping ((ResponseErrorDetail) -> Void)) {
         self.apiManager.makeGeneralRequest(jwt: self.jwt, request: request, success: { responseObject, _ in
             switch responseObject.responseErrorCode {
             case .successful:
@@ -118,7 +128,7 @@ final class DropInViewModel {
         })
     }
 
-    /// executes payment transaction request
+    /// executes payment transaction or threedquery request
     /// - Parameters:
     ///   - cardNumber: The long number printed on the front of the customer’s card.
     ///   - securityCode: The three digit security code printed on the back of the card. (For AMEX cards, this is a 4 digit code found on the front of the card), This field is not strictly required.
@@ -128,7 +138,7 @@ final class DropInViewModel {
         let tempTypeDescriptions = self.typeDescriptions.contains(.threeDQuery) ? [.threeDQuery] : self.typeDescriptions
         let request = RequestObject(typeDescriptions: tempTypeDescriptions, requestId: self.requestId, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
 
-        self.makeRequest(request: request, success: { [weak self] responseObject in
+        self.makePaymentRequest(request: request, success: { [weak self] responseObject in
             guard let self = self else { return }
             guard tempTypeDescriptions.contains(.threeDQuery) else {
                 self.showTransactionSuccess?(responseObject.responseSettleStatus, self.isSaveCardEnabled ? responseObject.cardReference : nil)
@@ -211,7 +221,7 @@ final class DropInViewModel {
             let tempTypeDescription = self.typeDescriptions.filter { $0 != .threeDQuery }
             let request = RequestObject(typeDescriptions: tempTypeDescription, requestId: self.requestId, cardNumber: self.card?.cardNumber.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate.rawValue, cacheToken: self.jsInitCacheToken)
 
-            self.makeRequest(request: request, success: { [weak self] responseObject in
+            self.makePaymentRequest(request: request, success: { [weak self] responseObject in
                 guard let self = self else { return }
                 self.showTransactionSuccess?(responseObject.responseSettleStatus, self.isSaveCardEnabled ? responseObject.cardReference : nil)
             }, transactionError: { [weak self] error in
@@ -263,7 +273,7 @@ final class DropInViewModel {
             let request = RequestObject(typeDescriptions: tempTypeDescription, requestId: self.requestId, cardNumber: self.card?.cardNumber.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate.rawValue, threeDResponse: jwtForValidation, cacheToken: self.jsInitCacheToken)
             // swiftlint:enable line_length
 
-            self.makeRequest(request: request, success: { responseObject in
+            self.makePaymentRequest(request: request, success: { responseObject in
                 jwtResponseObject = responseObject
                 dispatchSemaphore.signal()
                 dispatchGroup.leave()
