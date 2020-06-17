@@ -13,7 +13,7 @@ import Foundation
 final class DropInViewModel {
     // MARK: Properties
 
-    private let jwt: String
+    private var jwt: String
 
     /// - SeeAlso: SecureTradingCore.APIManager
     private let apiManager: APIManager
@@ -325,5 +325,13 @@ final class DropInViewModel {
         let expiryDateValidationResult = view.expiryDateInput.validate(silent: false)
         let cvcValidationResult = view.cvcInput.validate(silent: false)
         return cardNumberValidationResult && expiryDateValidationResult && cvcValidationResult
+    }
+
+    // MARK: Helpers
+
+    /// Updates JWT token
+    /// - Parameter newValue: updated JWT token
+    func updateJWT(newValue: String) {
+        self.jwt = newValue
     }
 }

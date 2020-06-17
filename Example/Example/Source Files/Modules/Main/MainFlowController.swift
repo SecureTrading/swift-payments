@@ -87,7 +87,7 @@ final class MainFlowController: BaseNavigationFlowController {
 
         // swiftlint:enable line_length
 
-        push(dropInVC, animated: true)
+        push(dropInVC as! UIViewController, animated: true)
     }
 
     func showAddCardView(jwt: String) {

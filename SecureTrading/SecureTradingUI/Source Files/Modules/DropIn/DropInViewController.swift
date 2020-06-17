@@ -11,6 +11,16 @@ import UIKit
 import SecureTrading3DSecure
 #endif
 
+@objc public protocol DropInController {
+    @objc func updateJWT(newValue: String)
+}
+
+extension DropInViewController: DropInController {
+    func updateJWT(newValue: String) {
+        viewModel.updateJWT(newValue: newValue)
+    }
+}
+
 final class DropInViewController: BaseViewController<DropInView, DropInViewModel> {
     /// Enum describing events that can be triggered by this controller
     enum Event {
