@@ -123,7 +123,8 @@ final class WalletViewModel {
                     case .invalidField(let errorCode):
                         var message = "Invalid field: "
                         switch errorCode {
-                        case .parentTransactionReference: message += "Parent transaction reference"
+                        case .invalidParentTransactionReference: message += "Parent transaction reference"
+                        case .invalidSiteReference: message += "Site reference"
                         default: message += "Not applicable"
                         }
                         // Update UI

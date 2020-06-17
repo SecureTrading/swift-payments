@@ -137,7 +137,8 @@ final class MainViewModel {
                         case .invalidJWT: message += "JWT"
                         case .invalidExpiryDate: message += "Expiry date"
                         case .invalidTermURL: message += "Terms URL"
-                        case .parentTransactionReference: message += "Parent transaction reference"
+                        case .invalidParentTransactionReference: message += "Parent transaction reference"
+                        case .invalidSiteReference: message += "Invalid site reference value"
                         case .none: message += ""
                         }
                         // Update UI
