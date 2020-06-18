@@ -10,6 +10,7 @@ struct GeneralResponse: APIResponse {
     // MARK: Properties
 
     let jwt: String
+    let newJWT: String
     let jwtDecoded: DecodedJWT
     let jwtResponses: [JWTResponseObject]
 
@@ -20,6 +21,7 @@ struct GeneralResponse: APIResponse {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         jwt = try container.decode(String.self, forKey: .jwt)
         jwtDecoded = try DecodedJWT(jwt: jwt)
+        newJWT = jwtDecoded.jwtBodyResponse.newJWT
         jwtResponses = jwtDecoded.jwtBodyResponse.responses
     }
 }
