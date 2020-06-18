@@ -41,8 +41,6 @@ final class DropInViewModel {
 
     private let termUrl = "https://termurl.com"
 
-    private let siteReference: String
-
     var isSaveCardEnabled: Bool = true
 
     var showTransactionSuccess: ((ResponseSettleStatus, STCardReference?) -> Void)?
@@ -61,12 +59,10 @@ final class DropInViewModel {
     /// - Parameter username: merchant's username
     /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
     /// - Parameter isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
-    /// - Parameter siteReference: merchant's site reference
-    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, siteReference: String, isLiveStatus: Bool, isDeferInit: Bool) {
+    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool) {
         self.jwt = jwt
         self.typeDescriptions = typeDescriptions
         self.apiManager = DefaultAPIManager(gatewayType: gatewayType, username: username)
-        self.siteReference = siteReference
         self.isLiveStatus = isLiveStatus
         self.isDeferInit = isDeferInit
         self.threeDSecureManager = ST3DSecureManager(isLiveStatus: self.isLiveStatus)
@@ -141,7 +137,7 @@ final class DropInViewModel {
     private func makePaymentOrThreeDQueryRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
         let termUrl = self.typeDescriptions.contains(.threeDQuery) ? self.termUrl : nil
         let tempTypeDescriptions = self.typeDescriptions.contains(.threeDQuery) ? [.threeDQuery] : self.typeDescriptions
-        let request = RequestObject(typeDescriptions: tempTypeDescriptions, requestId: self.requestId, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken, siteReference: self.siteReference)
+        let request = RequestObject(typeDescriptions: tempTypeDescriptions, requestId: self.requestId, cardNumber: cardNumber.rawValue, securityCode: securityCode?.rawValue, expiryDate: expiryDate.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
 
         self.makePaymentRequest(request: request, success: { [weak self] responseObject in
             guard let self = self else { return }
@@ -163,7 +159,7 @@ final class DropInViewModel {
     /// - Parameter completion: success closure with following parameters: consumer session id
     /// - Parameter failure: closure with error message
     private func makeJSInitRequest(completion: @escaping ((String) -> Void), failure: @escaping ((String) -> Void)) {
-        let jsInitRequest = RequestObject(typeDescriptions: [.jsInit], requestId: self.requestId, siteReference: self.siteReference)
+        let jsInitRequest = RequestObject(typeDescriptions: [.jsInit], requestId: self.requestId)
 
         self.apiManager.makeGeneralRequest(jwt: self.jwt, request: jsInitRequest, success: { [weak self] responseObject, _, newJWT in
             guard let self = self else { return }
@@ -226,7 +222,7 @@ final class DropInViewModel {
         guard let cardEnrolled = responseObject.cardEnrolled, responseObject.acsUrl != nil, cardEnrolled == "Y" else {
             let tempTypeDescription = self.typeDescriptions.filter { $0 != .threeDQuery }
             // swiftlint:disable line_length
-            let request = RequestObject(typeDescriptions: tempTypeDescription, requestId: self.requestId, cardNumber: self.card?.cardNumber.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate.rawValue, cacheToken: self.jsInitCacheToken, siteReference: self.siteReference)
+            let request = RequestObject(typeDescriptions: tempTypeDescription, requestId: self.requestId, cardNumber: self.card?.cardNumber.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate.rawValue, cacheToken: self.jsInitCacheToken)
             // swiftlint:enable line_length
 
             self.makePaymentRequest(request: request, success: { [weak self] responseObject in
@@ -278,7 +274,7 @@ final class DropInViewModel {
 
             let tempTypeDescription = self.typeDescriptions.filter { $0 != .threeDQuery }
             // swiftlint:disable line_length
-            let request = RequestObject(typeDescriptions: tempTypeDescription, requestId: self.requestId, cardNumber: self.card?.cardNumber.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate.rawValue, threeDResponse: jwtForValidation, cacheToken: self.jsInitCacheToken, siteReference: self.siteReference)
+            let request = RequestObject(typeDescriptions: tempTypeDescription, requestId: self.requestId, cardNumber: self.card?.cardNumber.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate.rawValue, threeDResponse: jwtForValidation, cacheToken: self.jsInitCacheToken)
             // swiftlint:enable line_length
 
             self.makePaymentRequest(request: request, success: { responseObject in

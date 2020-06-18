@@ -51,7 +51,6 @@ public enum TypeDescription: String, Codable {
     let termUrl: String?
     let threeDResponse: String?
     let cacheToken: String?
-    let siteReference: String?
 
     // MARK: Initialization
 
@@ -66,7 +65,7 @@ public enum TypeDescription: String, Codable {
     ///   - requestId: request id (to tie up the requests)
     ///   - cacheToken: cache token (to tie up the requests)
     ///   - siteReference: merchant's site reference
-    public init(typeDescriptions: [TypeDescription], requestId: String? = nil, cardNumber: String? = nil, securityCode: String? = nil, expiryDate: String? = nil, termUrl: String? = nil, threeDResponse: String? = nil, cacheToken: String? = nil, siteReference: String? = nil) {
+    public init(typeDescriptions: [TypeDescription], requestId: String? = nil, cardNumber: String? = nil, securityCode: String? = nil, expiryDate: String? = nil, termUrl: String? = nil, threeDResponse: String? = nil, cacheToken: String? = nil) {
         self.typeDescriptions = typeDescriptions
         self.requestId = requestId
         self.cardNumber = cardNumber
@@ -75,7 +74,6 @@ public enum TypeDescription: String, Codable {
         self.termUrl = termUrl
         self.threeDResponse = threeDResponse
         self.cacheToken = cacheToken
-        self.siteReference = siteReference
     }
 
     // objc workaround
@@ -89,10 +87,9 @@ public enum TypeDescription: String, Codable {
     ///   - threeDResponse: JWT token for validation
     ///   - requestId: request id (to tie up the requests)
     ///   - cacheToken: cache token (to tie up the requests)
-    ///   - siteReference: merchant's site reference
-    @objc public convenience init(typeDescriptions: [Int], requestId: String? = nil, cardNumber: String? = nil, securityCode: String? = nil, expiryDate: String? = nil, termUrl: String? = nil, threeDResponse: String? = nil, cacheToken: String? = nil, siteReference: String? = nil) {
+    @objc public convenience init(typeDescriptions: [Int], requestId: String? = nil, cardNumber: String? = nil, securityCode: String? = nil, expiryDate: String? = nil, termUrl: String? = nil, threeDResponse: String? = nil, cacheToken: String? = nil) {
         let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
-        self.init(typeDescriptions: objcTypes.map { TypeDescription(rawValue: $0.value)! }, requestId: requestId, cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate, termUrl: termUrl, threeDResponse: threeDResponse, cacheToken: cacheToken, siteReference: siteReference)
+        self.init(typeDescriptions: objcTypes.map { TypeDescription(rawValue: $0.value)! }, requestId: requestId, cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate, termUrl: termUrl, threeDResponse: threeDResponse, cacheToken: cacheToken)
     }
 }
 
@@ -106,6 +103,5 @@ private extension RequestObject {
         case termUrl = "termurl"
         case threeDResponse = "threedresponse"
         case cacheToken = "cachetoken"
-        case siteReference = "sitereference"
     }
 }
