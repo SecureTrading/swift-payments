@@ -170,6 +170,7 @@ extension MainViewModel {
         case presentAddCardForm
         case presentWalletForm
         case showDropInControllerWithWarnings
+        case showDropInControllerNo3DSecure
 
         var title: String {
             switch self {
@@ -193,6 +194,8 @@ extension MainViewModel {
                 return Localizable.MainViewModel.payWithWalletButton.text
             case .showDropInControllerWithWarnings:
                 return Localizable.MainViewModel.showDropInControllerWithWarningsButton.text
+            case .showDropInControllerNo3DSecure:
+                return Localizable.MainViewModel.showDropInControllerNo3DSecure.text
             }
         }
     }
@@ -230,5 +233,6 @@ fileprivate extension Localizable {
         case payWithWalletButton
         case merchantResponsibility
         case sdkResponsibility
+        case showDropInControllerNo3DSecure
     }
 }
