@@ -11,31 +11,8 @@ import UIKit
 import SecureTrading3DSecure
 #endif
 
-// Default implementation returning `self` as `UIViewController`.
-extension UIPresentable where Self: UIViewController {
-    var viewController: UIViewController {
-        return self
-    }
-}
-
-/// Specifies behaviour of an object presentable within the application UI.
-@objc public protocol UIPresentable: class {
-    /// View controller to be added to the UI hierarchy.
-    @objc var viewController: UIViewController { get }
-}
-
 @objc public protocol DropInController: UIPresentable {
     @objc func updateJWT(newValue: String)
-}
-
-extension DropInViewController: DropInController {
-    func updateJWT(newValue: String) {
-        viewModel.updateJWT(newValue: newValue)
-    }
-    
-    var viewController: UIViewController {
-        return self
-    }
 }
 
 final class DropInViewController: BaseViewController<DropInView, DropInViewModel> {
@@ -127,6 +104,16 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Localizable.Alerts.okButton.text, style: .default, handler: completionHandler))
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension DropInViewController: DropInController {
+    func updateJWT(newValue: String) {
+        viewModel.updateJWT(newValue: newValue)
+    }
+
+    var viewController: UIViewController {
+        return self
     }
 }
 
