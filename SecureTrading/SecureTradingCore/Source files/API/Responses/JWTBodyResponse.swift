@@ -20,6 +20,7 @@ private extension JWTBodyPayload {
 struct JWTBodyResponse: APIResponse {
     // MARK: Properties
 
+    //new JWT token to be swapped in the request sequence
     let newJWT: String
 
     // array of multiple responses is returned in the case of multiple type descriptions request
