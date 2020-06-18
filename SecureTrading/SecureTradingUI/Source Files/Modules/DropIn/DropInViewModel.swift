@@ -320,7 +320,7 @@ final class DropInViewModel {
     /// - Parameter view: form view
     /// - Returns: result of validation
     @discardableResult
-    func validateForm(view: DropInView) -> Bool {
+    func validateForm(view: DropInViewProtocol) -> Bool {
         let cardNumberValidationResult = view.cardNumberInput.validate(silent: false)
         let expiryDateValidationResult = view.expiryDateInput.validate(silent: false)
         let cvcValidationResult = view.cvcInput.validate(silent: false)

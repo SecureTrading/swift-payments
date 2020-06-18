@@ -15,7 +15,7 @@ import SecureTrading3DSecure
     @objc func updateJWT(newValue: String)
 }
 
-final class DropInViewController: BaseViewController<DropInView, DropInViewModel> {
+final class DropInViewController: BaseViewController<DropInViewProtocol, DropInViewModel> {
     /// Enum describing events that can be triggered by this controller
     enum Event {
         case successfulPayment(ResponseSettleStatus)

@@ -261,7 +261,7 @@ import UIKit
 
     // MARK: Functions
 
-    func showHideError(show: Bool) {
+    public func showHideError(show: Bool) {
         errorLabel.text = isEmpty ? emptyError : error
         errorLabel.isHidden = !show
         textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor

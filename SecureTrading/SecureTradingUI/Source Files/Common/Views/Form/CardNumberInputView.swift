@@ -18,7 +18,7 @@ import UIKit
     func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView)
 }
 
-@objc public final class CardNumberInputView: DefaultSecureFormInputView {
+@objc public final class CardNumberInputView: DefaultSecureFormInputView, CardNumberInput {
     // MARK: Private Properties
 
     private var cardNumberFormat: CardNumberFormat {

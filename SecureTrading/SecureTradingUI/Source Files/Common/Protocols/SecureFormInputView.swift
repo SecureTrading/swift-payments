@@ -2,16 +2,33 @@
 //  SecureFormInputView.swift
 //  SecureTradingUI
 //
-
+#if !COCOAPODS
+import SecureTradingCard
+#endif
 import UIKit
+
+@objc public protocol SecureFormInputValidation {
+
+    func validate(silent: Bool)
+
+    func showHideError(show: Bool)
+}
+
+@objc public protocol CardNumberInput where Self: UIView {
+
+    @objc var cardNumber: CardNumber { get }
+
+}
 
 @objc public protocol SecureFormInputViewDelegate: class {
     func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView)
     func showHideError(_ show: Bool)
 }
 
-@objc public protocol SecureFormInputView: AnyObject {
+@objc public protocol SecureFormInputView where Self: UIView {
     var isEmpty: Bool { get }
+
+    var isEnabled: Bool { get set }
 
     var isInputValid: Bool { get }
 

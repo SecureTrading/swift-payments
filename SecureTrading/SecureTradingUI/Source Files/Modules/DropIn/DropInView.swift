@@ -5,7 +5,7 @@
 
 import UIKit
 
-@objc public final class DropInView: BaseView {
+@objc public final class DropInView: BaseView, DropInViewProtocol {
     @objc public var isFormValid: Bool {
         return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid
     }
