@@ -64,7 +64,6 @@ public enum TypeDescription: String, Codable {
     ///   - threeDResponse: JWT token for validation
     ///   - requestId: request id (to tie up the requests)
     ///   - cacheToken: cache token (to tie up the requests)
-    ///   - siteReference: merchant's site reference
     public init(typeDescriptions: [TypeDescription], requestId: String? = nil, cardNumber: String? = nil, securityCode: String? = nil, expiryDate: String? = nil, termUrl: String? = nil, threeDResponse: String? = nil, cacheToken: String? = nil) {
         self.typeDescriptions = typeDescriptions
         self.requestId = requestId
