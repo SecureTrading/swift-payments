@@ -82,7 +82,7 @@ import Foundation
     /// - Parameters:
     ///   - jwt: encoded JWT token
     ///   - request: object in which transaction parameters should be specified (e.g. what type - auth, 3dsecure etc)
-    ///   - success: success closure with response object (decoded transaction response, in which settle status and transaction error code can be checked), and and a JWT key that allows you to check the signature, and new JWT to be swapped in the request sequence
+    ///   - success: success closure with response object (decoded transaction response, in which settle status and transaction error code can be checked), and a JWT key that allows you to check the signature, and new JWT to be swapped in the request sequence
     ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     public func makeGeneralRequest(jwt: String, request: RequestObject, success: @escaping ((_ jwtResponse: JWTResponseObject, _ jwt: String, _ newJWT: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, versionInfo: self.versionInfo, acceptCustomerOutput: self.acceptCustomerOutput, requests: [request])
@@ -102,7 +102,7 @@ import Foundation
     /// - Parameters:
     ///   - jwt: encoded JWT token
     ///   - request: object in which transaction parameters should be specified (e.g. what type - auth, 3dsecure etc)
-    ///   - success: success closure with response object (decoded transaction response, in which settle status and transaction error code can be checked), and and a JWT key that allows you to check the signature, and new JWT to be swapped in the request sequence
+    ///   - success: success closure with response object (decoded transaction response, in which settle status and transaction error code can be checked), and a JWT key that allows you to check the signature, and new JWT to be swapped in the request sequence
     ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     @objc public func makeGeneralRequest(jwt: String, request: RequestObject, success: @escaping ((_ jwtResponse: JWTResponseObject, _ jwt: String, _ newJWT: String) -> Void), failure: @escaping ((_ error: NSError) -> Void)) {
         self.makeGeneralRequest(jwt: jwt, request: request, success: success) { (error: APIClientError) in
@@ -114,7 +114,7 @@ import Foundation
     /// - Parameters:
     ///   - jwt: encoded JWT token
     ///   - requests: request objects (in each object transaction parameters should be specified - e.g. what type - auth, 3dsecure etc)
-    ///   - success: success closure with response objects (decoded transaction responses, in which settle status and transaction error code can be checked), and and a JWT key that allows you to check the signature, and new JWT to be swapped in the request sequence
+    ///   - success: success closure with response objects (decoded transaction responses, in which settle status and transaction error code can be checked), and a JWT key that allows you to check the signature, and new JWT to be swapped in the request sequence
     ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String, _ newJWT: String) -> Void), failure: @escaping ((_ error: APIClientError) -> Void)) {
         let generalRequest = GeneralRequest(alias: self.username, jwt: jwt, version: self.version, versionInfo: self.versionInfo, acceptCustomerOutput: self.acceptCustomerOutput, requests: requests)
@@ -134,7 +134,7 @@ import Foundation
     /// - Parameters:
     ///   - jwt: encoded JWT token
     ///   - requests: request objects (in each object transaction parameters should be specified - e.g. what type - auth, 3dsecure etc)
-    ///   - success: success closure with response objects (decoded transaction responses, in which settle status and transaction error code can be checked), and and a JWT key that allows you to check the signature, and new JWT to be swapped in the request sequence
+    ///   - success: success closure with response objects (decoded transaction responses, in which settle status and transaction error code can be checked), and a JWT key that allows you to check the signature, and new JWT to be swapped in the request sequence
     ///   - failure: failure closure with general APIClient error like: connection error, server error, decoding problem
     @objc public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String, _ newJWT: String) -> Void), failure: @escaping ((_ error: NSError) -> Void)) {
         self.makeGeneralRequests(jwt: jwt, requests: requests, success: success) { (error: APIClientError) in
