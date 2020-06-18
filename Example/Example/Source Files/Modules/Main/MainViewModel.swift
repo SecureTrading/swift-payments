@@ -123,11 +123,15 @@ final class MainViewModel {
                                                      pan: "4111111111111111",
                                                      expirydate: "12/2022",
                                                      securitycode: "123",
-                                                     parenttransactionreference: nil))
+                                                     subscriptiontype: "RECURRING",
+                                                     subscriptionfinalnumber: "12",
+                                                     subscriptionunit: "MONTH",
+                                                     subscriptionfrequency: "1",
+                                                     subscriptionnumber: "1"))
 
-               guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
-        let authRequest = RequestObject(typeDescriptions: [.auth, .subscription])
-               makeRequest(with: jwt, request: authRequest)
+        guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
+        let authRequest = RequestObject(typeDescriptions: [.accountCheck, .subscription])
+        makeRequest(with: jwt, request: authRequest)
     }
 
     private func makeRequest(with jwt: String, request: RequestObject) {
