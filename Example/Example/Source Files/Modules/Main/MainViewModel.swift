@@ -115,7 +115,7 @@ final class MainViewModel {
     }
 
     private func makeRequest(with jwt: String, request: RequestObject) {
-        apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _ in
+        apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _, _ in
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:
