@@ -4,12 +4,10 @@
 //
 
 #if !COCOAPODS
+import SecureTrading3DSecure
 import SecureTradingCore
 #endif
 import UIKit
-#if !COCOAPODS
-import SecureTrading3DSecure
-#endif
 
 final class DropInViewController: BaseViewController<DropInView, DropInViewModel> {
     /// Enum describing events that can be triggered by this controller

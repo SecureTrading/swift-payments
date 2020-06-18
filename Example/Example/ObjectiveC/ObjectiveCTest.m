@@ -19,11 +19,11 @@
 
     NSMutableArray *typeDescriptions =
     [NSMutableArray arrayWithArray:@[@(TypeDescriptionObjcAuth)]];
-    RequestObject * requestObject = [[RequestObject alloc] initWithTypeDescriptions:typeDescriptions requestId: NULL cardNumber:NULL securityCode:NULL expiryDate:NULL termUrl: NULL threeDResponse: NULL cacheToken: NULL];
+    RequestObject * requestObject = [[RequestObject alloc] initWithTypeDescriptions:typeDescriptions requestId: NULL cardNumber:NULL securityCode:NULL expiryDate:NULL termUrl: NULL threeDResponse: NULL cacheToken: NULL siteReference: NULL];
     //NSMutableArray *requestObjects = [[NSMutableArray alloc] init];
     //[requestObjects addObject: requestObject];
 
-    [self.apiManager makeGeneralRequestWithJwt:@"" request:requestObject success:^(JWTResponseObject * response, NSString * jwt) {
+    [self.apiManager makeGeneralRequestWithJwt:@"" request:requestObject success:^(JWTResponseObject * response, NSString * jwt, NSString * newJWT) {
         NSLog(@"%li", (long)response.errorCode);
         NSLog(@"%li", (long)response.responseErrorCode);
     } failure:^(NSError * error) {
