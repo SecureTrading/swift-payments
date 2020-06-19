@@ -1,1 +1,1 @@
-binary "SecureTrading/Cardinal/CardinalMobile.json" == 2.2.3
+binary "https://github.com/SecureTrading/swift-payments/blob/cardinalTest/SecureTrading/Cardinal/CardinalMobile.json" == 2.2.3
