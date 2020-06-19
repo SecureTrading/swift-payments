@@ -11,6 +11,7 @@ protocol MainViewModelDataSource: class {
     func numberOfSections() -> Int
     func numberOfRows(at section: Int) -> Int
     func title(for section: Int) -> String?
+    func detailInformationForRow(at index: IndexPath) -> String?
 }
 
 final class MainViewModel {
@@ -115,19 +116,19 @@ final class MainViewModel {
     }
     func performSubscription() {
         let claim = STClaims(iss: keys.merchantUsername,
-                                    iat: Date(timeIntervalSinceNow: 0),
-                                    payload: Payload(accounttypedescription: "ECOM",
-                                                     sitereference: keys.merchantSiteReference,
-                                                     currencyiso3a: "GBP",
-                                                     baseamount: 199,
-                                                     pan: "4111111111111111",
-                                                     expirydate: "12/2022",
-                                                     securitycode: "123",
-                                                     subscriptiontype: "RECURRING",
-                                                     subscriptionfinalnumber: "12",
-                                                     subscriptionunit: "MONTH",
-                                                     subscriptionfrequency: "1",
-                                                     subscriptionnumber: "1"))
+                             iat: Date(timeIntervalSinceNow: 0),
+                             payload: Payload(accounttypedescription: "ECOM",
+                                              sitereference: keys.merchantSiteReference,
+                                              currencyiso3a: "GBP",
+                                              baseamount: 199,
+                                              pan: "4111111111111111",
+                                              expirydate: "12/2022",
+                                              securitycode: "123",
+                                              subscriptiontype: "RECURRING",
+                                              subscriptionfinalnumber: "12",
+                                              subscriptionunit: "MONTH",
+                                              subscriptionfrequency: "1",
+                                              subscriptionnumber: "1"))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
         let authRequest = RequestObject(typeDescriptions: [.accountCheck, .subscription])
@@ -176,6 +177,9 @@ extension MainViewModel: MainViewModelDataSource {
     func title(for section: Int) -> String? {
         return items[section].title
     }
+    func detailInformationForRow(at index: IndexPath) -> String? {
+        return items[index.section].rows[index.row].detailInformation
+    }
 }
 
 extension MainViewModel {
@@ -216,6 +220,60 @@ extension MainViewModel {
                 return Localizable.MainViewModel.showDropInControllerWithWarningsButton.text
             case .subscription:
                 return Localizable.MainViewModel.subscription.text
+            }
+        }
+
+        var hasDetailedInfo: Bool {
+            return self.detailInformation != nil
+        }
+
+        var detailInformation: String? {
+            switch self {
+            case .testMainScreen:
+                return nil
+            case .testMainFlow:
+                return nil
+            case .performAuthRequestInBackground:
+                return """
+                Performs AUTH request to the EU gateway:
+
+                accounttypedescription: "ECOM"
+                currencyiso3a: "GBP"
+                baseamount: 1100
+                pan: "4111111111111111"
+                expirydate: "12/2022"
+                securitycode: "123"
+                """
+            case .presentSingleInputComponents:
+                return nil
+            case .presentPayByCardForm:
+                return nil
+            case .performAccountCheck:
+                return nil
+            case .performAccountCheckWithAuth:
+                return nil
+            case .presentAddCardForm:
+                return nil
+            case .presentWalletForm:
+                return nil
+            case .showDropInControllerWithWarnings:
+                return nil
+            case .subscription:
+                return """
+                Performs ACCOUNTCHECK & SUBSCRIPTION request to the EU gateway:
+
+                accounttypedescription: "ECOM"
+                currencyiso3a: "GBP"
+                baseamount: 199
+                pan: "4111111111111111"
+                expirydate: "12/2022"
+                securitycode: "123"
+                subscriptiontype: "RECURRING"
+                subscriptionfinalnumber: "12"
+                subscriptionunit: "MONTH"
+                subscriptionfrequency: "1"
+                subscriptionnumber: "1"
+                """
             }
         }
     }

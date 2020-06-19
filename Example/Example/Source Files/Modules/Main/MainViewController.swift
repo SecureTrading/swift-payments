@@ -82,6 +82,9 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         customView.subscriptionRequest = { [weak self] in
             self?.viewModel.performSubscription()
         }
+        customView.showMoreInformation = { [weak self] infoString in
+            self?.showAlert(message: infoString)
+        }
 
         viewModel.showAuthSuccess = { [weak self] _ in
             guard let self = self else { return }

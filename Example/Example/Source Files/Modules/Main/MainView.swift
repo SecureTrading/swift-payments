@@ -35,6 +35,7 @@ final class MainView: WhiteBackgroundBaseView {
     var payWithWalletRequest: (() -> Void)?
     var showDropInControllerWithWarningsButtonTappedClosure: (() -> Void)?
     var subscriptionRequest: (() -> Void)?
+    var showMoreInformation: ((String) -> Void)?
 }
 
 extension MainView: ViewSetupable {
@@ -57,9 +58,9 @@ extension MainView: ViewSetupable {
 // MARK: Wallet view table data source and delegate
 extension MainView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = dataSource?.row(at: indexPath)
+        let row = dataSource?.row(at: indexPath)
         let cell = tableView.dequeue(dequeueableCell: MainViewTableViewCell.self)
-        cell.configure(title: item?.title)
+        cell.configure(title: row?.title, hasDetailedInfo: row?.hasDetailedInfo ?? false)
         return cell
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -115,6 +116,11 @@ extension MainView: UITableViewDataSource, UITableViewDelegate {
             showDropInControllerWithWarningsButtonTappedClosure?()
         case .subscription:
             subscriptionRequest?()
+        }
+    }
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        if let info = dataSource?.detailInformationForRow(at: indexPath) {
+            showMoreInformation?(info)
         }
     }
 }
