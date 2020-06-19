@@ -52,6 +52,8 @@
 		08639C8A24696C5500C8F90A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8924696C5500C8F90A /* MainView.swift */; };
 		08639C8C24696CB100C8F90A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8B24696CB100C8F90A /* MainViewController.swift */; };
 		08639C8E2469711500C8F90A /* WhiteBackgroundBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8D2469711500C8F90A /* WhiteBackgroundBaseView.swift */; };
+		08D8B248249CCE7500DB96EE /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D8B247249CCE7500DB96EE /* CardinalMobile.framework */; };
+		08D8B249249CCE7500DB96EE /* CardinalMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08D8B247249CCE7500DB96EE /* CardinalMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		08E4FA822462A7D100837339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA812462A7D100837339 /* AppDelegate.swift */; };
 		08E4FA8B2462A7D800837339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA8A2462A7D800837339 /* Assets.xcassets */; };
 		08E4FA8E2462A7D800837339 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA8C2462A7D800837339 /* LaunchScreen.storyboard */; };
@@ -99,6 +101,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				082FC7972462E18900D4E2B6 /* SecureTradingCore.framework in Embed Frameworks */,
+				08D8B249249CCE7500DB96EE /* CardinalMobile.framework in Embed Frameworks */,
 				1098F3A2247CF4B300414F94 /* SecureTradingCard.framework in Embed Frameworks */,
 				104CFB30246ED0E300D7C76D /* SecureTrading3DSecure.framework in Embed Frameworks */,
 				082FC7992462E18900D4E2B6 /* SecureTradingUI.framework in Embed Frameworks */,
@@ -154,6 +157,7 @@
 		08639C8924696C5500C8F90A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		08639C8B24696CB100C8F90A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		08639C8D2469711500C8F90A /* WhiteBackgroundBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBackgroundBaseView.swift; sourceTree = "<group>"; };
+		08D8B247249CCE7500DB96EE /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardinalMobile.framework; path = ../SecureTrading/Frameworks/CardinalMobile.framework; sourceTree = "<group>"; };
 		08E4FA7E2462A7D100837339 /* SecureTradingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureTradingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA812462A7D100837339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08E4FA8A2462A7D800837339 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 			files = (
 				082FC7962462E18900D4E2B6 /* SecureTradingCore.framework in Frameworks */,
 				104CFB2F246ED0E300D7C76D /* SecureTrading3DSecure.framework in Frameworks */,
+				08D8B248249CCE7500DB96EE /* CardinalMobile.framework in Frameworks */,
 				082FC7982462E18900D4E2B6 /* SecureTradingUI.framework in Frameworks */,
 				613B874DD5B4DD1E6266FDE8 /* libPods-Example.a in Frameworks */,
 				1098F3A1247CF4B300414F94 /* SecureTradingCard.framework in Frameworks */,
@@ -524,6 +529,7 @@
 				082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */,
 				082FC7952462E18900D4E2B6 /* SecureTradingUI.framework */,
 				1286B23CF2544C71D88175C0 /* libPods-Example.a */,
+				08D8B247249CCE7500DB96EE /* CardinalMobile.framework */,
 				3CCB78E01AA2AEB4BE63CE4C /* libPods-ExampleTests.a */,
 			);
 			name = Frameworks;
@@ -950,8 +956,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = PJS6ZUUFN8;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				DEVELOPMENT_TEAM = W785748F69;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../SecureTrading/Frameworks",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(_ENVIRONMENTS)",
 					"$(inherited)",
