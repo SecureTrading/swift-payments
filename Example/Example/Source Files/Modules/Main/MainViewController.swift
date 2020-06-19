@@ -100,6 +100,10 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             guard let self = self else { return }
             self.showAlert(message: error)
         }
+
+        StyleManager.shared.highlightViewsValueChanged = { [weak self] highlight in
+            self?.customView.highlightIfNeeded(unhighlightColor: UIColor.clear, unhighlightBorderWith: 0)
+        }
     }
 
     /// - SeeAlso: BaseViewController.setupProperties

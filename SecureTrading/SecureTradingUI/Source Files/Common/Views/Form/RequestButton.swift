@@ -140,6 +140,8 @@ import UIKit
 
         self.customizeView(requestButtonStyleManager: self.requestButtonStyleManager)
         self.isEnabled = false
+
+        self.highlightIfNeeded()
     }
 
     private func customizeView(requestButtonStyleManager: RequestButtonStyleManager?) {

@@ -14,8 +14,9 @@ class BaseView: UIView {
         super.init(frame: .zero)
         guard let setupableView = self as? ViewSetupable else { return }
         setupableView.setupView()
+        self.highlightIfNeeded()
     }
-
+    
     /// - SeeAlso: NSCoding.init?(coder:)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
