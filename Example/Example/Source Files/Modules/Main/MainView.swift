@@ -37,6 +37,7 @@ final class MainView: WhiteBackgroundBaseView {
     var subscriptionOnSTEngineRequest: (() -> Void)?
     var subscriptionOnMerchantEngineRequest: (() -> Void)?
     var showMoreInformation: ((String) -> Void)?
+    var showDropInControllerNoThreeDQuery: (() -> Void)?
 }
 
 extension MainView: ViewSetupable {
@@ -119,6 +120,8 @@ extension MainView: UITableViewDataSource, UITableViewDelegate {
             subscriptionOnSTEngineRequest?()
         case .subscriptionOnMerchantEngine:
             subscriptionOnMerchantEngineRequest?()
+        case .showDropInControllerNo3DSecure:
+            showDropInControllerNoThreeDQuery?()
         }
     }
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {

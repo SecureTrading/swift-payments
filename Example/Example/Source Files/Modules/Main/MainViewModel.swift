@@ -152,7 +152,7 @@ final class MainViewModel {
     }
 
     private func makeRequest(with jwt: String, request: RequestObject) {
-        apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _ in
+        apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _, _ in
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:
@@ -210,6 +210,7 @@ extension MainViewModel {
         case presentAddCardForm
         case presentWalletForm
         case showDropInControllerWithWarnings
+        case showDropInControllerNo3DSecure
         case subscriptionOnSTEngine
         case subscriptionOnMerchantEngine
 
@@ -239,6 +240,8 @@ extension MainViewModel {
                 return Localizable.MainViewModel.subscriptionOnSTEngine.text
             case .subscriptionOnMerchantEngine:
                 return Localizable.MainViewModel.subscriptionOnMerchantEngine.text
+            case .showDropInControllerNo3DSecure:
+                return Localizable.MainViewModel.showDropInControllerNo3DSecure.text
             }
         }
 
@@ -307,6 +310,8 @@ extension MainViewModel {
 
                 Make sure the parent transaction is valid
                 """
+            case .showDropInControllerNo3DSecure:
+                return nil
             }
         }
     }
@@ -344,6 +349,7 @@ fileprivate extension Localizable {
         case payWithWalletButton
         case merchantResponsibility
         case sdkResponsibility
+        case showDropInControllerNo3DSecure
         case subscriptionOnSTEngine
         case subscriptionOnMerchantEngine
     }

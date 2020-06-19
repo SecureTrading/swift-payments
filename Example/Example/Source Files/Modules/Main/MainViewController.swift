@@ -15,6 +15,7 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         case didTapAddCard(String)
         case payWithWalletRequest
         case didTapShowDropInControllerWithWarnings(String)
+        case didTapShowDropInControllerNoThreeDQuery(String)
     }
 
     private var transparentNavigationBar: TransparentNavigationBar? { return navigationController?.navigationBar as? TransparentNavigationBar }
@@ -78,6 +79,11 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         customView.payWithWalletRequest = { [weak self] in
             guard let self = self else { return }
             self.eventTriggered?(.payWithWalletRequest)
+        }
+        customView.showDropInControllerNoThreeDQuery = { [weak self] in
+            guard let self = self else { return }
+            guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
+            self.eventTriggered?(.didTapShowDropInControllerNoThreeDQuery(jwt))
         }
         customView.subscriptionOnSTEngineRequest = { [weak self] in
             self?.viewModel.performSubscriptionOnSTEngine()

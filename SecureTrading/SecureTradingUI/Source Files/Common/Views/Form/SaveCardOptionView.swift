@@ -11,7 +11,7 @@ import UIKit
 
     private let toggleButton: UISwitch = {
         let toggle = UISwitch()
-        toggle.isOn = true
+        toggle.isOn = false
         toggle.onTintColor = UIColor.black
         return toggle
     }()
