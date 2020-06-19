@@ -106,7 +106,7 @@ final class WalletViewModel {
     }
 
     private func makeRequest(with jwt: String, request: RequestObject) {
-        apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _ in
+        apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _, _ in
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:
@@ -120,14 +120,9 @@ final class WalletViewModel {
                 switch error {
                 case .responseValidationError(let responseError):
                     switch responseError {
-                    case .invalidField(let errorCode):
-                        var message = "Invalid field: "
-                        switch errorCode {
-                        case .parentTransactionReference: message += "Parent transaction reference"
-                        default: message += "Not applicable"
-                        }
+                    case .invalidField:
                         // Update UI
-                        self.showAuthError?(message)
+                        self.showAuthError?(responseError.localizedDescription)
                     default:
                         self.showAuthError?(error.humanReadableDescription)
                     }

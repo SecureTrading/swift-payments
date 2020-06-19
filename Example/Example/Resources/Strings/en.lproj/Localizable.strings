@@ -11,14 +11,15 @@ MainViewModel.showTestMainScreenButton = "show test main screen (from SecureTrad
 MainViewModel.showTestMainFlowButton = "show test main flow (from SecureTradingUI)";
 MainViewModel.makeAuthRequestButton = "Perform AUTH request in background";
 MainViewModel.showSingleInputViewsButton = "Single input components";
-MainViewModel.showDropInControllerButton = "Pay by Card form";
+MainViewModel.showDropInControllerButton = "Pay by Card form (3DSecure)";
 MainViewModel.makeAccountCheckRequestButton = "Perform 'Account check' request in background";
 MainViewModel.makeAccountCheckWithAuthRequestButton = "Perform Account check & Auth request in background";
 MainViewModel.addCardReferenceButton = "Add card to Wallet";
 MainViewModel.payWithWalletButton = "Pay from Wallet";
 MainViewModel.merchantResponsibility = "Merchant responsibility";
 MainViewModel.sdkResponsibility = "ST SDK responsibility";
-MainViewModel.showDropInControllerWithWarningsButton = "show drop in view controller (handle cardinal warnings)";
+MainViewModel.showDropInControllerWithWarningsButton = "Pay by Card form (3DSecure & Cardinal warnings)";
+MainViewModel.showDropInControllerNo3DSecure = "Pay by Card form (no 3DSecure)";
 
 Alerts.okButton = "Ok";
 

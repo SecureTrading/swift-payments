@@ -64,6 +64,7 @@ final class MainView: WhiteBackgroundBaseView {
     var addCardReferenceRequest: (() -> Void)?
     var payWithWalletRequest: (() -> Void)?
     var showDropInControllerWithWarningsButtonTappedClosure: (() -> Void)?
+    var showDropInControllerNoThreeDQuery: (() -> Void)?
 
     @objc func toggleAction(_ sender: UISwitch) {
         StyleManager.shared.highlightViewsBasedOnResponsibility = sender.isOn
@@ -151,6 +152,8 @@ extension MainView: UITableViewDataSource, UITableViewDelegate {
             payWithWalletRequest?()
         case .showDropInControllerWithWarnings:
             showDropInControllerWithWarningsButtonTappedClosure?()
+        case .showDropInControllerNo3DSecure:
+            showDropInControllerNoThreeDQuery?()
         }
     }
 }
