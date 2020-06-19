@@ -1,11 +1,8 @@
 //
 //  AddCardViewController.swift
-//  SecureTradingUI
+//  Example
 //
 
-#if !COCOAPODS
-import SecureTradingCore
-#endif
 import UIKit
 
 final class AddCardViewController: BaseViewController<AddCardView, AddCardViewModel> {

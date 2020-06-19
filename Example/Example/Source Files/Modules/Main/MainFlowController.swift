@@ -33,10 +33,13 @@ final class MainFlowController: BaseNavigationFlowController {
                     MainViewModel.Row.showDropInControllerWithWarnings,
                     MainViewModel.Row.showDropInControllerNo3DSecure,
                     MainViewModel.Row.performAccountCheck,
-                    MainViewModel.Row.performAccountCheckWithAuth,
-                    MainViewModel.Row.presentAddCardForm
+                    MainViewModel.Row.performAccountCheckWithAuth
                 ]),
-            MainViewModel.Section.onMerchant(rows: [MainViewModel.Row.presentWalletForm])
+            MainViewModel.Section.onMerchant(rows:
+                [
+                    MainViewModel.Row.presentWalletForm,
+                    MainViewModel.Row.presentAddCardForm
+            ])
         ]
         let mainViewController = MainViewController(view: MainView(), viewModel: MainViewModel(apiManager: appFoundation.apiManager, items: viewItems))
         mainViewController.eventTriggered = { [unowned self] event in
@@ -104,15 +107,20 @@ final class MainFlowController: BaseNavigationFlowController {
                                                             spacingBeetwenInputViews: 25,
                                                             insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
 
-        let dropInVC = ViewControllerFactory.shared.addCardViewController(jwt: jwt,
-                                                                          typeDescriptions: [.accountCheck],
-                                                                          gatewayType: .eu,
-                                                                          username: appFoundation.keys.merchantUsername,
-                                                                          dropInViewStyleManager: dropInViewStyleManager) { [unowned self] cardReference in
-            Wallet.shared.add(card: cardReference)
-            self.navigationController.popViewController(animated: true)
+        let viewController = AddCardViewController(view: AddCardView(dropInViewStyleManager: dropInViewStyleManager),
+                                                   viewModel: AddCardViewModel(jwt: jwt,
+                                                                               typeDescriptions: [.accountCheck],
+                                                                               gatewayType: .eu,
+                                                                               username: appFoundation.keys.merchantUsername))
+        viewController.eventTriggered = { [weak self] event in
+            switch event {
+            case .added(let cardReference):
+                Wallet.shared.add(card: cardReference)
+                self?.navigationController.popViewController(animated: true)
+            }
         }
-        push(dropInVC, animated: true)
+
+        push(viewController, animated: true)
     }
 
     func showWalletView() {

@@ -44,17 +44,21 @@ final class WalletViewController: BaseViewController<WalletView, WalletViewModel
                                                                 spacingBeetwenInputViews: 25,
                                                                 insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
 
-            let dropInVC = ViewControllerFactory.shared.addCardViewController(jwt: jwt,
-                                                                              typeDescriptions: [.accountCheck],
-                                                                              gatewayType: .eu,
-                                                                              username: self.viewModel.getUsername,
-                                                                              dropInViewStyleManager: dropInViewStyleManager) { [weak self] cardReference in
-                                                                                Wallet.shared.add(card: cardReference)
-                                                                                self?.viewModel.addNewCard(cardReference)
-                                                                                self?.customView.reloadCards()
-                                                                                self?.navigationController?.popViewController(animated: true)
+            let viewController = AddCardViewController(view: AddCardView(dropInViewStyleManager: dropInViewStyleManager),
+                                                       viewModel: AddCardViewModel(jwt: jwt,
+                                                                                   typeDescriptions: [.accountCheck],
+                                                                                   gatewayType: .eu,
+                                                                                   username: self.viewModel.getUsername))
+            viewController.eventTriggered = { [weak self] event in
+                switch event {
+                case .added(let cardReference):
+                    Wallet.shared.add(card: cardReference)
+                    self?.viewModel.addNewCard(cardReference)
+                    self?.customView.reloadCards()
+                    self?.navigationController?.popViewController(animated: true)
+                }
             }
-            self.navigationController?.pushViewController(dropInVC, animated: true)
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
 
         viewModel.showRequestSuccess = { [weak self] cardReference in
