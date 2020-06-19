@@ -114,7 +114,7 @@ final class MainViewModel {
         let authRequest = RequestObject(typeDescriptions: [.accountCheck, .auth])
         makeRequest(with: jwt, request: authRequest)
     }
-    func performSubscription() {
+    func performSubscriptionOnSTEngine() {
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
                              payload: Payload(accounttypedescription: "ECOM",
@@ -132,6 +132,22 @@ final class MainViewModel {
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
         let authRequest = RequestObject(typeDescriptions: [.accountCheck, .subscription])
+        makeRequest(with: jwt, request: authRequest)
+    }
+    func performSubscriptionOnMerchantEngine() {
+        let claim = STClaims(iss: keys.merchantUsername,
+                             iat: Date(timeIntervalSinceNow: 0),
+                             payload: Payload(accounttypedescription: "RECUR",
+                                              sitereference: keys.merchantSiteReference,
+                                              currencyiso3a: "GBP",
+                                              baseamount: 199,
+                                              securitycode: "123",
+                                              parenttransactionreference: "58-9-53270",
+                                              subscriptiontype: "RECURRING",
+                                              subscriptionnumber: "2"))
+
+        guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
+        let authRequest = RequestObject(typeDescriptions: [.auth])
         makeRequest(with: jwt, request: authRequest)
     }
 
@@ -194,7 +210,8 @@ extension MainViewModel {
         case presentAddCardForm
         case presentWalletForm
         case showDropInControllerWithWarnings
-        case subscription
+        case subscriptionOnSTEngine
+        case subscriptionOnMerchantEngine
 
         var title: String {
             switch self {
@@ -218,8 +235,10 @@ extension MainViewModel {
                 return Localizable.MainViewModel.payWithWalletButton.text
             case .showDropInControllerWithWarnings:
                 return Localizable.MainViewModel.showDropInControllerWithWarningsButton.text
-            case .subscription:
-                return Localizable.MainViewModel.subscription.text
+            case .subscriptionOnSTEngine:
+                return Localizable.MainViewModel.subscriptionOnSTEngine.text
+            case .subscriptionOnMerchantEngine:
+                return Localizable.MainViewModel.subscriptionOnMerchantEngine.text
             }
         }
 
@@ -258,7 +277,7 @@ extension MainViewModel {
                 return nil
             case .showDropInControllerWithWarnings:
                 return nil
-            case .subscription:
+            case .subscriptionOnSTEngine:
                 return """
                 Performs ACCOUNTCHECK & SUBSCRIPTION request to the EU gateway:
 
@@ -273,6 +292,20 @@ extension MainViewModel {
                 subscriptionunit: "MONTH"
                 subscriptionfrequency: "1"
                 subscriptionnumber: "1"
+                """
+            case .subscriptionOnMerchantEngine:
+                return """
+                Performs AUTH request to the EU gateway:
+
+                accounttypedescription: "RECUR"
+                currencyiso3a: "GBP"
+                baseamount: 199
+                securitycode: "123"
+                parenttransactionreference: "58-9-53270"
+                subscriptiontype: "RECURRING"
+                subscriptionnumber: "2"
+
+                Make sure the parent reference is valid
                 """
             }
         }
@@ -311,6 +344,7 @@ fileprivate extension Localizable {
         case payWithWalletButton
         case merchantResponsibility
         case sdkResponsibility
-        case subscription
+        case subscriptionOnSTEngine
+        case subscriptionOnMerchantEngine
     }
 }

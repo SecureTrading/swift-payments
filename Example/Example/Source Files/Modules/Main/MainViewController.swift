@@ -79,8 +79,11 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             guard let self = self else { return }
             self.eventTriggered?(.payWithWalletRequest)
         }
-        customView.subscriptionRequest = { [weak self] in
-            self?.viewModel.performSubscription()
+        customView.subscriptionOnSTEngineRequest = { [weak self] in
+            self?.viewModel.performSubscriptionOnSTEngine()
+        }
+        customView.subscriptionOnMerchantEngineRequest = { [weak self] in
+            self?.viewModel.performSubscriptionOnMerchantEngine()
         }
         customView.showMoreInformation = { [weak self] infoString in
             self?.showAlert(message: infoString)

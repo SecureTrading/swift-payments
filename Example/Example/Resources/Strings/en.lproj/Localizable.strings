@@ -19,7 +19,8 @@ MainViewModel.payWithWalletButton = "Pay from Wallet";
 MainViewModel.merchantResponsibility = "Merchant responsibility";
 MainViewModel.sdkResponsibility = "ST SDK responsibility";
 MainViewModel.showDropInControllerWithWarningsButton = "show drop in view controller (handle cardinal warnings)";
-MainViewModel.subscription = "Subscription";
+MainViewModel.subscriptionOnSTEngine = "Subscription (Trust Payments Engine)";
+MainViewModel.subscriptionOnMerchantEngine = "Subscription (Merchant engine)";
 
 Alerts.okButton = "Ok";
 

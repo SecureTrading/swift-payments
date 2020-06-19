@@ -34,7 +34,8 @@ final class MainView: WhiteBackgroundBaseView {
     var addCardReferenceRequest: (() -> Void)?
     var payWithWalletRequest: (() -> Void)?
     var showDropInControllerWithWarningsButtonTappedClosure: (() -> Void)?
-    var subscriptionRequest: (() -> Void)?
+    var subscriptionOnSTEngineRequest: (() -> Void)?
+    var subscriptionOnMerchantEngineRequest: (() -> Void)?
     var showMoreInformation: ((String) -> Void)?
 }
 
@@ -114,8 +115,10 @@ extension MainView: UITableViewDataSource, UITableViewDelegate {
             payWithWalletRequest?()
         case .showDropInControllerWithWarnings:
             showDropInControllerWithWarningsButtonTappedClosure?()
-        case .subscription:
-            subscriptionRequest?()
+        case .subscriptionOnSTEngine:
+            subscriptionOnSTEngineRequest?()
+        case .subscriptionOnMerchantEngine:
+            subscriptionOnMerchantEngineRequest?()
         }
     }
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
