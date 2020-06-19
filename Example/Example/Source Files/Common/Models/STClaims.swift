@@ -26,7 +26,6 @@ struct Payload: Codable {
     let subscriptionfrequency: String?
     let subscriptionnumber: String?
 
-
     init(accounttypedescription: String,
          sitereference: String,
          currencyiso3a: String,

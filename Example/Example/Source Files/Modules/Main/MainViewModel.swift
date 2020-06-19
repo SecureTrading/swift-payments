@@ -305,7 +305,7 @@ extension MainViewModel {
                 subscriptiontype: "RECURRING"
                 subscriptionnumber: "2"
 
-                Make sure the parent reference is valid
+                Make sure the parent transaction is valid
                 """
             }
         }
