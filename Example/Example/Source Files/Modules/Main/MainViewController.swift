@@ -85,6 +85,15 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
             self.eventTriggered?(.didTapShowDropInControllerNoThreeDQuery(jwt))
         }
+        customView.subscriptionOnSTEngineRequest = { [weak self] in
+            self?.viewModel.performSubscriptionOnSTEngine()
+        }
+        customView.subscriptionOnMerchantEngineRequest = { [weak self] in
+            self?.viewModel.performSubscriptionOnMerchantEngine()
+        }
+        customView.showMoreInformation = { [weak self] infoString in
+            self?.showAlert(message: infoString)
+        }
 
         viewModel.showAuthSuccess = { [weak self] _ in
             guard let self = self else { return }
