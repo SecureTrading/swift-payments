@@ -9,10 +9,11 @@ import UIKit
 final class SaveCardOptionView: BaseView {
     // MARK: Properties
 
-    private let toggleButton: UISwitch = {
+    private lazy var toggleButton: UISwitch = {
         let toggle = UISwitch()
         toggle.isOn = false
         toggle.onTintColor = UIColor.black
+        toggle.addTarget(self, action: #selector(SaveCardOptionView.toggleValueChanged(sender:)), for: .valueChanged)
         return toggle
     }()
 
@@ -33,6 +34,9 @@ final class SaveCardOptionView: BaseView {
     }()
 
     // MARK: Public properties
+
+    // Callback triggered by switching the toggle button
+    var valueChanged: ((Bool) -> Void)?
 
     var isSaveCardEnabled: Bool {
         return toggleButton.isOn
@@ -61,6 +65,11 @@ final class SaveCardOptionView: BaseView {
         didSet {
             titleLabel.font = titleFont
         }
+    }
+
+    // MARK: - functions
+    @objc func toggleValueChanged(sender: UISwitch) {
+        self.valueChanged?(sender.isOn)
     }
 }
 

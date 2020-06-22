@@ -9,6 +9,10 @@ import SecureTradingCore
 #endif
 import UIKit
 
+@objc public protocol DropInController: UIPresentable {
+    @objc func updateJWT(newValue: String)
+}
+
 final class DropInViewController: BaseViewController<DropInView, DropInViewModel> {
     /// Enum describing events that can be triggered by this controller
     enum Event {
@@ -98,6 +102,16 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Localizable.Alerts.okButton.text, style: .default, handler: completionHandler))
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension DropInViewController: DropInController {
+    func updateJWT(newValue: String) {
+        viewModel.updateJWT(newValue: newValue)
+    }
+
+    var viewController: UIViewController {
+        return self
     }
 }
 

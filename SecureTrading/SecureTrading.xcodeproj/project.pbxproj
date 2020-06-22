@@ -128,6 +128,7 @@
 		1092CF482476CA1F0002B2E8 /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1092CF3F2476CA1F0002B2E8 /* SecureTradingCard.framework */; platformFilter = ios; };
 		1092CF4F2476CA1F0002B2E8 /* SecureTradingCard.h in Headers */ = {isa = PBXBuildFile; fileRef = 1092CF412476CA1F0002B2E8 /* SecureTradingCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1092CF5A2476CAFF0002B2E8 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1092CF592476CAFF0002B2E8 /* CardType.swift */; };
+		1094352F24A0DFE600C3712B /* UIPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1094352E24A0DFE600C3712B /* UIPresentable.swift */; };
 		1098F3A4247D3E0B00414F94 /* CardLogo.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1098F3A3247D3E0B00414F94 /* CardLogo.xcassets */; };
 		1098F3A6247D579600414F94 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3A5247D579600414F94 /* Date.swift */; };
 		1098F3A8247D5D2200414F94 /* TestExpiryDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3A7247D5D2200414F94 /* TestExpiryDate.swift */; };
@@ -341,6 +342,7 @@
 		1092CF472476CA1F0002B2E8 /* SecureTradingCardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureTradingCardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1092CF4E2476CA1F0002B2E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1092CF592476CAFF0002B2E8 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
+		1094352E24A0DFE600C3712B /* UIPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPresentable.swift; sourceTree = "<group>"; };
 		1098F3A3247D3E0B00414F94 /* CardLogo.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardLogo.xcassets; sourceTree = "<group>"; };
 		1098F3A5247D579600414F94 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		1098F3A7247D5D2200414F94 /* TestExpiryDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExpiryDate.swift; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 				084E2A0F246599D90040FB9D /* NavigationFlowController.swift */,
 				084E2A11246599FC0040FB9D /* NavigationDelegate.swift */,
 				084D7DC52480D6BE002E43BC /* SecureFormInputView.swift */,
+				1094352E24A0DFE600C3712B /* UIPresentable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1400,6 +1403,7 @@
 				0818DE5B2488E36200A8B25A /* InputViewStyleManager.swift in Sources */,
 				0818DE45248680D900A8B25A /* PayButton.swift in Sources */,
 				08886ED2247C0D9A00BC1637 /* CardNumberInputView.swift in Sources */,
+				1094352F24A0DFE600C3712B /* UIPresentable.swift in Sources */,
 				084E29FF246583E20040FB9D /* Dequeueable.swift in Sources */,
 				08886ED9247C1AE500BC1637 /* CardTypeContainer.swift in Sources */,
 				084E2A1D24659D6B0040FB9D /* TransparentNavigationBar.swift in Sources */,
