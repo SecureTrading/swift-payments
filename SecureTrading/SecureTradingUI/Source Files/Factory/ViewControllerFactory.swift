@@ -43,9 +43,9 @@ import UIKit
     ///   - cardinalWarningsCompletion: Closure triggered when warnings are detected by the Cardinal (e.g. is the device jailbroken)
     ///   - transactionFailure: Closure triggered by pressing the button in the failure payment alert
     /// - Returns: instance of DropInViewController
-    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription] = [.threeDQuery, .auth], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping (ResponseSettleStatus, STCardReference?) -> Void, transactionFailure: @escaping () -> Void, cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)? = nil) -> UIViewController {
+    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription] = [.threeDQuery, .auth], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, dropInViewStyleManager: DropInViewStyleManager? = nil, customView: UIView?, successfulPaymentCompletion: @escaping (ResponseSettleStatus, STCardReference?) -> Void, transactionFailure: @escaping () -> Void, cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)? = nil) -> UIViewController {
         // swiftlint:disable line_length
-        let viewController = DropInViewController(view: DropInView(dropInViewStyleManager: dropInViewStyleManager), viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit))
+        let viewController = DropInViewController(view: DropInView(dropInViewStyleManager: dropInViewStyleManager, customView: customView), viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit))
         // swiftlint:enable line_length
 
         viewController.eventTriggered = { event in
@@ -84,7 +84,7 @@ import UIKit
         let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
 
         // swiftlint:disable line_length
-        return self.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: successfulPaymentCompletion, transactionFailure: transactionFailure, cardinalWarningsCompletion: { warningsMessage, warnings in
+        return self.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, dropInViewStyleManager: dropInViewStyleManager, customView: nil, successfulPaymentCompletion: successfulPaymentCompletion, transactionFailure: transactionFailure, cardinalWarningsCompletion: { warningsMessage, warnings in
             cardinalWarningsCompletion?(warningsMessage, warnings.map { $0.rawValue })
         })
         // swiftlint:enable line_length

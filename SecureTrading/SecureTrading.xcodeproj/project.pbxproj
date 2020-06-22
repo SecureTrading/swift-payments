@@ -101,7 +101,6 @@
 		10402BEA247E64480027CEEA /* TestGatewayEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10402BE9247E64480027CEEA /* TestGatewayEndpoint.swift */; };
 		1040C6F22477C503004B9DEA /* KnownCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040C6F12477C503004B9DEA /* KnownCards.swift */; };
 		1040C6F42477CD95004B9DEA /* TestCardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040C6F32477CD95004B9DEA /* TestCardType.swift */; };
-		1045B82E24978AE600105BC4 /* SaveCardOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045B82D24978AE600105BC4 /* SaveCardOptionView.swift */; };
 		104861FC247BF41E0053209D /* ClosedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104861FB247BF41E0053209D /* ClosedRange.swift */; };
 		104861FE247BF47E0053209D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104861FD247BF47E0053209D /* String.swift */; };
 		10486200247BF4B20053209D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104861FF247BF4B20053209D /* Array.swift */; };
@@ -311,7 +310,6 @@
 		10402BE9247E64480027CEEA /* TestGatewayEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGatewayEndpoint.swift; sourceTree = "<group>"; };
 		1040C6F12477C503004B9DEA /* KnownCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownCards.swift; sourceTree = "<group>"; };
 		1040C6F32477CD95004B9DEA /* TestCardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardType.swift; sourceTree = "<group>"; };
-		1045B82D24978AE600105BC4 /* SaveCardOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCardOptionView.swift; sourceTree = "<group>"; };
 		104861FB247BF41E0053209D /* ClosedRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRange.swift; sourceTree = "<group>"; };
 		104861FD247BF47E0053209D /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		104861FF247BF4B20053209D /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -623,7 +621,6 @@
 				0818DE44248680D900A8B25A /* PayButton.swift */,
 				1050A950248FE2F100E84A6D /* RequestButton.swift */,
 				1050A954248FE5A900E84A6D /* AddCardButton.swift */,
-				1045B82D24978AE600105BC4 /* SaveCardOptionView.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -1427,7 +1424,6 @@
 				084E29EE24656D7F0040FB9D /* BaseView.swift in Sources */,
 				08886ED5247C107200BC1637 /* CardNumberFormat.swift in Sources */,
 				084E2A0E246599B70040FB9D /* FlowController.swift in Sources */,
-				1045B82E24978AE600105BC4 /* SaveCardOptionView.swift in Sources */,
 				084E29EC24656B4E0040FB9D /* CallbackWrapper.swift in Sources */,
 				1050A951248FE2F100E84A6D /* RequestButton.swift in Sources */,
 				084E29F4246571B10040FB9D /* TestMainView.swift in Sources */,

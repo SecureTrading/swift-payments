@@ -27,9 +27,8 @@ import UIKit
         CvcInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    @objc public private(set) lazy var saveCardView: SaveCardOptionView = {
-        return SaveCardOptionView()
-    }()
+    // A custom view provided by merchant
+    @objc public var customView: UIView?
 
     @objc public private(set) lazy var payButton: PayButton = {
         guard let styleManager = dropInViewStyleManager?.requestButtonStyleManager as? PayButtonStyleManager else {
@@ -45,7 +44,7 @@ import UIKit
     }()
 
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, saveCardView, payButton])
+        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, customView, payButton].compactMap { $0 } )
         stackView.axis = .vertical
         stackView.spacing = spacingBeetwenInputViews
         stackView.alignment = .fill
@@ -84,7 +83,8 @@ import UIKit
     /// Initializes an instance of the receiver.
     /// - Parameters:
     ///   - dropInViewStyleManager: instance of manager to customize view
-    @objc public init(dropInViewStyleManager: DropInViewStyleManager?) {
+    @objc public init(dropInViewStyleManager: DropInViewStyleManager?, customView: UIView?) {
+        self.customView = customView
         self.dropInViewStyleManager = dropInViewStyleManager
         super.init()
     }

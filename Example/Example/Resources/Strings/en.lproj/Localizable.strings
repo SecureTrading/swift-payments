@@ -34,3 +34,5 @@ WalletViewModel.infoText = "Tap the card you wish to pay with and click the 'Pay
 
 AddCardViewController.title = "Add card";
 AddCardViewController.cardAdded = "The card has been added";
+
+SaveCardOptionView.title = "Save this card for future use";

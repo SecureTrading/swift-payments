@@ -36,7 +36,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
                 let cardNumber = self.customView.cardNumberInput.cardNumber
                 let cvc = self.customView.cvcInput.cvc
                 let expiryDate = self.customView.expiryDateInput.expiryDate
-                self.viewModel.isSaveCardEnabled = self.customView.saveCardView.isSaveCardEnabled
+                //self.viewModel.isSaveCardEnabled = self.customView.saveCardView.isSaveCardEnabled
                 self.viewModel.performTransaction(cardNumber: cardNumber, securityCode: cvc, expiryDate: expiryDate)
             }
         }

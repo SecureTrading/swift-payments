@@ -1,12 +1,12 @@
 //
 //  SaveCardOptionView.swift
-//  SecureTradingUI
+//  Example
 //
 
 import UIKit
 
 /// A View made of UISwitch and UILabel for selecting whether a card used for transaction should be stored
-@objc public final class SaveCardOptionView: BaseView {
+final class SaveCardOptionView: BaseView {
     // MARK: Properties
 
     private let toggleButton: UISwitch = {
@@ -34,13 +34,13 @@ import UIKit
 
     // MARK: Public properties
 
-    @objc public var isSaveCardEnabled: Bool {
+    var isSaveCardEnabled: Bool {
         return toggleButton.isOn
     }
 
     // MARK: - texts
 
-    @objc public var title: String = "default" {
+    var title: String = "default" {
         didSet {
             titleLabel.text = title
         }
@@ -48,7 +48,7 @@ import UIKit
 
     // MARK: - colors
 
-    @objc public var color: UIColor = .black {
+    var color: UIColor = .black {
         didSet {
             titleLabel.textColor = color
             toggleButton.onTintColor = color
@@ -57,7 +57,7 @@ import UIKit
 
     // MARK: - fonts
 
-    @objc public var titleFont: UIFont = UIFont.systemFont(ofSize: 14) {
+    var titleFont: UIFont = UIFont.systemFont(ofSize: 14) {
         didSet {
             titleLabel.font = titleFont
         }
@@ -66,7 +66,7 @@ import UIKit
 
 extension SaveCardOptionView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
-    @objc func setupProperties() {
+    func setupProperties() {
         backgroundColor = .clear
     }
 

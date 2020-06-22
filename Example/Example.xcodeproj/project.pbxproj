@@ -69,6 +69,7 @@
 		1050AB892490FF97001844BF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB882490FF97001844BF /* WalletViewController.swift */; };
 		1050AB8B2490FFE1001844BF /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB8A2490FFE1001844BF /* WalletView.swift */; };
 		1050AB8D2491000B001844BF /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB8C2491000B001844BF /* WalletViewModel.swift */; };
+		1094352D24A08A3E00C3712B /* SaveCardOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1094352C24A08A3E00C3712B /* SaveCardOptionView.swift */; };
 		1098F3A1247CF4B300414F94 /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; };
 		1098F3A2247CF4B300414F94 /* SecureTradingCard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		10C4A29C249D0A4500C1E8E9 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C4A29B249D0A4500C1E8E9 /* AddCardViewController.swift */; };
@@ -184,6 +185,7 @@
 		1050AB882490FF97001844BF /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		1050AB8A2490FFE1001844BF /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		1050AB8C2491000B001844BF /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
+		1094352C24A08A3E00C3712B /* SaveCardOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCardOptionView.swift; sourceTree = "<group>"; };
 		1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10C4A29B249D0A4500C1E8E9 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		10C4A29D249D0A4D00C1E8E9 /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				08639C542469681E00C8F90A /* PopBackView.swift */,
 				08639C552469681E00C8F90A /* TransparentNavigationBar.swift */,
 				08639C562469681E00C8F90A /* CustomBackNavigationController.swift */,
+				1094352C24A08A3E00C3712B /* SaveCardOptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -820,6 +823,7 @@
 				08639C662469681E00C8F90A /* UIView.swift in Sources */,
 				08639C612469681E00C8F90A /* BaseFlowController.swift in Sources */,
 				1050AB8B2490FFE1001844BF /* WalletView.swift in Sources */,
+				1094352D24A08A3E00C3712B /* SaveCardOptionView.swift in Sources */,
 				08639C5E2469681E00C8F90A /* BaseViewController.swift in Sources */,
 				082FC7A02462FF2700D4E2B6 /* ObjectiveCTest.m in Sources */,
 				104CFAFF246EA59100D7C76D /* ApplicationKeys.swift in Sources */,
