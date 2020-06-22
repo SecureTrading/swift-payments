@@ -34,7 +34,7 @@ final class WalletViewController: BaseViewController<WalletView, WalletViewModel
 
         customView.addNewPaymentMethod = { [weak self] in
             guard let self = self else { return }
-            guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
+            guard let jwt = self.viewModel.getJwtTokenWithoutCardData(storeCard: true) else { return }
 
             let inputViewStyleManager = InputViewStyleManager.default()
             let addCardButtonStyleManager = AddCardButtonStyleManager.default()
