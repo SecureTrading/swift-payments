@@ -109,7 +109,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
         else { return }
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
-        // customView.moveUpTableView(height: keyboardHeight) // todo
+        customView.moveUpTableView(height: keyboardHeight)
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }
@@ -120,7 +120,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             let keyboardAnimationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber,
             let duration = TimeInterval(exactly: keyboardAnimationDuration)
         else { return }
-        // customView.moveDownTableView() // todo
+        customView.moveDownTableView()
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }
