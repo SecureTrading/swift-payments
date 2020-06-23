@@ -25,6 +25,7 @@ struct Payload: Codable {
     let subscriptionunit: String?
     let subscriptionfrequency: String?
     let subscriptionnumber: String?
+    let credentialsonfile: String?
 
     init(accounttypedescription: String,
          sitereference: String,
@@ -38,7 +39,8 @@ struct Payload: Codable {
          subscriptionfinalnumber: String? = nil,
          subscriptionunit: String? = nil,
          subscriptionfrequency: String? = nil,
-         subscriptionnumber: String? = nil) {
+         subscriptionnumber: String? = nil,
+         credentialsonfile: String? = nil) {
         self.accounttypedescription = accounttypedescription
         self.sitereference = sitereference
         self.currencyiso3a = currencyiso3a
@@ -52,5 +54,6 @@ struct Payload: Codable {
         self.subscriptionunit = subscriptionunit
         self.subscriptionfrequency = subscriptionfrequency
         self.subscriptionnumber = subscriptionnumber
+        self.credentialsonfile = credentialsonfile
     }
 }

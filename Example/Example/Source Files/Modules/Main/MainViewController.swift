@@ -73,7 +73,7 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         }
         customView.addCardReferenceRequest = { [weak self] in
             guard let self = self else { return }
-            guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
+            guard let jwt = self.viewModel.getJwtTokenWithoutCardData(storeCard: true) else { return }
             self.eventTriggered?(.didTapAddCard(jwt))
         }
         customView.payWithWalletRequest = { [weak self] in

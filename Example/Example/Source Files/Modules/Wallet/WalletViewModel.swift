@@ -69,7 +69,7 @@ final class WalletViewModel {
 
     /// Return JWT containing all data needed for AUTH request except card information
     /// - Returns: JWT as String
-    func getJwtTokenWithoutCardData() -> String? {
+    func getJwtTokenWithoutCardData(storeCard: Bool = false) -> String? {
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
                              payload: Payload(accounttypedescription: "ECOM",
@@ -79,7 +79,8 @@ final class WalletViewModel {
                                               pan: nil,
                                               expirydate: nil,
                                               securitycode: nil,
-                                              parenttransactionreference: nil))
+                                              parenttransactionreference: nil,
+                                              credentialsonfile: storeCard ? "1" : nil))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return nil }
         return jwt

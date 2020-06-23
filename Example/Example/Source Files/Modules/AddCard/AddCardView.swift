@@ -1,33 +1,33 @@
 //
 //  AddCardView.swift
-//  SecureTradingUI
+//  Example
 //
 
 import UIKit
 
-@objc public final class AddCardView: BaseView {
-    @objc public var isFormValid: Bool {
+final class AddCardView: BaseView {
+    var isFormValid: Bool {
         return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid
     }
 
-    @objc public var addCardButtonTappedClosure: (() -> Void)? {
+    var addCardButtonTappedClosure: (() -> Void)? {
         get { return addCardButton.onTap }
         set { addCardButton.onTap = newValue }
     }
 
-    @objc public private(set) lazy var cardNumberInput: CardNumberInputView = {
+    private(set) lazy var cardNumberInput: CardNumberInputView = {
         CardNumberInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    @objc public private(set) lazy var expiryDateInput: ExpiryDateInputView = {
+    private(set) lazy var expiryDateInput: ExpiryDateInputView = {
         ExpiryDateInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    @objc public private(set) lazy var cvcInput: CvcInputView = {
+    private(set) lazy var cvcInput: CvcInputView = {
         CvcInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    @objc public private(set) lazy var addCardButton: AddCardButton = {
+    private(set) lazy var addCardButton: AddCardButton = {
         guard let styleManager = dropInViewStyleManager?.requestButtonStyleManager as? AddCardButtonStyleManager else {
             fatalError("Expected style manager of type AddCardButtonStyleManager")
         }
@@ -63,13 +63,13 @@ import UIKit
 
     let dropInViewStyleManager: DropInViewStyleManager?
 
-    @objc public var spacingBeetwenInputViews: CGFloat = 30 {
+    var spacingBeetwenInputViews: CGFloat = 30 {
         didSet {
             stackView.spacing = spacingBeetwenInputViews
         }
     }
 
-    @objc public var insets: UIEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: -15, right: -30) {
+    var insets: UIEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: -15, right: -30) {
         didSet {
             buildStackViewConstraints()
         }
@@ -80,7 +80,7 @@ import UIKit
     /// Initializes an instance of the receiver.
     /// - Parameters:
     ///   - dropInViewStyleManager: instance of manager to customize view
-    @objc public init(dropInViewStyleManager: DropInViewStyleManager?) {
+    public init(dropInViewStyleManager: DropInViewStyleManager?) {
         self.dropInViewStyleManager = dropInViewStyleManager
         super.init()
     }
@@ -149,7 +149,7 @@ import UIKit
 
 extension AddCardView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
-    @objc func setupProperties() {
+    func setupProperties() {
         cardNumberInput.cardNumberInputViewDelegate = self
         cardNumberInput.delegate = self
         cvcInput.delegate = self
@@ -186,21 +186,21 @@ extension AddCardView: ViewSetupable {
 }
 
 extension AddCardView: CardNumberInputViewDelegate {
-    public func cardNumberInputViewDidComplete(_ cardNumberInputView: CardNumberInputView) {
+    func cardNumberInputViewDidComplete(_ cardNumberInputView: CardNumberInputView) {
         cvcInput.cardType = cardNumberInputView.cardType
         cvcInput.isEnabled = cardNumberInputView.isCVCRequired
     }
 
-    public func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView) {
+    func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView) {
         cvcInput.cardType = cardNumberInputView.cardType
         cvcInput.isEnabled = cardNumberInputView.isCVCRequired
     }
 }
 
 extension AddCardView: SecureFormInputViewDelegate {
-    public func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView) {}
+    func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView) {}
 
-    public func showHideError(_ show: Bool) {
+    func showHideError(_ show: Bool) {
         addCardButton.isEnabled = isFormValid
     }
 }

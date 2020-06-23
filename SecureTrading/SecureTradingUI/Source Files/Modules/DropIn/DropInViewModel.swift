@@ -93,6 +93,12 @@ final class DropInViewModel {
         }
     }
 
+    /// Updates JWT token
+    /// - Parameter newValue: updated JWT token
+    func updateJWT(newValue: String) {
+        self.jwt = newValue
+    }
+
     // MARK: Api requests
 
     /// executes payment transaction request

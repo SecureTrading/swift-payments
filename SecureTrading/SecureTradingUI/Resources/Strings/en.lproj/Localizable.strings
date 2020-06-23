@@ -39,8 +39,4 @@ DropInViewController.cardinalAuthenticationError = "An error occurred";
 
 Alerts.okButton = "Ok";
 
-AddCardViewController.title = "Add card";
-AddCardViewController.cardAdded = "The card has been added";
 AddCardButton.title = "Add card";
-
-SaveCardOptionView.title = "Save this card for future use";

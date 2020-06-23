@@ -43,7 +43,7 @@ final class MainViewModel {
     // MARK: Functions
 
     /// Returns JWT without card data as a String
-    func getJwtTokenWithoutCardData() -> String? {
+    func getJwtTokenWithoutCardData(storeCard: Bool = false) -> String? {
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
                              payload: Payload(accounttypedescription: "ECOM",
@@ -53,7 +53,8 @@ final class MainViewModel {
                                               pan: nil,
                                               expirydate: nil,
                                               securitycode: nil,
-                                              parenttransactionreference: nil))
+                                              parenttransactionreference: nil,
+                                              credentialsonfile: storeCard ? "1" : nil))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return nil }
         return jwt
@@ -142,7 +143,7 @@ final class MainViewModel {
                                               currencyiso3a: "GBP",
                                               baseamount: 199,
                                               securitycode: "123",
-                                              parenttransactionreference: "58-9-53270",
+                                              parenttransactionreference: "57-9-51718",
                                               subscriptiontype: "RECURRING",
                                               subscriptionnumber: "2"))
 

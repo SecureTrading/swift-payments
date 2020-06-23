@@ -8,6 +8,10 @@ import SecureTradingUI
 import UIKit
 
 final class MainFlowController: BaseNavigationFlowController {
+    // MARK: - Properties:
+    var sdkFlowController: SDKFlowController!
+    private var mainViewModel: MainViewModel?
+
     // MARK: Initalization
 
     /// Initializes an instance of the receiver.
@@ -34,13 +38,18 @@ final class MainFlowController: BaseNavigationFlowController {
                     MainViewModel.Row.showDropInControllerNo3DSecure,
                     MainViewModel.Row.performAccountCheck,
                     MainViewModel.Row.performAccountCheckWithAuth,
-                    MainViewModel.Row.presentAddCardForm,
                     MainViewModel.Row.subscriptionOnSTEngine,
                     MainViewModel.Row.subscriptionOnMerchantEngine
                 ]),
-            MainViewModel.Section.onMerchant(rows: [MainViewModel.Row.presentWalletForm])
+            MainViewModel.Section.onMerchant(rows:
+                [
+                    MainViewModel.Row.presentWalletForm,
+                    MainViewModel.Row.presentAddCardForm
+            ])
         ]
-        let mainViewController = MainViewController(view: MainView(), viewModel: MainViewModel(apiManager: appFoundation.apiManager, items: viewItems))
+
+        mainViewModel = MainViewModel(apiManager: appFoundation.apiManager, items: viewItems)
+        let mainViewController = MainViewController(view: MainView(), viewModel: mainViewModel!)
         mainViewController.eventTriggered = { [unowned self] event in
             switch event {
             case .didTapShowTestMainScreen:
@@ -82,7 +91,9 @@ final class MainFlowController: BaseNavigationFlowController {
         let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: inputViewStyleManager, requestButtonStyleManager: payButtonStyleManager, backgroundColor: .white, spacingBeetwenInputViews: 25, insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
         // swiftlint:disable line_length
 
-        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: false, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: { [unowned self] _, cardReference in
+        let saveCardComponent = SaveCardOptionView()
+
+        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: false, dropInViewStyleManager: dropInViewStyleManager, customView: saveCardComponent, successfulPaymentCompletion: { [unowned self] _, cardReference in
             Wallet.shared.add(card: cardReference)
             self.navigationController.popViewController(animated: true)
         }, transactionFailure: {}, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
@@ -92,9 +103,15 @@ final class MainFlowController: BaseNavigationFlowController {
             }
         })
 
-        // swiftlint:enable line_length
+        // triggered by UISwitch in SaveCardComponent view
+        saveCardComponent.valueChanged = { [weak self] isSelected in
+            // updates JWT with credentialsonfile flag
+            guard let updatedJWT = self?.mainViewModel?.getJwtTokenWithoutCardData(storeCard: isSelected) else { return }
+            // update vc with new jwt
+            dropInVC.updateJWT(newValue: updatedJWT)
+        }
 
-        push(dropInVC, animated: true)
+        push(dropInVC.viewController, animated: true)
     }
 
     func showAddCardView(jwt: String) {
@@ -106,15 +123,20 @@ final class MainFlowController: BaseNavigationFlowController {
                                                             spacingBeetwenInputViews: 25,
                                                             insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
 
-        let dropInVC = ViewControllerFactory.shared.addCardViewController(jwt: jwt,
-                                                                          typeDescriptions: [.accountCheck],
-                                                                          gatewayType: .eu,
-                                                                          username: appFoundation.keys.merchantUsername,
-                                                                          dropInViewStyleManager: dropInViewStyleManager) { [unowned self] cardReference in
-            Wallet.shared.add(card: cardReference)
-            self.navigationController.popViewController(animated: true)
+        let viewController = AddCardViewController(view: AddCardView(dropInViewStyleManager: dropInViewStyleManager),
+                                                   viewModel: AddCardViewModel(jwt: jwt,
+                                                                               typeDescriptions: [.accountCheck],
+                                                                               gatewayType: .eu,
+                                                                               username: appFoundation.keys.merchantUsername))
+        viewController.eventTriggered = { [weak self] event in
+            switch event {
+            case .added(let cardReference):
+                Wallet.shared.add(card: cardReference)
+                self?.navigationController.popViewController(animated: true)
+            }
         }
-        push(dropInVC, animated: true)
+
+        push(viewController, animated: true)
     }
 
     func showWalletView() {
@@ -144,7 +166,6 @@ final class MainFlowController: BaseNavigationFlowController {
         push(testMainVC, animated: true)
     }
 
-    var sdkFlowController: SDKFlowController!
     func showTestMainFlow() {
         sdkFlowController = SDKFlowController(navigationController: navigationController)
         sdkFlowController.presentTestMainFlow()
