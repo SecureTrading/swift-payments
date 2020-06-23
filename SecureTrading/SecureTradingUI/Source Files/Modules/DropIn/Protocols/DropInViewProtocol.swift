@@ -5,11 +5,7 @@
 
 import UIKit
 
-@objc public protocol ViewProtocol where Self: UIView {
-}
-
 @objc public protocol DropInViewProtocol: ViewProtocol {
-
     @objc init(dropInViewStyleManager: DropInViewStyleManager?)
 
     @objc var isFormValid: Bool { get }
@@ -29,7 +25,4 @@ import UIKit
     @objc func moveUpTableView(height: CGFloat)
 
     @objc func moveDownTableView()
-
-    //func customizeView(dropInViewStyleManager: DropInViewStyleManager?)
-
 }
