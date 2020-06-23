@@ -14,10 +14,12 @@ MainViewModel.showSingleInputViewsButton = "Single input components";
 MainViewModel.showDropInControllerButton = "Pay by Card form (3DSecure)";
 MainViewModel.makeAccountCheckRequestButton = "Perform 'Account check' request in background";
 MainViewModel.makeAccountCheckWithAuthRequestButton = "Perform Account check & Auth request in background";
-MainViewModel.addCardReferenceButton = "Add card to Wallet";
-MainViewModel.payWithWalletButton = "Pay from Wallet";
+MainViewModel.addCardReferenceButton = "Add card (ACCOUNTCHECK)";
+MainViewModel.payWithWalletButton = "Stored cards";
 MainViewModel.merchantResponsibility = "Merchant responsibility";
-MainViewModel.sdkResponsibility = "ST SDK responsibility";
+MainViewModel.sdkResponsibility = "SDK responsibility";
+MainViewModel.subscriptionOnSTEngine = "Subscription (Trust Payments Engine)";
+MainViewModel.subscriptionOnMerchantEngine = "Subscription (Merchant engine)";
 MainViewModel.showDropInControllerWithWarningsButton = "Pay by Card form (3DSecure & Cardinal warnings)";
 MainViewModel.showDropInControllerNo3DSecure = "Pay by Card form (no 3DSecure)";
 
@@ -31,3 +33,8 @@ WalletViewController.paid = "Successful payment transaction";
 WalletViewModel.addPaymentMethod = "Add Payment method";
 WalletViewModel.paymentMethods = "PAYMENT METHODS";
 WalletViewModel.infoText = "Tap the card you wish to pay with and click the 'Pay' button to process the payment";
+
+AddCardViewController.title = "Add card";
+AddCardViewController.cardAdded = "The card has been added";
+
+SaveCardOptionView.title = "Save this card for future use";

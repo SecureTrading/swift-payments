@@ -69,8 +69,13 @@
 		1050AB892490FF97001844BF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB882490FF97001844BF /* WalletViewController.swift */; };
 		1050AB8B2490FFE1001844BF /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB8A2490FFE1001844BF /* WalletView.swift */; };
 		1050AB8D2491000B001844BF /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB8C2491000B001844BF /* WalletViewModel.swift */; };
+		1054A99A24A218F7002B5125 /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1054A99924A218F7002B5125 /* KeyboardHelper.swift */; };
+		1094352D24A08A3E00C3712B /* SaveCardOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1094352C24A08A3E00C3712B /* SaveCardOptionView.swift */; };
 		1098F3A1247CF4B300414F94 /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; };
 		1098F3A2247CF4B300414F94 /* SecureTradingCard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		10C4A29C249D0A4500C1E8E9 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C4A29B249D0A4500C1E8E9 /* AddCardViewController.swift */; };
+		10C4A29E249D0A4D00C1E8E9 /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C4A29D249D0A4D00C1E8E9 /* AddCardView.swift */; };
+		10C4A2A0249D0A5600C1E8E9 /* AddCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C4A29F249D0A5600C1E8E9 /* AddCardViewModel.swift */; };
 		10DBCEBA2498BD59005865B0 /* MainViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DBCEB92498BD59005865B0 /* MainViewTableViewCell.swift */; };
 		49F7F7945D41186C28F9061E /* libPods-ExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCB78E01AA2AEB4BE63CE4C /* libPods-ExampleTests.a */; };
 		613B874DD5B4DD1E6266FDE8 /* libPods-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1286B23CF2544C71D88175C0 /* libPods-Example.a */; };
@@ -181,7 +186,12 @@
 		1050AB882490FF97001844BF /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		1050AB8A2490FFE1001844BF /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		1050AB8C2491000B001844BF /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
+		1054A99924A218F7002B5125 /* KeyboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
+		1094352C24A08A3E00C3712B /* SaveCardOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCardOptionView.swift; sourceTree = "<group>"; };
 		1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10C4A29B249D0A4500C1E8E9 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
+		10C4A29D249D0A4D00C1E8E9 /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
+		10C4A29F249D0A5600C1E8E9 /* AddCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewModel.swift; sourceTree = "<group>"; };
 		10DBCEB92498BD59005865B0 /* MainViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewTableViewCell.swift; sourceTree = "<group>"; };
 		1286B23CF2544C71D88175C0 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CCB78E01AA2AEB4BE63CE4C /* libPods-ExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -389,6 +399,7 @@
 				08639C542469681E00C8F90A /* PopBackView.swift */,
 				08639C552469681E00C8F90A /* TransparentNavigationBar.swift */,
 				08639C562469681E00C8F90A /* CustomBackNavigationController.swift */,
+				1094352C24A08A3E00C3712B /* SaveCardOptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -407,6 +418,7 @@
 		08639C5C2469681E00C8F90A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				1054A99924A218F7002B5125 /* KeyboardHelper.swift */,
 				08639C5D2469681E00C8F90A /* CallbackWrapper.swift */,
 				104CFB00246EADA800D7C76D /* JWTHelper.swift */,
 			);
@@ -446,6 +458,7 @@
 		08639C8324696AE800C8F90A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				10C4A29A249D0A3700C1E8E9 /* AddCard */,
 				1050AB872490FF77001844BF /* Wallet */,
 				0845BF25247EAED7008AD40F /* Card */,
 				08639C8424696B0500C8F90A /* Main */,
@@ -563,6 +576,16 @@
 				1050AB8C2491000B001844BF /* WalletViewModel.swift */,
 			);
 			path = Wallet;
+			sourceTree = "<group>";
+		};
+		10C4A29A249D0A3700C1E8E9 /* AddCard */ = {
+			isa = PBXGroup;
+			children = (
+				10C4A29B249D0A4500C1E8E9 /* AddCardViewController.swift */,
+				10C4A29D249D0A4D00C1E8E9 /* AddCardView.swift */,
+				10C4A29F249D0A5600C1E8E9 /* AddCardViewModel.swift */,
+			);
+			path = AddCard;
 			sourceTree = "<group>";
 		};
 		10DBCEB82498BD49005865B0 /* Cells */ = {
@@ -796,6 +819,7 @@
 				08639C6C2469681E00C8F90A /* TransparentNavigationBar.swift in Sources */,
 				08639C652469681E00C8F90A /* Colors.swift in Sources */,
 				08639C602469681E00C8F90A /* BaseViewCell.swift in Sources */,
+				1054A99A24A218F7002B5125 /* KeyboardHelper.swift in Sources */,
 				08639C752469685500C8F90A /* Localizable.swift in Sources */,
 				08639C6B2469681E00C8F90A /* PopBackView.swift in Sources */,
 				104CFB01246EADA800D7C76D /* JWTHelper.swift in Sources */,
@@ -803,18 +827,21 @@
 				08639C662469681E00C8F90A /* UIView.swift in Sources */,
 				08639C612469681E00C8F90A /* BaseFlowController.swift in Sources */,
 				1050AB8B2490FFE1001844BF /* WalletView.swift in Sources */,
+				1094352D24A08A3E00C3712B /* SaveCardOptionView.swift in Sources */,
 				08639C5E2469681E00C8F90A /* BaseViewController.swift in Sources */,
 				082FC7A02462FF2700D4E2B6 /* ObjectiveCTest.m in Sources */,
 				104CFAFF246EA59100D7C76D /* ApplicationKeys.swift in Sources */,
 				08639C642469681E00C8F90A /* Fonts.swift in Sources */,
 				08639C682469681E00C8F90A /* UIStackView.swift in Sources */,
 				08639C712469681E00C8F90A /* NavigationDelegate.swift in Sources */,
+				10C4A29E249D0A4D00C1E8E9 /* AddCardView.swift in Sources */,
 				1048A78D2497C06B00ADB2E3 /* WalletCardTableViewCell.swift in Sources */,
 				08639C6D2469681E00C8F90A /* CustomBackNavigationController.swift in Sources */,
 				08639C672469681E00C8F90A /* Array.swift in Sources */,
 				08639C7D2469693F00C8F90A /* AppFlowController.swift in Sources */,
 				0845BF28247EAF23008AD40F /* SingleInputViewsController.swift in Sources */,
 				08639C632469681E00C8F90A /* BaseView.swift in Sources */,
+				10C4A29C249D0A4500C1E8E9 /* AddCardViewController.swift in Sources */,
 				08639C8C24696CB100C8F90A /* MainViewController.swift in Sources */,
 				080A321E2473C482002B7471 /* STClaims.swift in Sources */,
 				08639C6A2469681E00C8F90A /* UITableView.swift in Sources */,
@@ -829,6 +856,7 @@
 				08639C8E2469711500C8F90A /* WhiteBackgroundBaseView.swift in Sources */,
 				08639C722469681E00C8F90A /* CallbackWrapper.swift in Sources */,
 				08E4FA822462A7D100837339 /* AppDelegate.swift in Sources */,
+				10C4A2A0249D0A5600C1E8E9 /* AddCardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

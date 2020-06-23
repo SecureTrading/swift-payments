@@ -64,6 +64,9 @@ final class MainView: WhiteBackgroundBaseView {
     var addCardReferenceRequest: (() -> Void)?
     var payWithWalletRequest: (() -> Void)?
     var showDropInControllerWithWarningsButtonTappedClosure: (() -> Void)?
+    var subscriptionOnSTEngineRequest: (() -> Void)?
+    var subscriptionOnMerchantEngineRequest: (() -> Void)?
+    var showMoreInformation: ((String) -> Void)?
     var showDropInControllerNoThreeDQuery: (() -> Void)?
 
     @objc func toggleAction(_ sender: UISwitch) {
@@ -81,7 +84,7 @@ extension MainView: ViewSetupable {
     func setupConstraints() {
         tableView.addConstraints([
             equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: 0),
-            equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            equal(highlightViewsControl, \.bottomAnchor, \.topAnchor, constant: -10),
             equal(self, \.leadingAnchor, constant: 0),
             equal(self, \.trailingAnchor, constant: 0)
         ])
@@ -96,9 +99,9 @@ extension MainView: ViewSetupable {
 // MARK: Wallet view table data source and delegate
 extension MainView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = dataSource?.row(at: indexPath)
+        let row = dataSource?.row(at: indexPath)
         let cell = tableView.dequeue(dequeueableCell: MainViewTableViewCell.self)
-        cell.configure(title: item?.title)
+        cell.configure(title: row?.title, hasDetailedInfo: row?.hasDetailedInfo ?? false)
         return cell
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -152,8 +155,17 @@ extension MainView: UITableViewDataSource, UITableViewDelegate {
             payWithWalletRequest?()
         case .showDropInControllerWithWarnings:
             showDropInControllerWithWarningsButtonTappedClosure?()
+        case .subscriptionOnSTEngine:
+            subscriptionOnSTEngineRequest?()
+        case .subscriptionOnMerchantEngine:
+            subscriptionOnMerchantEngineRequest?()
         case .showDropInControllerNo3DSecure:
             showDropInControllerNoThreeDQuery?()
+        }
+    }
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        if let info = dataSource?.detailInformationForRow(at: indexPath) {
+            showMoreInformation?(info)
         }
     }
 }

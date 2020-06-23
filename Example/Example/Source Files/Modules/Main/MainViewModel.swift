@@ -11,6 +11,7 @@ protocol MainViewModelDataSource: class {
     func numberOfSections() -> Int
     func numberOfRows(at section: Int) -> Int
     func title(for section: Int) -> String?
+    func detailInformationForRow(at index: IndexPath) -> String?
 }
 
 final class MainViewModel {
@@ -42,7 +43,7 @@ final class MainViewModel {
     // MARK: Functions
 
     /// Returns JWT without card data as a String
-    func getJwtTokenWithoutCardData() -> String? {
+    func getJwtTokenWithoutCardData(storeCard: Bool = false) -> String? {
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
                              payload: Payload(accounttypedescription: "ECOM",
@@ -52,7 +53,8 @@ final class MainViewModel {
                                               pan: nil,
                                               expirydate: nil,
                                               securitycode: nil,
-                                              parenttransactionreference: nil))
+                                              parenttransactionreference: nil,
+                                              credentialsonfile: storeCard ? "1" : nil))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return nil }
         return jwt
@@ -113,6 +115,42 @@ final class MainViewModel {
         let authRequest = RequestObject(typeDescriptions: [.accountCheck, .auth])
         makeRequest(with: jwt, request: authRequest)
     }
+    func performSubscriptionOnSTEngine() {
+        let claim = STClaims(iss: keys.merchantUsername,
+                             iat: Date(timeIntervalSinceNow: 0),
+                             payload: Payload(accounttypedescription: "ECOM",
+                                              sitereference: keys.merchantSiteReference,
+                                              currencyiso3a: "GBP",
+                                              baseamount: 199,
+                                              pan: "4111111111111111",
+                                              expirydate: "12/2022",
+                                              securitycode: "123",
+                                              subscriptiontype: "RECURRING",
+                                              subscriptionfinalnumber: "12",
+                                              subscriptionunit: "MONTH",
+                                              subscriptionfrequency: "1",
+                                              subscriptionnumber: "1"))
+
+        guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
+        let authRequest = RequestObject(typeDescriptions: [.accountCheck, .subscription])
+        makeRequest(with: jwt, request: authRequest)
+    }
+    func performSubscriptionOnMerchantEngine() {
+        let claim = STClaims(iss: keys.merchantUsername,
+                             iat: Date(timeIntervalSinceNow: 0),
+                             payload: Payload(accounttypedescription: "RECUR",
+                                              sitereference: keys.merchantSiteReference,
+                                              currencyiso3a: "GBP",
+                                              baseamount: 199,
+                                              securitycode: "123",
+                                              parenttransactionreference: "57-9-51718",
+                                              subscriptiontype: "RECURRING",
+                                              subscriptionnumber: "2"))
+
+        guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
+        let authRequest = RequestObject(typeDescriptions: [.auth])
+        makeRequest(with: jwt, request: authRequest)
+    }
 
     private func makeRequest(with jwt: String, request: RequestObject) {
         apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _, _ in
@@ -156,6 +194,9 @@ extension MainViewModel: MainViewModelDataSource {
     func title(for section: Int) -> String? {
         return items[section].title
     }
+    func detailInformationForRow(at index: IndexPath) -> String? {
+        return items[index.section].rows[index.row].detailInformation
+    }
 }
 
 extension MainViewModel {
@@ -171,6 +212,8 @@ extension MainViewModel {
         case presentWalletForm
         case showDropInControllerWithWarnings
         case showDropInControllerNo3DSecure
+        case subscriptionOnSTEngine
+        case subscriptionOnMerchantEngine
 
         var title: String {
             switch self {
@@ -194,8 +237,82 @@ extension MainViewModel {
                 return Localizable.MainViewModel.payWithWalletButton.text
             case .showDropInControllerWithWarnings:
                 return Localizable.MainViewModel.showDropInControllerWithWarningsButton.text
+            case .subscriptionOnSTEngine:
+                return Localizable.MainViewModel.subscriptionOnSTEngine.text
+            case .subscriptionOnMerchantEngine:
+                return Localizable.MainViewModel.subscriptionOnMerchantEngine.text
             case .showDropInControllerNo3DSecure:
                 return Localizable.MainViewModel.showDropInControllerNo3DSecure.text
+            }
+        }
+
+        var hasDetailedInfo: Bool {
+            return self.detailInformation != nil
+        }
+
+        var detailInformation: String? {
+            switch self {
+            case .testMainScreen:
+                return nil
+            case .testMainFlow:
+                return nil
+            case .performAuthRequestInBackground:
+                return """
+                Performs AUTH request to the EU gateway:
+
+                accounttypedescription: "ECOM"
+                currencyiso3a: "GBP"
+                baseamount: 1100
+                pan: "4111111111111111"
+                expirydate: "12/2022"
+                securitycode: "123"
+                """
+            case .presentSingleInputComponents:
+                return nil
+            case .presentPayByCardForm:
+                return nil
+            case .performAccountCheck:
+                return nil
+            case .performAccountCheckWithAuth:
+                return nil
+            case .presentAddCardForm:
+                return nil
+            case .presentWalletForm:
+                return nil
+            case .showDropInControllerWithWarnings:
+                return nil
+            case .subscriptionOnSTEngine:
+                return """
+                Performs ACCOUNTCHECK & SUBSCRIPTION request to the EU gateway:
+
+                accounttypedescription: "ECOM"
+                currencyiso3a: "GBP"
+                baseamount: 199
+                pan: "4111111111111111"
+                expirydate: "12/2022"
+                securitycode: "123"
+                subscriptiontype: "RECURRING"
+                subscriptionfinalnumber: "12"
+                subscriptionunit: "MONTH"
+                subscriptionfrequency: "1"
+                subscriptionnumber: "1"
+                """
+            case .subscriptionOnMerchantEngine:
+                return """
+                Performs AUTH request to the EU gateway:
+
+                accounttypedescription: "RECUR"
+                currencyiso3a: "GBP"
+                baseamount: 199
+                securitycode: "123"
+                parenttransactionreference: "58-9-53270"
+                subscriptiontype: "RECURRING"
+                subscriptionnumber: "2"
+
+                Make sure the parent transaction is valid
+                """
+            case .showDropInControllerNo3DSecure:
+                return nil
             }
         }
     }
@@ -234,5 +351,7 @@ fileprivate extension Localizable {
         case merchantResponsibility
         case sdkResponsibility
         case showDropInControllerNo3DSecure
+        case subscriptionOnSTEngine
+        case subscriptionOnMerchantEngine
     }
 }

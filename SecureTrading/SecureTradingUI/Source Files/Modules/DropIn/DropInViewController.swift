@@ -13,6 +13,7 @@ import UIKit
     @objc func updateJWT(newValue: String)
 }
 
+
 final class DropInViewController: BaseViewController<DropInViewProtocol, DropInViewModel> {
     /// Enum describing events that can be triggered by this controller
     enum Event {
@@ -51,7 +52,6 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
                 let cardNumber = self.customView.cardNumberInput.cardNumber
                 let cvc = self.customView.cvcInput.cvc
                 let expiryDate = self.customView.expiryDateInput.expiryDate
-                self.viewModel.isSaveCardEnabled = (self.customView as? DropInView)?.saveCardView.isSaveCardEnabled ?? false // todo improve
                 self.viewModel.performTransaction(cardNumber: cardNumber, securityCode: cvc, expiryDate: expiryDate)
             }
         }
@@ -74,6 +74,18 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
             self.customView.payButton.stopProcessing()
             self.showAlert(
                 message: error,
+                completionHandler: { [weak self] _ in
+                    guard let self = self else { return }
+                    self.eventTriggered?(.transactionFailure)
+                }
+            )
+        }
+
+        viewModel.showCardinalAuthenticationError = { [weak self] in
+            guard let self = self else { return }
+            self.customView.payButton.stopProcessing()
+            self.showAlert(
+                message: Localizable.DropInViewController.cardinalAuthenticationError.text,
                 completionHandler: { [weak self] _ in
                     guard let self = self else { return }
                     self.eventTriggered?(.transactionFailure)
@@ -186,5 +198,6 @@ private extension Localizable {
     enum DropInViewController: String, Localized {
         case title
         case successfulPayment
+        case cardinalAuthenticationError
     }
 }

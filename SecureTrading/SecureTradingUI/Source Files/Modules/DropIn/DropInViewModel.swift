@@ -45,6 +45,7 @@ final class DropInViewModel {
 
     var showTransactionSuccess: ((ResponseSettleStatus, STCardReference?) -> Void)?
     var showTransactionError: ((String) -> Void)?
+    var showCardinalAuthenticationError: (() -> Void)?
     var showValidationError: ((ResponseErrorDetail) -> Void)?
     var cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)?
 
@@ -90,6 +91,12 @@ final class DropInViewModel {
                 }
             })
         }
+    }
+
+    /// Updates JWT token
+    /// - Parameter newValue: updated JWT token
+    func updateJWT(newValue: String) {
+        self.jwt = newValue
     }
 
     // MARK: Api requests
@@ -254,6 +261,7 @@ final class DropInViewModel {
         var jwtResponseObject: JWTResponseObject?
         var transactionError: String?
         var validationError: ResponseErrorDetail?
+        var cardinalAuthenticationError: Bool = false
 
         dispatchQueue.async {
             dispatchGroup.enter()
@@ -263,7 +271,7 @@ final class DropInViewModel {
                 dispatchGroup.leave()
             }, sessionAuthenticationFailure: {
                 // todo error message
-                transactionError = "authentication error"
+                cardinalAuthenticationError = true
                 dispatchSemaphore.signal()
                 dispatchGroup.leave()
             })
@@ -296,6 +304,11 @@ final class DropInViewModel {
 
         dispatchGroup.notify(queue: dispatchQueue) {
             DispatchQueue.main.async {
+                if cardinalAuthenticationError {
+                    self.showCardinalAuthenticationError?()
+                    return
+                }
+
                 if let error = transactionError {
                     self.showTransactionError?(error)
                     return

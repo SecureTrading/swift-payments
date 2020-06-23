@@ -1,11 +1,8 @@
 //
 //  AddCardViewController.swift
-//  SecureTradingUI
+//  Example
 //
 
-#if !COCOAPODS
-import SecureTradingCore
-#endif
 import UIKit
 
 final class AddCardViewController: BaseViewController<AddCardView, AddCardViewModel> {
@@ -17,10 +14,11 @@ final class AddCardViewController: BaseViewController<AddCardView, AddCardViewMo
     /// Callback with triggered event
     var eventTriggered: ((Event) -> Void)?
 
+    var keyboard: KeyboardHelper = KeyboardHelper()
     // MARK: Lifecycle
 
     deinit {
-        removeObservers()
+        keyboard.unregister()
     }
 
     /// - SeeAlso: BaseViewController.setupView
@@ -72,63 +70,7 @@ final class AddCardViewController: BaseViewController<AddCardView, AddCardViewMo
 
     /// - SeeAlso: BaseViewController.setupProperties
     override func setupProperties() {
-        addObservers()
-    }
-
-    // MARK: Handling appearance/disappearance of keyboard
-
-    @objc private func keyboardWillShow(_ notification: Notification) {
-        guard
-            let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
-            let keyboardAnimationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber,
-            let duration = TimeInterval(exactly: keyboardAnimationDuration)
-        else { return }
-        let keyboardRectangle = keyboardFrame.cgRectValue
-        let keyboardHeight = keyboardRectangle.height
-        customView.moveUpTableView(height: keyboardHeight)
-        UIView.animate(withDuration: duration) {
-            self.view.layoutIfNeeded()
-        }
-    }
-
-    @objc private func keyboardWillHide(_ notification: Notification) {
-        guard
-            let keyboardAnimationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber,
-            let duration = TimeInterval(exactly: keyboardAnimationDuration)
-        else { return }
-        customView.moveDownTableView()
-        UIView.animate(withDuration: duration) {
-            self.view.layoutIfNeeded()
-        }
-    }
-
-    private func addObservers() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
-    }
-
-    private func removeObservers() {
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
+        keyboard.register(target: self)
     }
 
     // MARK: Alerts
@@ -141,6 +83,22 @@ final class AddCardViewController: BaseViewController<AddCardView, AddCardViewMo
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Localizable.Alerts.okButton.text, style: .default, handler: completionHandler))
         present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: Handling appearance/disappearance of keyboard
+extension AddCardViewController: KeyboardHelperDelegate {
+    func keyboardChanged(size: CGSize, animationDuration: TimeInterval, isHidden: Bool) {
+        customView.adjustContentInsets(
+            UIEdgeInsets(
+                top: 0,
+                left: 0,
+                bottom: isHidden ? 0 : size.height,
+                right: 0)
+        )
+        UIView.animate(withDuration: animationDuration) {
+            self.view.layoutIfNeeded()
+        }
     }
 }
 

@@ -1,12 +1,10 @@
 //
 //  AddCardViewModel.swift
-//  SecureTradingUI
+//  Example
 //
 
-#if !COCOAPODS
 import SecureTradingCard
-import SecureTradingCore
-#endif
+//import SecureTradingCore
 import Foundation
 
 final class AddCardViewModel {
