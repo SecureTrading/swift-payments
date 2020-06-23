@@ -8,6 +8,8 @@ import SecureTradingCard
 import UIKit
 
 @objc public protocol InputValidation {
+    @objc var isEnabled: Bool { get set }
+    @objc var isInputValid: Bool { get }
     @objc func validate(silent: Bool) -> Bool
 }
 

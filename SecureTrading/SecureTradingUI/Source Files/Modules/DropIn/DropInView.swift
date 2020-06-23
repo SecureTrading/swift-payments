@@ -19,11 +19,11 @@ import UIKit
         CardNumberInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    @objc public private(set) lazy var expiryDateInput: ExpiryDateInputView = {
+    @objc public private(set) lazy var expiryDateInput: ExpiryDateInput = {
         ExpiryDateInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    @objc public private(set) lazy var cvcInput: CvcInputView = {
+    @objc public private(set) lazy var cvcInput: CvcInput = {
         CvcInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
@@ -156,8 +156,8 @@ extension DropInView: ViewSetupable {
     @objc func setupProperties() {
         cardNumberInput.cardNumberInputViewDelegate = self
         cardNumberInput.delegate = self
-        cvcInput.delegate = self
-        expiryDateInput.delegate = self
+        (cvcInput as? CvcInputView)?.delegate = self
+        (expiryDateInput as? ExpiryDateInputView)?.delegate = self
         cardNumberInput.becomeFirstResponder()
 
         customizeView(dropInViewStyleManager: dropInViewStyleManager)
@@ -191,12 +191,12 @@ extension DropInView: ViewSetupable {
 
 extension DropInView: CardNumberInputViewDelegate {
     public func cardNumberInputViewDidComplete(_ cardNumberInputView: CardNumberInputView) {
-        cvcInput.cardType = cardNumberInputView.cardType
+        (cvcInput as? CvcInputView)?.cardType = cardNumberInputView.cardType
         cvcInput.isEnabled = cardNumberInputView.isCVCRequired
     }
 
     public func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView) {
-        cvcInput.cardType = cardNumberInputView.cardType
+        (cvcInput as? CvcInputView)?.cardType = cardNumberInputView.cardType
         cvcInput.isEnabled = cardNumberInputView.isCVCRequired
     }
 }

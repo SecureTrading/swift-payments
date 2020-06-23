@@ -13,9 +13,9 @@ import UIKit
 
     @objc var cardNumberInput: CardNumberInputView { get }
 
-    @objc var expiryDateInput: ExpiryDateInputView { get }
+    @objc var expiryDateInput: ExpiryDateInput { get }
 
-    @objc var cvcInput: CvcInputView { get }
+    @objc var cvcInput: CvcInput { get }
 
     @objc var payButton: PayButton { get }
 }
