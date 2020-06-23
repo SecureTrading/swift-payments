@@ -5,7 +5,7 @@
 
 import UIKit
 
-public class BaseViewController<View: UIView, ViewModel>: UIViewController {
+public class BaseViewController<View: ViewProtocol, ViewModel>: UIViewController {
     /// Custom view of view controller.
     let customView: View
 

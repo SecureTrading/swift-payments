@@ -5,7 +5,10 @@
 
 import UIKit
 
-@objc public protocol DropInViewProtocol where Self: UIView {
+@objc public protocol ViewProtocol where Self: UIView {
+}
+
+@objc public protocol DropInViewProtocol: ViewProtocol {
 
     @objc init(dropInViewStyleManager: DropInViewStyleManager?)
 
@@ -22,6 +25,10 @@ import UIKit
     @objc var saveCardView: SaveCardOptionView { get }
 
     @objc var payButton: PayButton { get }
+
+    @objc func moveUpTableView(height: CGFloat)
+
+    @objc func moveDownTableView()
 
     //func customizeView(dropInViewStyleManager: DropInViewStyleManager?)
 

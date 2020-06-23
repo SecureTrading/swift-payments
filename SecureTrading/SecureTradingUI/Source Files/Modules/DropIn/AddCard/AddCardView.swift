@@ -5,7 +5,7 @@
 
 import UIKit
 
-@objc public final class AddCardView: BaseView {
+@objc public final class AddCardView: BaseView, ViewProtocol {
     @objc public var isFormValid: Bool {
         return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid
     }
