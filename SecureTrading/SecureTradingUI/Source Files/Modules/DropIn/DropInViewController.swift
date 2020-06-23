@@ -13,7 +13,6 @@ import UIKit
     @objc func updateJWT(newValue: String)
 }
 
-
 final class DropInViewController: BaseViewController<DropInViewProtocol, DropInViewModel> {
     /// Enum describing events that can be triggered by this controller
     enum Event {

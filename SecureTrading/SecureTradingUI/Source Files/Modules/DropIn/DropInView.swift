@@ -38,7 +38,7 @@ import UIKit
         return view
     }()
 
-    public lazy var stackView: UIStackView = {
+    @objc public lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, payButton])
         stackView.axis = .vertical
         stackView.spacing = spacingBeetwenInputViews
@@ -147,7 +147,7 @@ import UIKit
 
 extension DropInView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
-    @objc func setupProperties() {
+    @objc open func setupProperties() {
         (cardNumberInput as? CardNumberInputView)?.cardNumberInputViewDelegate = self
         (cardNumberInput as? CardNumberInputView)?.delegate = self
         (cvcInput as? CvcInputView)?.delegate = self
@@ -165,7 +165,7 @@ extension DropInView: ViewSetupable {
     }
 
     /// - SeeAlso: ViewSetupable.setupConstraints
-    func setupConstraints() {
+    @objc open func setupConstraints() {
         scrollView.addConstraints([
             equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: 0),
             equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: 0),

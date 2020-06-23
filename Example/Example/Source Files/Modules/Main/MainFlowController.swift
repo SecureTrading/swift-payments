@@ -9,6 +9,7 @@ import UIKit
 
 final class MainFlowController: BaseNavigationFlowController {
     // MARK: - Properties:
+
     var sdkFlowController: SDKFlowController!
     private var mainViewModel: MainViewModel?
 
@@ -45,7 +46,7 @@ final class MainFlowController: BaseNavigationFlowController {
                 [
                     MainViewModel.Row.presentWalletForm,
                     MainViewModel.Row.presentAddCardForm
-            ])
+                ])
         ]
 
         mainViewModel = MainViewModel(apiManager: appFoundation.apiManager, items: viewItems)
@@ -68,7 +69,6 @@ final class MainFlowController: BaseNavigationFlowController {
                 self.showAddCardView(jwt: jwt)
             case .payWithWalletRequest:
                 self.showWalletView()
-
             }
         }
         return mainViewController
@@ -92,7 +92,7 @@ final class MainFlowController: BaseNavigationFlowController {
 
         let customDropInView = DropInCustomView(dropInViewStyleManager: dropInViewStyleManager)
 
-        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: false, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: { [unowned self] _, cardReference in
+        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: true, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: { [unowned self] _, cardReference in
             Wallet.shared.add(card: cardReference)
             self.navigationController.popViewController(animated: true)
         }, transactionFailure: {}, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
@@ -102,15 +102,16 @@ final class MainFlowController: BaseNavigationFlowController {
             }
         })
 
-        // swiftlint:enable line_length
+        // triggered by UISwitch in SaveCardComponent view
+        customDropInView.saveCardComponentValueChanged = { [weak self] isSelected in
+            guard let self = self else { return }
+            // updates JWT with credentialsonfile flag
+            guard let updatedJWT = self.mainViewModel?.getJwtTokenWithoutCardData(storeCard: isSelected) else { return }
+            // update vc with new jwt
+            dropInVC.updateJWT(newValue: updatedJWT)
+        }
 
-//        // triggered by UISwitch in SaveCardComponent view
-//        customDropInView.saveCardComponent.valueChanged = { [weak self] isSelected in
-//            // updates JWT with credentialsonfile flag
-//            guard let updatedJWT = self?.mainViewModel?.getJwtTokenWithoutCardData(storeCard: isSelected) else { return }
-//            // update vc with new jwt
-//            dropInVC.updateJWT(newValue: updatedJWT)
-//        }
+        // swiftlint:enable line_length
 
         push(dropInVC.viewController, animated: true)
     }
