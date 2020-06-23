@@ -7,7 +7,7 @@ import UIKit
 
 public final class DropInCustomView: DropInView {
     
-    private(set) lazy var saveCardOptionView: SaveCardOptionView = {
+    var saveCardOptionView: SaveCardOptionView = {
         SaveCardOptionView()
     }()
 
