@@ -81,6 +81,18 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             )
         }
 
+        viewModel.showCardinalAuthenticationError = { [weak self] in
+            guard let self = self else { return }
+            self.customView.payButton.stopProcessing()
+            self.showAlert(
+                message: Localizable.DropInViewController.cardinalAuthenticationError.text,
+                completionHandler: { [weak self] _ in
+                    guard let self = self else { return }
+                    self.eventTriggered?(.transactionFailure)
+                }
+            )
+        }
+
         viewModel.cardinalWarningsCompletion = { [weak self] warningsMessage, warnings in
             guard let self = self else { return }
             self.eventTriggered?(.cardinalWarnings(warningsMessage, warnings))
@@ -186,5 +198,6 @@ private extension Localizable {
     enum DropInViewController: String, Localized {
         case title
         case successfulPayment
+        case cardinalAuthenticationError
     }
 }

@@ -35,6 +35,7 @@ PayButton.title = "Pay";
 
 DropInViewController.title = "Payment";
 DropInViewController.successfulPayment = "Successful payment transaction";
+DropInViewController.cardinalAuthenticationError = "An error occurred";
 
 Alerts.okButton = "Ok";
 
