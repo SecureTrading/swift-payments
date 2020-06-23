@@ -15,7 +15,7 @@ import UIKit
         set { payButton.onTap = newValue }
     }
 
-    @objc public private(set) lazy var cardNumberInput: CardNumberInputView = {
+    @objc public private(set) lazy var cardNumberInput: CardNumberInput = {
         CardNumberInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
@@ -154,8 +154,8 @@ import UIKit
 extension DropInView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
-        cardNumberInput.cardNumberInputViewDelegate = self
-        cardNumberInput.delegate = self
+        (cardNumberInput as? CardNumberInputView)?.cardNumberInputViewDelegate = self
+        (cardNumberInput as? CardNumberInputView)?.delegate = self
         (cvcInput as? CvcInputView)?.delegate = self
         (expiryDateInput as? ExpiryDateInputView)?.delegate = self
         cardNumberInput.becomeFirstResponder()

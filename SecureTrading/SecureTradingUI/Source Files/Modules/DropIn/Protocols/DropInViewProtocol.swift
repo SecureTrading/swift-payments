@@ -11,7 +11,7 @@ import UIKit
 
     @objc var payButtonTappedClosure: (() -> Void)? { get set }
 
-    @objc var cardNumberInput: CardNumberInputView { get }
+    @objc var cardNumberInput: CardNumberInput { get }
 
     @objc var expiryDateInput: ExpiryDateInput { get }
 

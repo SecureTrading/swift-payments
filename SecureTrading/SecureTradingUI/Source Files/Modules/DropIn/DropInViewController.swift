@@ -90,7 +90,7 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             switch error {
-            case .invalidPAN: self.customView.cardNumberInput.showHideError(show: true)
+            case .invalidPAN: (self.customView.cardNumberInput as? CardNumberInputView)?.showHideError(show: true)
             case .invalidSecurityCode: (self.customView.cvcInput as? CvcInputView)?.showHideError(show: true)
             case .invalidExpiryDate: (self.customView.expiryDateInput as? ExpiryDateInputView)?.showHideError(show: true)
             default: return
