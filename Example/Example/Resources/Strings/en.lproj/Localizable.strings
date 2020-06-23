@@ -18,6 +18,8 @@ MainViewModel.addCardReferenceButton = "Add card to Wallet";
 MainViewModel.payWithWalletButton = "Pay from Wallet";
 MainViewModel.merchantResponsibility = "Merchant responsibility";
 MainViewModel.sdkResponsibility = "ST SDK responsibility";
+MainViewModel.subscriptionOnSTEngine = "Subscription (Trust Payments Engine)";
+MainViewModel.subscriptionOnMerchantEngine = "Subscription (Merchant engine)";
 MainViewModel.showDropInControllerWithWarningsButton = "Pay by Card form (3DSecure & Cardinal warnings)";
 MainViewModel.showDropInControllerNo3DSecure = "Pay by Card form (no 3DSecure)";
 

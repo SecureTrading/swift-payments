@@ -32,6 +32,7 @@
     case invalidTermURL = 12_505
     case invalidParentTransactionReference = 12_506
     case invalidSiteReference = 12_507
+    case invalidSubscriptionNumber = 12_508
     case none = 12_500
 
     public var message: String {
@@ -43,6 +44,7 @@
         case .invalidTermURL: return "Term URL"
         case .invalidParentTransactionReference: return "Parent transaction reference"
         case .invalidSiteReference: return "Site reference"
+        case .invalidSubscriptionNumber: return "Subscription number"
         case .none: return "Unknown"
         }
     }
@@ -97,6 +99,7 @@
             case "termurl": return ResponseErrorDetail.invalidTermURL
             case "parenttransactionreference": return ResponseErrorDetail.invalidParentTransactionReference
             case "sitereference": return ResponseErrorDetail.invalidSiteReference
+            case "subscriptionnumber": return ResponseErrorDetail.invalidSubscriptionNumber
             default: return ResponseErrorDetail.none
             }
         default: return ResponseErrorDetail.none

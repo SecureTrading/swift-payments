@@ -34,7 +34,9 @@ final class MainFlowController: BaseNavigationFlowController {
                     MainViewModel.Row.showDropInControllerNo3DSecure,
                     MainViewModel.Row.performAccountCheck,
                     MainViewModel.Row.performAccountCheckWithAuth,
-                    MainViewModel.Row.presentAddCardForm
+                    MainViewModel.Row.presentAddCardForm,
+                    MainViewModel.Row.subscriptionOnSTEngine,
+                    MainViewModel.Row.subscriptionOnMerchantEngine
                 ]),
             MainViewModel.Section.onMerchant(rows: [MainViewModel.Row.presentWalletForm])
         ]

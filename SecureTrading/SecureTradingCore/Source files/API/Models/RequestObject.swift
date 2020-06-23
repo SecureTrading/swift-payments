@@ -9,17 +9,15 @@
     case threeDQuery
     case accountCheck
     case jsInit
+    case subscription
 
     public var value: String {
         switch self {
-        case .auth:
-            return "AUTH"
-        case .threeDQuery:
-            return "THREEDQUERY"
-        case .accountCheck:
-            return "ACCOUNTCHECK"
-        case .jsInit:
-            return "JSINIT"
+        case .auth: return TypeDescription.auth.rawValue
+        case .threeDQuery: return TypeDescription.threeDQuery.rawValue
+        case .accountCheck: return TypeDescription.accountCheck.rawValue
+        case .jsInit: return TypeDescription.jsInit.rawValue
+        case .subscription: return TypeDescription.subscription.rawValue
         }
     }
 }
@@ -29,6 +27,7 @@ public enum TypeDescription: String, Codable {
     case threeDQuery = "THREEDQUERY"
     case accountCheck = "ACCOUNTCHECK"
     case jsInit = "JSINIT"
+    case subscription = "SUBSCRIPTION"
 
     var code: Int {
         switch self {
@@ -36,6 +35,7 @@ public enum TypeDescription: String, Codable {
         case .threeDQuery: return TypeDescriptionObjc.threeDQuery.rawValue
         case .accountCheck: return TypeDescriptionObjc.accountCheck.rawValue
         case .jsInit: return TypeDescriptionObjc.jsInit.rawValue
+        case .subscription: return TypeDescriptionObjc.subscription.rawValue
         }
     }
 }
