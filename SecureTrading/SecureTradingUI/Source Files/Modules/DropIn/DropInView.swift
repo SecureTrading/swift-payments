@@ -6,8 +6,16 @@
 import UIKit
 
 @objc open class DropInView: BaseView, DropInViewProtocol {
+
+    // todo comment
+    @objc public var isAdditionalValidationConditionsFullfiled: Bool = true {
+        didSet {
+            payButton.isEnabled = isFormValid
+        }
+    }
+
     @objc public var isFormValid: Bool {
-        return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid
+        return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid && isAdditionalValidationConditionsFullfiled
     }
 
     @objc public var payButtonTappedClosure: (() -> Void)? {

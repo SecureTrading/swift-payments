@@ -335,7 +335,7 @@ final class DropInViewModel {
         let cardNumberValidationResult = view.cardNumberInput.validate(silent: false)
         let expiryDateValidationResult = view.expiryDateInput.validate(silent: false)
         let cvcValidationResult = view.cvcInput.validate(silent: false)
-        return cardNumberValidationResult && expiryDateValidationResult && cvcValidationResult
+        return cardNumberValidationResult && expiryDateValidationResult && cvcValidationResult && view.isFormValid
     }
 
     // MARK: Helpers
