@@ -47,9 +47,9 @@ final class MainFlowController: BaseNavigationFlowController {
                     MainViewModel.Row.presentAddCardForm
             ])
         ]
-        let viewModel = MainViewModel(apiManager: appFoundation.apiManager, items: viewItems)
-        mainViewModel = viewModel
-        let mainViewController = MainViewController(view: MainView(), viewModel: viewModel)
+
+        mainViewModel = MainViewModel(apiManager: appFoundation.apiManager, items: viewItems)
+        let mainViewController = MainViewController(view: MainView(), viewModel: mainViewModel!)
         mainViewController.eventTriggered = { [unowned self] event in
             switch event {
             case .didTapShowTestMainScreen:
@@ -103,10 +103,11 @@ final class MainFlowController: BaseNavigationFlowController {
             }
         })
 
+        // triggered by UISwitch in SaveCardComponent view
         saveCardComponent.valueChanged = { [weak self] isSelected in
+            // updates JWT with credentialsonfile flag
             guard let updatedJWT = self?.mainViewModel?.getJwtTokenWithoutCardData(storeCard: isSelected) else { return }
             // update vc with new jwt
-            print(updatedJWT)
             dropInVC.updateJWT(newValue: updatedJWT)
         }
 
