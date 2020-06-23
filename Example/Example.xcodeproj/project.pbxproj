@@ -69,6 +69,7 @@
 		1050AB892490FF97001844BF /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB882490FF97001844BF /* WalletViewController.swift */; };
 		1050AB8B2490FFE1001844BF /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB8A2490FFE1001844BF /* WalletView.swift */; };
 		1050AB8D2491000B001844BF /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050AB8C2491000B001844BF /* WalletViewModel.swift */; };
+		1054A99A24A218F7002B5125 /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1054A99924A218F7002B5125 /* KeyboardHelper.swift */; };
 		1094352D24A08A3E00C3712B /* SaveCardOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1094352C24A08A3E00C3712B /* SaveCardOptionView.swift */; };
 		1098F3A1247CF4B300414F94 /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; };
 		1098F3A2247CF4B300414F94 /* SecureTradingCard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -185,6 +186,7 @@
 		1050AB882490FF97001844BF /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		1050AB8A2490FFE1001844BF /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
 		1050AB8C2491000B001844BF /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
+		1054A99924A218F7002B5125 /* KeyboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
 		1094352C24A08A3E00C3712B /* SaveCardOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCardOptionView.swift; sourceTree = "<group>"; };
 		1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SecureTradingCard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10C4A29B249D0A4500C1E8E9 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 		08639C5C2469681E00C8F90A /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				1054A99924A218F7002B5125 /* KeyboardHelper.swift */,
 				08639C5D2469681E00C8F90A /* CallbackWrapper.swift */,
 				104CFB00246EADA800D7C76D /* JWTHelper.swift */,
 			);
@@ -816,6 +819,7 @@
 				08639C6C2469681E00C8F90A /* TransparentNavigationBar.swift in Sources */,
 				08639C652469681E00C8F90A /* Colors.swift in Sources */,
 				08639C602469681E00C8F90A /* BaseViewCell.swift in Sources */,
+				1054A99A24A218F7002B5125 /* KeyboardHelper.swift in Sources */,
 				08639C752469685500C8F90A /* Localizable.swift in Sources */,
 				08639C6B2469681E00C8F90A /* PopBackView.swift in Sources */,
 				104CFB01246EADA800D7C76D /* JWTHelper.swift in Sources */,

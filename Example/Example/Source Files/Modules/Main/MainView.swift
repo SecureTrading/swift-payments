@@ -84,7 +84,7 @@ extension MainView: ViewSetupable {
     func setupConstraints() {
         tableView.addConstraints([
             equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: 0),
-            equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            equal(highlightViewsControl, \.bottomAnchor, \.topAnchor, constant: -10),
             equal(self, \.leadingAnchor, constant: 0),
             equal(self, \.trailingAnchor, constant: 0)
         ])
