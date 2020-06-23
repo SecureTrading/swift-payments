@@ -73,7 +73,7 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         }
         customView.addCardReferenceRequest = { [weak self] in
             guard let self = self else { return }
-            guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
+            guard let jwt = self.viewModel.getJwtTokenWithoutCardData(storeCard: true) else { return }
             self.eventTriggered?(.didTapAddCard(jwt))
         }
         customView.payWithWalletRequest = { [weak self] in
@@ -84,6 +84,15 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             guard let self = self else { return }
             guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
             self.eventTriggered?(.didTapShowDropInControllerNoThreeDQuery(jwt))
+        }
+        customView.subscriptionOnSTEngineRequest = { [weak self] in
+            self?.viewModel.performSubscriptionOnSTEngine()
+        }
+        customView.subscriptionOnMerchantEngineRequest = { [weak self] in
+            self?.viewModel.performSubscriptionOnMerchantEngine()
+        }
+        customView.showMoreInformation = { [weak self] infoString in
+            self?.showAlert(message: infoString)
         }
 
         viewModel.showAuthSuccess = { [weak self] _ in

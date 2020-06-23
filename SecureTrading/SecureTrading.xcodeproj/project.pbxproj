@@ -101,7 +101,6 @@
 		10402BEA247E64480027CEEA /* TestGatewayEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10402BE9247E64480027CEEA /* TestGatewayEndpoint.swift */; };
 		1040C6F22477C503004B9DEA /* KnownCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040C6F12477C503004B9DEA /* KnownCards.swift */; };
 		1040C6F42477CD95004B9DEA /* TestCardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1040C6F32477CD95004B9DEA /* TestCardType.swift */; };
-		1045B82E24978AE600105BC4 /* SaveCardOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045B82D24978AE600105BC4 /* SaveCardOptionView.swift */; };
 		104861FC247BF41E0053209D /* ClosedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104861FB247BF41E0053209D /* ClosedRange.swift */; };
 		104861FE247BF47E0053209D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104861FD247BF47E0053209D /* String.swift */; };
 		10486200247BF4B20053209D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104861FF247BF4B20053209D /* Array.swift */; };
@@ -115,9 +114,6 @@
 		104CFB28246ECE3A00D7C76D /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08E4FA6A2462A5EC00837339 /* SecureTradingCore.framework */; };
 		104CFB2D246ECF2F00D7C76D /* ST3DSecureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */; };
 		105073F72489AA760036F7AD /* ResponseValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105073F62489AA760036F7AD /* ResponseValidator.swift */; };
-		1050A94B248FDB1900E84A6D /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A94A248FDB1900E84A6D /* AddCardViewController.swift */; };
-		1050A94D248FDBE400E84A6D /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A94C248FDBE400E84A6D /* AddCardView.swift */; };
-		1050A94F248FDD4700E84A6D /* AddCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A94E248FDD4700E84A6D /* AddCardViewModel.swift */; };
 		1050A951248FE2F100E84A6D /* RequestButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A950248FE2F100E84A6D /* RequestButton.swift */; };
 		1050A953248FE3F800E84A6D /* RequestButtonStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A952248FE3F800E84A6D /* RequestButtonStyleManager.swift */; };
 		1050A955248FE5A900E84A6D /* AddCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A954248FE5A900E84A6D /* AddCardButton.swift */; };
@@ -132,6 +128,7 @@
 		1092CF482476CA1F0002B2E8 /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1092CF3F2476CA1F0002B2E8 /* SecureTradingCard.framework */; platformFilter = ios; };
 		1092CF4F2476CA1F0002B2E8 /* SecureTradingCard.h in Headers */ = {isa = PBXBuildFile; fileRef = 1092CF412476CA1F0002B2E8 /* SecureTradingCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1092CF5A2476CAFF0002B2E8 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1092CF592476CAFF0002B2E8 /* CardType.swift */; };
+		1094352F24A0DFE600C3712B /* UIPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1094352E24A0DFE600C3712B /* UIPresentable.swift */; };
 		1098F3A4247D3E0B00414F94 /* CardLogo.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1098F3A3247D3E0B00414F94 /* CardLogo.xcassets */; };
 		1098F3A6247D579600414F94 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3A5247D579600414F94 /* Date.swift */; };
 		1098F3A8247D5D2200414F94 /* TestExpiryDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098F3A7247D5D2200414F94 /* TestExpiryDate.swift */; };
@@ -314,7 +311,6 @@
 		10402BE9247E64480027CEEA /* TestGatewayEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGatewayEndpoint.swift; sourceTree = "<group>"; };
 		1040C6F12477C503004B9DEA /* KnownCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownCards.swift; sourceTree = "<group>"; };
 		1040C6F32477CD95004B9DEA /* TestCardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardType.swift; sourceTree = "<group>"; };
-		1045B82D24978AE600105BC4 /* SaveCardOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCardOptionView.swift; sourceTree = "<group>"; };
 		104861FB247BF41E0053209D /* ClosedRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRange.swift; sourceTree = "<group>"; };
 		104861FD247BF47E0053209D /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		104861FF247BF4B20053209D /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
@@ -329,9 +325,6 @@
 		104CFB18246ECD8000D7C76D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ST3DSecureManager.swift; sourceTree = "<group>"; };
 		105073F62489AA760036F7AD /* ResponseValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseValidator.swift; sourceTree = "<group>"; };
-		1050A94A248FDB1900E84A6D /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
-		1050A94C248FDBE400E84A6D /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
-		1050A94E248FDD4700E84A6D /* AddCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewModel.swift; sourceTree = "<group>"; };
 		1050A950248FE2F100E84A6D /* RequestButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestButton.swift; sourceTree = "<group>"; };
 		1050A952248FE3F800E84A6D /* RequestButtonStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestButtonStyleManager.swift; sourceTree = "<group>"; };
 		1050A954248FE5A900E84A6D /* AddCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardButton.swift; sourceTree = "<group>"; };
@@ -349,6 +342,7 @@
 		1092CF472476CA1F0002B2E8 /* SecureTradingCardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecureTradingCardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1092CF4E2476CA1F0002B2E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1092CF592476CAFF0002B2E8 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
+		1094352E24A0DFE600C3712B /* UIPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPresentable.swift; sourceTree = "<group>"; };
 		1098F3A3247D3E0B00414F94 /* CardLogo.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CardLogo.xcassets; sourceTree = "<group>"; };
 		1098F3A5247D579600414F94 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		1098F3A7247D5D2200414F94 /* TestExpiryDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExpiryDate.swift; sourceTree = "<group>"; };
@@ -439,7 +433,6 @@
 		0818DE3D2486598700A8B25A /* DropIn */ = {
 			isa = PBXGroup;
 			children = (
-				1050A949248FDAA900E84A6D /* AddCard */,
 				0818DE3E248659A800A8B25A /* DropInView.swift */,
 				0818DE40248659B800A8B25A /* DropInViewModel.swift */,
 				0818DE42248659C900A8B25A /* DropInViewController.swift */,
@@ -537,6 +530,7 @@
 				084E2A0F246599D90040FB9D /* NavigationFlowController.swift */,
 				084E2A11246599FC0040FB9D /* NavigationDelegate.swift */,
 				084D7DC52480D6BE002E43BC /* SecureFormInputView.swift */,
+				1094352E24A0DFE600C3712B /* UIPresentable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -630,7 +624,6 @@
 				0818DE44248680D900A8B25A /* PayButton.swift */,
 				1050A950248FE2F100E84A6D /* RequestButton.swift */,
 				1050A954248FE5A900E84A6D /* AddCardButton.swift */,
-				1045B82D24978AE600105BC4 /* SaveCardOptionView.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -916,16 +909,6 @@
 				104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */,
 			);
 			path = "Source files";
-			sourceTree = "<group>";
-		};
-		1050A949248FDAA900E84A6D /* AddCard */ = {
-			isa = PBXGroup;
-			children = (
-				1050A94A248FDB1900E84A6D /* AddCardViewController.swift */,
-				1050A94C248FDBE400E84A6D /* AddCardView.swift */,
-				1050A94E248FDD4700E84A6D /* AddCardViewModel.swift */,
-			);
-			path = AddCard;
 			sourceTree = "<group>";
 		};
 		1092CF402476CA1F0002B2E8 /* SecureTradingCard */ = {
@@ -1420,9 +1403,9 @@
 				0818DE5B2488E36200A8B25A /* InputViewStyleManager.swift in Sources */,
 				0818DE45248680D900A8B25A /* PayButton.swift in Sources */,
 				08886ED2247C0D9A00BC1637 /* CardNumberInputView.swift in Sources */,
+				1094352F24A0DFE600C3712B /* UIPresentable.swift in Sources */,
 				084E29FF246583E20040FB9D /* Dequeueable.swift in Sources */,
 				08886ED9247C1AE500BC1637 /* CardTypeContainer.swift in Sources */,
-				1050A94D248FDBE400E84A6D /* AddCardView.swift in Sources */,
 				084E2A1D24659D6B0040FB9D /* TransparentNavigationBar.swift in Sources */,
 				10DBCEBC24990EC4005865B0 /* StyleManager.swift in Sources */,
 				0853ACA7247FB00F00DF37EE /* CvcInputView.swift in Sources */,
@@ -1438,16 +1421,13 @@
 				084E2A03246585330040FB9D /* UICollectionView.swift in Sources */,
 				1050A953248FE3F800E84A6D /* RequestButtonStyleManager.swift in Sources */,
 				0853ACAC247FF15700DF37EE /* ExpiryDateInputView.swift in Sources */,
-				1050A94F248FDD4700E84A6D /* AddCardViewModel.swift in Sources */,
 				084E29FD246583B50040FB9D /* BaseViewCell.swift in Sources */,
 				0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */,
 				084D7DC62480D6BE002E43BC /* SecureFormInputView.swift in Sources */,
 				084E2A1624659AC50040FB9D /* BaseNavigationFlowController.swift in Sources */,
 				084E29EE24656D7F0040FB9D /* BaseView.swift in Sources */,
-				1050A94B248FDB1900E84A6D /* AddCardViewController.swift in Sources */,
 				08886ED5247C107200BC1637 /* CardNumberFormat.swift in Sources */,
 				084E2A0E246599B70040FB9D /* FlowController.swift in Sources */,
-				1045B82E24978AE600105BC4 /* SaveCardOptionView.swift in Sources */,
 				084E29EC24656B4E0040FB9D /* CallbackWrapper.swift in Sources */,
 				1050A951248FE2F100E84A6D /* RequestButton.swift in Sources */,
 				084E29F4246571B10040FB9D /* TestMainView.swift in Sources */,
