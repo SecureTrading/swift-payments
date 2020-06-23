@@ -91,9 +91,10 @@ final class MainFlowController: BaseNavigationFlowController {
         let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: inputViewStyleManager, requestButtonStyleManager: payButtonStyleManager, backgroundColor: .white, spacingBeetwenInputViews: 25, insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
         // swiftlint:disable line_length
 
-        let saveCardComponent = SaveCardOptionView()
+        //let saveCardComponent = SaveCardOptionView()
+        let customDropInView = DropInCustomView(dropInViewStyleManager: nil, customView: nil)
 
-        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: false, dropInViewStyleManager: dropInViewStyleManager, customView: saveCardComponent, successfulPaymentCompletion: { [unowned self] _, cardReference in
+        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: false, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, customView: nil, successfulPaymentCompletion: { [unowned self] _, cardReference in
             Wallet.shared.add(card: cardReference)
             self.navigationController.popViewController(animated: true)
         }, transactionFailure: {}, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
@@ -103,13 +104,13 @@ final class MainFlowController: BaseNavigationFlowController {
             }
         })
 
-        // triggered by UISwitch in SaveCardComponent view
-        saveCardComponent.valueChanged = { [weak self] isSelected in
-            // updates JWT with credentialsonfile flag
-            guard let updatedJWT = self?.mainViewModel?.getJwtTokenWithoutCardData(storeCard: isSelected) else { return }
-            // update vc with new jwt
-            dropInVC.updateJWT(newValue: updatedJWT)
-        }
+//        // triggered by UISwitch in SaveCardComponent view
+//        saveCardComponent.valueChanged = { [weak self] isSelected in
+//            // updates JWT with credentialsonfile flag
+//            guard let updatedJWT = self?.mainViewModel?.getJwtTokenWithoutCardData(storeCard: isSelected) else { return }
+//            // update vc with new jwt
+//            dropInVC.updateJWT(newValue: updatedJWT)
+//        }
 
         push(dropInVC.viewController, animated: true)
     }

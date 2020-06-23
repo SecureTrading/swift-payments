@@ -5,7 +5,7 @@
 
 import UIKit
 
-@objc public final class DropInView: BaseView, DropInViewProtocol {
+@objc open class DropInView: BaseView, DropInViewProtocol {
     @objc public var isFormValid: Bool {
         return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid
     }
@@ -31,7 +31,7 @@ import UIKit
     @objc public var customView: UIView?
 
     @objc public private(set) lazy var payButton: PayButtonProtocol = {
-        let styleManager = dropInViewStyleManager?.requestButtonStyleManager as? PayButtonStyleManager 
+        let styleManager = dropInViewStyleManager?.requestButtonStyleManager as? PayButtonStyleManager
         return PayButton(payButtonStyleManager: styleManager)
     }()
 
@@ -41,8 +41,8 @@ import UIKit
         return view
     }()
 
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, customView, payButton].compactMap { $0 } )
+    public lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, customView, payButton].compactMap { $0 })
         stackView.axis = .vertical
         stackView.spacing = spacingBeetwenInputViews
         stackView.alignment = .fill
@@ -87,7 +87,7 @@ import UIKit
         super.init()
     }
 
-    required init?(coder _: NSCoder) {
+    public required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -162,7 +162,7 @@ extension DropInView: ViewSetupable {
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
-    func setupViewHierarchy() {
+    @objc open func setupViewHierarchy() {
         stackContainer.addSubview(stackView)
         scrollView.addSubview(stackContainer)
         addSubviews([scrollView])
