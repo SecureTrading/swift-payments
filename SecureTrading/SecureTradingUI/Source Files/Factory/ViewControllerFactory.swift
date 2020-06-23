@@ -83,11 +83,12 @@ import UIKit
     ///   - customDropInView: DropInViewProtocol compliant view (for example, to add some additional fields such as address, tip)
     /// - Returns: instance of DropInViewController
     @objc public func dropInViewController(jwt: String, typeDescriptions: [Int] = [1, 0], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, customDropInView: DropInViewProtocol? = nil, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping (ResponseSettleStatus, STCardReference?) -> Void, transactionFailure: @escaping () -> Void, cardinalWarningsCompletion: ((String, [Int]) -> Void)? = nil) -> DropInController {
+
         let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
         let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
 
         // swiftlint:disable line_length
-        return self.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: successfulPaymentCompletion, transactionFailure: transactionFailure, cardinalWarningsCompletion: { warningsMessage, warnings in
+        return self.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, customView: nil, successfulPaymentCompletion: successfulPaymentCompletion, transactionFailure: transactionFailure, cardinalWarningsCompletion: { warningsMessage, warnings in
 
             cardinalWarningsCompletion?(warningsMessage, warnings.map { $0.rawValue })
         })
