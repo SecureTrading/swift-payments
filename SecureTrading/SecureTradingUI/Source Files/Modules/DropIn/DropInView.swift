@@ -30,10 +30,8 @@ import UIKit
     // A custom view provided by merchant
     @objc public var customView: UIView?
 
-    @objc public private(set) lazy var payButton: PayButton = {
-        guard let styleManager = dropInViewStyleManager?.requestButtonStyleManager as? PayButtonStyleManager else {
-            fatalError("Expected style manager of type PayButtonStyleManager")
-        }
+    @objc public private(set) lazy var payButton: PayButtonProtocol = {
+        let styleManager = dropInViewStyleManager?.requestButtonStyleManager as? PayButtonStyleManager 
         return PayButton(payButtonStyleManager: styleManager)
     }()
 

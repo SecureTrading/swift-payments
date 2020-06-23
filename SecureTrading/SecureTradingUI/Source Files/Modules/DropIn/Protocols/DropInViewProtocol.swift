@@ -17,5 +17,5 @@ import UIKit
 
     @objc var cvcInput: CvcInput { get }
 
-    @objc var payButton: PayButton { get }
+    @objc var payButton: PayButtonProtocol { get }
 }
