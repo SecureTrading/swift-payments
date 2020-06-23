@@ -1,1 +1,2 @@
-github "SecureTrading/swift-payments" "192fa51d355e80008ced3f46c0c6c5cce4b2a98b"
+binary "https://raw.githubusercontent.com/SecureTrading/swift-payments/cardinalTest/SecureTrading/Cardinal/CardinalMobile.json" "2.2.3"
+github "SecureTrading/swift-payments" "f19b1708b5562c9ca57fe178f498c4eb0357843e"

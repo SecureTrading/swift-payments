@@ -118,6 +118,7 @@ extension WalletView: UITableViewDataSource, UITableViewDelegate {
                        equal(header, \.leadingAnchor, \.leadingAnchor, constant: 20),
                        equal(header, \.trailingAnchor, \.trailingAnchor, constant: -20)
                    ])
+            header.highlightIfNeeded()
             return header
         }
         return nil

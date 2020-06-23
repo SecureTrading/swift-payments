@@ -101,7 +101,8 @@ final class DropInViewModel {
     ///   - transactionError: failure closure (general error)
     ///   - validationError: failure closure (card validation error)
     func makePaymentRequest(request: RequestObject, success: @escaping ((JWTResponseObject) -> Void), transactionError: @escaping ((String) -> Void), validationError: @escaping ((ResponseErrorDetail) -> Void)) {
-        self.apiManager.makeGeneralRequest(jwt: self.jwt, request: request, success: { responseObject, _ in
+        self.apiManager.makeGeneralRequest(jwt: self.jwt, request: request, success: { responseObject, _, newJWT in
+            self.jwt = newJWT
             switch responseObject.responseErrorCode {
             case .successful:
                 success(responseObject)
@@ -160,8 +161,9 @@ final class DropInViewModel {
     private func makeJSInitRequest(completion: @escaping ((String) -> Void), failure: @escaping ((String) -> Void)) {
         let jsInitRequest = RequestObject(typeDescriptions: [.jsInit], requestId: self.requestId)
 
-        self.apiManager.makeGeneralRequest(jwt: self.jwt, request: jsInitRequest, success: { [weak self] responseObject, _ in
+        self.apiManager.makeGeneralRequest(jwt: self.jwt, request: jsInitRequest, success: { [weak self] responseObject, _, newJWT in
             guard let self = self else { return }
+            self.jwt = newJWT
             switch responseObject.responseErrorCode {
             case .successful:
                 self.jsInitCacheToken = responseObject.cacheToken!
@@ -219,7 +221,9 @@ final class DropInViewModel {
         // bypass 3dsecure
         guard let cardEnrolled = responseObject.cardEnrolled, responseObject.acsUrl != nil, cardEnrolled == "Y" else {
             let tempTypeDescription = self.typeDescriptions.filter { $0 != .threeDQuery }
+            // swiftlint:disable line_length
             let request = RequestObject(typeDescriptions: tempTypeDescription, requestId: self.requestId, cardNumber: self.card?.cardNumber.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate.rawValue, cacheToken: self.jsInitCacheToken)
+            // swiftlint:enable line_length
 
             self.makePaymentRequest(request: request, success: { [weak self] responseObject in
                 guard let self = self else { return }

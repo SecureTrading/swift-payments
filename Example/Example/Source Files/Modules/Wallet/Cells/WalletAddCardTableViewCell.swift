@@ -20,5 +20,6 @@ final class WalletAddCardTableViewCell: UITableViewCell {
     func configure(title: String) {
         textLabel?.text = title
         accessoryType = .disclosureIndicator
+        self.highlightIfNeeded()
     }
 }

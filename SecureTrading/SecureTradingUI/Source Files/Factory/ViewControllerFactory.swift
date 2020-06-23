@@ -97,6 +97,7 @@ import UIKit
     ///   - isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment - default behaviour)
     ///   - isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
     ///   - cardinalWarningsCompletion: Closure triggered when warnings are detected by the Cardinal (e.g. is the device jailbroken)
+    ///   - transactionFailure: Closure triggered by pressing the button in the failure payment alert
     /// - Returns: instance of DropInViewController
     @objc public func dropInViewController(jwt: String, typeDescriptions: [Int] = [1, 0], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping (ResponseSettleStatus, STCardReference?) -> Void, transactionFailure: @escaping () -> Void, cardinalWarningsCompletion: ((String, [Int]) -> Void)? = nil) -> DropInController {
         let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }

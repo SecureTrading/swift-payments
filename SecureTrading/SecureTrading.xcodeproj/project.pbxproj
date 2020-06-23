@@ -56,7 +56,6 @@
 		08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3C2469591400C8F90A /* ViewModelFactory.swift */; };
 		08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */; };
 		08648A4D248FA8C300EE1E95 /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */; };
-		08648A4E248FA8C300EE1E95 /* CardinalMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		08694877246924F900F625D0 /* TestMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694876246924F900F625D0 /* TestMainViewModel.swift */; };
 		08694879246925EA00F625D0 /* TestMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694878246925EA00F625D0 /* TestMainViewController.swift */; };
 		0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869487A246926FE00F625D0 /* TestMainFlowController.swift */; };
@@ -149,6 +148,7 @@
 		109951A524867E9400E8E401 /* TextCVCInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A424867E9400E8E401 /* TextCVCInputView.swift */; };
 		109951A724867F2B00E8E401 /* TestCardInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A624867F2B00E8E401 /* TestCardInputView.swift */; };
 		109951A92486A53A00E8E401 /* TestCardTypeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109951A82486A53A00E8E401 /* TestCardTypeContainer.swift */; };
+		10DBCEBC24990EC4005865B0 /* StyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DBCEBB24990EC4005865B0 /* StyleManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,20 +216,6 @@
 			remoteInfo = SecureTradingCard;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		104CFB33246ED48600D7C76D /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				08648A4E248FA8C300EE1E95 /* CardinalMobile.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0818DE3924851BDE00A8B25A /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
@@ -381,6 +367,7 @@
 		109951A424867E9400E8E401 /* TextCVCInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCVCInputView.swift; sourceTree = "<group>"; };
 		109951A624867F2B00E8E401 /* TestCardInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardInputView.swift; sourceTree = "<group>"; };
 		109951A82486A53A00E8E401 /* TestCardTypeContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardTypeContainer.swift; sourceTree = "<group>"; };
+		10DBCEBB24990EC4005865B0 /* StyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -484,6 +471,7 @@
 				08C1E8082489207E007496D9 /* DropInViewStyleManager.swift */,
 				1050A952248FE3F800E84A6D /* RequestButtonStyleManager.swift */,
 				1050A956248FE61800E84A6D /* AddCardButtonStyleManager.swift */,
+				10DBCEBB24990EC4005865B0 /* StyleManager.swift */,
 			);
 			path = "Style managers";
 			sourceTree = "<group>";
@@ -1131,7 +1119,6 @@
 				104CFB05246ECD7F00D7C76D /* Sources */,
 				104CFB06246ECD7F00D7C76D /* Frameworks */,
 				104CFB07246ECD7F00D7C76D /* Resources */,
-				104CFB33246ED48600D7C76D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1452,6 +1439,7 @@
 				08886ED9247C1AE500BC1637 /* CardTypeContainer.swift in Sources */,
 				1050A94D248FDBE400E84A6D /* AddCardView.swift in Sources */,
 				084E2A1D24659D6B0040FB9D /* TransparentNavigationBar.swift in Sources */,
+				10DBCEBC24990EC4005865B0 /* StyleManager.swift in Sources */,
 				0853ACA7247FB00F00DF37EE /* CvcInputView.swift in Sources */,
 				084E2A062465874B0040FB9D /* Localizable.swift in Sources */,
 				084E2A12246599FC0040FB9D /* NavigationDelegate.swift in Sources */,
@@ -2105,18 +2093,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4L3BAVLUDD;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
-					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
-					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = SecureTrading3DSecure/Info.plist;
@@ -2130,6 +2115,7 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTrading3DSecure;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2142,18 +2128,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4L3BAVLUDD;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
-					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
-					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = SecureTrading3DSecure/Info.plist;
@@ -2167,6 +2150,7 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTrading3DSecure;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2179,18 +2163,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4L3BAVLUDD;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
-					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
-					"$(PROJECT_DIR)/SecureTrading3DSecure/Source\\ files",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = SecureTrading3DSecure/Info.plist;
@@ -2204,6 +2185,7 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTrading3DSecure;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
@@ -2275,10 +2257,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4L3BAVLUDD;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2293,6 +2275,7 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTradingCard;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2305,10 +2288,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4L3BAVLUDD;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2323,6 +2306,7 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTradingCard;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2335,10 +2319,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 4L3BAVLUDD;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2353,6 +2337,7 @@
 				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.securetrading.SecureTradingCard;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;

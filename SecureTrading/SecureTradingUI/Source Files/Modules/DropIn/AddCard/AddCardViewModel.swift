@@ -55,7 +55,7 @@ final class AddCardViewModel {
 
         let authRequest = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
 
-        self.apiManager.makeGeneralRequest(jwt: self.jwt, request: authRequest, success: { [weak self] responseObject, _ in
+        self.apiManager.makeGeneralRequest(jwt: self.jwt, request: authRequest, success: { [weak self] responseObject, _, _ in
             guard let self = self else { return }
             switch responseObject.responseErrorCode {
             case .successful:
@@ -72,6 +72,8 @@ final class AddCardViewModel {
                     switch errorCode {
                     case .invalidPAN, .invalidSecurityCode, .invalidExpiryDate:
                         self.showValidationError?(errorCode)
+                    case .invalidParentTransactionReference, .invalidSiteReference:
+                        self.showAuthError?(responseError.localizedDescription)
                     default: self.showAuthError?(error.humanReadableDescription)
                     }
 

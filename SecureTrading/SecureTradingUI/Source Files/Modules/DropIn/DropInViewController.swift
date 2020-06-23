@@ -4,12 +4,10 @@
 //
 
 #if !COCOAPODS
+import SecureTrading3DSecure
 import SecureTradingCore
 #endif
 import UIKit
-#if !COCOAPODS
-import SecureTrading3DSecure
-#endif
 
 @objc public protocol DropInController: UIPresentable {
     @objc func updateJWT(newValue: String)
@@ -26,6 +24,17 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
 
     /// Callback with triggered event
     var eventTriggered: ((Event) -> Void)?
+
+    // MARK: Lifecycle
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.handleCardinalWarnings()
+    }
+
+    deinit {
+        removeObservers()
+    }
 
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
@@ -63,10 +72,13 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
         viewModel.showTransactionError = { [weak self] error in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
-            self.showAlert(message: error, completionHandler: { [weak self] _ in
-                guard let self = self else { return }
-                self.eventTriggered?(.transactionFailure)
-            })
+            self.showAlert(
+                message: error,
+                completionHandler: { [weak self] _ in
+                    guard let self = self else { return }
+                    self.eventTriggered?(.transactionFailure)
+                }
+            )
         }
 
         viewModel.cardinalWarningsCompletion = { [weak self] warningsMessage, warnings in
@@ -87,11 +99,64 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
     }
 
     /// - SeeAlso: BaseViewController.setupProperties
-    override func setupProperties() {}
+    override func setupProperties() {
+        addObservers()
+    }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.handleCardinalWarnings()
+    // MARK: Handling appearance/disappearance of keyboard
+
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        guard
+            let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+            let keyboardAnimationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber,
+            let duration = TimeInterval(exactly: keyboardAnimationDuration)
+        else { return }
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+        customView.moveUpTableView(height: keyboardHeight)
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        guard
+            let keyboardAnimationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber,
+            let duration = TimeInterval(exactly: keyboardAnimationDuration)
+        else { return }
+        customView.moveDownTableView()
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    private func addObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
     }
 
     // MARK: Alerts
