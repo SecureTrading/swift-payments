@@ -14,6 +14,12 @@ final class AddCardViewController: BaseViewController<AddCardView, AddCardViewMo
     /// Callback with triggered event
     var eventTriggered: ((Event) -> Void)?
 
+    // MARK: Lifecycle
+
+    deinit {
+        removeObservers()
+    }
+
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
         title = Localizable.AddCardViewController.title.text
@@ -62,7 +68,65 @@ final class AddCardViewController: BaseViewController<AddCardView, AddCardViewMo
     }
 
     /// - SeeAlso: BaseViewController.setupProperties
-    override func setupProperties() {}
+    override func setupProperties() {
+        addObservers()
+    }
+
+    // MARK: Handling appearance/disappearance of keyboard
+
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        guard
+            let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+            let keyboardAnimationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber,
+            let duration = TimeInterval(exactly: keyboardAnimationDuration)
+        else { return }
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+        customView.moveUpTableView(height: keyboardHeight)
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        guard
+            let keyboardAnimationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber,
+            let duration = TimeInterval(exactly: keyboardAnimationDuration)
+        else { return }
+        customView.moveDownTableView()
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    private func addObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+
+    private func removeObservers() {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
 
     // MARK: Alerts
 
