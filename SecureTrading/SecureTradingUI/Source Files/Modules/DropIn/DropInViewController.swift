@@ -51,7 +51,7 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
                 let cardNumber = self.customView.cardNumberInput.cardNumber
                 let cvc = self.customView.cvcInput.cvc
                 let expiryDate = self.customView.expiryDateInput.expiryDate
-                self.viewModel.isSaveCardEnabled = self.customView.saveCardView.isSaveCardEnabled
+                self.viewModel.isSaveCardEnabled = (self.customView as? DropInView)?.saveCardView.isSaveCardEnabled ?? false // todo improve
                 self.viewModel.performTransaction(cardNumber: cardNumber, securityCode: cvc, expiryDate: expiryDate)
             }
         }
@@ -113,7 +113,7 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
         else { return }
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
-        customView.moveUpTableView(height: keyboardHeight)
+        (customView as? DropInView)?.moveUpTableView(height: keyboardHeight) // todo improve
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }
@@ -124,7 +124,7 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
             let keyboardAnimationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber,
             let duration = TimeInterval(exactly: keyboardAnimationDuration)
         else { return }
-        customView.moveDownTableView()
+        (customView as? DropInView)?.moveDownTableView() // todo improve
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }

@@ -7,17 +7,20 @@ import SecureTradingCard
 #endif
 import UIKit
 
-@objc public protocol SecureFormInputValidation {
-
-    func validate(silent: Bool)
-
-    func showHideError(show: Bool)
+@objc public protocol InputValidation {
+    @objc func validate(silent: Bool) -> Bool
 }
 
-@objc public protocol CardNumberInput where Self: UIView {
-
+@objc public protocol CardNumberInput: InputValidation where Self: UIView {
     @objc var cardNumber: CardNumber { get }
+}
 
+@objc public protocol CvcInput: InputValidation where Self: UIView {
+    @objc var cvc: CVC? { get }
+}
+
+@objc public protocol ExpiryDateInput: InputValidation where Self: UIView {
+    @objc var expiryDate: ExpiryDate { get }
 }
 
 @objc public protocol SecureFormInputViewDelegate: class {

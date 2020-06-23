@@ -29,7 +29,7 @@ class MonthTextField: BackwardTextField {
 
 class YearTextField: BackwardTextField {}
 
-@objc public class ExpiryDateInputView: BaseView, SecureFormInputView {
+@objc public class ExpiryDateInputView: BaseView, SecureFormInputView, ExpiryDateInput {
     // MARK: Properties
 
     let titleLabel: UILabel = {
@@ -439,7 +439,12 @@ class YearTextField: BackwardTextField {}
     // MARK: - Validation
 
     @discardableResult
-    func validate(silent: Bool, hideError: Bool = false) -> Bool {
+    @objc public func validate(silent: Bool) -> Bool {
+        self.validate(silent: silent, hideError: false)
+    }
+
+    @discardableResult
+    @objc public func validate(silent: Bool, hideError: Bool = false) -> Bool {
         let result = isInputValid
         if silent == false {
             showHideError(show: !result)

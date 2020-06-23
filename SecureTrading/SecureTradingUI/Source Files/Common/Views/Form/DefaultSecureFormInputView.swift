@@ -286,7 +286,12 @@ import UIKit
     // MARK: - Validation
 
     @discardableResult
-    func validate(silent: Bool, hideError: Bool = false) -> Bool {
+    @objc public func validate(silent: Bool) -> Bool {
+        self.validate(silent: silent, hideError: false)
+    }
+
+    @discardableResult
+    @objc public func validate(silent: Bool, hideError: Bool = false) -> Bool {
         let result = isInputValid
         if silent == false {
             showHideError(show: !result)
