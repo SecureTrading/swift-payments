@@ -124,6 +124,17 @@
 		1051D22724814B4D008E4970 /* TestDecodedJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22624814B4D008E4970 /* TestDecodedJWT.swift */; };
 		1051D229248157EF008E4970 /* TestGeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D228248157EF008E4970 /* TestGeneralResponse.swift */; };
 		105492E72484E3C000E545E4 /* TestRequestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105492E62484E3C000E545E4 /* TestRequestObject.swift */; };
+		1054A99D24A24CDE002B5125 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1054A99C24A24CDE002B5125 /* Translation.swift */; };
+		1054A9AA24A25D39002B5125 /* da_DK.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A024A25D38002B5125 /* da_DK.json */; };
+		1054A9AB24A25D39002B5125 /* en_US.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A124A25D38002B5125 /* en_US.json */; };
+		1054A9AC24A25D39002B5125 /* en_GB.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A224A25D38002B5125 /* en_GB.json */; };
+		1054A9AD24A25D39002B5125 /* es_ES.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A324A25D38002B5125 /* es_ES.json */; };
+		1054A9AE24A25D39002B5125 /* de_DE.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A424A25D38002B5125 /* de_DE.json */; };
+		1054A9AF24A25D39002B5125 /* fr_FR.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A524A25D38002B5125 /* fr_FR.json */; };
+		1054A9B024A25D39002B5125 /* nl_NL.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A624A25D39002B5125 /* nl_NL.json */; };
+		1054A9B124A25D39002B5125 /* sv_SE.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A724A25D39002B5125 /* sv_SE.json */; };
+		1054A9B224A25D39002B5125 /* no_NO.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A824A25D39002B5125 /* no_NO.json */; };
+		1054A9B324A25D39002B5125 /* cy_GB.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A924A25D39002B5125 /* cy_GB.json */; };
 		105D3BDB248E54FB00CF1ECC /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105D3BDA248E54FB00CF1ECC /* URLSession.swift */; };
 		1092CF482476CA1F0002B2E8 /* SecureTradingCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1092CF3F2476CA1F0002B2E8 /* SecureTradingCard.framework */; platformFilter = ios; };
 		1092CF4F2476CA1F0002B2E8 /* SecureTradingCard.h in Headers */ = {isa = PBXBuildFile; fileRef = 1092CF412476CA1F0002B2E8 /* SecureTradingCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -335,6 +346,17 @@
 		1051D22624814B4D008E4970 /* TestDecodedJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDecodedJWT.swift; sourceTree = "<group>"; };
 		1051D228248157EF008E4970 /* TestGeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeneralResponse.swift; sourceTree = "<group>"; };
 		105492E62484E3C000E545E4 /* TestRequestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRequestObject.swift; sourceTree = "<group>"; };
+		1054A99C24A24CDE002B5125 /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
+		1054A9A024A25D38002B5125 /* da_DK.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = da_DK.json; sourceTree = "<group>"; };
+		1054A9A124A25D38002B5125 /* en_US.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = en_US.json; sourceTree = "<group>"; };
+		1054A9A224A25D38002B5125 /* en_GB.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = en_GB.json; sourceTree = "<group>"; };
+		1054A9A324A25D38002B5125 /* es_ES.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = es_ES.json; sourceTree = "<group>"; };
+		1054A9A424A25D38002B5125 /* de_DE.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = de_DE.json; sourceTree = "<group>"; };
+		1054A9A524A25D38002B5125 /* fr_FR.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fr_FR.json; sourceTree = "<group>"; };
+		1054A9A624A25D39002B5125 /* nl_NL.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = nl_NL.json; sourceTree = "<group>"; };
+		1054A9A724A25D39002B5125 /* sv_SE.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sv_SE.json; sourceTree = "<group>"; };
+		1054A9A824A25D39002B5125 /* no_NO.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = no_NO.json; sourceTree = "<group>"; };
+		1054A9A924A25D39002B5125 /* cy_GB.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cy_GB.json; sourceTree = "<group>"; };
 		105D3BDA248E54FB00CF1ECC /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		1092CF3F2476CA1F0002B2E8 /* SecureTradingCard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecureTradingCard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1092CF412476CA1F0002B2E8 /* SecureTradingCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecureTradingCard.h; sourceTree = "<group>"; };
@@ -748,6 +770,7 @@
 		08E4FA6C2462A5EC00837339 /* SecureTradingCore */ = {
 			isa = PBXGroup;
 			children = (
+				1054A99E24A25D19002B5125 /* Resources */,
 				08EF7CFA2462AAAC008B5F3E /* Source files */,
 				08E4FA6D2462A5EC00837339 /* SecureTradingCore.h */,
 				08E4FA6E2462A5EC00837339 /* Info.plist */,
@@ -758,6 +781,7 @@
 		08EF7CFA2462AAAC008B5F3E /* Source files */ = {
 			isa = PBXGroup;
 			children = (
+				1054A99B24A24CC6002B5125 /* Translations */,
 				1099519924863B4C00E8E401 /* Mocks */,
 				089B41CD246D4E3000F70764 /* Common */,
 				08EF7CFB2462ABD0008B5F3E /* API */,
@@ -909,6 +933,39 @@
 				104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */,
 			);
 			path = "Source files";
+			sourceTree = "<group>";
+		};
+		1054A99B24A24CC6002B5125 /* Translations */ = {
+			isa = PBXGroup;
+			children = (
+				1054A99C24A24CDE002B5125 /* Translation.swift */,
+			);
+			path = Translations;
+			sourceTree = "<group>";
+		};
+		1054A99E24A25D19002B5125 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1054A99F24A25D21002B5125 /* Translation files */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1054A99F24A25D21002B5125 /* Translation files */ = {
+			isa = PBXGroup;
+			children = (
+				1054A9A924A25D39002B5125 /* cy_GB.json */,
+				1054A9A024A25D38002B5125 /* da_DK.json */,
+				1054A9A424A25D38002B5125 /* de_DE.json */,
+				1054A9A224A25D38002B5125 /* en_GB.json */,
+				1054A9A124A25D38002B5125 /* en_US.json */,
+				1054A9A324A25D38002B5125 /* es_ES.json */,
+				1054A9A524A25D38002B5125 /* fr_FR.json */,
+				1054A9A624A25D39002B5125 /* nl_NL.json */,
+				1054A9A824A25D39002B5125 /* no_NO.json */,
+				1054A9A724A25D39002B5125 /* sv_SE.json */,
+			);
+			path = "Translation files";
 			sourceTree = "<group>";
 		};
 		1092CF402476CA1F0002B2E8 /* SecureTradingCard */ = {
@@ -1238,6 +1295,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1054A9AC24A25D39002B5125 /* en_GB.json in Resources */,
+				1054A9B024A25D39002B5125 /* nl_NL.json in Resources */,
+				1054A9B324A25D39002B5125 /* cy_GB.json in Resources */,
+				1054A9B124A25D39002B5125 /* sv_SE.json in Resources */,
+				1054A9B224A25D39002B5125 /* no_NO.json in Resources */,
+				1054A9AD24A25D39002B5125 /* es_ES.json in Resources */,
+				1054A9AB24A25D39002B5125 /* en_US.json in Resources */,
+				1054A9AA24A25D39002B5125 /* da_DK.json in Resources */,
+				1054A9AE24A25D39002B5125 /* de_DE.json in Resources */,
+				1054A9AF24A25D39002B5125 /* fr_FR.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1365,6 +1432,7 @@
 				084E2A2124659EA70040FB9D /* SDKFoundation.swift in Sources */,
 				08C31AFD246E8F2C00595B21 /* Claim.swift in Sources */,
 				089B41DB246D573900F70764 /* APIManager.swift in Sources */,
+				1054A99D24A24CDE002B5125 /* Translation.swift in Sources */,
 				089B41E1246D600600F70764 /* GeneralRequest.swift in Sources */,
 				089B41CC246D4DE100F70764 /* APIRequestModel.swift in Sources */,
 				08C31AF9246E860C00595B21 /* DecodedJWT.swift in Sources */,
