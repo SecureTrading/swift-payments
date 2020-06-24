@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SecureTradingCore
 
 /// A subclass of RequestButton, consists of title and spinner for the request interval
 @objc public final class PayButton: RequestButton {
@@ -42,6 +43,7 @@ import UIKit
     public override func configureView() {
         super.configureView()
         self.title = Localizable.PayButton.title.text
+//        Translations().translation(for: <#T##String#>)
     }
 }
 

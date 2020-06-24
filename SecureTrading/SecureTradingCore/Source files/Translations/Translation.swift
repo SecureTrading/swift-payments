@@ -21,12 +21,17 @@ extension Translations {
         case sv_SE
 
         static func supportedLanguage(for locale: Locale) -> Language {
-            return Language(rawValue: locale.identifier) ?? Language.en_US
+            return Language(rawValue: locale.identifier) ?? Language.en_GB
         }
     }
 }
+
 @objc public class Translations: NSObject {
     private var currentTranslations: [String: String] = [:]
+
+    @objc public convenience override init() {
+        self.init(locale: Locale.current)
+    }
 
     @objc public init(locale: Locale) {
         super.init()
@@ -44,13 +49,27 @@ extension Translations {
         }
     }
 
+    @objc public func translation(for key: String) -> String? {
+        return currentTranslations[key]
+    }
+    @objc public func tr(forkey: Translations.Keys) {
+        print()
+    }
+
     private func translationFileURL(identifier: String) -> URL {
-        print("id:\(identifier)")
         guard let path = Bundle(for: Translations.self).path(forResource: identifier, ofType: "json"),
             let url = URL(string: "file://" + path) else {
                 fatalError("Missing translation file for locale: \(identifier)")
         }
         print(url)
         return url
+    }
+}
+
+@objc public extension Translations {
+    struct Keys {
+//        struct PayButton {
+//            let title: String
+//        }
     }
 }
