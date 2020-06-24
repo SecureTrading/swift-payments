@@ -9,6 +9,7 @@ import UIKit
 
     @objc var isFormValid: Bool { get }
 
+    // this closure should be triggered when the pay button is pressed
     @objc var payButtonTappedClosure: (() -> Void)? { get set }
 
     @objc var cardNumberInput: CardNumberInput { get }
