@@ -29,7 +29,7 @@ final class DropInViewModel {
 
     private var isJsInitCompleted: Bool = false
 
-    private var jsInitError: String?
+    private var jsInitError: (JWTResponseObject?, String?)
 
     private var jsInitCacheToken: String?
 
@@ -43,8 +43,8 @@ final class DropInViewModel {
 
     var isSaveCardEnabled: Bool = true
 
-    var showTransactionSuccess: ((ResponseSettleStatus, STCardReference?) -> Void)?
-    var showTransactionError: ((String) -> Void)?
+    var showTransactionSuccess: ((JWTResponseObject, STCardReference?) -> Void)?
+    var showTransactionError: ((JWTResponseObject?, String) -> Void)?
     var showCardinalAuthenticationError: (() -> Void)?
     var showValidationError: ((ResponseErrorDetail) -> Void)?
     var cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)?
@@ -81,13 +81,13 @@ final class DropInViewModel {
                     self.shouldStartTransactionAfterJsInit = false
                     self.makePaymentOrThreeDQueryRequest(cardNumber: card.cardNumber, securityCode: card.securityCode, expiryDate: card.expiryDate)
                 }
-            }, failure: { [weak self] errorMessage in
+            }, failure: { [weak self] responseObject, errorMessage in
                 guard let self = self else { return }
                 self.isJsInitCompleted = true
-                self.jsInitError = errorMessage
+                self.jsInitError = (responseObject, errorMessage)
                 if self.shouldStartTransactionAfterJsInit {
                     self.shouldStartTransactionAfterJsInit = false
-                    self.showTransactionError?(errorMessage)
+                    self.showTransactionError?(responseObject, errorMessage)
                 }
             })
         }
@@ -101,14 +101,14 @@ final class DropInViewModel {
     ///   - success: success closure
     ///   - transactionError: failure closure (general error)
     ///   - validationError: failure closure (card validation error)
-    func makePaymentRequest(request: RequestObject, success: @escaping ((JWTResponseObject) -> Void), transactionError: @escaping ((String) -> Void), validationError: @escaping ((ResponseErrorDetail) -> Void)) {
+    func makePaymentRequest(request: RequestObject, success: @escaping ((JWTResponseObject) -> Void), transactionError: @escaping ((JWTResponseObject?, String) -> Void), validationError: @escaping ((ResponseErrorDetail) -> Void)) {
         self.apiManager.makeGeneralRequest(jwt: self.jwt, request: request, success: { responseObject, _, newJWT in
             self.jwt = newJWT
             switch responseObject.responseErrorCode {
             case .successful:
                 success(responseObject)
             default:
-                transactionError(responseObject.errorMessage)
+                transactionError(responseObject, responseObject.errorMessage)
             }
         }, failure: { error in
             switch error {
@@ -118,14 +118,14 @@ final class DropInViewModel {
                     switch errorCode {
                     case .invalidPAN, .invalidSecurityCode, .invalidExpiryDate:
                         validationError(errorCode)
-                    default: transactionError(error.humanReadableDescription)
+                    default: transactionError(nil, error.humanReadableDescription)
                     }
 
                 default:
-                    transactionError(error.humanReadableDescription)
+                    transactionError(nil, error.humanReadableDescription)
                 }
             default:
-                transactionError(error.humanReadableDescription)
+                transactionError(nil, error.humanReadableDescription)
             }
         })
     }
@@ -143,13 +143,13 @@ final class DropInViewModel {
         self.makePaymentRequest(request: request, success: { [weak self] responseObject in
             guard let self = self else { return }
             guard tempTypeDescriptions.contains(.threeDQuery) else {
-                self.showTransactionSuccess?(responseObject.responseSettleStatus, self.isSaveCardEnabled ? responseObject.cardReference : nil)
+                self.showTransactionSuccess?(responseObject, self.isSaveCardEnabled ? responseObject.cardReference : nil)
                 return
             }
             self.handleThreeDSecureFlow(responseObject: responseObject)
-        }, transactionError: { [weak self] error in
+            }, transactionError: { [weak self] responseObject, error in
             guard let self = self else { return }
-            self.showTransactionError?(error)
+            self.showTransactionError?(responseObject, error)
         }, validationError: { [weak self] errorCode in
             guard let self = self else { return }
             self.showValidationError?(errorCode)
@@ -159,7 +159,7 @@ final class DropInViewModel {
     /// executes js init request (to get threeDInit - JWT token to setup the Cardinal) and Cardinal setup
     /// - Parameter completion: success closure with following parameters: consumer session id
     /// - Parameter failure: closure with error message
-    private func makeJSInitRequest(completion: @escaping ((String) -> Void), failure: @escaping ((String) -> Void)) {
+    private func makeJSInitRequest(completion: @escaping ((String) -> Void), failure: @escaping ((JWTResponseObject?, String) -> Void)) {
         let jsInitRequest = RequestObject(typeDescriptions: [.jsInit], requestId: self.requestId)
 
         self.apiManager.makeGeneralRequest(jwt: self.jwt, request: jsInitRequest, success: { [weak self] responseObject, _, newJWT in
@@ -171,13 +171,13 @@ final class DropInViewModel {
                 self.threeDSecureManager.setup(with: responseObject.threeDInit!, completion: { consumerSessionId in
                     completion(consumerSessionId)
                 }, failure: { validateResponse in
-                    failure(validateResponse.errorDescription)
+                    failure(nil, validateResponse.errorDescription)
                 })
             default:
-                failure(responseObject.errorMessage)
+                failure(responseObject, responseObject.errorMessage)
             }
         }, failure: { error in
-            failure(error.humanReadableDescription)
+            failure(nil, error.humanReadableDescription)
         })
     }
 
@@ -197,19 +197,20 @@ final class DropInViewModel {
                 return
             }
 
-            guard let jsInitError = jsInitError else {
+            let (responseObject, jsInitError) = self.jsInitError
+            guard let jsInitErrorTemp = jsInitError else {
                 self.makePaymentOrThreeDQueryRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
                 return
             }
 
-            self.showTransactionError?(jsInitError)
+            self.showTransactionError?(responseObject, jsInitErrorTemp)
         } else {
             self.makeJSInitRequest(completion: { [weak self] _ in
                 guard let self = self else { return }
                 self.makePaymentOrThreeDQueryRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
-            }, failure: { [weak self] errorMessage in
+            }, failure: { [weak self] responseObject, errorMessage in
                 guard let self = self else { return }
-                self.showTransactionError?(errorMessage)
+                self.showTransactionError?(responseObject, errorMessage)
             })
         }
     }
@@ -228,10 +229,10 @@ final class DropInViewModel {
 
             self.makePaymentRequest(request: request, success: { [weak self] responseObject in
                 guard let self = self else { return }
-                self.showTransactionSuccess?(responseObject.responseSettleStatus, self.isSaveCardEnabled ? responseObject.cardReference : nil)
-            }, transactionError: { [weak self] error in
+                self.showTransactionSuccess?(responseObject, self.isSaveCardEnabled ? responseObject.cardReference : nil)
+            }, transactionError: { [weak self] responseObject, error in
                 guard let self = self else { return }
-                self.showTransactionError?(error)
+                self.showTransactionError?(responseObject, error)
             }, validationError: { [weak self] errorCode in
                 guard let self = self else { return }
                 self.showValidationError?(errorCode)
@@ -283,7 +284,8 @@ final class DropInViewModel {
                 jwtResponseObject = responseObject
                 dispatchSemaphore.signal()
                 dispatchGroup.leave()
-            }, transactionError: { error in
+            }, transactionError: { responseObject, error in
+                jwtResponseObject = responseObject
                 transactionError = error
                 dispatchSemaphore.signal()
                 dispatchGroup.leave()
@@ -304,7 +306,7 @@ final class DropInViewModel {
                 }
 
                 if let error = transactionError {
-                    self.showTransactionError?(error)
+                    self.showTransactionError?(jwtResponseObject, error)
                     return
                 }
 
@@ -313,7 +315,7 @@ final class DropInViewModel {
                     return
                 }
 
-                self.showTransactionSuccess?(jwtResponseObject!.responseSettleStatus, self.isSaveCardEnabled ? jwtResponseObject!.cardReference : nil)
+                self.showTransactionSuccess?(jwtResponseObject!, self.isSaveCardEnabled ? jwtResponseObject!.cardReference : nil)
             }
         }
     }

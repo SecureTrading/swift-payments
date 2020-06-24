@@ -16,9 +16,9 @@ import UIKit
 final class DropInViewController: BaseViewController<DropInViewProtocol, DropInViewModel> {
     /// Enum describing events that can be triggered by this controller
     enum Event {
-        case successfulPayment(ResponseSettleStatus)
-        case successfulPaymentCardAdded(ResponseSettleStatus, STCardReference)
-        case transactionFailure
+        case successfulPayment(JWTResponseObject, String)
+        case successfulPaymentCardAdded(JWTResponseObject, String, STCardReference)
+        case transactionFailure(JWTResponseObject?, String)
         case payButtonTappedClosureBeforeTransaction(DropInController)
         case cardinalWarnings(String, [CardinalInitWarnings])
     }
@@ -57,41 +57,26 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
             }
         }
 
-        viewModel.showTransactionSuccess = { [weak self] responseSettleStatus, cardReference in
+        viewModel.showTransactionSuccess = { [weak self] responseObject, cardReference in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
-            self.showAlert(message: Localizable.DropInViewController.successfulPayment.text) { [weak self] _ in
-                guard let self = self else { return }
-                if let cardRef = cardReference {
-                    self.eventTriggered?(.successfulPaymentCardAdded(responseSettleStatus, cardRef))
-                } else {
-                    self.eventTriggered?(.successfulPayment(responseSettleStatus))
-                }
+            if let cardRef = cardReference {
+                self.eventTriggered?(.successfulPaymentCardAdded(responseObject, Localizable.DropInViewController.successfulPayment.text, cardRef))
+            } else {
+                self.eventTriggered?(.successfulPayment(responseObject, Localizable.DropInViewController.successfulPayment.text))
             }
         }
 
-        viewModel.showTransactionError = { [weak self] error in
+        viewModel.showTransactionError = { [weak self] responseObject, error in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
-            self.showAlert(
-                message: error,
-                completionHandler: { [weak self] _ in
-                    guard let self = self else { return }
-                    self.eventTriggered?(.transactionFailure)
-                }
-            )
+            self.eventTriggered?(.transactionFailure(responseObject, error))
         }
 
         viewModel.showCardinalAuthenticationError = { [weak self] in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
-            self.showAlert(
-                message: Localizable.DropInViewController.cardinalAuthenticationError.text,
-                completionHandler: { [weak self] _ in
-                    guard let self = self else { return }
-                    self.eventTriggered?(.transactionFailure)
-                }
-            )
+            self.eventTriggered?(.transactionFailure(nil, Localizable.DropInViewController.cardinalAuthenticationError.text))
         }
 
         viewModel.cardinalWarningsCompletion = { [weak self] warningsMessage, warnings in

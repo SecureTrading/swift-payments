@@ -97,10 +97,15 @@ final class MainFlowController: BaseNavigationFlowController {
             guard let updatedJWT = self.mainViewModel?.getJwtTokenWithoutCardData(storeCard: customDropInView.isSaveCardSelected) else { return }
             // update vc with new jwt
             controller.updateJWT(newValue: updatedJWT)
-        }, successfulPaymentCompletion: { [unowned self] _, cardReference in
+        }, successfulPaymentCompletion: { [unowned self] _, successMessage, cardReference in
             Wallet.shared.add(card: cardReference)
-            self.navigationController.popViewController(animated: true)
-        }, transactionFailure: {}, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
+            self.showAlert(controller: self.navigationController, message: successMessage) { _ in
+                self.navigationController.popViewController(animated: true)
+            }
+        }, transactionFailure: { [unowned self] _, errorMessage in
+            self.showAlert(controller: self.navigationController, message: errorMessage) { _ in
+            }
+        }, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
             guard handleCardinalWarnings else { return }
             self.showAlert(controller: self.navigationController, message: warningsMessage) { _ in
                 self.navigationController.popViewController(animated: true)
