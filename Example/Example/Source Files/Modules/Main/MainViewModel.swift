@@ -210,6 +210,7 @@ extension MainViewModel {
         case performAccountCheckWithAuth
         case presentAddCardForm
         case presentWalletForm
+        case showDropInControllerWithCustomView
         case showDropInControllerWithWarnings
         case showDropInControllerNo3DSecure
         case subscriptionOnSTEngine
@@ -243,6 +244,8 @@ extension MainViewModel {
                 return Localizable.MainViewModel.subscriptionOnMerchantEngine.text
             case .showDropInControllerNo3DSecure:
                 return Localizable.MainViewModel.showDropInControllerNo3DSecure.text
+            case .showDropInControllerWithCustomView:
+                return Localizable.MainViewModel.showDropInControllerWithCustomView.text
             }
         }
 
@@ -313,6 +316,8 @@ extension MainViewModel {
                 """
             case .showDropInControllerNo3DSecure:
                 return nil
+            case .showDropInControllerWithCustomView:
+                return nil
             }
         }
     }
@@ -351,6 +356,7 @@ fileprivate extension Localizable {
         case merchantResponsibility
         case sdkResponsibility
         case showDropInControllerNo3DSecure
+        case showDropInControllerWithCustomView
         case subscriptionOnSTEngine
         case subscriptionOnMerchantEngine
     }

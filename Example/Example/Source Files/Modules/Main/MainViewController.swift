@@ -16,6 +16,7 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         case payWithWalletRequest
         case didTapShowDropInControllerWithWarnings(String)
         case didTapShowDropInControllerNoThreeDQuery(String)
+        case didTapShowDropInControllerWithCustomView(String)
     }
 
     private var transparentNavigationBar: TransparentNavigationBar? { return navigationController?.navigationBar as? TransparentNavigationBar }
@@ -85,6 +86,13 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
             self.eventTriggered?(.didTapShowDropInControllerNoThreeDQuery(jwt))
         }
+
+        customView.showDropInControllerWithCustomView = { [weak self] in
+            guard let self = self else { return }
+            guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
+            self.eventTriggered?(.didTapShowDropInControllerWithCustomView(jwt))
+        }
+
         customView.subscriptionOnSTEngineRequest = { [weak self] in
             self?.viewModel.performSubscriptionOnSTEngine()
         }
@@ -110,7 +118,7 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             self.showAlert(message: error)
         }
 
-        StyleManager.shared.highlightViewsValueChanged = { [weak self] highlight in
+        StyleManager.shared.highlightViewsValueChanged = { [weak self] _ in
             self?.customView.highlightIfNeeded(unhighlightColor: UIColor.clear, unhighlightBorderWith: 0)
         }
     }

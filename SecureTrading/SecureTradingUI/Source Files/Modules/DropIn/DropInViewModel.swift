@@ -265,7 +265,6 @@ final class DropInViewModel {
                 dispatchSemaphore.signal()
                 dispatchGroup.leave()
             }, sessionAuthenticationFailure: {
-                // todo error message
                 cardinalAuthenticationError = true
                 dispatchSemaphore.signal()
                 dispatchGroup.leave()

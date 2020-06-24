@@ -6,8 +6,7 @@
 import UIKit
 
 @objc open class DropInView: BaseView, DropInViewProtocol {
-
-    // todo comment
+    /// useful if you need to specify some additional validation condition when accepting the form, e.g. if the merchant wants to add an additional check box view
     @objc public var isAdditionalValidationConditionsFullfiled: Bool = true {
         didSet {
             payButton.isEnabled = isFormValid
