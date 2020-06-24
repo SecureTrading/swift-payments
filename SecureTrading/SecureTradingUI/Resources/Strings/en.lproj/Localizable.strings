@@ -31,8 +31,6 @@ ExpiryDateInputView.placeholder = "MM/YY";
 ExpiryDateInputView.error = "Invalid expiry date";
 ExpiryDateInputView.emptyError = "Expiry date is required";
 
-PayButton.title = "Pay";
-
 DropInViewController.title = "Payment";
 DropInViewController.successfulPayment = "Successful payment transaction";
 DropInViewController.cardinalAuthenticationError = "An error occurred";

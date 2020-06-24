@@ -49,11 +49,9 @@ extension Translations {
         }
     }
 
-    @objc public func translation(for key: String) -> String? {
-        return currentTranslations[key]
-    }
-    @objc public func tr(forkey: Translations.Keys) {
-        print()
+    public func translation<T: TranslationKey>(for key: T) -> String {
+        let translationKey = String(describing: "\(type(of: key)).\(key)")
+        return currentTranslations[translationKey] ?? "No localized description for: \(translationKey)"
     }
 
     private func translationFileURL(identifier: String) -> URL {
@@ -61,15 +59,14 @@ extension Translations {
             let url = URL(string: "file://" + path) else {
                 fatalError("Missing translation file for locale: \(identifier)")
         }
-        print(url)
         return url
     }
 }
 
-@objc public extension Translations {
-    struct Keys {
-//        struct PayButton {
-//            let title: String
-//        }
+public protocol TranslationKey {}
+
+public extension Translations {
+    enum PayButton: Int, TranslationKey {
+        case title
     }
 }

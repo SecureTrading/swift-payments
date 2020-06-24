@@ -42,8 +42,7 @@ import SecureTradingCore
 
     public override func configureView() {
         super.configureView()
-        self.title = Localizable.PayButton.title.text
-//        Translations().translation(for: <#T##String#>)
+        self.title = Translations().translation(for: Translations.PayButton.title)
     }
 }
 
