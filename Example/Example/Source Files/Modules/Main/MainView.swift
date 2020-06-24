@@ -68,6 +68,7 @@ final class MainView: WhiteBackgroundBaseView {
     var subscriptionOnMerchantEngineRequest: (() -> Void)?
     var showMoreInformation: ((String) -> Void)?
     var showDropInControllerNoThreeDQuery: (() -> Void)?
+    var showDropInControllerWithCustomView: (() -> Void)?
 
     @objc func toggleAction(_ sender: UISwitch) {
         StyleManager.shared.highlightViewsBasedOnResponsibility = sender.isOn
@@ -161,6 +162,8 @@ extension MainView: UITableViewDataSource, UITableViewDelegate {
             subscriptionOnMerchantEngineRequest?()
         case .showDropInControllerNo3DSecure:
             showDropInControllerNoThreeDQuery?()
+        case .showDropInControllerWithCustomView:
+            showDropInControllerWithCustomView?()
         }
     }
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {

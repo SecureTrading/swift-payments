@@ -5,9 +5,16 @@
 
 import UIKit
 
-@objc public final class DropInView: BaseView {
+@objc open class DropInView: BaseView, DropInViewProtocol {
+    /// useful if you need to specify some additional validation condition when accepting the form, e.g. if the merchant wants to add an additional check box view
+    @objc public var isAdditionalValidationConditionsFullfiled: Bool = true {
+        didSet {
+            payButton.isEnabled = isFormValid
+        }
+    }
+
     @objc public var isFormValid: Bool {
-        return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid
+        return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid && isAdditionalValidationConditionsFullfiled
     }
 
     @objc public var payButtonTappedClosure: (() -> Void)? {
@@ -15,25 +22,20 @@ import UIKit
         set { payButton.onTap = newValue }
     }
 
-    @objc public private(set) lazy var cardNumberInput: CardNumberInputView = {
+    @objc public private(set) lazy var cardNumberInput: CardNumberInput = {
         CardNumberInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    @objc public private(set) lazy var expiryDateInput: ExpiryDateInputView = {
+    @objc public private(set) lazy var expiryDateInput: ExpiryDateInput = {
         ExpiryDateInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    @objc public private(set) lazy var cvcInput: CvcInputView = {
+    @objc public private(set) lazy var cvcInput: CvcInput = {
         CvcInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
     }()
 
-    // A custom view provided by merchant
-    @objc public var customView: UIView?
-
-    @objc public private(set) lazy var payButton: PayButton = {
-        guard let styleManager = dropInViewStyleManager?.requestButtonStyleManager as? PayButtonStyleManager else {
-            fatalError("Expected style manager of type PayButtonStyleManager")
-        }
+    @objc public private(set) lazy var payButton: PayButtonProtocol = {
+        let styleManager = dropInViewStyleManager?.requestButtonStyleManager as? PayButtonStyleManager
         return PayButton(payButtonStyleManager: styleManager)
     }()
 
@@ -43,8 +45,8 @@ import UIKit
         return view
     }()
 
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, customView, payButton].compactMap { $0 } )
+    @objc public lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, payButton])
         stackView.axis = .vertical
         stackView.spacing = spacingBeetwenInputViews
         stackView.alignment = .fill
@@ -83,33 +85,19 @@ import UIKit
     /// Initializes an instance of the receiver.
     /// - Parameters:
     ///   - dropInViewStyleManager: instance of manager to customize view
-    @objc public init(dropInViewStyleManager: DropInViewStyleManager?, customView: UIView?) {
-        self.customView = customView
+    @objc public init(dropInViewStyleManager: DropInViewStyleManager?) {
         self.dropInViewStyleManager = dropInViewStyleManager
         super.init()
     }
 
-    required init?(coder _: NSCoder) {
+    public required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: Functions
 
-    /// Set scroll view bottom inset to the keyboard height
-    /// - Parameter height: bottom inset
-    func moveUpTableView(height: CGFloat) {
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0,
-                                         bottom: height, right: 0.0)
-        adjustContentInsets(contentInsets)
-    }
-
-    /// Set scroll view bottom inset to the default value
-    func moveDownTableView() {
-        adjustContentInsets(.zero)
-    }
-
     /// Change scroll view insets
-    private func adjustContentInsets(_ contentInsets: UIEdgeInsets) {
+    func adjustContentInsets(_ contentInsets: UIEdgeInsets) {
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
@@ -153,25 +141,25 @@ import UIKit
 
 extension DropInView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.setupProperties
-    @objc func setupProperties() {
-        cardNumberInput.cardNumberInputViewDelegate = self
-        cardNumberInput.delegate = self
-        cvcInput.delegate = self
-        expiryDateInput.delegate = self
+    @objc open func setupProperties() {
+        (cardNumberInput as? CardNumberInputView)?.cardNumberInputViewDelegate = self
+        (cardNumberInput as? CardNumberInputView)?.delegate = self
+        (cvcInput as? CvcInputView)?.delegate = self
+        (expiryDateInput as? ExpiryDateInputView)?.delegate = self
         cardNumberInput.becomeFirstResponder()
 
         customizeView(dropInViewStyleManager: dropInViewStyleManager)
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
-    func setupViewHierarchy() {
+    @objc open func setupViewHierarchy() {
         stackContainer.addSubview(stackView)
         scrollView.addSubview(stackContainer)
         addSubviews([scrollView])
     }
 
     /// - SeeAlso: ViewSetupable.setupConstraints
-    func setupConstraints() {
+    @objc open func setupConstraints() {
         scrollView.addConstraints([
             equal(self, \.topAnchor, \.safeAreaLayoutGuide.topAnchor, constant: 0),
             equal(self, \.bottomAnchor, \.safeAreaLayoutGuide.bottomAnchor, constant: 0),
@@ -191,12 +179,12 @@ extension DropInView: ViewSetupable {
 
 extension DropInView: CardNumberInputViewDelegate {
     public func cardNumberInputViewDidComplete(_ cardNumberInputView: CardNumberInputView) {
-        cvcInput.cardType = cardNumberInputView.cardType
+        (cvcInput as? CvcInputView)?.cardType = cardNumberInputView.cardType
         cvcInput.isEnabled = cardNumberInputView.isCVCRequired
     }
 
     public func cardNumberInputViewDidChangeText(_ cardNumberInputView: CardNumberInputView) {
-        cvcInput.cardType = cardNumberInputView.cardType
+        (cvcInput as? CvcInputView)?.cardType = cardNumberInputView.cardType
         cvcInput.isEnabled = cardNumberInputView.isCVCRequired
     }
 }

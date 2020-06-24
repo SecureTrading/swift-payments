@@ -6,7 +6,7 @@
 import UIKit
 
 // Provided example how to build views
-public final class TestMainView: WhiteBackgroundBaseView {
+public final class TestMainView: WhiteBackgroundBaseView, ViewProtocol {
     /// Closure invoked when someone taps on show details button.
     var showDetailsButtonTappedClosure: (() -> Void)? {
         get { return showDetailsButton.onTap }

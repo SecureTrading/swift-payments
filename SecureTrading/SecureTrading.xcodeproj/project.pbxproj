@@ -48,6 +48,9 @@
 		084E2A1F24659E2C0040FB9D /* ArrayUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A1E24659E2C0040FB9D /* ArrayUI.swift */; };
 		084E2A2124659EA70040FB9D /* SDKFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A2024659EA70040FB9D /* SDKFoundation.swift */; };
 		084E2A2324659EE20040FB9D /* DefaultSDKFoundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A2224659EE20040FB9D /* DefaultSDKFoundation.swift */; };
+		08534ED124A22E2000D2B082 /* DropInViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08534ED024A22E2000D2B082 /* DropInViewProtocol.swift */; };
+		08534ED324A22E4D00D2B082 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08534ED224A22E4C00D2B082 /* ViewProtocol.swift */; };
+		08534ED724A37E7100D2B082 /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08534ED624A37E7000D2B082 /* KeyboardHelper.swift */; };
 		0853ACA2247F916C00DF37EE /* TestCardMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA1247F916C00DF37EE /* TestCardMask.swift */; };
 		0853ACA5247FA6B300DF37EE /* KnownMaskedCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */; };
 		0853ACA7247FB00F00DF37EE /* CvcInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA6247FB00F00DF37EE /* CvcInputView.swift */; };
@@ -255,6 +258,9 @@
 		084E2A1E24659E2C0040FB9D /* ArrayUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayUI.swift; sourceTree = "<group>"; };
 		084E2A2024659EA70040FB9D /* SDKFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKFoundation.swift; sourceTree = "<group>"; };
 		084E2A2224659EE20040FB9D /* DefaultSDKFoundation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSDKFoundation.swift; sourceTree = "<group>"; };
+		08534ED024A22E2000D2B082 /* DropInViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropInViewProtocol.swift; sourceTree = "<group>"; };
+		08534ED224A22E4C00D2B082 /* ViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewProtocol.swift; sourceTree = "<group>"; };
+		08534ED624A37E7000D2B082 /* KeyboardHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
 		0853ACA1247F916C00DF37EE /* TestCardMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardMask.swift; sourceTree = "<group>"; };
 		0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownMaskedCards.swift; sourceTree = "<group>"; };
 		0853ACA6247FB00F00DF37EE /* CvcInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcInputView.swift; sourceTree = "<group>"; };
@@ -433,6 +439,7 @@
 		0818DE3D2486598700A8B25A /* DropIn */ = {
 			isa = PBXGroup;
 			children = (
+				08534ECF24A22E2000D2B082 /* Protocols */,
 				0818DE3E248659A800A8B25A /* DropInView.swift */,
 				0818DE40248659B800A8B25A /* DropInViewModel.swift */,
 				0818DE42248659C900A8B25A /* DropInViewController.swift */,
@@ -518,6 +525,7 @@
 			isa = PBXGroup;
 			children = (
 				084E29EB24656B4E0040FB9D /* CallbackWrapper.swift */,
+				08534ED624A37E7000D2B082 /* KeyboardHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -525,6 +533,7 @@
 		084E29EF24656DC50040FB9D /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				08534ED224A22E4C00D2B082 /* ViewProtocol.swift */,
 				084E29F024656DE00040FB9D /* ViewSetupable.swift */,
 				084E2A0D246599B70040FB9D /* FlowController.swift */,
 				084E2A0F246599D90040FB9D /* NavigationFlowController.swift */,
@@ -584,6 +593,14 @@
 				0818DE3B24851C2200A8B25A /* BackwardTextField.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		08534ECF24A22E2000D2B082 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				08534ED024A22E2000D2B082 /* DropInViewProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		08639C392469577700C8F90A /* Factory */ = {
@@ -1399,6 +1416,7 @@
 				0818DE3A24851BDE00A8B25A /* UITextField.swift in Sources */,
 				08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */,
 				084E29FB2465832C0040FB9D /* Colors.swift in Sources */,
+				08534ED324A22E4D00D2B082 /* ViewProtocol.swift in Sources */,
 				084E2A012465841D0040FB9D /* UITableView.swift in Sources */,
 				0818DE5B2488E36200A8B25A /* InputViewStyleManager.swift in Sources */,
 				0818DE45248680D900A8B25A /* PayButton.swift in Sources */,
@@ -1413,6 +1431,7 @@
 				084E2A12246599FC0040FB9D /* NavigationDelegate.swift in Sources */,
 				0818DE3F248659A800A8B25A /* DropInView.swift in Sources */,
 				084E2A1F24659E2C0040FB9D /* ArrayUI.swift in Sources */,
+				08534ED724A37E7100D2B082 /* KeyboardHelper.swift in Sources */,
 				08EF7D4A2462B239008B5F3E /* BaseViewController.swift in Sources */,
 				08886ED0247B9D3300BC1637 /* DefaultSecureFormInputView.swift in Sources */,
 				084E2A10246599D90040FB9D /* NavigationFlowController.swift in Sources */,
@@ -1440,6 +1459,7 @@
 				084E29F92465826F0040FB9D /* Fonts.swift in Sources */,
 				084E29F124656DE00040FB9D /* ViewSetupable.swift in Sources */,
 				0869487F24692A4400F625D0 /* TestDetailsViewModel.swift in Sources */,
+				08534ED124A22E2000D2B082 /* DropInViewProtocol.swift in Sources */,
 				084E2A1B24659BD30040FB9D /* PopBackView.swift in Sources */,
 				1050A955248FE5A900E84A6D /* AddCardButton.swift in Sources */,
 				08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */,

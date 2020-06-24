@@ -261,7 +261,7 @@ import UIKit
 
     // MARK: Functions
 
-    @objc public func showHideError(show: Bool) {
+    public func showHideError(show: Bool) {
         errorLabel.text = isEmpty ? emptyError : error
         errorLabel.isHidden = !show
         textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor
@@ -284,6 +284,11 @@ import UIKit
     }
 
     // MARK: - Validation
+
+    @discardableResult
+    @objc public func validate(silent: Bool) -> Bool {
+        self.validate(silent: silent, hideError: false)
+    }
 
     @discardableResult
     @objc public func validate(silent: Bool, hideError: Bool = false) -> Bool {
