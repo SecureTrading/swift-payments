@@ -97,21 +97,8 @@ import UIKit
 
     // MARK: Functions
 
-    /// Set scroll view bottom inset to the keyboard height
-    /// - Parameter height: bottom inset
-    public func moveUpTableView(height: CGFloat) {
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0,
-                                         bottom: height, right: 0.0)
-        adjustContentInsets(contentInsets)
-    }
-
-    /// Set scroll view bottom inset to the default value
-    public func moveDownTableView() {
-        adjustContentInsets(.zero)
-    }
-
     /// Change scroll view insets
-    private func adjustContentInsets(_ contentInsets: UIEdgeInsets) {
+    func adjustContentInsets(_ contentInsets: UIEdgeInsets) {
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }

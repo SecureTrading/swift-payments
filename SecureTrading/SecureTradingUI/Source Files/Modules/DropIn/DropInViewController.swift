@@ -26,6 +26,8 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
     /// Callback with triggered event
     var eventTriggered: ((Event) -> Void)?
 
+    var keyboard: KeyboardHelper = KeyboardHelper()
+
     // MARK: Lifecycle
 
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +36,7 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
     }
 
     deinit {
-        removeObservers()
+        keyboard.unregister()
     }
 
     /// - SeeAlso: BaseViewController.setupView
@@ -98,63 +100,24 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
 
     /// - SeeAlso: BaseViewController.setupProperties
     override func setupProperties() {
-        addObservers()
+        keyboard.register(target: self)
     }
 
-    // MARK: Handling appearance/disappearance of keyboard
+}
 
-    @objc private func keyboardWillShow(_ notification: Notification) {
-        guard
-            let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
-            let keyboardAnimationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber,
-            let duration = TimeInterval(exactly: keyboardAnimationDuration)
-        else { return }
-        let keyboardRectangle = keyboardFrame.cgRectValue
-        let keyboardHeight = keyboardRectangle.height
-        (customView as? DropInView)?.moveUpTableView(height: keyboardHeight) // todo improve
-        UIView.animate(withDuration: duration) {
+// MARK: Handling appearance/disappearance of keyboard
+extension DropInViewController: KeyboardHelperDelegate {
+    func keyboardChanged(size: CGSize, animationDuration: TimeInterval, isHidden: Bool) {
+        (customView as? DropInView)?.adjustContentInsets(
+            UIEdgeInsets(
+                top: 0,
+                left: 0,
+                bottom: isHidden ? 0 : size.height,
+                right: 0)
+        )
+        UIView.animate(withDuration: animationDuration) {
             self.view.layoutIfNeeded()
         }
-    }
-
-    @objc private func keyboardWillHide(_ notification: Notification) {
-        guard
-            let keyboardAnimationDuration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber,
-            let duration = TimeInterval(exactly: keyboardAnimationDuration)
-        else { return }
-        (customView as? DropInView)?.moveDownTableView() // todo improve
-        UIView.animate(withDuration: duration) {
-            self.view.layoutIfNeeded()
-        }
-    }
-
-    private func addObservers() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
-    }
-
-    private func removeObservers() {
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
     }
 }
 
