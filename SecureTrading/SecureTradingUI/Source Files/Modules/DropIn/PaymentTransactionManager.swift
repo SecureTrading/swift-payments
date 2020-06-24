@@ -178,8 +178,13 @@ final class PaymentTransactionManager {
     // MARK: Transaction flow
 
     /// executes payment transaction flow
+    /// - Parameter jwt: jwt token (provide if you want to update the token - you use defer init)
     /// - Parameter card: bank card object (if there is a nil, the assumption is that a transaction with a parent transaction reference is made)
-    func performTransaction(card: Card?) {
+    func performTransaction(jwt: String? = nil, card: Card?) {
+        if let jwt = jwt {
+            self.jwt = jwt
+        }
+
         self.card = card
 
         if !self.isDeferInit {
