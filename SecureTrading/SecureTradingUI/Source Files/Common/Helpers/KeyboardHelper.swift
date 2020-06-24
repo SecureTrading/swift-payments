@@ -9,7 +9,7 @@ protocol KeyboardHelperDelegate: class {
     func keyboardChanged(size: CGSize, animationDuration: TimeInterval, isHidden: Bool)
 }
 
-/// Helper class for notifyinga bout Keyboard appearance
+/// Helper class for notifying about Keyboard appearance
 class KeyboardHelper {
     private weak var delegate: KeyboardHelperDelegate?
 
