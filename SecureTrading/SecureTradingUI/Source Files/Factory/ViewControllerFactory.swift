@@ -39,12 +39,13 @@ import UIKit
     ///   - successfulPaymentCompletion: Closure triggered by pressing the button in the successful payment alert
     ///   - dropInViewStyleManager: instance of manager to customize view
     ///   - isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment - default behaviour)
-    ///   - isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
+    ///   - isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value - should be true when you want to update the JWT token at this point)
     ///   - cardinalWarningsCompletion: Closure triggered when warnings are detected by the Cardinal (e.g. is the device jailbroken)
     ///   - transactionFailure: Closure triggered by pressing the button in the failure payment alert
     ///   - customDropInView: DropInViewProtocol compliant view (for example, to add some additional fields such as address, tip)
+    ///   - payButtonTappedClosureBeforeTransaction: Closure triggered by pressing the pay button (just before the transaction - you can use this closure to update the JWT token)
     /// - Returns: instance of DropInViewController
-    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription] = [.threeDQuery, .auth], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, customDropInView: DropInViewProtocol? = nil, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping (ResponseSettleStatus, STCardReference?) -> Void, transactionFailure: @escaping () -> Void, cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)? = nil) -> DropInController {
+    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription] = [.threeDQuery, .auth], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, customDropInView: DropInViewProtocol? = nil, dropInViewStyleManager: DropInViewStyleManager? = nil, payButtonTappedClosureBeforeTransaction: @escaping (DropInController) -> Void, successfulPaymentCompletion: @escaping (ResponseSettleStatus, STCardReference?) -> Void, transactionFailure: @escaping () -> Void, cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)? = nil) -> DropInController {
 
         let dropInView = customDropInView ?? DropInView(dropInViewStyleManager: dropInViewStyleManager)
 
@@ -60,6 +61,8 @@ import UIKit
                 cardinalWarningsCompletion?(warningsMessage, warnings)
             case .transactionFailure:
                 transactionFailure()
+            case .payButtonTappedClosureBeforeTransaction(let controller):
+                payButtonTappedClosureBeforeTransaction(controller)
             }
         }
         return viewController
@@ -77,18 +80,19 @@ import UIKit
     ///   - successfulPaymentCompletion: Closure triggered by pressing the button in the successful payment alert
     ///   - dropInViewStyleManager: instance of manager to customize view
     ///   - isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment - default behaviour)
-    ///   - isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
+    ///   - isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value - should be true when you want to update the JWT token at this point)
     ///   - cardinalWarningsCompletion: Closure triggered when warnings are detected by the Cardinal (e.g. is the device jailbroken)
     ///   - transactionFailure: Closure triggered by pressing the button in the failure payment alert
     ///   - customDropInView: DropInViewProtocol compliant view (for example, to add some additional fields such as address, tip)
+    ///   - payButtonTappedClosureBeforeTransaction: Closure triggered by pressing the pay button (just before the transaction - you can use this closure to update the JWT token)
     /// - Returns: instance of DropInViewController
-    @objc public func dropInViewController(jwt: String, typeDescriptions: [Int] = [1, 0], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, customDropInView: DropInViewProtocol? = nil, dropInViewStyleManager: DropInViewStyleManager? = nil, successfulPaymentCompletion: @escaping (ResponseSettleStatus, STCardReference?) -> Void, transactionFailure: @escaping () -> Void, cardinalWarningsCompletion: ((String, [Int]) -> Void)? = nil) -> DropInController {
+    @objc public func dropInViewController(jwt: String, typeDescriptions: [Int] = [1, 0], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, customDropInView: DropInViewProtocol? = nil, dropInViewStyleManager: DropInViewStyleManager? = nil, payButtonTappedClosureBeforeTransaction: @escaping (DropInController) -> Void, successfulPaymentCompletion: @escaping (ResponseSettleStatus, STCardReference?) -> Void, transactionFailure: @escaping () -> Void, cardinalWarningsCompletion: ((String, [Int]) -> Void)? = nil) -> DropInController {
 
         let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
         let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
 
         // swiftlint:disable line_length
-        return self.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: successfulPaymentCompletion, transactionFailure: transactionFailure, cardinalWarningsCompletion: { warningsMessage, warnings in
+        return self.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, payButtonTappedClosureBeforeTransaction: payButtonTappedClosureBeforeTransaction, successfulPaymentCompletion: successfulPaymentCompletion, transactionFailure: transactionFailure, cardinalWarningsCompletion: { warningsMessage, warnings in
 
             cardinalWarningsCompletion?(warningsMessage, warnings.map { $0.rawValue })
         })

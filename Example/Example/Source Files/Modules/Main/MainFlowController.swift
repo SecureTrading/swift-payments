@@ -92,7 +92,12 @@ final class MainFlowController: BaseNavigationFlowController {
 
         let customDropInView = DropInCustomView(dropInViewStyleManager: dropInViewStyleManager)
 
-        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: true, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: { [unowned self] _, cardReference in
+        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: true, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, payButtonTappedClosureBeforeTransaction: { [unowned self] controller in
+            // updates JWT with credentialsonfile flag
+            guard let updatedJWT = self.mainViewModel?.getJwtTokenWithoutCardData(storeCard: customDropInView.isSaveCardSelected) else { return }
+            // update vc with new jwt
+            controller.updateJWT(newValue: updatedJWT)
+        }, successfulPaymentCompletion: { [unowned self] _, cardReference in
             Wallet.shared.add(card: cardReference)
             self.navigationController.popViewController(animated: true)
         }, transactionFailure: {}, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in

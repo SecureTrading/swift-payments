@@ -19,6 +19,7 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
         case successfulPayment(ResponseSettleStatus)
         case successfulPaymentCardAdded(ResponseSettleStatus, STCardReference)
         case transactionFailure
+        case payButtonTappedClosureBeforeTransaction(DropInController)
         case cardinalWarnings(String, [CardinalInitWarnings])
     }
 
@@ -47,6 +48,7 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
             guard let self = self else { return }
             let isFormValid = self.viewModel.validateForm(view: self.customView)
             if isFormValid {
+                self.eventTriggered?(.payButtonTappedClosureBeforeTransaction(self))
                 self.customView.payButton.startProcessing()
                 let cardNumber = self.customView.cardNumberInput.cardNumber
                 let cvc = self.customView.cvcInput.cvc
