@@ -57,7 +57,7 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
             }
         }
 
-        viewModel.showTransactionSuccess = { [weak self] responseObject, cardReference in
+        viewModel.transactionSuccessClosure = { [weak self] responseObject, cardReference in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             if let cardRef = cardReference {
@@ -67,13 +67,13 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
             }
         }
 
-        viewModel.showTransactionError = { [weak self] responseObject, error in
+        viewModel.transactionErrorClosure = { [weak self] responseObject, error in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             self.eventTriggered?(.transactionFailure(responseObject, error))
         }
 
-        viewModel.showCardinalAuthenticationError = { [weak self] in
+        viewModel.cardinalAuthenticationErrorClosure = { [weak self] in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             self.eventTriggered?(.transactionFailure(nil, Localizable.DropInViewController.cardinalAuthenticationError.text))
@@ -84,7 +84,7 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
             self.eventTriggered?(.cardinalWarnings(warningsMessage, warnings))
         }
 
-        viewModel.showValidationError = { [weak self] error in
+        viewModel.validationErrorClosure = { [weak self] error in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             switch error {
@@ -155,18 +155,6 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )
-    }
-
-    // MARK: Alerts
-
-    /// shows an alert
-    /// - Parameters:
-    ///   - message: alert message
-    ///   - completionHandler: Closure triggered when the alert button is pressed
-    private func showAlert(message: String, completionHandler: ((UIAlertAction) -> Void)?) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Localizable.Alerts.okButton.text, style: .default, handler: completionHandler))
-        present(alert, animated: true, completion: nil)
     }
 }
 

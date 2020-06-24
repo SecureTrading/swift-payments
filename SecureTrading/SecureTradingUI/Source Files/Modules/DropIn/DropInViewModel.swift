@@ -43,10 +43,10 @@ final class DropInViewModel {
 
     var isSaveCardEnabled: Bool = true
 
-    var showTransactionSuccess: ((JWTResponseObject, STCardReference?) -> Void)?
-    var showTransactionError: ((JWTResponseObject?, String) -> Void)?
-    var showCardinalAuthenticationError: (() -> Void)?
-    var showValidationError: ((ResponseErrorDetail) -> Void)?
+    var transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?
+    var transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?
+    var cardinalAuthenticationErrorClosure: (() -> Void)?
+    var validationErrorClosure: ((ResponseErrorDetail) -> Void)?
     var cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)?
 
     // MARK: Initialization
@@ -87,7 +87,7 @@ final class DropInViewModel {
                 self.jsInitError = (responseObject, errorMessage)
                 if self.shouldStartTransactionAfterJsInit {
                     self.shouldStartTransactionAfterJsInit = false
-                    self.showTransactionError?(responseObject, errorMessage)
+                    self.transactionErrorClosure?(responseObject, errorMessage)
                 }
             })
         }
@@ -143,16 +143,16 @@ final class DropInViewModel {
         self.makePaymentRequest(request: request, success: { [weak self] responseObject in
             guard let self = self else { return }
             guard tempTypeDescriptions.contains(.threeDQuery) else {
-                self.showTransactionSuccess?(responseObject, self.isSaveCardEnabled ? responseObject.cardReference : nil)
+                self.transactionSuccessClosure?(responseObject, self.isSaveCardEnabled ? responseObject.cardReference : nil)
                 return
             }
             self.handleThreeDSecureFlow(responseObject: responseObject)
             }, transactionError: { [weak self] responseObject, error in
             guard let self = self else { return }
-            self.showTransactionError?(responseObject, error)
+            self.transactionErrorClosure?(responseObject, error)
         }, validationError: { [weak self] errorCode in
             guard let self = self else { return }
-            self.showValidationError?(errorCode)
+            self.validationErrorClosure?(errorCode)
         })
     }
 
@@ -203,14 +203,14 @@ final class DropInViewModel {
                 return
             }
 
-            self.showTransactionError?(responseObject, jsInitErrorTemp)
+            self.transactionErrorClosure?(responseObject, jsInitErrorTemp)
         } else {
             self.makeJSInitRequest(completion: { [weak self] _ in
                 guard let self = self else { return }
                 self.makePaymentOrThreeDQueryRequest(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
             }, failure: { [weak self] responseObject, errorMessage in
                 guard let self = self else { return }
-                self.showTransactionError?(responseObject, errorMessage)
+                self.transactionErrorClosure?(responseObject, errorMessage)
             })
         }
     }
@@ -229,13 +229,13 @@ final class DropInViewModel {
 
             self.makePaymentRequest(request: request, success: { [weak self] responseObject in
                 guard let self = self else { return }
-                self.showTransactionSuccess?(responseObject, self.isSaveCardEnabled ? responseObject.cardReference : nil)
+                self.transactionSuccessClosure?(responseObject, self.isSaveCardEnabled ? responseObject.cardReference : nil)
             }, transactionError: { [weak self] responseObject, error in
                 guard let self = self else { return }
-                self.showTransactionError?(responseObject, error)
+                self.transactionErrorClosure?(responseObject, error)
             }, validationError: { [weak self] errorCode in
                 guard let self = self else { return }
-                self.showValidationError?(errorCode)
+                self.validationErrorClosure?(errorCode)
             })
 
             return
@@ -301,21 +301,21 @@ final class DropInViewModel {
         dispatchGroup.notify(queue: dispatchQueue) {
             DispatchQueue.main.async {
                 if cardinalAuthenticationError {
-                    self.showCardinalAuthenticationError?()
+                    self.cardinalAuthenticationErrorClosure?()
                     return
                 }
 
                 if let error = transactionError {
-                    self.showTransactionError?(jwtResponseObject, error)
+                    self.transactionErrorClosure?(jwtResponseObject, error)
                     return
                 }
 
                 if let errorCode = validationError {
-                    self.showValidationError?(errorCode)
+                    self.validationErrorClosure?(errorCode)
                     return
                 }
 
-                self.showTransactionSuccess?(jwtResponseObject!, self.isSaveCardEnabled ? jwtResponseObject!.cardReference : nil)
+                self.transactionSuccessClosure?(jwtResponseObject!, self.isSaveCardEnabled ? jwtResponseObject!.cardReference : nil)
             }
         }
     }
