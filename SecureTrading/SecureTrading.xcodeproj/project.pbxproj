@@ -51,6 +51,7 @@
 		08534ED124A22E2000D2B082 /* DropInViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08534ED024A22E2000D2B082 /* DropInViewProtocol.swift */; };
 		08534ED324A22E4D00D2B082 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08534ED224A22E4C00D2B082 /* ViewProtocol.swift */; };
 		08534ED724A37E7100D2B082 /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08534ED624A37E7000D2B082 /* KeyboardHelper.swift */; };
+		08534ED924A3A16200D2B082 /* PaymentTransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08534ED824A3A16200D2B082 /* PaymentTransactionManager.swift */; };
 		0853ACA2247F916C00DF37EE /* TestCardMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA1247F916C00DF37EE /* TestCardMask.swift */; };
 		0853ACA5247FA6B300DF37EE /* KnownMaskedCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */; };
 		0853ACA7247FB00F00DF37EE /* CvcInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0853ACA6247FB00F00DF37EE /* CvcInputView.swift */; };
@@ -261,6 +262,7 @@
 		08534ED024A22E2000D2B082 /* DropInViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropInViewProtocol.swift; sourceTree = "<group>"; };
 		08534ED224A22E4C00D2B082 /* ViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewProtocol.swift; sourceTree = "<group>"; };
 		08534ED624A37E7000D2B082 /* KeyboardHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
+		08534ED824A3A16200D2B082 /* PaymentTransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTransactionManager.swift; sourceTree = "<group>"; };
 		0853ACA1247F916C00DF37EE /* TestCardMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCardMask.swift; sourceTree = "<group>"; };
 		0853ACA4247FA6B300DF37EE /* KnownMaskedCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownMaskedCards.swift; sourceTree = "<group>"; };
 		0853ACA6247FB00F00DF37EE /* CvcInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CvcInputView.swift; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 				0818DE3E248659A800A8B25A /* DropInView.swift */,
 				0818DE40248659B800A8B25A /* DropInViewModel.swift */,
 				0818DE42248659C900A8B25A /* DropInViewController.swift */,
+				08534ED824A3A16200D2B082 /* PaymentTransactionManager.swift */,
 			);
 			path = DropIn;
 			sourceTree = "<group>";
@@ -1440,6 +1443,7 @@
 				084E2A03246585330040FB9D /* UICollectionView.swift in Sources */,
 				1050A953248FE3F800E84A6D /* RequestButtonStyleManager.swift in Sources */,
 				0853ACAC247FF15700DF37EE /* ExpiryDateInputView.swift in Sources */,
+				08534ED924A3A16200D2B082 /* PaymentTransactionManager.swift in Sources */,
 				084E29FD246583B50040FB9D /* BaseViewCell.swift in Sources */,
 				0869488524694FAF00F625D0 /* SDKFlowController.swift in Sources */,
 				084D7DC62480D6BE002E43BC /* SecureFormInputView.swift in Sources */,
