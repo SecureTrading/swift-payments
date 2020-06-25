@@ -1,12 +1,12 @@
 //
-//  Translation.swift
+//  Localizable.swift
 //  SecureTradingCore
 //
 
 import Foundation
 
 // Stores current translation strings based on locale or user preference
-final class Translations: NSObject {
+final class Localizable: NSObject {
     private var currentTranslations: [String: String] = [:]
 
     // MARK: - Initialization
@@ -19,7 +19,7 @@ final class Translations: NSObject {
     /// - Parameter locale: Locale for which translations should be loaded
     init(locale: Locale) {
         super.init()
-        let translationFile = self.translationFileURL(identifier: Translations.Language.supportedLanguage(for: locale).rawValue)
+        let translationFile = self.translationFileURL(identifier: Localizable.Language.supportedLanguage(for: locale).rawValue)
 
         do {
             // Loads translations from json files
@@ -37,14 +37,14 @@ final class Translations: NSObject {
     /// Returns localized string for given key
     /// - Parameter key: Key for which localized string should be returned
     /// - Returns: Localized string or nil
-    func translation<T: TranslationKey>(for key: T) -> String? {
-        let translationKey = key.stringKey
+    func localizedString<T: LocalizableKey>(for key: T) -> String? {
+        let translationKey = key.key
         return currentTranslations[translationKey]
     }
 
     /// Overrides default translation values with provided values
     /// - Parameter customKeys: Dictionary containing translation keys to override with their values
-    @objc func overrideTranslations(with customKeys: [String: String]) {
+    @objc func overrideLocalizedKeys(with customKeys: [String: String]) {
         for customKey in customKeys {
             currentTranslations[customKey.key] = customKey.value
         }
@@ -54,7 +54,7 @@ final class Translations: NSObject {
     /// - Parameter identifier: iso language identifier, eg: en_US
     /// - Returns: URL for translation file
     private func translationFileURL(identifier: String) -> URL {
-        guard let path = Bundle(for: Translations.self).path(forResource: identifier, ofType: "json"),
+        guard let path = Bundle(for: Localizable.self).path(forResource: identifier, ofType: "json"),
             let url = URL(string: "file://" + path) else {
                 fatalError("Missing translation file for locale: \(identifier)")
         }
@@ -64,7 +64,7 @@ final class Translations: NSObject {
 
 /// Supported languages
 /// en_GB is used as a default if supported language cannot be determined based on given locale
-extension Translations {
+extension Localizable {
     //swiftlint:disable identifier_name
     enum Language: String {
         case cy_GB

@@ -38,7 +38,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
 
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
-        title = TranslationsKeys.DropInViewController.title.localizedString
+        title = LocalizableKeys.DropInViewController.title.localizedString
     }
 
     /// - SeeAlso: BaseViewController.setupCallbacks
@@ -59,7 +59,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
         viewModel.showTransactionSuccess = { [weak self] responseSettleStatus, cardReference in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
-            self.showAlert(message: TranslationsKeys.DropInViewController.successfulPayment.localizedString) { [weak self] _ in
+            self.showAlert(message: LocalizableKeys.DropInViewController.successfulPayment.localizedString) { [weak self] _ in
                 guard let self = self else { return }
                 if let cardRef = cardReference {
                     self.eventTriggered?(.successfulPaymentCardAdded(responseSettleStatus, cardRef))
@@ -85,7 +85,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             self.showAlert(
-                message: TranslationsKeys.DropInViewController.cardinalAuthenticationError.localizedString,
+                message: LocalizableKeys.DropInViewController.cardinalAuthenticationError.localizedString,
                 completionHandler: { [weak self] _ in
                     guard let self = self else { return }
                     self.eventTriggered?(.transactionFailure)

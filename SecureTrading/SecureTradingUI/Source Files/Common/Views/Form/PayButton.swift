@@ -42,7 +42,7 @@ import SecureTradingCore
 
     public override func configureView() {
         super.configureView()
-        guard let title = TranslationsKeys.PayButton.title.localizedString else { return }
+        guard let title = LocalizableKeys.PayButton.title.localizedString else { return }
         self.title = title
     }
 }

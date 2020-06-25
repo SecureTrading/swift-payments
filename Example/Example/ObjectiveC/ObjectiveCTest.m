@@ -40,8 +40,9 @@
 
 /// Test setting custom translation
 -(void) testTranslations {
-    NSNumber *payButtonTitleKey = @(TranslationsKeysObjc_payButton_title);
-    [[TrustPayments instance] configureWithLocale:[NSLocale currentLocale] customTranslations:@{payButtonTitleKey: @"Giv me da mona"}];
+    NSNumber *payButtonTitleKey = @(LocalizableKeysObjc_payButton_title);
+    NSNumber *navigationBackKey = @(LocalizableKeysObjc_navigation_back);;
+    [[TrustPayments instance] configureWithLocale:[NSLocale currentLocale] customTranslations:@{payButtonTitleKey: @"Giv me da mona", navigationBackKey: @"<Back>"}];
 }
 
 @end

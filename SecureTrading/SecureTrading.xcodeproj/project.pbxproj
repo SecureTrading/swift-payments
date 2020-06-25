@@ -124,9 +124,9 @@
 		1051D22724814B4D008E4970 /* TestDecodedJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22624814B4D008E4970 /* TestDecodedJWT.swift */; };
 		1051D229248157EF008E4970 /* TestGeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D228248157EF008E4970 /* TestGeneralResponse.swift */; };
 		1053B67B24A4D3FA000DD3CF /* TrustPayments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1053B67A24A4D3FA000DD3CF /* TrustPayments.swift */; };
-		1053B67D24A4D86D000DD3CF /* TranslationsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1053B67C24A4D86D000DD3CF /* TranslationsKeys.swift */; };
+		1053B67D24A4D86D000DD3CF /* LocalizableKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1053B67C24A4D86D000DD3CF /* LocalizableKeys.swift */; };
 		105492E72484E3C000E545E4 /* TestRequestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105492E62484E3C000E545E4 /* TestRequestObject.swift */; };
-		1054A99D24A24CDE002B5125 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1054A99C24A24CDE002B5125 /* Translation.swift */; };
+		1054A99D24A24CDE002B5125 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1054A99C24A24CDE002B5125 /* Localizable.swift */; };
 		1054A9AA24A25D39002B5125 /* da_DK.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A024A25D38002B5125 /* da_DK.json */; };
 		1054A9AB24A25D39002B5125 /* en_US.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A124A25D38002B5125 /* en_US.json */; };
 		1054A9AC24A25D39002B5125 /* en_GB.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A224A25D38002B5125 /* en_GB.json */; };
@@ -348,9 +348,9 @@
 		1051D22624814B4D008E4970 /* TestDecodedJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDecodedJWT.swift; sourceTree = "<group>"; };
 		1051D228248157EF008E4970 /* TestGeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeneralResponse.swift; sourceTree = "<group>"; };
 		1053B67A24A4D3FA000DD3CF /* TrustPayments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustPayments.swift; sourceTree = "<group>"; };
-		1053B67C24A4D86D000DD3CF /* TranslationsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsKeys.swift; sourceTree = "<group>"; };
+		1053B67C24A4D86D000DD3CF /* LocalizableKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableKeys.swift; sourceTree = "<group>"; };
 		105492E62484E3C000E545E4 /* TestRequestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRequestObject.swift; sourceTree = "<group>"; };
-		1054A99C24A24CDE002B5125 /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
+		1054A99C24A24CDE002B5125 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		1054A9A024A25D38002B5125 /* da_DK.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = da_DK.json; sourceTree = "<group>"; };
 		1054A9A124A25D38002B5125 /* en_US.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = en_US.json; sourceTree = "<group>"; };
 		1054A9A224A25D38002B5125 /* en_GB.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = en_GB.json; sourceTree = "<group>"; };
@@ -943,8 +943,8 @@
 		1054A99B24A24CC6002B5125 /* Translations */ = {
 			isa = PBXGroup;
 			children = (
-				1054A99C24A24CDE002B5125 /* Translation.swift */,
-				1053B67C24A4D86D000DD3CF /* TranslationsKeys.swift */,
+				1054A99C24A24CDE002B5125 /* Localizable.swift */,
+				1053B67C24A4D86D000DD3CF /* LocalizableKeys.swift */,
 			);
 			path = Translations;
 			sourceTree = "<group>";
@@ -1438,12 +1438,12 @@
 				084E2A2124659EA70040FB9D /* SDKFoundation.swift in Sources */,
 				08C31AFD246E8F2C00595B21 /* Claim.swift in Sources */,
 				089B41DB246D573900F70764 /* APIManager.swift in Sources */,
-				1054A99D24A24CDE002B5125 /* Translation.swift in Sources */,
+				1054A99D24A24CDE002B5125 /* Localizable.swift in Sources */,
 				089B41E1246D600600F70764 /* GeneralRequest.swift in Sources */,
 				089B41CC246D4DE100F70764 /* APIRequestModel.swift in Sources */,
 				08C31AF9246E860C00595B21 /* DecodedJWT.swift in Sources */,
 				105073F72489AA760036F7AD /* ResponseValidator.swift in Sources */,
-				1053B67D24A4D86D000DD3CF /* TranslationsKeys.swift in Sources */,
+				1053B67D24A4D86D000DD3CF /* LocalizableKeys.swift in Sources */,
 				089B41DF246D5ECB00F70764 /* RequestObject.swift in Sources */,
 				08C31AF7246E842F00595B21 /* JWT.swift in Sources */,
 				089B41D0246D4E4B00F70764 /* Dictionary.swift in Sources */,

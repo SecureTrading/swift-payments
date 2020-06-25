@@ -10,7 +10,7 @@ final class PopBackView: UIView {
 
     private lazy var textLabel: UILabel = {
         let label = UILabel()
-        label.text = TranslationsKeys.Navigation.back.localizedString
+        label.text = LocalizableKeys.Navigation.back.localizedString
         label.textColor = .black
         label.font = Fonts.responsive(.regular, ofSizes: [.small: 13, .medium: 14, .large: 16])
         return label
