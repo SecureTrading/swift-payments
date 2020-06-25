@@ -57,23 +57,6 @@ final class MainViewModel {
         return jwt
     }
 
-    /// Returns JWT with parent transaction reference
-    func getJwtTokenWithParentTransactionReference() -> String? {
-        let claim = STClaims(iss: keys.merchantUsername,
-                             iat: Date(timeIntervalSinceNow: 0),
-                             payload: Payload(accounttypedescription: "ECOM",
-                                              sitereference: keys.merchantSiteReference,
-                                              currencyiso3a: "GBP",
-                                              baseamount: 1050,
-                                              pan: nil,
-                                              expirydate: nil,
-                                              securitycode: nil,
-                                              parenttransactionreference: "59-9-34731"))
-
-        guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return nil }
-        return jwt
-    }
-
     /// Performs an AUTH request with card data
     func makeAuthCall() {
         let claim = STClaims(iss: keys.merchantUsername,
