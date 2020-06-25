@@ -50,7 +50,7 @@ final class MainFlowController: BaseNavigationFlowController {
                 ])
         ]
 
-        mainViewModel = MainViewModel(apiManager: appFoundation.apiManager, items: viewItems)
+        mainViewModel = MainViewModel(items: viewItems)
         let mainViewController = MainViewController(view: MainView(), viewModel: mainViewModel!)
         mainViewController.eventTriggered = { [unowned self] event in
             switch event {
