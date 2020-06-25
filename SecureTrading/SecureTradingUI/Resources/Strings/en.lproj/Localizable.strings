@@ -3,7 +3,6 @@
   SecureTrading
 */
 
-PopBack.back = "back";
 
 TestMainViewController.title = "Main";
 TestMainViewController.closeButton = "Close";

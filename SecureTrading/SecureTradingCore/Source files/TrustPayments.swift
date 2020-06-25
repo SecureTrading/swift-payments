@@ -18,11 +18,11 @@ import Foundation
     /// Configures global settings
     /// - Parameters:
     ///   - locale: Locale used to determine correct translations, if not set, a Locale.current value is used instead
-    ///   - customTranslations: A dictionary of custom translations, overrides default values
+    ///   - translationsForOverride: A dictionary of custom translations, overrides default values
     ///   - refer to TranslationsKeys for possible keys
-    public func configure<Key: TranslationKey>(locale: Locale = Locale.current, customTranslations: [Key: String]?) {
+    public func configure<Key: Hashable & TranslationKey>(locale: Locale = Locale.current, translationsForOverride: [Key: String]?) {
         translations = Translations(locale: locale)
-        if let customTranslations = customTranslations {
+        if let customTranslations = translationsForOverride {
             let convertedTranslations = Dictionary(uniqueKeysWithValues: customTranslations.map { ($0.key.stringKey, $0.value)})
             translations?.overrideTranslations(with: convertedTranslations)
         }

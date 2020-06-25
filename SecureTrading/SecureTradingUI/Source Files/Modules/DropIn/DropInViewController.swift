@@ -38,7 +38,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
 
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
-        title = Localizable.DropInViewController.title.text
+        title = TranslationsKeys.DropInViewController.title.localizedString
     }
 
     /// - SeeAlso: BaseViewController.setupCallbacks
@@ -59,7 +59,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
         viewModel.showTransactionSuccess = { [weak self] responseSettleStatus, cardReference in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
-            self.showAlert(message: Localizable.DropInViewController.successfulPayment.text) { [weak self] _ in
+            self.showAlert(message: TranslationsKeys.DropInViewController.successfulPayment.localizedString) { [weak self] _ in
                 guard let self = self else { return }
                 if let cardRef = cardReference {
                     self.eventTriggered?(.successfulPaymentCardAdded(responseSettleStatus, cardRef))
@@ -85,7 +85,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             self.showAlert(
-                message: Localizable.DropInViewController.cardinalAuthenticationError.text,
+                message: TranslationsKeys.DropInViewController.cardinalAuthenticationError.localizedString,
                 completionHandler: { [weak self] _ in
                     guard let self = self else { return }
                     self.eventTriggered?(.transactionFailure)
@@ -177,7 +177,7 @@ final class DropInViewController: BaseViewController<DropInView, DropInViewModel
     /// - Parameters:
     ///   - message: alert message
     ///   - completionHandler: Closure triggered when the alert button is pressed
-    private func showAlert(message: String, completionHandler: ((UIAlertAction) -> Void)?) {
+    private func showAlert(message: String?, completionHandler: ((UIAlertAction) -> Void)?) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Localizable.Alerts.okButton.text, style: .default, handler: completionHandler))
         present(alert, animated: true, completion: nil)
@@ -191,13 +191,5 @@ extension DropInViewController: DropInController {
 
     var viewController: UIViewController {
         return self
-    }
-}
-
-private extension Localizable {
-    enum DropInViewController: String, Localized {
-        case title
-        case successfulPayment
-        case cardinalAuthenticationError
     }
 }
