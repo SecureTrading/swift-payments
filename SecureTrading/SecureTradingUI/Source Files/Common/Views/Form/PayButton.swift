@@ -42,7 +42,8 @@ import SecureTradingCore
 
     public override func configureView() {
         super.configureView()
-        self.title = Translations().translation(for: Translations.PayButton.title)
+        TrustPayments.instance.configure(locale: Locale.current, customTranslations: [TranslationsKeys.PayButton.title: "Giv me da mona"])
+        self.title = TrustPayments.translation(for: TranslationsKeys.PayButton.title)
     }
 }
 
