@@ -42,13 +42,7 @@ import SecureTradingCore
 
     public override func configureView() {
         super.configureView()
-        
-        self.title = TrustPayments.translation(for: TranslationsKeys.PayButton.title)
-    }
-}
-
-private extension Localizable {
-    enum PayButton: String, Localized {
-        case title
+        guard let title = TrustPayments.translation(for: TranslationsKeys.PayButton.title) else { return }
+        self.title = title
     }
 }

@@ -37,8 +37,10 @@
     }];
 
 }
+
+/// Test setting custom translation
 -(void) testTranslations {
-    NSNumber *payButtonTitleKey = @(TranslationKeyObjcPayButton_title);
+    NSNumber *payButtonTitleKey = @(TranslationsKeysObjc_payButton_title);
     [[TrustPayments instance] configureWithLocale:[NSLocale currentLocale] customTranslations:@{payButtonTitleKey: @"Giv me da mona"}];
 }
 

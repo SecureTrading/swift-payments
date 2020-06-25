@@ -123,6 +123,8 @@
 		1051D22524813F66008E4970 /* TestGeneralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22424813F65008E4970 /* TestGeneralRequest.swift */; };
 		1051D22724814B4D008E4970 /* TestDecodedJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22624814B4D008E4970 /* TestDecodedJWT.swift */; };
 		1051D229248157EF008E4970 /* TestGeneralResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D228248157EF008E4970 /* TestGeneralResponse.swift */; };
+		1053B67B24A4D3FA000DD3CF /* TrustPayments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1053B67A24A4D3FA000DD3CF /* TrustPayments.swift */; };
+		1053B67D24A4D86D000DD3CF /* TranslationsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1053B67C24A4D86D000DD3CF /* TranslationsKeys.swift */; };
 		105492E72484E3C000E545E4 /* TestRequestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105492E62484E3C000E545E4 /* TestRequestObject.swift */; };
 		1054A99D24A24CDE002B5125 /* Translation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1054A99C24A24CDE002B5125 /* Translation.swift */; };
 		1054A9AA24A25D39002B5125 /* da_DK.json in Resources */ = {isa = PBXBuildFile; fileRef = 1054A9A024A25D38002B5125 /* da_DK.json */; };
@@ -345,6 +347,8 @@
 		1051D22424813F65008E4970 /* TestGeneralRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeneralRequest.swift; sourceTree = "<group>"; };
 		1051D22624814B4D008E4970 /* TestDecodedJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDecodedJWT.swift; sourceTree = "<group>"; };
 		1051D228248157EF008E4970 /* TestGeneralResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeneralResponse.swift; sourceTree = "<group>"; };
+		1053B67A24A4D3FA000DD3CF /* TrustPayments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustPayments.swift; sourceTree = "<group>"; };
+		1053B67C24A4D86D000DD3CF /* TranslationsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationsKeys.swift; sourceTree = "<group>"; };
 		105492E62484E3C000E545E4 /* TestRequestObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRequestObject.swift; sourceTree = "<group>"; };
 		1054A99C24A24CDE002B5125 /* Translation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translation.swift; sourceTree = "<group>"; };
 		1054A9A024A25D38002B5125 /* da_DK.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = da_DK.json; sourceTree = "<group>"; };
@@ -787,6 +791,7 @@
 				08EF7CFB2462ABD0008B5F3E /* API */,
 				084E2A2024659EA70040FB9D /* SDKFoundation.swift */,
 				084E2A2224659EE20040FB9D /* DefaultSDKFoundation.swift */,
+				1053B67A24A4D3FA000DD3CF /* TrustPayments.swift */,
 			);
 			path = "Source files";
 			sourceTree = "<group>";
@@ -939,6 +944,7 @@
 			isa = PBXGroup;
 			children = (
 				1054A99C24A24CDE002B5125 /* Translation.swift */,
+				1053B67C24A4D86D000DD3CF /* TranslationsKeys.swift */,
 			);
 			path = Translations;
 			sourceTree = "<group>";
@@ -1437,6 +1443,7 @@
 				089B41CC246D4DE100F70764 /* APIRequestModel.swift in Sources */,
 				08C31AF9246E860C00595B21 /* DecodedJWT.swift in Sources */,
 				105073F72489AA760036F7AD /* ResponseValidator.swift in Sources */,
+				1053B67D24A4D86D000DD3CF /* TranslationsKeys.swift in Sources */,
 				089B41DF246D5ECB00F70764 /* RequestObject.swift in Sources */,
 				08C31AF7246E842F00595B21 /* JWT.swift in Sources */,
 				089B41D0246D4E4B00F70764 /* Dictionary.swift in Sources */,
@@ -1447,6 +1454,7 @@
 				089B41D2246D52D400F70764 /* APIClientError.swift in Sources */,
 				08C31B03246EA25300595B21 /* JWTResponseObject.swift in Sources */,
 				109951A124863DF000E8E401 /* DecodingMocks.swift in Sources */,
+				1053B67B24A4D3FA000DD3CF /* TrustPayments.swift in Sources */,
 				084E2A2324659EE20040FB9D /* DefaultSDKFoundation.swift in Sources */,
 				089B41E4246D6FCE00F70764 /* GeneralResponse.swift in Sources */,
 				089B41D7246D536600F70764 /* NSError.swift in Sources */,
