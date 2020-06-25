@@ -32,9 +32,6 @@ final class MainViewModel {
     // MARK: Initialization
 
     /// Initializes an instance of the receiver.
-    ///
-    /// - Parameter apiManager: API manager
-    /// - Parameter apiManager: API manager
     init(items: [Section]) {
         self.items = items
         self.paymentTransactionManager = PaymentTransactionManager(jwt: .empty, gatewayType: .eu, username: keys.merchantUsername, isLiveStatus: false, isDeferInit: true)
