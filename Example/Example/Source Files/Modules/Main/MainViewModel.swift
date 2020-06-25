@@ -174,8 +174,8 @@ final class MainViewModel {
             self.showAuthError?(errorMessage)
         }, cardinalAuthenticationErrorClosure: {
             // todo
-        }, validationErrorClosure: { _ in
-            // todo self.showAuthError?(responseError.localizedDescription)
+        }, validationErrorClosure: { error, _ in
+            self.showAuthError?(error)
         })
     }
 }

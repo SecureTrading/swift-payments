@@ -42,7 +42,7 @@ import Foundation
     private var transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?
     private var transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?
     private var cardinalAuthenticationErrorClosure: (() -> Void)?
-    private var validationErrorClosure: ((ResponseErrorDetail) -> Void)?
+    private var validationErrorClosure: ((String, ResponseErrorDetail) -> Void)?
 
     // MARK: Initialization
 
@@ -94,7 +94,7 @@ import Foundation
     ///   - success: success closure
     ///   - transactionError: failure closure (general error)
     ///   - validationError: failure closure (card validation error)
-    private func makePaymentRequest(request: RequestObject, success: @escaping ((JWTResponseObject) -> Void), transactionError: @escaping ((JWTResponseObject?, String) -> Void), validationError: @escaping ((ResponseErrorDetail) -> Void)) {
+    private func makePaymentRequest(request: RequestObject, success: @escaping ((JWTResponseObject) -> Void), transactionError: @escaping ((JWTResponseObject?, String) -> Void), validationError: @escaping ((String, ResponseErrorDetail) -> Void)) {
         self.apiManager.makeGeneralRequest(jwt: self.jwt, request: request, success: { responseObject, _, newJWT in
             self.jwt = newJWT
             switch responseObject.responseErrorCode {
@@ -110,7 +110,7 @@ import Foundation
                 case .invalidField(let errorCode):
                     switch errorCode {
                     case .invalidPAN, .invalidSecurityCode, .invalidExpiryDate:
-                        validationError(errorCode)
+                        validationError(responseError.localizedDescription, errorCode)
                     default: transactionError(nil, error.humanReadableDescription)
                     }
 
@@ -139,9 +139,9 @@ import Foundation
         }, transactionError: { [weak self] responseObject, error in
             guard let self = self else { return }
             self.transactionErrorClosure?(responseObject, error)
-        }, validationError: { [weak self] errorCode in
+        }, validationError: { [weak self] error, errorCode in
             guard let self = self else { return }
-            self.validationErrorClosure?(errorCode)
+            self.validationErrorClosure?(error, errorCode)
         })
     }
 
@@ -180,7 +180,7 @@ import Foundation
     /// - Parameter transactionErrorClosure: Closure triggered after a failed transaction, when a error was returned at some stage
     /// - Parameter cardinalAuthenticationErrorClosure: Closure triggered after a failed transaction, when a cardinal authentication error was returned
     /// - Parameter validationErrorClosure: Closure triggered after a failed transaction, when a validation error was returned
-    public func performTransaction(jwt: String? = nil, typeDescriptions: [TypeDescription], card: Card?, transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?, transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?, cardinalAuthenticationErrorClosure: (() -> Void)?, validationErrorClosure: ((ResponseErrorDetail) -> Void)?) {
+    public func performTransaction(jwt: String? = nil, typeDescriptions: [TypeDescription], card: Card?, transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?, transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?, cardinalAuthenticationErrorClosure: (() -> Void)?, validationErrorClosure: ((String, ResponseErrorDetail) -> Void)?) {
         if let jwt = jwt {
             self.jwt = jwt
         }
@@ -227,7 +227,7 @@ import Foundation
     /// - Parameter transactionErrorClosure: Closure triggered after a failed transaction, when a error was returned at some stage
     /// - Parameter cardinalAuthenticationErrorClosure: Closure triggered after a failed transaction, when a cardinal authentication error was returned
     /// - Parameter validationErrorClosure: Closure triggered after a failed transaction, when a validation error was returned
-    @objc public func performTransaction(jwt: String? = nil, typeDescriptions: [Int], card: Card?, transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?, transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?, cardinalAuthenticationErrorClosure: (() -> Void)?, validationErrorClosure: ((ResponseErrorDetail) -> Void)?) {
+    @objc public func performTransaction(jwt: String? = nil, typeDescriptions: [Int], card: Card?, transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?, transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?, cardinalAuthenticationErrorClosure: (() -> Void)?, validationErrorClosure: ((String, ResponseErrorDetail) -> Void)?) {
         let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
         let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
 
@@ -254,9 +254,9 @@ import Foundation
             }, transactionError: { [weak self] responseObject, error in
                 guard let self = self else { return }
                 self.transactionErrorClosure?(responseObject, error)
-            }, validationError: { [weak self] errorCode in
+            }, validationError: { [weak self] error, errorCode in
                 guard let self = self else { return }
-                self.validationErrorClosure?(errorCode)
+                self.validationErrorClosure?(error, errorCode)
             })
 
             return
@@ -276,7 +276,7 @@ import Foundation
         var jwtForValidation: String?
         var jwtResponseObject: JWTResponseObject?
         var transactionError: String?
-        var validationError: ResponseErrorDetail?
+        var validationError: (String, ResponseErrorDetail)?
         var cardinalAuthenticationError: Bool = false
 
         dispatchQueue.async {
@@ -309,8 +309,8 @@ import Foundation
                 transactionError = error
                 dispatchSemaphore.signal()
                 dispatchGroup.leave()
-            }, validationError: { errorCode in
-                validationError = errorCode
+            }, validationError: { error, errorCode in
+                validationError = (error, errorCode)
                 dispatchSemaphore.signal()
                 dispatchGroup.leave()
             })
@@ -330,8 +330,8 @@ import Foundation
                     return
                 }
 
-                if let errorCode = validationError {
-                    self.validationErrorClosure?(errorCode)
+                if let (error, errorCode) = validationError {
+                    self.validationErrorClosure?(error, errorCode)
                     return
                 }
 

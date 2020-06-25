@@ -86,10 +86,10 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
             self.eventTriggered?(.cardinalWarnings(warningsMessage, warnings))
         }
 
-        viewModel.validationErrorClosure = { [weak self] error in
+        viewModel.validationErrorClosure = { [weak self] _, errorCode in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
-            switch error {
+            switch errorCode {
             case .invalidPAN: (self.customView.cardNumberInput as? CardNumberInputView)?.showHideError(show: true)
             case .invalidSecurityCode: (self.customView.cvcInput as? CvcInputView)?.showHideError(show: true)
             case .invalidExpiryDate: (self.customView.expiryDateInput as? ExpiryDateInputView)?.showHideError(show: true)

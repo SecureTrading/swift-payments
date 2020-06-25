@@ -21,7 +21,7 @@ final class DropInViewModel {
     var transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?
     var transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?
     var cardinalAuthenticationErrorClosure: (() -> Void)?
-    var validationErrorClosure: ((ResponseErrorDetail) -> Void)?
+    var validationErrorClosure: ((String, ResponseErrorDetail) -> Void)?
     var cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)?
 
     // MARK: Initialization
