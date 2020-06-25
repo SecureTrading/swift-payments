@@ -69,6 +69,7 @@ final class MainView: WhiteBackgroundBaseView {
     var showMoreInformation: ((String) -> Void)?
     var showDropInControllerNoThreeDQuery: (() -> Void)?
     var showDropInControllerWithCustomView: (() -> Void)?
+    var payByCardFromParentReference: (() -> Void)?
 
     @objc func toggleAction(_ sender: UISwitch) {
         StyleManager.shared.highlightViewsBasedOnResponsibility = sender.isOn
@@ -164,6 +165,8 @@ extension MainView: UITableViewDataSource, UITableViewDelegate {
             showDropInControllerNoThreeDQuery?()
         case .showDropInControllerWithCustomView:
             showDropInControllerWithCustomView?()
+        case .payByCardFromParentReference:
+            payByCardFromParentReference?()
         }
     }
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {

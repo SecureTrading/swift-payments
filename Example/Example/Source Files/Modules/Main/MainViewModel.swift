@@ -167,6 +167,21 @@ final class MainViewModel {
         performTransaction(with: jwt, typeDescriptions: [.auth])
     }
 
+    func payByCardFromParentReference() {
+        let claim = STClaims(iss: keys.merchantUsername,
+                             iat: Date(timeIntervalSinceNow: 0),
+                             payload: Payload(accounttypedescription: "ECOM",
+                                              sitereference: keys.merchantSiteReference,
+                                              currencyiso3a: "GBP",
+                                              baseamount: 199,
+                                              securitycode: "123",
+                                              parenttransactionreference: "59-9-99169"))
+
+        guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
+
+        performTransaction(with: jwt, typeDescriptions: [.threeDQuery, .auth])
+    }
+
     func performTransaction(with jwt: String, typeDescriptions: [TypeDescription]) {
         paymentTransactionManager.performTransaction(jwt: jwt, typeDescriptions: typeDescriptions, card: nil, transactionSuccessClosure: { _, _ in
             self.showRequestSuccess?(nil)
@@ -218,6 +233,7 @@ extension MainViewModel {
         case showDropInControllerWithCustomView
         case showDropInControllerWithWarnings
         case showDropInControllerNo3DSecure
+        case payByCardFromParentReference
         case subscriptionOnSTEngine
         case subscriptionOnMerchantEngine
 
@@ -251,6 +267,8 @@ extension MainViewModel {
                 return Localizable.MainViewModel.showDropInControllerNo3DSecure.text
             case .showDropInControllerWithCustomView:
                 return Localizable.MainViewModel.showDropInControllerWithCustomView.text
+            case .payByCardFromParentReference:
+                return Localizable.MainViewModel.payByCardFromParentReference.text
             }
         }
 
@@ -323,6 +341,8 @@ extension MainViewModel {
                 return nil
             case .showDropInControllerWithCustomView:
                 return nil
+            case .payByCardFromParentReference:
+                return nil
             }
         }
     }
@@ -367,5 +387,6 @@ private extension Localizable {
         case showDropInControllerWithCustomView
         case subscriptionOnSTEngine
         case subscriptionOnMerchantEngine
+        case payByCardFromParentReference
     }
 }

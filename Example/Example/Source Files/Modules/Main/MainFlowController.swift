@@ -38,6 +38,7 @@ final class MainFlowController: BaseNavigationFlowController {
                     MainViewModel.Row.showDropInControllerWithWarnings,
                     MainViewModel.Row.showDropInControllerNo3DSecure,
                     MainViewModel.Row.showDropInControllerWithCustomView,
+                    MainViewModel.Row.payByCardFromParentReference,
                     MainViewModel.Row.performAccountCheck,
                     MainViewModel.Row.performAccountCheckWithAuth,
                     MainViewModel.Row.subscriptionOnSTEngine,
