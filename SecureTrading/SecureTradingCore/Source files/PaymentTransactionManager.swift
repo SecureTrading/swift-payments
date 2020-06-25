@@ -348,4 +348,10 @@ import Foundation
         let warningsErrorMessage = warnings.map { $0.localizedDescription }.joined(separator: ", ")
         cardinalWarningsCompletion?(warningsErrorMessage, warnings)
     }
+
+    @objc public func handleCardinalWarnings(cardinalWarningsCompletion: ((String, [Int]) -> Void)?) {
+        self.handleCardinalWarnings { warningsErrorMessage, warnings in
+            cardinalWarningsCompletion?(warningsErrorMessage, warnings.map { $0.rawValue })
+        }
+    }
 }
