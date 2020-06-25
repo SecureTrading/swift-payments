@@ -5,6 +5,7 @@
 
 #if !COCOAPODS
 import SecureTrading3DSecure
+import SecureTradingCard
 #endif
 import Foundation
 

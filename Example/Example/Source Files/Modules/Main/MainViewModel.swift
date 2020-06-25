@@ -5,6 +5,7 @@
 
 import Foundation
 import SwiftJWT
+import SecureTradingCard
 
 protocol MainViewModelDataSource: class {
     func row(at index: IndexPath) -> MainViewModel.Row?
