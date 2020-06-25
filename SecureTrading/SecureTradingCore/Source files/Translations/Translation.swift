@@ -53,9 +53,10 @@ final class Translations: NSObject {
         let translationKey = key.stringKey
         return currentTranslations[translationKey] ?? "No localized description for: \(translationKey)"
     }
-    func overrideTranslations<T: TranslationKey>(with customKeys: [T: String]) {
+
+    @objc func overrideTranslations(with customKeys: [String: String]) {
         for customKey in customKeys {
-            currentTranslations[customKey.key.stringKey] = customKey.value
+            currentTranslations[customKey.key] = customKey.value
         }
     }
 
@@ -68,29 +69,48 @@ final class Translations: NSObject {
     }
 }
 
-public protocol TranslationKey {
-//    var stringKey: String { get }
-}
+public protocol TranslationKey {}
 public extension TranslationKey {
     var stringKey: String {
         return String(describing: "\(type(of: self)).\(self)")
     }
 }
 public struct TranslationsKeys {
-    public enum PayButton: Int, TranslationKey {
+    public enum PayButton: String, TranslationKey {
         case title
+    }
+}
+@objc public enum TranslationKeyObjc: Int {
+    case payButton_title = 0
+
+    var code: String {
+        switch self {
+        case .payButton_title: return "PayButton.title"
+        }
     }
 }
 
 @objc public final class TrustPayments: NSObject {
-    public static let instance: TrustPayments = TrustPayments()
+    @objc public static let instance: TrustPayments = TrustPayments()
     private var translations: Translations?
 
     public func configure<Key: TranslationKey>(locale: Locale, customTranslations: [Key: String]?) {
         translations = Translations(locale: locale)
         if let customTranslations = customTranslations {
-            translations?.overrideTranslations(with: customTranslations)
+            let convertedTranslations = Dictionary(uniqueKeysWithValues: customTranslations.map { ($0.key.stringKey, $0.value)})
+            translations?.overrideTranslations(with: convertedTranslations)
         }
+    }
+
+    @objc public func configure(locale: Locale, customTranslations: [NSNumber: String]) {
+        // check for supported keys
+        translations = Translations(locale: locale)
+        var customTranslationKeys: [String: String] = [:]
+        for translation in customTranslations {
+            guard let transKey = TranslationKeyObjc(rawValue: translation.key.intValue)?.code else { continue }
+            customTranslationKeys[transKey] = translation.value
+        }
+        translations?.overrideTranslations(with: customTranslationKeys)
     }
 
     public static func translation<Key: TranslationKey>(for key: Key) -> String {

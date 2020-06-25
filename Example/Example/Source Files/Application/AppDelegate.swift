@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var appFlowController = AppFlowController(appFoundation: appFoundation, window: window!)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        ObjectiveCTest().testTranslations()
         appFlowController.start()
         return true
     }

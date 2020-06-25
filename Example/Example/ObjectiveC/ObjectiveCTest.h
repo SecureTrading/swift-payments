@@ -16,6 +16,6 @@
 @property (nonatomic, strong, readwrite) DefaultAPIManager <APIManagerObjc> *apiManager;
 
 - (void) someTestMethod;
-
+- (void) testTranslations;
 @end
 
