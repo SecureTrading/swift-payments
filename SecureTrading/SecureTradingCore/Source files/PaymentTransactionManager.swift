@@ -16,6 +16,8 @@ import Foundation
 
     private var typeDescriptions: [TypeDescription] = []
 
+    private var cardTypeToBypass: [CardType] = []
+
     /// - SeeAlso: SecureTradingCore.APIManager
     private let apiManager: APIManager
 
@@ -36,6 +38,8 @@ import Foundation
 
     private var card: Card?
 
+    private var cardTypeFromParentReference: CardType?
+
     private let requestId: String
 
     private let termUrl = "https://termurl.com"
@@ -44,6 +48,12 @@ import Foundation
     private var transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?
     private var cardinalAuthenticationErrorClosure: (() -> Void)?
     private var validationErrorClosure: ((String, ResponseErrorDetail) -> Void)?
+
+    private var shouldBypassThreeDSecure: Bool {
+        let cardType = self.card?.cardType ?? self.cardTypeFromParentReference
+        let shouldBypassThreeDSecure = cardType != nil ? cardType == .piba || cardTypeToBypass.contains(cardType!) : false
+        return shouldBypassThreeDSecure
+    }
 
     // MARK: Initialization
 
@@ -126,13 +136,16 @@ import Foundation
 
     /// executes payment transaction or threedquery request
     private func makePaymentOrThreeDQueryRequest() {
-        let termUrl = self.typeDescriptions.contains(.threeDQuery) ? self.termUrl : nil
-        let tempTypeDescriptions = self.typeDescriptions.contains(.threeDQuery) ? [.threeDQuery] : self.typeDescriptions
+
+        let termUrl = self.typeDescriptions.contains(.threeDQuery) && !shouldBypassThreeDSecure  ? self.termUrl : nil
+
+        let tempTypeDescriptions = self.typeDescriptions.contains(.threeDQuery) && !shouldBypassThreeDSecure ? [.threeDQuery] : self.typeDescriptions
+
         let request = RequestObject(typeDescriptions: tempTypeDescriptions, requestId: self.requestId, cardNumber: self.card?.cardNumber?.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate?.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
 
         self.makePaymentRequest(request: request, success: { [weak self] responseObject in
             guard let self = self else { return }
-            guard tempTypeDescriptions.contains(.threeDQuery) else {
+            guard tempTypeDescriptions.contains(.threeDQuery) && !self.shouldBypassThreeDSecure else {
                 self.transactionSuccessClosure?(responseObject, responseObject.cardReference)
                 return
             }
@@ -158,6 +171,7 @@ import Foundation
             switch responseObject.responseErrorCode {
             case .successful:
                 self.jsInitCacheToken = responseObject.cacheToken!
+                self.cardTypeFromParentReference = responseObject.cardReference != nil ? CardType.cardType(for: responseObject.cardReference!.cardType) : nil
                 self.threeDSecureManager.setup(with: responseObject.threeDInit!, completion: { consumerSessionId in
                     completion(consumerSessionId)
                 }, failure: { validateResponse in
