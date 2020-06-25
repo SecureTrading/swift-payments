@@ -15,13 +15,13 @@ final class PaymentTransactionManager {
 
     private var jwt: String
 
+    private var typeDescriptions: [TypeDescription] = []
+
     /// - SeeAlso: SecureTradingCore.APIManager
     private let apiManager: APIManager
 
     /// - SeeAlso: SecureTrading3DSecure.ST3DSecureManager
     private let threeDSecureManager: ST3DSecureManager
-
-    private let typeDescriptions: [TypeDescription]
 
     private let isLiveStatus: Bool
 
@@ -41,26 +41,22 @@ final class PaymentTransactionManager {
 
     private let termUrl = "https://termurl.com"
 
-    var transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?
-    var transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?
-    var cardinalAuthenticationErrorClosure: (() -> Void)?
-    var validationErrorClosure: ((ResponseErrorDetail) -> Void)?
-    var cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)?
+    private var transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?
+    private var transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?
+    private var cardinalAuthenticationErrorClosure: (() -> Void)?
+    private var validationErrorClosure: ((ResponseErrorDetail) -> Void)?
 
     // MARK: Initialization
 
     /// Initializes an instance of the receiver.
     ///
-    /// - Parameter apiManager: API manager
     /// - Parameter jwt: jwt token
-    /// - Parameter typeDescriptions: request types (AUTH, THREEDQUERY...)
     /// - Parameter gatewayType: gateway type (us or european)
     /// - Parameter username: merchant's username
     /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
     /// - Parameter isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
-    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool) {
+    init(jwt: String, gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool) {
         self.jwt = jwt
-        self.typeDescriptions = typeDescriptions
         self.apiManager = DefaultAPIManager(gatewayType: gatewayType, username: username)
         self.isLiveStatus = isLiveStatus
         self.isDeferInit = isDeferInit
@@ -179,13 +175,25 @@ final class PaymentTransactionManager {
 
     /// executes payment transaction flow
     /// - Parameter jwt: jwt token (provide if you want to update the token - you use defer init)
+    /// - Parameter typeDescriptions: request types (AUTH, THREEDQUERY...)
     /// - Parameter card: bank card object (if there is a nil, the assumption is that a transaction with a parent transaction reference is made)
-    func performTransaction(jwt: String? = nil, card: Card?) {
+    /// - Parameter transactionSuccessClosure: Closure triggered after a successful payment transaction
+    /// - Parameter transactionErrorClosure: Closure triggered after a failed transaction, when a error was returned at some stage
+    /// - Parameter cardinalAuthenticationErrorClosure: Closure triggered after a failed transaction, when a cardinal authentication error was returned
+    /// - Parameter validationErrorClosure: Closure triggered after a failed transaction, when a validation error was returned
+    func performTransaction(jwt: String? = nil, typeDescriptions: [TypeDescription], card: Card?, transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?, transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?, cardinalAuthenticationErrorClosure: (() -> Void)?, validationErrorClosure: ((ResponseErrorDetail) -> Void)?) {
         if let jwt = jwt {
             self.jwt = jwt
         }
 
+        self.typeDescriptions = typeDescriptions
+
         self.card = card
+
+        self.transactionSuccessClosure = transactionSuccessClosure
+        self.transactionErrorClosure = transactionErrorClosure
+        self.cardinalAuthenticationErrorClosure = cardinalAuthenticationErrorClosure
+        self.validationErrorClosure = validationErrorClosure
 
         if !self.isDeferInit {
             guard self.isJsInitCompleted else {
@@ -317,10 +325,10 @@ final class PaymentTransactionManager {
 
     // MARK: Validation
 
-    func handleCardinalWarnings() {
+    func handleCardinalWarnings(cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)?) {
         let warnings = self.threeDSecureManager.warnings
         guard !warnings.isEmpty else { return }
         let warningsErrorMessage = warnings.map { $0.localizedDescription }.joined(separator: ", ")
-        self.cardinalWarningsCompletion?(warningsErrorMessage, warnings)
+        cardinalWarningsCompletion?(warningsErrorMessage, warnings)
     }
 }
