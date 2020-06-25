@@ -1,16 +1,14 @@
 //
 //  PaymentTransactionManager.swift
-//  SecureTradingUI
+//  SecureTradingCore
 //
 
 #if !COCOAPODS
 import SecureTrading3DSecure
-import SecureTradingCard
-import SecureTradingCore
 #endif
 import Foundation
 
-final class PaymentTransactionManager {
+@objc public final class PaymentTransactionManager: NSObject {
     // MARK: Properties
 
     private var jwt: String
@@ -55,7 +53,7 @@ final class PaymentTransactionManager {
     /// - Parameter username: merchant's username
     /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
     /// - Parameter isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
-    init(jwt: String, gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool) {
+    @objc public init(jwt: String, gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool) {
         self.jwt = jwt
         self.apiManager = DefaultAPIManager(gatewayType: gatewayType, username: username)
         self.isLiveStatus = isLiveStatus
@@ -66,6 +64,7 @@ final class PaymentTransactionManager {
         let end = randomString.index(randomString.startIndex, offsetBy: 10)
         let range = start..<end
         self.requestId = "J-" + randomString[range]
+        super.init()
 
         if !isDeferInit {
             self.makeJSInitRequest(completion: { [weak self] _ in
@@ -181,7 +180,7 @@ final class PaymentTransactionManager {
     /// - Parameter transactionErrorClosure: Closure triggered after a failed transaction, when a error was returned at some stage
     /// - Parameter cardinalAuthenticationErrorClosure: Closure triggered after a failed transaction, when a cardinal authentication error was returned
     /// - Parameter validationErrorClosure: Closure triggered after a failed transaction, when a validation error was returned
-    func performTransaction(jwt: String? = nil, typeDescriptions: [TypeDescription], card: Card?, transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?, transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?, cardinalAuthenticationErrorClosure: (() -> Void)?, validationErrorClosure: ((ResponseErrorDetail) -> Void)?) {
+    public func performTransaction(jwt: String? = nil, typeDescriptions: [TypeDescription], card: Card?, transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?, transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?, cardinalAuthenticationErrorClosure: (() -> Void)?, validationErrorClosure: ((ResponseErrorDetail) -> Void)?) {
         if let jwt = jwt {
             self.jwt = jwt
         }
@@ -217,6 +216,24 @@ final class PaymentTransactionManager {
                 self.transactionErrorClosure?(responseObject, errorMessage)
             })
         }
+    }
+
+    // objc workaround
+    /// executes payment transaction flow
+    /// - Parameter jwt: jwt token (provide if you want to update the token - you use defer init)
+    /// - Parameter typeDescriptions: request types (AUTH, THREEDQUERY...)
+    /// - Parameter card: bank card object (if there is a nil, the assumption is that a transaction with a parent transaction reference is made)
+    /// - Parameter transactionSuccessClosure: Closure triggered after a successful payment transaction
+    /// - Parameter transactionErrorClosure: Closure triggered after a failed transaction, when a error was returned at some stage
+    /// - Parameter cardinalAuthenticationErrorClosure: Closure triggered after a failed transaction, when a cardinal authentication error was returned
+    /// - Parameter validationErrorClosure: Closure triggered after a failed transaction, when a validation error was returned
+    @objc public func performTransaction(jwt: String? = nil, typeDescriptions: [Int], card: Card?, transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?, transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?, cardinalAuthenticationErrorClosure: (() -> Void)?, validationErrorClosure: ((ResponseErrorDetail) -> Void)?) {
+        let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
+        let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
+
+        // swiftlint:disable line_length
+        self.performTransaction(jwt: jwt, typeDescriptions: typeDescriptionsSwift, card: card, transactionSuccessClosure: transactionSuccessClosure, transactionErrorClosure: transactionErrorClosure, cardinalAuthenticationErrorClosure: cardinalAuthenticationErrorClosure, validationErrorClosure: validationErrorClosure)
+        // swiftlint:enable line_length
     }
 
     // MARK: 3DSecure flow
@@ -325,7 +342,7 @@ final class PaymentTransactionManager {
 
     // MARK: Validation
 
-    func handleCardinalWarnings(cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)?) {
+    public func handleCardinalWarnings(cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)?) {
         let warnings = self.threeDSecureManager.warnings
         guard !warnings.isEmpty else { return }
         let warningsErrorMessage = warnings.map { $0.localizedDescription }.joined(separator: ", ")

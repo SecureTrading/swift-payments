@@ -4,9 +4,8 @@
 //
 
 #if !COCOAPODS
-import SecureTrading3DSecure
-import SecureTradingCard
 import SecureTradingCore
+import SecureTrading3DSecure
 #endif
 import Foundation
 

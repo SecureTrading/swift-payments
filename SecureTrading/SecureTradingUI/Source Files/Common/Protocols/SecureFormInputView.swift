@@ -3,7 +3,7 @@
 //  SecureTradingUI
 //
 #if !COCOAPODS
-import SecureTradingCard
+import SecureTradingCore
 #endif
 import UIKit
 
