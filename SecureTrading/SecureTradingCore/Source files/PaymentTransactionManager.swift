@@ -127,7 +127,7 @@ import Foundation
     private func makePaymentOrThreeDQueryRequest() {
         let termUrl = self.typeDescriptions.contains(.threeDQuery) ? self.termUrl : nil
         let tempTypeDescriptions = self.typeDescriptions.contains(.threeDQuery) ? [.threeDQuery] : self.typeDescriptions
-        let request = RequestObject(typeDescriptions: tempTypeDescriptions, requestId: self.requestId, cardNumber: self.card?.cardNumber.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
+        let request = RequestObject(typeDescriptions: tempTypeDescriptions, requestId: self.requestId, cardNumber: self.card?.cardNumber?.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate?.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
 
         self.makePaymentRequest(request: request, success: { [weak self] responseObject in
             guard let self = self else { return }
@@ -245,7 +245,7 @@ import Foundation
         guard let cardEnrolled = responseObject.cardEnrolled, responseObject.acsUrl != nil, cardEnrolled == "Y" else {
             let tempTypeDescription = self.typeDescriptions.filter { $0 != .threeDQuery }
             // swiftlint:disable line_length
-            let request = RequestObject(typeDescriptions: tempTypeDescription, requestId: self.requestId, cardNumber: self.card?.cardNumber.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate.rawValue, cacheToken: self.jsInitCacheToken)
+            let request = RequestObject(typeDescriptions: tempTypeDescription, requestId: self.requestId, cardNumber: self.card?.cardNumber?.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate?.rawValue, cacheToken: self.jsInitCacheToken)
             // swiftlint:enable line_length
 
             self.makePaymentRequest(request: request, success: { [weak self] responseObject in
@@ -297,7 +297,7 @@ import Foundation
 
             let tempTypeDescription = self.typeDescriptions.filter { $0 != .threeDQuery }
             // swiftlint:disable line_length
-            let request = RequestObject(typeDescriptions: tempTypeDescription, requestId: self.requestId, cardNumber: self.card?.cardNumber.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate.rawValue, threeDResponse: jwtForValidation, cacheToken: self.jsInitCacheToken)
+            let request = RequestObject(typeDescriptions: tempTypeDescription, requestId: self.requestId, cardNumber: self.card?.cardNumber?.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate?.rawValue, threeDResponse: jwtForValidation, cacheToken: self.jsInitCacheToken)
             // swiftlint:enable line_length
 
             self.makePaymentRequest(request: request, success: { responseObject in

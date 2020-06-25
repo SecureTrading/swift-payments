@@ -174,16 +174,15 @@ final class MainViewModel {
                                               sitereference: keys.merchantSiteReference,
                                               currencyiso3a: "GBP",
                                               baseamount: 199,
-                                              securitycode: "123",
                                               parenttransactionreference: "59-9-99169"))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
 
-        performTransaction(with: jwt, typeDescriptions: [.threeDQuery, .auth])
+        performTransaction(with: jwt, typeDescriptions: [.threeDQuery, .auth], card: Card(cardNumber: nil, securityCode: CVC(rawValue: "123"), expiryDate: nil))
     }
 
-    func performTransaction(with jwt: String, typeDescriptions: [TypeDescription]) {
-        paymentTransactionManager.performTransaction(jwt: jwt, typeDescriptions: typeDescriptions, card: nil, transactionSuccessClosure: { _, _ in
+    func performTransaction(with jwt: String, typeDescriptions: [TypeDescription], card: Card? = nil) {
+        paymentTransactionManager.performTransaction(jwt: jwt, typeDescriptions: typeDescriptions, card: card, transactionSuccessClosure: { _, _ in
             self.showRequestSuccess?(nil)
         }, transactionErrorClosure: { _, errorMessage in
             self.showAuthError?(errorMessage)
