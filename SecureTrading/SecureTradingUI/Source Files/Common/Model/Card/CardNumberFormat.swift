@@ -5,6 +5,7 @@
 
 import UIKit
 #if !COCOAPODS
+import SecureTradingCore
 import SecureTradingCard
 #endif
 

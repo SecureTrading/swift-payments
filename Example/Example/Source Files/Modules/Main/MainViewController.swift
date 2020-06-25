@@ -93,6 +93,11 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             self.eventTriggered?(.didTapShowDropInControllerWithCustomView(jwt))
         }
 
+        customView.payByCardFromParentReference = { [weak self] in
+            guard let self = self else { return }
+            self.viewModel.payByCardFromParentReference()
+        }
+
         customView.subscriptionOnSTEngineRequest = { [weak self] in
             self?.viewModel.performSubscriptionOnSTEngine()
         }
