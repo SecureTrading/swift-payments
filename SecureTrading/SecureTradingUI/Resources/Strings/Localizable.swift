@@ -15,10 +15,6 @@ extension Localized where Self: RawRepresentable, Self.RawValue == String {
 }
 
 enum Localizable {
-
-    enum Alerts: String, Localized {
-        case okButton
-    }
     
     enum TestPublic: String, Localized {
         case first

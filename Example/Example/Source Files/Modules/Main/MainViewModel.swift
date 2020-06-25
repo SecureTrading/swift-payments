@@ -173,7 +173,7 @@ final class MainViewModel {
         }, transactionErrorClosure: { _, errorMessage in
             self.showAuthError?(errorMessage)
         }, cardinalAuthenticationErrorClosure: {
-            // todo
+            self.showAuthError?("An error occurred")
         }, validationErrorClosure: { error, _ in
             self.showAuthError?(error)
         })
