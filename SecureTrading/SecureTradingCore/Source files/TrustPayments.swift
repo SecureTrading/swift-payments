@@ -12,19 +12,18 @@ import Foundation
     @objc public static let instance: TrustPayments = TrustPayments()
     private override init() { }
 
-    /// Reference to Translations object
-    private var translations: Translations?
+    /// Reference to Localizable object
+    private var localizable: Localizable?
 
     /// Configures global settings
     /// - Parameters:
     ///   - locale: Locale used to determine correct translations, if not set, a Locale.current value is used instead
     ///   - translationsForOverride: A dictionary of custom translations, overrides default values
-    ///   - refer to TranslationsKeys for possible keys
-    public func configure<Key: Hashable & TranslationKey>(locale: Locale = Locale.current, translationsForOverride: [Key: String]?) {
-        translations = Translations(locale: locale)
+    ///   - refer to LocalizableKeys for possible keys
+    public func configure(locale: Locale = Locale.current, translationsForOverride: [String: String]?) {
+        localizable = Localizable(locale: locale)
         if let customTranslations = translationsForOverride {
-            let convertedTranslations = Dictionary(uniqueKeysWithValues: customTranslations.map { ($0.key.stringKey, $0.value)})
-            translations?.overrideTranslations(with: convertedTranslations)
+            localizable?.overrideLocalizedKeys(with: customTranslations)
         }
     }
 
@@ -32,26 +31,26 @@ import Foundation
     /// - Parameters:
     ///   - locale: Locale used to determine correct translations, if not set, a Locale.current value is used instead
     ///   - customTranslations: A dictionary of custom translations, overrides default values
-    ///   - refer to TranslationsKeysObjc for possible keys
+    ///   - refer to LocalizableKeysObjc for possible keys
     @objc public func configure(locale: Locale = Locale.current, customTranslations: [NSNumber: String]) {
         // check for supported keys
-        translations = Translations(locale: locale)
+        localizable = Localizable(locale: locale)
         var customTranslationKeys: [String: String] = [:]
         for translation in customTranslations {
-            guard let transKey = TranslationsKeysObjc(rawValue: translation.key.intValue)?.code else { continue }
+            guard let transKey = LocalizableKeysObjc(rawValue: translation.key.intValue)?.code else { continue }
             customTranslationKeys[transKey] = translation.value
         }
-        translations?.overrideTranslations(with: customTranslationKeys)
+        localizable?.overrideLocalizedKeys(with: customTranslationKeys)
     }
 
     /// Returns translation string for given locale
-    /// - Parameter key: Translation key for which correct translated string should be returned
+    /// - Parameter key: Localizable key for which correct translated string should be returned
     /// - Returns: Found translated string or nil otherwise
-    public static func translation<Key: TranslationKey>(for key: Key) -> String? {
-        if TrustPayments.instance.translations == nil {
-            TrustPayments.instance.translations = Translations()
+    public static func translation<Key: LocalizableKey>(for key: Key) -> String? {
+        if TrustPayments.instance.localizable == nil {
+            TrustPayments.instance.localizable = Localizable()
         }
-        return TrustPayments.instance.translations!.translation(for: key)
+        return TrustPayments.instance.localizable!.localizedString(for: key)
     }
 
 }
