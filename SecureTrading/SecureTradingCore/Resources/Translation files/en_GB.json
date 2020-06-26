@@ -58,7 +58,16 @@
 
   "AddCardButton.title": "Add card",
 
-  "Alerts.okButton": "Ok"
+  "Alerts.okButton": "Ok",
 
+  "APIError.invalidFieldPAN": "Invalid field: PAN",
+  "APIError.invalidFieldSecurityCode": "Invalid field: Security code",
+  "APIError.invalidFieldJWT": "Invalid field: JWT",
+  "APIError.invalidFieldExpiryDate": "Invalid field: Expiry date",
+  "APIError.invalidFieldTermsURL": "Invalid field: Term URL",
+  "APIError.invalidFieldParentTransactionRef": "Invalid field: Parent transaction reference",
+  "APIError.invalidFieldSiteRef": "Invalid field: Site reference",
+  "APIError.invalidFieldSubscriptionNo": "Invalid field: Subscription number",
+  "APIError.invalidFieldUnknown": "Invalid field: Unknown",
 
 }

@@ -37,15 +37,15 @@
 
     public var message: String {
         switch self {
-        case .invalidPAN: return "PAN"
-        case .invalidSecurityCode: return "Security code"
-        case .invalidJWT: return "JWT"
-        case .invalidExpiryDate: return "Expiry date"
-        case .invalidTermURL: return "Term URL"
-        case .invalidParentTransactionReference: return "Parent transaction reference"
-        case .invalidSiteReference: return "Site reference"
-        case .invalidSubscriptionNumber: return "Subscription number"
-        case .none: return "Unknown"
+        case .invalidPAN: return LocalizableKeys.APIError.invalidFieldPAN.localizedStringOrEmpty
+        case .invalidSecurityCode: return LocalizableKeys.APIError.invalidFieldSecurityCode.localizedStringOrEmpty
+        case .invalidJWT: return LocalizableKeys.APIError.invalidFieldJWT.localizedStringOrEmpty
+        case .invalidExpiryDate: return LocalizableKeys.APIError.invalidFieldExpiryDate.localizedStringOrEmpty
+        case .invalidTermURL: return LocalizableKeys.APIError.invalidFieldTermsURL.localizedStringOrEmpty
+        case .invalidParentTransactionReference: return LocalizableKeys.APIError.invalidFieldParentTransactionRef.localizedStringOrEmpty
+        case .invalidSiteReference: return LocalizableKeys.APIError.invalidFieldSiteRef.localizedStringOrEmpty
+        case .invalidSubscriptionNumber: return LocalizableKeys.APIError.invalidFieldSubscriptionNo.localizedStringOrEmpty
+        case .none: return LocalizableKeys.APIError.invalidFieldUnknown.localizedStringOrEmpty
         }
     }
 }

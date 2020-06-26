@@ -187,7 +187,7 @@ public enum APIResponseValidationError: Error {
         case .mismatchedDescriptionTypes:
             return "Unexpected description types in response."
         case .invalidField(let code):
-            return "Invalid field: \(code.message)"
+            return code.message
         }
     }
 

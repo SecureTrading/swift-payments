@@ -95,6 +95,19 @@ public enum LocalizableKeys {
     public enum Alerts: LocalizableKey {
         case okButton
     }
+
+    // MARK: APIError
+    public enum APIError: LocalizableKey {
+        case invalidFieldPAN
+        case invalidFieldSecurityCode
+        case invalidFieldJWT
+        case invalidFieldExpiryDate
+        case invalidFieldTermsURL
+        case invalidFieldParentTransactionRef
+        case invalidFieldSiteRef
+        case invalidFieldSubscriptionNo
+        case invalidFieldUnknown
+    }
 }
 
 /// Objc workaround for LocalizableKeys
