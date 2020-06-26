@@ -5,6 +5,10 @@
 
 import UIKit
 
+#if !COCOAPODS
+import SecureTradingCore
+#endif
+
 /// A subclass of RequestButton, consists of title and spinner for the request interval
 @objc public final class AddCardButton: RequestButton {
     // MARK: Properties
@@ -39,12 +43,6 @@ import UIKit
 
     public override func configureView() {
         super.configureView()
-        self.title = Localizable.AddCardButton.title.text
-    }
-}
-
-private extension Localizable {
-    enum AddCardButton: String, Localized {
-        case title
+        self.title = LocalizableKeys.AddCardButton.title.localizedStringOrEmpty
     }
 }

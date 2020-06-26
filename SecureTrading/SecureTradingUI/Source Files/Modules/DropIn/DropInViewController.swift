@@ -41,7 +41,7 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
 
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
-        title = Localizable.DropInViewController.title.text
+        title = LocalizableKeys.DropInViewController.title.localizedString
     }
 
     /// - SeeAlso: BaseViewController.setupCallbacks
@@ -63,9 +63,9 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
             if let cardRef = cardReference {
-                self.eventTriggered?(.successfulPaymentCardAdded(responseObject, Localizable.DropInViewController.successfulPayment.text, cardRef))
+                self.eventTriggered?(.successfulPaymentCardAdded(responseObject, LocalizableKeys.DropInViewController.successfulPayment.localizedStringOrEmpty, cardRef))
             } else {
-                self.eventTriggered?(.successfulPayment(responseObject, Localizable.DropInViewController.successfulPayment.text))
+                self.eventTriggered?(.successfulPayment(responseObject, LocalizableKeys.DropInViewController.successfulPayment.localizedStringOrEmpty))
             }
         }
 
@@ -78,7 +78,7 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
         viewModel.cardinalAuthenticationErrorClosure = { [weak self] in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
-            self.eventTriggered?(.transactionFailure(nil, Localizable.DropInViewController.cardinalAuthenticationError.text))
+            self.eventTriggered?(.transactionFailure(nil, LocalizableKeys.DropInViewController.cardinalAuthenticationError.localizedStringOrEmpty))
         }
 
         viewModel.cardinalWarningsCompletion = { [weak self] warningsMessage, warnings in
@@ -128,13 +128,5 @@ extension DropInViewController: DropInController {
 
     var viewController: UIViewController {
         return self
-    }
-}
-
-private extension Localizable {
-    enum DropInViewController: String, Localized {
-        case title
-        case successfulPayment
-        case cardinalAuthenticationError
     }
 }

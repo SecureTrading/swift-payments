@@ -1,0 +1,57 @@
+{
+  "PayButton.title": "Betal",
+  "Navigation.back": "< Back",
+
+  "DropInViewController.title": "Payment",
+  "DropInViewController.successfulPayment": "Betaling er gennemført",
+  "DropInViewController.cardinalAuthenticationError": "Der er opstået en fejl",
+
+  "CardNumberInputView.title": "Kortnummer",
+  "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
+  "CardNumberInputView.error": "Invalid card number",
+  "CardNumberInputView.emptyError": "Kortnummer is required",
+
+  "CvcInputView.title": "Sikkerhedskode",
+  "CvcInputView.placeholder3": "***",
+  "CvcInputView.placeholder4": "****",
+  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.error": "Invalid Sikkerhedskode",
+  "CvcInputView.emptyError": "Sikkerhedskode is required",
+
+  "ExpiryDateInputView.title": "Udløbsdato",
+  "ExpiryDateInputView.placeholder": "MM/YY",
+  "ExpiryDateInputView.error": "Invalid expiry date",
+  "ExpiryDateInputView.emptyError": "Expiry date is required",
+
+  "AddCardButton.title": "Add card",
+
+  "Alerts.okButton": "Ok",
+
+  "APIError.invalidFieldPAN": "Ugyldigt felt: PAN",
+  "APIError.invalidFieldSecurityCode": "Ugyldigt felt: Sikkerhedskode",
+  "APIError.invalidFieldJWT": "Ugyldigt felt: JWT",
+  "APIError.invalidFieldExpiryDate": "Ugyldigt felt: Udløbsdato",
+  "APIError.invalidFieldTermsURL": "Ugyldigt felt: Term URL",
+  "APIError.invalidFieldParentTransactionRef": "Ugyldigt felt: Parent transaction reference",
+  "APIError.invalidFieldSiteRef": "Ugyldigt felt: Site reference",
+  "APIError.invalidFieldSubscriptionNo": "Ugyldigt felt: Subscription number",
+  "APIError.invalidFieldUnknown": "Ugyldigt felt: Unknown",
+
+  "APIError.failedToBuildURLRequest": "Failed to build URL request",
+  "APIError.connectionFailure": "Connection failure",
+  "APIError.failedToValidateURLResponse": "Failed to validate URL response",
+  "APIError.failedToParseURLResponse": "Failed to parse URL response",
+  "APIError.unknownNetworkError": "An unknown network error has occurred.",
+  "APIError.jwtDecodingInvalidBase64": "JWT decoding: invalid base64",
+  "APIError.jwtDecodingInvalidJSON": "JWT decoding: invalid JSON",
+  "APIError.jwtDecodingIncorrectComponentNumber": "JWT decoding: number of parts does not equal 3",
+  "APIError.inaccessible": "Failed to receive a response for request after given retries",
+  "APIError.urlError": "URL Error",
+
+  "APIError.unsupportedStatusCode": "Unsupported status code",
+  "APIError.missingData": "Missing data.",
+  "APIError.unexpectedDescriptionTypesInResponse": "Unexpected description types in response.",
+
+  "APIError.missingResponseData": "Missing response data",
+  "APIError.unknown": "Unknown"
+}

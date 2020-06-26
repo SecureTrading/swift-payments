@@ -10,7 +10,7 @@ final class PopBackView: UIView {
 
     private lazy var textLabel: UILabel = {
         let label = UILabel()
-        label.text = Localizable.PopBack.back.text
+        label.text = LocalizableKeys.Navigation.back.localizedString
         label.textColor = .black
         label.font = Fonts.responsive(.regular, ofSizes: [.small: 13, .medium: 14, .large: 16])
         return label
@@ -93,12 +93,6 @@ extension PopBackView: UIGestureRecognizerDelegate {
     /// - SeeAlso: UIGestureRecognizerDelegate.gestureRecognizer(_:shouldRecognizeSimultaneouslyWith:)
     func gestureRecognizer(_: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith _: UIGestureRecognizer) -> Bool {
         return true
-    }
-}
-
-private extension Localizable {
-    enum PopBack: String, Localized {
-        case back
     }
 }
 

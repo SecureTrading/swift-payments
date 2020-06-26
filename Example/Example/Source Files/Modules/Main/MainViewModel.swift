@@ -347,9 +347,8 @@ extension MainViewModel {
     }
 }
 
-// MARK: Translations
-
-private extension Localizable {
+// MARK: Localizable
+fileprivate extension Localizable {
     enum MainViewModel: String, Localized {
         case showTestMainScreenButton
         case showTestMainFlowButton

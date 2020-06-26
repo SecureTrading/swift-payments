@@ -5,6 +5,10 @@
 
 import UIKit
 
+#if !COCOAPODS
+import SecureTradingCore
+#endif
+
 public final class TestMainViewController: BaseViewController<TestMainView, TestMainViewModel> {
     // MARK: Properties
 
@@ -22,7 +26,7 @@ public final class TestMainViewController: BaseViewController<TestMainView, Test
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
         view.accessibilityIdentifier = "test/view/main"
-        title = Localizable.TestMainViewController.title.text
+        title = "Test main view controller"
         if !viewModel.closeButtonIsHidden {
             setupBarButtons()
         }
@@ -41,7 +45,7 @@ public final class TestMainViewController: BaseViewController<TestMainView, Test
 
     /// Set up top navigation bar buttons
     private func setupBarButtons() {
-        let cancelBarButton = UIBarButtonItem(title: Localizable.TestMainViewController.closeButton.text, style: .plain, target: self, action: #selector(closeBarButtonTapped))
+        let cancelBarButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(closeBarButtonTapped))
         navigationItem.leftBarButtonItem = cancelBarButton
     }
 
@@ -50,12 +54,5 @@ public final class TestMainViewController: BaseViewController<TestMainView, Test
     /// Action triggered after tapping close bar button
     @objc private func closeBarButtonTapped() {
         eventTriggered?(.dismissScreen)
-    }
-}
-
-private extension Localizable {
-    enum TestMainViewController: String, Localized {
-        case title
-        case closeButton
     }
 }

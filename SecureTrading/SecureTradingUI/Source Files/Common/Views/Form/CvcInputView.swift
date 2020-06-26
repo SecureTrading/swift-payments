@@ -20,7 +20,7 @@ import UIKit
 
     @objc public var cardType = CardType.unknown {
         didSet {
-            placeholder = cardType == .piba ? Localizable.CvcInputView.placeholderPiba.text : expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text
+            placeholder = placeholderForTextField(cardType: cardType, expectedLength: expectedInputLength)
         }
     }
 
@@ -60,10 +60,11 @@ extension CvcInputView {
     override func setupProperties() {
         super.setupProperties()
 
-        title = Localizable.CvcInputView.title.text
-        placeholder = cardType == .piba ? Localizable.CvcInputView.placeholderPiba.text : expectedInputLength == 3 ? Localizable.CvcInputView.placeholder3.text : Localizable.CvcInputView.placeholder4.text
-        error = Localizable.CvcInputView.error.text
-        emptyError = Localizable.CvcInputView.emptyError.text
+        title = LocalizableKeys.CvcInputView.title.localizedStringOrEmpty
+        placeholder = placeholderForTextField(cardType: cardType, expectedLength: expectedInputLength)
+
+        error = LocalizableKeys.CvcInputView.error.localizedStringOrEmpty
+        emptyError = LocalizableKeys.CvcInputView.emptyError.localizedStringOrEmpty
 
         keyboardType = .numberPad
 
@@ -103,13 +104,12 @@ extension CvcInputView {
     }
 }
 
-private extension Localizable {
-    enum CvcInputView: String, Localized {
-        case title
-        case placeholder3
-        case placeholder4
-        case placeholderPiba
-        case error
-        case emptyError
+// MARK: Helper methods
+private extension CvcInputView {
+    func placeholderForTextField(cardType: CardType, expectedLength: Int) -> String {
+        let pibaPlaceholder = LocalizableKeys.CvcInputView.placeholderPiba.localizedStringOrEmpty
+        let cvc3Characters = LocalizableKeys.CvcInputView.placeholder3.localizedStringOrEmpty
+        let cvc4Characters = LocalizableKeys.CvcInputView.placeholder4.localizedStringOrEmpty
+        return cardType == .piba ? pibaPlaceholder : expectedInputLength == 3 ? cvc3Characters : cvc4Characters
     }
 }

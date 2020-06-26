@@ -13,11 +13,3 @@ extension Localized where Self: RawRepresentable, Self.RawValue == String {
         return NSLocalizedString("\(selfClassName).\(rawValue)", bundle: Bundle(for: BaseView.self), value: "No localized string found", comment: "")
     }
 }
-
-enum Localizable {
-    
-    enum TestPublic: String, Localized {
-        case first
-        case seccond
-    }
-}

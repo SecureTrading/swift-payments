@@ -4,9 +4,6 @@
 //
 
 import Foundation
-#if !COCOAPODS
-import SecureTradingCore
-#endif
 
 public final class TestMainViewModel: NSObject {
 

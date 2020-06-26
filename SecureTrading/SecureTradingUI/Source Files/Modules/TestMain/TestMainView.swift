@@ -5,6 +5,10 @@
 
 import UIKit
 
+#if !COCOAPODS
+import SecureTradingCore
+#endif
+
 // Provided example how to build views
 public final class TestMainView: WhiteBackgroundBaseView, ViewProtocol {
     /// Closure invoked when someone taps on show details button.
@@ -20,13 +24,13 @@ public final class TestMainView: WhiteBackgroundBaseView, ViewProtocol {
         label.textColor = .black
         label.font = Fonts.responsive(.bold, ofSizes: [.small: 17, .medium: 18, .large: 20])
         label.numberOfLines = 1
-        label.text = Localizable.TestMainView.titleLabel.text
+        label.text = "Main View"
         return label
     }()
 
     private var showDetailsButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle(Localizable.TestMainView.showDetailsButton.text, for: .normal)
+        button.setTitle("Details", for: .normal)
         button.titleLabel?.font = Fonts.responsive(.regular, ofSizes: [.small: 13, .medium: 14, .large: 16])
         return button
     }()
@@ -123,12 +127,5 @@ extension TestMainView: ViewSetupable {
 //            equal(self, \.heightAnchor, to: \.heightAnchor, constant: 0.0, multiplier: 0.35),
 //            equal(badgeImageView, \.heightAnchor, to: \.widthAnchor, constant: 0.0, multiplier: 1)
 //        ])
-    }
-}
-
-private extension Localizable {
-    enum TestMainView: String, Localized {
-        case titleLabel
-        case showDetailsButton
     }
 }

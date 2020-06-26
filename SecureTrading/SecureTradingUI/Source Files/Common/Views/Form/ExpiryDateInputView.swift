@@ -7,6 +7,7 @@
 import SecureTradingCard
 import SecureTradingCore
 #endif
+
 import UIKit
 
 class MonthTextField: BackwardTextField {
@@ -496,10 +497,10 @@ extension ExpiryDateInputView: ViewSetupable {
         errorLabel.textColor = errorColor
         errorLabel.font = errorFont
 
-        title = Localizable.ExpiryDateInputView.title.text
-        placeholder = Localizable.ExpiryDateInputView.placeholder.text
-        error = Localizable.ExpiryDateInputView.error.text
-        emptyError = Localizable.ExpiryDateInputView.emptyError.text
+        title = LocalizableKeys.ExpiryDateInputView.title.localizedStringOrEmpty
+        placeholder = LocalizableKeys.ExpiryDateInputView.placeholder.localizedStringOrEmpty
+        error = LocalizableKeys.ExpiryDateInputView.error.localizedStringOrEmpty
+        emptyError = LocalizableKeys.ExpiryDateInputView.emptyError.localizedStringOrEmpty
 
         keyboardType = .numberPad
 
@@ -660,14 +661,5 @@ extension ExpiryDateInputView {
         }
 
         nextTextField?.delegate?.textField?(nextField, shouldChangeCharactersIn: NSRange(location: 0, length: (nextField.text ?? .empty).count), replacementString: prefillText)
-    }
-}
-
-private extension Localizable {
-    enum ExpiryDateInputView: String, Localized {
-        case title
-        case placeholder
-        case error
-        case emptyError
     }
 }

@@ -7,6 +7,7 @@
 import SecureTradingCore
 import SecureTradingCard
 #endif
+
 import UIKit
 
 @objc public protocol CardNumberInputViewDelegate {
@@ -87,10 +88,10 @@ extension CardNumberInputView {
     override func setupProperties() {
         super.setupProperties()
 
-        title = Localizable.CardNumberInputView.title.text
-        placeholder = Localizable.CardNumberInputView.placeholder.text
-        error = Localizable.CardNumberInputView.error.text
-        emptyError = Localizable.CardNumberInputView.emptyError.text
+        title = LocalizableKeys.CardNumberInputView.title.localizedStringOrEmpty
+        placeholder = LocalizableKeys.CardNumberInputView.placeholder.localizedStringOrEmpty
+        error = LocalizableKeys.CardNumberInputView.error.localizedStringOrEmpty
+        emptyError = LocalizableKeys.CardNumberInputView.emptyError.localizedStringOrEmpty
 
         keyboardType = .numberPad
 
@@ -136,14 +137,5 @@ extension CardNumberInputView {
         }
 
         return false
-    }
-}
-
-private extension Localizable {
-    enum CardNumberInputView: String, Localized {
-        case title
-        case placeholder
-        case error
-        case emptyError
     }
 }

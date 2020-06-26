@@ -35,6 +35,14 @@
         }
         NSLog(@"%@", error.localizedDescription);
     }];
+
+}
+
+/// Test setting custom translation
+-(void) testTranslations {
+    NSNumber *payButtonTitleKey = @(LocalizableKeysObjc_payButton_title);
+    NSNumber *navigationBackKey = @(LocalizableKeysObjc_navigation_back);;
+    [[TrustPayments instance] configureWithLocale:[NSLocale currentLocale] customTranslations:@{payButtonTitleKey: @"Giv me da mona", navigationBackKey: @"<Back>"}];
 }
 
 @end

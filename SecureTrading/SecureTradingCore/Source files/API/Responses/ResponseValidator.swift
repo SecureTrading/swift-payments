@@ -18,7 +18,7 @@ class ResponseValidator {
                         switch firstResponseWithError.errorDetails {
                         // For unhandled case, return error descriptions provided in response
                         case .none:
-                            throw NSError(domain: NSError.domain, code: firstResponseWithError.errorCode, userInfo: [NSLocalizedDescriptionKey: "\(firstResponseWithError.errorMessage) - \(firstResponseWithError.errorData?.first ?? "Unknown")"])
+                            throw NSError(domain: NSError.domain, code: firstResponseWithError.errorCode, userInfo: [NSLocalizedDescriptionKey: "\(firstResponseWithError.errorMessage) - \(firstResponseWithError.errorData?.first ?? LocalizableKeys.APIError.unknown.localizedStringOrEmpty)"])
                         default:
                             throw APIClientError.responseValidationError(.invalidField(code: firstResponseWithError.errorDetails))
                         }

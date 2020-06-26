@@ -131,7 +131,6 @@ import UIKit
         titleLabel?.numberOfLines = 0
         titleLabel?.lineBreakMode = .byWordWrapping
 
-        self.title = Localizable.RequestButton.title.text
         setTitleColor(self.titleColor, for: .normal)
         titleLabel?.font = self.titleFont
 
@@ -196,11 +195,5 @@ import UIKit
     @objc public func stopProcessing() {
         self.isUserInteractionEnabled = true
         self.spinner.stopAnimating()
-    }
-}
-
-private extension Localizable {
-    enum RequestButton: String, Localized {
-        case title
     }
 }

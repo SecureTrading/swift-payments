@@ -1,0 +1,57 @@
+{
+  "PayButton.title": "Zahlen",
+  "Navigation.back": "< Back",
+
+  "DropInViewController.title": "Payment",
+  "DropInViewController.successfulPayment": "Zahlung wurde erfolgreich verarbeitet",
+  "DropInViewController.cardinalAuthenticationError": "Ein Fehler ist aufgetreten",
+
+  "CardNumberInputView.title": "Kartennummer",
+  "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
+  "CardNumberInputView.error": "Invalid card number",
+  "CardNumberInputView.emptyError": "Kartennummer is required",
+
+  "CvcInputView.title": "Sicherheitscode",
+  "CvcInputView.placeholder3": "***",
+  "CvcInputView.placeholder4": "****",
+  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.error": "Invalid security code",
+  "CvcInputView.emptyError": "Sicherheitscode is required",
+
+  "ExpiryDateInputView.title": "Ablaufdatum",
+  "ExpiryDateInputView.placeholder": "MM/YY",
+  "ExpiryDateInputView.error": "Invalid expiry date",
+  "ExpiryDateInputView.emptyError": "Ablaufdatum is required",
+
+  "AddCardButton.title": "Add card",
+
+  "Alerts.okButton": "Ok",
+
+  "APIError.invalidFieldPAN": "Ungültiges Feld: PAN",
+  "APIError.invalidFieldSecurityCode": "Ungültiges Feld: Sicherheitscode",
+  "APIError.invalidFieldJWT": "Ungültiges Feld: JWT",
+  "APIError.invalidFieldExpiryDate": "Ungültiges Feld: Ablaufdatum",
+  "APIError.invalidFieldTermsURL": "Ungültiges Feld: Term URL",
+  "APIError.invalidFieldParentTransactionRef": "Ungültiges Feld: Parent transaction reference",
+  "APIError.invalidFieldSiteRef": "Ungültiges Feld: Site reference",
+  "APIError.invalidFieldSubscriptionNo": "Ungültiges Feld: Subscription number",
+  "APIError.invalidFieldUnknown": "Ungültiges Feld: Unknown",
+
+  "APIError.failedToBuildURLRequest": "Failed to build URL request",
+  "APIError.connectionFailure": "Connection failure",
+  "APIError.failedToValidateURLResponse": "Failed to validate URL response",
+  "APIError.failedToParseURLResponse": "Failed to parse URL response",
+  "APIError.unknownNetworkError": "An unknown network error has occurred.",
+  "APIError.jwtDecodingInvalidBase64": "JWT decoding: invalid base64",
+  "APIError.jwtDecodingInvalidJSON": "JWT decoding: invalid JSON",
+  "APIError.jwtDecodingIncorrectComponentNumber": "JWT decoding: number of parts does not equal 3",
+  "APIError.inaccessible": "Failed to receive a response for request after given retries",
+  "APIError.urlError": "URL Error",
+
+  "APIError.unsupportedStatusCode": "Unsupported status code",
+  "APIError.missingData": "Missing data.",
+  "APIError.unexpectedDescriptionTypesInResponse": "Unexpected description types in response.",
+
+  "APIError.missingResponseData": "Missing response data",
+  "APIError.unknown": "Unknown"
+}
