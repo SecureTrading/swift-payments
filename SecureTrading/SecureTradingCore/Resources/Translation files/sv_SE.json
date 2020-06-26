@@ -1,26 +1,64 @@
 {
-  "Timeout": "Timeout",
-  "Field is required": "Obligatoriskt fält",
-  "An error occurred": "Ett fel inträffade",
-  "Merchant validation failure": "Verifiering av säljare misslyckades",
-  "Payment has been cancelled": "Betalningen har avbrutits",
-  "Value mismatch pattern": "Matchningsfel för värde",
-  "Invalid response": "Ogiltigt svar",
-  "Invalid request": "Ogiltig begäran",
-  "Value is too short": "Värdet är för kort",
-  "Payment has been authorized": "Betalningen har godkänts",
-  "Amount and currency are not set": "Summa och valuta har inte angetts",
-  "Payment has been successfully processed": "Betalningen lyckades",
-  "Card number": "Kortnummer",
-  "Expiration date": "Sista giltighetsdatum",
-  "Security code": "Säkerhetskod",
-  "Ok": "Betalningen lyckades",
-  "Method not implemented": "Metoden har inte implementerats",
-  "Form is not valid": "Ogiltigt formulär",
-  "Pay": "Betala",
-  "Processing": "Bearbetar",
-  "Invalid field": "Ogiltigt fält",
-  "Card number is invalid": "Ogiltigt kortnummer",
-  "You are not logged to Apple account": "Du är inte inloggad på Apple-konto",
-  "A target element for the input field with id could not be found. Please check your configuration": "Ett målelement för inmatningsfältet med id kunde inte hittas. Kontrollera din konfiguration"
+  "PayButton.title": "Betala",
+  "Navigation.back": "< Back",
+
+  "DropInViewController.title": "Payment",
+  "DropInViewController.successfulPayment": "Betalningen lyckades",
+  "DropInViewController.cardinalAuthenticationError": "Ett fel inträffade",
+
+  "TestDetailsViewController.title": "Details",
+  "TestMainView.titleLabel": "Some title",
+  "TestMainView.showDetailsButton": "show details",
+
+  "TestMainViewController.title": "Main",
+  "TestMainViewController.closeButton": "Close",
+
+  "CardNumberInputView.title": "Kortnummer",
+  "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
+  "CardNumberInputView.error": "Invalid card number",
+  "CardNumberInputView.emptyError": "Kortnummer is required",
+
+  "CvcInputView.title": "Säkerhetskod",
+  "CvcInputView.placeholder3": "***",
+  "CvcInputView.placeholder4": "****",
+  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.error": "Invalid security code",
+  "CvcInputView.emptyError": "Säkerhetskod is required",
+
+  "ExpiryDateInputView.title": "Sista giltighetsdatum",
+  "ExpiryDateInputView.placeholder": "MM/YY",
+  "ExpiryDateInputView.error": "Invalid expiry date",
+  "ExpiryDateInputView.emptyError": "Sista giltighetsdatum is required",
+
+  "AddCardButton.title": "Add card",
+
+  "Alerts.okButton": "Ok",
+
+  "APIError.invalidFieldPAN": "Ogiltigt fält: PAN",
+  "APIError.invalidFieldSecurityCode": "Ogiltigt fält: Säkerhetskod",
+  "APIError.invalidFieldJWT": "Ogiltigt fält: JWT",
+  "APIError.invalidFieldExpiryDate": "Ogiltigt fält: Sista giltighetsdatum",
+  "APIError.invalidFieldTermsURL": "Ogiltigt fält: Term URL",
+  "APIError.invalidFieldParentTransactionRef": "Ogiltigt fält: Parent transaction reference",
+  "APIError.invalidFieldSiteRef": "Ogiltigt fält: Site reference",
+  "APIError.invalidFieldSubscriptionNo": "Ogiltigt fält: Subscription number",
+  "APIError.invalidFieldUnknown": "Ogiltigt fält: Unknown",
+
+  "APIError.failedToBuildURLRequest": "Failed to build URL request",
+  "APIError.connectionFailure": "Connection failure",
+  "APIError.failedToValidateURLResponse": "Failed to validate URL response",
+  "APIError.failedToParseURLResponse": "Failed to parse URL response",
+  "APIError.unknownNetworkError": "An unknown network error has occurred.",
+  "APIError.jwtDecodingInvalidBase64": "JWT decoding: invalid base64",
+  "APIError.jwtDecodingInvalidJSON": "JWT decoding: invalid JSON",
+  "APIError.jwtDecodingIncorrectComponentNumber": "JWT decoding: number of parts does not equal 3",
+  "APIError.inaccessible": "Failed to receive a response for request after given retries",
+  "APIError.urlError": "URL Error",
+
+  "APIError.unsupportedStatusCode": "Unsupported status code",
+  "APIError.missingData": "Missing data.",
+  "APIError.unexpectedDescriptionTypesInResponse": "Unexpected description types in response.",
+
+  "APIError.missingResponseData": "Missing response data",
+  "APIError.unknown": "Unknown"
 }

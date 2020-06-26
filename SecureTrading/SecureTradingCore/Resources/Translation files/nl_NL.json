@@ -1,26 +1,64 @@
 {
-  "Timeout": "Timeout",
-  "Field is required": "Dit is een verplicht veld",
-  "An error occurred": "Er is iets misgegaan",
-  "Merchant validation failure": "Validatie verkoper is mislukt",
-  "Payment has been cancelled": "De betaling is geannuleerd",
-  "Value mismatch pattern": "Invoer voldoet niet aan patroon",
-  "Invalid response": "Ongeldig antwoord",
-  "Invalid request": "Ongeldig verzoek",
-  "Value is too short": "Invoer is te kort",
-  "Payment has been authorized": "De betaling is geautoriseerd",
-  "Amount and currency are not set": "Bedrag en valuta zijn niet ingesteld",
-  "Payment has been successfully processed": "De betaling is verwerkt",
-  "Card number": "Kaartnummer",
-  "Expiration date": "Vervaldatum",
-  "Security code": "Beveiligingscode",
-  "Ok": "De betaling is verwerkt",
-  "Method not implemented": "De methode is niet geïmplementeerd",
-  "Form is not valid": "Het formulier is ongeldig",
-  "Pay": "Betalen",
-  "Processing": "Bezig met verwerken",
-  "Invalid field": "Ongeldig veld",
-  "Card number is invalid": "Het kaartnummer is ongeldig",
-  "You are not logged to Apple account": "U bent niet aangemeld bij een Apple-account",
-  "A target element for the input field with id could not be found. Please check your configuration": "Een doelelement voor het invoerveld met id kon niet worden gevonden. Controleer uw configuratie"
+  "PayButton.title": "Betalen",
+  "Navigation.back": "< Back",
+
+  "DropInViewController.title": "Payment",
+  "DropInViewController.successfulPayment": "De betaling is verwerkt",
+  "DropInViewController.cardinalAuthenticationError": "Er is iets misgegaan",
+
+  "TestDetailsViewController.title": "Details",
+  "TestMainView.titleLabel": "Some title",
+  "TestMainView.showDetailsButton": "show details",
+
+  "TestMainViewController.title": "Main",
+  "TestMainViewController.closeButton": "Close",
+
+  "CardNumberInputView.title": "Kaartnummer",
+  "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
+  "CardNumberInputView.error": "Invalid card number",
+  "CardNumberInputView.emptyError": "Kaartnummer is required",
+
+  "CvcInputView.title": "Beveiligingscode",
+  "CvcInputView.placeholder3": "***",
+  "CvcInputView.placeholder4": "****",
+  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.error": "Invalid security code",
+  "CvcInputView.emptyError": "Beveiligingscode is required",
+
+  "ExpiryDateInputView.title": "Vervaldatum",
+  "ExpiryDateInputView.placeholder": "MM/YY",
+  "ExpiryDateInputView.error": "Invalid expiry date",
+  "ExpiryDateInputView.emptyError": "Vervaldatum is required",
+
+  "AddCardButton.title": "Add card",
+
+  "Alerts.okButton": "Ok",
+
+  "APIError.invalidFieldPAN": "Ongeldig veld: PAN",
+  "APIError.invalidFieldSecurityCode": "Ongeldig veld: Beveiligingscode",
+  "APIError.invalidFieldJWT": "Ongeldig veld: JWT",
+  "APIError.invalidFieldExpiryDate": "Ongeldig veld: Vervaldatum",
+  "APIError.invalidFieldTermsURL": "Ongeldig veld: Term URL",
+  "APIError.invalidFieldParentTransactionRef": "Ongeldig veld: Parent transaction reference",
+  "APIError.invalidFieldSiteRef": "Ongeldig veld: Site reference",
+  "APIError.invalidFieldSubscriptionNo": "Ongeldig veld: Subscription number",
+  "APIError.invalidFieldUnknown": "Ongeldig veld: Unknown",
+
+  "APIError.failedToBuildURLRequest": "Failed to build URL request",
+  "APIError.connectionFailure": "Connection failure",
+  "APIError.failedToValidateURLResponse": "Failed to validate URL response",
+  "APIError.failedToParseURLResponse": "Failed to parse URL response",
+  "APIError.unknownNetworkError": "An unknown network error has occurred.",
+  "APIError.jwtDecodingInvalidBase64": "JWT decoding: invalid base64",
+  "APIError.jwtDecodingInvalidJSON": "JWT decoding: invalid JSON",
+  "APIError.jwtDecodingIncorrectComponentNumber": "JWT decoding: number of parts does not equal 3",
+  "APIError.inaccessible": "Failed to receive a response for request after given retries",
+  "APIError.urlError": "URL Error",
+
+  "APIError.unsupportedStatusCode": "Unsupported status code",
+  "APIError.missingData": "Missing data.",
+  "APIError.unexpectedDescriptionTypesInResponse": "Unexpected description types in response.",
+
+  "APIError.missingResponseData": "Missing response data",
+  "APIError.unknown": "Unknown"
 }

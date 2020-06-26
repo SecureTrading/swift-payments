@@ -1,26 +1,64 @@
 {
-  "Timeout": "Terfyn amser",
-  "Field is required": "Mae'r maes yn ofynnol",
-  "An error occurred": "Digwyddodd gwall",
-  "Merchant validation failure": "Methiant i ddilysu masnachwr",
-  "Payment has been cancelled": "Mae'r taliad wedi ei ganslo",
-  "Value mismatch pattern": "Patrwm camgymhariad gwerth",
-  "Invalid response": "Ymateb annilys",
-  "Invalid request": "Cais annilys",
-  "Value is too short": "Mae'r gwerth yn rhy fyr",
-  "Payment has been authorized": "Mae'r taliad wedi ei awdurdodi",
-  "Amount and currency are not set": "Nid yw'r swm a'r arian wedi ei osod",
-  "Payment has been successfully processed": "Mae'r taliad wedi ei brosesu'n llwyddiannus",
-  "Card number": "Rhif y cerdyn",
-  "Expiration date": "Dyddiad dod i ben",
-  "Security code": "Cod diogelwch",
-  "Ok": "Mae'r taliad wedi ei brosesu'n llwyddiannus",
-  "Method not implemented": "Nid yw'r dull wedi ei weithredu",
-  "Form is not valid": "Nid yw'r ffurflen yn ddilys",
-  "Pay": "Talu",
-  "Processing": "Wrthi'n prosesu",
-  "Invalid field": "Maes annilys",
-  "Card number is invalid": "Mae rhif y cerdyn yn annilys",
-  "You are not logged to Apple account": "Nid ydych wedi mewngofnodi i gyfrif Apple",
-  "A target element for the input field with id could not be found. Please check your configuration": "Ni ellid dod o hyd i elfen darged ar gyfer y maes mewnbwn ag id. Gwiriwch eich cyfluniad"
+  "PayButton.title": "Talu",
+  "Navigation.back": "< Back",
+
+  "DropInViewController.title": "Payment",
+  "DropInViewController.successfulPayment": "Mae'r taliad wedi ei brosesu'n llwyddiannus",
+  "DropInViewController.cardinalAuthenticationError": "Digwyddodd gwall",
+
+  "TestDetailsViewController.title": "Details",
+  "TestMainView.titleLabel": "Some title",
+  "TestMainView.showDetailsButton": "show details",
+
+  "TestMainViewController.title": "Main",
+  "TestMainViewController.closeButton": "Close",
+
+  "CardNumberInputView.title": "Rhif y cerdyn",
+  "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
+  "CardNumberInputView.error": "Invalid card number",
+  "CardNumberInputView.emptyError": "Rhif y cerdyn is required",
+
+  "CvcInputView.title": "Cod diogelwch",
+  "CvcInputView.placeholder3": "***",
+  "CvcInputView.placeholder4": "****",
+  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.error": "Invalid security code",
+  "CvcInputView.emptyError": "Security code is required",
+
+  "ExpiryDateInputView.title": "Dyddiad dod i ben",
+  "ExpiryDateInputView.placeholder": "MM/YY",
+  "ExpiryDateInputView.error": "Invalid expiry date",
+  "ExpiryDateInputView.emptyError": "Expiry date is required",
+
+  "AddCardButton.title": "Add card",
+
+  "Alerts.okButton": "Ok",
+
+  "APIError.invalidFieldPAN": "Maes annilys: PAN",
+  "APIError.invalidFieldSecurityCode": "Maes annilys: Security code",
+  "APIError.invalidFieldJWT": "Maes annilys: JWT",
+  "APIError.invalidFieldExpiryDate": "Maes annilys: Expiry date",
+  "APIError.invalidFieldTermsURL": "Maes annilys: Term URL",
+  "APIError.invalidFieldParentTransactionRef": "Maes annilys: Parent transaction reference",
+  "APIError.invalidFieldSiteRef": "Maes annilys: Site reference",
+  "APIError.invalidFieldSubscriptionNo": "Maes annilys: Subscription number",
+  "APIError.invalidFieldUnknown": "Maes annilys: Unknown",
+
+  "APIError.failedToBuildURLRequest": "Failed to build URL request",
+  "APIError.connectionFailure": "Connection failure",
+  "APIError.failedToValidateURLResponse": "Failed to validate URL response",
+  "APIError.failedToParseURLResponse": "Failed to parse URL response",
+  "APIError.unknownNetworkError": "An unknown network error has occurred.",
+  "APIError.jwtDecodingInvalidBase64": "JWT decoding: invalid base64",
+  "APIError.jwtDecodingInvalidJSON": "JWT decoding: invalid JSON",
+  "APIError.jwtDecodingIncorrectComponentNumber": "JWT decoding: number of parts does not equal 3",
+  "APIError.inaccessible": "Failed to receive a response for request after given retries",
+  "APIError.urlError": "URL Error",
+
+  "APIError.unsupportedStatusCode": "Unsupported status code",
+  "APIError.missingData": "Missing data.",
+  "APIError.unexpectedDescriptionTypesInResponse": "Unexpected description types in response.",
+
+  "APIError.missingResponseData": "Missing response data",
+  "APIError.unknown": "Unknown"
 }

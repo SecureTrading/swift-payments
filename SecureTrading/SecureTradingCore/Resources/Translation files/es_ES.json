@@ -1,26 +1,64 @@
 {
-  "Timeout": "Tiempo de espera agotado",
-  "Field is required": "Campo obligatorio",
-  "An error occurred": "Se ha producido un error",
-  "Merchant validation failure": "Fallo de validación del vendedor",
-  "Payment has been cancelled": "El pago se ha anulado",
-  "Value mismatch pattern": "El valor no coincide con el patrón",
-  "Invalid response": "Respuesta no válida",
-  "Invalid request": "Solicitud no válida",
-  "Value is too short": "El valor es demasiado corto",
-  "Payment has been authorized": "Se ha autorizado el pago",
-  "Amount and currency are not set": "No se han indicado el importe ni la divisa",
-  "Payment has been successfully processed": "El pago se ha procesado correctamente",
-  "Card number": "Número de tarjeta",
-  "Expiration date": "Fecha de vencimiento",
-  "Security code": "Código de seguridad",
-  "Ok": "El pago se ha procesado correctamente",
-  "Method not implemented": "Método no implementado",
-  "Form is not valid": "El formulario no es válido",
-  "Pay": "Pagar",
-  "Processing": "Procesando",
-  "Invalid field": "Campo no válido",
-  "Card number is invalid": "El número de tarjeta no es válido",
-  "You are not logged to Apple account": "No has iniciado sesión en la cuenta de Apple",
-  "A target element for the input field with id could not be found. Please check your configuration": "No se pudo encontrar un elemento de destino para el campo de entrada con id. Por favor verifique su configuración"
+  "PayButton.title": "Pagar",
+  "Navigation.back": "< Back",
+
+  "DropInViewController.title": "Payment",
+  "DropInViewController.successfulPayment": "El pago se ha procesado correctamente",
+  "DropInViewController.cardinalAuthenticationError": "Se ha producido un error",
+
+  "TestDetailsViewController.title": "Details",
+  "TestMainView.titleLabel": "Some title",
+  "TestMainView.showDetailsButton": "show details",
+
+  "TestMainViewController.title": "Main",
+  "TestMainViewController.closeButton": "Close",
+
+  "CardNumberInputView.title": "Número de tarjeta",
+  "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
+  "CardNumberInputView.error": "Invalid card number",
+  "CardNumberInputView.emptyError": "Número de tarjeta is required",
+
+  "CvcInputView.title": "Código de seguridad",
+  "CvcInputView.placeholder3": "***",
+  "CvcInputView.placeholder4": "****",
+  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.error": "Invalid security code",
+  "CvcInputView.emptyError": "Código de seguridad is required",
+
+  "ExpiryDateInputView.title": "Fecha de vencimiento",
+  "ExpiryDateInputView.placeholder": "MM/YY",
+  "ExpiryDateInputView.error": "Invalid expiry date",
+  "ExpiryDateInputView.emptyError": "Fecha de vencimiento is required",
+
+  "AddCardButton.title": "Add card",
+
+  "Alerts.okButton": "Ok",
+
+  "APIError.invalidFieldPAN": "Campo no válido: PAN",
+  "APIError.invalidFieldSecurityCode": "Campo no válido: Código de seguridad",
+  "APIError.invalidFieldJWT": "Campo no válido: JWT",
+  "APIError.invalidFieldExpiryDate": "Campo no válido: Fecha de vencimiento",
+  "APIError.invalidFieldTermsURL": "Campo no válido: Term URL",
+  "APIError.invalidFieldParentTransactionRef": "Campo no válido: Parent transaction reference",
+  "APIError.invalidFieldSiteRef": "Campo no válido: Site reference",
+  "APIError.invalidFieldSubscriptionNo": "Campo no válido: Subscription number",
+  "APIError.invalidFieldUnknown": "Campo no válido: Unknown",
+
+  "APIError.failedToBuildURLRequest": "Failed to build URL request",
+  "APIError.connectionFailure": "Connection failure",
+  "APIError.failedToValidateURLResponse": "Failed to validate URL response",
+  "APIError.failedToParseURLResponse": "Failed to parse URL response",
+  "APIError.unknownNetworkError": "An unknown network error has occurred.",
+  "APIError.jwtDecodingInvalidBase64": "JWT decoding: invalid base64",
+  "APIError.jwtDecodingInvalidJSON": "JWT decoding: invalid JSON",
+  "APIError.jwtDecodingIncorrectComponentNumber": "JWT decoding: number of parts does not equal 3",
+  "APIError.inaccessible": "Failed to receive a response for request after given retries",
+  "APIError.urlError": "URL Error",
+
+  "APIError.unsupportedStatusCode": "Unsupported status code",
+  "APIError.missingData": "Missing data.",
+  "APIError.unexpectedDescriptionTypesInResponse": "Unexpected description types in response.",
+
+  "APIError.missingResponseData": "Missing response data",
+  "APIError.unknown": "Unknown"
 }

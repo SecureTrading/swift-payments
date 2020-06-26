@@ -1,26 +1,64 @@
 {
-  "Timeout": "Timeout",
-  "Field is required": "Field is required",
-  "An error occurred": "An error occurred",
-  "Merchant validation failure": "Merchant validation failure",
-  "Payment has been cancelled": "Payment has been cancelled",
-  "Value mismatch pattern": "Value mismatch pattern",
-  "Invalid response": "Invalid response",
-  "Invalid request": "Invalid request",
-  "Value is too short": "Value is too short",
-  "Payment has been authorized": "Payment has been authorized",
-  "Amount and currency are not set": "Amount and currency are not set",
-  "Payment has been successfully processed": "Payment has been successfully processed",
-  "Card number": "Card number",
-  "Expiration date": "Expiration date",
-  "Security code": "Security code",
-  "Ok": "Payment has been successfully processed",
-  "Method not implemented": "Method not implemented",
-  "Form is not valid": "Form is not valid",
-  "Pay": "Pay",
-  "Processing": "Processing",
-  "Invalid field": "Invalid field",
-  "Card number is invalid": "Card number is invalid",
-  "You are not logged to Apple account": "You are not logged to Apple account",
-  "A target element for the input field with id could not be found. Please check your configuration": "A target element for the input field with id could not be found. Please check your configuration"
+  "PayButton.title": "Pay",
+  "Navigation.back": "< Back",
+
+  "DropInViewController.title": "Payment",
+  "DropInViewController.successfulPayment": "Payment has been successfully processed",
+  "DropInViewController.cardinalAuthenticationError": "An error occurred",
+
+  "TestDetailsViewController.title": "Details",
+  "TestMainView.titleLabel": "Some title",
+  "TestMainView.showDetailsButton": "show details",
+
+  "TestMainViewController.title": "Main",
+  "TestMainViewController.closeButton": "Close",
+
+  "CardNumberInputView.title": "Card number",
+  "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
+  "CardNumberInputView.error": "Invalid card number",
+  "CardNumberInputView.emptyError": "Card number is required",
+
+  "CvcInputView.title": "Security code",
+  "CvcInputView.placeholder3": "***",
+  "CvcInputView.placeholder4": "****",
+  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.error": "Invalid security code",
+  "CvcInputView.emptyError": "Security code is required",
+
+  "ExpiryDateInputView.title": "Expiry date",
+  "ExpiryDateInputView.placeholder": "MM/YY",
+  "ExpiryDateInputView.error": "Invalid expiry date",
+  "ExpiryDateInputView.emptyError": "Expiry date is required",
+
+  "AddCardButton.title": "Add card",
+
+  "Alerts.okButton": "Ok",
+
+  "APIError.invalidFieldPAN": "Invalid field: PAN",
+  "APIError.invalidFieldSecurityCode": "Invalid field: Security code",
+  "APIError.invalidFieldJWT": "Invalid field: JWT",
+  "APIError.invalidFieldExpiryDate": "Invalid field: Expiry date",
+  "APIError.invalidFieldTermsURL": "Invalid field: Term URL",
+  "APIError.invalidFieldParentTransactionRef": "Invalid field: Parent transaction reference",
+  "APIError.invalidFieldSiteRef": "Invalid field: Site reference",
+  "APIError.invalidFieldSubscriptionNo": "Invalid field: Subscription number",
+  "APIError.invalidFieldUnknown": "Invalid field: Unknown",
+
+  "APIError.failedToBuildURLRequest": "Failed to build URL request",
+  "APIError.connectionFailure": "Connection failure",
+  "APIError.failedToValidateURLResponse": "Failed to validate URL response",
+  "APIError.failedToParseURLResponse": "Failed to parse URL response",
+  "APIError.unknownNetworkError": "An unknown network error has occurred.",
+  "APIError.jwtDecodingInvalidBase64": "JWT decoding: invalid base64",
+  "APIError.jwtDecodingInvalidJSON": "JWT decoding: invalid JSON",
+  "APIError.jwtDecodingIncorrectComponentNumber": "JWT decoding: number of parts does not equal 3",
+  "APIError.inaccessible": "Failed to receive a response for request after given retries",
+  "APIError.urlError": "URL Error",
+
+  "APIError.unsupportedStatusCode": "Unsupported status code",
+  "APIError.missingData": "Missing data.",
+  "APIError.unexpectedDescriptionTypesInResponse": "Unexpected description types in response.",
+
+  "APIError.missingResponseData": "Missing response data",
+  "APIError.unknown": "Unknown"
 }
