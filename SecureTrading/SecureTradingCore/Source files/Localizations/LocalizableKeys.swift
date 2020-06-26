@@ -170,6 +170,34 @@ public enum LocalizableKeys {
 
     case _alerts_okButton
 
+    case _apiError_invalidFieldPAN
+    case _apiError_invalidFieldSecurityCode
+    case _apiError_invalidFieldJWT
+    case _apiError_invalidFieldExpiryDate
+    case _apiError_invalidFieldTermsURL
+    case _apiError_invalidFieldParentTransactionRef
+    case _apiError_invalidFieldSiteRef
+    case _apiError_invalidFieldSubscriptionNo
+    case _apiError_invalidFieldUnknown
+
+    case _apiError_failedToBuildURLRequest
+    case _apiError_connectionFailure
+    case _apiError_failedToValidateURLResponse
+    case _apiError_failedToParseURLResponse
+    case _apiError_unknownNetworkError
+    case _apiError_jwtDecodingInvalidBase64
+    case _apiError_jwtDecodingInvalidJSON
+    case _apiError_jwtDecodingIncorrectComponentNumber
+    case _apiError_inaccessible
+    case _apiError_urlError
+
+    case _apiError_unsupportedStatusCode
+    case _apiError_missingData
+    case _apiError_unexpectedDescriptionTypesInResponse
+
+    case _apiError_missingResponseData
+    case _apiError_unknown
+
     /// Used for mapping objc enum into TranslationsKeys
     var code: String {
         switch self {
@@ -199,6 +227,33 @@ public enum LocalizableKeys {
         case ._expiryDateInputView_emptyError: return LocalizableKeys.ExpiryDateInputView.emptyError.key
         case ._addCardButton_title: return LocalizableKeys.AddCardButton.title.key
         case ._alerts_okButton: return LocalizableKeys.Alerts.okButton.key
+        case ._apiError_invalidFieldPAN: return LocalizableKeys.APIError.invalidFieldPAN.key
+        case ._apiError_invalidFieldSecurityCode: return LocalizableKeys.APIError.invalidFieldSecurityCode.key
+        case ._apiError_invalidFieldJWT: return LocalizableKeys.APIError.invalidFieldJWT.key
+        case ._apiError_invalidFieldExpiryDate: return LocalizableKeys.APIError.invalidFieldExpiryDate.key
+        case ._apiError_invalidFieldTermsURL: return LocalizableKeys.APIError.invalidFieldTermsURL.key
+        case ._apiError_invalidFieldParentTransactionRef: return LocalizableKeys.APIError.invalidFieldParentTransactionRef.key
+        case ._apiError_invalidFieldSiteRef: return LocalizableKeys.APIError.invalidFieldSiteRef.key
+        case ._apiError_invalidFieldSubscriptionNo: return LocalizableKeys.APIError.invalidFieldSubscriptionNo.key
+        case ._apiError_invalidFieldUnknown: return LocalizableKeys.APIError.invalidFieldUnknown.key
+
+        case ._apiError_failedToBuildURLRequest: return LocalizableKeys.APIError.failedToBuildURLRequest.key
+        case ._apiError_connectionFailure: return LocalizableKeys.APIError.connectionFailure.key
+        case ._apiError_failedToValidateURLResponse: return LocalizableKeys.APIError.failedToValidateURLResponse.key
+        case ._apiError_failedToParseURLResponse: return LocalizableKeys.APIError.failedToParseURLResponse.key
+        case ._apiError_unknownNetworkError: return LocalizableKeys.APIError.unknownNetworkError.key
+        case ._apiError_jwtDecodingInvalidBase64: return LocalizableKeys.APIError.jwtDecodingInvalidBase64.key
+        case ._apiError_jwtDecodingInvalidJSON: return LocalizableKeys.APIError.jwtDecodingInvalidJSON.key
+        case ._apiError_jwtDecodingIncorrectComponentNumber: return LocalizableKeys.APIError.jwtDecodingIncorrectComponentNumber.key
+        case ._apiError_inaccessible: return LocalizableKeys.APIError.inaccessible.key
+        case ._apiError_urlError: return LocalizableKeys.APIError.urlError.key
+
+        case ._apiError_unsupportedStatusCode: return LocalizableKeys.APIError.unsupportedStatusCode.key
+        case ._apiError_missingData: return LocalizableKeys.APIError.missingData.key
+        case ._apiError_unexpectedDescriptionTypesInResponse: return LocalizableKeys.APIError.unexpectedDescriptionTypesInResponse.key
+
+        case ._apiError_missingResponseData: return LocalizableKeys.APIError.missingResponseData.key
+        case ._apiError_unknown: return LocalizableKeys.APIError.unknown.key
         }
     }
 }
