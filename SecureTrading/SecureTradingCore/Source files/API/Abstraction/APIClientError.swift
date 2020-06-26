@@ -57,29 +57,29 @@ public enum APIClientError: HumanReadableError {
     public var humanReadableDescription: String {
         switch self {
         case .requestBuildError(let error as NSError):
-            return "Failed to build URL request: \(error.humanReadableDescription)"
+            return "\(LocalizableKeys.APIError.failedToBuildURLRequest.localizedStringOrEmpty): \(error.humanReadableDescription)"
         case .connectionError(let error as HumanReadableStringConvertible):
-            return "Connection failure: \(error.humanReadableDescription)"
+            return "\(LocalizableKeys.APIError.connectionFailure.localizedStringOrEmpty): \(error.humanReadableDescription)"
         case .responseValidationError(let error):
-            return "Failed to validate URL response: \(error.localizedDescription)"
+            return "\(LocalizableKeys.APIError.failedToValidateURLResponse.localizedStringOrEmpty): \(error.localizedDescription)"
         case .responseParseError(let error as NSError):
-            return "Failed to parse URL response: \(error.humanReadableDescription)"
+            return "\(LocalizableKeys.APIError.failedToParseURLResponse.localizedStringOrEmpty): \(error.humanReadableDescription)"
         case .serverError(let error):
             return error.humanReadableDescription
         case .customError(let error):
             return error.humanReadableDescription
         case .unknownError:
-            return "An unknown network error has occurred."
+            return LocalizableKeys.APIError.unknownNetworkError.localizedStringOrEmpty
         case .jwtDecodingInvalidBase64Url:
-            return "JWT decoding: invalid base64"
+            return LocalizableKeys.APIError.jwtDecodingInvalidBase64.localizedStringOrEmpty
         case .jwtDecodingInvalidJSON:
-            return "JWT decoding: invalid JSON"
+            return LocalizableKeys.APIError.jwtDecodingInvalidJSON.localizedStringOrEmpty
         case .jwtDecodingInvalidPartCount:
-            return "JWT decoding: number of parts does not equal 3"
+            return LocalizableKeys.APIError.jwtDecodingIncorrectComponentNumber.localizedStringOrEmpty
         case .inaccessible:
-            return "Failed to receive a response for request after given retries"
+            return LocalizableKeys.APIError.inaccessible.localizedStringOrEmpty
         case .urlError(let urlError):
-            return "URL Error: \(urlError.localizedDescription)"
+            return "\(LocalizableKeys.APIError.urlError): \(urlError.localizedDescription)"
         }
     }
 
@@ -181,11 +181,11 @@ public enum APIResponseValidationError: Error {
     public var localizedDescription: String {
         switch self {
         case .unacceptableStatusCode(let actual, _):
-            return "Unacceptable status code: \(actual)."
+            return "\(LocalizableKeys.APIError.unsupportedStatusCode.localizedStringOrEmpty): \(actual)."
         case .missingResponse, .missingData:
-            return "Missing data."
+            return LocalizableKeys.APIError.missingData.localizedStringOrEmpty
         case .mismatchedDescriptionTypes:
-            return "Unexpected description types in response."
+            return LocalizableKeys.APIError.unexpectedDescriptionTypesInResponse.localizedStringOrEmpty
         case .invalidField(let code):
             return code.message
         }

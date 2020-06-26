@@ -118,7 +118,11 @@ public enum LocalizableKeys {
         case jwtDecodingIncorrectComponentNumber
         case inaccessible
         case urlError
-        
+
+        case unsupportedStatusCode
+        case missingData
+        case unexpectedDescriptionTypesInResponse
+
         case missingResponseData
         case unknown
 

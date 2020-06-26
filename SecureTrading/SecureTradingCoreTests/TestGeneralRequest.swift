@@ -12,7 +12,7 @@ class TestGeneralRequest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        request = GeneralRequest(alias: "alias", jwt: "jwt.jwt.jwt", version: "1.0", versionInfo: "Info version", requests: [])
+        request = GeneralRequest(alias: "alias", jwt: "jwt.jwt.jwt", version: "1.0", versionInfo: "Info version", acceptCustomerOutput: "1.00", requests: [])
     }
     func test_encodedDoesntLoseData() throws {
         let encoded = try request.encoder.encode(request)
@@ -41,6 +41,6 @@ extension GeneralRequest: Decodable {
         let jwt = try container.decode(String.self, forKey: .jwt)
         let version = try container.decode(String.self, forKey: .version)
         let versionInfo = try container.decode(String.self, forKey: .versionInfo)
-        self.init(alias: alias, jwt: jwt, version: version, versionInfo: versionInfo, requests: [])
+        self.init(alias: alias, jwt: jwt, version: version, versionInfo: versionInfo, acceptCustomerOutput: "1.00", requests: [])
     }
 }
