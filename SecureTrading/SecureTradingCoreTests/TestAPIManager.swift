@@ -200,7 +200,7 @@ class TestAPIManager: XCTestCase {
     }
     func test_versionInfo() {
         let given = DefaultAPIManager(gatewayType: .eu, username: "st").versionInfo
-        let expected = "MSDK::swift-5.2::0.0.1::iOS13.4.0"
+        let expected = "MSDK::swift-5.2::0.0.1::iOS13.5.0"
         XCTAssertEqual(given, expected)
     }
     func test_requestRetry10timesForTimeout() throws {

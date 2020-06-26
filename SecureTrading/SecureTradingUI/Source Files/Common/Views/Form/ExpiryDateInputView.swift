@@ -4,8 +4,8 @@
 //
 
 #if !COCOAPODS
-import SecureTradingCore
 import SecureTradingCard
+import SecureTradingCore
 #endif
 import UIKit
 
@@ -233,7 +233,20 @@ class YearTextField: BackwardTextField {}
     }
 
     @objc public var text: String? {
-        return "\(monthTextField.text ?? .empty)\(separatorLabel.text ?? .empty)\(yearTextField.text ?? .empty)"
+        get {
+            return "\(monthTextField.text ?? .empty)\(separatorLabel.text ?? .empty)\(yearTextField.text ?? .empty)"
+        }
+        set {
+            guard let text = newValue else { return }
+            guard let range = text.rangeOfCharacter(from: setWithoutSpecialChars.inverted) else { return }
+            let separator = text[range.lowerBound..<range.upperBound]
+            guard separator.count == 1 else { return }
+
+            separatorLabel.text = String(separator)
+            let placeholderArray = text.components(separatedBy: separator)
+            monthTextField.text = placeholderArray[0]
+            yearTextField.text = placeholderArray[1]
+        }
     }
 
     @objc public var placeholder: String {
@@ -441,7 +454,7 @@ class YearTextField: BackwardTextField {}
 
     @discardableResult
     @objc public func validate(silent: Bool) -> Bool {
-        self.validate(silent: silent, hideError: false)
+        validate(silent: silent, hideError: false)
     }
 
     @discardableResult
