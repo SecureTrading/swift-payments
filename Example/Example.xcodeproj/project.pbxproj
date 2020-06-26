@@ -21,6 +21,7 @@
 		0845BF28247EAF23008AD40F /* SingleInputViewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0845BF27247EAF23008AD40F /* SingleInputViewsController.swift */; };
 		0845BF2A247EAF38008AD40F /* SingleInputViewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0845BF29247EAF38008AD40F /* SingleInputViewsModel.swift */; };
 		0845BF2C247EAF4C008AD40F /* SingleInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0845BF2B247EAF4C008AD40F /* SingleInputView.swift */; };
+		08534ED524A2324700D2B082 /* DropInCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08534ED424A2324700D2B082 /* DropInCustomView.swift */; };
 		08639C5E2469681E00C8F90A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C442469681E00C8F90A /* BaseViewController.swift */; };
 		08639C5F2469681E00C8F90A /* BaseNavigationFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C452469681E00C8F90A /* BaseNavigationFlowController.swift */; };
 		08639C602469681E00C8F90A /* BaseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C462469681E00C8F90A /* BaseViewCell.swift */; };
@@ -131,6 +132,7 @@
 		0845BF27247EAF23008AD40F /* SingleInputViewsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInputViewsController.swift; sourceTree = "<group>"; };
 		0845BF29247EAF38008AD40F /* SingleInputViewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInputViewsModel.swift; sourceTree = "<group>"; };
 		0845BF2B247EAF4C008AD40F /* SingleInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleInputView.swift; sourceTree = "<group>"; };
+		08534ED424A2324700D2B082 /* DropInCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropInCustomView.swift; sourceTree = "<group>"; };
 		08639C442469681E00C8F90A /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		08639C452469681E00C8F90A /* BaseNavigationFlowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationFlowController.swift; sourceTree = "<group>"; };
 		08639C462469681E00C8F90A /* BaseViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewCell.swift; sourceTree = "<group>"; };
@@ -163,7 +165,7 @@
 		08639C8B24696CB100C8F90A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		08639C8D2469711500C8F90A /* WhiteBackgroundBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBackgroundBaseView.swift; sourceTree = "<group>"; };
 		08D8B247249CCE7500DB96EE /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardinalMobile.framework; path = ../SecureTrading/Frameworks/CardinalMobile.framework; sourceTree = "<group>"; };
-		08E4FA7E2462A7D100837339 /* SecureTradingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureTradingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		08E4FA7E2462A7D100837339 /* Trust Payments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trust Payments.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA812462A7D100837339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08E4FA8A2462A7D800837339 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08E4FA8D2462A7D800837339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 				08639C552469681E00C8F90A /* TransparentNavigationBar.swift */,
 				08639C562469681E00C8F90A /* CustomBackNavigationController.swift */,
 				1094352C24A08A3E00C3712B /* SaveCardOptionView.swift */,
+				08534ED424A2324700D2B082 /* DropInCustomView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -494,7 +497,7 @@
 		08E4FA7F2462A7D100837339 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				08E4FA7E2462A7D100837339 /* SecureTradingApp.app */,
+				08E4FA7E2462A7D100837339 /* Trust Payments.app */,
 				08E4FA942462A7D800837339 /* ExampleTests.xctest */,
 				08E4FA9F2462A7D800837339 /* ExampleUITests.xctest */,
 			);
@@ -618,6 +621,7 @@
 				08E4FA7C2462A7D100837339 /* Resources */,
 				08EF7CF92462AA1B008B5F3E /* Embed Frameworks */,
 				08B8E82E246A9F9D00046E39 /* SwiftLint */,
+				08534EED24A4BF7B00D2B082 /* Remove Simulator Architectures - Cardinal */,
 			);
 			buildRules = (
 			);
@@ -625,7 +629,7 @@
 			);
 			name = Example;
 			productName = Example;
-			productReference = 08E4FA7E2462A7D100837339 /* SecureTradingApp.app */;
+			productReference = 08E4FA7E2462A7D100837339 /* Trust Payments.app */;
 			productType = "com.apple.product-type.application";
 		};
 		08E4FA932462A7D800837339 /* ExampleTests */ = {
@@ -737,6 +741,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		08534EED24A4BF7B00D2B082 /* Remove Simulator Architectures - Cardinal */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Remove Simulator Architectures - Cardinal";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FRAMEWORK=\"CardinalMobile\"\nFRAMEWORK_EXECUTABLE_PATH=\"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/$FRAMEWORK.framework/$FRAMEWORK\"\nEXTRACTED_ARCHS=()\nfor ARCH in $ARCHS\ndo\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n";
+		};
 		08B8E82E246A9F9D00046E39 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -808,6 +830,7 @@
 			files = (
 				1050AB7F2490CB25001844BF /* Wallet.swift in Sources */,
 				1050AB8D2491000B001844BF /* WalletViewModel.swift in Sources */,
+				08534ED524A2324700D2B082 /* DropInCustomView.swift in Sources */,
 				08639C692469681E00C8F90A /* UICollectionView.swift in Sources */,
 				0845BF2A247EAF38008AD40F /* SingleInputViewsModel.swift in Sources */,
 				08639C6F2469681E00C8F90A /* ViewSetupable.swift in Sources */,
@@ -1001,7 +1024,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(_BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "$(_BUNDLE_NAME)";
+				PRODUCT_NAME = "Trust Payments";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(_ENVIRONMENTS)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Example/SupportingFiles/Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

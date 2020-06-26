@@ -22,12 +22,15 @@ s.subspec "Core" do |s|
     s.source_files   = "SecureTrading/SecureTradingCore/**/*.{h,swift}"
     s.public_header_files = "SecureTrading/SecureTradingCore/*.{h}"
     s.header_dir = "SecureTradingCore"
+    s.dependency "SecureTradingSDK/3DSecure"
+    s.dependency "SecureTradingSDK/Card"
   end
 
   s.subspec "UI" do |s|
     s.source_files   = "SecureTrading/SecureTradingUI/**/*.{h,swift}"
     s.public_header_files = "SecureTrading/SecureTradingUI/*.{h}"
     s.header_dir = "SecureTradingUI"
+    s.dependency "SecureTradingSDK/3DSecure"
     s.dependency "SecureTradingSDK/Core"
     s.dependency "SecureTradingSDK/Card"
   end
@@ -37,13 +40,11 @@ s.subspec "Core" do |s|
     s.public_header_files = "SecureTrading/SecureTrading3DSecure/*.{h}"
     s.vendored_frameworks = 'SecureTrading/Frameworks/CardinalMobile.framework'
     s.header_dir = "SecureTrading3DSecure"
-    s.dependency "SecureTradingSDK/Core"
   end
 
   s.subspec "Card" do |s|
     s.source_files   = "SecureTrading/SecureTradingCard/**/*.{h,swift}"
     s.public_header_files = "SecureTrading/SecureTradingCard/*.{h}"
     s.header_dir = "SecureTradingCard"
-    s.dependency "SecureTradingSDK/Core"
   end
 end

@@ -9,6 +9,7 @@ import UIKit
 
 final class MainFlowController: BaseNavigationFlowController {
     // MARK: - Properties:
+
     var sdkFlowController: SDKFlowController!
     private var mainViewModel: MainViewModel?
 
@@ -36,6 +37,8 @@ final class MainFlowController: BaseNavigationFlowController {
                     MainViewModel.Row.presentPayByCardForm,
                     MainViewModel.Row.showDropInControllerWithWarnings,
                     MainViewModel.Row.showDropInControllerNo3DSecure,
+                    MainViewModel.Row.showDropInControllerWithCustomView,
+                    MainViewModel.Row.payByCardFromParentReference,
                     MainViewModel.Row.performAccountCheck,
                     MainViewModel.Row.performAccountCheckWithAuth,
                     MainViewModel.Row.subscriptionOnSTEngine,
@@ -45,10 +48,10 @@ final class MainFlowController: BaseNavigationFlowController {
                 [
                     MainViewModel.Row.presentWalletForm,
                     MainViewModel.Row.presentAddCardForm
-            ])
+                ])
         ]
 
-        mainViewModel = MainViewModel(apiManager: appFoundation.apiManager, items: viewItems)
+        mainViewModel = MainViewModel(items: viewItems)
         let mainViewController = MainViewController(view: MainView(), viewModel: mainViewModel!)
         mainViewController.eventTriggered = { [unowned self] event in
             switch event {
@@ -59,16 +62,17 @@ final class MainFlowController: BaseNavigationFlowController {
             case .didTapShowSingleInputViews:
                 self.showSingleInputViewsSceen()
             case .didTapShowDropInController(let jwt):
-                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: false)
+                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: false, addCustomView: false)
             case .didTapShowDropInControllerWithWarnings(let jwt):
-                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: true)
+                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: true, addCustomView: false)
             case .didTapShowDropInControllerNoThreeDQuery(let jwt):
-                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: false, typeDescriptions: [.auth])
+                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: false, addCustomView: false, typeDescriptions: [.auth])
             case .didTapAddCard(let jwt):
                 self.showAddCardView(jwt: jwt)
             case .payWithWalletRequest:
                 self.showWalletView()
-
+            case .didTapShowDropInControllerWithCustomView(let jwt):
+                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: false, addCustomView: true)
             }
         }
         return mainViewController
@@ -82,21 +86,34 @@ final class MainFlowController: BaseNavigationFlowController {
         push(vc, animated: true)
     }
 
-    func showDropInViewController(jwt: String, handleCardinalWarnings: Bool, typeDescriptions: [TypeDescription] = [.threeDQuery, .auth]) {
+    func showDropInViewController(jwt: String, handleCardinalWarnings: Bool, addCustomView: Bool, typeDescriptions: [TypeDescription] = [.threeDQuery, .auth]) {
         // swiftlint:disable line_length
         let inputViewStyleManager = InputViewStyleManager(titleColor: UIColor.gray, textFieldBorderColor: UIColor.black.withAlphaComponent(0.8), textFieldBackgroundColor: .clear, textColor: .black, placeholderColor: UIColor.lightGray.withAlphaComponent(0.8), errorColor: UIColor.red.withAlphaComponent(0.8), titleFont: UIFont.systemFont(ofSize: 16, weight: .regular), textFont: UIFont.systemFont(ofSize: 16, weight: .regular), placeholderFont: UIFont.systemFont(ofSize: 16, weight: .regular), errorFont: UIFont.systemFont(ofSize: 12, weight: .regular), textFieldImage: nil, titleSpacing: 5, errorSpacing: 3, textFieldHeightMargins: HeightMargins(top: 10, bottom: 10), textFieldBorderWidth: 1, textFieldCornerRadius: 6)
 
         let payButtonStyleManager = PayButtonStyleManager(titleColor: .white, enabledBackgroundColor: .black, disabledBackgroundColor: UIColor.lightGray.withAlphaComponent(0.6), borderColor: .clear, titleFont: UIFont.systemFont(ofSize: 16, weight: .medium), spinnerStyle: .white, spinnerColor: .white, buttonContentHeightMargins: HeightMargins(top: 15, bottom: 15), borderWidth: 0, cornerRadius: 6)
 
         let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: inputViewStyleManager, requestButtonStyleManager: payButtonStyleManager, backgroundColor: .white, spacingBeetwenInputViews: 25, insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
-        // swiftlint:disable line_length
 
-        let saveCardComponent = SaveCardOptionView()
+        // custom view provided from example app
+        let customDropInView = addCustomView ? DropInCustomView(dropInViewStyleManager: dropInViewStyleManager) : nil
 
-        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: false, dropInViewStyleManager: dropInViewStyleManager, customView: saveCardComponent, successfulPaymentCompletion: { [unowned self] _, cardReference in
+        let isDeferInit = addCustomView
+
+        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: isDeferInit, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, cardTypeToBypass: [], payButtonTappedClosureBeforeTransaction: { [unowned self] controller in
+            guard let customDropInView = customDropInView else { return }
+            // updates JWT with credentialsonfile flag
+            guard let updatedJWT = self.mainViewModel?.getJwtTokenWithoutCardData(storeCard: customDropInView.isSaveCardSelected) else { return }
+            // update vc with new jwt
+            controller.updateJWT(newValue: updatedJWT)
+        }, successfulPaymentCompletion: { [unowned self] _, successMessage, cardReference in
             Wallet.shared.add(card: cardReference)
-            self.navigationController.popViewController(animated: true)
-        }, transactionFailure: {}, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
+            self.showAlert(controller: self.navigationController, message: successMessage) { _ in
+                self.navigationController.popViewController(animated: true)
+            }
+        }, transactionFailure: { [unowned self] _, errorMessage in
+            self.showAlert(controller: self.navigationController, message: errorMessage) { _ in
+            }
+        }, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
             guard handleCardinalWarnings else { return }
             self.showAlert(controller: self.navigationController, message: warningsMessage) { _ in
                 self.navigationController.popViewController(animated: true)
@@ -104,12 +121,15 @@ final class MainFlowController: BaseNavigationFlowController {
         })
 
         // triggered by UISwitch in SaveCardComponent view
-        saveCardComponent.valueChanged = { [weak self] isSelected in
+        customDropInView?.saveCardComponentValueChanged = { [weak self] isSelected in
+            guard let self = self else { return }
             // updates JWT with credentialsonfile flag
-            guard let updatedJWT = self?.mainViewModel?.getJwtTokenWithoutCardData(storeCard: isSelected) else { return }
+            guard let updatedJWT = self.mainViewModel?.getJwtTokenWithoutCardData(storeCard: isSelected) else { return }
             // update vc with new jwt
             dropInVC.updateJWT(newValue: updatedJWT)
         }
+
+        // swiftlint:enable line_length
 
         push(dropInVC.viewController, animated: true)
     }

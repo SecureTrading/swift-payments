@@ -3,16 +3,13 @@
 //  SecureTradingUI
 //
 
-#if !COCOAPODS
-import SecureTradingCard
-#endif
 import UIKit
 
 /// This class is used to maintain the range of accepted card types. You can provide different sets of card types for CardNumberInputView and adjust the range of accepted card types individually.
 @objc public class CardTypeContainer: NSObject {
     // MARK: Properties
 
-    private(set) var cardTypes: [CardType]
+    public private(set) var cardTypes: [CardType]
 
     // MARK: Initialization
 

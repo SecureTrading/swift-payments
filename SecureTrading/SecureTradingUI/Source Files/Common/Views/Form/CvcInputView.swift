@@ -4,12 +4,13 @@
 //
 
 #if !COCOAPODS
+import SecureTradingCore
 import SecureTradingCard
 import SecureTradingCore
 #endif
 import UIKit
 
-@objc public final class CvcInputView: DefaultSecureFormInputView {
+@objc public final class CvcInputView: DefaultSecureFormInputView, CvcInput {
     // MARK: Private Properties
 
     private var expectedInputLength: Int {

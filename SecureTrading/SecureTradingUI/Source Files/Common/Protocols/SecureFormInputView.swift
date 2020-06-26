@@ -2,16 +2,44 @@
 //  SecureFormInputView.swift
 //  SecureTradingUI
 //
-
+#if !COCOAPODS
+import SecureTradingCore
+import SecureTradingCard
+#endif
 import UIKit
+
+@objc public protocol InputValidation {
+    @objc var isEnabled: Bool { get set }
+    @objc var isInputValid: Bool { get }
+    @objc func validate(silent: Bool) -> Bool
+}
+
+@objc public protocol CardNumberInput: InputValidation where Self: UIView {
+    @objc var cardNumber: CardNumber { get }
+}
+
+@objc public protocol CvcInput: InputValidation where Self: UIView {
+    @objc var cvc: CVC? { get }
+}
+
+@objc public protocol ExpiryDateInput: InputValidation where Self: UIView {
+    @objc var expiryDate: ExpiryDate { get }
+}
+
+@objc public protocol PayButtonProtocol where Self: UIButton {
+    @objc func startProcessing()
+    @objc func stopProcessing()
+}
 
 @objc public protocol SecureFormInputViewDelegate: class {
     func inputViewTextFieldDidEndEditing(_ view: SecureFormInputView)
     func showHideError(_ show: Bool)
 }
 
-@objc public protocol SecureFormInputView: AnyObject {
+@objc public protocol SecureFormInputView where Self: UIView {
     var isEmpty: Bool { get }
+
+    var isEnabled: Bool { get set }
 
     var isInputValid: Bool { get }
 
@@ -27,7 +55,7 @@ import UIKit
 
     var title: String { get set }
 
-    var text: String? { get }
+    var text: String? { get set }
 
     var placeholder: String { get set }
 

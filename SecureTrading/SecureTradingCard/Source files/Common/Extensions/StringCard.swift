@@ -1,5 +1,5 @@
 //
-//  String.swift
+//  StringCard.swift
 //  SecureTradingCard
 //
 
@@ -12,7 +12,7 @@ extension String {
 
 extension String {
     /// Removes non digit characters
-    var onlyDigits: String {
+    public var onlyDigits: String {
         return self.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
     }
 }

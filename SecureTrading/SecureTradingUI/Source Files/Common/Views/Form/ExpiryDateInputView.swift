@@ -31,7 +31,7 @@ class MonthTextField: BackwardTextField {
 
 class YearTextField: BackwardTextField {}
 
-@objc public class ExpiryDateInputView: BaseView, SecureFormInputView {
+@objc public class ExpiryDateInputView: BaseView, SecureFormInputView, ExpiryDateInput {
     // MARK: Properties
 
     let titleLabel: UILabel = {
@@ -234,7 +234,20 @@ class YearTextField: BackwardTextField {}
     }
 
     @objc public var text: String? {
-        return "\(monthTextField.text ?? .empty)\(separatorLabel.text ?? .empty)\(yearTextField.text ?? .empty)"
+        get {
+            return "\(monthTextField.text ?? .empty)\(separatorLabel.text ?? .empty)\(yearTextField.text ?? .empty)"
+        }
+        set {
+            guard let text = newValue else { return }
+            guard let range = text.rangeOfCharacter(from: setWithoutSpecialChars.inverted) else { return }
+            let separator = text[range.lowerBound..<range.upperBound]
+            guard separator.count == 1 else { return }
+
+            separatorLabel.text = String(separator)
+            let placeholderArray = text.components(separatedBy: separator)
+            monthTextField.text = placeholderArray[0]
+            yearTextField.text = placeholderArray[1]
+        }
     }
 
     @objc public var placeholder: String {
@@ -430,7 +443,7 @@ class YearTextField: BackwardTextField {}
         ])
     }
 
-    @objc public func showHideError(show: Bool) {
+    public func showHideError(show: Bool) {
         errorLabel.text = isEmpty ? emptyError : error
         errorLabel.isHidden = !show
         textFieldStackViewBackground.layer.borderColor = show ? errorColor.cgColor : textFieldBorderColor.cgColor
@@ -439,6 +452,11 @@ class YearTextField: BackwardTextField {}
     }
 
     // MARK: - Validation
+
+    @discardableResult
+    @objc public func validate(silent: Bool) -> Bool {
+        validate(silent: silent, hideError: false)
+    }
 
     @discardableResult
     @objc public func validate(silent: Bool, hideError: Bool = false) -> Bool {

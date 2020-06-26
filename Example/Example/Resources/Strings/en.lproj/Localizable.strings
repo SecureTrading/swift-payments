@@ -22,6 +22,8 @@ MainViewModel.subscriptionOnSTEngine = "Subscription (Trust Payments Engine)";
 MainViewModel.subscriptionOnMerchantEngine = "Subscription (Merchant engine)";
 MainViewModel.showDropInControllerWithWarningsButton = "Pay by Card form (3DSecure & Cardinal warnings)";
 MainViewModel.showDropInControllerNo3DSecure = "Pay by Card form (no 3DSecure)";
+MainViewModel.showDropInControllerWithCustomView = "Pay by Card form (3DSec, custom view - defer init)";
+MainViewModel.payByCardFromParentReference = "Pay by 400000######2008 card (3DSecure)";
 
 Alerts.okButton = "Ok";
 

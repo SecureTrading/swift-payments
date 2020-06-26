@@ -123,8 +123,8 @@
             settleStatus = nil
         }
         transactionReference = try container.decodeIfPresent(String.self, forKey: .transactionReference)
-        if let maskedPan = try container.decodeIfPresent(String.self, forKey: .maskedPan), let paymentDescription = try container.decodeIfPresent(String.self, forKey: .paymentDescription), let reference = transactionReference {
-            cardReference = STCardReference(reference: reference, cardType: paymentDescription, pan: maskedPan)
+        if let maskedPan = try container.decodeIfPresent(String.self, forKey: .maskedPan), let paymentDescription = try container.decodeIfPresent(String.self, forKey: .paymentDescription) {
+            cardReference = STCardReference(reference: transactionReference, cardType: paymentDescription, pan: maskedPan)
         } else {
             cardReference = nil
         }

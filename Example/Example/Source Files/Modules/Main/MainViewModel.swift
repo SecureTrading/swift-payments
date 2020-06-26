@@ -5,6 +5,7 @@
 
 import Foundation
 import SwiftJWT
+import SecureTradingCard
 
 protocol MainViewModelDataSource: class {
     func row(at index: IndexPath) -> MainViewModel.Row?
@@ -20,8 +21,7 @@ final class MainViewModel {
     /// Stores Sections and rows representing the main view
     fileprivate var items: [Section]
 
-    /// - SeeAlso: AppFoundation.apiManager
-    private let apiManager: APIManager
+    private let paymentTransactionManager: PaymentTransactionManager
 
     /// Keys for certain scheme
     private let keys = ApplicationKeys(keys: ExampleKeys())
@@ -33,11 +33,9 @@ final class MainViewModel {
     // MARK: Initialization
 
     /// Initializes an instance of the receiver.
-    ///
-    /// - Parameter apiManager: API manager
-    init(apiManager: APIManager, items: [Section]) {
-        self.apiManager = apiManager
+    init(items: [Section]) {
         self.items = items
+        self.paymentTransactionManager = PaymentTransactionManager(jwt: .empty, gatewayType: .eu, username: keys.merchantUsername, isLiveStatus: false, isDeferInit: true, cardTypeToBypass: [])
     }
 
     // MARK: Functions
@@ -74,8 +72,7 @@ final class MainViewModel {
                                               parenttransactionreference: nil))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
-        let authRequest = RequestObject(typeDescriptions: [.auth])
-        makeRequest(with: jwt, request: authRequest)
+        performTransaction(with: jwt, typeDescriptions: [.auth])
     }
 
     /// Performs Account check with card data
@@ -92,8 +89,7 @@ final class MainViewModel {
                                               parenttransactionreference: nil))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
-        let authRequest = RequestObject(typeDescriptions: [.accountCheck])
-        makeRequest(with: jwt, request: authRequest)
+        performTransaction(with: jwt, typeDescriptions: [.accountCheck])
     }
 
     /// Performs AUTH request without card data
@@ -108,13 +104,12 @@ final class MainViewModel {
                                               pan: nil,
                                               expirydate: nil,
                                               securitycode: nil,
-                                              parenttransactionreference: "59-9-34731")
-        )
+                                              parenttransactionreference: "59-9-34731"))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
-        let authRequest = RequestObject(typeDescriptions: [.accountCheck, .auth])
-        makeRequest(with: jwt, request: authRequest)
+        performTransaction(with: jwt, typeDescriptions: [.accountCheck, .auth])
     }
+
     func performSubscriptionOnSTEngine() {
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
@@ -132,9 +127,10 @@ final class MainViewModel {
                                               subscriptionnumber: "1"))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
-        let authRequest = RequestObject(typeDescriptions: [.accountCheck, .subscription])
-        makeRequest(with: jwt, request: authRequest)
+
+        performTransaction(with: jwt, typeDescriptions: [.accountCheck, .subscription])
     }
+
     func performSubscriptionOnMerchantEngine() {
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
@@ -148,52 +144,56 @@ final class MainViewModel {
                                               subscriptionnumber: "2"))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
-        let authRequest = RequestObject(typeDescriptions: [.auth])
-        makeRequest(with: jwt, request: authRequest)
+
+        performTransaction(with: jwt, typeDescriptions: [.auth])
     }
 
-    private func makeRequest(with jwt: String, request: RequestObject) {
-        apiManager.makeGeneralRequest(jwt: jwt, request: request, success: { [weak self] responseObject, _, _ in
-            guard let self = self else { return }
-            switch responseObject.responseErrorCode {
-            case .successful:
-                self.showRequestSuccess?(nil)
-            default:
-                // transaction error
-                self.showAuthError?(responseObject.errorMessage)
-            }
-            }, failure: { [weak self] error in
-                guard let self = self else { return }
-                switch error {
-                case .responseValidationError(let responseError):
-                    switch responseError {
-                    case .invalidField:
-                        // Update UI
-                        self.showAuthError?(responseError.localizedDescription)
-                    default:
-                        self.showAuthError?(error.humanReadableDescription)
-                    }
-                default:
-                    self.showAuthError?(error.humanReadableDescription)
-                }
+    func payByCardFromParentReference() {
+        let claim = STClaims(iss: keys.merchantUsername,
+                             iat: Date(timeIntervalSinceNow: 0),
+                             payload: Payload(accounttypedescription: "ECOM",
+                                              sitereference: keys.merchantSiteReference,
+                                              currencyiso3a: "GBP",
+                                              baseamount: 199,
+                                              parenttransactionreference: "59-9-99169"))
+
+        guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
+
+        performTransaction(with: jwt, typeDescriptions: [.threeDQuery, .auth], card: Card(cardNumber: nil, securityCode: CVC(rawValue: "123"), expiryDate: nil))
+    }
+
+    func performTransaction(with jwt: String, typeDescriptions: [TypeDescription], card: Card? = nil) {
+        paymentTransactionManager.performTransaction(jwt: jwt, typeDescriptions: typeDescriptions, card: card, transactionSuccessClosure: { _, _ in
+            self.showRequestSuccess?(nil)
+        }, transactionErrorClosure: { _, errorMessage in
+            self.showAuthError?(errorMessage)
+        }, cardinalAuthenticationErrorClosure: {
+            self.showAuthError?("An error occurred")
+        }, validationErrorClosure: { error, _ in
+            self.showAuthError?(error)
         })
     }
 }
 
 // MARK: MainViewModelDataSource
+
 extension MainViewModel: MainViewModelDataSource {
     func row(at index: IndexPath) -> Row? {
         return items[index.section].rows[index.row]
     }
+
     func numberOfSections() -> Int {
         return items.count
     }
+
     func numberOfRows(at section: Int) -> Int {
         return items[section].rows.count
     }
+
     func title(for section: Int) -> String? {
         return items[section].title
     }
+
     func detailInformationForRow(at index: IndexPath) -> String? {
         return items[index.section].rows[index.row].detailInformation
     }
@@ -210,8 +210,10 @@ extension MainViewModel {
         case performAccountCheckWithAuth
         case presentAddCardForm
         case presentWalletForm
+        case showDropInControllerWithCustomView
         case showDropInControllerWithWarnings
         case showDropInControllerNo3DSecure
+        case payByCardFromParentReference
         case subscriptionOnSTEngine
         case subscriptionOnMerchantEngine
 
@@ -243,11 +245,15 @@ extension MainViewModel {
                 return Localizable.MainViewModel.subscriptionOnMerchantEngine.text
             case .showDropInControllerNo3DSecure:
                 return Localizable.MainViewModel.showDropInControllerNo3DSecure.text
+            case .showDropInControllerWithCustomView:
+                return Localizable.MainViewModel.showDropInControllerWithCustomView.text
+            case .payByCardFromParentReference:
+                return Localizable.MainViewModel.payByCardFromParentReference.text
             }
         }
 
         var hasDetailedInfo: Bool {
-            return self.detailInformation != nil
+            return detailInformation != nil
         }
 
         var detailInformation: String? {
@@ -313,9 +319,14 @@ extension MainViewModel {
                 """
             case .showDropInControllerNo3DSecure:
                 return nil
+            case .showDropInControllerWithCustomView:
+                return nil
+            case .payByCardFromParentReference:
+                return nil
             }
         }
     }
+
     enum Section {
         case onMerchant(rows: [Row])
         case onSDK(rows: [Row])
@@ -335,6 +346,7 @@ extension MainViewModel {
         }
     }
 }
+
 // MARK: Localizable
 fileprivate extension Localizable {
     enum MainViewModel: String, Localized {
@@ -351,7 +363,9 @@ fileprivate extension Localizable {
         case merchantResponsibility
         case sdkResponsibility
         case showDropInControllerNo3DSecure
+        case showDropInControllerWithCustomView
         case subscriptionOnSTEngine
         case subscriptionOnMerchantEngine
+        case payByCardFromParentReference
     }
 }

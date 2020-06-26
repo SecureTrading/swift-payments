@@ -4,7 +4,6 @@
 //
 
 import SecureTradingCard
-//import SecureTradingCore
 import Foundation
 
 final class AddCardViewModel {
@@ -47,9 +46,9 @@ final class AddCardViewModel {
     ///   - expiryDate: The expiry date printed on the card.
     func makeRequest(cardNumber: CardNumber, securityCode: CVC?, expiryDate: ExpiryDate) {
         self.card = Card(cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
-        let cardNumber = self.card?.cardNumber.rawValue
+        let cardNumber = self.card?.cardNumber?.rawValue
         let securityCode = self.card?.securityCode?.rawValue
-        let expiryDate = self.card?.expiryDate.rawValue
+        let expiryDate = self.card?.expiryDate?.rawValue
 
         let authRequest = RequestObject(typeDescriptions: self.typeDescriptions, cardNumber: cardNumber, securityCode: securityCode, expiryDate: expiryDate)
 
