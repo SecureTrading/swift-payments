@@ -14,8 +14,8 @@ struct STClaims: Claims {
 struct Payload: Codable {
     let accounttypedescription: String
     let sitereference: String
-    let currencyiso3a: String
-    let baseamount: Int
+    let currencyiso3a: String?
+    let baseamount: Int?
     let pan: String?
     let expirydate: String?
     let securitycode: String?
@@ -29,8 +29,8 @@ struct Payload: Codable {
 
     init(accounttypedescription: String,
          sitereference: String,
-         currencyiso3a: String,
-         baseamount: Int,
+         currencyiso3a: String? = nil,
+         baseamount: Int? = nil,
          pan: String? = nil,
          expirydate: String? = nil,
          securitycode: String? = nil,
