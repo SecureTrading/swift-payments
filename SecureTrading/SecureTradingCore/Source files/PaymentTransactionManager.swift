@@ -50,9 +50,11 @@ import Foundation
     private var validationErrorClosure: ((String, ResponseErrorDetail) -> Void)?
 
     private var shouldBypassThreeDSecure: Bool {
-        let cardType = self.card?.cardType ?? self.cardTypeFromParentReference
-        let shouldBypassThreeDSecure = cardType != nil ? cardType == .piba || cardTypeToBypass.contains(cardType!) : false
-        return shouldBypassThreeDSecure
+        let cardTypeFromCard = self.card?.cardType
+        let cardTypeFromReference = self.cardTypeFromParentReference
+        let shouldBypassCardCondition = cardTypeFromCard != nil ? cardTypeFromCard == .piba || cardTypeToBypass.contains(cardTypeFromCard!) : false
+        let shouldBypassReferenceCondition = cardTypeFromReference != nil ? cardTypeFromReference == .piba || cardTypeToBypass.contains(cardTypeFromReference!) : false
+        return shouldBypassCardCondition || shouldBypassReferenceCondition
     }
 
     // MARK: Initialization
