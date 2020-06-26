@@ -35,7 +35,7 @@ final class MainViewModel {
     /// Initializes an instance of the receiver.
     init(items: [Section]) {
         self.items = items
-        self.paymentTransactionManager = PaymentTransactionManager(jwt: .empty, gatewayType: .eu, username: keys.merchantUsername, isLiveStatus: false, isDeferInit: true)
+        self.paymentTransactionManager = PaymentTransactionManager(jwt: .empty, gatewayType: .eu, username: keys.merchantUsername, isLiveStatus: false, isDeferInit: true, cardTypeToBypass: [])
     }
 
     // MARK: Functions

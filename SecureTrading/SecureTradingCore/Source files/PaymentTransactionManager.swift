@@ -64,11 +64,12 @@ import Foundation
     /// - Parameter username: merchant's username
     /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
     /// - Parameter isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
-    @objc public init(jwt: String, gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool) {
+    public init(jwt: String, gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool, cardTypeToBypass: [CardType] = []) {
         self.jwt = jwt
         self.apiManager = DefaultAPIManager(gatewayType: gatewayType, username: username)
         self.isLiveStatus = isLiveStatus
         self.isDeferInit = isDeferInit
+        self.cardTypeToBypass = cardTypeToBypass
         self.threeDSecureManager = ST3DSecureManager(isLiveStatus: self.isLiveStatus)
         let randomString = String.randomString(length: 36)
         let start = randomString.index(randomString.startIndex, offsetBy: 2)
@@ -95,6 +96,11 @@ import Foundation
                 }
             })
         }
+    }
+
+    @objc public convenience init(jwt: String, gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool, cardTypesToBypass: [Int] = []) {
+        let cardTypesSwift = cardTypesToBypass.map { CardType(rawValue: $0)! }
+        self.init(jwt: jwt, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, cardTypeToBypass: cardTypesSwift)
     }
 
     // MARK: Api requests
@@ -139,7 +145,7 @@ import Foundation
 
         let termUrl = self.typeDescriptions.contains(.threeDQuery) && !shouldBypassThreeDSecure  ? self.termUrl : nil
 
-        let tempTypeDescriptions = self.typeDescriptions.contains(.threeDQuery) && !shouldBypassThreeDSecure ? [.threeDQuery] : self.typeDescriptions
+        let tempTypeDescriptions = self.typeDescriptions.contains(.threeDQuery) && !shouldBypassThreeDSecure ? [.threeDQuery] : self.typeDescriptions.filter { $0 != .threeDQuery }
 
         let request = RequestObject(typeDescriptions: tempTypeDescriptions, requestId: self.requestId, cardNumber: self.card?.cardNumber?.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate?.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
 

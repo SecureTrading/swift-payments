@@ -6,6 +6,7 @@
 #if !COCOAPODS
 import SecureTrading3DSecure
 import SecureTradingCore
+import SecureTradingCard
 #endif
 import Foundation
 import UIKit
@@ -45,11 +46,11 @@ import UIKit
     ///   - customDropInView: DropInViewProtocol compliant view (for example, to add some additional fields such as address, tip)
     ///   - payButtonTappedClosureBeforeTransaction: Closure triggered by pressing the pay button (just before the transaction - you can use this closure to update the JWT token)
     /// - Returns: instance of DropInViewController
-    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription] = [.threeDQuery, .auth], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, customDropInView: DropInViewProtocol? = nil, dropInViewStyleManager: DropInViewStyleManager? = nil, payButtonTappedClosureBeforeTransaction: @escaping (DropInController) -> Void, successfulPaymentCompletion: @escaping (JWTResponseObject, String, STCardReference?) -> Void, transactionFailure: @escaping (JWTResponseObject?, String) -> Void, cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)? = nil) -> DropInController {
+    public func dropInViewController(jwt: String, typeDescriptions: [TypeDescription] = [.threeDQuery, .auth], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, customDropInView: DropInViewProtocol? = nil, dropInViewStyleManager: DropInViewStyleManager? = nil, cardTypeToBypass: [CardType] = [], payButtonTappedClosureBeforeTransaction: @escaping (DropInController) -> Void, successfulPaymentCompletion: @escaping (JWTResponseObject, String, STCardReference?) -> Void, transactionFailure: @escaping (JWTResponseObject?, String) -> Void, cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)? = nil) -> DropInController {
 
         let dropInView = customDropInView ?? DropInView(dropInViewStyleManager: dropInViewStyleManager)
 
-        let viewController = DropInViewController(view: dropInView, viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit))
+        let viewController = DropInViewController(view: dropInView, viewModel: DropInViewModel(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, cardTypeToBypass: cardTypeToBypass))
 
         viewController.eventTriggered = { event in
             switch event {
@@ -86,13 +87,15 @@ import UIKit
     ///   - customDropInView: DropInViewProtocol compliant view (for example, to add some additional fields such as address, tip)
     ///   - payButtonTappedClosureBeforeTransaction: Closure triggered by pressing the pay button (just before the transaction - you can use this closure to update the JWT token)
     /// - Returns: instance of DropInViewController
-    @objc public func dropInViewController(jwt: String, typeDescriptions: [Int] = [1, 0], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, customDropInView: DropInViewProtocol? = nil, dropInViewStyleManager: DropInViewStyleManager? = nil, payButtonTappedClosureBeforeTransaction: @escaping (DropInController) -> Void, successfulPaymentCompletion: @escaping (JWTResponseObject, String, STCardReference?) -> Void, transactionFailure: @escaping (JWTResponseObject?, String) -> Void, cardinalWarningsCompletion: ((String, [Int]) -> Void)? = nil) -> DropInController {
+    @objc public func dropInViewController(jwt: String, typeDescriptions: [Int] = [1, 0], gatewayType: GatewayType, username: String, isLiveStatus: Bool = false, isDeferInit: Bool = false, customDropInView: DropInViewProtocol? = nil, dropInViewStyleManager: DropInViewStyleManager? = nil, cardTypeToBypass: [Int] = [], payButtonTappedClosureBeforeTransaction: @escaping (DropInController) -> Void, successfulPaymentCompletion: @escaping (JWTResponseObject, String, STCardReference?) -> Void, transactionFailure: @escaping (JWTResponseObject?, String) -> Void, cardinalWarningsCompletion: ((String, [Int]) -> Void)? = nil) -> DropInController {
 
         let objcTypes = typeDescriptions.compactMap { TypeDescriptionObjc(rawValue: $0) }
         let typeDescriptionsSwift = objcTypes.map { TypeDescription(rawValue: $0.value)! }
 
+        let cardTypesSwift = cardTypeToBypass.map { CardType(rawValue: $0)! }
+
         // swiftlint:disable line_length
-        return self.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, payButtonTappedClosureBeforeTransaction: payButtonTappedClosureBeforeTransaction, successfulPaymentCompletion: successfulPaymentCompletion, transactionFailure: transactionFailure, cardinalWarningsCompletion: { warningsMessage, warnings in
+        return self.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptionsSwift, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, cardTypeToBypass: cardTypesSwift, payButtonTappedClosureBeforeTransaction: payButtonTappedClosureBeforeTransaction, successfulPaymentCompletion: successfulPaymentCompletion, transactionFailure: transactionFailure, cardinalWarningsCompletion: { warningsMessage, warnings in
 
             cardinalWarningsCompletion?(warningsMessage, warnings.map { $0.rawValue })
         })

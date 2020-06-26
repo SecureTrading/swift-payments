@@ -99,7 +99,7 @@ final class MainFlowController: BaseNavigationFlowController {
 
         let isDeferInit = addCustomView
 
-        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: isDeferInit, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, payButtonTappedClosureBeforeTransaction: { [unowned self] controller in
+        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: isDeferInit, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, cardTypeToBypass: [], payButtonTappedClosureBeforeTransaction: { [unowned self] controller in
             guard let customDropInView = customDropInView else { return }
             // updates JWT with credentialsonfile flag
             guard let updatedJWT = self.mainViewModel?.getJwtTokenWithoutCardData(storeCard: customDropInView.isSaveCardSelected) else { return }
