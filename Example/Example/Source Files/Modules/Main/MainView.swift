@@ -10,6 +10,11 @@ final class MainView: WhiteBackgroundBaseView {
     /// data source for table view
     weak var dataSource: MainViewModelDataSource?
 
+    /// Activity indicator showing that something is processing
+    fileprivate lazy var loaderView: LoaderView = {
+        return LoaderView()
+    }()
+
     fileprivate lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(dequeueableCell: MainViewTableViewCell.self)
@@ -73,6 +78,22 @@ final class MainView: WhiteBackgroundBaseView {
 
     @objc func toggleAction(_ sender: UISwitch) {
         StyleManager.shared.highlightViewsBasedOnResponsibility = sender.isOn
+    }
+
+    func showLoader(show: Bool) {
+        if show {
+            addSubview(loaderView)
+            loaderView.addConstraints([
+                equal(self, \.topAnchor, constant: 0),
+                equal(self, \.bottomAnchor, constant: 0),
+                equal(self, \.leadingAnchor, constant: 0),
+                equal(self, \.trailingAnchor, constant: 0)
+            ])
+            loaderView.start()
+        } else {
+            loaderView.stop()
+            loaderView.removeFromSuperview()
+        }
     }
 }
 
