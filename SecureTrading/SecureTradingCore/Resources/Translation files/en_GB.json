@@ -30,5 +30,35 @@
 
   "DropInViewController.title": "Payment",
   "DropInViewController.successfulPayment": "Successful payment transaction",
-  "DropInViewController.cardinalAuthenticationError": "An error occurred"
+  "DropInViewController.cardinalAuthenticationError": "An error occurred",
+
+  "TestDetailsViewController.title": "Details",
+  "TestMainView.titleLabel": "Some title",
+  "TestMainView.showDetailsButton": "show details",
+
+  "TestMainViewController.title": "Main",
+  "TestMainViewController.closeButton": "Close",
+
+  "CardNumberInputView.title": "Card number",
+  "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
+  "CardNumberInputView.error": "Invalid card number",
+  "CardNumberInputView.emptyError": "Card number is required",
+
+  "CvcInputView.title": "Security code",
+  "CvcInputView.placeholder3": "***",
+  "CvcInputView.placeholder4": "****",
+  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.error": "Invalid security code",
+  "CvcInputView.emptyError": "Security code is required",
+
+  "ExpiryDateInputView.title": "Expiry date",
+  "ExpiryDateInputView.placeholder": "MM/YY",
+  "ExpiryDateInputView.error": "Invalid expiry date",
+  "ExpiryDateInputView.emptyError": "Expiry date is required",
+
+  "AddCardButton.title": "Add card",
+
+  "Alerts.okButton": "Ok"
+
+
 }

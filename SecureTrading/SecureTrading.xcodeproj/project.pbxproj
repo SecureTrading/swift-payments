@@ -785,7 +785,7 @@
 		08EF7CFA2462AAAC008B5F3E /* Source files */ = {
 			isa = PBXGroup;
 			children = (
-				1054A99B24A24CC6002B5125 /* Translations */,
+				1054A99B24A24CC6002B5125 /* Localizations */,
 				1099519924863B4C00E8E401 /* Mocks */,
 				089B41CD246D4E3000F70764 /* Common */,
 				08EF7CFB2462ABD0008B5F3E /* API */,
@@ -940,13 +940,13 @@
 			path = "Source files";
 			sourceTree = "<group>";
 		};
-		1054A99B24A24CC6002B5125 /* Translations */ = {
+		1054A99B24A24CC6002B5125 /* Localizations */ = {
 			isa = PBXGroup;
 			children = (
 				1054A99C24A24CDE002B5125 /* Localizable.swift */,
 				1053B67C24A4D86D000DD3CF /* LocalizableKeys.swift */,
 			);
-			path = Translations;
+			path = Localizations;
 			sourceTree = "<group>";
 		};
 		1054A99E24A25D19002B5125 /* Resources */ = {

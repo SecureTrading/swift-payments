@@ -4,7 +4,10 @@
 //
 
 import UIKit
+
+#if !COCOAPODS
 import SecureTradingCore
+#endif
 
 /// A subclass of RequestButton, consists of title and spinner for the request interval
 @objc public final class PayButton: RequestButton {
