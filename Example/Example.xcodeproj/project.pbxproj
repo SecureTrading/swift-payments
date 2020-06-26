@@ -165,7 +165,7 @@
 		08639C8B24696CB100C8F90A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		08639C8D2469711500C8F90A /* WhiteBackgroundBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBackgroundBaseView.swift; sourceTree = "<group>"; };
 		08D8B247249CCE7500DB96EE /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardinalMobile.framework; path = ../SecureTrading/Frameworks/CardinalMobile.framework; sourceTree = "<group>"; };
-		08E4FA7E2462A7D100837339 /* SecureTradingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureTradingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		08E4FA7E2462A7D100837339 /* Trust Payments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trust Payments.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA812462A7D100837339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08E4FA8A2462A7D800837339 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08E4FA8D2462A7D800837339 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -497,7 +497,7 @@
 		08E4FA7F2462A7D100837339 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				08E4FA7E2462A7D100837339 /* SecureTradingApp.app */,
+				08E4FA7E2462A7D100837339 /* Trust Payments.app */,
 				08E4FA942462A7D800837339 /* ExampleTests.xctest */,
 				08E4FA9F2462A7D800837339 /* ExampleUITests.xctest */,
 			);
@@ -629,7 +629,7 @@
 			);
 			name = Example;
 			productName = Example;
-			productReference = 08E4FA7E2462A7D100837339 /* SecureTradingApp.app */;
+			productReference = 08E4FA7E2462A7D100837339 /* Trust Payments.app */;
 			productType = "com.apple.product-type.application";
 		};
 		08E4FA932462A7D800837339 /* ExampleTests */ = {
@@ -1024,7 +1024,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(_BUNDLE_IDENTIFIER)";
-				PRODUCT_NAME = "$(_BUNDLE_NAME)";
+				PRODUCT_NAME = "Trust Payments";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(_ENVIRONMENTS)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Example/SupportingFiles/Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
