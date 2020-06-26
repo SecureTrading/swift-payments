@@ -107,6 +107,21 @@ public enum LocalizableKeys {
         case invalidFieldSiteRef
         case invalidFieldSubscriptionNo
         case invalidFieldUnknown
+
+        case failedToBuildURLRequest
+        case connectionFailure
+        case failedToValidateURLResponse
+        case failedToParseURLResponse
+        case unknownNetworkError
+        case jwtDecodingInvalidBase64
+        case jwtDecodingInvalidJSON
+        case jwtDecodingIncorrectComponentNumber
+        case inaccessible
+        case urlError
+        
+        case missingResponseData
+        case unknown
+
     }
 }
 

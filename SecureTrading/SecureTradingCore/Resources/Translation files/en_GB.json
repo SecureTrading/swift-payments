@@ -70,4 +70,7 @@
   "APIError.invalidFieldSubscriptionNo": "Invalid field: Subscription number",
   "APIError.invalidFieldUnknown": "Invalid field: Unknown",
 
+  "APIError.missingResponseData": "Missing response data",
+  "APIError.unknown": "Unknown",
+
 }
