@@ -4,7 +4,6 @@
 //
 
 import SecureTradingCard
-//import SecureTradingCore
 import Foundation
 
 final class AddCardViewModel {

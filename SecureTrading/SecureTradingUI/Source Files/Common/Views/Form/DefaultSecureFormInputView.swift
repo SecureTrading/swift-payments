@@ -131,7 +131,12 @@ import UIKit
     }
 
     @objc public var text: String? {
-        return textField.text
+        get {
+            return textField.text
+        }
+        set {
+            textField.text = newValue
+        }
     }
 
     @objc public var placeholder: String = "default" {
@@ -287,7 +292,7 @@ import UIKit
 
     @discardableResult
     @objc public func validate(silent: Bool) -> Bool {
-        self.validate(silent: silent, hideError: false)
+        validate(silent: silent, hideError: false)
     }
 
     @discardableResult

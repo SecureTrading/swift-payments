@@ -4,10 +4,6 @@
 //
 
 import UIKit
-#if !COCOAPODS
-import SecureTradingCore
-import SecureTradingCard
-#endif
 
 public final class CardNumberFormat {
     // MARK: Properties

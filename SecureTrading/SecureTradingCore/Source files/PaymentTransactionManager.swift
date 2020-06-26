@@ -5,6 +5,7 @@
 
 #if !COCOAPODS
 import SecureTrading3DSecure
+import SecureTradingCard
 #endif
 import Foundation
 
@@ -14,6 +15,8 @@ import Foundation
     private var jwt: String
 
     private var typeDescriptions: [TypeDescription] = []
+
+    private var cardTypeToBypass: [CardType] = []
 
     /// - SeeAlso: SecureTradingCore.APIManager
     private let apiManager: APIManager
@@ -35,6 +38,8 @@ import Foundation
 
     private var card: Card?
 
+    private var cardTypeFromParentReference: CardType?
+
     private let requestId: String
 
     private let termUrl = "https://termurl.com"
@@ -43,6 +48,14 @@ import Foundation
     private var transactionErrorClosure: ((JWTResponseObject?, String) -> Void)?
     private var cardinalAuthenticationErrorClosure: (() -> Void)?
     private var validationErrorClosure: ((String, ResponseErrorDetail) -> Void)?
+
+    private var shouldBypassThreeDSecure: Bool {
+        let cardTypeFromCard = self.card?.cardType
+        let cardTypeFromReference = self.cardTypeFromParentReference
+        let shouldBypassCardCondition = cardTypeFromCard != nil ? cardTypeFromCard == .piba || self.cardTypeToBypass.contains(cardTypeFromCard!) : false
+        let shouldBypassReferenceCondition = cardTypeFromReference != nil ? cardTypeFromReference == .piba || self.cardTypeToBypass.contains(cardTypeFromReference!) : false
+        return shouldBypassCardCondition || shouldBypassReferenceCondition
+    }
 
     // MARK: Initialization
 
@@ -53,11 +66,13 @@ import Foundation
     /// - Parameter username: merchant's username
     /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
     /// - Parameter isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
-    @objc public init(jwt: String, gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool) {
+    /// - Parameter cardTypeToBypass: the collection of cards for which 3dsecure is to be bypassed
+    public init(jwt: String, gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool, cardTypeToBypass: [CardType] = []) {
         self.jwt = jwt
         self.apiManager = DefaultAPIManager(gatewayType: gatewayType, username: username)
         self.isLiveStatus = isLiveStatus
         self.isDeferInit = isDeferInit
+        self.cardTypeToBypass = cardTypeToBypass
         self.threeDSecureManager = ST3DSecureManager(isLiveStatus: self.isLiveStatus)
         let randomString = String.randomString(length: 36)
         let start = randomString.index(randomString.startIndex, offsetBy: 2)
@@ -84,6 +99,20 @@ import Foundation
                 }
             })
         }
+    }
+
+    // objc workaround
+    /// Initializes an instance of the receiver.
+    ///
+    /// - Parameter jwt: jwt token
+    /// - Parameter gatewayType: gateway type (us or european)
+    /// - Parameter username: merchant's username
+    /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
+    /// - Parameter isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
+    /// - Parameter cardTypeToBypass: the collection of cards for which 3dsecure is to be bypassed
+    @objc public convenience init(jwt: String, gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool, cardTypesToBypass: [Int] = []) {
+        let cardTypesSwift = cardTypesToBypass.map { CardType(rawValue: $0)! }
+        self.init(jwt: jwt, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, cardTypeToBypass: cardTypesSwift)
     }
 
     // MARK: Api requests
@@ -125,13 +154,15 @@ import Foundation
 
     /// executes payment transaction or threedquery request
     private func makePaymentOrThreeDQueryRequest() {
-        let termUrl = self.typeDescriptions.contains(.threeDQuery) ? self.termUrl : nil
-        let tempTypeDescriptions = self.typeDescriptions.contains(.threeDQuery) ? [.threeDQuery] : self.typeDescriptions
+        let termUrl = self.typeDescriptions.contains(.threeDQuery) && !self.shouldBypassThreeDSecure ? self.termUrl : nil
+
+        let tempTypeDescriptions = self.typeDescriptions.contains(.threeDQuery) && !self.shouldBypassThreeDSecure ? [.threeDQuery] : self.typeDescriptions.filter { $0 != .threeDQuery }
+
         let request = RequestObject(typeDescriptions: tempTypeDescriptions, requestId: self.requestId, cardNumber: self.card?.cardNumber?.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate?.rawValue, termUrl: termUrl, cacheToken: self.jsInitCacheToken)
 
         self.makePaymentRequest(request: request, success: { [weak self] responseObject in
             guard let self = self else { return }
-            guard tempTypeDescriptions.contains(.threeDQuery) else {
+            guard tempTypeDescriptions.contains(.threeDQuery), !self.shouldBypassThreeDSecure else {
                 self.transactionSuccessClosure?(responseObject, responseObject.cardReference)
                 return
             }
@@ -157,6 +188,7 @@ import Foundation
             switch responseObject.responseErrorCode {
             case .successful:
                 self.jsInitCacheToken = responseObject.cacheToken!
+                self.cardTypeFromParentReference = responseObject.cardReference != nil ? CardType.cardType(for: responseObject.cardReference!.cardType) : nil
                 self.threeDSecureManager.setup(with: responseObject.threeDInit!, completion: { consumerSessionId in
                     completion(consumerSessionId)
                 }, failure: { validateResponse in
@@ -244,9 +276,7 @@ import Foundation
         // bypass 3dsecure
         guard let cardEnrolled = responseObject.cardEnrolled, responseObject.acsUrl != nil, cardEnrolled == "Y" else {
             let tempTypeDescription = self.typeDescriptions.filter { $0 != .threeDQuery }
-            // swiftlint:disable line_length
             let request = RequestObject(typeDescriptions: tempTypeDescription, requestId: self.requestId, cardNumber: self.card?.cardNumber?.rawValue, securityCode: self.card?.securityCode?.rawValue, expiryDate: self.card?.expiryDate?.rawValue, cacheToken: self.jsInitCacheToken)
-            // swiftlint:enable line_length
 
             self.makePaymentRequest(request: request, success: { [weak self] responseObject in
                 guard let self = self else { return }

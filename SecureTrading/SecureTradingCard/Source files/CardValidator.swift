@@ -4,9 +4,6 @@
 //
 
 import Foundation
-#if !COCOAPODS
-import SecureTradingCore
-#endif
 
 /// Methods for validating card data
 @objc public class CardValidator: NSObject {
