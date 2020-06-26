@@ -26,7 +26,7 @@ public final class TestMainViewController: BaseViewController<TestMainView, Test
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
         view.accessibilityIdentifier = "test/view/main"
-        title = LocalizableKeys.TestMainViewController.title.localizedString
+        title = "Test main view controller"
         if !viewModel.closeButtonIsHidden {
             setupBarButtons()
         }
@@ -45,7 +45,7 @@ public final class TestMainViewController: BaseViewController<TestMainView, Test
 
     /// Set up top navigation bar buttons
     private func setupBarButtons() {
-        let cancelBarButton = UIBarButtonItem(title: LocalizableKeys.TestMainViewController.closeButton.localizedString, style: .plain, target: self, action: #selector(closeBarButtonTapped))
+        let cancelBarButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(closeBarButtonTapped))
         navigationItem.leftBarButtonItem = cancelBarButton
     }
 

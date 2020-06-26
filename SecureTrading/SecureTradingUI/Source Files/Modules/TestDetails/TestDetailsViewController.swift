@@ -15,7 +15,7 @@ final class TestDetailsViewController: BaseViewController<TestDetailsView, TestD
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
         view.accessibilityIdentifier = "test/view/details"
-        title = LocalizableKeys.TestDetailsViewController.title.localizedString
+        title = "Test Details VC"
     }
 
     /// - SeeAlso: BaseViewController.setupCallbacks

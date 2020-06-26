@@ -43,23 +43,6 @@ public enum LocalizableKeys {
         case cardinalAuthenticationError
     }
 
-    // MARK: TestDetailsViewController
-    public enum TestDetailsViewController: LocalizableKey {
-        case title
-    }
-
-    // MARK: TestMainView
-    public enum TestMainView: LocalizableKey {
-        case titleLabel
-        case showDetailsButton
-    }
-
-    // MARK: TestMainViewController
-    public enum TestMainViewController: LocalizableKey {
-        case title
-        case closeButton
-    }
-
     // MARK: CardNumberInputView
     public enum CardNumberInputView: LocalizableKey {
         case title
@@ -141,14 +124,6 @@ public enum LocalizableKeys {
     case _dropInViewController_successfulPayment
     case _dropInViewController_cardinalAuthenticationError
 
-    case _testDetailsViewController_title
-
-    case _testMainView_titleLabel
-    case _testMainView_showDetailsButton
-
-    case _testMainViewController_title
-    case _testMainViewController_closeButton
-
     case _cardNumberInputView_title
     case _cardNumberInputView_placeholder
     case _cardNumberInputView_error
@@ -206,11 +181,6 @@ public enum LocalizableKeys {
         case ._dropInViewController_title: return LocalizableKeys.DropInViewController.title.key
         case ._dropInViewController_successfulPayment: return LocalizableKeys.DropInViewController.successfulPayment.key
         case ._dropInViewController_cardinalAuthenticationError: return LocalizableKeys.DropInViewController.cardinalAuthenticationError.key
-        case ._testDetailsViewController_title: return LocalizableKeys.TestDetailsViewController.title.key
-        case ._testMainView_titleLabel: return LocalizableKeys.TestMainView.titleLabel.key
-        case ._testMainView_showDetailsButton: return LocalizableKeys.TestMainView.showDetailsButton.key
-        case ._testMainViewController_title: return LocalizableKeys.TestMainViewController.title.key
-        case ._testMainViewController_closeButton: return LocalizableKeys.TestMainViewController.closeButton.key
         case ._cardNumberInputView_title: return LocalizableKeys.CardNumberInputView.title.key
         case ._cardNumberInputView_placeholder: return LocalizableKeys.CardNumberInputView.placeholder.key
         case ._cardNumberInputView_error: return LocalizableKeys.CardNumberInputView.error.key

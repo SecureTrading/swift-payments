@@ -6,13 +6,6 @@
   "DropInViewController.successfulPayment": "Betalningen lyckades",
   "DropInViewController.cardinalAuthenticationError": "Ett fel inträffade",
 
-  "TestDetailsViewController.title": "Details",
-  "TestMainView.titleLabel": "Some title",
-  "TestMainView.showDetailsButton": "show details",
-
-  "TestMainViewController.title": "Main",
-  "TestMainViewController.closeButton": "Close",
-
   "CardNumberInputView.title": "Kortnummer",
   "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
   "CardNumberInputView.error": "Invalid card number",

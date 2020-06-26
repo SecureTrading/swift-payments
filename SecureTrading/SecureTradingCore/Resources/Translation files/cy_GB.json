@@ -6,13 +6,6 @@
   "DropInViewController.successfulPayment": "Mae'r taliad wedi ei brosesu'n llwyddiannus",
   "DropInViewController.cardinalAuthenticationError": "Digwyddodd gwall",
 
-  "TestDetailsViewController.title": "Details",
-  "TestMainView.titleLabel": "Some title",
-  "TestMainView.showDetailsButton": "show details",
-
-  "TestMainViewController.title": "Main",
-  "TestMainViewController.closeButton": "Close",
-
   "CardNumberInputView.title": "Rhif y cerdyn",
   "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
   "CardNumberInputView.error": "Invalid card number",
