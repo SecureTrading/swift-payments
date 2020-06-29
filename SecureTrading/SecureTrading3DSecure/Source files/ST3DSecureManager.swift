@@ -122,15 +122,24 @@ public final class ST3DSecureManager {
     private func getUiCustomization(cardinalStyleManager: CardinalStyleManager) -> UiCustomization {
         let ui = UiCustomization()
 
-        let toolbarCust = ToolbarCustomization()
-        toolbarCust.headerText = "Cardinal Checkout"
-        toolbarCust.textColor = "#ffffff"
-        toolbarCust.backgroundColor = "#080269"
-        toolbarCust.buttonText = "Cancel"
-        toolbarCust.textFontSize = 18
-        toolbarCust.textFontName = "Noteworthy"
+        if let toolbarStyleManager = cardinalStyleManager.toolbarStyleManager {
+            let toolbarCust = ToolbarCustomization()
 
-        ui.setToolbar(toolbarCust)
+            if let headerText = toolbarStyleManager.headerText {
+                toolbarCust.headerText = headerText
+            }
+
+            if let textColor = toolbarStyleManager.textColor {
+                toolbarCust.textColor = textColor.toHex()
+            }
+
+            toolbarCust.textColor = "#ffffff"
+            toolbarCust.backgroundColor = "#080269"
+            toolbarCust.buttonText = "Cancel"
+            toolbarCust.textFontSize = 18
+            toolbarCust.textFontName = "Noteworthy"
+            ui.setToolbar(toolbarCust)
+        }
 
         let labelCust = LabelCustomization()
         labelCust.textFontName = "SanFranciscoText"
