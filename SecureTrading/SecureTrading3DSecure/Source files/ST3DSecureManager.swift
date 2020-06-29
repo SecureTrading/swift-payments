@@ -143,8 +143,8 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = toolbarStyleManager.textFont {
-                toolbarCust.textFontSize = Int32(textFont.pointSize)
-                toolbarCust.textFontName = textFont.fontName
+                toolbarCust.textFontSize = Int32(textFont.size)
+                toolbarCust.textFontName = textFont.name
             }
 
             ui.setToolbar(toolbarCust)
@@ -158,8 +158,8 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = labelStyleManager.textFont {
-                labelCust.textFontSize = Int32(textFont.pointSize)
-                labelCust.textFontName = textFont.fontName
+                labelCust.textFontSize = Int32(textFont.size)
+                labelCust.textFontName = textFont.name
             }
 
             if let textColor = labelStyleManager.headingTextColor {
@@ -167,8 +167,8 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = labelStyleManager.headingTextFont {
-                labelCust.headingTextFontSize = Int32(textFont.pointSize)
-                labelCust.headingTextFontName = textFont.fontName
+                labelCust.headingTextFontSize = Int32(textFont.size)
+                labelCust.headingTextFontName = textFont.name
             }
 
             ui.setLabel(labelCust)
@@ -182,8 +182,8 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = verifyButtonStyleManager.textFont {
-                buttonCustomization.textFontSize = Int32(textFont.pointSize)
-                buttonCustomization.textFontName = textFont.fontName
+                buttonCustomization.textFontSize = Int32(textFont.size)
+                buttonCustomization.textFontName = textFont.name
             }
 
             if let backgroundColor = verifyButtonStyleManager.backgroundColor {
@@ -203,8 +203,8 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = continueButtonStyleManager.textFont {
-                buttonCustomization.textFontSize = Int32(textFont.pointSize)
-                buttonCustomization.textFontName = textFont.fontName
+                buttonCustomization.textFontSize = Int32(textFont.size)
+                buttonCustomization.textFontName = textFont.name
             }
 
             if let backgroundColor = continueButtonStyleManager.backgroundColor {
@@ -224,8 +224,8 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = resendButtonStyleManager.textFont {
-                buttonCustomization.textFontSize = Int32(textFont.pointSize)
-                buttonCustomization.textFontName = textFont.fontName
+                buttonCustomization.textFontSize = Int32(textFont.size)
+                buttonCustomization.textFontName = textFont.name
             }
 
             if let backgroundColor = resendButtonStyleManager.backgroundColor {
@@ -245,8 +245,8 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = cancelButtonStyleManager.textFont {
-                buttonCustomization.textFontSize = Int32(textFont.pointSize)
-                buttonCustomization.textFontName = textFont.fontName
+                buttonCustomization.textFontSize = Int32(textFont.size)
+                buttonCustomization.textFontName = textFont.name
             }
 
             if let backgroundColor = cancelButtonStyleManager.backgroundColor {
@@ -266,8 +266,8 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = cardinalTextBoxStyleManager.textFont {
-                textboxCustomization.textFontSize = Int32(textFont.pointSize)
-                textboxCustomization.textFontName = textFont.fontName
+                textboxCustomization.textFontSize = Int32(textFont.size)
+                textboxCustomization.textFontName = textFont.name
             }
 
             if let borderColor = cardinalTextBoxStyleManager.borderColor {
