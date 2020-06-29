@@ -6,35 +6,25 @@
 import UIKit
 
 extension UIColor {
+    var hexString: String {
+        let cgColorInRGB = cgColor.converted(to: CGColorSpace(name: CGColorSpace.sRGB)!, intent: .defaultIntent, options: nil)!
+        let colorRef = cgColorInRGB.components
+        let r = colorRef?[0] ?? 0
+        let g = colorRef?[1] ?? 0
+        let b = ((colorRef?.count ?? 0) > 2 ? colorRef?[2] : g) ?? 0
+        let a = cgColor.alpha
 
-    // MARK: - Computed Properties
+        var color = String(
+            format: "#%02lX%02lX%02lX",
+            lroundf(Float(r * 255)),
+            lroundf(Float(g * 255)),
+            lroundf(Float(b * 255))
+        )
 
-    var toHex: String? {
-        return toHex()
+        if a < 1 {
+            color += String(format: "%02lX", lroundf(Float(a * 255)))
+        }
+
+        return color
     }
-
-    // MARK: - From UIColor to String
-
-    func toHex(alpha: Bool = true) -> String? {
-        guard let components = cgColor.components, components.count >= 3 else {
-            return nil
-        }
-
-        let r = Float(components[0])
-        let g = Float(components[1])
-        let b = Float(components[2])
-        var a = Float(1.0)
-
-        if components.count >= 4 {
-            a = Float(components[3])
-        }
-
-        if alpha {
-            return String(format: "%02lX%02lX%02lX%02lX", lroundf(r * 255), lroundf(g * 255), lroundf(b * 255), lroundf(a * 255))
-        } else {
-            return String(format: "%02lX%02lX%02lX", lroundf(r * 255), lroundf(g * 255), lroundf(b * 255))
-        }
-    }
-
-
 }

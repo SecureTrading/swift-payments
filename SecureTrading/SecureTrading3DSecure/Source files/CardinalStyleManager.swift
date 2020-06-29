@@ -101,15 +101,15 @@ import UIKit
     @objc public let continueButtonStyleManager: CardinalButtonStyleManager?
     @objc public let resendButtonStyleManager: CardinalButtonStyleManager?
     @objc public let cancelButtonStyleManager: CardinalButtonStyleManager?
-    @objc public let cardinalTextBoxStyleManager: CardinalTextBoxStyleManager?
+    @objc public let textBoxStyleManager: CardinalTextBoxStyleManager?
 
-    @objc public init(toolbarStyleManager: CardinalToolbarStyleManager?, labelStyleManager: CardinalLabelStyleManager?, verifyButtonStyleManager: CardinalButtonStyleManager?, continueButtonStyleManager: CardinalButtonStyleManager?, resendButtonStyleManager: CardinalButtonStyleManager?, cancelButtonStyleManager: CardinalButtonStyleManager?, cardinalTextBoxStyleManager: CardinalTextBoxStyleManager?) {
+    @objc public init(toolbarStyleManager: CardinalToolbarStyleManager?, labelStyleManager: CardinalLabelStyleManager?, verifyButtonStyleManager: CardinalButtonStyleManager?, continueButtonStyleManager: CardinalButtonStyleManager?, resendButtonStyleManager: CardinalButtonStyleManager?, cancelButtonStyleManager: CardinalButtonStyleManager?, textBoxStyleManager: CardinalTextBoxStyleManager?) {
         self.toolbarStyleManager = toolbarStyleManager
         self.labelStyleManager = labelStyleManager
         self.verifyButtonStyleManager = verifyButtonStyleManager
         self.continueButtonStyleManager = continueButtonStyleManager
         self.resendButtonStyleManager = resendButtonStyleManager
         self.cancelButtonStyleManager = cancelButtonStyleManager
-        self.cardinalTextBoxStyleManager = cardinalTextBoxStyleManager
+        self.textBoxStyleManager = textBoxStyleManager
     }
 }

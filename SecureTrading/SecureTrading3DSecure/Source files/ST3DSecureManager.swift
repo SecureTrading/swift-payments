@@ -119,6 +119,7 @@ public final class ST3DSecureManager {
         session.configure(config)
     }
 
+    //swiftlint:disable cyclomatic_complexity
     private func getUiCustomization(cardinalStyleManager: CardinalStyleManager) -> UiCustomization {
         let ui = UiCustomization()
 
@@ -134,11 +135,11 @@ public final class ST3DSecureManager {
             }
 
             if let textColor = toolbarStyleManager.textColor {
-                toolbarCust.textColor = textColor.toHex()
+                toolbarCust.textColor = textColor.hexString
             }
 
             if let backgroundColor = toolbarStyleManager.backgroundColor {
-                toolbarCust.backgroundColor = backgroundColor.toHex()
+                toolbarCust.backgroundColor = backgroundColor.hexString
             }
 
             if let textFont = toolbarStyleManager.textFont {
@@ -153,7 +154,7 @@ public final class ST3DSecureManager {
             let labelCust = LabelCustomization()
 
             if let textColor = labelStyleManager.textColor {
-                labelCust.textColor = textColor.toHex()
+                labelCust.textColor = textColor.hexString
             }
 
             if let textFont = labelStyleManager.textFont {
@@ -162,7 +163,7 @@ public final class ST3DSecureManager {
             }
 
             if let textColor = labelStyleManager.headingTextColor {
-                labelCust.headingTextColor = textColor.toHex()
+                labelCust.headingTextColor = textColor.hexString
             }
 
             if let textFont = labelStyleManager.headingTextFont {
@@ -177,7 +178,7 @@ public final class ST3DSecureManager {
             let buttonCustomization = ButtonCustomization()
 
             if let textColor = verifyButtonStyleManager.textColor {
-                buttonCustomization.textColor = textColor.toHex()
+                buttonCustomization.textColor = textColor.hexString
             }
 
             if let textFont = verifyButtonStyleManager.textFont {
@@ -186,7 +187,7 @@ public final class ST3DSecureManager {
             }
 
             if let backgroundColor = verifyButtonStyleManager.backgroundColor {
-                buttonCustomization.backgroundColor = backgroundColor.toHex()
+                buttonCustomization.backgroundColor = backgroundColor.hexString
             }
 
             buttonCustomization.cornerRadius = Int32(verifyButtonStyleManager.cornerRadius)
@@ -198,7 +199,8 @@ public final class ST3DSecureManager {
             let buttonCustomization = ButtonCustomization()
 
             if let textColor = continueButtonStyleManager.textColor {
-                buttonCustomization.textColor = textColor.toHex()
+                let hex = textColor.hexString
+                buttonCustomization.textColor = textColor.hexString
             }
 
             if let textFont = continueButtonStyleManager.textFont {
@@ -207,7 +209,8 @@ public final class ST3DSecureManager {
             }
 
             if let backgroundColor = continueButtonStyleManager.backgroundColor {
-                buttonCustomization.backgroundColor = backgroundColor.toHex()
+                let hex = backgroundColor.hexString
+                buttonCustomization.backgroundColor = backgroundColor.hexString
             }
 
             buttonCustomization.cornerRadius = Int32(continueButtonStyleManager.cornerRadius)
@@ -219,7 +222,7 @@ public final class ST3DSecureManager {
             let buttonCustomization = ButtonCustomization()
 
             if let textColor = resendButtonStyleManager.textColor {
-                buttonCustomization.textColor = textColor.toHex()
+                buttonCustomization.textColor = textColor.hexString
             }
 
             if let textFont = resendButtonStyleManager.textFont {
@@ -228,7 +231,7 @@ public final class ST3DSecureManager {
             }
 
             if let backgroundColor = resendButtonStyleManager.backgroundColor {
-                buttonCustomization.backgroundColor = backgroundColor.toHex()
+                buttonCustomization.backgroundColor = backgroundColor.hexString
             }
 
             buttonCustomization.cornerRadius = Int32(resendButtonStyleManager.cornerRadius)
@@ -240,7 +243,7 @@ public final class ST3DSecureManager {
             let buttonCustomization = ButtonCustomization()
 
             if let textColor = cancelButtonStyleManager.textColor {
-                buttonCustomization.textColor = textColor.toHex()
+                buttonCustomization.textColor = textColor.hexString
             }
 
             if let textFont = cancelButtonStyleManager.textFont {
@@ -249,7 +252,7 @@ public final class ST3DSecureManager {
             }
 
             if let backgroundColor = cancelButtonStyleManager.backgroundColor {
-                buttonCustomization.backgroundColor = backgroundColor.toHex()
+                buttonCustomization.backgroundColor = backgroundColor.hexString
             }
 
             buttonCustomization.cornerRadius = Int32(cancelButtonStyleManager.cornerRadius)
@@ -257,11 +260,11 @@ public final class ST3DSecureManager {
             ui.setButton(buttonCustomization, buttonType: ButtonTypeCancel)
         }
 
-        if let cardinalTextBoxStyleManager = cardinalStyleManager.cardinalTextBoxStyleManager {
+        if let cardinalTextBoxStyleManager = cardinalStyleManager.textBoxStyleManager {
             let textboxCustomization = TextBoxCustomization()
 
             if let textColor = cardinalTextBoxStyleManager.textColor {
-                textboxCustomization.textColor = textColor.toHex()
+                textboxCustomization.textColor = textColor.hexString
             }
 
             if let textFont = cardinalTextBoxStyleManager.textFont {
@@ -270,7 +273,7 @@ public final class ST3DSecureManager {
             }
 
             if let borderColor = cardinalTextBoxStyleManager.borderColor {
-                textboxCustomization.borderColor = borderColor.toHex()
+                textboxCustomization.borderColor = borderColor.hexString
             }
 
             textboxCustomization.borderWidth = Int32(cardinalTextBoxStyleManager.borderWidth)
@@ -282,6 +285,7 @@ public final class ST3DSecureManager {
 
         return ui
     }
+    //swiftlint:enable cyclomatic_complexity
 
     // MARK: - Public methods
 
