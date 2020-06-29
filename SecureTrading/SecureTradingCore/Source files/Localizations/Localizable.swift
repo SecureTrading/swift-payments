@@ -58,11 +58,10 @@ final class Localizable: NSObject {
     /// - Parameter identifier: iso language identifier, eg: en_US
     /// - Returns: URL for translation file
     private func translationFileURL(identifier: String) -> URL {
-        guard let path = Bundle(for: Localizable.self).path(forResource: identifier, ofType: "json"),
-            let url = URL(string: "file://" + path) else {
+        guard let path = Bundle(for: Localizable.self).path(forResource: identifier, ofType: "json") else {
                 fatalError("Missing translation file for locale: \(identifier)")
         }
-        return url
+        return URL(fileURLWithPath: path)
     }
 }
 
