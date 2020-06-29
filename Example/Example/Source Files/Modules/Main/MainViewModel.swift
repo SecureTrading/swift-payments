@@ -29,6 +29,7 @@ final class MainViewModel {
     var showAuthSuccess: ((ResponseSettleStatus) -> Void)?
     var showRequestSuccess: ((TypeDescription?) -> Void)?
     var showAuthError: ((String) -> Void)?
+    var showLoader: ((Bool) -> Void)?
 
     // MARK: Initialization
 
@@ -60,6 +61,7 @@ final class MainViewModel {
 
     /// Performs an AUTH request with card data
     func makeAuthCall() {
+        showLoader?(true)
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
                              payload: Payload(accounttypedescription: "ECOM",
@@ -77,6 +79,7 @@ final class MainViewModel {
 
     /// Performs Account check with card data
     func makeAccountCheckRequest() {
+        showLoader?(true)
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
                              payload: Payload(accounttypedescription: "ECOM",
@@ -95,6 +98,7 @@ final class MainViewModel {
     /// Performs AUTH request without card data
     /// uses previous card reference
     func makeAccountCheckWithAuthRequest() {
+        showLoader?(true)
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
                              payload: Payload(accounttypedescription: "ECOM",
@@ -111,6 +115,7 @@ final class MainViewModel {
     }
 
     func performSubscriptionOnSTEngine() {
+        showLoader?(true)
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
                              payload: Payload(accounttypedescription: "ECOM",
@@ -132,23 +137,42 @@ final class MainViewModel {
     }
 
     func performSubscriptionOnMerchantEngine() {
+        self.showLoader?(true)
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
-                             payload: Payload(accounttypedescription: "RECUR",
+                             payload: Payload(accounttypedescription: "ECOM",
                                               sitereference: keys.merchantSiteReference,
                                               currencyiso3a: "GBP",
-                                              baseamount: 199,
+                                              baseamount: 1050,
+                                              pan: "4111111111111111",
+                                              expirydate: "12/2022",
                                               securitycode: "123",
-                                              parenttransactionreference: "57-9-51718",
                                               subscriptiontype: "RECURRING",
-                                              subscriptionnumber: "2"))
-
+                                              subscriptionnumber: "1",
+                                              credentialsonfile: "1"))
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return }
 
-        performTransaction(with: jwt, typeDescriptions: [.auth])
+        performTransaction(with: jwt, typeDescriptions: [.accountCheck], responseHandler: { [weak self] (cardReference: STCardReference) in
+            guard let self = self else { return }
+            guard let transactionReference = cardReference.transactionReference else {
+                self.showAuthError?("Missing parent transaction reference")
+                return
+            }
+            let claim = STClaims(iss: self.keys.merchantUsername,
+                                 iat: Date(timeIntervalSinceNow: 0),
+                                 payload: Payload(accounttypedescription: "RECUR",
+                                                  sitereference: self.keys.merchantSiteReference,
+                                                  parenttransactionreference: transactionReference,
+                                                  subscriptiontype: "RECURRING",
+                                                  subscriptionnumber: "2",
+                                                  credentialsonfile: "2"))
+            guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: self.keys.jwtSecretKey) else { return }
+            self.performTransaction(with: jwt, typeDescriptions: [.auth])
+        })
     }
 
     func payByCardFromParentReference() {
+        showLoader?(true)
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
                              payload: Payload(accounttypedescription: "ECOM",
@@ -162,9 +186,13 @@ final class MainViewModel {
         performTransaction(with: jwt, typeDescriptions: [.threeDQuery, .auth], card: Card(cardNumber: nil, securityCode: CVC(rawValue: "123"), expiryDate: nil))
     }
 
-    func performTransaction(with jwt: String, typeDescriptions: [TypeDescription], card: Card? = nil) {
-        paymentTransactionManager.performTransaction(jwt: jwt, typeDescriptions: typeDescriptions, card: card, transactionSuccessClosure: { _, _ in
-            self.showRequestSuccess?(nil)
+    func performTransaction(with jwt: String, typeDescriptions: [TypeDescription], card: Card? = nil, responseHandler: ((_ cardReference: STCardReference) -> Void)? = nil) {
+        paymentTransactionManager.performTransaction(jwt: jwt, typeDescriptions: typeDescriptions, card: card, transactionSuccessClosure: { _, cardReference in
+            if let customResponseHandler = responseHandler, let cardRef = cardReference {
+                customResponseHandler(cardRef)
+            } else {
+                self.showRequestSuccess?(nil)
+            }
         }, transactionErrorClosure: { _, errorMessage in
             self.showAuthError?(errorMessage)
         }, cardinalAuthenticationErrorClosure: {

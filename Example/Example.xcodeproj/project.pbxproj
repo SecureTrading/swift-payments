@@ -59,6 +59,7 @@
 		08E4FA8B2462A7D800837339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA8A2462A7D800837339 /* Assets.xcassets */; };
 		08E4FA8E2462A7D800837339 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA8C2462A7D800837339 /* LaunchScreen.storyboard */; };
 		08E4FA992462A7D800837339 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA982462A7D800837339 /* ExampleTests.swift */; };
+		102F2D2424A649CF00862805 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102F2D2324A649CF00862805 /* LoaderView.swift */; };
 		1048A78D2497C06B00ADB2E3 /* WalletCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1048A78C2497C06B00ADB2E3 /* WalletCardTableViewCell.swift */; };
 		1048A78F2497C0C100ADB2E3 /* WalletAddCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1048A78E2497C0C100ADB2E3 /* WalletAddCardTableViewCell.swift */; };
 		104CFAFF246EA59100D7C76D /* ApplicationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104CFAFE246EA59100D7C76D /* ApplicationKeys.swift */; };
@@ -178,6 +179,7 @@
 		08EF7D6C2462CEB4008B5F3E /* Test-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Test-Base.xcconfig"; sourceTree = "<group>"; };
 		08EF7D6D2462CEB4008B5F3E /* App-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "App-Base.xcconfig"; sourceTree = "<group>"; };
 		08EF7D6E2462CEB4008B5F3E /* Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		102F2D2324A649CF00862805 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		1048A78C2497C06B00ADB2E3 /* WalletCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCardTableViewCell.swift; sourceTree = "<group>"; };
 		1048A78E2497C0C100ADB2E3 /* WalletAddCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletAddCardTableViewCell.swift; sourceTree = "<group>"; };
 		104CFAFE246EA59100D7C76D /* ApplicationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationKeys.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				08639C562469681E00C8F90A /* CustomBackNavigationController.swift */,
 				1094352C24A08A3E00C3712B /* SaveCardOptionView.swift */,
 				08534ED424A2324700D2B082 /* DropInCustomView.swift */,
+				102F2D2324A649CF00862805 /* LoaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -834,6 +837,7 @@
 				08639C692469681E00C8F90A /* UICollectionView.swift in Sources */,
 				0845BF2A247EAF38008AD40F /* SingleInputViewsModel.swift in Sources */,
 				08639C6F2469681E00C8F90A /* ViewSetupable.swift in Sources */,
+				102F2D2424A649CF00862805 /* LoaderView.swift in Sources */,
 				10DBCEBA2498BD59005865B0 /* MainViewTableViewCell.swift in Sources */,
 				08639C8224696A4100C8F90A /* DefaultAppFoundation.swift in Sources */,
 				08639C5F2469681E00C8F90A /* BaseNavigationFlowController.swift in Sources */,

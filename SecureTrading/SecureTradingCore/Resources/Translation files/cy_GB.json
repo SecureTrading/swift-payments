@@ -26,6 +26,7 @@
   "AddCardButton.title": "Add card",
 
   "Alerts.okButton": "Ok",
+  "Alerts.processing": "Wrthi'n prosesu",
 
   "APIError.invalidFieldPAN": "Maes annilys: PAN",
   "APIError.invalidFieldSecurityCode": "Maes annilys: Security code",
