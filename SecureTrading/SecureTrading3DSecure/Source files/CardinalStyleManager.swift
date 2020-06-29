@@ -7,9 +7,9 @@ import UIKit
 
 @objc public class CardinalFont: NSObject {
     @objc public var size: CGFloat
-    @objc public var name: String
+    @objc public var name: String?
 
-    @objc public init(name: String, size: CGFloat) {
+    @objc public init(name: String? = nil, size: CGFloat) {
         self.name = name
         self.size = size
     }
