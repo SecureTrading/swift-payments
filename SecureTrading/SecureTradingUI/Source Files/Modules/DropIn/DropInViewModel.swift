@@ -29,18 +29,19 @@ final class DropInViewModel {
 
     /// Initializes an instance of the receiver.
     ///
-    /// - Parameter apiManager: API manager
     /// - Parameter jwt: jwt token
     /// - Parameter typeDescriptions: request types (AUTH, THREEDQUERY...)
     /// - Parameter gatewayType: gateway type (us or european)
     /// - Parameter username: merchant's username
     /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
     /// - Parameter isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
-    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool, cardTypeToBypass: [CardType]) {
+    /// - Parameter cardTypeToBypass: the collection of cards for which 3dsecure is to be bypassed
+    /// - Parameter cardinalStyleManager: manager to set the interface style (view customization)
+    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool, cardTypeToBypass: [CardType], cardinalStyleManager: CardinalStyleManager?) {
         self.jwt = jwt
         self.typeDescriptions = typeDescriptions
 
-        self.paymentTransactionManager = PaymentTransactionManager(jwt: jwt, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, cardTypeToBypass: cardTypeToBypass)
+        self.paymentTransactionManager = PaymentTransactionManager(jwt: jwt, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, cardTypeToBypass: cardTypeToBypass, cardinalStyleManager: cardinalStyleManager)
     }
 
     /// executes payment transaction flow

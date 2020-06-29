@@ -87,23 +87,39 @@ public final class ST3DSecureManager {
 
     /// Initializes an instance of the receiver
     /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
-    public init(isLiveStatus: Bool) {
+    /// - Parameter cardinalStyleManager: manager to set the interface style (view customization)
+    public init(isLiveStatus: Bool, cardinalStyleManager: CardinalStyleManager?) {
         self.isLiveStatus = isLiveStatus
         self.session = CardinalSession()
-        configure()
+        configure(cardinalStyleManager: cardinalStyleManager)
     }
 
     // MARK: - Private methods
 
     /// Configure session with env type, timeouts and UI
-    private func configure() {
+    private func configure(cardinalStyleManager: CardinalStyleManager?) {
         let config = CardinalSessionConfiguration()
         config.deploymentEnvironment = isLiveStatus ? .production : .staging
         config.requestTimeout = 8000
         config.challengeTimeout = 8
         config.uiType = .both // possible native and html
 
-        // todo - ui customization
+        // Set various customizations here. See "iOS UI Customization" documentation for detail.
+        if let cardinalStyleManager = cardinalStyleManager {
+            config.uiCustomization = getUiCustomization(cardinalStyleManager: cardinalStyleManager)
+        }
+
+        config.renderType = [CardinalSessionRenderTypeOTP,
+                             CardinalSessionRenderTypeHTML,
+                             CardinalSessionRenderTypeOOB,
+                             CardinalSessionRenderTypeSingleSelect,
+                             CardinalSessionRenderTypeMultiSelect]
+
+        // configure session
+        session.configure(config)
+    }
+
+    private func getUiCustomization(cardinalStyleManager: CardinalStyleManager) -> UiCustomization {
         let ui = UiCustomization()
 
         let toolbarCust = ToolbarCustomization()
@@ -171,17 +187,8 @@ public final class ST3DSecureManager {
         textboxCustomization.cornerRadius = 4
 
         ui.setTextBox(textboxCustomization)
-        // Set various customizations here. See "iOS UI Customization" documentation for detail.
-        config.uiCustomization = ui
 
-        config.renderType = [CardinalSessionRenderTypeOTP,
-                             CardinalSessionRenderTypeHTML,
-                             CardinalSessionRenderTypeOOB,
-                             CardinalSessionRenderTypeSingleSelect,
-                             CardinalSessionRenderTypeMultiSelect]
-
-        // configure session
-        session.configure(config)
+        return ui
     }
 
     // MARK: - Public methods
