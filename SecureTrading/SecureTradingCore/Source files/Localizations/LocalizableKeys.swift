@@ -77,6 +77,7 @@ public enum LocalizableKeys {
     // MARK: Alerts
     public enum Alerts: LocalizableKey {
         case okButton
+        case processing
     }
 
     // MARK: APIError
@@ -144,6 +145,7 @@ public enum LocalizableKeys {
     case _addCardButton_title
 
     case _alerts_okButton
+    case _alerts_processing
 
     case _apiError_invalidFieldPAN
     case _apiError_invalidFieldSecurityCode
@@ -177,26 +179,35 @@ public enum LocalizableKeys {
     var code: String {
         switch self {
         case ._payButton_title: return LocalizableKeys.PayButton.title.key
+
         case ._navigation_back: return LocalizableKeys.Navigation.back.key
+
         case ._dropInViewController_title: return LocalizableKeys.DropInViewController.title.key
         case ._dropInViewController_successfulPayment: return LocalizableKeys.DropInViewController.successfulPayment.key
         case ._dropInViewController_cardinalAuthenticationError: return LocalizableKeys.DropInViewController.cardinalAuthenticationError.key
+
         case ._cardNumberInputView_title: return LocalizableKeys.CardNumberInputView.title.key
         case ._cardNumberInputView_placeholder: return LocalizableKeys.CardNumberInputView.placeholder.key
         case ._cardNumberInputView_error: return LocalizableKeys.CardNumberInputView.error.key
         case ._cardNumberInputView_emptyError: return LocalizableKeys.CardNumberInputView.emptyError.key
+
         case ._cvcInputView_title: return LocalizableKeys.CvcInputView.title.key
         case ._cvcInputView_placeholder3: return LocalizableKeys.CvcInputView.placeholder3.key
         case ._cvcInputView_placeholder4: return LocalizableKeys.CvcInputView.placeholder4.key
         case ._cvcInputView_placeholderPiba: return LocalizableKeys.CvcInputView.placeholderPiba.key
         case ._cvcInputView_error: return LocalizableKeys.CvcInputView.error.key
         case ._cvcInputView_emptyError: return LocalizableKeys.CvcInputView.emptyError.key
+
         case ._expiryDateInputView_title: return LocalizableKeys.ExpiryDateInputView.title.key
         case ._expiryDateInputView_placeholder: return LocalizableKeys.ExpiryDateInputView.placeholder.key
         case ._expiryDateInputView_error: return LocalizableKeys.ExpiryDateInputView.error.key
         case ._expiryDateInputView_emptyError: return LocalizableKeys.ExpiryDateInputView.emptyError.key
+
         case ._addCardButton_title: return LocalizableKeys.AddCardButton.title.key
+
         case ._alerts_okButton: return LocalizableKeys.Alerts.okButton.key
+        case ._alerts_processing: return LocalizableKeys.Alerts.processing.key
+
         case ._apiError_invalidFieldPAN: return LocalizableKeys.APIError.invalidFieldPAN.key
         case ._apiError_invalidFieldSecurityCode: return LocalizableKeys.APIError.invalidFieldSecurityCode.key
         case ._apiError_invalidFieldJWT: return LocalizableKeys.APIError.invalidFieldJWT.key
