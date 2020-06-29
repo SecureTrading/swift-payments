@@ -40,9 +40,21 @@
 
 /// Test setting custom translation
 -(void) testTranslations {
-    NSNumber *payButtonTitleKey = @(LocalizableKeysObjc_payButton_title);
-    NSNumber *navigationBackKey = @(LocalizableKeysObjc_navigation_back);;
-    [[TrustPayments instance] configureWithLocale:[NSLocale currentLocale] customTranslations:@{payButtonTitleKey: @"Giv me da mona", navigationBackKey: @"<Back>"}];
+    [[TrustPayments instance] configureWithLocale: [NSLocale localeWithLocaleIdentifier: @"it_IT"]
+                               customTranslations:@{
+                                   [NSLocale localeWithLocaleIdentifier: @"it_IT"]: @{
+                                           @(LocalizableKeysObjc_payButton_title): @"Paga ora!",
+                                           @(LocalizableKeysObjc_navigation_back): @"< Torna indietro"
+                                   },
+                                   [NSLocale localeWithLocaleIdentifier: @"en_GB"]: @{
+                                           @(LocalizableKeysObjc_payButton_title): @"Giv me da mona",
+                                           @(LocalizableKeysObjc_navigation_back): @"<Back>"
+                                   },
+                                   [NSLocale localeWithLocaleIdentifier: @"fr_FR"]: @{
+                                           @(LocalizableKeysObjc_payButton_title): @"Payez",
+                                           @(LocalizableKeysObjc_navigation_back): @"< Retourner"
+                                   },
+                               }];
 }
 
 @end
