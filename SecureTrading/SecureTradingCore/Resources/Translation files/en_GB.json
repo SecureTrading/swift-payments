@@ -26,6 +26,7 @@
   "AddCardButton.title": "Add card",
 
   "Alerts.okButton": "Ok",
+  "Alerts.processing": "Processing",
 
   "APIError.invalidFieldPAN": "Invalid field: PAN",
   "APIError.invalidFieldSecurityCode": "Invalid field: Security code",
