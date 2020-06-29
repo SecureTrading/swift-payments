@@ -104,9 +104,75 @@ public final class ST3DSecureManager {
         config.uiType = .both // possible native and html
 
         // todo - ui customization
-        let yourCustomUi = UiCustomization()
+        let ui = UiCustomization()
+
+        let toolbarCust = ToolbarCustomization()
+        toolbarCust.headerText = "Cardinal Checkout"
+        toolbarCust.textColor = "#ffffff"
+        toolbarCust.backgroundColor = "#080269"
+        toolbarCust.buttonText = "Cancel"
+        toolbarCust.textFontSize = 18
+        toolbarCust.textFontName = "Noteworthy"
+
+        ui.setToolbar(toolbarCust)
+
+        let labelCust = LabelCustomization()
+        labelCust.textFontName = "SanFranciscoText"
+        labelCust.textColor = "#75a478"
+        labelCust.textFontSize = 18
+        labelCust.headingTextColor = "#75a478"
+        labelCust.headingTextFontName = "Noteworthy"
+        labelCust.headingTextFontSize = 24
+
+        ui.setLabel(labelCust)
+
+        let verifyCustomization = ButtonCustomization()
+        verifyCustomization.backgroundColor = "#a5d6a7"
+        verifyCustomization.cornerRadius = 10
+        verifyCustomization.textFontName = "Noteworthy"
+        verifyCustomization.textColor = "#222222"
+        verifyCustomization.textFontSize = 12
+
+        ui.setButton(verifyCustomization, buttonType: ButtonTypeVerify)
+
+        let continueCustomization = ButtonCustomization()
+        continueCustomization.backgroundColor = "#FF0000"
+        continueCustomization.cornerRadius = 10
+        continueCustomization.textFontName = "Noteworthy"
+        continueCustomization.textColor = "#FFFFFF"
+        continueCustomization.textFontSize = 16
+
+        ui.setButton(continueCustomization, buttonType: ButtonTypeContinue)
+
+        let resendCustomization = ButtonCustomization()
+        resendCustomization.backgroundColor = "#d7ffd9"
+        resendCustomization.cornerRadius = 10
+        resendCustomization.textFontName = "Noteworthy"
+        resendCustomization.textColor = "#000000"
+        resendCustomization.textFontSize = 12
+
+        ui.setButton(resendCustomization, buttonType: ButtonTypeResend)
+
+        let cancelCustomization = ButtonCustomization()
+        cancelCustomization.backgroundColor = "#d7ffd9"
+        cancelCustomization.cornerRadius = 4
+        cancelCustomization.textFontName = "Noteworthy"
+        cancelCustomization.textColor = "#222222"
+        cancelCustomization.textFontSize = 16
+
+        ui.setButton(cancelCustomization, buttonType: ButtonTypeCancel)
+
+        let textboxCustomization = TextBoxCustomization()
+        textboxCustomization.textFontName = "Noteworthy"
+        textboxCustomization.textColor = "#a5d6a7"
+        textboxCustomization.textFontSize = 12
+        textboxCustomization.borderWidth = 2
+        textboxCustomization.borderColor = "#a5d6a7"
+        textboxCustomization.cornerRadius = 4
+
+        ui.setTextBox(textboxCustomization)
         // Set various customizations here. See "iOS UI Customization" documentation for detail.
-        config.uiCustomization = yourCustomUi
+        config.uiCustomization = ui
 
         config.renderType = [CardinalSessionRenderTypeOTP,
                              CardinalSessionRenderTypeHTML,
