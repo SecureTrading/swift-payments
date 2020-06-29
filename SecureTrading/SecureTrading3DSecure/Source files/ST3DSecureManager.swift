@@ -129,73 +129,156 @@ public final class ST3DSecureManager {
                 toolbarCust.headerText = headerText
             }
 
+            if let buttonText = toolbarStyleManager.buttonText {
+                toolbarCust.buttonText = buttonText
+            }
+
             if let textColor = toolbarStyleManager.textColor {
                 toolbarCust.textColor = textColor.toHex()
             }
 
-            toolbarCust.textColor = "#ffffff"
-            toolbarCust.backgroundColor = "#080269"
-            toolbarCust.buttonText = "Cancel"
-            toolbarCust.textFontSize = 18
-            toolbarCust.textFontName = "Noteworthy"
+            if let backgroundColor = toolbarStyleManager.backgroundColor {
+                toolbarCust.backgroundColor = backgroundColor.toHex()
+            }
+
+            if let textFont = toolbarStyleManager.textFont {
+                toolbarCust.textFontSize = Int32(textFont.pointSize)
+                toolbarCust.textFontName = textFont.fontName
+            }
+
             ui.setToolbar(toolbarCust)
         }
 
-        let labelCust = LabelCustomization()
-        labelCust.textFontName = "SanFranciscoText"
-        labelCust.textColor = "#75a478"
-        labelCust.textFontSize = 18
-        labelCust.headingTextColor = "#75a478"
-        labelCust.headingTextFontName = "Noteworthy"
-        labelCust.headingTextFontSize = 24
+        if let labelStyleManager = cardinalStyleManager.labelStyleManager {
+            let labelCust = LabelCustomization()
 
-        ui.setLabel(labelCust)
+            if let textColor = labelStyleManager.textColor {
+                labelCust.textColor = textColor.toHex()
+            }
 
-        let verifyCustomization = ButtonCustomization()
-        verifyCustomization.backgroundColor = "#a5d6a7"
-        verifyCustomization.cornerRadius = 10
-        verifyCustomization.textFontName = "Noteworthy"
-        verifyCustomization.textColor = "#222222"
-        verifyCustomization.textFontSize = 12
+            if let textFont = labelStyleManager.textFont {
+                labelCust.textFontSize = Int32(textFont.pointSize)
+                labelCust.textFontName = textFont.fontName
+            }
 
-        ui.setButton(verifyCustomization, buttonType: ButtonTypeVerify)
+            if let textColor = labelStyleManager.headingTextColor {
+                labelCust.headingTextColor = textColor.toHex()
+            }
 
-        let continueCustomization = ButtonCustomization()
-        continueCustomization.backgroundColor = "#FF0000"
-        continueCustomization.cornerRadius = 10
-        continueCustomization.textFontName = "Noteworthy"
-        continueCustomization.textColor = "#FFFFFF"
-        continueCustomization.textFontSize = 16
+            if let textFont = labelStyleManager.headingTextFont {
+                labelCust.headingTextFontSize = Int32(textFont.pointSize)
+                labelCust.headingTextFontName = textFont.fontName
+            }
 
-        ui.setButton(continueCustomization, buttonType: ButtonTypeContinue)
+            ui.setLabel(labelCust)
+        }
 
-        let resendCustomization = ButtonCustomization()
-        resendCustomization.backgroundColor = "#d7ffd9"
-        resendCustomization.cornerRadius = 10
-        resendCustomization.textFontName = "Noteworthy"
-        resendCustomization.textColor = "#000000"
-        resendCustomization.textFontSize = 12
+        if let verifyButtonStyleManager = cardinalStyleManager.verifyButtonStyleManager {
+            let buttonCustomization = ButtonCustomization()
 
-        ui.setButton(resendCustomization, buttonType: ButtonTypeResend)
+            if let textColor = verifyButtonStyleManager.textColor {
+                buttonCustomization.textColor = textColor.toHex()
+            }
 
-        let cancelCustomization = ButtonCustomization()
-        cancelCustomization.backgroundColor = "#d7ffd9"
-        cancelCustomization.cornerRadius = 4
-        cancelCustomization.textFontName = "Noteworthy"
-        cancelCustomization.textColor = "#222222"
-        cancelCustomization.textFontSize = 16
+            if let textFont = verifyButtonStyleManager.textFont {
+                buttonCustomization.textFontSize = Int32(textFont.pointSize)
+                buttonCustomization.textFontName = textFont.fontName
+            }
 
-        ui.setButton(cancelCustomization, buttonType: ButtonTypeCancel)
+            if let backgroundColor = verifyButtonStyleManager.backgroundColor {
+                buttonCustomization.backgroundColor = backgroundColor.toHex()
+            }
 
-        let textboxCustomization = TextBoxCustomization()
-        textboxCustomization.textFontName = "Noteworthy"
-        textboxCustomization.textColor = "#a5d6a7"
-        textboxCustomization.textFontSize = 12
-        textboxCustomization.borderWidth = 2
-        textboxCustomization.borderColor = "#a5d6a7"
-        textboxCustomization.cornerRadius = 4
+            buttonCustomization.cornerRadius = Int32(verifyButtonStyleManager.cornerRadius)
 
-        ui.setTextBox(textboxCustomization)
+            ui.setButton(buttonCustomization, buttonType: ButtonTypeVerify)
+        }
+
+        if let continueButtonStyleManager = cardinalStyleManager.continueButtonStyleManager {
+            let buttonCustomization = ButtonCustomization()
+
+            if let textColor = continueButtonStyleManager.textColor {
+                buttonCustomization.textColor = textColor.toHex()
+            }
+
+            if let textFont = continueButtonStyleManager.textFont {
+                buttonCustomization.textFontSize = Int32(textFont.pointSize)
+                buttonCustomization.textFontName = textFont.fontName
+            }
+
+            if let backgroundColor = continueButtonStyleManager.backgroundColor {
+                buttonCustomization.backgroundColor = backgroundColor.toHex()
+            }
+
+            buttonCustomization.cornerRadius = Int32(continueButtonStyleManager.cornerRadius)
+
+            ui.setButton(buttonCustomization, buttonType: ButtonTypeContinue)
+        }
+
+        if let resendButtonStyleManager = cardinalStyleManager.resendButtonStyleManager {
+            let buttonCustomization = ButtonCustomization()
+
+            if let textColor = resendButtonStyleManager.textColor {
+                buttonCustomization.textColor = textColor.toHex()
+            }
+
+            if let textFont = resendButtonStyleManager.textFont {
+                buttonCustomization.textFontSize = Int32(textFont.pointSize)
+                buttonCustomization.textFontName = textFont.fontName
+            }
+
+            if let backgroundColor = resendButtonStyleManager.backgroundColor {
+                buttonCustomization.backgroundColor = backgroundColor.toHex()
+            }
+
+            buttonCustomization.cornerRadius = Int32(resendButtonStyleManager.cornerRadius)
+
+            ui.setButton(buttonCustomization, buttonType: ButtonTypeResend)
+        }
+
+        if let cancelButtonStyleManager = cardinalStyleManager.cancelButtonStyleManager {
+            let buttonCustomization = ButtonCustomization()
+
+            if let textColor = cancelButtonStyleManager.textColor {
+                buttonCustomization.textColor = textColor.toHex()
+            }
+
+            if let textFont = cancelButtonStyleManager.textFont {
+                buttonCustomization.textFontSize = Int32(textFont.pointSize)
+                buttonCustomization.textFontName = textFont.fontName
+            }
+
+            if let backgroundColor = cancelButtonStyleManager.backgroundColor {
+                buttonCustomization.backgroundColor = backgroundColor.toHex()
+            }
+
+            buttonCustomization.cornerRadius = Int32(cancelButtonStyleManager.cornerRadius)
+
+            ui.setButton(buttonCustomization, buttonType: ButtonTypeCancel)
+        }
+
+        if let cardinalTextBoxStyleManager = cardinalStyleManager.cardinalTextBoxStyleManager {
+            let textboxCustomization = TextBoxCustomization()
+
+            if let textColor = cardinalTextBoxStyleManager.textColor {
+                textboxCustomization.textColor = textColor.toHex()
+            }
+
+            if let textFont = cardinalTextBoxStyleManager.textFont {
+                textboxCustomization.textFontSize = Int32(textFont.pointSize)
+                textboxCustomization.textFontName = textFont.fontName
+            }
+
+            if let borderColor = cardinalTextBoxStyleManager.borderColor {
+                textboxCustomization.borderColor = borderColor.toHex()
+            }
+
+            textboxCustomization.borderWidth = Int32(cardinalTextBoxStyleManager.borderWidth)
+
+            textboxCustomization.cornerRadius = Int32(cardinalTextBoxStyleManager.cornerRadius)
+
+            ui.setTextBox(textboxCustomization)
+        }
 
         return ui
     }
