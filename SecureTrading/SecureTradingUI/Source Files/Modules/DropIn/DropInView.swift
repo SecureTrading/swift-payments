@@ -14,7 +14,7 @@ import UIKit
     }
 
     @objc public var isFormValid: Bool {
-        return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid && isAdditionalValidationConditionsFullfiled
+        return (cardNumberInput.isInputValid) && expiryDateInput.isInputValid && cvcInput.isInputValid && isAdditionalValidationConditionsFullfiled
     }
 
     @objc public var payButtonTappedClosure: (() -> Void)? {
@@ -46,7 +46,22 @@ import UIKit
     }()
 
     @objc public lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, payButton])
+        var fieldsToSubmit: [UIView] = []
+        if let styleManager = dropInViewStyleManager {
+            if styleManager.fieldsToSubmit.contains(.pan) {
+                fieldsToSubmit.append(cardNumberInput)
+            }
+            if styleManager.fieldsToSubmit.contains(.expiryDate) {
+                fieldsToSubmit.append(expiryDateInput)
+            }
+            if styleManager.fieldsToSubmit.contains(.securityCode) {
+                fieldsToSubmit.append(cvcInput)
+            }
+        } else {
+            fieldsToSubmit = [cardNumberInput, expiryDateInput, cvcInput]
+        }
+        fieldsToSubmit.append(payButton)
+        let stackView = UIStackView(arrangedSubviews: fieldsToSubmit)
         stackView.axis = .vertical
         stackView.spacing = spacingBeetwenInputViews
         stackView.alignment = .fill

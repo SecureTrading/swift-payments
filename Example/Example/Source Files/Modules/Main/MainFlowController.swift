@@ -93,8 +93,7 @@ final class MainFlowController: BaseNavigationFlowController {
 
         let payButtonStyleManager = PayButtonStyleManager(titleColor: .white, enabledBackgroundColor: .black, disabledBackgroundColor: UIColor.lightGray.withAlphaComponent(0.6), borderColor: .clear, titleFont: UIFont.systemFont(ofSize: 16, weight: .medium), spinnerStyle: .white, spinnerColor: .white, buttonContentHeightMargins: HeightMargins(top: 15, bottom: 15), borderWidth: 0, cornerRadius: 6)
 
-        let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: inputViewStyleManager, requestButtonStyleManager: payButtonStyleManager, backgroundColor: .white, spacingBeetwenInputViews: 25, insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
-
+        let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: inputViewStyleManager, fieldsToSubmit: [DropInFieldsToSubmit.pan], requestButtonStyleManager: payButtonStyleManager, backgroundColor: .white, spacingBeetwenInputViews: 25, insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
 
         let toolbarStyleManager = CardinalToolbarStyleManager(textColor: .black, textFont: UIFont.systemFont(ofSize: 16, weight: .bold), backgroundColor: .yellow, headerText: "Trust payment checkout", buttonText: "WHAAT")
         let labelStyleManager = CardinalLabelStyleManager(textColor: .brown, textFont: UIFont.systemFont(ofSize: 13, weight: .heavy), headingTextColor: .green, headingTextFont: UIFont.italicSystemFont(ofSize: 15))
@@ -151,6 +150,7 @@ final class MainFlowController: BaseNavigationFlowController {
         let inputViewStyleManager = InputViewStyleManager.default()
         let addCardButtonStyleManager = AddCardButtonStyleManager.default()
         let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: inputViewStyleManager,
+                                                            fieldsToSubmit: DropInFieldsToSubmit.allCases,
                                                             requestButtonStyleManager: addCardButtonStyleManager,
                                                             backgroundColor: .white,
                                                             spacingBeetwenInputViews: 25,
