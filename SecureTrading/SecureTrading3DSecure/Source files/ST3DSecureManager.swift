@@ -199,7 +199,6 @@ public final class ST3DSecureManager {
             let buttonCustomization = ButtonCustomization()
 
             if let textColor = continueButtonStyleManager.textColor {
-                let hex = textColor.hexString
                 buttonCustomization.textColor = textColor.hexString
             }
 
@@ -209,7 +208,6 @@ public final class ST3DSecureManager {
             }
 
             if let backgroundColor = continueButtonStyleManager.backgroundColor {
-                let hex = backgroundColor.hexString
                 buttonCustomization.backgroundColor = backgroundColor.hexString
             }
 
