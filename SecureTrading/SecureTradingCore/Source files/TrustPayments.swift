@@ -16,11 +16,13 @@ import Foundation
     private var localizable: Localizable?
 
     /// Configures global settings
+    /// Accepts Locale instead of supported language Enum
+    /// that way we can support unsupported language :)
     /// - Parameters:
     ///   - locale: Locale used to determine correct translations, if not set, a Locale.current value is used instead
     ///   - translationsForOverride: A dictionary of custom translations, overrides default values
     ///   - refer to LocalizableKeys for possible keys
-    public func configure(locale: Locale = Locale.current, translationsForOverride: [String: String]?) {
+    public func configure(locale: Locale = Locale.current, translationsForOverride: [Locale: [String: String]]?) {
         localizable = Localizable(locale: locale)
         if let customTranslations = translationsForOverride {
             localizable?.overrideLocalizedKeys(with: customTranslations)
@@ -32,13 +34,17 @@ import Foundation
     ///   - locale: Locale used to determine correct translations, if not set, a Locale.current value is used instead
     ///   - customTranslations: A dictionary of custom translations, overrides default values
     ///   - refer to LocalizableKeysObjc for possible keys
-    @objc public func configure(locale: Locale = Locale.current, customTranslations: [NSNumber: String]) {
+    @objc public func configure(locale: Locale = Locale.current, customTranslations: [NSLocale: [NSNumber: String]]) {
         // check for supported keys
         localizable = Localizable(locale: locale)
-        var customTranslationKeys: [String: String] = [:]
-        for translation in customTranslations {
-            guard let transKey = LocalizableKeysObjc(rawValue: translation.key.intValue)?.code else { continue }
-            customTranslationKeys[transKey] = translation.value
+        var customTranslationKeys: [Locale: [String: String]] = [:]
+        for locale in customTranslations {
+            var translationForLocale: [String: String] = [:]
+            for translation in locale.value {
+                guard let transKey = LocalizableKeysObjc(rawValue: translation.key.intValue)?.code else { continue }
+                translationForLocale[transKey] = translation.value
+            }
+            customTranslationKeys[locale.key as Locale] = translationForLocale
         }
         localizable?.overrideLocalizedKeys(with: customTranslationKeys)
     }

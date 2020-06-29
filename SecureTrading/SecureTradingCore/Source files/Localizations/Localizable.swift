@@ -7,17 +7,20 @@ import Foundation
 
 // Stores current translation strings based on locale or user preference
 final class Localizable: NSObject {
+
+    /// Current locale set o initialization
+    private let currentLocale: Locale
+
+    /// Stores localized strings for current locale
     private var currentTranslations: [String: String] = [:]
 
-    // MARK: - Initialization
-    /// Initialize with current locale
-    convenience override init() {
-        self.init(locale: Locale.current)
-    }
+    /// Stores localized strings provided by merchant to override default values
+    private var customTranslations: [Locale: [String: String]] = [:]
 
     /// Initialize with given locale
     /// - Parameter locale: Locale for which translations should be loaded
-    init(locale: Locale) {
+    init(locale: Locale = Locale.current) {
+        currentLocale = locale
         super.init()
         let translationFile = self.translationFileURL(identifier: Localizable.Language.supportedLanguage(for: locale).rawValue)
 
@@ -34,20 +37,21 @@ final class Localizable: NSObject {
         }
     }
 
-    /// Returns localized string for given key
+    /// Returns localized string for given key from custom translations
+    /// If missing, then returns localized string for default translations values
     /// - Parameter key: Key for which localized string should be returned
     /// - Returns: Localized string or nil
     func localizedString<T: LocalizableKey>(for key: T) -> String? {
-        let translationKey = key.key
-        return currentTranslations[translationKey]
+        if let customLocalizedString = customTranslations[currentLocale]?[key.key] {
+            return customLocalizedString
+        }
+        return currentTranslations[key.key]
     }
 
     /// Overrides default translation values with provided values
     /// - Parameter customKeys: Dictionary containing translation keys to override with their values
-    @objc func overrideLocalizedKeys(with customKeys: [String: String]) {
-        for customKey in customKeys {
-            currentTranslations[customKey.key] = customKey.value
-        }
+    @objc func overrideLocalizedKeys(with customKeys: [Locale: [String: String]]) {
+        customTranslations = customKeys
     }
 
     /// Return translation file url for given locale identifier
