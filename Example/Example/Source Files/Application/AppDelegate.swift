@@ -20,10 +20,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var appFlowController = AppFlowController(appFoundation: appFoundation, window: window!)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        TrustPayments.instance.configure(translationsForOverride:
+        TrustPayments.instance.configure(locale: Locale(identifier: "it_IT"), translationsForOverride:
             [
-                LocalizableKeys.PayButton.title.key: "Pay Now!",
-                LocalizableKeys.Navigation.back.key: "Go back"
+                Locale(identifier: "fr_FR"):
+                    [
+                        LocalizableKeys.PayButton.title.key: "Payez maintenant!",
+                        LocalizableKeys.Navigation.back.key: "Retourner"
+                ],
+                Locale(identifier: "en_GB"):
+                    [
+                        LocalizableKeys.PayButton.title.key: "Pay Now!",
+                        LocalizableKeys.Navigation.back.key: "Go back"
+                ],
+                Locale(identifier: "it_IT"):
+                    [
+                        LocalizableKeys.PayButton.title.key: "Paga ora!",
+                        LocalizableKeys.Navigation.back.key: "Torna indietro"
+                ]
             ]
         )
         appFlowController.start()
