@@ -110,17 +110,25 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
 
         viewModel.showAuthSuccess = { [weak self] _ in
             guard let self = self else { return }
+            self.customView.showLoader(show: false)
             self.showAlert(message: "successful payment")
         }
 
         viewModel.showRequestSuccess = { [weak self] _ in
             guard let self = self else { return }
+            self.customView.showLoader(show: false)
             self.showAlert(message: "The request has been successfully completed")
         }
 
         viewModel.showAuthError = { [weak self] error in
             guard let self = self else { return }
+            self.customView.showLoader(show: false)
             self.showAlert(message: error)
+        }
+
+        viewModel.showLoader = { [weak self] show in
+            guard let self = self else { return }
+            self.customView.showLoader(show: show)
         }
 
         StyleManager.shared.highlightViewsValueChanged = { [weak self] _ in
