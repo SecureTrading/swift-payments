@@ -20,7 +20,11 @@ final class Localizable: NSObject {
     /// Initialize with given locale
     /// - Parameter locale: Locale for which translations should be loaded
     init(locale: Locale = Locale.current) {
-        currentLocale = locale
+        if Localizable.Language.supportedLanguage(for: locale).rawValue == locale.identifier {
+            currentLocale = locale
+        } else {
+            currentLocale = Locale(identifier: Localizable.Language.default.rawValue)
+        }
         super.init()
         let translationFile = self.translationFileURL(identifier: Localizable.Language.supportedLanguage(for: locale).rawValue)
 
@@ -80,6 +84,10 @@ extension Localizable {
         case nl_NL
         case no_NO
         case sv_SE
+
+        static var `default`: Language {
+            return .en_GB
+        }
 
         static func supportedLanguage(for locale: Locale) -> Language {
             return Language(rawValue: locale.identifier) ?? Language.en_GB

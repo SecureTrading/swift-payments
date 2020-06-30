@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var appFlowController = AppFlowController(appFoundation: appFoundation, window: window!)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        TrustPayments.instance.configure(translationsForOverride:
+        TrustPayments.instance.configure(locale: Locale(identifier: "pl_PL"), translationsForOverride:
             [
                 Locale(identifier: "fr_FR"):
                     [
@@ -36,6 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     [
                         LocalizableKeys.PayButton.title.key: "Paga ora!",
                         LocalizableKeys.Navigation.back.key: "Torna indietro"
+                ],
+                Locale(identifier: "pl_PL"):
+                    [
+                        LocalizableKeys.PayButton.title.key: "Zapłac",
+                        LocalizableKeys.Navigation.back.key: "wstecz"
                 ]
             ]
         )
