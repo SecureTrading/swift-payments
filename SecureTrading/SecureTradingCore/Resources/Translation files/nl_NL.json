@@ -8,20 +8,20 @@
 
   "CardNumberInputView.title": "Kaartnummer",
   "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
-  "CardNumberInputView.error": "Invalid card number",
-  "CardNumberInputView.emptyError": "Kaartnummer is required",
+  "CardNumberInputView.error": "Ongeldig veld",
+  "CardNumberInputView.emptyError": "Ongeldig veld",
 
   "CvcInputView.title": "Beveiligingscode",
   "CvcInputView.placeholder3": "***",
   "CvcInputView.placeholder4": "****",
   "CvcInputView.placeholderPiba": "N/A",
-  "CvcInputView.error": "Invalid security code",
-  "CvcInputView.emptyError": "Beveiligingscode is required",
+  "CvcInputView.error": "Ongeldig veld",
+  "CvcInputView.emptyError": "Ongeldig veld",
 
   "ExpiryDateInputView.title": "Vervaldatum",
   "ExpiryDateInputView.placeholder": "MM/YY",
-  "ExpiryDateInputView.error": "Invalid expiry date",
-  "ExpiryDateInputView.emptyError": "Vervaldatum is required",
+  "ExpiryDateInputView.error": "Ongeldig veld",
+  "ExpiryDateInputView.emptyError": "Ongeldig veld",
 
   "AddCardButton.title": "Add card",
 

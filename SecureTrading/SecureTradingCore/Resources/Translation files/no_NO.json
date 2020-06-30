@@ -8,20 +8,20 @@
 
   "CardNumberInputView.title": "Kortnummer",
   "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
-  "CardNumberInputView.error": "Invalid card number",
-  "CardNumberInputView.emptyError": "Kortnummer is required",
+  "CardNumberInputView.error": "Ugyldig felt",
+  "CardNumberInputView.emptyError": "Ugyldig felt",
 
   "CvcInputView.title": "Sikkerhetskode",
   "CvcInputView.placeholder3": "***",
   "CvcInputView.placeholder4": "****",
   "CvcInputView.placeholderPiba": "N/A",
-  "CvcInputView.error": "Invalid security code",
-  "CvcInputView.emptyError": "Sikkerhetskode is required",
+  "CvcInputView.error": "Ugyldig felt",
+  "CvcInputView.emptyError": "Ugyldig felt",
 
   "ExpiryDateInputView.title": "Utløpsdato",
   "ExpiryDateInputView.placeholder": "MM/YY",
-  "ExpiryDateInputView.error": "Invalid expiry date",
-  "ExpiryDateInputView.emptyError": "Utløpsdato is required",
+  "ExpiryDateInputView.error": "Ugyldig felt",
+  "ExpiryDateInputView.emptyError": "Ugyldig felt",
 
   "AddCardButton.title": "Add card",
 

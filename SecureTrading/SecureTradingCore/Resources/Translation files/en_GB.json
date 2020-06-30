@@ -8,20 +8,20 @@
 
   "CardNumberInputView.title": "Card number",
   "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
-  "CardNumberInputView.error": "Invalid card number",
-  "CardNumberInputView.emptyError": "Card number is required",
+  "CardNumberInputView.error": "Invalid field",
+  "CardNumberInputView.emptyError": "Invalid field",
 
   "CvcInputView.title": "Security code",
   "CvcInputView.placeholder3": "***",
   "CvcInputView.placeholder4": "****",
   "CvcInputView.placeholderPiba": "N/A",
-  "CvcInputView.error": "Invalid security code",
-  "CvcInputView.emptyError": "Security code is required",
+  "CvcInputView.error": "Invalid field",
+  "CvcInputView.emptyError": "Invalid field",
 
   "ExpiryDateInputView.title": "Expiry date",
   "ExpiryDateInputView.placeholder": "MM/YY",
-  "ExpiryDateInputView.error": "Invalid expiry date",
-  "ExpiryDateInputView.emptyError": "Expiry date is required",
+  "ExpiryDateInputView.error": "Invalid field",
+  "ExpiryDateInputView.emptyError": "Invalid field",
 
   "AddCardButton.title": "Add card",
 
