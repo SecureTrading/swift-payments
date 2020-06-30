@@ -308,3 +308,9 @@ extension UIView {
         }
     }
 }
+
+extension UIView {
+    var hasSuperview: Bool {
+        return superview != nil
+    }
+}
