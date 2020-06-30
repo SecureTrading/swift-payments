@@ -26,32 +26,4 @@
   "AddCardButton.title": "Add card",
 
   "Alerts.processing": "Behandler",
-
-  "APIError.invalidFieldPAN": "Ugyldig felt: PAN",
-  "APIError.invalidFieldSecurityCode": "Ugyldig felt: Sikkerhetskode",
-  "APIError.invalidFieldJWT": "Ugyldig felt: JWT",
-  "APIError.invalidFieldExpiryDate": "Ugyldig felt: Utløpsdato",
-  "APIError.invalidFieldTermsURL": "Ugyldig felt: Term URL",
-  "APIError.invalidFieldParentTransactionRef": "Ugyldig felt: Parent transaction reference",
-  "APIError.invalidFieldSiteRef": "Ugyldig felt: Site reference",
-  "APIError.invalidFieldSubscriptionNo": "Ugyldig felt: Subscription number",
-  "APIError.invalidFieldUnknown": "Ugyldig felt: Unknown",
-
-  "APIError.failedToBuildURLRequest": "Failed to build URL request",
-  "APIError.connectionFailure": "Connection failure",
-  "APIError.failedToValidateURLResponse": "Failed to validate URL response",
-  "APIError.failedToParseURLResponse": "Failed to parse URL response",
-  "APIError.unknownNetworkError": "An unknown network error has occurred.",
-  "APIError.jwtDecodingInvalidBase64": "JWT decoding: invalid base64",
-  "APIError.jwtDecodingInvalidJSON": "JWT decoding: invalid JSON",
-  "APIError.jwtDecodingIncorrectComponentNumber": "JWT decoding: number of parts does not equal 3",
-  "APIError.inaccessible": "Failed to receive a response for request after given retries",
-  "APIError.urlError": "URL Error",
-
-  "APIError.unsupportedStatusCode": "Unsupported status code",
-  "APIError.missingData": "Missing data.",
-  "APIError.unexpectedDescriptionTypesInResponse": "Unexpected description types in response.",
-
-  "APIError.missingResponseData": "Missing response data",
-  "APIError.unknown": "Unknown"
 }

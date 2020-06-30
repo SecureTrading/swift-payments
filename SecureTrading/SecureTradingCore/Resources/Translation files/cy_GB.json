@@ -26,32 +26,4 @@
   "AddCardButton.title": "Add card",
 
   "Alerts.processing": "Wrthi'n prosesu",
-
-  "APIError.invalidFieldPAN": "Maes annilys: PAN",
-  "APIError.invalidFieldSecurityCode": "Maes annilys: Security code",
-  "APIError.invalidFieldJWT": "Maes annilys: JWT",
-  "APIError.invalidFieldExpiryDate": "Maes annilys: Expiry date",
-  "APIError.invalidFieldTermsURL": "Maes annilys: Term URL",
-  "APIError.invalidFieldParentTransactionRef": "Maes annilys: Parent transaction reference",
-  "APIError.invalidFieldSiteRef": "Maes annilys: Site reference",
-  "APIError.invalidFieldSubscriptionNo": "Maes annilys: Subscription number",
-  "APIError.invalidFieldUnknown": "Maes annilys: Unknown",
-
-  "APIError.failedToBuildURLRequest": "Failed to build URL request",
-  "APIError.connectionFailure": "Connection failure",
-  "APIError.failedToValidateURLResponse": "Failed to validate URL response",
-  "APIError.failedToParseURLResponse": "Failed to parse URL response",
-  "APIError.unknownNetworkError": "An unknown network error has occurred.",
-  "APIError.jwtDecodingInvalidBase64": "JWT decoding: invalid base64",
-  "APIError.jwtDecodingInvalidJSON": "JWT decoding: invalid JSON",
-  "APIError.jwtDecodingIncorrectComponentNumber": "JWT decoding: number of parts does not equal 3",
-  "APIError.inaccessible": "Failed to receive a response for request after given retries",
-  "APIError.urlError": "URL Error",
-
-  "APIError.unsupportedStatusCode": "Unsupported status code",
-  "APIError.missingData": "Missing data.",
-  "APIError.unexpectedDescriptionTypesInResponse": "Unexpected description types in response.",
-
-  "APIError.missingResponseData": "Missing response data",
-  "APIError.unknown": "Unknown"
 }

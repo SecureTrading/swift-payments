@@ -31,7 +31,7 @@ struct ResponseError: APIResponse {
         if let response = responses.first {
             self.response = response
         } else {
-            let errorContext = DecodingError.Context.init(codingPath: [ResponseErrorCodingKey.response], debugDescription: LocalizableKeys.APIError.missingResponseData.localizedStringOrEmpty)
+            let errorContext = DecodingError.Context.init(codingPath: [ResponseErrorCodingKey.response], debugDescription: "Missing response data")
             throw DecodingError.valueNotFound(ResponseObject.self, errorContext)
         }
     }
