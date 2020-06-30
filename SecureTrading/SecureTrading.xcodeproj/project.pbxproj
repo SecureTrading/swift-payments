@@ -74,6 +74,7 @@
 		08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3C2469591400C8F90A /* ViewModelFactory.swift */; };
 		08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */; };
 		08648A4D248FA8C300EE1E95 /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */; };
+		08653FDC24AB71FA00A85C26 /* TrustKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08653FDB24AB71FA00A85C26 /* TrustKit.framework */; };
 		08694877246924F900F625D0 /* TestMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694876246924F900F625D0 /* TestMainViewModel.swift */; };
 		08694879246925EA00F625D0 /* TestMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694878246925EA00F625D0 /* TestMainViewController.swift */; };
 		0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869487A246926FE00F625D0 /* TestMainFlowController.swift */; };
@@ -295,6 +296,7 @@
 		08639C3C2469591400C8F90A /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBackgroundBaseView.swift; sourceTree = "<group>"; };
 		08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CardinalMobile.framework; sourceTree = "<group>"; };
+		08653FDB24AB71FA00A85C26 /* TrustKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TrustKit.framework; path = ../../Carthage/Build/iOS/TrustKit.framework; sourceTree = "<group>"; };
 		08694876246924F900F625D0 /* TestMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainViewModel.swift; sourceTree = "<group>"; };
 		08694878246925EA00F625D0 /* TestMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainViewController.swift; sourceTree = "<group>"; };
 		0869487A246926FE00F625D0 /* TestMainFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainFlowController.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08534EDE24A4921600D2B082 /* SecureTrading3DSecure.framework in Frameworks */,
+				08653FDC24AB71FA00A85C26 /* TrustKit.framework in Frameworks */,
 				08534EEE24A4DAE800D2B082 /* SecureTradingCard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1058,6 +1061,7 @@
 		10B5B82B2472B870009CE3A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08653FDB24AB71FA00A85C26 /* TrustKit.framework */,
 				08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */,
 			);
 			path = Frameworks;
@@ -1146,6 +1150,7 @@
 				08E4FA672462A5EC00837339 /* Frameworks */,
 				08E4FA682462A5EC00837339 /* Resources */,
 				08B8E82C246A9EE700046E39 /* SwiftLint */,
+				08653FDF24AB722A00A85C26 /* Copy frameworks */,
 			);
 			buildRules = (
 			);
@@ -1390,6 +1395,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		08653FDF24AB722A00A85C26 /* Copy frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../Carthage/Build/iOS/TrustKit.framework",
+			);
+			name = "Copy frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
 		08B8E82C246A9EE700046E39 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1760,6 +1784,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = SecureTradingCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2089,6 +2114,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = SecureTradingCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2120,6 +2146,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = SecureTradingCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
