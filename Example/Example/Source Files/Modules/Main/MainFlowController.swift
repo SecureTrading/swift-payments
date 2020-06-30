@@ -76,7 +76,7 @@ final class MainFlowController: BaseNavigationFlowController {
             case .didTapShowDropInControllerWithCustomView(let jwt):
                 self.showDropInViewController(jwt: jwt, handleCardinalWarnings: false, addCustomView: true)
             case .didTapShowDropInControllerSaveCardFillCVV(let jwt):
-                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: false, addCustomView: true, typeDescriptions: [.auth], visibleFields: [.securityCode3])
+                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: false, addCustomView: false, typeDescriptions: [.auth], visibleFields: [.securityCode3])
             }
         }
         return mainViewController
