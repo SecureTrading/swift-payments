@@ -17,6 +17,7 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         case didTapShowDropInControllerWithWarnings(String)
         case didTapShowDropInControllerNoThreeDQuery(String)
         case didTapShowDropInControllerWithCustomView(String)
+        case didTapShowDropInControllerSaveCardFillCVV(String)
     }
 
     private var transparentNavigationBar: TransparentNavigationBar? { return navigationController?.navigationBar as? TransparentNavigationBar }
@@ -86,18 +87,15 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
             guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
             self.eventTriggered?(.didTapShowDropInControllerNoThreeDQuery(jwt))
         }
-
         customView.showDropInControllerWithCustomView = { [weak self] in
             guard let self = self else { return }
             guard let jwt = self.viewModel.getJwtTokenWithoutCardData() else { return }
             self.eventTriggered?(.didTapShowDropInControllerWithCustomView(jwt))
         }
-
         customView.payByCardFromParentReference = { [weak self] in
             guard let self = self else { return }
             self.viewModel.payByCardFromParentReference()
         }
-
         customView.subscriptionOnSTEngineRequest = { [weak self] in
             self?.viewModel.performSubscriptionOnSTEngine()
         }
@@ -106,6 +104,11 @@ final class MainViewController: BaseViewController<MainView, MainViewModel> {
         }
         customView.showMoreInformation = { [weak self] infoString in
             self?.showAlert(message: infoString)
+        }
+        customView.payFillCVV = { [weak self] in
+            guard let self = self else { return }
+            guard let jwt = self.viewModel.getJwtTokenWithParentReference() else { return }
+            self.eventTriggered?(.didTapShowDropInControllerSaveCardFillCVV(jwt))
         }
 
         viewModel.showAuthSuccess = { [weak self] _ in
