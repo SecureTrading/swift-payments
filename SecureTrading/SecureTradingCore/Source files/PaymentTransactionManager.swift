@@ -67,13 +67,15 @@ import Foundation
     /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
     /// - Parameter isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
     /// - Parameter cardTypeToBypass: the collection of cards for which 3dsecure is to be bypassed
-    public init(jwt: String, gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool, cardTypeToBypass: [CardType] = []) {
+    /// - Parameter cardinalStyleManager: manager to set the interface style (view customization)
+    /// - Parameter cardinalDarkModeStyleManager: manager to set the interface style in dark mode
+    public init(jwt: String, gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool, cardTypeToBypass: [CardType] = [], cardinalStyleManager: CardinalStyleManager? = nil, cardinalDarkModeStyleManager: CardinalStyleManager? = nil) {
         self.jwt = jwt
         self.apiManager = DefaultAPIManager(gatewayType: gatewayType, username: username)
         self.isLiveStatus = isLiveStatus
         self.isDeferInit = isDeferInit
         self.cardTypeToBypass = cardTypeToBypass
-        self.threeDSecureManager = ST3DSecureManager(isLiveStatus: self.isLiveStatus)
+        self.threeDSecureManager = ST3DSecureManager(isLiveStatus: self.isLiveStatus, cardinalStyleManager: cardinalStyleManager, cardinalDarkModeStyleManager: cardinalDarkModeStyleManager)
         let randomString = String.randomString(length: 36)
         let start = randomString.index(randomString.startIndex, offsetBy: 2)
         let end = randomString.index(randomString.startIndex, offsetBy: 10)

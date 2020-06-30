@@ -87,26 +87,32 @@ public final class ST3DSecureManager {
 
     /// Initializes an instance of the receiver
     /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
-    public init(isLiveStatus: Bool) {
+    /// - Parameter cardinalStyleManager: manager to set the interface style (view customization)
+    /// - Parameter cardinalDarkModeStyleManager: manager to set the interface style in dark mode
+    public init(isLiveStatus: Bool, cardinalStyleManager: CardinalStyleManager?, cardinalDarkModeStyleManager: CardinalStyleManager?) {
         self.isLiveStatus = isLiveStatus
         self.session = CardinalSession()
-        configure()
+        configure(cardinalStyleManager: cardinalStyleManager, cardinalDarkModeStyleManager: cardinalDarkModeStyleManager)
     }
 
     // MARK: - Private methods
 
     /// Configure session with env type, timeouts and UI
-    private func configure() {
+    private func configure(cardinalStyleManager: CardinalStyleManager?, cardinalDarkModeStyleManager: CardinalStyleManager?) {
         let config = CardinalSessionConfiguration()
         config.deploymentEnvironment = isLiveStatus ? .production : .staging
         config.requestTimeout = 8000
         config.challengeTimeout = 8
         config.uiType = .both // possible native and html
 
-        // todo - ui customization
-        let yourCustomUi = UiCustomization()
         // Set various customizations here. See "iOS UI Customization" documentation for detail.
-        config.uiCustomization = yourCustomUi
+        if let cardinalStyleManager = cardinalStyleManager {
+            config.uiCustomization = getUiCustomization(cardinalStyleManager: cardinalStyleManager)
+        }
+
+        if let cardinalDarkModeStyleManager = cardinalDarkModeStyleManager {
+            config.darkModeUiCustomization = getUiCustomization(cardinalStyleManager: cardinalDarkModeStyleManager)
+        }
 
         config.renderType = [CardinalSessionRenderTypeOTP,
                              CardinalSessionRenderTypeHTML,
@@ -117,6 +123,183 @@ public final class ST3DSecureManager {
         // configure session
         session.configure(config)
     }
+
+    // swiftlint:disable cyclomatic_complexity
+    private func getUiCustomization(cardinalStyleManager: CardinalStyleManager) -> UiCustomization {
+        let ui = UiCustomization()
+
+        if let toolbarStyleManager = cardinalStyleManager.toolbarStyleManager {
+            let toolbarCust = ToolbarCustomization()
+
+            if let headerText = toolbarStyleManager.headerText {
+                toolbarCust.headerText = headerText
+            }
+
+            if let buttonText = toolbarStyleManager.buttonText {
+                toolbarCust.buttonText = buttonText
+            }
+
+            if let textColor = toolbarStyleManager.textColor {
+                toolbarCust.textColor = textColor.hexString
+            }
+
+            if let backgroundColor = toolbarStyleManager.backgroundColor {
+                toolbarCust.backgroundColor = backgroundColor.hexString
+            }
+
+            if let textFont = toolbarStyleManager.textFont {
+                toolbarCust.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    toolbarCust.textFontName = name
+                }
+            }
+
+            ui.setToolbar(toolbarCust)
+        }
+
+        if let labelStyleManager = cardinalStyleManager.labelStyleManager {
+            let labelCust = LabelCustomization()
+
+            if let textColor = labelStyleManager.textColor {
+                labelCust.textColor = textColor.hexString
+            }
+
+            if let textFont = labelStyleManager.textFont {
+                labelCust.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    labelCust.textFontName = name
+                }
+            }
+
+            if let textColor = labelStyleManager.headingTextColor {
+                labelCust.headingTextColor = textColor.hexString
+            }
+
+            if let textFont = labelStyleManager.headingTextFont {
+                labelCust.headingTextFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    labelCust.textFontName = name
+                }
+            }
+
+            ui.setLabel(labelCust)
+        }
+
+        if let verifyButtonStyleManager = cardinalStyleManager.verifyButtonStyleManager {
+            let buttonCustomization = ButtonCustomization()
+
+            if let textColor = verifyButtonStyleManager.textColor {
+                buttonCustomization.textColor = textColor.hexString
+            }
+
+            if let textFont = verifyButtonStyleManager.textFont {
+                buttonCustomization.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    buttonCustomization.textFontName = name
+                }
+            }
+
+            if let backgroundColor = verifyButtonStyleManager.backgroundColor {
+                buttonCustomization.backgroundColor = backgroundColor.hexString
+            }
+
+            buttonCustomization.cornerRadius = Int32(verifyButtonStyleManager.cornerRadius)
+
+            ui.setButton(buttonCustomization, buttonType: ButtonTypeVerify)
+        }
+
+        if let continueButtonStyleManager = cardinalStyleManager.continueButtonStyleManager {
+            let buttonCustomization = ButtonCustomization()
+
+            if let textColor = continueButtonStyleManager.textColor {
+                buttonCustomization.textColor = textColor.hexString
+            }
+
+            if let textFont = continueButtonStyleManager.textFont {
+                buttonCustomization.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    buttonCustomization.textFontName = name
+                }
+            }
+
+            if let backgroundColor = continueButtonStyleManager.backgroundColor {
+                buttonCustomization.backgroundColor = backgroundColor.hexString
+            }
+
+            buttonCustomization.cornerRadius = Int32(continueButtonStyleManager.cornerRadius)
+
+            ui.setButton(buttonCustomization, buttonType: ButtonTypeContinue)
+        }
+
+        if let resendButtonStyleManager = cardinalStyleManager.resendButtonStyleManager {
+            let buttonCustomization = ButtonCustomization()
+
+            if let textColor = resendButtonStyleManager.textColor {
+                buttonCustomization.textColor = textColor.hexString
+            }
+
+            if let textFont = resendButtonStyleManager.textFont {
+                buttonCustomization.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    buttonCustomization.textFontName = name
+                }
+            }
+
+            if let backgroundColor = resendButtonStyleManager.backgroundColor {
+                buttonCustomization.backgroundColor = backgroundColor.hexString
+            }
+
+            buttonCustomization.cornerRadius = Int32(resendButtonStyleManager.cornerRadius)
+
+            ui.setButton(buttonCustomization, buttonType: ButtonTypeResend)
+        }
+
+        if let cancelButtonStyleManager = cardinalStyleManager.cancelButtonStyleManager {
+            let buttonCustomization = ButtonCustomization()
+
+            if let textColor = cancelButtonStyleManager.textColor {
+                buttonCustomization.textColor = textColor.hexString
+            }
+
+            if let textFont = cancelButtonStyleManager.textFont {
+                buttonCustomization.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    buttonCustomization.textFontName = name
+                }
+            }
+
+            ui.setButton(buttonCustomization, buttonType: ButtonTypeCancel)
+        }
+
+        if let cardinalTextBoxStyleManager = cardinalStyleManager.textBoxStyleManager {
+            let textboxCustomization = TextBoxCustomization()
+
+            if let textColor = cardinalTextBoxStyleManager.textColor {
+                textboxCustomization.textColor = textColor.hexString
+            }
+
+            if let textFont = cardinalTextBoxStyleManager.textFont {
+                textboxCustomization.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    textboxCustomization.textFontName = name
+                }
+            }
+
+            if let borderColor = cardinalTextBoxStyleManager.borderColor {
+                textboxCustomization.borderColor = borderColor.hexString
+            }
+
+            textboxCustomization.borderWidth = Int32(cardinalTextBoxStyleManager.borderWidth)
+
+            textboxCustomization.cornerRadius = Int32(cardinalTextBoxStyleManager.cornerRadius)
+
+            ui.setTextBox(textboxCustomization)
+        }
+
+        return ui
+    }
+
+    // swiftlint:enable cyclomatic_complexity
 
     // MARK: - Public methods
 

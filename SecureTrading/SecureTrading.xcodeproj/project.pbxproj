@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0809739424A9D27F00EB6B9B /* CardinalStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0809739324A9D27F00EB6B9B /* CardinalStyleManager.swift */; };
+		0809739824A9F71300EB6B9B /* UIColor+3DSecure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0809739724A9F71300EB6B9B /* UIColor+3DSecure.swift */; };
 		0818DE3A24851BDE00A8B25A /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE3924851BDE00A8B25A /* UITextField.swift */; };
 		0818DE3C24851C2200A8B25A /* BackwardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE3B24851C2200A8B25A /* BackwardTextField.swift */; };
 		0818DE3F248659A800A8B25A /* DropInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818DE3E248659A800A8B25A /* DropInView.swift */; };
@@ -234,6 +236,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0809739324A9D27F00EB6B9B /* CardinalStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardinalStyleManager.swift; sourceTree = "<group>"; };
+		0809739724A9F71300EB6B9B /* UIColor+3DSecure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+3DSecure.swift"; sourceTree = "<group>"; };
 		0818DE3924851BDE00A8B25A /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		0818DE3B24851C2200A8B25A /* BackwardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackwardTextField.swift; sourceTree = "<group>"; };
 		0818DE3E248659A800A8B25A /* DropInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropInView.swift; sourceTree = "<group>"; };
@@ -472,6 +476,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0809739524A9F6EB00EB6B9B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0809739624A9F6F700EB6B9B /* Extensions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		0809739624A9F6F700EB6B9B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0809739724A9F71300EB6B9B /* UIColor+3DSecure.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		0818DE3D2486598700A8B25A /* DropIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -945,7 +965,9 @@
 		104CFB22246ECDD400D7C76D /* Source files */ = {
 			isa = PBXGroup;
 			children = (
+				0809739524A9F6EB00EB6B9B /* Common */,
 				104CFB2C246ECF2F00D7C76D /* ST3DSecureManager.swift */,
+				0809739324A9D27F00EB6B9B /* CardinalStyleManager.swift */,
 			);
 			path = "Source files";
 			sourceTree = "<group>";
@@ -1546,6 +1568,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				104CFB2D246ECF2F00D7C76D /* ST3DSecureManager.swift in Sources */,
+				0809739424A9D27F00EB6B9B /* CardinalStyleManager.swift in Sources */,
+				0809739824A9F71300EB6B9B /* UIColor+3DSecure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
