@@ -24,6 +24,7 @@ s.subspec "Core" do |s|
     s.header_dir = "SecureTradingCore"
     s.dependency "SecureTradingSDK/3DSecure"
     s.dependency "SecureTradingSDK/Card"
+    s.dependency "TrustKit", '1.6.4'
   end
 
   s.subspec "UI" do |s|
