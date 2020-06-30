@@ -37,11 +37,12 @@ final class DropInViewModel {
     /// - Parameter isDeferInit: It says when the connection with sdk Cardinal Commerce is initiated, whether at the beginning or only after accepting the form (true value)
     /// - Parameter cardTypeToBypass: the collection of cards for which 3dsecure is to be bypassed
     /// - Parameter cardinalStyleManager: manager to set the interface style (view customization)
-    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool, cardTypeToBypass: [CardType], cardinalStyleManager: CardinalStyleManager?) {
+    /// - Parameter cardinalDarkModeStyleManager: manager to set the interface style in dark mode
+    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool, cardTypeToBypass: [CardType], cardinalStyleManager: CardinalStyleManager?, cardinalDarkModeStyleManager: CardinalStyleManager?) {
         self.jwt = jwt
         self.typeDescriptions = typeDescriptions
 
-        self.paymentTransactionManager = PaymentTransactionManager(jwt: jwt, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, cardTypeToBypass: cardTypeToBypass, cardinalStyleManager: cardinalStyleManager)
+        self.paymentTransactionManager = PaymentTransactionManager(jwt: jwt, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, cardTypeToBypass: cardTypeToBypass, cardinalStyleManager: cardinalStyleManager, cardinalDarkModeStyleManager: cardinalDarkModeStyleManager)
     }
 
     /// executes payment transaction flow

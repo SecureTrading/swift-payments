@@ -58,6 +58,22 @@ import UIKit
     }
 }
 
+@objc public class CardinalCancelButtonStyleManager: NSObject {
+    // MARK: - colors
+
+    @objc public let textColor: UIColor?
+
+    // MARK: - fonts
+
+    @objc public let textFont: CardinalFont?
+
+    @objc public init(textColor: UIColor?, textFont: CardinalFont?) {
+        self.textColor = textColor
+        self.textFont = textFont
+    }
+
+}
+
 @objc public class CardinalButtonStyleManager: NSObject {
     // MARK: - colors
 
@@ -110,10 +126,10 @@ import UIKit
     @objc public let verifyButtonStyleManager: CardinalButtonStyleManager?
     @objc public let continueButtonStyleManager: CardinalButtonStyleManager?
     @objc public let resendButtonStyleManager: CardinalButtonStyleManager?
-    @objc public let cancelButtonStyleManager: CardinalButtonStyleManager?
+    @objc public let cancelButtonStyleManager: CardinalCancelButtonStyleManager?
     @objc public let textBoxStyleManager: CardinalTextBoxStyleManager?
 
-    @objc public init(toolbarStyleManager: CardinalToolbarStyleManager?, labelStyleManager: CardinalLabelStyleManager?, verifyButtonStyleManager: CardinalButtonStyleManager?, continueButtonStyleManager: CardinalButtonStyleManager?, resendButtonStyleManager: CardinalButtonStyleManager?, cancelButtonStyleManager: CardinalButtonStyleManager?, textBoxStyleManager: CardinalTextBoxStyleManager?) {
+    @objc public init(toolbarStyleManager: CardinalToolbarStyleManager?, labelStyleManager: CardinalLabelStyleManager?, verifyButtonStyleManager: CardinalButtonStyleManager?, continueButtonStyleManager: CardinalButtonStyleManager?, resendButtonStyleManager: CardinalButtonStyleManager?, cancelButtonStyleManager: CardinalCancelButtonStyleManager?, textBoxStyleManager: CardinalTextBoxStyleManager?) {
         self.toolbarStyleManager = toolbarStyleManager
         self.labelStyleManager = labelStyleManager
         self.verifyButtonStyleManager = verifyButtonStyleManager

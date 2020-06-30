@@ -88,16 +88,17 @@ public final class ST3DSecureManager {
     /// Initializes an instance of the receiver
     /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
     /// - Parameter cardinalStyleManager: manager to set the interface style (view customization)
-    public init(isLiveStatus: Bool, cardinalStyleManager: CardinalStyleManager?) {
+    /// - Parameter cardinalDarkModeStyleManager: manager to set the interface style in dark mode
+    public init(isLiveStatus: Bool, cardinalStyleManager: CardinalStyleManager?, cardinalDarkModeStyleManager: CardinalStyleManager?) {
         self.isLiveStatus = isLiveStatus
         self.session = CardinalSession()
-        configure(cardinalStyleManager: cardinalStyleManager)
+        configure(cardinalStyleManager: cardinalStyleManager, cardinalDarkModeStyleManager: cardinalDarkModeStyleManager)
     }
 
     // MARK: - Private methods
 
     /// Configure session with env type, timeouts and UI
-    private func configure(cardinalStyleManager: CardinalStyleManager?) {
+    private func configure(cardinalStyleManager: CardinalStyleManager?, cardinalDarkModeStyleManager: CardinalStyleManager?) {
         let config = CardinalSessionConfiguration()
         config.deploymentEnvironment = isLiveStatus ? .production : .staging
         config.requestTimeout = 8000
@@ -107,6 +108,10 @@ public final class ST3DSecureManager {
         // Set various customizations here. See "iOS UI Customization" documentation for detail.
         if let cardinalStyleManager = cardinalStyleManager {
             config.uiCustomization = getUiCustomization(cardinalStyleManager: cardinalStyleManager)
+        }
+
+        if let cardinalDarkModeStyleManager = cardinalDarkModeStyleManager {
+            config.darkModeUiCustomization = getUiCustomization(cardinalStyleManager: cardinalDarkModeStyleManager)
         }
 
         config.renderType = [CardinalSessionRenderTypeOTP,
@@ -262,12 +267,6 @@ public final class ST3DSecureManager {
                     buttonCustomization.textFontName = name
                 }
             }
-
-            if let backgroundColor = cancelButtonStyleManager.backgroundColor {
-                buttonCustomization.backgroundColor = backgroundColor.hexString
-            }
-
-            buttonCustomization.cornerRadius = Int32(cancelButtonStyleManager.cornerRadius)
 
             ui.setButton(buttonCustomization, buttonType: ButtonTypeCancel)
         }
