@@ -15,7 +15,7 @@ public final class DropInCustomView: DropInView {
 
     public override func setupViewHierarchy() {
         super.setupViewHierarchy()
-        stackView.insertArrangedSubview(saveCardOptionView, at: 3)
+        stackView.insertArrangedSubview(saveCardOptionView, at: max(stackView.arrangedSubviews.count - 1, 0))
     }
 
     public override func setupProperties() {
