@@ -14,7 +14,7 @@ public extension LocalizableKey {
     }
 
     /// Used to shorten slightly notation
-    /// TrustPayments.translation(for: LocalizableKeys.Navigation.back) -> LocalizableKeys.Navigation.back.localizedString
+    /// TrustPayments.translation(for: LocalizableKeys.PayButton.title) -> LocalizableKeys.PayButton.title.localizedString
     var localizedString: String? {
         TrustPayments.translation(for: self)
     }
@@ -29,11 +29,6 @@ public enum LocalizableKeys {
     // MARK: Pay Button
     public enum PayButton: LocalizableKey {
         case title
-    }
-
-    // MARK: Navigation
-    public enum Navigation: LocalizableKey {
-        case back
     }
 
     // MARK: DropIn View Controller
@@ -85,8 +80,6 @@ public enum LocalizableKeys {
     // underscores used for clarity: _payButton_title -> LocalizableKeysObjc_payButton_title
     case _payButton_title = 0
 
-    case _navigation_back
-
     case _dropInViewController_successfulPayment
     case _dropInViewController_cardinalAuthenticationError
 
@@ -115,8 +108,6 @@ public enum LocalizableKeys {
     var code: String {
         switch self {
         case ._payButton_title: return LocalizableKeys.PayButton.title.key
-
-        case ._navigation_back: return LocalizableKeys.Navigation.back.key
 
         case ._dropInViewController_successfulPayment: return LocalizableKeys.DropInViewController.successfulPayment.key
         case ._dropInViewController_cardinalAuthenticationError: return LocalizableKeys.DropInViewController.cardinalAuthenticationError.key

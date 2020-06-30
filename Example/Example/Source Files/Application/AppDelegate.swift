@@ -25,22 +25,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 Locale(identifier: "fr_FR"):
                     [
                         LocalizableKeys.PayButton.title.key: "Payez maintenant!",
-                        LocalizableKeys.Navigation.back.key: "Retourner"
                 ],
                 Locale(identifier: "en_GB"):
                     [
                         LocalizableKeys.PayButton.title.key: "Pay Now!",
-                        LocalizableKeys.Navigation.back.key: "Go back"
                 ],
                 Locale(identifier: "it_IT"):
                     [
                         LocalizableKeys.PayButton.title.key: "Paga ora!",
-                        LocalizableKeys.Navigation.back.key: "Torna indietro"
                 ],
                 Locale(identifier: "pl_PL"):
                     [
-                        LocalizableKeys.PayButton.title.key: "Zapłac",
-                        LocalizableKeys.Navigation.back.key: "wstecz"
+                        LocalizableKeys.PayButton.title.key: "Zapłać",
                 ]
             ]
         )

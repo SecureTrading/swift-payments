@@ -1,6 +1,5 @@
 {
   "PayButton.title": "Pagar",
-  "Navigation.back": "< Back",
 
   "DropInViewController.successfulPayment": "El pago se ha procesado correctamente",
   "DropInViewController.cardinalAuthenticationError": "Se ha producido un error",

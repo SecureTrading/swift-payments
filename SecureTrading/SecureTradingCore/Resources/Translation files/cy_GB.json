@@ -1,6 +1,5 @@
 {
   "PayButton.title": "Talu",
-  "Navigation.back": "< Back",
 
   "DropInViewController.successfulPayment": "Mae'r taliad wedi ei brosesu'n llwyddiannus",
   "DropInViewController.cardinalAuthenticationError": "Digwyddodd gwall",
