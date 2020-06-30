@@ -65,10 +65,9 @@ final class DropInViewModel {
     /// - Returns: result of validation
     @discardableResult
     func validateForm(view: DropInViewProtocol) -> Bool {
-        let cardNumberValidationResult = view.cardNumberInput.validate(silent: false)
-        let expiryDateValidationResult = view.expiryDateInput.validate(silent: false)
-        let cvcValidationResult = view.cvcInput.validate(silent: false)
-        return cardNumberValidationResult && expiryDateValidationResult && cvcValidationResult && view.isFormValid
+        // validate only fields that are added to the view's hierarchy
+        let viewsToValidate = [view.cardNumberInput, view.expiryDateInput, view.cvcInput].filter { ($0 as? BaseView)?.hasSuperview == true }
+        return viewsToValidate.count == viewsToValidate.filter { $0.validate(silent: false) }.count && view.isFormValid
     }
 
     // MARK: Helpers

@@ -14,16 +14,16 @@ import UIKit
     @objc public let insets: UIEdgeInsets
 
     // no need to expose this property publicly
-    let fieldsToSubmit: [DropInFieldsToSubmit]
+    let visibleFields: [DropInViewVisibleFields]
 
     @objc public init(inputViewStyleManager: InputViewStyleManager?,
-                      fieldsToSubmit: [Int] = DropInFieldsToSubmit.allCases.map { $0.rawValue },
+                      visibleFields: [Int] = DropInViewVisibleFields.allCases.map { $0.rawValue },
                       requestButtonStyleManager: RequestButtonStyleManager?,
                       backgroundColor: UIColor?,
                       spacingBeetwenInputViews: CGFloat = 30,
                       insets: UIEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: -15, right: -30)) {
         self.inputViewStyleManager = inputViewStyleManager
-        self.fieldsToSubmit = fieldsToSubmit.compactMap { DropInFieldsToSubmit(rawValue: $0) }
+        self.visibleFields = visibleFields.compactMap { DropInViewVisibleFields(rawValue: $0) }
         self.requestButtonStyleManager = requestButtonStyleManager
         self.backgroundColor = backgroundColor
         self.spacingBeetwenInputViews = spacingBeetwenInputViews
@@ -31,13 +31,13 @@ import UIKit
     }
 
     public init(inputViewStyleManager: InputViewStyleManager?,
-                fieldsToSubmit: [DropInFieldsToSubmit] = DropInFieldsToSubmit.allCases,
+                visibleFields: [DropInViewVisibleFields] = DropInViewVisibleFields.allCases,
                 requestButtonStyleManager: RequestButtonStyleManager?,
                 backgroundColor: UIColor?,
                 spacingBeetwenInputViews: CGFloat = 30,
                 insets: UIEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: -15, right: -30)) {
         self.inputViewStyleManager = inputViewStyleManager
-        self.fieldsToSubmit = fieldsToSubmit
+        self.visibleFields = visibleFields
         self.requestButtonStyleManager = requestButtonStyleManager
         self.backgroundColor = backgroundColor
         self.spacingBeetwenInputViews = spacingBeetwenInputViews
@@ -45,8 +45,9 @@ import UIKit
     }
 }
 
-@objc public enum DropInFieldsToSubmit: Int, CaseIterable {
+@objc public enum DropInViewVisibleFields: Int, CaseIterable {
     case pan = 0
     case expiryDate
-    case securityCode
+    case securityCode3
+    case securityCode4
 }

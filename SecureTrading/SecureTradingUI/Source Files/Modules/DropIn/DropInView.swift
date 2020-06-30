@@ -4,17 +4,24 @@
 //
 
 import UIKit
+#if !COCOAPODS
+import SecureTradingCard
+#endif
 
 @objc open class DropInView: BaseView, DropInViewProtocol {
     /// useful if you need to specify some additional validation condition when accepting the form, e.g. if the merchant wants to add an additional check box view
+    //swiftlint:disable identifier_name
     @objc public var isAdditionalValidationConditionsFullfiled: Bool = true {
         didSet {
             payButton.isEnabled = isFormValid
         }
     }
+    //swiftlint:enable identifier_name
 
     @objc public var isFormValid: Bool {
-        return (cardNumberInput.isInputValid) && expiryDateInput.isInputValid && cvcInput.isInputValid && isAdditionalValidationConditionsFullfiled
+        // Do not validate fields that are not added to the view's hierarchy, for example by specifying visible fields
+        let inputsToValidate = [cardNumberInput, expiryDateInput, cvcInput].filter { ($0 as? UIView)?.hasSuperview == true }
+        return (inputsToValidate.count == inputsToValidate.filter { $0.isInputValid }.count) && isAdditionalValidationConditionsFullfiled
     }
 
     @objc public var payButtonTappedClosure: (() -> Void)? {
@@ -46,22 +53,27 @@ import UIKit
     }()
 
     @objc public lazy var stackView: UIStackView = {
-        var fieldsToSubmit: [UIView] = []
+        var visibleFields: [UIView] = []
         if let styleManager = dropInViewStyleManager {
-            if styleManager.fieldsToSubmit.contains(.pan) {
-                fieldsToSubmit.append(cardNumberInput)
+            if styleManager.visibleFields.contains(.pan) {
+                visibleFields.append(cardNumberInput)
             }
-            if styleManager.fieldsToSubmit.contains(.expiryDate) {
-                fieldsToSubmit.append(expiryDateInput)
+            if styleManager.visibleFields.contains(.expiryDate) {
+                visibleFields.append(expiryDateInput)
             }
-            if styleManager.fieldsToSubmit.contains(.securityCode) {
-                fieldsToSubmit.append(cvcInput)
+            if styleManager.visibleFields.contains(.securityCode3) {
+                (cvcInput as? CvcInputView)?.cardType = CardType.visa
+                visibleFields.append(cvcInput)
+            }
+            if styleManager.visibleFields.contains(.securityCode4) {
+                (cvcInput as? CvcInputView)?.cardType = CardType.amex
+                visibleFields.append(cvcInput)
             }
         } else {
-            fieldsToSubmit = [cardNumberInput, expiryDateInput, cvcInput]
+            visibleFields = [cardNumberInput, expiryDateInput, cvcInput]
         }
-        fieldsToSubmit.append(payButton)
-        let stackView = UIStackView(arrangedSubviews: fieldsToSubmit)
+        visibleFields.append(payButton)
+        let stackView = UIStackView(arrangedSubviews: visibleFields)
         stackView.axis = .vertical
         stackView.spacing = spacingBeetwenInputViews
         stackView.alignment = .fill
