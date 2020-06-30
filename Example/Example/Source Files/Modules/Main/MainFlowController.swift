@@ -106,12 +106,23 @@ final class MainFlowController: BaseNavigationFlowController {
 
         let cardinalStyleManager = CardinalStyleManager(toolbarStyleManager: toolbarStyleManager, labelStyleManager: labelStyleManager, verifyButtonStyleManager: verifyButtonStyleManager, continueButtonStyleManager: continueButtonStyleManager, resendButtonStyleManager: resendButtonStyleManager, cancelButtonStyleManager: cancelButtonStyleManager, textBoxStyleManager: textBoxStyleManager)
 
+        let toolbarDarkModeStyleManager = CardinalToolbarStyleManager(textColor: .white, textFont: nil, backgroundColor: .black, headerText: "Trust payment checkout", buttonText: nil)
+        let labelDarkModeStyleManager = CardinalLabelStyleManager(textColor: .gray, textFont: nil, headingTextColor: .white, headingTextFont: nil)
+
+        let verifyButtonDarkModeStyleManager = CardinalButtonStyleManager(textColor: .black, textFont: nil, backgroundColor: .white, cornerRadius: 6)
+        let continueButtonDarkModeStyleManager = CardinalButtonStyleManager(textColor: .black, textFont: nil, backgroundColor: .white, cornerRadius: 6)
+        let resendButtonDarkModeStyleManager = CardinalButtonStyleManager(textColor: .white, textFont: nil, backgroundColor: nil, cornerRadius: 0)
+        let cancelButtonDarkModeStyleManager = CardinalCancelButtonStyleManager(textColor: .white, textFont: nil)
+        let textBoxDarkModeStyleManager = CardinalTextBoxStyleManager(textColor: .white, textFont: nil, borderColor: .white, cornerRadius: 6, borderWidth: 1)
+
+        let cardinalDarkModeStyleManager = CardinalStyleManager(toolbarStyleManager: toolbarDarkModeStyleManager, labelStyleManager: labelDarkModeStyleManager, verifyButtonStyleManager: verifyButtonDarkModeStyleManager, continueButtonStyleManager: continueButtonDarkModeStyleManager, resendButtonStyleManager: resendButtonDarkModeStyleManager, cancelButtonStyleManager: cancelButtonDarkModeStyleManager, textBoxStyleManager: textBoxDarkModeStyleManager)
+
         // custom view provided from example app
         let customDropInView = addCustomView ? DropInCustomView(dropInViewStyleManager: dropInViewStyleManager) : nil
 
         let isDeferInit = addCustomView
 
-        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: isDeferInit, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, cardTypeToBypass: [], cardinalStyleManager: cardinalStyleManager, payButtonTappedClosureBeforeTransaction: { [unowned self] controller in
+        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: isDeferInit, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, cardTypeToBypass: [], cardinalStyleManager: cardinalStyleManager, cardinalDarkModeStyleManager: cardinalDarkModeStyleManager, payButtonTappedClosureBeforeTransaction: { [unowned self] controller in
             guard let customDropInView = customDropInView else { return }
             // updates JWT with credentialsonfile flag
             guard let updatedJWT = self.mainViewModel?.getJwtTokenWithoutCardData(storeCard: customDropInView.isSaveCardSelected) else { return }
