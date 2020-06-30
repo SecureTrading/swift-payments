@@ -14,7 +14,7 @@
   "CvcInputView.title": "Code de sécurité",
   "CvcInputView.placeholder3": "***",
   "CvcInputView.placeholder4": "****",
-  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.placeholderPiba": "",
   "CvcInputView.error": "Champ incorrect",
   "CvcInputView.emptyError": "Champ incorrect",
 

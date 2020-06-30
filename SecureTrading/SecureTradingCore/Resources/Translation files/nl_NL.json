@@ -14,7 +14,7 @@
   "CvcInputView.title": "Beveiligingscode",
   "CvcInputView.placeholder3": "***",
   "CvcInputView.placeholder4": "****",
-  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.placeholderPiba": "",
   "CvcInputView.error": "Ongeldig veld",
   "CvcInputView.emptyError": "Ongeldig veld",
 

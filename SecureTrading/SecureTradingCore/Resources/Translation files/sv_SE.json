@@ -14,7 +14,7 @@
   "CvcInputView.title": "Säkerhetskod",
   "CvcInputView.placeholder3": "***",
   "CvcInputView.placeholder4": "****",
-  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.placeholderPiba": "",
   "CvcInputView.error": "Ogiltigt fält",
   "CvcInputView.emptyError": "Ogiltigt fält",
 

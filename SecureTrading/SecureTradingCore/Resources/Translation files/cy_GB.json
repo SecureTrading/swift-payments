@@ -14,7 +14,7 @@
   "CvcInputView.title": "Cod diogelwch",
   "CvcInputView.placeholder3": "***",
   "CvcInputView.placeholder4": "****",
-  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.placeholderPiba": "",
   "CvcInputView.error": "Maes annilys",
   "CvcInputView.emptyError": "Maes annilys",
 

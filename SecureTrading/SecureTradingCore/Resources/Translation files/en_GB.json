@@ -14,7 +14,7 @@
   "CvcInputView.title": "Security code",
   "CvcInputView.placeholder3": "***",
   "CvcInputView.placeholder4": "****",
-  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.placeholderPiba": "",
   "CvcInputView.error": "Invalid field",
   "CvcInputView.emptyError": "Invalid field",
 

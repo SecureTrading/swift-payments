@@ -14,7 +14,7 @@
   "CvcInputView.title": "Sikkerhetskode",
   "CvcInputView.placeholder3": "***",
   "CvcInputView.placeholder4": "****",
-  "CvcInputView.placeholderPiba": "N/A",
+  "CvcInputView.placeholderPiba": "",
   "CvcInputView.error": "Ugyldig felt",
   "CvcInputView.emptyError": "Ugyldig felt",
 
