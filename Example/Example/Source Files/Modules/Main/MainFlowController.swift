@@ -95,14 +95,14 @@ final class MainFlowController: BaseNavigationFlowController {
 
         let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: inputViewStyleManager, requestButtonStyleManager: payButtonStyleManager, backgroundColor: .white, spacingBeetwenInputViews: 25, insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
 
-        let toolbarStyleManager = CardinalToolbarStyleManager(textColor: .black, textFont: CardinalFont(name: nil, size: 16), backgroundColor: .yellow, headerText: "Trust payment checkout", buttonText: "WHAAT")
-        let labelStyleManager = CardinalLabelStyleManager(textColor: .brown, textFont: CardinalFont(name: nil, size: 16), headingTextColor: .green, headingTextFont: CardinalFont(name: nil, size: 16))
+        let toolbarStyleManager = CardinalToolbarStyleManager(textColor: .black, textFont: CardinalFont(name: nil, size: 16), backgroundColor: .white, headerText: "Trust payment checkout", buttonText: nil)
+        let labelStyleManager = CardinalLabelStyleManager(textColor: .gray, textFont: nil, headingTextColor: .black, headingTextFont: nil)
 
-        let verifyButtonStyleManager = CardinalButtonStyleManager(textColor: .white, textFont: CardinalFont(name: nil, size: 16), backgroundColor: UIColor.black.withAlphaComponent(0.5), cornerRadius: 15)
-        let continueButtonStyleManager = CardinalButtonStyleManager(textColor: .white, textFont: CardinalFont(name: nil, size: 16), backgroundColor: .blue, cornerRadius: 15)
-        let resendButtonStyleManager = CardinalButtonStyleManager(textColor: .white, textFont: CardinalFont(name: nil, size: 16), backgroundColor: .red, cornerRadius: 15)
-        let cancelButtonStyleManager = CardinalButtonStyleManager(textColor: .red, textFont: CardinalFont(name: nil, size: 16), backgroundColor: .green, cornerRadius: 15)
-        let textBoxStyleManager = CardinalTextBoxStyleManager(textColor: .red, textFont: CardinalFont(name: nil, size: 16), borderColor: .blue, cornerRadius: 13, borderWidth: 5)
+        let verifyButtonStyleManager = CardinalButtonStyleManager(textColor: .white, textFont: nil, backgroundColor: .black, cornerRadius: 15)
+        let continueButtonStyleManager = CardinalButtonStyleManager(textColor: .green, textFont: nil, backgroundColor: .blue, cornerRadius: 15)
+        let resendButtonStyleManager = CardinalButtonStyleManager(textColor: .black, textFont: nil, backgroundColor: nil, cornerRadius: 0)
+        let cancelButtonStyleManager = CardinalButtonStyleManager(textColor: .black, textFont: nil, backgroundColor: nil, cornerRadius: 0)
+        let textBoxStyleManager = CardinalTextBoxStyleManager(textColor: .black, textFont: nil, borderColor: .black, cornerRadius: 6, borderWidth: 1)
 
         let cardinalStyleManager = CardinalStyleManager(toolbarStyleManager: toolbarStyleManager, labelStyleManager: labelStyleManager, verifyButtonStyleManager: verifyButtonStyleManager, continueButtonStyleManager: continueButtonStyleManager, resendButtonStyleManager: resendButtonStyleManager, cancelButtonStyleManager: cancelButtonStyleManager, textBoxStyleManager: textBoxStyleManager)
 
