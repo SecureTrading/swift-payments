@@ -88,16 +88,17 @@ public final class ST3DSecureManager {
     /// Initializes an instance of the receiver
     /// - Parameter isLiveStatus: this instructs whether the 3-D Secure checks are performed using the test environment or production environment (if false 3-D Secure checks are performed using the test environment)
     /// - Parameter cardinalStyleManager: manager to set the interface style (view customization)
-    public init(isLiveStatus: Bool, cardinalStyleManager: CardinalStyleManager?) {
+    /// - Parameter cardinalDarkModeStyleManager: manager to set the interface style in dark mode
+    public init(isLiveStatus: Bool, cardinalStyleManager: CardinalStyleManager?, cardinalDarkModeStyleManager: CardinalStyleManager?) {
         self.isLiveStatus = isLiveStatus
         self.session = CardinalSession()
-        configure(cardinalStyleManager: cardinalStyleManager)
+        configure(cardinalStyleManager: cardinalStyleManager, cardinalDarkModeStyleManager: cardinalDarkModeStyleManager)
     }
 
     // MARK: - Private methods
 
     /// Configure session with env type, timeouts and UI
-    private func configure(cardinalStyleManager: CardinalStyleManager?) {
+    private func configure(cardinalStyleManager: CardinalStyleManager?, cardinalDarkModeStyleManager: CardinalStyleManager?) {
         let config = CardinalSessionConfiguration()
         config.deploymentEnvironment = isLiveStatus ? .production : .staging
         config.requestTimeout = 8000
@@ -107,6 +108,10 @@ public final class ST3DSecureManager {
         // Set various customizations here. See "iOS UI Customization" documentation for detail.
         if let cardinalStyleManager = cardinalStyleManager {
             config.uiCustomization = getUiCustomization(cardinalStyleManager: cardinalStyleManager)
+        }
+
+        if let cardinalDarkModeStyleManager = cardinalDarkModeStyleManager {
+            config.darkModeUiCustomization = getUiCustomization(cardinalStyleManager: cardinalDarkModeStyleManager)
         }
 
         config.renderType = [CardinalSessionRenderTypeOTP,
@@ -119,7 +124,7 @@ public final class ST3DSecureManager {
         session.configure(config)
     }
 
-    //swiftlint:disable cyclomatic_complexity
+    // swiftlint:disable cyclomatic_complexity
     private func getUiCustomization(cardinalStyleManager: CardinalStyleManager) -> UiCustomization {
         let ui = UiCustomization()
 
@@ -143,8 +148,10 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = toolbarStyleManager.textFont {
-                toolbarCust.textFontSize = Int32(textFont.pointSize)
-                toolbarCust.textFontName = textFont.fontName
+                toolbarCust.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    toolbarCust.textFontName = name
+                }
             }
 
             ui.setToolbar(toolbarCust)
@@ -158,8 +165,10 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = labelStyleManager.textFont {
-                labelCust.textFontSize = Int32(textFont.pointSize)
-                labelCust.textFontName = textFont.fontName
+                labelCust.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    labelCust.textFontName = name
+                }
             }
 
             if let textColor = labelStyleManager.headingTextColor {
@@ -167,8 +176,10 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = labelStyleManager.headingTextFont {
-                labelCust.headingTextFontSize = Int32(textFont.pointSize)
-                labelCust.headingTextFontName = textFont.fontName
+                labelCust.headingTextFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    labelCust.textFontName = name
+                }
             }
 
             ui.setLabel(labelCust)
@@ -182,8 +193,10 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = verifyButtonStyleManager.textFont {
-                buttonCustomization.textFontSize = Int32(textFont.pointSize)
-                buttonCustomization.textFontName = textFont.fontName
+                buttonCustomization.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    buttonCustomization.textFontName = name
+                }
             }
 
             if let backgroundColor = verifyButtonStyleManager.backgroundColor {
@@ -199,17 +212,17 @@ public final class ST3DSecureManager {
             let buttonCustomization = ButtonCustomization()
 
             if let textColor = continueButtonStyleManager.textColor {
-                let hex = textColor.hexString
                 buttonCustomization.textColor = textColor.hexString
             }
 
             if let textFont = continueButtonStyleManager.textFont {
-                buttonCustomization.textFontSize = Int32(textFont.pointSize)
-                buttonCustomization.textFontName = textFont.fontName
+                buttonCustomization.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    buttonCustomization.textFontName = name
+                }
             }
 
             if let backgroundColor = continueButtonStyleManager.backgroundColor {
-                let hex = backgroundColor.hexString
                 buttonCustomization.backgroundColor = backgroundColor.hexString
             }
 
@@ -226,8 +239,10 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = resendButtonStyleManager.textFont {
-                buttonCustomization.textFontSize = Int32(textFont.pointSize)
-                buttonCustomization.textFontName = textFont.fontName
+                buttonCustomization.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    buttonCustomization.textFontName = name
+                }
             }
 
             if let backgroundColor = resendButtonStyleManager.backgroundColor {
@@ -247,15 +262,11 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = cancelButtonStyleManager.textFont {
-                buttonCustomization.textFontSize = Int32(textFont.pointSize)
-                buttonCustomization.textFontName = textFont.fontName
+                buttonCustomization.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    buttonCustomization.textFontName = name
+                }
             }
-
-            if let backgroundColor = cancelButtonStyleManager.backgroundColor {
-                buttonCustomization.backgroundColor = backgroundColor.hexString
-            }
-
-            buttonCustomization.cornerRadius = Int32(cancelButtonStyleManager.cornerRadius)
 
             ui.setButton(buttonCustomization, buttonType: ButtonTypeCancel)
         }
@@ -268,8 +279,10 @@ public final class ST3DSecureManager {
             }
 
             if let textFont = cardinalTextBoxStyleManager.textFont {
-                textboxCustomization.textFontSize = Int32(textFont.pointSize)
-                textboxCustomization.textFontName = textFont.fontName
+                textboxCustomization.textFontSize = Int32(textFont.size)
+                if let name = textFont.name {
+                    textboxCustomization.textFontName = name
+                }
             }
 
             if let borderColor = cardinalTextBoxStyleManager.borderColor {
@@ -285,7 +298,8 @@ public final class ST3DSecureManager {
 
         return ui
     }
-    //swiftlint:enable cyclomatic_complexity
+
+    // swiftlint:enable cyclomatic_complexity
 
     // MARK: - Public methods
 
