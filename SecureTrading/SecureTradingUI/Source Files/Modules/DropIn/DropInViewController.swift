@@ -39,11 +39,6 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
         keyboard.unregister()
     }
 
-    /// - SeeAlso: BaseViewController.setupView
-    override func setupView() {
-        title = LocalizableKeys.DropInViewController.title.localizedString
-    }
-
     /// - SeeAlso: BaseViewController.setupCallbacks
     override func setupCallbacks() {
         customView.payButtonTappedClosure = { [weak self] in

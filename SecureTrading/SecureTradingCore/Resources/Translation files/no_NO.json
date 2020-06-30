@@ -2,7 +2,6 @@
   "PayButton.title": "Betal",
   "Navigation.back": "< Back",
 
-  "DropInViewController.title": "Payment",
   "DropInViewController.successfulPayment": "Betalingen er fullført",
   "DropInViewController.cardinalAuthenticationError": "Det inntraff en feil",
 

@@ -38,7 +38,6 @@ public enum LocalizableKeys {
 
     // MARK: DropIn View Controller
     public enum DropInViewController: LocalizableKey {
-        case title
         case successfulPayment
         case cardinalAuthenticationError
     }
@@ -88,7 +87,6 @@ public enum LocalizableKeys {
 
     case _navigation_back
 
-    case _dropInViewController_title
     case _dropInViewController_successfulPayment
     case _dropInViewController_cardinalAuthenticationError
 
@@ -120,7 +118,6 @@ public enum LocalizableKeys {
 
         case ._navigation_back: return LocalizableKeys.Navigation.back.key
 
-        case ._dropInViewController_title: return LocalizableKeys.DropInViewController.title.key
         case ._dropInViewController_successfulPayment: return LocalizableKeys.DropInViewController.successfulPayment.key
         case ._dropInViewController_cardinalAuthenticationError: return LocalizableKeys.DropInViewController.cardinalAuthenticationError.key
 

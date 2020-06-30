@@ -2,7 +2,6 @@
   "PayButton.title": "Pay",
   "Navigation.back": "< Back",
 
-  "DropInViewController.title": "Payment",
   "DropInViewController.successfulPayment": "Payment has been successfully processed",
   "DropInViewController.cardinalAuthenticationError": "An error occurred",
 
