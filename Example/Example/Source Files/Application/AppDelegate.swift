@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var appFlowController = AppFlowController(appFoundation: appFoundation, window: window!)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        TrustPayments.instance.configure(locale: Locale(identifier: "pl_PL"), translationsForOverride:
+        TrustPayments.instance.configure(translationsForOverride:
             [
                 Locale(identifier: "fr_FR"):
                     [
