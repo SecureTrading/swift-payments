@@ -76,7 +76,6 @@ public enum LocalizableKeys {
 
     // MARK: Alerts
     public enum Alerts: LocalizableKey {
-        case okButton
         case processing
     }
 
@@ -144,7 +143,6 @@ public enum LocalizableKeys {
 
     case _addCardButton_title
 
-    case _alerts_okButton
     case _alerts_processing
 
     case _apiError_invalidFieldPAN
@@ -205,7 +203,6 @@ public enum LocalizableKeys {
 
         case ._addCardButton_title: return LocalizableKeys.AddCardButton.title.key
 
-        case ._alerts_okButton: return LocalizableKeys.Alerts.okButton.key
         case ._alerts_processing: return LocalizableKeys.Alerts.processing.key
 
         case ._apiError_invalidFieldPAN: return LocalizableKeys.APIError.invalidFieldPAN.key
