@@ -24,6 +24,7 @@ MainViewModel.showDropInControllerWithWarningsButton = "Pay by Card form (3DSecu
 MainViewModel.showDropInControllerNo3DSecure = "Pay by Card form (no 3DSecure)";
 MainViewModel.showDropInControllerWithCustomView = "Pay by Card form (3DSec, custom view - defer init)";
 MainViewModel.payByCardFromParentReference = "Pay by 400000######2008 card (3DSecure)";
+MainViewModel.payFillCVV = "Pay (Fill CVV)";
 
 Alerts.okButton = "Ok";
 
