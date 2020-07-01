@@ -174,7 +174,7 @@ public enum APIResponseValidationError: Error {
     case missingResponse
     case missingData
     case mismatchedDescriptionTypes
-    case invalidField(code: ResponseErrorDetail)
+    case invalidField(code: ResponseErrorDetail, localizedError: String?)
     // MARK: Properties
 
     /// - SeeAlso: Error.localizedDescription
