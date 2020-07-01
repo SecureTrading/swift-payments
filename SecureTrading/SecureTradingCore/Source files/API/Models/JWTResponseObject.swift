@@ -37,15 +37,15 @@
 
     public var message: String {
         switch self {
-        case .invalidPAN: return LocalizableKeys.APIError.invalidFieldPAN.localizedStringOrEmpty
-        case .invalidSecurityCode: return LocalizableKeys.APIError.invalidFieldSecurityCode.localizedStringOrEmpty
-        case .invalidJWT: return LocalizableKeys.APIError.invalidFieldJWT.localizedStringOrEmpty
-        case .invalidExpiryDate: return LocalizableKeys.APIError.invalidFieldExpiryDate.localizedStringOrEmpty
-        case .invalidTermURL: return LocalizableKeys.APIError.invalidFieldTermsURL.localizedStringOrEmpty
-        case .invalidParentTransactionReference: return LocalizableKeys.APIError.invalidFieldParentTransactionRef.localizedStringOrEmpty
-        case .invalidSiteReference: return LocalizableKeys.APIError.invalidFieldSiteRef.localizedStringOrEmpty
-        case .invalidSubscriptionNumber: return LocalizableKeys.APIError.invalidFieldSubscriptionNo.localizedStringOrEmpty
-        case .none: return LocalizableKeys.APIError.invalidFieldUnknown.localizedStringOrEmpty
+        case .invalidPAN: return "Invalid field: PAN"
+        case .invalidSecurityCode: return "Invalid field: CVV"
+        case .invalidJWT: return "Invalid field: JWT"
+        case .invalidExpiryDate: return "Invalid field: Expiry date"
+        case .invalidTermURL: return "Invalid field: Term URL"
+        case .invalidParentTransactionReference: return "Invalid field: Parent transaction reference"
+        case .invalidSiteReference: return "Invalid field: Site reference"
+        case .invalidSubscriptionNumber: return "Invalid field: Subscription number"
+        case .none: return "Invalid field: Unknown"
         }
     }
 }

@@ -41,7 +41,14 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
 
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
-        title = LocalizableKeys.DropInViewController.title.localizedString
+        customView.setupView { [weak self] (view) in
+            guard let self = self else { return }
+            guard let dropInView = view as? DropInView else { return }
+            dropInView.cardNumberInput.isHidden = self.viewModel.isCardNumberFieldHidden
+            dropInView.cvcInput.isHidden = self.viewModel.isCVVFieldHidden
+            dropInView.expiryDateInput.isHidden = self.viewModel.isExpiryDateFieldHidden
+            (dropInView.cvcInput as? CvcInputView)?.cardType = self.viewModel.cardType
+        }
     }
 
     /// - SeeAlso: BaseViewController.setupCallbacks
@@ -89,10 +96,21 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
         viewModel.validationErrorClosure = { [weak self] _, errorCode in
             guard let self = self else { return }
             self.customView.payButton.stopProcessing()
+            // In the case of invalid field that is added to the view's hierarchy, indicate the error of invalid input view
+            // if the error relates to the input view that is not added to the view's hierarchy, then show alert
             switch errorCode {
-            case .invalidPAN: (self.customView.cardNumberInput as? CardNumberInputView)?.showHideError(show: true)
-            case .invalidSecurityCode: (self.customView.cvcInput as? CvcInputView)?.showHideError(show: true)
-            case .invalidExpiryDate: (self.customView.expiryDateInput as? ExpiryDateInputView)?.showHideError(show: true)
+            case .invalidPAN:
+                self.customView.cardNumberInput.isHidden ?
+                    self.eventTriggered?(.transactionFailure(nil, errorCode.message)) :
+                    (self.customView.cardNumberInput as? CardNumberInputView)?.showHideError(show: true)
+            case .invalidSecurityCode:
+                self.customView.cvcInput.isHidden ?
+                    self.eventTriggered?(.transactionFailure(nil, errorCode.message)) :
+                    (self.customView.cvcInput as? CvcInputView)?.showHideError(show: true)
+            case .invalidExpiryDate:
+                self.customView.expiryDateInput.isHidden ?
+                    self.eventTriggered?(.transactionFailure(nil, errorCode.message)) :
+                    (self.customView.expiryDateInput as? ExpiryDateInputView)?.showHideError(show: true)
             default: return
             }
         }

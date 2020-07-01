@@ -235,7 +235,11 @@ class YearTextField: BackwardTextField {}
 
     @objc public var text: String? {
         get {
-            return "\(monthTextField.text ?? .empty)\(separatorLabel.text ?? .empty)\(yearTextField.text ?? .empty)"
+            let text = "\(monthTextField.text ?? .empty)\(separatorLabel.text ?? .empty)\(yearTextField.text ?? .empty)"
+            if text != separatorLabel.text {
+                return text
+            }
+            return nil
         }
         set {
             guard let text = newValue else { return }
