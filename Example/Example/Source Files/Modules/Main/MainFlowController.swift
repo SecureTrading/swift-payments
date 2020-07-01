@@ -43,7 +43,8 @@ final class MainFlowController: BaseNavigationFlowController {
                     MainViewModel.Row.performAccountCheck,
                     MainViewModel.Row.performAccountCheckWithAuth,
                     MainViewModel.Row.subscriptionOnSTEngine,
-                    MainViewModel.Row.subscriptionOnMerchantEngine
+                    MainViewModel.Row.subscriptionOnMerchantEngine,
+                    MainViewModel.Row.payFillCVV
                 ]),
             MainViewModel.Section.onMerchant(rows:
                 [
@@ -74,6 +75,8 @@ final class MainFlowController: BaseNavigationFlowController {
                 self.showWalletView()
             case .didTapShowDropInControllerWithCustomView(let jwt):
                 self.showDropInViewController(jwt: jwt, handleCardinalWarnings: false, addCustomView: true)
+            case .didTapShowDropInControllerSaveCardFillCVV(let jwt):
+                self.showDropInViewController(jwt: jwt, handleCardinalWarnings: false, addCustomView: false, typeDescriptions: [.auth], visibleFields: [.securityCode3])
             }
         }
         return mainViewController
@@ -87,7 +90,7 @@ final class MainFlowController: BaseNavigationFlowController {
         push(vc, animated: true)
     }
 
-    func showDropInViewController(jwt: String, handleCardinalWarnings: Bool, addCustomView: Bool, typeDescriptions: [TypeDescription] = [.threeDQuery, .auth]) {
+    func showDropInViewController(jwt: String, handleCardinalWarnings: Bool, addCustomView: Bool, typeDescriptions: [TypeDescription] = [.threeDQuery, .auth], visibleFields: [DropInViewVisibleFields] = DropInViewVisibleFields.allCases) {
         // swiftlint:disable line_length
         let inputViewStyleManager = InputViewStyleManager(titleColor: UIColor.gray, textFieldBorderColor: UIColor.black.withAlphaComponent(0.8), textFieldBackgroundColor: .clear, textColor: .black, placeholderColor: UIColor.lightGray.withAlphaComponent(0.8), errorColor: UIColor.red.withAlphaComponent(0.8), titleFont: UIFont.systemFont(ofSize: 16, weight: .regular), textFont: UIFont.systemFont(ofSize: 16, weight: .regular), placeholderFont: UIFont.systemFont(ofSize: 16, weight: .regular), errorFont: UIFont.systemFont(ofSize: 12, weight: .regular), textFieldImage: nil, titleSpacing: 5, errorSpacing: 3, textFieldHeightMargins: HeightMargins(top: 10, bottom: 10), textFieldBorderWidth: 1, textFieldCornerRadius: 6)
 
@@ -122,10 +125,10 @@ final class MainFlowController: BaseNavigationFlowController {
 
         let isDeferInit = addCustomView
 
-        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: isDeferInit, customDropInView: customDropInView, dropInViewStyleManager: dropInViewStyleManager, cardTypeToBypass: [], cardinalStyleManager: cardinalStyleManager, cardinalDarkModeStyleManager: cardinalDarkModeStyleManager, payButtonTappedClosureBeforeTransaction: { [unowned self] controller in
-            guard let customDropInView = customDropInView else { return }
+        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: isDeferInit, customDropInView: customDropInView, visibleFields: visibleFields, dropInViewStyleManager: dropInViewStyleManager, cardTypeToBypass: [], cardinalStyleManager: cardinalStyleManager, cardinalDarkModeStyleManager: cardinalDarkModeStyleManager, payButtonTappedClosureBeforeTransaction: { [unowned self] controller in
             // updates JWT with credentialsonfile flag
-            guard let updatedJWT = self.mainViewModel?.getJwtTokenWithoutCardData(storeCard: customDropInView.isSaveCardSelected) else { return }
+            let storeCard = customDropInView?.isSaveCardSelected ?? false
+            guard let updatedJWT = self.mainViewModel?.getJwtTokenWithoutCardData(storeCard: storeCard, parentTransactionReference: jwt.parentReference) else { return }
             // update vc with new jwt
             controller.updateJWT(newValue: updatedJWT)
         }, successfulPaymentCompletion: { [unowned self] _, successMessage, cardReference in
