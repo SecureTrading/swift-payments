@@ -131,6 +131,7 @@
 		1050A955248FE5A900E84A6D /* AddCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A954248FE5A900E84A6D /* AddCardButton.swift */; };
 		1050A957248FE61800E84A6D /* AddCardButtonStyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A956248FE61800E84A6D /* AddCardButtonStyleManager.swift */; };
 		1050A959249000A300E84A6D /* STCardReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A958249000A300E84A6D /* STCardReference.swift */; };
+		10516B1824ACC5B1009A6F3A /* ScreenshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10516B1724ACC5B1009A6F3A /* ScreenshotHelper.swift */; };
 		1051D221247FEE0F008E4970 /* TestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D220247FEE0F008E4970 /* TestAPIManager.swift */; };
 		1051D22524813F66008E4970 /* TestGeneralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22424813F65008E4970 /* TestGeneralRequest.swift */; };
 		1051D22724814B4D008E4970 /* TestDecodedJWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1051D22624814B4D008E4970 /* TestDecodedJWT.swift */; };
@@ -361,6 +362,7 @@
 		1050A954248FE5A900E84A6D /* AddCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardButton.swift; sourceTree = "<group>"; };
 		1050A956248FE61800E84A6D /* AddCardButtonStyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardButtonStyleManager.swift; sourceTree = "<group>"; };
 		1050A958249000A300E84A6D /* STCardReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STCardReference.swift; sourceTree = "<group>"; };
+		10516B1724ACC5B1009A6F3A /* ScreenshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotHelper.swift; sourceTree = "<group>"; };
 		1051D220247FEE0F008E4970 /* TestAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAPIManager.swift; sourceTree = "<group>"; };
 		1051D22424813F65008E4970 /* TestGeneralRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGeneralRequest.swift; sourceTree = "<group>"; };
 		1051D22624814B4D008E4970 /* TestDecodedJWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDecodedJWT.swift; sourceTree = "<group>"; };
@@ -570,6 +572,7 @@
 			children = (
 				084E29EB24656B4E0040FB9D /* CallbackWrapper.swift */,
 				08534ED624A37E7000D2B082 /* KeyboardHelper.swift */,
+				10516B1724ACC5B1009A6F3A /* ScreenshotHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1520,6 +1523,7 @@
 				084E29FF246583E20040FB9D /* Dequeueable.swift in Sources */,
 				084E2A1D24659D6B0040FB9D /* TransparentNavigationBar.swift in Sources */,
 				10DBCEBC24990EC4005865B0 /* StyleManager.swift in Sources */,
+				10516B1824ACC5B1009A6F3A /* ScreenshotHelper.swift in Sources */,
 				0853ACA7247FB00F00DF37EE /* CvcInputView.swift in Sources */,
 				084E2A062465874B0040FB9D /* Localizable.swift in Sources */,
 				084E2A12246599FC0040FB9D /* NavigationDelegate.swift in Sources */,
