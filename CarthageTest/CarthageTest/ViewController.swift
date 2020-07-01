@@ -13,7 +13,7 @@ import SecureTradingUI
 import UIKit
 
 class ViewController: UIViewController {
-    var dropInVC: UIViewController!
+    var dropInVC: DropInController!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,10 +28,16 @@ class ViewController: UIViewController {
         let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: inputViewStyleManager, requestButtonStyleManager: payButtonStyleManager, backgroundColor: .white, spacingBeetwenInputViews: 25, insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
         // swiftlint:disable line_length
 
-        dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: "", typeDescriptions: [.threeDQuery, .auth], gatewayType: .eu, username: "", isLiveStatus: false, isDeferInit: false, dropInViewStyleManager: dropInViewStyleManager, successfulPaymentCompletion: { [unowned self] _, _ in
-        }, transactionFailure: {}, cardinalWarningsCompletion: { [unowned self] _, _ in
+        dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: "", typeDescriptions: [.threeDQuery, .auth], gatewayType: .eu, username: "", isLiveStatus: false, isDeferInit: false, customDropInView: nil, visibleFields: [], dropInViewStyleManager: dropInViewStyleManager, cardTypeToBypass: [], cardinalStyleManager: nil, cardinalDarkModeStyleManager: nil, payButtonTappedClosureBeforeTransaction: { [unowned self] controller in
+
+        }, successfulPaymentCompletion: { [unowned self] _, successMessage, cardReference in
+
+        }, transactionFailure: { [unowned self] _, errorMessage in
+
+        }, cardinalWarningsCompletion: { [unowned self] warningsMessage, _ in
+
         })
 
-        navigationController?.present(dropInVC, animated: false, completion: nil)
+        navigationController?.present(dropInVC.viewController, animated: false, completion: nil)
     }
 }
