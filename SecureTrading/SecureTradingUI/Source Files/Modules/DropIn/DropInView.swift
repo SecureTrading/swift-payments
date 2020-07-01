@@ -7,14 +7,18 @@ import UIKit
 
 @objc open class DropInView: BaseView, DropInViewProtocol {
     /// useful if you need to specify some additional validation condition when accepting the form, e.g. if the merchant wants to add an additional check box view
+    //swiftlint:disable identifier_name
     @objc public var isAdditionalValidationConditionsFullfiled: Bool = true {
         didSet {
             payButton.isEnabled = isFormValid
         }
     }
+    //swiftlint:enable identifier_name
 
     @objc public var isFormValid: Bool {
-        return cardNumberInput.isInputValid && expiryDateInput.isInputValid && cvcInput.isInputValid && isAdditionalValidationConditionsFullfiled
+        // Do not validate fields that are not added to the view's hierarchy, for example by specifying visible fields
+        let inputsToValidate = [cardNumberInput, expiryDateInput, cvcInput].filter { ($0 as? UIView)?.isHidden == false }
+        return (inputsToValidate.count == inputsToValidate.filter { $0.isInputValid }.count) && isAdditionalValidationConditionsFullfiled
     }
 
     @objc public var payButtonTappedClosure: (() -> Void)? {
@@ -149,6 +153,12 @@ extension DropInView: ViewSetupable {
         cardNumberInput.becomeFirstResponder()
 
         customizeView(dropInViewStyleManager: dropInViewStyleManager)
+    }
+
+    public func setupView(callback: ((UIView) -> Void)?) {
+        // Setting custom properties
+        callback?(self)
+        // Finished setting custom properties
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy

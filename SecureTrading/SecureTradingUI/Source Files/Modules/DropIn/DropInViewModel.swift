@@ -17,6 +17,8 @@ final class DropInViewModel {
 
     private var jwt: String
 
+    private let visibleFields: [DropInViewVisibleFields]
+
     private let typeDescriptions: [TypeDescription]
 
     var transactionSuccessClosure: ((JWTResponseObject, STCardReference?) -> Void)?
@@ -24,6 +26,19 @@ final class DropInViewModel {
     var cardinalAuthenticationErrorClosure: (() -> Void)?
     var validationErrorClosure: ((String, ResponseErrorDetail) -> Void)?
     var cardinalWarningsCompletion: ((String, [CardinalInitWarnings]) -> Void)?
+
+    var isCardNumberFieldHidden: Bool {
+        return !visibleFields.contains(.pan)
+    }
+    var isCVVFieldHidden: Bool {
+        return !(visibleFields.contains(.securityCode3) || visibleFields.contains(.securityCode4))
+    }
+    var isExpiryDateFieldHidden: Bool {
+        return !visibleFields.contains(.expiryDate)
+    }
+    var cardType: CardType {
+        return visibleFields.contains(.securityCode4) ? .amex : .unknown
+    }
 
     // MARK: Initialization
 
@@ -38,9 +53,11 @@ final class DropInViewModel {
     /// - Parameter cardTypeToBypass: the collection of cards for which 3dsecure is to be bypassed
     /// - Parameter cardinalStyleManager: manager to set the interface style (view customization)
     /// - Parameter cardinalDarkModeStyleManager: manager to set the interface style in dark mode
-    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool, cardTypeToBypass: [CardType], cardinalStyleManager: CardinalStyleManager?, cardinalDarkModeStyleManager: CardinalStyleManager?) {
+    /// - Parameter visibleFields: specify which input fields should be visible
+    init(jwt: String, typeDescriptions: [TypeDescription], gatewayType: GatewayType, username: String, isLiveStatus: Bool, isDeferInit: Bool, cardTypeToBypass: [CardType], cardinalStyleManager: CardinalStyleManager?, cardinalDarkModeStyleManager: CardinalStyleManager?, visibleFields: [DropInViewVisibleFields] = DropInViewVisibleFields.allCases) {
         self.jwt = jwt
         self.typeDescriptions = typeDescriptions
+        self.visibleFields = visibleFields
 
         self.paymentTransactionManager = PaymentTransactionManager(jwt: jwt, gatewayType: gatewayType, username: username, isLiveStatus: isLiveStatus, isDeferInit: isDeferInit, cardTypeToBypass: cardTypeToBypass, cardinalStyleManager: cardinalStyleManager, cardinalDarkModeStyleManager: cardinalDarkModeStyleManager)
     }
@@ -66,10 +83,9 @@ final class DropInViewModel {
     /// - Returns: result of validation
     @discardableResult
     func validateForm(view: DropInViewProtocol) -> Bool {
-        let cardNumberValidationResult = view.cardNumberInput.validate(silent: false)
-        let expiryDateValidationResult = view.expiryDateInput.validate(silent: false)
-        let cvcValidationResult = view.cvcInput.validate(silent: false)
-        return cardNumberValidationResult && expiryDateValidationResult && cvcValidationResult && view.isFormValid
+        // validate only fields that are added to the view's hierarchy
+        let viewsToValidate = [view.cardNumberInput, view.expiryDateInput, view.cvcInput].filter { ($0 as? BaseView)?.isHidden == false }
+        return viewsToValidate.count == viewsToValidate.filter { $0.validate(silent: false) }.count && view.isFormValid
     }
 
     // MARK: Helpers
@@ -79,4 +95,11 @@ final class DropInViewModel {
     func updateJWT(newValue: String) {
         jwt = newValue
     }
+}
+
+@objc public enum DropInViewVisibleFields: Int, CaseIterable {
+    case pan = 0
+    case expiryDate
+    case securityCode3
+    case securityCode4
 }

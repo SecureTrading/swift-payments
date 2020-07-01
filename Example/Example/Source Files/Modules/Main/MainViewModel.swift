@@ -42,7 +42,7 @@ final class MainViewModel {
     // MARK: Functions
 
     /// Returns JWT without card data as a String
-    func getJwtTokenWithoutCardData(storeCard: Bool = false) -> String? {
+    func getJwtTokenWithoutCardData(storeCard: Bool = false, parentTransactionReference: String? = nil) -> String? {
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
                              payload: Payload(accounttypedescription: "ECOM",
@@ -186,6 +186,18 @@ final class MainViewModel {
         performTransaction(with: jwt, typeDescriptions: [.threeDQuery, .auth], card: Card(cardNumber: nil, securityCode: CVC(rawValue: "123"), expiryDate: nil))
     }
 
+    func getJwtTokenWithParentReference() -> String? {
+        let claim = STClaims(iss: keys.merchantUsername,
+                             iat: Date(timeIntervalSinceNow: 0),
+                             payload: Payload(accounttypedescription: "ECOM",
+                                              sitereference: keys.merchantSiteReference,
+                                              currencyiso3a: "GBP",
+                                              baseamount: 1050,
+                                              parenttransactionreference: "57-9-106428"))
+        guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return nil }
+        return jwt
+    }
+
     func performTransaction(with jwt: String, typeDescriptions: [TypeDescription], card: Card? = nil, responseHandler: ((_ cardReference: STCardReference) -> Void)? = nil) {
         paymentTransactionManager.performTransaction(jwt: jwt, typeDescriptions: typeDescriptions, card: card, transactionSuccessClosure: { _, cardReference in
             if let customResponseHandler = responseHandler, let cardRef = cardReference {
@@ -244,6 +256,7 @@ extension MainViewModel {
         case payByCardFromParentReference
         case subscriptionOnSTEngine
         case subscriptionOnMerchantEngine
+        case payFillCVV
 
         var title: String {
             switch self {
@@ -277,6 +290,8 @@ extension MainViewModel {
                 return Localizable.MainViewModel.showDropInControllerWithCustomView.text
             case .payByCardFromParentReference:
                 return Localizable.MainViewModel.payByCardFromParentReference.text
+            case .payFillCVV:
+                return Localizable.MainViewModel.payFillCVV.text
             }
         }
 
@@ -351,6 +366,8 @@ extension MainViewModel {
                 return nil
             case .payByCardFromParentReference:
                 return nil
+            case .payFillCVV:
+                return nil
             }
         }
     }
@@ -395,5 +412,6 @@ fileprivate extension Localizable {
         case subscriptionOnSTEngine
         case subscriptionOnMerchantEngine
         case payByCardFromParentReference
+        case payFillCVV
     }
 }
