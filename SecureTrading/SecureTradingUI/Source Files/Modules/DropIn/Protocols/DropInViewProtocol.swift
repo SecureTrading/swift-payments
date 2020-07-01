@@ -19,4 +19,6 @@ import UIKit
     @objc var cvcInput: CvcInput { get }
 
     @objc var payButton: PayButtonProtocol { get }
+
+    @objc func setupView(callback: ((UIView) -> Void)?)
 }

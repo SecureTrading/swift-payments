@@ -112,6 +112,15 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
     /// - SeeAlso: BaseViewController.setupProperties
     override func setupProperties() {
         keyboard.register(target: self)
+
+        customView.setupView { [weak self] (view) in
+            guard let self = self else { return }
+            guard let dropInView = view as? DropInView else { return }
+            dropInView.cardNumberInput.isHidden = self.viewModel.isCardNumberFieldHidden
+            dropInView.cvcInput.isHidden = self.viewModel.isCVVFieldHidden
+            dropInView.expiryDateInput.isHidden = self.viewModel.isExpiryDateFieldHidden
+            (dropInView.cvcInput as? CvcInputView)?.cardType = self.viewModel.cardType
+        }
     }
 
 }

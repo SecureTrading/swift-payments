@@ -39,7 +39,6 @@ final class WalletViewController: BaseViewController<WalletView, WalletViewModel
             let inputViewStyleManager = InputViewStyleManager.default()
             let addCardButtonStyleManager = AddCardButtonStyleManager.default()
             let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: inputViewStyleManager,
-                                                                visibleFields: DropInViewVisibleFields.allCases,
                                                                 requestButtonStyleManager: addCardButtonStyleManager,
                                                                 backgroundColor: .white,
                                                                 spacingBeetwenInputViews: 25,

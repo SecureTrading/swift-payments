@@ -4,9 +4,6 @@
 //
 
 import UIKit
-#if !COCOAPODS
-import SecureTradingCard
-#endif
 
 @objc open class DropInView: BaseView, DropInViewProtocol {
     /// useful if you need to specify some additional validation condition when accepting the form, e.g. if the merchant wants to add an additional check box view
@@ -53,12 +50,6 @@ import SecureTradingCard
     }()
 
     @objc public lazy var stackView: UIStackView = {
-        if let styleManager = dropInViewStyleManager {
-            cardNumberInput.isHidden = styleManager.visibleFields.contains(.pan) ? false : true
-            expiryDateInput.isHidden = styleManager.visibleFields.contains(.expiryDate) ? false : true
-            cvcInput.isHidden = (styleManager.visibleFields.contains(.securityCode3) || styleManager.visibleFields.contains(.securityCode4)) ? false : true
-            (cvcInput as? CvcInputView)?.cardType = styleManager.visibleFields.contains(.securityCode4) ? CardType.amex : CardType.unknown
-        } 
         let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, payButton])
         stackView.axis = .vertical
         stackView.spacing = spacingBeetwenInputViews
@@ -162,6 +153,12 @@ extension DropInView: ViewSetupable {
         cardNumberInput.becomeFirstResponder()
 
         customizeView(dropInViewStyleManager: dropInViewStyleManager)
+    }
+
+    public func setupView(callback: ((UIView) -> Void)?) {
+        // Setting custom properties
+        callback?(self)
+        // Finished setting custom properties
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
