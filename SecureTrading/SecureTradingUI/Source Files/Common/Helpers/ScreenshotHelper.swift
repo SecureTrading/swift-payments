@@ -15,10 +15,13 @@ extension ScreenshotHelper {
 /// A helper class that adds and removes overlay view on top of the current window
 /// in the case of switching of the app between background/foreground modes
 class ScreenshotHelper {
+    private let topView: UIView
     private var coveringView: UIView?
     private var coveringStyle: CoveringStyle = .blur
 
-    init() { }
+    init(topView: UIView) {
+        self.topView = topView
+    }
 
     func register(coveringStyle: CoveringStyle = .blur) {
         self.coveringStyle = coveringStyle
@@ -36,8 +39,6 @@ class ScreenshotHelper {
     @objc private func willDisappear(_ notification: NSNotification) {
         // Add overlay
 
-        // get top view
-        guard let topView = UIApplication.shared.windows.first(where: {$0.isKeyWindow})?.rootViewController?.view else { return }
         switch coveringStyle {
         case .blur:
             let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)

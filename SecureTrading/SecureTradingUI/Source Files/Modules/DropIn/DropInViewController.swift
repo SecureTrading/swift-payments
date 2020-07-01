@@ -27,7 +27,7 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
     var eventTriggered: ((Event) -> Void)?
 
     var keyboard: KeyboardHelper = KeyboardHelper()
-    var screenshot: ScreenshotHelper = ScreenshotHelper()
+    lazy var screenshot: ScreenshotHelper = ScreenshotHelper(topView: self.view)
 
     // MARK: Lifecycle
 
