@@ -4,13 +4,37 @@
 //
 
 import Foundation
+import TrustKit
 
 /// SDK Initialization singleton class, used for global settings, like Locale, custom translation
 @objc public final class TrustPayments: NSObject {
-
     /// Use to set global values
     @objc public static let instance: TrustPayments = TrustPayments()
-    private override init() { }
+    private override init() {
+        // todo
+        let trustKitConfig = [
+            kTSKPinnedDomains: [
+                GatewayType.eu.host: [
+                    kTSKEnforcePinning: true,
+                    kTSKIncludeSubdomains: true,
+                    kTSKPublicKeyHashes: [
+                        "public key 1",
+                        "public key 2"
+                    ]
+                ],
+                GatewayType.us.host: [
+                    kTSKEnforcePinning: true,
+                    kTSKIncludeSubdomains: true,
+                    kTSKPublicKeyHashes: [
+                        "public key 1",
+                        "public key 2"
+                    ]
+                ]
+            ]
+        ] as [String: Any]
+
+        TrustKit.initSharedInstance(withConfiguration: trustKitConfig)
+    }
 
     /// Reference to Localizable object
     private var localizable: Localizable?
@@ -58,5 +82,4 @@ import Foundation
         }
         return TrustPayments.instance.localizable!.localizedString(for: key)
     }
-
 }
