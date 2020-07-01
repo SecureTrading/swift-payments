@@ -12,7 +12,7 @@ final class DefaultAPIClient: APIClient {
     let configuration: APIClientConfiguration
 
     /// An instance of url session perfoming requests.
-    private let urlSession: URLSession
+    private var urlSession: URLSession
 
     /// Default HTTP request headers.
     private var defaultRequestHeaders: [String: String] {
@@ -26,8 +26,14 @@ final class DefaultAPIClient: APIClient {
     /// - Parameters:
     ///   - configuration: A base configuration of the client
     ///   - urlSession: URL session as a main interface for performing requests.
-    init(configuration: APIClientConfiguration, urlSession: URLSession) {
+    init(configuration: APIClientConfiguration, urlSession: URLSession = .shared) {
         self.configuration = configuration
+        self.urlSession = urlSession
+    }
+
+    /// set url session
+    /// - Parameter urlSession: URL session as a main interface for performing requests.
+    func setSession(urlSession: URLSession) {
         self.urlSession = urlSession
     }
 

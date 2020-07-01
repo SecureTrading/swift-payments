@@ -11,7 +11,7 @@ import TrustKit
     /// Use to set global values
     @objc public static let instance: TrustPayments = TrustPayments()
     private override init() {
-        // todo
+        // todo - set backup pins
         let trustKitConfig = [
             kTSKSwizzleNetworkDelegates: false,
             kTSKPinnedDomains: [
