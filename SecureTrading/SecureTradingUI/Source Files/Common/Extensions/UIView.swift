@@ -307,4 +307,20 @@ extension UIView {
             self.layer.borderWidth = 2
         }
     }
+
+    // Using a function since `var image` might conflict with an existing variable
+    // (like on `UIImageView`)
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
+
+    func asHierarchyImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            drawHierarchy(in: bounds, afterScreenUpdates: true)
+        }
+    }
 }

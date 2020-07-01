@@ -27,12 +27,23 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
     var eventTriggered: ((Event) -> Void)?
 
     var keyboard: KeyboardHelper = KeyboardHelper()
+    lazy var screenshot: ScreenshotHelper = ScreenshotHelper(topView: self.view)
 
     // MARK: Lifecycle
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.handleCardinalWarnings()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        screenshot.register(coveringStyle: .image(view.asHierarchyImage()))
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        screenshot.unregister()
     }
 
     deinit {
