@@ -93,17 +93,17 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
             // if the error relates to the input view that is not added to the view's hierarchy, then show alert
             switch errorCode {
             case .invalidPAN:
-                self.customView.cardNumberInput.hasSuperview ?
-                    (self.customView.cardNumberInput as? CardNumberInputView)?.showHideError(show: true) :
-                    self.eventTriggered?(.transactionFailure(nil, errorCode.message))
+                self.customView.cardNumberInput.isHidden ?
+                    self.eventTriggered?(.transactionFailure(nil, errorCode.message)) :
+                    (self.customView.cardNumberInput as? CardNumberInputView)?.showHideError(show: true)
             case .invalidSecurityCode:
-                self.customView.cvcInput.hasSuperview ?
-                    (self.customView.cvcInput as? CvcInputView)?.showHideError(show: true) :
-                    self.eventTriggered?(.transactionFailure(nil, errorCode.message))
+                self.customView.cvcInput.isHidden ?
+                    self.eventTriggered?(.transactionFailure(nil, errorCode.message)) :
+                    (self.customView.cvcInput as? CvcInputView)?.showHideError(show: true)
             case .invalidExpiryDate:
-                self.customView.expiryDateInput.hasSuperview ?
-                    (self.customView.expiryDateInput as? ExpiryDateInputView)?.showHideError(show: true) :
-                    self.eventTriggered?(.transactionFailure(nil, errorCode.message))
+                self.customView.expiryDateInput.isHidden ?
+                    self.eventTriggered?(.transactionFailure(nil, errorCode.message)) :
+                    (self.customView.expiryDateInput as? ExpiryDateInputView)?.showHideError(show: true)
             default: return
             }
         }

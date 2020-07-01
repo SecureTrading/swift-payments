@@ -20,7 +20,7 @@ import SecureTradingCard
 
     @objc public var isFormValid: Bool {
         // Do not validate fields that are not added to the view's hierarchy, for example by specifying visible fields
-        let inputsToValidate = [cardNumberInput, expiryDateInput, cvcInput].filter { ($0 as? UIView)?.hasSuperview == true }
+        let inputsToValidate = [cardNumberInput, expiryDateInput, cvcInput].filter { ($0 as? UIView)?.isHidden == false }
         return (inputsToValidate.count == inputsToValidate.filter { $0.isInputValid }.count) && isAdditionalValidationConditionsFullfiled
     }
 
@@ -53,27 +53,13 @@ import SecureTradingCard
     }()
 
     @objc public lazy var stackView: UIStackView = {
-        var visibleFields: [UIView] = []
         if let styleManager = dropInViewStyleManager {
-            if styleManager.visibleFields.contains(.pan) {
-                visibleFields.append(cardNumberInput)
-            }
-            if styleManager.visibleFields.contains(.expiryDate) {
-                visibleFields.append(expiryDateInput)
-            }
-            if styleManager.visibleFields.contains(.securityCode3) {
-                (cvcInput as? CvcInputView)?.cardType = CardType.visa
-                visibleFields.append(cvcInput)
-            }
-            if styleManager.visibleFields.contains(.securityCode4) {
-                (cvcInput as? CvcInputView)?.cardType = CardType.amex
-                visibleFields.append(cvcInput)
-            }
-        } else {
-            visibleFields = [cardNumberInput, expiryDateInput, cvcInput]
-        }
-        visibleFields.append(payButton)
-        let stackView = UIStackView(arrangedSubviews: visibleFields)
+            cardNumberInput.isHidden = styleManager.visibleFields.contains(.pan) ? false : true
+            expiryDateInput.isHidden = styleManager.visibleFields.contains(.expiryDate) ? false : true
+            cvcInput.isHidden = (styleManager.visibleFields.contains(.securityCode3) || styleManager.visibleFields.contains(.securityCode4)) ? false : true
+            (cvcInput as? CvcInputView)?.cardType = styleManager.visibleFields.contains(.securityCode4) ? CardType.amex : CardType.unknown
+        } 
+        let stackView = UIStackView(arrangedSubviews: [cardNumberInput, expiryDateInput, cvcInput, payButton])
         stackView.axis = .vertical
         stackView.spacing = spacingBeetwenInputViews
         stackView.alignment = .fill
