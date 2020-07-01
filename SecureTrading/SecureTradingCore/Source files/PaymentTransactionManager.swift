@@ -138,11 +138,11 @@ import Foundation
             switch error {
             case .responseValidationError(let responseError):
                 switch responseError {
-                case .invalidField(let errorCode):
+                case .invalidField(let errorCode, let localizedError):
                     switch errorCode {
                     case .invalidPAN, .invalidSecurityCode, .invalidExpiryDate:
                         validationError(responseError.localizedDescription, errorCode)
-                    default: transactionError(nil, error.humanReadableDescription)
+                    default: transactionError(nil, localizedError ?? errorCode.message)
                     }
 
                 default:

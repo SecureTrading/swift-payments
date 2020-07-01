@@ -16,8 +16,8 @@ struct ResponseError: APIResponse {
         if response.errorCode == ResponseErrorCode.fieldError.rawValue {
             // Other fields are not validated before Gateway and are handled by proper Response object
             switch response.errorData {
-            case "jwt": errorMessage = APIResponseValidationError.invalidField(code: .invalidJWT).localizedDescription
-            case "sitereference": errorMessage = APIResponseValidationError.invalidField(code: .invalidSiteReference).localizedDescription
+            case "jwt": errorMessage = APIResponseValidationError.invalidField(code: .invalidJWT, localizedError: response.localizedError).localizedDescription
+            case "sitereference": errorMessage = APIResponseValidationError.invalidField(code: .invalidSiteReference, localizedError: response.localizedError).localizedDescription
             default: break
             }
         }

@@ -186,8 +186,8 @@ public enum APIResponseValidationError: Error {
             return "Missing data."
         case .mismatchedDescriptionTypes:
             return "Unexpected description types in response."
-        case .invalidField(let code):
-            return code.message
+        case .invalidField(let code, let localizedError):
+            return localizedError ?? code.message
         }
     }
 
@@ -199,7 +199,7 @@ public enum APIResponseValidationError: Error {
         case .missingData: return 12_200
         case .missingResponse: return 12_300
         case .unacceptableStatusCode: return 12_400
-        case .invalidField(let responseErrorDetail): return responseErrorDetail.rawValue
+        case .invalidField(let responseErrorDetail, _): return responseErrorDetail.rawValue
         }
     }
 }
