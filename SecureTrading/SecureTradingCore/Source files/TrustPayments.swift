@@ -23,8 +23,7 @@ import Foundation
     ///   - translationsForOverride: A dictionary of custom translations, overrides default values
     ///   - refer to LocalizableKeys for possible keys
     public func configure(locale: Locale = Locale.current, translationsForOverride: [Locale: [String: String]]?) {
-        let resolvedLocale = resolveLocaleIdentifier(locale: locale)
-        localizable = Localizable(locale: resolvedLocale)
+        localizable = Localizable(locale: locale)
         if let customTranslations = translationsForOverride {
             localizable?.overrideLocalizedKeys(with: customTranslations)
         }
@@ -59,17 +58,4 @@ import Foundation
         }
         return TrustPayments.instance.localizable!.localizedString(for: key)
     }
-
-    // MARK: - Helper methods
-    /// Language code in given Locale is based on supported localizations by the main application
-    /// in the case of missing Apple's way localized files, en is selected as default
-    /// This method resolve locale identifier based on prefered language and region code
-    /// - Parameter locale: Locale for which translations should be resolved
-    /// - Returns: Locale made of prefered language and region
-    private func resolveLocaleIdentifier(locale: Locale) -> Locale {
-        guard let preferedLanguageCode = Locale.preferredLanguages.first?.components(separatedBy: "-").first else { return locale }
-        guard let regionCode = locale.regionCode else { return locale }
-        return Locale(identifier: preferedLanguageCode + "_" + regionCode)
-    }
-
 }
