@@ -1403,7 +1403,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/../Carthage/Build/iOS/TrustKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TrustKit.framework",
 			);
 			name = "Copy frameworks";
 			outputFileListPaths = (
