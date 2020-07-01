@@ -19,24 +19,24 @@ import TrustKit
                     kTSKEnforcePinning: true,
                     kTSKIncludeSubdomains: true,
                     kTSKPublicKeyHashes: [
-                        "public key 1",
-                        "public key 2"
+                        "kCv4KV+TUcfQ7XFk1Hk4oF2JlFRk9fObpVuZCKCZ/mk=",
+                        "kCv4KV+TUcfQ7XFk1Hk4oF2JlFRk9fObpVuZCKCZ/mP=" // todo update
                     ]
                 ],
                 GatewayType.euBackup.host: [
                     kTSKEnforcePinning: true,
                     kTSKIncludeSubdomains: true,
                     kTSKPublicKeyHashes: [
-                        "public key 1",
-                        "public key 2"
+                        "ZUx6EfJmVvDvoioQBPfjlWssKuu4S4Wkn8KOXQEeQSo=",
+                        "ZUx6EfJmVvDvoioQBPfjlWssKuu4S4Wkn8KOXQEeQSG=" // todo update
                     ]
                 ],
                 GatewayType.us.host: [
                     kTSKEnforcePinning: true,
                     kTSKIncludeSubdomains: true,
                     kTSKPublicKeyHashes: [
-                        "public key 1",
-                        "public key 2"
+                        "3yBX4bueFPIjR7Ek9Wkf1WQsUA91ITX3okf2IMkyBGc=",
+                        "3yBX4bueFPIjR7Ek9Wkf1WQsUA91ITX3okf2IMkyBGF=" // todo update
                     ]
                 ]
             ]
