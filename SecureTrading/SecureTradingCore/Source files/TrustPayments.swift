@@ -13,8 +13,17 @@ import TrustKit
     private override init() {
         // todo
         let trustKitConfig = [
+            kTSKSwizzleNetworkDelegates: false,
             kTSKPinnedDomains: [
                 GatewayType.eu.host: [
+                    kTSKEnforcePinning: true,
+                    kTSKIncludeSubdomains: true,
+                    kTSKPublicKeyHashes: [
+                        "public key 1",
+                        "public key 2"
+                    ]
+                ],
+                GatewayType.euBackup.host: [
                     kTSKEnforcePinning: true,
                     kTSKIncludeSubdomains: true,
                     kTSKPublicKeyHashes: [
