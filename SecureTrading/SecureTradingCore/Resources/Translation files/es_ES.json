@@ -1,58 +1,27 @@
 {
   "PayButton.title": "Pagar",
-  "Navigation.back": "< Back",
 
-  "DropInViewController.title": "Payment",
   "DropInViewController.successfulPayment": "El pago se ha procesado correctamente",
   "DropInViewController.cardinalAuthenticationError": "Se ha producido un error",
 
   "CardNumberInputView.title": "Número de tarjeta",
   "CardNumberInputView.placeholder": "xxxx xxxx xxxx xxxx",
-  "CardNumberInputView.error": "Invalid card number",
-  "CardNumberInputView.emptyError": "Número de tarjeta is required",
+  "CardNumberInputView.error": "Campo no válido",
+  "CardNumberInputView.emptyError": "Campo no válido",
 
   "CvcInputView.title": "Código de seguridad",
   "CvcInputView.placeholder3": "***",
   "CvcInputView.placeholder4": "****",
-  "CvcInputView.placeholderPiba": "N/A",
-  "CvcInputView.error": "Invalid security code",
-  "CvcInputView.emptyError": "Código de seguridad is required",
+  "CvcInputView.placeholderPiba": "",
+  "CvcInputView.error": "Campo no válido",
+  "CvcInputView.emptyError": "Campo no válido",
 
   "ExpiryDateInputView.title": "Fecha de vencimiento",
   "ExpiryDateInputView.placeholder": "MM/YY",
-  "ExpiryDateInputView.error": "Invalid expiry date",
-  "ExpiryDateInputView.emptyError": "Fecha de vencimiento is required",
+  "ExpiryDateInputView.error": "Campo no válido",
+  "ExpiryDateInputView.emptyError": "Campo no válido",
 
   "AddCardButton.title": "Add card",
 
-  "Alerts.okButton": "Ok",
   "Alerts.processing": "Procesando",
-
-  "APIError.invalidFieldPAN": "Campo no válido: PAN",
-  "APIError.invalidFieldSecurityCode": "Campo no válido: Código de seguridad",
-  "APIError.invalidFieldJWT": "Campo no válido: JWT",
-  "APIError.invalidFieldExpiryDate": "Campo no válido: Fecha de vencimiento",
-  "APIError.invalidFieldTermsURL": "Campo no válido: Term URL",
-  "APIError.invalidFieldParentTransactionRef": "Campo no válido: Parent transaction reference",
-  "APIError.invalidFieldSiteRef": "Campo no válido: Site reference",
-  "APIError.invalidFieldSubscriptionNo": "Campo no válido: Subscription number",
-  "APIError.invalidFieldUnknown": "Campo no válido: Unknown",
-
-  "APIError.failedToBuildURLRequest": "Failed to build URL request",
-  "APIError.connectionFailure": "Connection failure",
-  "APIError.failedToValidateURLResponse": "Failed to validate URL response",
-  "APIError.failedToParseURLResponse": "Failed to parse URL response",
-  "APIError.unknownNetworkError": "An unknown network error has occurred.",
-  "APIError.jwtDecodingInvalidBase64": "JWT decoding: invalid base64",
-  "APIError.jwtDecodingInvalidJSON": "JWT decoding: invalid JSON",
-  "APIError.jwtDecodingIncorrectComponentNumber": "JWT decoding: number of parts does not equal 3",
-  "APIError.inaccessible": "Failed to receive a response for request after given retries",
-  "APIError.urlError": "URL Error",
-
-  "APIError.unsupportedStatusCode": "Unsupported status code",
-  "APIError.missingData": "Missing data.",
-  "APIError.unexpectedDescriptionTypesInResponse": "Unexpected description types in response.",
-
-  "APIError.missingResponseData": "Missing response data",
-  "APIError.unknown": "Unknown"
 }

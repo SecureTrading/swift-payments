@@ -58,5 +58,4 @@ import Foundation
         }
         return TrustPayments.instance.localizable!.localizedString(for: key)
     }
-
 }

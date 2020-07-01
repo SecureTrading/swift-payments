@@ -41,8 +41,6 @@ final class DropInViewController: BaseViewController<DropInViewProtocol, DropInV
 
     /// - SeeAlso: BaseViewController.setupView
     override func setupView() {
-        title = LocalizableKeys.DropInViewController.title.localizedString
-
         customView.setupView { [weak self] (view) in
             guard let self = self else { return }
             guard let dropInView = view as? DropInView else { return }

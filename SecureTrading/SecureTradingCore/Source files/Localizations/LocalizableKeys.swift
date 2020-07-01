@@ -14,7 +14,7 @@ public extension LocalizableKey {
     }
 
     /// Used to shorten slightly notation
-    /// TrustPayments.translation(for: LocalizableKeys.Navigation.back) -> LocalizableKeys.Navigation.back.localizedString
+    /// TrustPayments.translation(for: LocalizableKeys.PayButton.title) -> LocalizableKeys.PayButton.title.localizedString
     var localizedString: String? {
         TrustPayments.translation(for: self)
     }
@@ -31,14 +31,8 @@ public enum LocalizableKeys {
         case title
     }
 
-    // MARK: Navigation
-    public enum Navigation: LocalizableKey {
-        case back
-    }
-
     // MARK: DropIn View Controller
     public enum DropInViewController: LocalizableKey {
-        case title
         case successfulPayment
         case cardinalAuthenticationError
     }
@@ -76,40 +70,7 @@ public enum LocalizableKeys {
 
     // MARK: Alerts
     public enum Alerts: LocalizableKey {
-        case okButton
         case processing
-    }
-
-    // MARK: APIError
-    public enum APIError: LocalizableKey {
-        case invalidFieldPAN
-        case invalidFieldSecurityCode
-        case invalidFieldJWT
-        case invalidFieldExpiryDate
-        case invalidFieldTermsURL
-        case invalidFieldParentTransactionRef
-        case invalidFieldSiteRef
-        case invalidFieldSubscriptionNo
-        case invalidFieldUnknown
-
-        case failedToBuildURLRequest
-        case connectionFailure
-        case failedToValidateURLResponse
-        case failedToParseURLResponse
-        case unknownNetworkError
-        case jwtDecodingInvalidBase64
-        case jwtDecodingInvalidJSON
-        case jwtDecodingIncorrectComponentNumber
-        case inaccessible
-        case urlError
-
-        case unsupportedStatusCode
-        case missingData
-        case unexpectedDescriptionTypesInResponse
-
-        case missingResponseData
-        case unknown
-
     }
 }
 
@@ -119,9 +80,6 @@ public enum LocalizableKeys {
     // underscores used for clarity: _payButton_title -> LocalizableKeysObjc_payButton_title
     case _payButton_title = 0
 
-    case _navigation_back
-
-    case _dropInViewController_title
     case _dropInViewController_successfulPayment
     case _dropInViewController_cardinalAuthenticationError
 
@@ -144,45 +102,13 @@ public enum LocalizableKeys {
 
     case _addCardButton_title
 
-    case _alerts_okButton
     case _alerts_processing
-
-    case _apiError_invalidFieldPAN
-    case _apiError_invalidFieldSecurityCode
-    case _apiError_invalidFieldJWT
-    case _apiError_invalidFieldExpiryDate
-    case _apiError_invalidFieldTermsURL
-    case _apiError_invalidFieldParentTransactionRef
-    case _apiError_invalidFieldSiteRef
-    case _apiError_invalidFieldSubscriptionNo
-    case _apiError_invalidFieldUnknown
-
-    case _apiError_failedToBuildURLRequest
-    case _apiError_connectionFailure
-    case _apiError_failedToValidateURLResponse
-    case _apiError_failedToParseURLResponse
-    case _apiError_unknownNetworkError
-    case _apiError_jwtDecodingInvalidBase64
-    case _apiError_jwtDecodingInvalidJSON
-    case _apiError_jwtDecodingIncorrectComponentNumber
-    case _apiError_inaccessible
-    case _apiError_urlError
-
-    case _apiError_unsupportedStatusCode
-    case _apiError_missingData
-    case _apiError_unexpectedDescriptionTypesInResponse
-
-    case _apiError_missingResponseData
-    case _apiError_unknown
 
     /// Used for mapping objc enum into TranslationsKeys
     var code: String {
         switch self {
         case ._payButton_title: return LocalizableKeys.PayButton.title.key
 
-        case ._navigation_back: return LocalizableKeys.Navigation.back.key
-
-        case ._dropInViewController_title: return LocalizableKeys.DropInViewController.title.key
         case ._dropInViewController_successfulPayment: return LocalizableKeys.DropInViewController.successfulPayment.key
         case ._dropInViewController_cardinalAuthenticationError: return LocalizableKeys.DropInViewController.cardinalAuthenticationError.key
 
@@ -205,36 +131,7 @@ public enum LocalizableKeys {
 
         case ._addCardButton_title: return LocalizableKeys.AddCardButton.title.key
 
-        case ._alerts_okButton: return LocalizableKeys.Alerts.okButton.key
         case ._alerts_processing: return LocalizableKeys.Alerts.processing.key
-
-        case ._apiError_invalidFieldPAN: return LocalizableKeys.APIError.invalidFieldPAN.key
-        case ._apiError_invalidFieldSecurityCode: return LocalizableKeys.APIError.invalidFieldSecurityCode.key
-        case ._apiError_invalidFieldJWT: return LocalizableKeys.APIError.invalidFieldJWT.key
-        case ._apiError_invalidFieldExpiryDate: return LocalizableKeys.APIError.invalidFieldExpiryDate.key
-        case ._apiError_invalidFieldTermsURL: return LocalizableKeys.APIError.invalidFieldTermsURL.key
-        case ._apiError_invalidFieldParentTransactionRef: return LocalizableKeys.APIError.invalidFieldParentTransactionRef.key
-        case ._apiError_invalidFieldSiteRef: return LocalizableKeys.APIError.invalidFieldSiteRef.key
-        case ._apiError_invalidFieldSubscriptionNo: return LocalizableKeys.APIError.invalidFieldSubscriptionNo.key
-        case ._apiError_invalidFieldUnknown: return LocalizableKeys.APIError.invalidFieldUnknown.key
-
-        case ._apiError_failedToBuildURLRequest: return LocalizableKeys.APIError.failedToBuildURLRequest.key
-        case ._apiError_connectionFailure: return LocalizableKeys.APIError.connectionFailure.key
-        case ._apiError_failedToValidateURLResponse: return LocalizableKeys.APIError.failedToValidateURLResponse.key
-        case ._apiError_failedToParseURLResponse: return LocalizableKeys.APIError.failedToParseURLResponse.key
-        case ._apiError_unknownNetworkError: return LocalizableKeys.APIError.unknownNetworkError.key
-        case ._apiError_jwtDecodingInvalidBase64: return LocalizableKeys.APIError.jwtDecodingInvalidBase64.key
-        case ._apiError_jwtDecodingInvalidJSON: return LocalizableKeys.APIError.jwtDecodingInvalidJSON.key
-        case ._apiError_jwtDecodingIncorrectComponentNumber: return LocalizableKeys.APIError.jwtDecodingIncorrectComponentNumber.key
-        case ._apiError_inaccessible: return LocalizableKeys.APIError.inaccessible.key
-        case ._apiError_urlError: return LocalizableKeys.APIError.urlError.key
-
-        case ._apiError_unsupportedStatusCode: return LocalizableKeys.APIError.unsupportedStatusCode.key
-        case ._apiError_missingData: return LocalizableKeys.APIError.missingData.key
-        case ._apiError_unexpectedDescriptionTypesInResponse: return LocalizableKeys.APIError.unexpectedDescriptionTypesInResponse.key
-
-        case ._apiError_missingResponseData: return LocalizableKeys.APIError.missingResponseData.key
-        case ._apiError_unknown: return LocalizableKeys.APIError.unknown.key
         }
     }
 }
