@@ -64,11 +64,12 @@ final class MainViewModel {
         showLoader?(true)
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
-                             payload: Payload(accounttypedescription: "ECOM",
+                             payload: Payload(locale: "fr_FR",
+                                              accounttypedescription: "ECOM",
                                               sitereference: keys.merchantSiteReference,
                                               currencyiso3a: "GBP",
                                               baseamount: 1100,
-                                              pan: "4111111111111111",
+                                              pan: "4111111111111110",
                                               expirydate: "12/2022",
                                               securitycode: "123",
                                               parenttransactionreference: nil))
