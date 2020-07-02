@@ -18,6 +18,7 @@
 		084E29A3246553870040FB9D /* SecureTradingCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 084E29A2246553870040FB9D /* SecureTradingCore.framework */; };
 		084E29A72465538D0040FB9D /* SecureTradingUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 084E29A62465538D0040FB9D /* SecureTradingUI.framework */; };
 		08D8B244249CCB4400DB96EE /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D8B243249CCB4400DB96EE /* CardinalMobile.framework */; };
+		08DF5D9224ADDB6B00808AE5 /* TrustKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08DF5D9124ADDB6B00808AE5 /* TrustKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		084E29A2246553870040FB9D /* SecureTradingCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecureTradingCore.framework; path = Carthage/Build/iOS/SecureTradingCore.framework; sourceTree = "<group>"; };
 		084E29A62465538D0040FB9D /* SecureTradingUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecureTradingUI.framework; path = Carthage/Build/iOS/SecureTradingUI.framework; sourceTree = "<group>"; };
 		08D8B243249CCB4400DB96EE /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardinalMobile.framework; path = Carthage/Build/iOS/CardinalMobile.framework; sourceTree = "<group>"; };
+		08DF5D9124ADDB6B00808AE5 /* TrustKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TrustKit.framework; path = Carthage/Build/iOS/TrustKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 				08D8B244249CCB4400DB96EE /* CardinalMobile.framework in Frameworks */,
 				0845BF32247EBFF5008AD40F /* SecureTradingCard.framework in Frameworks */,
 				0845BF2E247EBFF1008AD40F /* SecureTrading3DSecure.framework in Frameworks */,
+				08DF5D9224ADDB6B00808AE5 /* TrustKit.framework in Frameworks */,
 				084E29A72465538D0040FB9D /* SecureTradingUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +89,7 @@
 		084E299824654CD70040FB9D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08DF5D9124ADDB6B00808AE5 /* TrustKit.framework */,
 				08D8B243249CCB4400DB96EE /* CardinalMobile.framework */,
 				0845BF31247EBFF5008AD40F /* SecureTradingCard.framework */,
 				0845BF2D247EBFF1008AD40F /* SecureTrading3DSecure.framework */,
@@ -176,6 +180,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SecureTrading3DSecure.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SecureTradingCard.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/CardinalMobile.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TrustKit.framework",
 			);
 			name = "Copy frameworsk";
 			outputFileListPaths = (
