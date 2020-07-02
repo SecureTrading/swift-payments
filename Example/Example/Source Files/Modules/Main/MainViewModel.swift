@@ -52,7 +52,7 @@ final class MainViewModel {
                                               pan: nil,
                                               expirydate: nil,
                                               securitycode: nil,
-                                              parenttransactionreference: nil,
+                                              parenttransactionreference: parentTransactionReference,
                                               credentialsonfile: storeCard ? "1" : nil))
 
         guard let jwt = JWTHelper.createJWT(basedOn: claim, signWith: keys.jwtSecretKey) else { return nil }
