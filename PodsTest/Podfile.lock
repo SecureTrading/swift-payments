@@ -1,12 +1,15 @@
 PODS:
-  - SecureTradingSDK/3DSecure (0.0.1):
-    - SecureTradingSDK/Core
-  - SecureTradingSDK/Card (0.0.1):
-    - SecureTradingSDK/Core
-  - SecureTradingSDK/Core (0.0.1)
+  - SecureTradingSDK/3DSecure (0.0.1)
+  - SecureTradingSDK/Card (0.0.1)
+  - SecureTradingSDK/Core (0.0.1):
+    - SecureTradingSDK/3DSecure
+    - SecureTradingSDK/Card
+    - TrustKit (= 1.6.4)
   - SecureTradingSDK/UI (0.0.1):
+    - SecureTradingSDK/3DSecure
     - SecureTradingSDK/Card
     - SecureTradingSDK/Core
+  - TrustKit (1.6.4)
 
 DEPENDENCIES:
   - SecureTradingSDK/3DSecure (from `../`)
@@ -14,12 +17,17 @@ DEPENDENCIES:
   - SecureTradingSDK/Core (from `../`)
   - SecureTradingSDK/UI (from `../`)
 
+SPEC REPOS:
+  trunk:
+    - TrustKit
+
 EXTERNAL SOURCES:
   SecureTradingSDK:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SecureTradingSDK: cb502bd3dd931f31b2a56b6244fd681123417a27
+  SecureTradingSDK: e21f0a555b822ba9d55ba0faf45454abed0db737
+  TrustKit: 578f77c59a23167e55b523d460bb495114ed0de7
 
 PODFILE CHECKSUM: 400c0cea5ab904eb77ceed703e916b3d29d2a14a
 

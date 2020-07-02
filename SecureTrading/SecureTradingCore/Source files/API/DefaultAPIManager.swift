@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import TrustKit
 
 @objc public final class DefaultAPIManager: NSObject, APIManager, APIManagerObjc {
     // MARK: Properties
@@ -60,6 +61,15 @@ import Foundation
         return "\(self.sdkName)::\(self.swiftVersion)::\(self.sdkVersion)::\(self.iosVersion)"
     }
 
+    private lazy var session: URLSession = {
+        let session = URLSession(configuration: URLSessionConfiguration.ephemeral,
+                                 delegate: self,
+                                 delegateQueue: OperationQueue.main)
+        // configure URLSession and set time limit for request
+        session.configuration.timeoutIntervalForResource = self.maxRequestTime
+        return session
+    }()
+
     // MARK: Initialization
 
     /// Initializes an instance of the receiver.
@@ -69,11 +79,9 @@ import Foundation
     @objc public init(gatewayType: GatewayType, username: String) {
         self.username = username
         let configuration = DefaultAPIClientConfiguration(scheme: .https, host: gatewayType.host)
-
-        // configure URLSession and set time limit for request
-        let session = URLSession.shared
-        session.configuration.timeoutIntervalForResource = self.maxRequestTime
-        self.apiClient = DefaultAPIClient(configuration: configuration, urlSession: session)
+        self.apiClient = DefaultAPIClient(configuration: configuration)
+        super.init()
+        self.apiClient.setSession(urlSession: self.session)
     }
 
     // MARK: Functions
@@ -139,6 +147,16 @@ import Foundation
     @objc public func makeGeneralRequests(jwt: String, requests: [RequestObject], success: @escaping ((_ jwtResponses: [JWTResponseObject], _ jwt: String, _ newJWT: String) -> Void), failure: @escaping ((_ error: NSError) -> Void)) {
         self.makeGeneralRequests(jwt: jwt, requests: requests, success: success) { (error: APIClientError) in
             failure(error.foundationError)
+        }
+    }
+}
+
+extension DefaultAPIManager: URLSessionDelegate {
+    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        if TrustKit.sharedInstance().pinningValidator.handle(challenge, completionHandler: completionHandler) == false {
+            // TrustKit did not handle this challenge: perhaps it was not for server trust
+            // or the domain was not pinned. Fall back to the default behavior
+            completionHandler(.performDefaultHandling, nil)
         }
     }
 }

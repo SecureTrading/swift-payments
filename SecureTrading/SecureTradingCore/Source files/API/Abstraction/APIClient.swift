@@ -8,6 +8,9 @@ protocol APIClient: AnyObject {
     /// The configuration of the client.
     var configuration: APIClientConfiguration { get }
 
+    /// set url session
+    func setSession(urlSession: URLSession)
+
     /// Performs the API request and returns a future of its response.
     ///
     /// - Parameters:

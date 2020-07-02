@@ -33,8 +33,6 @@
 		084E29FF246583E20040FB9D /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E29FE246583E20040FB9D /* Dequeueable.swift */; };
 		084E2A012465841D0040FB9D /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A002465841D0040FB9D /* UITableView.swift */; };
 		084E2A03246585330040FB9D /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A02246585330040FB9D /* UICollectionView.swift */; };
-		084E2A062465874B0040FB9D /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A052465874B0040FB9D /* Localizable.swift */; };
-		084E2A0A246593C50040FB9D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 084E2A0C246593C50040FB9D /* Localizable.strings */; };
 		084E2A0E246599B70040FB9D /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A0D246599B70040FB9D /* FlowController.swift */; };
 		084E2A10246599D90040FB9D /* NavigationFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A0F246599D90040FB9D /* NavigationFlowController.swift */; };
 		084E2A12246599FC0040FB9D /* NavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E2A11246599FC0040FB9D /* NavigationDelegate.swift */; };
@@ -74,6 +72,7 @@
 		08639C3D2469591400C8F90A /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C3C2469591400C8F90A /* ViewModelFactory.swift */; };
 		08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */; };
 		08648A4D248FA8C300EE1E95 /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */; };
+		08653FDC24AB71FA00A85C26 /* TrustKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08653FDB24AB71FA00A85C26 /* TrustKit.framework */; };
 		08694877246924F900F625D0 /* TestMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694876246924F900F625D0 /* TestMainViewModel.swift */; };
 		08694879246925EA00F625D0 /* TestMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694878246925EA00F625D0 /* TestMainViewController.swift */; };
 		0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869487A246926FE00F625D0 /* TestMainFlowController.swift */; };
@@ -268,8 +267,6 @@
 		084E29FE246583E20040FB9D /* Dequeueable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
 		084E2A002465841D0040FB9D /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		084E2A02246585330040FB9D /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
-		084E2A052465874B0040FB9D /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
-		084E2A0B246593C50040FB9D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		084E2A0D246599B70040FB9D /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
 		084E2A0F246599D90040FB9D /* NavigationFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationFlowController.swift; sourceTree = "<group>"; };
 		084E2A11246599FC0040FB9D /* NavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDelegate.swift; sourceTree = "<group>"; };
@@ -296,6 +293,7 @@
 		08639C3C2469591400C8F90A /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBackgroundBaseView.swift; sourceTree = "<group>"; };
 		08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CardinalMobile.framework; sourceTree = "<group>"; };
+		08653FDB24AB71FA00A85C26 /* TrustKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TrustKit.framework; path = ../../Carthage/Build/iOS/TrustKit.framework; sourceTree = "<group>"; };
 		08694876246924F900F625D0 /* TestMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainViewModel.swift; sourceTree = "<group>"; };
 		08694878246925EA00F625D0 /* TestMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainViewController.swift; sourceTree = "<group>"; };
 		0869487A246926FE00F625D0 /* TestMainFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainFlowController.swift; sourceTree = "<group>"; };
@@ -429,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08534EDE24A4921600D2B082 /* SecureTrading3DSecure.framework in Frameworks */,
+				08653FDC24AB71FA00A85C26 /* TrustKit.framework in Frameworks */,
 				08534EEE24A4DAE800D2B082 /* SecureTradingCard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,18 +615,8 @@
 			isa = PBXGroup;
 			children = (
 				0853ACA9247FC34C00DF37EE /* Images.xcassets */,
-				084E2A07246593900040FB9D /* Strings */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		084E2A07246593900040FB9D /* Strings */ = {
-			isa = PBXGroup;
-			children = (
-				084E2A052465874B0040FB9D /* Localizable.swift */,
-				084E2A0C246593C50040FB9D /* Localizable.strings */,
-			);
-			path = Strings;
 			sourceTree = "<group>";
 		};
 		084E2A1724659B5B0040FB9D /* Views */ = {
@@ -1061,6 +1050,7 @@
 		10B5B82B2472B870009CE3A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08653FDB24AB71FA00A85C26 /* TrustKit.framework */,
 				08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */,
 			);
 			path = Frameworks;
@@ -1356,7 +1346,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				084E2A0A246593C50040FB9D /* Localizable.strings in Resources */,
 				0853ACAA247FC34C00DF37EE /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1525,7 +1514,6 @@
 				10DBCEBC24990EC4005865B0 /* StyleManager.swift in Sources */,
 				10516B1824ACC5B1009A6F3A /* ScreenshotHelper.swift in Sources */,
 				0853ACA7247FB00F00DF37EE /* CvcInputView.swift in Sources */,
-				084E2A062465874B0040FB9D /* Localizable.swift in Sources */,
 				084E2A12246599FC0040FB9D /* NavigationDelegate.swift in Sources */,
 				0818DE3F248659A800A8B25A /* DropInView.swift in Sources */,
 				084E2A1F24659E2C0040FB9D /* ArrayUI.swift in Sources */,
@@ -1676,17 +1664,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		084E2A0C246593C50040FB9D /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				084E2A0B246593C50040FB9D /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		082FC79A2462E1A000D4E2B6 /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -1764,6 +1741,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SecureTradingCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2093,6 +2074,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SecureTradingCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2124,6 +2109,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = SecureTradingCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
