@@ -55,6 +55,7 @@
 		08639C8E2469711500C8F90A /* WhiteBackgroundBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8D2469711500C8F90A /* WhiteBackgroundBaseView.swift */; };
 		08D8B248249CCE7500DB96EE /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D8B247249CCE7500DB96EE /* CardinalMobile.framework */; };
 		08D8B249249CCE7500DB96EE /* CardinalMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 08D8B247249CCE7500DB96EE /* CardinalMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		08DF5D8E24ADBF0000808AE5 /* TrustKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08DF5D8D24ADBF0000808AE5 /* TrustKit.framework */; };
 		08E4FA822462A7D100837339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA812462A7D100837339 /* AppDelegate.swift */; };
 		08E4FA8B2462A7D800837339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA8A2462A7D800837339 /* Assets.xcassets */; };
 		08E4FA8E2462A7D800837339 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E4FA8C2462A7D800837339 /* LaunchScreen.storyboard */; };
@@ -166,6 +167,7 @@
 		08639C8B24696CB100C8F90A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		08639C8D2469711500C8F90A /* WhiteBackgroundBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBackgroundBaseView.swift; sourceTree = "<group>"; };
 		08D8B247249CCE7500DB96EE /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardinalMobile.framework; path = ../SecureTrading/Frameworks/CardinalMobile.framework; sourceTree = "<group>"; };
+		08DF5D8D24ADBF0000808AE5 /* TrustKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TrustKit.framework; path = ../Carthage/Build/iOS/TrustKit.framework; sourceTree = "<group>"; };
 		08E4FA7E2462A7D100837339 /* Trust Payments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trust Payments.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E4FA812462A7D100837339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08E4FA8A2462A7D800837339 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				082FC7962462E18900D4E2B6 /* SecureTradingCore.framework in Frameworks */,
+				08DF5D8E24ADBF0000808AE5 /* TrustKit.framework in Frameworks */,
 				104CFB2F246ED0E300D7C76D /* SecureTrading3DSecure.framework in Frameworks */,
 				08D8B248249CCE7500DB96EE /* CardinalMobile.framework in Frameworks */,
 				082FC7982462E18900D4E2B6 /* SecureTradingUI.framework in Frameworks */,
@@ -543,6 +546,7 @@
 		08EF7CF52462AA1B008B5F3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08DF5D8D24ADBF0000808AE5 /* TrustKit.framework */,
 				1098F3A0247CF4B300414F94 /* SecureTradingCard.framework */,
 				104CFB2E246ED0E300D7C76D /* SecureTrading3DSecure.framework */,
 				082FC7942462E18900D4E2B6 /* SecureTradingCore.framework */,
@@ -625,6 +629,7 @@
 				08EF7CF92462AA1B008B5F3E /* Embed Frameworks */,
 				08B8E82E246A9F9D00046E39 /* SwiftLint */,
 				08534EED24A4BF7B00D2B082 /* Remove Simulator Architectures - Cardinal */,
+				08DF5D9024ADBF2600808AE5 /* Copy frameworks */,
 			);
 			buildRules = (
 			);
@@ -779,6 +784,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		08DF5D9024ADBF2600808AE5 /* Copy frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../Carthage/Build/iOS/TrustKit.framework",
+			);
+			name = "Copy frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		379D0734CAA0FBE59F16A1DC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1006,7 +1030,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 08EF7D6E2462CEB4008B5F3E /* Development.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1015,6 +1038,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../SecureTrading/Frameworks",
+					"$(PROJECT_DIR)/../Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(_ENVIRONMENTS)",

@@ -1150,7 +1150,6 @@
 				08E4FA672462A5EC00837339 /* Frameworks */,
 				08E4FA682462A5EC00837339 /* Resources */,
 				08B8E82C246A9EE700046E39 /* SwiftLint */,
-				08653FDF24AB722A00A85C26 /* Copy frameworks */,
 			);
 			buildRules = (
 			);
@@ -1395,25 +1394,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		08653FDF24AB722A00A85C26 /* Copy frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/TrustKit.framework",
-			);
-			name = "Copy frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 		08B8E82C246A9EE700046E39 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
