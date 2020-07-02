@@ -65,7 +65,7 @@ final class AddCardViewModel {
             switch error {
             case .responseValidationError(let responseError):
                 switch responseError {
-                case .invalidField(let errorCode):
+                case .invalidField(let errorCode, _):
                     switch errorCode {
                     case .invalidPAN, .invalidSecurityCode, .invalidExpiryDate:
                         self.showValidationError?(errorCode)

@@ -61,7 +61,7 @@ public enum APIClientError: HumanReadableError {
         case .connectionError(let error as HumanReadableStringConvertible):
             return "Connection failure: \(error.humanReadableDescription)"
         case .responseValidationError(let error):
-            return "Failed to validate URL response: \(error.localizedDescription)"
+            return error.localizedDescription
         case .responseParseError(let error as NSError):
             return "Failed to parse URL response: \(error.humanReadableDescription)"
         case .serverError(let error):
