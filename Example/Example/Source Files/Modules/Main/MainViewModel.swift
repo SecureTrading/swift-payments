@@ -64,7 +64,8 @@ final class MainViewModel {
         showLoader?(true)
         let claim = STClaims(iss: keys.merchantUsername,
                              iat: Date(timeIntervalSinceNow: 0),
-                             payload: Payload(accounttypedescription: "ECOM",
+                             payload: Payload(locale: "en_GB",
+                                              accounttypedescription: "ECOM",
                                               sitereference: keys.merchantSiteReference,
                                               currencyiso3a: "GBP",
                                               baseamount: 1100,

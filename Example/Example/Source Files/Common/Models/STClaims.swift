@@ -12,6 +12,7 @@ struct STClaims: Claims {
 }
 
 struct Payload: Codable {
+    let locale: String?
     let accounttypedescription: String
     let sitereference: String
     let currencyiso3a: String?
@@ -27,7 +28,8 @@ struct Payload: Codable {
     let subscriptionnumber: String?
     let credentialsonfile: String?
 
-    init(accounttypedescription: String,
+    init(locale: String? = nil,
+         accounttypedescription: String,
          sitereference: String,
          currencyiso3a: String? = nil,
          baseamount: Int? = nil,
@@ -41,6 +43,7 @@ struct Payload: Codable {
          subscriptionfrequency: String? = nil,
          subscriptionnumber: String? = nil,
          credentialsonfile: String? = nil) {
+        self.locale = locale
         self.accounttypedescription = accounttypedescription
         self.sitereference = sitereference
         self.currencyiso3a = currencyiso3a

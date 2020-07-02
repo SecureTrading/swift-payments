@@ -61,7 +61,7 @@ public enum APIClientError: HumanReadableError {
         case .connectionError(let error as HumanReadableStringConvertible):
             return "Connection failure: \(error.humanReadableDescription)"
         case .responseValidationError(let error):
-            return "Failed to validate URL response: \(error.localizedDescription)"
+            return error.localizedDescription
         case .responseParseError(let error as NSError):
             return "Failed to parse URL response: \(error.humanReadableDescription)"
         case .serverError(let error):
@@ -174,7 +174,7 @@ public enum APIResponseValidationError: Error {
     case missingResponse
     case missingData
     case mismatchedDescriptionTypes
-    case invalidField(code: ResponseErrorDetail)
+    case invalidField(code: ResponseErrorDetail, localizedError: String?)
     // MARK: Properties
 
     /// - SeeAlso: Error.localizedDescription
@@ -186,8 +186,8 @@ public enum APIResponseValidationError: Error {
             return "Missing data."
         case .mismatchedDescriptionTypes:
             return "Unexpected description types in response."
-        case .invalidField(let code):
-            return code.message
+        case .invalidField(let code, let localizedError):
+            return localizedError ?? code.message
         }
     }
 
@@ -199,7 +199,7 @@ public enum APIResponseValidationError: Error {
         case .missingData: return 12_200
         case .missingResponse: return 12_300
         case .unacceptableStatusCode: return 12_400
-        case .invalidField(let responseErrorDetail): return responseErrorDetail.rawValue
+        case .invalidField(let responseErrorDetail, _): return responseErrorDetail.rawValue
         }
     }
 }
