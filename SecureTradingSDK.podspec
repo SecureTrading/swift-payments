@@ -20,6 +20,7 @@ Pod::Spec.new do |s|
 
 s.subspec "Core" do |s|
     s.source_files   = "SecureTrading/SecureTradingCore/**/*.{h,swift}"
+    s.resources = ["SecureTrading/SecureTradingCore/Resources/**/*.{json}"]
     s.public_header_files = "SecureTrading/SecureTradingCore/*.{h}"
     s.header_dir = "SecureTradingCore"
     s.dependency "SecureTradingSDK/3DSecure"
@@ -29,6 +30,7 @@ s.subspec "Core" do |s|
 
   s.subspec "UI" do |s|
     s.source_files   = "SecureTrading/SecureTradingUI/**/*.{h,swift}"
+    s.resources = ["SecureTrading/SecureTradingUI/Resources/**/*.{xcassets}"]
     s.public_header_files = "SecureTrading/SecureTradingUI/*.{h}"
     s.header_dir = "SecureTradingUI"
     s.dependency "SecureTradingSDK/3DSecure"
@@ -45,6 +47,7 @@ s.subspec "Core" do |s|
 
   s.subspec "Card" do |s|
     s.source_files   = "SecureTrading/SecureTradingCard/**/*.{h,swift}"
+    s.resources = ["SecureTrading/SecureTradingCard/Resources/**/*.{xcassets}"]
     s.public_header_files = "SecureTrading/SecureTradingCard/*.{h}"
     s.header_dir = "SecureTradingCard"
   end
