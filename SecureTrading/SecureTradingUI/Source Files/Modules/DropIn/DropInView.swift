@@ -145,6 +145,16 @@ import UIKit
 }
 
 extension DropInView: ViewSetupable {
+    /// - SeeAlso: ViewSetupable.customizeView
+    @objc open func customizeView() {
+        customizeView(dropInViewStyleManager: dropInViewStyleManager)
+        if #available(iOS 12.0, *) {
+            if traitCollection.userInterfaceStyle == .dark {
+                self.backgroundColor = .green
+            }
+        }
+    }
+
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc open func setupProperties() {
         (cardNumberInput as? CardNumberInputView)?.cardNumberInputViewDelegate = self
@@ -152,13 +162,6 @@ extension DropInView: ViewSetupable {
         (cvcInput as? CvcInputView)?.delegate = self
         (expiryDateInput as? ExpiryDateInputView)?.delegate = self
         cardNumberInput.becomeFirstResponder()
-
-        customizeView(dropInViewStyleManager: dropInViewStyleManager)
-        if #available(iOS 12.0, *) {
-            if traitCollection.userInterfaceStyle == .dark {
-                self.backgroundColor = .green
-            }
-        }
     }
 
     public func setupView(callback: ((UIView) -> Void)?) {
@@ -210,20 +213,5 @@ extension DropInView: SecureFormInputViewDelegate {
 
     public func showHideError(_ show: Bool) {
         payButton.isEnabled = isFormValid
-    }
-}
-
-extension DropInView {
-    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        performBlockIfAppearanceChanged(from: previousTraitCollection) {
-            if #available(iOS 12.0, *) {
-                if traitCollection.userInterfaceStyle == .dark {
-                    self.backgroundColor = .green
-                } else {
-                    customizeView(dropInViewStyleManager: dropInViewStyleManager)
-                }
-            }
-        }
     }
 }

@@ -137,10 +137,16 @@ import UIKit
         self.spinner.style = self.spinnerStyle
         self.spinner.color = self.spinnerColor
 
-        self.customizeView(requestButtonStyleManager: self.requestButtonStyleManager)
+        self.customizeView()
+
         self.isEnabled = false
 
         self.highlightIfNeeded()
+    }
+
+    private func customizeView() {
+        // todo dark mode
+        self.customizeView(requestButtonStyleManager: self.requestButtonStyleManager)
     }
 
     private func customizeView(requestButtonStyleManager: RequestButtonStyleManager?) {
@@ -195,5 +201,14 @@ import UIKit
     @objc public func stopProcessing() {
         self.isUserInteractionEnabled = true
         self.spinner.stopAnimating()
+    }
+}
+
+extension RequestButton {
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        performBlockIfAppearanceChanged(from: previousTraitCollection) {
+            self.customizeView()
+        }
     }
 }

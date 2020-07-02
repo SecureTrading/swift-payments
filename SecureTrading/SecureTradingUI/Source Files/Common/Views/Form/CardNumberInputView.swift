@@ -84,6 +84,13 @@ import UIKit
 }
 
 extension CardNumberInputView {
+
+    /// - SeeAlso: SecureFormInputView.customizeView
+    override func customizeView() {
+        // todo dark mode
+        customizeView(inputViewStyleManager: inputViewStyleManager)
+    }
+
     /// - SeeAlso: SecureFormInputView.setupProperties
     override func setupProperties() {
         super.setupProperties()
@@ -96,8 +103,6 @@ extension CardNumberInputView {
         keyboardType = .numberPad
 
         showCardImage()
-
-        customizeView(inputViewStyleManager: inputViewStyleManager)
     }
 }
 

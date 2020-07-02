@@ -56,6 +56,13 @@ import UIKit
 }
 
 extension CvcInputView {
+
+    /// - SeeAlso: SecureFormInputView.customizeView
+    override func customizeView() {
+        // todo dark mode
+        customizeView(inputViewStyleManager: inputViewStyleManager)
+    }
+    
     /// - SeeAlso: SecureFormInputView.setupProperties
     override func setupProperties() {
         super.setupProperties()
@@ -73,8 +80,6 @@ extension CvcInputView {
         textFieldTextAligment = .center
 
         textFieldImage = UIImage(named: "cvc", in: Bundle(for: CvcInputView.self), compatibleWith: nil)
-
-        customizeView(inputViewStyleManager: inputViewStyleManager)
     }
 }
 

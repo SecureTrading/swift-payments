@@ -477,6 +477,13 @@ class YearTextField: BackwardTextField {}
 }
 
 extension ExpiryDateInputView: ViewSetupable {
+
+    /// - SeeAlso: ViewSetupable.customizeView
+    @objc func customizeView() {
+        // todo dark mode
+        customizeView(inputViewStyleManager: inputViewStyleManager)
+    }
+
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
         backgroundColor = .clear
@@ -516,8 +523,6 @@ extension ExpiryDateInputView: ViewSetupable {
         stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
 
         isEnabled = true
-
-        customizeView(inputViewStyleManager: inputViewStyleManager)
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy

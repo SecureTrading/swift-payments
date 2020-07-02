@@ -310,6 +310,9 @@ import UIKit
 }
 
 extension DefaultSecureFormInputView: ViewSetupable {
+    /// - SeeAlso: ViewSetupable.customizeView
+    @objc func customizeView() {}
+
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
         backgroundColor = .clear
