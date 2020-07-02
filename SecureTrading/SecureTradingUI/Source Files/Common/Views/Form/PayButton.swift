@@ -14,6 +14,7 @@ import SecureTradingCore
     // MARK: Private properties
 
     let payButtonStyleManager: PayButtonStyleManager?
+    let payButtonDarkModeStyleManager: PayButtonStyleManager?
 
     // MARK: Public properties
 
@@ -30,9 +31,11 @@ import SecureTradingCore
     /// Initialize an instance and calls required methods
     /// - Parameters:
     ///   - payButtonStyleManager: instance of manager to customize view
-    @objc public init(payButtonStyleManager: PayButtonStyleManager? = nil) {
+    ///   - payButtonDarkModeStyleManager: instance of dark mode manager to customize view
+    @objc public init(payButtonStyleManager: PayButtonStyleManager? = nil, payButtonDarkModeStyleManager: PayButtonStyleManager? = nil) {
         self.payButtonStyleManager = payButtonStyleManager
-        super.init(requestButtonStyleManager: payButtonStyleManager)
+        self.payButtonDarkModeStyleManager = payButtonDarkModeStyleManager
+        super.init(requestButtonStyleManager: payButtonStyleManager, requestButtonDarkModeStyleManager: payButtonDarkModeStyleManager)
         self.configureView()
     }
 

@@ -17,6 +17,7 @@ import UIKit
     }()
 
     let requestButtonStyleManager: RequestButtonStyleManager?
+    let requestButtonDarkModeStyleManager: RequestButtonStyleManager?
 
     // MARK: Public properties
 
@@ -103,8 +104,10 @@ import UIKit
     /// Initialize an instance and calls required methods
     /// - Parameters:
     ///   - requestButtonStyleManager: instance of manager to customize view
-    @objc public init(requestButtonStyleManager: RequestButtonStyleManager? = nil) {
+    ///   - requestButtonDarkModeStyleManager: instance of dark mode manager to customize view
+    @objc public init(requestButtonStyleManager: RequestButtonStyleManager? = nil, requestButtonDarkModeStyleManager: RequestButtonStyleManager? = nil) {
         self.requestButtonStyleManager = requestButtonStyleManager
+        self.requestButtonDarkModeStyleManager = requestButtonDarkModeStyleManager
         super.init(frame: .zero)
         self.configureView()
     }
@@ -147,11 +150,6 @@ import UIKit
         // todo dark mode
         self.customizeView(requestButtonStyleManager: self.requestButtonStyleManager)
         self.backgroundColor = self.isEnabled ? self.enabledBackgroundColor : self.disabledBackgroundColor
-        if #available(iOS 12.0, *) {
-            if traitCollection.userInterfaceStyle == .dark {
-                self.backgroundColor = .blue
-            }
-        }
     }
 
     private func customizeView(requestButtonStyleManager: RequestButtonStyleManager?) {

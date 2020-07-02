@@ -41,7 +41,8 @@ import UIKit
 
     @objc public private(set) lazy var payButton: PayButtonProtocol = {
         let styleManager = dropInViewStyleManager?.requestButtonStyleManager as? PayButtonStyleManager
-        return PayButton(payButtonStyleManager: styleManager)
+        let darkModeStyleManager = dropInViewDarkModeStyleManager?.requestButtonStyleManager as? PayButtonStyleManager
+        return PayButton(payButtonStyleManager: styleManager, payButtonDarkModeStyleManager: darkModeStyleManager)
     }()
 
     private let stackContainer: UIView = {
