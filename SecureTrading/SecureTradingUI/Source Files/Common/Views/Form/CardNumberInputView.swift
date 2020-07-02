@@ -60,10 +60,11 @@ import UIKit
     ///   - cardTypeContainer: A card type container that is used to access accepted card types.
     ///   - cardNumberSeparator: A separator that is used to separate different groups of the card number.
     ///   - inputViewStyleManager: instance of manager to customize view
-    @objc public init(cardTypeContainer: CardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases), cardNumberSeparator: String = .space, inputViewStyleManager: InputViewStyleManager? = nil) {
+    ///   - inputViewDarkModeStyleManager: instance of dark mode manager to customize view
+    @objc public init(cardTypeContainer: CardTypeContainer = CardTypeContainer(cardTypes: CardType.allCases), cardNumberSeparator: String = .space, inputViewStyleManager: InputViewStyleManager? = nil, inputViewDarkModeStyleManager: InputViewStyleManager? = nil) {
         self.cardTypeContainer = cardTypeContainer
         self.cardNumberSeparator = cardNumberSeparator
-        super.init(inputViewStyleManager: inputViewStyleManager)
+        super.init(inputViewStyleManager: inputViewStyleManager, inputViewDarkModeStyleManager: inputViewDarkModeStyleManager)
         self.accessibilityIdentifier = "st-card-number-input"
         self.textField.accessibilityIdentifier = "st-card-number-input-textfield"
         self.errorLabel.accessibilityIdentifier = "st-card-number-message"
@@ -84,12 +85,6 @@ import UIKit
 }
 
 extension CardNumberInputView {
-
-    /// - SeeAlso: SecureFormInputView.customizeView
-    override func customizeView() {
-        // todo dark mode
-        customizeView(inputViewStyleManager: inputViewStyleManager)
-    }
 
     /// - SeeAlso: SecureFormInputView.setupProperties
     override func setupProperties() {

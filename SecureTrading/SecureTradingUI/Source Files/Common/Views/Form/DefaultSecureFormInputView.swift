@@ -64,6 +64,7 @@ import UIKit
     }()
 
     let inputViewStyleManager: InputViewStyleManager?
+    let inputViewDarkModeStyleManager: InputViewStyleManager?
 
     // MARK: Public properties
 
@@ -279,8 +280,10 @@ import UIKit
     /// Initializes an instance of the receiver.
     /// - Parameters:
     ///   - inputViewStyleManager: instance of manager to customize view
-    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil) {
+    ///   - inputViewDarkModeStyleManager: instance of dark mode manager to customize view
+    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil, inputViewDarkModeStyleManager: InputViewStyleManager? = nil) {
         self.inputViewStyleManager = inputViewStyleManager
+        self.inputViewDarkModeStyleManager = inputViewDarkModeStyleManager
         super.init()
     }
 
@@ -311,7 +314,10 @@ import UIKit
 
 extension DefaultSecureFormInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.customizeView
-    @objc func customizeView() {}
+    @objc func customizeView() {
+        // todo dark mode
+        customizeView(inputViewStyleManager: inputViewStyleManager)
+    }
 
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {

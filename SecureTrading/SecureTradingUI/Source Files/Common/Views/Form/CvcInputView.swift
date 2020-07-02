@@ -42,8 +42,9 @@ import UIKit
     /// Initializes an instance of the receiver.
     /// - Parameters:
     ///   - inputViewStyleManager: instance of manager to customize view
-    @objc public override init(inputViewStyleManager: InputViewStyleManager? = nil) {
-        super.init(inputViewStyleManager: inputViewStyleManager)
+    ///   - inputViewDarkModeStyleManager: instance of dark mode manager to customize view
+    @objc public override init(inputViewStyleManager: InputViewStyleManager? = nil, inputViewDarkModeStyleManager: InputViewStyleManager? = nil) {
+        super.init(inputViewStyleManager: inputViewStyleManager, inputViewDarkModeStyleManager: inputViewDarkModeStyleManager)
         self.accessibilityIdentifier = "st-security-code-input"
         self.textField.accessibilityIdentifier = "st-security-code-input-textfield"
         self.errorLabel.accessibilityIdentifier = "st-security-code-input-message"
@@ -56,12 +57,6 @@ import UIKit
 }
 
 extension CvcInputView {
-
-    /// - SeeAlso: SecureFormInputView.customizeView
-    override func customizeView() {
-        // todo dark mode
-        customizeView(inputViewStyleManager: inputViewStyleManager)
-    }
     
     /// - SeeAlso: SecureFormInputView.setupProperties
     override func setupProperties() {

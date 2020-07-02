@@ -28,15 +28,15 @@ import UIKit
     }
 
     @objc public private(set) lazy var cardNumberInput: CardNumberInput = {
-        CardNumberInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
+        CardNumberInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager, inputViewDarkModeStyleManager: dropInViewDarkModeStyleManager?.inputViewStyleManager)
     }()
 
     @objc public private(set) lazy var expiryDateInput: ExpiryDateInput = {
-        ExpiryDateInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
+        ExpiryDateInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager, inputViewDarkModeStyleManager: dropInViewDarkModeStyleManager?.inputViewStyleManager)
     }()
 
     @objc public private(set) lazy var cvcInput: CvcInput = {
-        CvcInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
+        CvcInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager, inputViewDarkModeStyleManager: dropInViewDarkModeStyleManager?.inputViewStyleManager)
     }()
 
     @objc public private(set) lazy var payButton: PayButtonProtocol = {

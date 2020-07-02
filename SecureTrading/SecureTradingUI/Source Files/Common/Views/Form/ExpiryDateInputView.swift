@@ -137,6 +137,7 @@ class YearTextField: BackwardTextField {}
     )
 
     let inputViewStyleManager: InputViewStyleManager?
+    let inputViewDarkModeStyleManager: InputViewStyleManager?
 
     // MARK: Public properties
 
@@ -387,8 +388,9 @@ class YearTextField: BackwardTextField {}
     /// Initializes an instance of the receiver.
     /// - Parameters:
     ///   - inputViewStyleManager: instance of manager to customize view
-    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil) {
+    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil, inputViewDarkModeStyleManager: InputViewStyleManager? = nil) {
         self.inputViewStyleManager = inputViewStyleManager
+        self.inputViewDarkModeStyleManager = inputViewDarkModeStyleManager
         super.init()
         self.accessibilityIdentifier = "st-expiration-date-input"
         monthTextField.accessibilityIdentifier = "st-expiration-date-input-month-textfield"
