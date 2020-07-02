@@ -964,6 +964,14 @@
 			path = "Source files";
 			sourceTree = "<group>";
 		};
+		105023F224AE0454003B5D9E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1098F3A3247D3E0B00414F94 /* CardLogo.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		1054A99B24A24CC6002B5125 /* Localizations */ = {
 			isa = PBXGroup;
 			children = (
@@ -1001,10 +1009,10 @@
 		1092CF402476CA1F0002B2E8 /* SecureTradingCard */ = {
 			isa = PBXGroup;
 			children = (
+				105023F224AE0454003B5D9E /* Resources */,
 				1092CF582476CABF0002B2E8 /* Source files */,
 				1092CF412476CA1F0002B2E8 /* SecureTradingCard.h */,
 				1092CF422476CA1F0002B2E8 /* Info.plist */,
-				1098F3A3247D3E0B00414F94 /* CardLogo.xcassets */,
 			);
 			path = SecureTradingCard;
 			sourceTree = "<group>";
