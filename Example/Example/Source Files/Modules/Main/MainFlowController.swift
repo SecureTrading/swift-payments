@@ -121,7 +121,7 @@ final class MainFlowController: BaseNavigationFlowController {
         let cardinalDarkModeStyleManager = CardinalStyleManager(toolbarStyleManager: toolbarDarkModeStyleManager, labelStyleManager: labelDarkModeStyleManager, verifyButtonStyleManager: verifyButtonDarkModeStyleManager, continueButtonStyleManager: continueButtonDarkModeStyleManager, resendButtonStyleManager: resendButtonDarkModeStyleManager, cancelButtonStyleManager: cancelButtonDarkModeStyleManager, textBoxStyleManager: textBoxDarkModeStyleManager)
 
         // custom view provided from example app
-        let customDropInView = addCustomView ? DropInCustomView(dropInViewStyleManager: dropInViewStyleManager) : nil
+        let customDropInView = addCustomView ? DropInCustomView(dropInViewStyleManager: dropInViewStyleManager, dropInViewDarkModeStyleManager: nil) : nil
 
         let isDeferInit = addCustomView
 

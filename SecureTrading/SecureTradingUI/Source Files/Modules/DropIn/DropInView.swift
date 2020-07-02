@@ -72,6 +72,7 @@ import UIKit
     private let stackViewBottomConstraint = "stackViewBottomConstraint"
 
     let dropInViewStyleManager: DropInViewStyleManager?
+    let dropInViewDarkModeStyleManager: DropInViewStyleManager?
 
     @objc public var spacingBeetwenInputViews: CGFloat = 30 {
         didSet {
@@ -90,8 +91,10 @@ import UIKit
     /// Initializes an instance of the receiver.
     /// - Parameters:
     ///   - dropInViewStyleManager: instance of manager to customize view
-    @objc public init(dropInViewStyleManager: DropInViewStyleManager?) {
+    ///   - dropInViewDarkModeStyleManager: instance of dark mode manager to customize view
+    @objc public init(dropInViewStyleManager: DropInViewStyleManager?, dropInViewDarkModeStyleManager: DropInViewStyleManager?) {
         self.dropInViewStyleManager = dropInViewStyleManager
+        self.dropInViewDarkModeStyleManager = dropInViewDarkModeStyleManager
         super.init()
     }
 
@@ -147,12 +150,14 @@ import UIKit
 extension DropInView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.customizeView
     @objc open func customizeView() {
-        customizeView(dropInViewStyleManager: dropInViewStyleManager)
+        var styleManager: DropInViewStyleManager!
         if #available(iOS 12.0, *) {
-            if traitCollection.userInterfaceStyle == .dark {
-                self.backgroundColor = .green
-            }
+            styleManager = traitCollection.userInterfaceStyle == .dark ? dropInViewDarkModeStyleManager : dropInViewStyleManager
+        } else {
+            styleManager = dropInViewStyleManager
         }
+        customizeView(dropInViewStyleManager: styleManager)
+
     }
 
     /// - SeeAlso: ViewSetupable.setupProperties
