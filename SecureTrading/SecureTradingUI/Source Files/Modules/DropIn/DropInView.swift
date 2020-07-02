@@ -7,13 +7,14 @@ import UIKit
 
 @objc open class DropInView: BaseView, DropInViewProtocol {
     /// useful if you need to specify some additional validation condition when accepting the form, e.g. if the merchant wants to add an additional check box view
-    //swiftlint:disable identifier_name
+    // swiftlint:disable identifier_name
     @objc public var isAdditionalValidationConditionsFullfiled: Bool = true {
         didSet {
             payButton.isEnabled = isFormValid
         }
     }
-    //swiftlint:enable identifier_name
+
+    // swiftlint:enable identifier_name
 
     @objc public var isFormValid: Bool {
         // Do not validate fields that are not added to the view's hierarchy, for example by specifying visible fields
@@ -153,6 +154,11 @@ extension DropInView: ViewSetupable {
         cardNumberInput.becomeFirstResponder()
 
         customizeView(dropInViewStyleManager: dropInViewStyleManager)
+        if #available(iOS 12.0, *) {
+            if traitCollection.userInterfaceStyle == .dark {
+                self.backgroundColor = .green
+            }
+        }
     }
 
     public func setupView(callback: ((UIView) -> Void)?) {
@@ -204,5 +210,20 @@ extension DropInView: SecureFormInputViewDelegate {
 
     public func showHideError(_ show: Bool) {
         payButton.isEnabled = isFormValid
+    }
+}
+
+extension DropInView {
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        performBlockIfAppearanceChanged(from: previousTraitCollection) {
+            if #available(iOS 12.0, *) {
+                if traitCollection.userInterfaceStyle == .dark {
+                    self.backgroundColor = .green
+                } else {
+                    customizeView(dropInViewStyleManager: dropInViewStyleManager)
+                }
+            }
+        }
     }
 }
