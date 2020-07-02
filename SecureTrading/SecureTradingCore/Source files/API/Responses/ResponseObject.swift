@@ -11,7 +11,7 @@ struct ResponseObject: Decodable {
     let errorMessage: String
     let errorData: String?
 
-    // return localized error from gateway
+    // returns localized error from gateway
     var localizedError: String? {
         if let errorData = errorData?.first {
             return errorMessage + ": " + "\(errorData)"

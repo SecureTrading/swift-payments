@@ -78,6 +78,14 @@
         return ResponseErrorCode(rawValue: errorCode) ?? .unknown
     }
 
+    // returns localized error from gateway
+    @objc public var localizedError: String? {
+        if let errorData = errorData?.first {
+            return errorMessage + ": " + "\(errorData)"
+        }
+        return nil
+    }
+    
     @objc public var responseSettleStatus: ResponseSettleStatus {
         return ResponseSettleStatus(rawValue: settleStatus?.intValue ?? -1) ?? .error
     }

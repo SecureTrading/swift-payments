@@ -15,7 +15,7 @@ class ResponseValidator {
                 if let firstResponseWithError = response.jwtDecoded.jwtBodyResponse.responses
                     .first(where: { $0.responseErrorCode != ResponseErrorCode.successful }) {
                     if firstResponseWithError.responseErrorCode == .fieldError {
-                        let gatewayErrorMessage = "\(firstResponseWithError.errorMessage) - \(firstResponseWithError.errorData?.first ?? "Unknown")"
+                        let gatewayErrorMessage = firstResponseWithError.localizedError ?? "Unknown"
                         switch firstResponseWithError.errorDetails {
                         // For unhandled case, return error descriptions provided in response
                         case .none:
