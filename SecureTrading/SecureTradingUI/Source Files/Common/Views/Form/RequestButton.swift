@@ -147,8 +147,14 @@ import UIKit
     }
 
     private func customizeView() {
-        // todo dark mode
-        self.customizeView(requestButtonStyleManager: self.requestButtonStyleManager)
+        var styleManager: RequestButtonStyleManager!
+        if #available(iOS 12.0, *) {
+            styleManager = traitCollection.userInterfaceStyle == .dark && requestButtonDarkModeStyleManager != nil ? requestButtonDarkModeStyleManager : requestButtonStyleManager
+        } else {
+            styleManager = requestButtonStyleManager
+        }
+        customizeView(requestButtonStyleManager: styleManager)
+
         self.backgroundColor = self.isEnabled ? self.enabledBackgroundColor : self.disabledBackgroundColor
     }
 

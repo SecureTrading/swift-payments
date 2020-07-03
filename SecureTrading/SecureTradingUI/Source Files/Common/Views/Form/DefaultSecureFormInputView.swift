@@ -315,8 +315,13 @@ import UIKit
 extension DefaultSecureFormInputView: ViewSetupable {
     /// - SeeAlso: ViewSetupable.customizeView
     @objc func customizeView() {
-        // todo dark mode
-        customizeView(inputViewStyleManager: inputViewStyleManager)
+        var styleManager: InputViewStyleManager!
+        if #available(iOS 12.0, *) {
+            styleManager = traitCollection.userInterfaceStyle == .dark && inputViewDarkModeStyleManager != nil ? inputViewDarkModeStyleManager : inputViewStyleManager
+        } else {
+            styleManager = inputViewStyleManager
+        }
+        customizeView(inputViewStyleManager: styleManager)
     }
 
     /// - SeeAlso: ViewSetupable.setupProperties

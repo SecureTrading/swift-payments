@@ -153,12 +153,11 @@ extension DropInView: ViewSetupable {
     @objc open func customizeView() {
         var styleManager: DropInViewStyleManager!
         if #available(iOS 12.0, *) {
-            styleManager = traitCollection.userInterfaceStyle == .dark ? dropInViewDarkModeStyleManager : dropInViewStyleManager
+            styleManager = traitCollection.userInterfaceStyle == .dark && dropInViewDarkModeStyleManager != nil ? dropInViewDarkModeStyleManager : dropInViewStyleManager
         } else {
             styleManager = dropInViewStyleManager
         }
         customizeView(dropInViewStyleManager: styleManager)
-
     }
 
     /// - SeeAlso: ViewSetupable.setupProperties
