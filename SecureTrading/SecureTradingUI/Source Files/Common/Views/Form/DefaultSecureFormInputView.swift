@@ -198,6 +198,12 @@ import UIKit
         }
     }
 
+    @objc public var textFieldImageColor: UIColor = .white {
+        didSet {
+            textFieldImageView.setImageColor(color: textFieldImageColor)
+        }
+    }
+
     // MARK: - fonts
 
     @objc public var titleFont: UIFont = UIFont.systemFont(ofSize: 14) {
@@ -345,6 +351,8 @@ extension DefaultSecureFormInputView: ViewSetupable {
         errorLabel.font = errorFont
         stackView.setCustomSpacing(titleSpacing, after: titleLabel)
         stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
+
+        textFieldImageView.setImageColor(color: textFieldImageColor)
 
         isEnabled = true
     }

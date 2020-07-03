@@ -316,6 +316,12 @@ class YearTextField: BackwardTextField {}
         }
     }
 
+    @objc public var textFieldImageColor: UIColor = .white {
+        didSet {
+            textFieldImageView.setImageColor(color: textFieldImageColor)
+        }
+    }
+
     // MARK: - fonts
 
     @objc public var titleFont: UIFont = UIFont.systemFont(ofSize: 14) {
@@ -528,6 +534,8 @@ extension ExpiryDateInputView: ViewSetupable {
 
         stackView.setCustomSpacing(titleSpacing, after: titleLabel)
         stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
+
+        textFieldImageView.setImageColor(color: textFieldImageColor)
 
         isEnabled = true
     }
