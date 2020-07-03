@@ -7,13 +7,14 @@ import UIKit
 
 @objc open class DropInView: BaseView, DropInViewProtocol {
     /// useful if you need to specify some additional validation condition when accepting the form, e.g. if the merchant wants to add an additional check box view
-    //swiftlint:disable identifier_name
+    // swiftlint:disable identifier_name
     @objc public var isAdditionalValidationConditionsFullfiled: Bool = true {
         didSet {
             payButton.isEnabled = isFormValid
         }
     }
-    //swiftlint:enable identifier_name
+
+    // swiftlint:enable identifier_name
 
     @objc public var isFormValid: Bool {
         // Do not validate fields that are not added to the view's hierarchy, for example by specifying visible fields
@@ -27,20 +28,21 @@ import UIKit
     }
 
     @objc public private(set) lazy var cardNumberInput: CardNumberInput = {
-        CardNumberInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
+        CardNumberInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager, inputViewDarkModeStyleManager: dropInViewDarkModeStyleManager?.inputViewStyleManager)
     }()
 
     @objc public private(set) lazy var expiryDateInput: ExpiryDateInput = {
-        ExpiryDateInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
+        ExpiryDateInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager, inputViewDarkModeStyleManager: dropInViewDarkModeStyleManager?.inputViewStyleManager)
     }()
 
     @objc public private(set) lazy var cvcInput: CvcInput = {
-        CvcInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager)
+        CvcInputView(inputViewStyleManager: dropInViewStyleManager?.inputViewStyleManager, inputViewDarkModeStyleManager: dropInViewDarkModeStyleManager?.inputViewStyleManager)
     }()
 
     @objc public private(set) lazy var payButton: PayButtonProtocol = {
         let styleManager = dropInViewStyleManager?.requestButtonStyleManager as? PayButtonStyleManager
-        return PayButton(payButtonStyleManager: styleManager)
+        let darkModeStyleManager = dropInViewDarkModeStyleManager?.requestButtonStyleManager as? PayButtonStyleManager
+        return PayButton(payButtonStyleManager: styleManager, payButtonDarkModeStyleManager: darkModeStyleManager)
     }()
 
     private let stackContainer: UIView = {
@@ -71,6 +73,7 @@ import UIKit
     private let stackViewBottomConstraint = "stackViewBottomConstraint"
 
     let dropInViewStyleManager: DropInViewStyleManager?
+    let dropInViewDarkModeStyleManager: DropInViewStyleManager?
 
     @objc public var spacingBeetwenInputViews: CGFloat = 30 {
         didSet {
@@ -89,8 +92,10 @@ import UIKit
     /// Initializes an instance of the receiver.
     /// - Parameters:
     ///   - dropInViewStyleManager: instance of manager to customize view
-    @objc public init(dropInViewStyleManager: DropInViewStyleManager?) {
+    ///   - dropInViewDarkModeStyleManager: instance of dark mode manager to customize view
+    @objc public init(dropInViewStyleManager: DropInViewStyleManager?, dropInViewDarkModeStyleManager: DropInViewStyleManager?) {
         self.dropInViewStyleManager = dropInViewStyleManager
+        self.dropInViewDarkModeStyleManager = dropInViewDarkModeStyleManager
         super.init()
     }
 
@@ -144,6 +149,17 @@ import UIKit
 }
 
 extension DropInView: ViewSetupable {
+    /// - SeeAlso: ViewSetupable.customizeView
+    @objc open func customizeView() {
+        var styleManager: DropInViewStyleManager!
+        if #available(iOS 12.0, *) {
+            styleManager = traitCollection.userInterfaceStyle == .dark && dropInViewDarkModeStyleManager != nil ? dropInViewDarkModeStyleManager : dropInViewStyleManager
+        } else {
+            styleManager = dropInViewStyleManager
+        }
+        customizeView(dropInViewStyleManager: styleManager)
+    }
+
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc open func setupProperties() {
         (cardNumberInput as? CardNumberInputView)?.cardNumberInputViewDelegate = self
@@ -151,8 +167,6 @@ extension DropInView: ViewSetupable {
         (cvcInput as? CvcInputView)?.delegate = self
         (expiryDateInput as? ExpiryDateInputView)?.delegate = self
         cardNumberInput.becomeFirstResponder()
-
-        customizeView(dropInViewStyleManager: dropInViewStyleManager)
     }
 
     public func setupView(callback: ((UIView) -> Void)?) {

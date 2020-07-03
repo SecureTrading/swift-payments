@@ -64,6 +64,7 @@ import UIKit
     }()
 
     let inputViewStyleManager: InputViewStyleManager?
+    let inputViewDarkModeStyleManager: InputViewStyleManager?
 
     // MARK: Public properties
 
@@ -197,6 +198,12 @@ import UIKit
         }
     }
 
+    @objc public var textFieldImageColor: UIColor = .black {
+        didSet {
+            textFieldImageView.setImageColor(color: textFieldImageColor)
+        }
+    }
+
     // MARK: - fonts
 
     @objc public var titleFont: UIFont = UIFont.systemFont(ofSize: 14) {
@@ -229,8 +236,15 @@ import UIKit
     @objc public var textFieldImage: UIImage? {
         didSet {
             textFieldImageView.image = textFieldImage
+            textFieldImageView.setImageColor(color: textFieldImageColor)
         }
     }
+
+    @objc var textFieldCardImage: UIImage? {
+          didSet {
+              textFieldImageView.image = textFieldCardImage
+          }
+      }
 
     // MARK: - spacing/sizes
 
@@ -279,8 +293,10 @@ import UIKit
     /// Initializes an instance of the receiver.
     /// - Parameters:
     ///   - inputViewStyleManager: instance of manager to customize view
-    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil) {
+    ///   - inputViewDarkModeStyleManager: instance of dark mode manager to customize view
+    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil, inputViewDarkModeStyleManager: InputViewStyleManager? = nil) {
         self.inputViewStyleManager = inputViewStyleManager
+        self.inputViewDarkModeStyleManager = inputViewDarkModeStyleManager
         super.init()
     }
 
@@ -310,6 +326,17 @@ import UIKit
 }
 
 extension DefaultSecureFormInputView: ViewSetupable {
+    /// - SeeAlso: ViewSetupable.customizeView
+    @objc func customizeView() {
+        var styleManager: InputViewStyleManager!
+        if #available(iOS 12.0, *) {
+            styleManager = traitCollection.userInterfaceStyle == .dark && inputViewDarkModeStyleManager != nil ? inputViewDarkModeStyleManager : inputViewStyleManager
+        } else {
+            styleManager = inputViewStyleManager
+        }
+        customizeView(inputViewStyleManager: styleManager)
+    }
+
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
         backgroundColor = .clear
@@ -331,6 +358,8 @@ extension DefaultSecureFormInputView: ViewSetupable {
         errorLabel.font = errorFont
         stackView.setCustomSpacing(titleSpacing, after: titleLabel)
         stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
+
+        textFieldImageView.setImageColor(color: textFieldImageColor)
 
         isEnabled = true
     }

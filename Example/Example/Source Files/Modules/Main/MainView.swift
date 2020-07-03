@@ -5,7 +5,7 @@
 
 import UIKit
 
-final class MainView: WhiteBackgroundBaseView {
+final class MainView: BaseView {
 
     /// data source for table view
     weak var dataSource: MainViewModelDataSource?
@@ -99,6 +99,12 @@ final class MainView: WhiteBackgroundBaseView {
 }
 
 extension MainView: ViewSetupable {
+
+    /// - SeeAlso: ViewSetupable.setupViewHierarchy
+    func setupProperties() {
+        backgroundColor = UIColor(light: .white, dark: .black)
+    }
+
     /// - SeeAlso: ViewSetupable.setupViewHierarchy
     func setupViewHierarchy() {
         addSubviews([tableView, highlightViewsControl])

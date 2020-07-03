@@ -53,6 +53,7 @@
 		08639C8A24696C5500C8F90A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8924696C5500C8F90A /* MainView.swift */; };
 		08639C8C24696CB100C8F90A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8B24696CB100C8F90A /* MainViewController.swift */; };
 		08639C8E2469711500C8F90A /* WhiteBackgroundBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8D2469711500C8F90A /* WhiteBackgroundBaseView.swift */; };
+		0865D15524AF4D7200EAD632 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865D15424AF4D7200EAD632 /* UIColor.swift */; };
 		08DF5D8E24ADBF0000808AE5 /* TrustKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08DF5D8D24ADBF0000808AE5 /* TrustKit.framework */; };
 		08DF5D9924ADDD5500808AE5 /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08DF5D9824ADDD5500808AE5 /* CardinalMobile.framework */; };
 		08E4FA822462A7D100837339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4FA812462A7D100837339 /* AppDelegate.swift */; };
@@ -164,6 +165,7 @@
 		08639C8924696C5500C8F90A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		08639C8B24696CB100C8F90A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		08639C8D2469711500C8F90A /* WhiteBackgroundBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBackgroundBaseView.swift; sourceTree = "<group>"; };
+		0865D15424AF4D7200EAD632 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		08DF5D8D24ADBF0000808AE5 /* TrustKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TrustKit.framework; path = ../Carthage/Build/iOS/TrustKit.framework; sourceTree = "<group>"; };
 		08DF5D9824ADDD5500808AE5 /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CardinalMobile.framework; path = ../Carthage/Build/iOS/CardinalMobile.framework; sourceTree = "<group>"; };
 		08E4FA7E2462A7D100837339 /* Trust Payments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trust Payments.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -394,6 +396,7 @@
 				08639C502469681E00C8F90A /* UIStackView.swift */,
 				08639C512469681E00C8F90A /* UICollectionView.swift */,
 				08639C522469681E00C8F90A /* UITableView.swift */,
+				0865D15424AF4D7200EAD632 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -903,6 +906,7 @@
 				1048A78F2497C0C100ADB2E3 /* WalletAddCardTableViewCell.swift in Sources */,
 				1050AB892490FF97001844BF /* WalletViewController.swift in Sources */,
 				104CFB03246EB1BC00D7C76D /* AppLog.swift in Sources */,
+				0865D15524AF4D7200EAD632 /* UIColor.swift in Sources */,
 				08639C8E2469711500C8F90A /* WhiteBackgroundBaseView.swift in Sources */,
 				08639C722469681E00C8F90A /* CallbackWrapper.swift in Sources */,
 				08E4FA822462A7D100837339 /* AppDelegate.swift in Sources */,

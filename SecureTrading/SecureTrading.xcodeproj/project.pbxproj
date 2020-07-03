@@ -73,6 +73,7 @@
 		08639C902469752800C8F90A /* WhiteBackgroundBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */; };
 		08648A4D248FA8C300EE1E95 /* CardinalMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */; };
 		08653FDC24AB71FA00A85C26 /* TrustKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08653FDB24AB71FA00A85C26 /* TrustKit.framework */; };
+		0865D15324AF2A3F00EAD632 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865D15224AF2A3E00EAD632 /* UIImageView.swift */; };
 		08694877246924F900F625D0 /* TestMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694876246924F900F625D0 /* TestMainViewModel.swift */; };
 		08694879246925EA00F625D0 /* TestMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08694878246925EA00F625D0 /* TestMainViewController.swift */; };
 		0869487B246926FE00F625D0 /* TestMainFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0869487A246926FE00F625D0 /* TestMainFlowController.swift */; };
@@ -294,6 +295,7 @@
 		08639C8F2469752800C8F90A /* WhiteBackgroundBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteBackgroundBaseView.swift; sourceTree = "<group>"; };
 		08648A4C248FA8B600EE1E95 /* CardinalMobile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CardinalMobile.framework; sourceTree = "<group>"; };
 		08653FDB24AB71FA00A85C26 /* TrustKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TrustKit.framework; path = ../../Carthage/Build/iOS/TrustKit.framework; sourceTree = "<group>"; };
+		0865D15224AF2A3E00EAD632 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		08694876246924F900F625D0 /* TestMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainViewModel.swift; sourceTree = "<group>"; };
 		08694878246925EA00F625D0 /* TestMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainViewController.swift; sourceTree = "<group>"; };
 		0869487A246926FE00F625D0 /* TestMainFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMainFlowController.swift; sourceTree = "<group>"; };
@@ -562,6 +564,7 @@
 				084E2A1E24659E2C0040FB9D /* ArrayUI.swift */,
 				08886EE2247C234800BC1637 /* StringUI.swift */,
 				0818DE3924851BDE00A8B25A /* UITextField.swift */,
+				0865D15224AF2A3E00EAD632 /* UIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1544,6 +1547,7 @@
 				1050A951248FE2F100E84A6D /* RequestButton.swift in Sources */,
 				084E29F4246571B10040FB9D /* TestMainView.swift in Sources */,
 				08694877246924F900F625D0 /* TestMainViewModel.swift in Sources */,
+				0865D15324AF2A3F00EAD632 /* UIImageView.swift in Sources */,
 				084E29F6246573180040FB9D /* UIStackView.swift in Sources */,
 				084E2A1424659A8E0040FB9D /* BaseFlowController.swift in Sources */,
 				0869487D24692A3600F625D0 /* TestDetailsView.swift in Sources */,

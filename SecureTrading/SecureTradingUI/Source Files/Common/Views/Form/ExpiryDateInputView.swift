@@ -137,6 +137,7 @@ class YearTextField: BackwardTextField {}
     )
 
     let inputViewStyleManager: InputViewStyleManager?
+    let inputViewDarkModeStyleManager: InputViewStyleManager?
 
     // MARK: Public properties
 
@@ -315,6 +316,12 @@ class YearTextField: BackwardTextField {}
         }
     }
 
+    @objc public var textFieldImageColor: UIColor = .black {
+        didSet {
+            textFieldImageView.setImageColor(color: textFieldImageColor)
+        }
+    }
+
     // MARK: - fonts
 
     @objc public var titleFont: UIFont = UIFont.systemFont(ofSize: 14) {
@@ -347,6 +354,7 @@ class YearTextField: BackwardTextField {}
     @objc public var textFieldImage: UIImage? {
         didSet {
             textFieldImageView.image = textFieldImage
+            textFieldImageView.setImageColor(color: textFieldImageColor)
         }
     }
 
@@ -387,8 +395,9 @@ class YearTextField: BackwardTextField {}
     /// Initializes an instance of the receiver.
     /// - Parameters:
     ///   - inputViewStyleManager: instance of manager to customize view
-    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil) {
+    @objc public init(inputViewStyleManager: InputViewStyleManager? = nil, inputViewDarkModeStyleManager: InputViewStyleManager? = nil) {
         self.inputViewStyleManager = inputViewStyleManager
+        self.inputViewDarkModeStyleManager = inputViewDarkModeStyleManager
         super.init()
         self.accessibilityIdentifier = "st-expiration-date-input"
         monthTextField.accessibilityIdentifier = "st-expiration-date-input-month-textfield"
@@ -477,6 +486,18 @@ class YearTextField: BackwardTextField {}
 }
 
 extension ExpiryDateInputView: ViewSetupable {
+
+    /// - SeeAlso: ViewSetupable.customizeView
+    @objc func customizeView() {
+        var styleManager: InputViewStyleManager!
+        if #available(iOS 12.0, *) {
+            styleManager = traitCollection.userInterfaceStyle == .dark && inputViewDarkModeStyleManager != nil ? inputViewDarkModeStyleManager : inputViewStyleManager
+        } else {
+            styleManager = inputViewStyleManager
+        }
+        customizeView(inputViewStyleManager: styleManager)
+    }
+
     /// - SeeAlso: ViewSetupable.setupProperties
     @objc func setupProperties() {
         backgroundColor = .clear
@@ -515,9 +536,9 @@ extension ExpiryDateInputView: ViewSetupable {
         stackView.setCustomSpacing(titleSpacing, after: titleLabel)
         stackView.setCustomSpacing(errorSpacing, after: textFieldStackView)
 
-        isEnabled = true
+        textFieldImageView.setImageColor(color: textFieldImageColor)
 
-        customizeView(inputViewStyleManager: inputViewStyleManager)
+        isEnabled = true
     }
 
     /// - SeeAlso: ViewSetupable.setupViewHierarchy

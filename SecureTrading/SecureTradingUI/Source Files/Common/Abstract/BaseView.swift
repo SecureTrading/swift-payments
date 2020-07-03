@@ -30,3 +30,13 @@ open class BaseView: UIView {
         }
     }
 }
+
+extension BaseView {
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        performBlockIfAppearanceChanged(from: previousTraitCollection) {
+            guard let setupableView = self as? ViewSetupable else { return }
+            setupableView.customizeView()
+        }
+    }
+}

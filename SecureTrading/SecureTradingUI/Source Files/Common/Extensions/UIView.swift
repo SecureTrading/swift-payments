@@ -319,8 +319,18 @@ extension UIView {
 
     func asHierarchyImage() -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
-        return renderer.image { rendererContext in
+        return renderer.image { _ in
             drawHierarchy(in: bounds, afterScreenUpdates: true)
+        }
+    }
+}
+
+extension UIView {
+    func performBlockIfAppearanceChanged(from previousTraits: UITraitCollection?, block: () -> Void) {
+        if #available(iOS 13, *) {
+            if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraits) {
+                block()
+            }
         }
     }
 }

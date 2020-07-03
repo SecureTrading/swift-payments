@@ -17,6 +17,7 @@ import UIKit
     }()
 
     let requestButtonStyleManager: RequestButtonStyleManager?
+    let requestButtonDarkModeStyleManager: RequestButtonStyleManager?
 
     // MARK: Public properties
 
@@ -103,8 +104,10 @@ import UIKit
     /// Initialize an instance and calls required methods
     /// - Parameters:
     ///   - requestButtonStyleManager: instance of manager to customize view
-    @objc public init(requestButtonStyleManager: RequestButtonStyleManager? = nil) {
+    ///   - requestButtonDarkModeStyleManager: instance of dark mode manager to customize view
+    @objc public init(requestButtonStyleManager: RequestButtonStyleManager? = nil, requestButtonDarkModeStyleManager: RequestButtonStyleManager? = nil) {
         self.requestButtonStyleManager = requestButtonStyleManager
+        self.requestButtonDarkModeStyleManager = requestButtonDarkModeStyleManager
         super.init(frame: .zero)
         self.configureView()
     }
@@ -137,10 +140,22 @@ import UIKit
         self.spinner.style = self.spinnerStyle
         self.spinner.color = self.spinnerColor
 
-        self.customizeView(requestButtonStyleManager: self.requestButtonStyleManager)
-        self.isEnabled = false
+        self.customizeView()
 
         self.highlightIfNeeded()
+        self.isEnabled = false
+    }
+
+    private func customizeView() {
+        var styleManager: RequestButtonStyleManager!
+        if #available(iOS 12.0, *) {
+            styleManager = traitCollection.userInterfaceStyle == .dark && requestButtonDarkModeStyleManager != nil ? requestButtonDarkModeStyleManager : requestButtonStyleManager
+        } else {
+            styleManager = requestButtonStyleManager
+        }
+        customizeView(requestButtonStyleManager: styleManager)
+
+        self.backgroundColor = self.isEnabled ? self.enabledBackgroundColor : self.disabledBackgroundColor
     }
 
     private func customizeView(requestButtonStyleManager: RequestButtonStyleManager?) {
@@ -195,5 +210,14 @@ import UIKit
     @objc public func stopProcessing() {
         self.isUserInteractionEnabled = true
         self.spinner.stopAnimating()
+    }
+}
+
+extension RequestButton {
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        performBlockIfAppearanceChanged(from: previousTraitCollection) {
+            self.customizeView()
+        }
     }
 }
