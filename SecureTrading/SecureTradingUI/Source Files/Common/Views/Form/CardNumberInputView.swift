@@ -89,6 +89,12 @@ import UIKit
 }
 
 extension CardNumberInputView {
+    /// - SeeAlso: SecureFormInputView.customizeView
+    override func customizeView() {
+        super.customizeView()
+        showCardImage()
+    }
+
     /// - SeeAlso: SecureFormInputView.setupProperties
     override func setupProperties() {
         super.setupProperties()
@@ -99,8 +105,6 @@ extension CardNumberInputView {
         emptyError = LocalizableKeys.CardNumberInputView.emptyError.localizedStringOrEmpty
 
         keyboardType = .numberPad
-
-        showCardImage()
     }
 }
 
