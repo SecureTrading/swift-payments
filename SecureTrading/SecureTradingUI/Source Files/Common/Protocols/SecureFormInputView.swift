@@ -3,8 +3,8 @@
 //  SecureTradingUI
 //
 #if !COCOAPODS
-import SecureTradingCore
 import SecureTradingCard
+import SecureTradingCore
 #endif
 import UIKit
 
@@ -75,6 +75,8 @@ import UIKit
 
     var errorColor: UIColor { get set }
 
+    var textFieldImageColor: UIColor { get set }
+
     var titleFont: UIFont { get set }
 
     // MARK: - fonts
@@ -126,6 +128,10 @@ extension SecureFormInputView {
 
         if let errorColor = inputViewStyleManager?.errorColor {
             self.errorColor = errorColor
+        }
+
+        if let textFieldImageColor = inputViewStyleManager?.textFieldImageColor {
+            self.textFieldImageColor = textFieldImageColor
         }
 
         if let titleFont = inputViewStyleManager?.titleFont {

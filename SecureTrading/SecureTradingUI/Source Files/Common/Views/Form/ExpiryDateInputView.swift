@@ -316,7 +316,7 @@ class YearTextField: BackwardTextField {}
         }
     }
 
-    @objc public var textFieldImageColor: UIColor = .white {
+    @objc public var textFieldImageColor: UIColor = .black {
         didSet {
             textFieldImageView.setImageColor(color: textFieldImageColor)
         }

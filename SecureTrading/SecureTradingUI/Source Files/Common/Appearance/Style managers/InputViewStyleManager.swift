@@ -24,6 +24,7 @@ import UIKit
     @objc public let textColor: UIColor?
     @objc public let placeholderColor: UIColor?
     @objc public let errorColor: UIColor?
+    @objc public let textFieldImageColor: UIColor?
 
     // MARK: - fonts
 
@@ -44,13 +45,14 @@ import UIKit
     @objc public var textFieldBorderWidth: CGFloat
     @objc public var textFieldCornerRadius: CGFloat
 
-    @objc public init(titleColor: UIColor?, textFieldBorderColor: UIColor?, textFieldBackgroundColor: UIColor?, textColor: UIColor?, placeholderColor: UIColor?, errorColor: UIColor?, titleFont: UIFont?, textFont: UIFont?, placeholderFont: UIFont?, errorFont: UIFont?, textFieldImage: UIImage?, titleSpacing: CGFloat = 5, errorSpacing: CGFloat = 5, textFieldHeightMargins: HeightMargins? = nil, textFieldBorderWidth: CGFloat = 2, textFieldCornerRadius: CGFloat = 5) {
+    @objc public init(titleColor: UIColor?, textFieldBorderColor: UIColor?, textFieldBackgroundColor: UIColor?, textColor: UIColor?, placeholderColor: UIColor?, errorColor: UIColor?, textFieldImageColor: UIColor?, titleFont: UIFont?, textFont: UIFont?, placeholderFont: UIFont?, errorFont: UIFont?, textFieldImage: UIImage?, titleSpacing: CGFloat = 5, errorSpacing: CGFloat = 5, textFieldHeightMargins: HeightMargins? = nil, textFieldBorderWidth: CGFloat = 2, textFieldCornerRadius: CGFloat = 5) {
         self.titleColor = titleColor
         self.textFieldBorderColor = textFieldBorderColor
         self.textFieldBackgroundColor = textFieldBackgroundColor
         self.textColor = textColor
         self.placeholderColor = placeholderColor
         self.errorColor = errorColor
+        self.textFieldImageColor = textFieldImageColor
         self.titleFont = titleFont
         self.textFont = textFont
         self.placeholderFont = placeholderFont
@@ -70,6 +72,7 @@ import UIKit
                               textColor: .black,
                               placeholderColor: UIColor.lightGray.withAlphaComponent(0.8),
                               errorColor: UIColor.red.withAlphaComponent(0.8),
+                              textFieldImageColor: .black,
                               titleFont: UIFont.systemFont(ofSize: 16, weight: .regular),
                               textFont: UIFont.systemFont(ofSize: 16, weight: .regular),
                               placeholderFont: UIFont.systemFont(ofSize: 16, weight: .regular),
