@@ -98,6 +98,12 @@ final class MainFlowController: BaseNavigationFlowController {
 
         let dropInViewStyleManager = DropInViewStyleManager(inputViewStyleManager: inputViewStyleManager, requestButtonStyleManager: payButtonStyleManager, backgroundColor: .white, spacingBeetwenInputViews: 25, insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
 
+        let inputViewDarkModeStyleManager = InputViewStyleManager(titleColor: UIColor.white, textFieldBorderColor: UIColor.white.withAlphaComponent(0.8), textFieldBackgroundColor: .clear, textColor: .white, placeholderColor: UIColor.white.withAlphaComponent(0.8), errorColor: UIColor.red, titleFont: UIFont.systemFont(ofSize: 16, weight: .regular), textFont: UIFont.systemFont(ofSize: 16, weight: .regular), placeholderFont: UIFont.systemFont(ofSize: 16, weight: .regular), errorFont: UIFont.systemFont(ofSize: 12, weight: .regular), textFieldImage: nil, titleSpacing: 5, errorSpacing: 3, textFieldHeightMargins: HeightMargins(top: 10, bottom: 10), textFieldBorderWidth: 1, textFieldCornerRadius: 6)
+
+        let payButtonDarkModeStyleManager = PayButtonStyleManager(titleColor: .black, enabledBackgroundColor: .white, disabledBackgroundColor: UIColor.lightGray.withAlphaComponent(0.6), borderColor: .clear, titleFont: UIFont.systemFont(ofSize: 16, weight: .medium), spinnerStyle: .gray, spinnerColor: .black, buttonContentHeightMargins: HeightMargins(top: 15, bottom: 15), borderWidth: 0, cornerRadius: 6)
+
+        let dropInViewDarkModeStyleManager = DropInViewStyleManager(inputViewStyleManager: inputViewDarkModeStyleManager, requestButtonStyleManager: payButtonDarkModeStyleManager, backgroundColor: .black, spacingBeetwenInputViews: 25, insets: UIEdgeInsets(top: 25, left: 35, bottom: -30, right: -35))
+
         let toolbarStyleManager = CardinalToolbarStyleManager(textColor: .black, textFont: nil, backgroundColor: .white, headerText: "Trust payment checkout", buttonText: nil)
         let labelStyleManager = CardinalLabelStyleManager(textColor: .gray, textFont: nil, headingTextColor: .black, headingTextFont: nil)
 
@@ -125,7 +131,7 @@ final class MainFlowController: BaseNavigationFlowController {
 
         let isDeferInit = addCustomView
 
-        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: isDeferInit, customDropInView: customDropInView, visibleFields: visibleFields, dropInViewStyleManager: dropInViewStyleManager, cardTypeToBypass: [], cardinalStyleManager: cardinalStyleManager, cardinalDarkModeStyleManager: cardinalDarkModeStyleManager, payButtonTappedClosureBeforeTransaction: { [unowned self] controller in
+        let dropInVC = ViewControllerFactory.shared.dropInViewController(jwt: jwt, typeDescriptions: typeDescriptions, gatewayType: .eu, username: appFoundation.keys.merchantUsername, isLiveStatus: false, isDeferInit: isDeferInit, customDropInView: customDropInView, visibleFields: visibleFields, dropInViewStyleManager: dropInViewStyleManager, dropInViewDarkModeStyleManager: dropInViewDarkModeStyleManager, cardTypeToBypass: [], cardinalStyleManager: cardinalStyleManager, cardinalDarkModeStyleManager: cardinalDarkModeStyleManager, payButtonTappedClosureBeforeTransaction: { [unowned self] controller in
             // updates JWT with credentialsonfile flag
             let storeCard = customDropInView?.isSaveCardSelected ?? false
             guard let updatedJWT = self.mainViewModel?.getJwtTokenWithoutCardData(storeCard: storeCard, parentTransactionReference: jwt.parentReference) else { return }
