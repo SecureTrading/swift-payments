@@ -240,6 +240,12 @@ import UIKit
         }
     }
 
+    @objc var textFieldCardImage: UIImage? {
+          didSet {
+              textFieldImageView.image = textFieldCardImage
+          }
+      }
+
     // MARK: - spacing/sizes
 
     @objc public var titleSpacing: CGFloat = 5 {

@@ -4,8 +4,8 @@
 //
 
 #if !COCOAPODS
-import SecureTradingCore
 import SecureTradingCard
+import SecureTradingCore
 #endif
 
 import UIKit
@@ -66,8 +66,8 @@ import UIKit
         self.cardNumberSeparator = cardNumberSeparator
         super.init(inputViewStyleManager: inputViewStyleManager, inputViewDarkModeStyleManager: inputViewDarkModeStyleManager)
         self.accessibilityIdentifier = "st-card-number-input"
-        self.textField.accessibilityIdentifier = "st-card-number-input-textfield"
-        self.errorLabel.accessibilityIdentifier = "st-card-number-message"
+        textField.accessibilityIdentifier = "st-card-number-input-textfield"
+        errorLabel.accessibilityIdentifier = "st-card-number-message"
     }
 
     required init?(coder argument: NSCoder) {
@@ -80,12 +80,15 @@ import UIKit
         let cardType = CardValidator.cardType(for: cardNumber.rawValue, cardTypes: cardTypeContainer.cardTypes)
         let cardTypeImage = cardType.logo
 
-        textFieldImage = cardTypeImage
+        if cardType == .unknown {
+            textFieldImage = cardTypeImage
+        } else {
+            textFieldCardImage = cardTypeImage
+        }
     }
 }
 
 extension CardNumberInputView {
-
     /// - SeeAlso: SecureFormInputView.setupProperties
     override func setupProperties() {
         super.setupProperties()
