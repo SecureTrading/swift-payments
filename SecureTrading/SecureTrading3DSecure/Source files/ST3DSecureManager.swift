@@ -178,7 +178,7 @@ public final class ST3DSecureManager {
             if let textFont = labelStyleManager.headingTextFont {
                 labelCust.headingTextFontSize = Int32(textFont.size)
                 if let name = textFont.name {
-                    labelCust.textFontName = name
+                    labelCust.headingTextFontName = name
                 }
             }
 
