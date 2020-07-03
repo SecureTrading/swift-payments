@@ -236,6 +236,7 @@ import UIKit
     @objc public var textFieldImage: UIImage? {
         didSet {
             textFieldImageView.image = textFieldImage
+            textFieldImageView.setImageColor(color: textFieldImageColor)
         }
     }
 
